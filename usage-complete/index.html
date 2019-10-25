@@ -1,0 +1,1508 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="An extensive workflow to process Illumina sequencing for bacterial genomes.">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/bactopia/usage-complete/">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.1">
+    
+    
+      
+        <title>Complete Usage - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-104199698-2", "bactopia.github.io")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#runtime-parameters" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://bactopia.github.io/bactopia" title="Bactopia" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Bactopia
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Complete Usage
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href=".." title="Bactopia" class="md-tabs__link md-tabs__link--active">
+          Bactopia
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../tools/bactopia-tools/" title="Bactopia Tools" class="md-tabs__link">
+          Bactopia Tools
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://bactopia.github.io/bactopia" title="Bactopia" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Bactopia
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Bactopia
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../quick-start/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/" title="Tutorial" class="md-nav__link">
+      Tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../datasets/" title="Build Datasets" class="md-nav__link">
+      Build Datasets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-basic/" title="Basic Usage" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../workflow-overview/" title="Workflow Overview" class="md-nav__link">
+      Workflow Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../output-overview/" title="Output Overview" class="md-nav__link">
+      Output Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Complete Usage
+      </label>
+    
+    <a href="./" title="Complete Usage" class="md-nav__link md-nav__link--active">
+      Complete Usage
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required" title="Required" class="md-nav__link">
+    Required
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" title="Dataset" class="md-nav__link">
+    Dataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional" title="Optional" class="md-nav__link">
+    Optional
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-genome_size" title="--genome_size" class="md-nav__link">
+    --genome_size
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpers" title="Helpers" class="md-nav__link">
+    Helpers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-keep_all_files" title="--keep_all_files" class="md-nav__link">
+    --keep_all_files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#program-specific" title="Program Specific" class="md-nav__link">
+    Program Specific
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotation" title="Annotation" class="md-nav__link">
+    Annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antimicrobial-resistance" title="Antimicrobial Resistance" class="md-nav__link">
+    Antimicrobial Resistance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ariba" title="Ariba" class="md-nav__link">
+    Ariba
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" title="Assembly" class="md-nav__link">
+    Assembly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blast" title="BLAST" class="md-nav__link">
+    BLAST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counting-31mers" title="Counting 31mers" class="md-nav__link">
+    Counting 31mers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-fastq" title="Download FASTQ" class="md-nav__link">
+    Download FASTQ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-reference-genome" title="Download Reference Genome" class="md-nav__link">
+    Download Reference Genome
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertion-mapping" title="Insertion Mapping" class="md-nav__link">
+    Insertion Mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping" title="Mapping" class="md-nav__link">
+    Mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmer-query" title="Minmer Query" class="md-nav__link">
+    Minmer Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmer-sketch" title="Minmer Sketch" class="md-nav__link">
+    Minmer Sketch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" title="Quality Control" class="md-nav__link">
+    Quality Control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant-calling" title="Variant Calling" class="md-nav__link">
+    Variant Calling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../troubleshooting/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../acknowledgements/" title="Acknowledgements" class="md-nav__link">
+      Acknowledgements
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Bactopia Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Bactopia Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/bactopia-tools/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/cgtree/" title="Core-Genome Phylogeny" class="md-nav__link">
+      Core-Genome Phylogeny
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#required" title="Required" class="md-nav__link">
+    Required
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" title="Dataset" class="md-nav__link">
+    Dataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional" title="Optional" class="md-nav__link">
+    Optional
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-genome_size" title="--genome_size" class="md-nav__link">
+    --genome_size
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helpers" title="Helpers" class="md-nav__link">
+    Helpers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-keep_all_files" title="--keep_all_files" class="md-nav__link">
+    --keep_all_files
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#program-specific" title="Program Specific" class="md-nav__link">
+    Program Specific
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotation" title="Annotation" class="md-nav__link">
+    Annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antimicrobial-resistance" title="Antimicrobial Resistance" class="md-nav__link">
+    Antimicrobial Resistance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ariba" title="Ariba" class="md-nav__link">
+    Ariba
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" title="Assembly" class="md-nav__link">
+    Assembly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blast" title="BLAST" class="md-nav__link">
+    BLAST
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counting-31mers" title="Counting 31mers" class="md-nav__link">
+    Counting 31mers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-fastq" title="Download FASTQ" class="md-nav__link">
+    Download FASTQ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-reference-genome" title="Download Reference Genome" class="md-nav__link">
+    Download Reference Genome
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertion-mapping" title="Insertion Mapping" class="md-nav__link">
+    Insertion Mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping" title="Mapping" class="md-nav__link">
+    Mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmer-query" title="Minmer Query" class="md-nav__link">
+    Minmer Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmer-sketch" title="Minmer Sketch" class="md-nav__link">
+    Minmer Sketch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" title="Quality Control" class="md-nav__link">
+    Quality Control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variant-calling" title="Variant Calling" class="md-nav__link">
+    Variant Calling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/usage-complete.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="runtime-parameters">Runtime Parameters<a class="headerlink" href="#runtime-parameters" title="Permanent link">&para;</a></h1>
+<p>Bactopia includes numerous (100+) configurable parameters. Basically for each step of the pipeline, you can modify the default parameters of a specific tool.</p>
+<h2 id="required">Required<a class="headerlink" href="#required" title="Permanent link">&para;</a></h2>
+<p>The required parameters depends on how many samples are to be proccessed. You can learn more about which approach to take at <a href="../usage-basic/#fastq-inputs">Specifying Input FASTQs</a>.
+<div class="highlight"><pre><span></span>    ### For Procesessing Multiple Samples
+    --fastqs STR            An input file containing the sample name and
+                                absolute paths to FASTQs to process
+
+    ### For Processing A Single Sample
+    --R1 STR                First set of reads for paired end in compressed (gzip)
+                                FASTQ format
+
+    --R2 STR                Second set of reads for paired end in compressed (gzip)
+                                FASTQ format
+
+    --SE STR                Single end set of reads in compressed (gzip) FASTQ format
+
+    --sample STR            The name of the input sequences
+
+    ### For Downloading from ENA
+    --accessions            An input file containing ENA/SRA experiement accessions to
+                                be processed
+
+    --accession             A single ENA/SRA Experiment accession to be processed
+</pre></div></p>
+<h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h2>
+<p>If you followed the steps in <a href="../datasets/">Build Datasets</a>, you can use the following parameters to point Bactopia to you datasets.</p>
+<div class="highlight"><pre><span></span>    --datasets DIR          The path to available public datasets that have
+                                already been set up
+
+    --species STR           Determines which species-specific dataset to
+                                use for the input sequencing
+</pre></div>
+
+<h2 id="optional">Optional<a class="headerlink" href="#optional" title="Permanent link">&para;</a></h2>
+<p>These optional parameters, while not required, will be quite useful to tweak.</p>
+<div class="highlight"><pre><span></span>    --coverage INT          Reduce samples to a given coverage
+                                Default: 100x
+
+    --genome_size INT       Expected genome size (bp) for all samples, a value of &#39;0&#39;
+                                will disable read error correction and read subsampling.
+                                Special values (requires --species):
+                                    &#39;min&#39;: uses minimum completed genome size of species
+                                    &#39;median&#39;: uses median completed genome size of species
+                                    &#39;mean&#39;: uses mean completed genome size of species
+                                    &#39;max&#39;: uses max completed genome size of species
+                                Default: Mash estimate
+
+    --outdir DIR            Directory to write results to
+                                Default: .
+
+    --max_time INT          The maximum number of minutes a job should run before being halted.
+                                Default: 120 minutes
+
+    --max_memory INT        The maximum amount of memory (Gb) allowed to a single process.
+                                Default: 32 Gb
+
+    --cpus INT              Number of processors made available to a single
+                                process. 
+                                Default: 4
+</pre></div>
+
+<h3 id="-genome_size"><code>--genome_size</code><a class="headerlink" href="#-genome_size" title="Permanent link">&para;</a></h3>
+<p>Throughout the Bactopia workflow a genome size is used for various tasks. By default, a genome size is estimated using Mash. However, users can provide their own value for genome size, use values based on <a href="/datasets/#species-specific">Species Specific Datasets</a>, or completely disable it.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>empty</em></td>
+<td>Mash is used to estimate the genome size</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>Uses the genome size (e.g. <code>--genome_size 2800000</code>) provided by the user</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Read error correct and read subsampling will be disabled.</td>
+</tr>
+<tr>
+<td>min</td>
+<td>Requires <code>--species</code>, the minimum completed genome size for a species is used</td>
+</tr>
+<tr>
+<td>median</td>
+<td>Requires <code>--species</code>, the median completed genome size for a species is used</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>Requires <code>--species</code>, the mean completed genome size for a species is used</td>
+</tr>
+<tr>
+<td>max</td>
+<td>Requires <code>--species</code>, the maximum completed genome size for a species is used</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition error">
+<p class="admonition-title">Mash may not be the most accurate estimate</p>
+<p>Mash is very convenient to quickly estimate a genome size, but it may not be the most accurate in all cases and will differ between samples. It is recommended that when possible a known genome size or one based off completed genomes should be used. </p>
+</div>
+<h2 id="helpers">Helpers<a class="headerlink" href="#helpers" title="Permanent link">&para;</a></h2>
+<p>The following parameters are useful to test to test input parameters.
+<div class="highlight"><pre><span></span>    --infodir DIR           Directory to write Nextflow summary files to
+                                Default: ./bactopia-info
+
+    --condadir DIR          Directory to Nextflow should use for Conda environments
+                                Default: Bactopia&#39;s Nextflow directory
+
+    --nfdir                 Print directory Nextflow has pulled Bactopia to
+
+    --overwrite             Nextflow will overwrite existing output files.
+                                Default: false
+
+    --conatainerPath        Path to Singularity containers to be used by the &#39;slurm&#39;
+                                profile.
+                                Default: /opt/bactopia/singularity
+
+    --sleep_time            After reading datases, the amount of time (seconds) Nextflow
+                                will wait before execution.
+                                Default: 5 seconds
+
+    --available_datasets    Print a list of available datasets found based
+                                on location given by &quot;--datasets&quot;
+
+    --example_fastqs        Print example of expected input for FASTQs file
+
+    --check_fastqs          Verify &quot;--fastqs&quot; produces the expected inputs
+
+    --compress              Compress (gzip) select outputs (e.g. annotation, variant calls)
+                                to reduce overall storage footprint.
+
+    --keep_all_files        Keeps all analysis files created. By default, intermediate
+                                files are removed. This will not affect the ability
+                                to resume Nextflow runs, and only occurs at the end
+                                of the process.
+
+    --version               Print workflow version information
+
+    --help                  Show this message and exit
+
+    --help_all              Show a complete list of adjustable parameters
+</pre></div></p>
+<h3 id="-keep_all_files"><code>--keep_all_files</code><a class="headerlink" href="#-keep_all_files" title="Permanent link">&para;</a></h3>
+<p>In some processes, Bactopia will delete large intermediate files (e.g. multiple uncompressed FASTQs) <strong>only</strong> after a process successfully completes. Since this a per-process function, it does not affect Nextflow's ability to resume (<code>-resume</code>)a workflow. You can deactivate this feature using <code>--keep_all_files</code>. Please, keep in mind the <em>work</em> directory is already large, this will make it 2-3 times larger.</p>
+<h2 id="program-specific">Program Specific<a class="headerlink" href="#program-specific" title="Permanent link">&para;</a></h2>
+<p>The remaining parameters are associated with specific programs. In the following sections, these parameters are grouped by which Nextflow process they are applicable to.</p>
+<p>The description and default values for these parameters were taken from the program to which they apply.</p>
+<p>It is important to note, not all of the available parameters for each and every program are available in Bactopia. If there is a parameter that was overlooked and should probably be included, please make a suggestion!</p>
+<h3 id="annotation">Annotation<a class="headerlink" href="#annotation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --centre STR            Sequencing centre ID
+                                Default: &#39;&#39;
+
+    --addgenes              Add &#39;gene&#39; features for each &#39;CDS&#39; feature
+
+    --addmrna               Add &#39;mRNA&#39; features for each &#39;CDS&#39; feature
+
+    --rawproduct            Do not clean up /product annotation
+
+    --cdsrnaolap            Allow [tr]RNA to overlap CDS
+
+    --prokka_evalue STR     Similarity e-value cut-off
+                                Default: 1e-09
+
+    --prokka_coverage INT   Minimum coverage on query protein
+                                 Default: 80
+
+    --norrna                Don&#39;t run rRNA search
+
+    --notrna                Don&#39;t run tRNA search
+
+    --rnammer               Prefer RNAmmer over Barrnap for rRNA prediction
+</pre></div>
+
+<h3 id="antimicrobial-resistance">Antimicrobial Resistance<a class="headerlink" href="#antimicrobial-resistance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --update_amr            Force amrfinder to update its database.
+
+    --amr_ident_min         Minimum identity for nucleotide hit (0..1). -1
+                                means use a curated threshold if it exists and
+                                0.9 otherwise
+                                Default: -1
+
+    --amr_coverage_min      Minimum coverage of the reference protein (0..1)
+                                Default: 0.5
+
+    --amr_organism          Taxonomy group: Campylobacter, Escherichia, Klebsiella
+                                Salmonella, Staphylococcus, Vibrio
+                                Default: &#39;&#39;
+
+    --amr_translation_table NCBI genetic code for translated BLAST
+                                Default: 11
+
+    --amr_plus              Add the plus genes to the report
+
+    --amr_report_common     Suppress proteins common to a taxonomy group
+</pre></div>
+
+<h3 id="ariba">Ariba<a class="headerlink" href="#ariba" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --nucmer_min_id INT     Minimum alignment identity (delta-filter -i)
+                                Default: 90
+
+    --nucmer_min_len INT    Minimum alignment length (delta-filter -i)
+                                Default: 20
+
+    --nucmer_breaklen INT   Value to use for -breaklen when running nucmer
+                                Default: 200
+
+    --assembly_cov INT      Target read coverage when sampling reads for
+                                assembly
+                                Default: 50
+
+    --min_scaff_depth INT   Minimum number of read pairs needed as evidence
+                                for scaffold link between two contigs
+                                Default: 10
+
+    --spades_options STR    Extra options to pass to Spades assembler
+                                Default: null
+
+    --assembled_threshold FLOAT (between 0 and 1)
+                            If proportion of gene assembled (regardless of
+                                into how many contigs) is at least this
+                                value then the flag gene_assembled is set
+                                Default: 0.95
+
+    --gene_nt_extend INT    Max number of nucleotides to extend ends of gene
+                                matches to look for start/stop codons
+                                Default: 30
+
+    --unique_threshold FLOAT (between 0 and 1)
+                            If proportion of bases in gene assembled more
+                                than once is &lt;= this value, then the flag
+                                unique_contig is set
+                                Default: 0.03
+
+    --ariba_no_clean        Do not clean up intermediate files created by
+                                Ariba. By default, the local assemblies are
+                                deleted.
+</pre></div>
+
+<h3 id="assembly">Assembly<a class="headerlink" href="#assembly" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --shovill_ram INT       Try to keep RAM usage below this many GB
+                                Default: 6 GB
+
+    --assembler STR         Assembler: megahit velvet skesa spades
+                                Default: skesa
+
+    --min_contig_len INT    Minimum contig length &lt;0=AUTO&gt;
+                                Default: 500
+
+    --min_contig_cov INT    Minimum contig coverage &lt;0=AUTO&gt;
+                                Default: 2
+
+    --contig_namefmt STR    Format of contig FASTA IDs in &#39;printf&#39; style
+                                Default: contig%05d
+
+    --shovill_opts STR      Extra assembler options in quotes eg.
+                                spades: &quot;--untrusted-contigs locus.fna&quot; ...
+                                Default: &#39;&#39;
+
+    --shovill_kmers STR     K-mers to use &lt;blank=AUTO&gt;
+                                Default: &#39;&#39;
+
+    --trim                  Enable adaptor trimming
+
+    --nostitch              Disable read stitching
+
+    --nocorr                Disable post-assembly correction
+</pre></div>
+
+<h3 id="blast">BLAST<a class="headerlink" href="#blast" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --perc_identity INT     Percent identity
+                                Default: 50
+
+    --qcov_hsp_perc INT     Percent query coverage per hsp
+                                Default: 50
+
+    --max_target_seqs INT   Maximum number of aligned sequences to
+                                keep
+                                Default: 2000
+
+    --outfmt STR            BLAST alignment view options
+                                Default: &#39;6 qseqid qlen qstart qend sseqid slen sstart send length evalue bitscore pident nident mismatch gaps qcovs qcovhsp&#39;
+</pre></div>
+
+<h3 id="counting-31mers">Counting 31mers<a class="headerlink" href="#counting-31mers" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --cortex_ram INT        Try to keep RAM usage below this many GB
+                                Default: 8 GB
+
+    --keep_singletons       Keep all counted 31-mers
+                                Default: Filter out singletons
+</pre></div>
+
+<h3 id="download-fastq">Download FASTQ<a class="headerlink" href="#download-fastq" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --max_retry INT         Maximum times to retry downloads
+                                Default: 10
+
+    --use_ena               Download FASTQs from ENA with Aspera Connect.
+                                Default: Download from SRA
+
+    --ftp_only              If &quot;--use_ena&quot; is enabled, FTP will be used to
+                                download FASTQs from ENA.
+
+    --aspera_speed STR      Speed at which Aspera Connect will download.
+                                Default: 100M
+</pre></div>
+
+<h3 id="download-reference-genome">Download Reference Genome<a class="headerlink" href="#download-reference-genome" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --max_references INT    Maximum number of nearest neighbor reference genomes to
+                                download for variant calling.
+                                Default: 1
+
+    --random_tie_break      On references with matching distances, randomly select one.
+                                Default: Pick earliest accession number
+
+    --disable_auto_variants Disable automatic selection of reference genome based on
+                                Mash distances.
+</pre></div>
+
+<h3 id="insertion-mapping">Insertion Mapping<a class="headerlink" href="#insertion-mapping" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --min_clip INT          Minimum size for softclipped region to be
+                                extracted from initial mapping
+                                Default: 10
+
+    --max_clip INT          Maximum size for softclipped regions to be
+                                included
+                                Default: 30
+
+    --cutoff INT            Minimum depth for mapped region to be kept in
+                                bed file
+                                Default: 6
+
+    --novel_gap_size INT    Distance in base pairs between left and right
+                                flanks to be called a novel hit
+                                Default: 15
+
+    --min_range FLOAT       Minimum percent size of the gap to be called a
+                                known hit
+                                Default: 0.9
+
+    --max_range FLOAT       Maximum percent size of the gap to be called a
+                                known hit
+                                Default: 1.1
+
+    --merging INT           Value for merging left and right hits in bed
+                                files together to simply calculation of
+                                closest and intersecting regions
+                                Default: 100
+
+    --ismap_all             Switch on all alignment reporting for bwa
+
+    --ismap_minqual INT     Mapping quality score for bwa
+                                Default: 30
+</pre></div>
+
+<h3 id="mapping">Mapping<a class="headerlink" href="#mapping" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --keep_unmapped_reads   Keep unmapped reads, this does not affect variant
+                                calling.
+
+    --bwa_mem_opts STR      Extra BWA MEM options
+                                Default: &#39;&#39;
+
+    --bwa_aln_opts STR      Extra BWA ALN options
+                                Default: &#39;&#39;
+
+    --bwa_samse_opts STR    Extra BWA SAMSE options
+                                Default: &#39;&#39;
+
+    --bwa_sampe_opts STR    Extra BWA SAMPE options
+                                Default: &#39;&#39;
+
+    --bwa_n INT             Maximum number of alignments to output in the XA
+                                tag for reads paired properly. If a read has
+                                more than INT hits, the XA tag will not be
+                                written.
+                                Default: 9999
+</pre></div>
+
+<h3 id="minmer-query">Minmer Query<a class="headerlink" href="#minmer-query" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --screen_w              Winner-takes-all strategy for identity estimates.
+                                After counting hashes for each query, hashes
+                                that appear in multiple queries will be
+                                removed from all except the one with the best
+                                identity (ties broken by larger query), and
+                                other identities will be reduced. This
+                                removes output redundancy, providing a rough
+                                compositional outline.
+                                Default: True
+
+    --screen_i FLOAT        Minimum identity to report. Inclusive unless set
+                                to zero, in which case only identities greater
+                                than zero (i.e. with at least one shared hash)
+                                will be reported. Set to -1 to output
+                                everything.
+                                Default: 0.8
+</pre></div>
+
+<h3 id="minmer-sketch">Minmer Sketch<a class="headerlink" href="#minmer-sketch" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --minmer_ram INT        Try to keep RAM usage below this many GB
+                                Default: 5 GB
+
+    --mash_sketch INT       Sketch size. Each sketch will have at most this
+                                many non-redundant min-hashes.
+                                Default: 10000
+
+    --sourmash_scale INT    Choose number of hashes as 1 in FRACTION of
+                                input k-mers
+                                Default: 10000
+</pre></div>
+
+<h3 id="quality-control">Quality Control<a class="headerlink" href="#quality-control" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --qc_ram INT            Try to keep RAM usage below this many GB
+                                Default: 3 GB
+
+    --adapters FASTA        Illumina adapters to remove
+                                Default: BBmap adapters
+
+    --adapter_k INT         Kmer length used for finding adapters. Adapters
+                                shorter than k will not be found
+                                Default: 23
+
+    --phix FASTA            phiX174 reference genome to remove
+                                Default: NC_001422
+
+    --phix_k INT            Kmer length used for finding phiX174.
+                                Contaminants shorter than k will not be
+                                found
+                                Default: 31
+
+    --ktrim STR             Trim reads to remove bases matching reference
+                                kmers
+                                Values:
+                                    f (do not trim)
+                                    r (trim to the right, Default)
+                                    l (trim to the left)
+
+    --mink INT              Look for shorter kmers at read tips down to this
+                                length, when k-trimming or masking. 0 means
+                                disabled. Enabling this will disable
+                                maskmiddle
+                                Default: 11
+
+    --hdist INT             Maximum Hamming distance for ref kmers (subs only)
+                                Memory use is proportional to (3*K)^hdist
+                                Default: 1
+
+    --tpe BOOL              When kmer right-trimming, trim both reads to the
+                                minimum length of either
+                                Values:
+                                    f (do not equally trim)
+                                    t (equally trim to the right, Default)
+
+    --tbo BOOL              Trim adapters based on where paired reads overlap
+                                Values:
+                                    f (do not trim by overlap)
+                                    t (trim by overlap, Default)
+
+    --qtrim STR             Trim read ends to remove bases with quality
+                                below trimq. Performed AFTER looking for
+                                kmers
+                                Values:
+                                    rl (trim both ends, Default)
+                                    f (neither end)
+                                    r (right end only)
+                                    l (left end only)
+                                    w (sliding window)
+
+    --trimq FLOAT           Regions with average quality BELOW this will be
+                                trimmed if qtrim is set to something other
+                                than f
+                                Default: 6
+
+    --maq INT               Reads with average quality (after trimming)
+                                below this will be discarded
+                                Default: 20
+
+    --minlength INT         Reads shorter than this after trimming will be
+                                discarded. Pairs will be discarded if both
+                                are shorter
+                                Default: 35
+
+    --ftm INT               If positive, right-trim length to be equal to
+                                zero, modulo this number
+                                Default: 5
+
+    --tossjunk              Discard reads with invalid characters as bases
+                                Values:
+                                    f (keep all reads)
+                                    t (toss reads with ambiguous bases, Default)
+
+    --qout STR              Output quality offset
+                                Values:
+                                    33 (PHRED33 offset quality scores, Default)
+                                    64 (PHRED64 offset quality scores)
+                                    auto (keeps the current input offset)
+
+    --xmx STR               This will be passed to Java to set memory usage
+                                Examples:
+                                    &#39;8g&#39; will specify 8 gigs of RAM (Default)
+                                    &#39;20g&#39; will specify 20 gigs of RAM
+                                    &#39;200m&#39; will specify 200 megs of RAM
+
+    --maxcor INT            Max number of corrections within a 20bp window
+                                Default: 1
+
+    --sampleseed INT        Set to a positive number to use as the rng seed
+                                for sampling
+                                Default: 42
+</pre></div>
+
+<h3 id="variant-calling">Variant Calling<a class="headerlink" href="#variant-calling" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>    --snippy_ram INT        Try and keep RAM under this many GB
+                                Default: 8 GB
+
+    --mapqual INT           Minimum read mapping quality to consider
+                                Default: 60
+
+    --basequal INT          Minimum base quality to consider
+                                Default: 13
+
+    --mincov INT            Minimum site depth to for calling alleles
+                                Default: 10
+
+    --minfrac FLOAT         Minimum proportion for variant evidence (0=AUTO)
+                                Default: 0
+
+    --minqual INT           Minimum QUALITY in VCF column 6
+                                Default: 100
+
+    --maxsoft INT           Maximum soft clipping to allow
+                                Default: 10
+
+    --bwaopt STR            Extra BWA MEM options, eg. -x pacbio
+                                Default: &#39;&#39;
+
+    --fbopt STR             Extra Freebayes options,
+                                eg. --theta 1E-6 --read-snp-limit 2
+                                Default: &#39;&#39;
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../output-overview/" title="Output Overview" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Output Overview
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../troubleshooting/" title="Troubleshooting" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Troubleshooting
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2019 Robert A. Petit III. All rights reserved.
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

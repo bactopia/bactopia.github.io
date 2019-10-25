@@ -1,0 +1,1524 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="An extensive workflow to process Illumina sequencing for bacterial genomes.">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/bactopia/output-overview/">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.1">
+    
+    
+      
+        <title>Output Overview - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-104199698-2", "bactopia.github.io")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#overview-of-bactopia-output" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://bactopia.github.io/bactopia" title="Bactopia" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Bactopia
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Output Overview
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href=".." title="Bactopia" class="md-tabs__link md-tabs__link--active">
+          Bactopia
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../tools/bactopia-tools/" title="Bactopia Tools" class="md-tabs__link">
+          Bactopia Tools
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://bactopia.github.io/bactopia" title="Bactopia" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Bactopia
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Bactopia
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../quick-start/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/" title="Tutorial" class="md-nav__link">
+      Tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../datasets/" title="Build Datasets" class="md-nav__link">
+      Build Datasets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-basic/" title="Basic Usage" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../workflow-overview/" title="Workflow Overview" class="md-nav__link">
+      Workflow Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Output Overview
+      </label>
+    
+    <a href="./" title="Output Overview" class="md-nav__link md-nav__link--active">
+      Output Overview
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#directories" title="Directories" class="md-nav__link">
+    Directories
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotation" title="annotation" class="md-nav__link">
+    annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antimicrobial_resistance" title="antimicrobial_resistance" class="md-nav__link">
+    antimicrobial_resistance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ariba" title="ariba" class="md-nav__link">
+    ariba
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" title="assembly" class="md-nav__link">
+    assembly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blast" title="blast" class="md-nav__link">
+    blast
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genome-size" title="genome-size" class="md-nav__link">
+    genome-size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertion-sequences" title="insertion-sequences" class="md-nav__link">
+    insertion-sequences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kmers" title="kmers" class="md-nav__link">
+    kmers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping" title="mapping" class="md-nav__link">
+    mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmers" title="minmers" class="md-nav__link">
+    minmers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlst" title="mlst" class="md-nav__link">
+    mlst
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" title="quality-control" class="md-nav__link">
+    quality-control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variants" title="variants" class="md-nav__link">
+    variants
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-complete/" title="Complete Usage" class="md-nav__link">
+      Complete Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../troubleshooting/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../acknowledgements/" title="Acknowledgements" class="md-nav__link">
+      Acknowledgements
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Bactopia Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Bactopia Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/bactopia-tools/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/cgtree/" title="Core-Genome Phylogeny" class="md-nav__link">
+      Core-Genome Phylogeny
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#directories" title="Directories" class="md-nav__link">
+    Directories
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#annotation" title="annotation" class="md-nav__link">
+    annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antimicrobial_resistance" title="antimicrobial_resistance" class="md-nav__link">
+    antimicrobial_resistance
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ariba" title="ariba" class="md-nav__link">
+    ariba
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" title="assembly" class="md-nav__link">
+    assembly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blast" title="blast" class="md-nav__link">
+    blast
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genome-size" title="genome-size" class="md-nav__link">
+    genome-size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertion-sequences" title="insertion-sequences" class="md-nav__link">
+    insertion-sequences
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kmers" title="kmers" class="md-nav__link">
+    kmers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping" title="mapping" class="md-nav__link">
+    mapping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmers" title="minmers" class="md-nav__link">
+    minmers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlst" title="mlst" class="md-nav__link">
+    mlst
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" title="quality-control" class="md-nav__link">
+    quality-control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variants" title="variants" class="md-nav__link">
+    variants
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/output-overview.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="overview-of-bactopia-output">Overview of Bactopia Output<a class="headerlink" href="#overview-of-bactopia-output" title="Permanent link">&para;</a></h1>
+<p>After a successful run, Bactopia will have produced numerous output files. Just how many output files depends on the input datasets used (e.g. none, general datasets, species specific datasets, user populated datasets).</p>
+<p>Here is the complete directory structure that is possible (using all available dataset options) with Bactopia. </p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+├── annotation
+├── antimicrobial_resistance
+├── ariba
+├── assembly
+├── blast
+├── insertion-sequences
+├── kmers
+├── mapping
+├── minmers
+├── mlst
+├── quality-control
+├── variants
+└── ${SAMPLE_NAME}-genome-size.txt
+</pre></div>
+
+<p>For each type of analysis in Bactopia, a separate directory is created to hold the results. All samples processed by Bactopia will have this directory structure. The only difference is the usage of <code>${SAMPLE_NAME}</code> as a prefix for naming some output files.</p>
+<h2 id="directories">Directories<a class="headerlink" href="#directories" title="Permanent link">&para;</a></h2>
+<p>The following sections include a list of expected outputs as well as a brief description of each output file.</p>
+<p>There are instances where additional files (e.g. <code>--keep_all_files</code> and <code>--ariba_noclean</code>) may be encountered. These files aren't described below, just the defaults. Also, using <code>--compress</code> will add a <em>gz</em> extension, but the original extension is maintained and its description still applies. </p>
+<div class="admonition info">
+<p class="admonition-title">Developer Descriptions Take Priority</p>
+<p>If a developer described their software's outputs, their description was used with a link back to the software's documentation (major thanks for taking the time to do that!). In some cases there may have been slight formatting modifications made. In any case, if descriptions are not original credit will be properly given to the source.</p>
+</div>
+<h3 id="annotation"><code>annotation</code><a class="headerlink" href="#annotation" title="Permanent link">&para;</a></h3>
+<p>The <code>annotation</code> directory will contain the outputs from <a href="https://github.com/tseemann/prokka">Prokka</a> annotation. These outputs include FASTA (proteins and genes), GFF3, GenBank, and many more. By default the included Prokka databases are used for annotation. However, if a <a href="/datasets/#species-specific">Species Specific Dataset</a> was a created the RefSeq clustered proteins are used first for annotation.</p>
+<p>File descriptions were directly taken from <a href="https://github.com/tseemann/prokka#output-files">Prokka's Output Files</a> section and slight modifications were made to the order of rows.</p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── annotation
+    ├── ${SAMPLE_NAME}.err
+    ├── ${SAMPLE_NAME}.faa
+    ├── ${SAMPLE_NAME}.ffn
+    ├── ${SAMPLE_NAME}.fna
+    ├── ${SAMPLE_NAME}.fsa
+    ├── ${SAMPLE_NAME}.gbk
+    ├── ${SAMPLE_NAME}.gff
+    ├── ${SAMPLE_NAME}.log
+    ├── ${SAMPLE_NAME}.sqn
+    ├── ${SAMPLE_NAME}.tbl
+    ├── ${SAMPLE_NAME}.tsv
+    └── ${SAMPLE_NAME}.txt
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.err</td>
+<td>Unacceptable annotations - the NCBI discrepancy report.</td>
+</tr>
+<tr>
+<td>.faa</td>
+<td>Protein FASTA file of the translated CDS sequences.</td>
+</tr>
+<tr>
+<td>.ffn</td>
+<td>Nucleotide FASTA file of all the prediction transcripts (CDS, rRNA, tRNA, tmRNA, misc_RNA)</td>
+</tr>
+<tr>
+<td>.fna</td>
+<td>Nucleotide FASTA file of the input contig sequences.</td>
+</tr>
+<tr>
+<td>.fsa</td>
+<td>Nucleotide FASTA file of the input contig sequences, used by "tbl2asn" to create the .sqn file. It is mostly the same as the .fna file, but with extra Sequin tags in the sequence description lines.</td>
+</tr>
+<tr>
+<td>.gbk</td>
+<td>This is a standard GenBank file derived from the master .gff. If the input to prokka was a multi-FASTA, then this will be a multi-GenBank, with one record for each sequence.</td>
+</tr>
+<tr>
+<td>.gff</td>
+<td>This is the master annotation in GFF3 format, containing both sequences and annotations. It can be viewed directly in Artemis or IGV.</td>
+</tr>
+<tr>
+<td>.log</td>
+<td>Contains all the output that Prokka produced during its run. This is a record of what settings you used.</td>
+</tr>
+<tr>
+<td>.sqn</td>
+<td>An ASN1 format "Sequin" file for submission to GenBank. It needs to be edited to set the correct taxonomy, authors, related publication etc.</td>
+</tr>
+<tr>
+<td>.tbl</td>
+<td>Feature Table file, used by "tbl2asn" to create the .sqn file.</td>
+</tr>
+<tr>
+<td>.tsv</td>
+<td>Tab-separated file of all features: locus_tag,ftype,len_bp,gene,EC_number,COG,product</td>
+</tr>
+<tr>
+<td>.txt</td>
+<td>Statistics relating to the annotated features found.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="antimicrobial_resistance"><code>antimicrobial_resistance</code><a class="headerlink" href="#antimicrobial_resistance" title="Permanent link">&para;</a></h3>
+<p>The <code>antimicrobial_resistance</code> directory will contain the output from <a href="https://github.com/ncbi/amr">NCBI's AMRFinderPlus</a>. The results of AMRFinderPlus using genes as and input, and proteins as an input are available. More information about the output format is available from the <a href="https://github.com/ncbi/amr/wiki/Running-AMRFinderPlus#output-format">AMRFinderPlus Wiki</a>.</p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── antimicrobial_resistance/
+    ├── ${SAMPLE_NAME}-gene-report.txt
+    └── ${SAMPLE_NAME}-protein-report.txt
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-gene-report.txt</td>
+<td>Results of using gene sequences as an input</td>
+</tr>
+<tr>
+<td>-protein-report.txt</td>
+<td>Results of using protein sequences as an input</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ariba"><code>ariba</code><a class="headerlink" href="#ariba" title="Permanent link">&para;</a></h3>
+<p>The <code>ariba</code> directory will contain the results of any <a href="https://github.com/sanger-pathogens/ariba/">Ariba</a> analysis (excluding MLST). Only the <a href="/datasets/#general">Ariba databases</a> created during the dataset setup are used for analysis. For each Ariba database (e.g. <code>card</code> or <code>vfdb</code>), a separate folder with the name of the database is included in the <code>ariba</code> folder.</p>
+<p>The file descriptions below were modified from Ariba's wiki entries for <a href="https://github.com/sanger-pathogens/ariba/wiki/Task:-run"><code>run</code></a> and <a href="https://github.com/sanger-pathogens/ariba/wiki/Task:-summary"><code>summary</code></a>.</p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── ariba
+    └── ARIBA_DATABASE_NAME
+        ├── assembled_genes.fa.gz
+        ├── assembled_seqs.fa.gz
+        ├── assemblies.fa.gz
+        ├── debug.report.tsv
+        ├── log.clusters.gz
+        ├── report.tsv
+        ├── summary.csv
+        └── version_info.txt
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assembled_genes.fa.gz</td>
+<td>A gzipped FASTA file of only assembled gene sequences (with extensions).</td>
+</tr>
+<tr>
+<td>assembled_seqs.fa.gz</td>
+<td>A gzipped FASTA of the assembled sequences (genes and non-coding).</td>
+</tr>
+<tr>
+<td>assemblies.fa.gz</td>
+<td>A gzipped FASTA file of the assemblies (complete, unedited, contigs).</td>
+</tr>
+<tr>
+<td>debug.report.tsv</td>
+<td>The complete list of clusters, including those that did not pass filtering.</td>
+</tr>
+<tr>
+<td>log.clusters.gz</td>
+<td>Detailed logging for the progress of each cluster.</td>
+</tr>
+<tr>
+<td>report.tsv</td>
+<td>A detailed <a href="https://github.com/sanger-pathogens/ariba/wiki/Task:-run#report-file">report file</a> of clusters which passed filtering.</td>
+</tr>
+<tr>
+<td>summary.csv</td>
+<td>A more condensed <a href="https://github.com/sanger-pathogens/ariba/wiki/Task:-summary">summary</a> of the report.tsv</td>
+</tr>
+<tr>
+<td>version_info.txt</td>
+<td>Information on the versions of ARIBA and its dependencies at runtime.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="assembly"><code>assembly</code><a class="headerlink" href="#assembly" title="Permanent link">&para;</a></h3>
+<p>The <code>assembly</code> folder contains the results of the sample's assembly. Assembly is managed by <a href="https://github.com/tseemann/shovill">Shovill</a> and by default <a href="https://github.com/ncbi/SKESA">SKESA</a> is used for assembly. Alternative assemblers include <a href="https://github.com/ablab/spades">SPAdes</a>, <a href="https://github.com/voutcn/megahit">MEGAHIT</a>, and <a href="https://github.com/dzerbino/velvet">Velvet</a>. Depending on the choice of assembler, additional output files (e.g. assembly graphs) may be given.</p>
+<p>Files descriptions with some modifications were directly taken from <a href="https://github.com/tseemann/shovill#output-files">Shovill's Output Files</a> section as well as the <a href="https://sourceforge.net/p/flashpage/code/ci/master/tree/flash.c#l114">FLASH usage</a>.</p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── assembly
+    ├── flash.hist
+    ├── flash.histogram
+    ├── shovill.corrections
+    ├── shovill.log
+    ├── ${SAMPLE_NAME}.fna
+    └── ${SAMPLE_NAME}.fna.json
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>flash.hist</td>
+<td>Numeric histogram of merged read lengths.</td>
+</tr>
+<tr>
+<td>flash.histogram</td>
+<td>Visual histogram of merged read lengths.</td>
+</tr>
+<tr>
+<td>shovill.log</td>
+<td>Full log file for bug reporting</td>
+</tr>
+<tr>
+<td>shovill.corrections</td>
+<td>List of post-assembly corrections</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.fna</td>
+<td>The final assembly you should use</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.fna.json</td>
+<td>Summary statistics of the assembly</td>
+</tr>
+</tbody>
+</table>
+<h3 id="blast"><code>blast</code><a class="headerlink" href="#blast" title="Permanent link">&para;</a></h3>
+<p>The <code>blast</code> directory contains the <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> results and a BLAST database of the sample assembly.</p>
+<p>Each of the <a href="/datasets/#blast">User Populated BLAST Sequences</a> (gene, primer, or protein) is BLASTed against the sample assembly. Also if <a href="/datasets/#general">setup</a>, annotated genes are BLASTed against the <a href="https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/">PLSDB</a> BLAST database.</p>
+<p>By default, results are returned in tabular format.</p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── blast
+    ├── blastdb
+    │   ├── ${SAMPLE_NAME}.nhr
+    │   ├── ${SAMPLE_NAME}.nin
+    │   └── ${SAMPLE_NAME}.nsq
+    ├── genes
+    │   └── ${INPUT_NAME}.txt
+    ├── primers
+    │   └── ${INPUT_NAME}.txt
+    ├── proteins
+    │   └── ${INPUT_NAME}.txt
+    └── ${SAMPLE_NAME}-plsdb.txt
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.nhr</td>
+<td>Sample assembly BLAST database header file</td>
+</tr>
+<tr>
+<td>.nin</td>
+<td>Sample assembly BLAST database index file</td>
+</tr>
+<tr>
+<td>.nsq</td>
+<td>Sample assembly BLAST database sequence file</td>
+</tr>
+<tr>
+<td>-plsdb.txt</td>
+<td>The BLAST results against the PLSDB BALST database assembly.</td>
+</tr>
+<tr>
+<td>.txt</td>
+<td>The BLAST results of user input sequence(s) against the sample assembly.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="genome-size"><code>genome-size</code><a class="headerlink" href="#genome-size" title="Permanent link">&para;</a></h3>
+<p>For every sample <code>${SAMPLE_NAME}-genome-size.txt</code> file is created. This file contains the genome size that was used for analysis. Genome size is used throughout Bactopia for various tasks including error correction, subsampling, and assembly.</p>
+<p>By default, the genome size is estimated with Mash, but users have the option to provide their own value or completely disable genome size related features. Learn more about changing the genome size at <a href="/usage-basic/#-genome_size">Basic Usage - Genome Size</a></p>
+<h3 id="insertion-sequences"><code>insertion-sequences</code><a class="headerlink" href="#insertion-sequences" title="Permanent link">&para;</a></h3>
+<p>The <code>insertion-sequences</code> directory contains <a href="https://github.com/jhawkey/IS_mapper">ISMapper</a> results for each of the <a href="/datasets/#insertion-sequences">User Populated Insertion Sequences</a>. 
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── insertion-sequences
+    ├── ${INSERTION_NAME}
+    │   ├── ${SAMPLE_NAME}_${INSERTION_NAME}_(left|right)_final.fastq
+    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}_finalcov.bed
+    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}_merged.sorted.bed
+    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}.sorted.bam
+    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}.sorted.bam.bai
+    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}_unpaired.bed
+    │   ├── ${SAMPLE_NAME}__${SAMPLE_NAME}_${CONTIG_NUMBER}_closest.bed
+    │   ├── ${SAMPLE_NAME}__${SAMPLE_NAME}_${CONTIG_NUMBER}_intersect.bed
+    │   ├── ${SAMPLE_NAME}__${SAMPLE_NAME}_${CONTIG_NUMBER}_table.txt
+    └── ${SAMPLE_NAME}-${INSERTION_NAME}.log
+</pre></div></p>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_final.fastq</td>
+<td>Sequences (FASTQ format) that mapped to the flanking regions of the IS query</td>
+</tr>
+<tr>
+<td>_finalcov.bed</td>
+<td>Contains information about the coverage of the IS query</td>
+</tr>
+<tr>
+<td>_merged.sorted.bed</td>
+<td>Merged overlapping regions that passed coverage cutoffs</td>
+</tr>
+<tr>
+<td>.sorted.bam</td>
+<td>Reads mapped to the IS query.</td>
+</tr>
+<tr>
+<td>.sorted.bam.bai</td>
+<td>An index of the sorted BAM file.</td>
+</tr>
+<tr>
+<td>_unpaired.bed</td>
+<td>All unpaired mappings to the IS query</td>
+</tr>
+<tr>
+<td>_closest.bed</td>
+<td>Merged regions that are close but do not overlap</td>
+</tr>
+<tr>
+<td>_intersect.bed</td>
+<td>An intersection of merged regions from the left and right flanks.</td>
+</tr>
+<tr>
+<td>_table.txt</td>
+<td>A <a href="https://github.com/jhawkey/IS_mapper#single-isolate-output">detailed description</a> of the IS query results.</td>
+</tr>
+<tr>
+<td>.log</td>
+<td>Information logged during the execution of ISMapper</td>
+</tr>
+</tbody>
+</table>
+<h3 id="kmers"><code>kmers</code><a class="headerlink" href="#kmers" title="Permanent link">&para;</a></h3>
+<p>The <code>kmers</code> directory contains <a href="https://github.com/mcveanlab/mccortex">McCortex</a> 31-mer counts of the cleaned up FASTQ sequences. </p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── kmers
+    └── ${SAMPLE_NAME}.ctx
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.ctx</td>
+<td>A Cortex graph file of the 31-mer counts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mapping"><code>mapping</code><a class="headerlink" href="#mapping" title="Permanent link">&para;</a></h3>
+<p>The <code>mapping-sequences</code> directory contains <a href="https://github.com/lh3/bwa/">BWA</a> (bwa-mem) mapping results for each of the <a href="/datasets/#mapping">User Populated Mapping Sequences</a>. </p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── mapping
+    └── ${MAPPING_INPUT}
+        ├── ${MAPPING_INPUT}.bam
+        └── ${MAPPING_INPUT}.coverage.txt
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.bam</td>
+<td>The alignments in <a href="http://en.wikipedia.org/wiki/SAMtools">BAM</a> format.</td>
+</tr>
+<tr>
+<td>.coverage.txt</td>
+<td>The per-base coverage of the mapping results</td>
+</tr>
+</tbody>
+</table>
+<h3 id="minmers"><code>minmers</code><a class="headerlink" href="#minmers" title="Permanent link">&para;</a></h3>
+<p>The <code>minmers</code> directory contains <a href="https://github.com/marbl/Mash">Mash</a> and <a href="https://github.com/dib-lab/sourmash">Sourmash</a> sketches of the cleaned FASTQs. If setup, it also contains the results of queries against <a href="/datasets/#general">RefSeq, GenBank and PLSDB</a></p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── minmers
+    ├── ${SAMPLE_NAME}-genbank-k21.txt
+    ├── ${SAMPLE_NAME}-genbank-k31.txt
+    ├── ${SAMPLE_NAME}-genbank-k51.txt
+    ├── ${SAMPLE_NAME}-k21.msh
+    ├── ${SAMPLE_NAME}-k31.msh
+    ├── ${SAMPLE_NAME}-plsdb-k21.txt
+    ├── ${SAMPLE_NAME}-refseq-k21.txt
+    └── ${SAMPLE_NAME}.sig
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-genbank-k(21|31|51).txt</td>
+<td>Sourmash LCA Gather results against <a href="https://sourmash.readthedocs.io/en/latest/databases.html">Sourmash GenBank Signature</a> (k=21,31,51)</td>
+</tr>
+<tr>
+<td>-k(21|31).msh</td>
+<td>A Mash sketch (k=21,31) of the sample</td>
+</tr>
+<tr>
+<td>-plsdb-k21.txt</td>
+<td>Mash Screen results against <a href="https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/">PLSDB Mash Sketch</a></td>
+</tr>
+<tr>
+<td>-refseq-k21.txt</td>
+<td>Mash Screen results against <a href="https://mash.readthedocs.io/en/latest/data.html">Mash Refseq Sketch</a></td>
+</tr>
+<tr>
+<td>.sig</td>
+<td>A Sourmash signature (k=21,31,51) of the sample</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mlst"><code>mlst</code><a class="headerlink" href="#mlst" title="Permanent link">&para;</a></h3>
+<p>If a <a href="/datasets/#species-specific">Species Specific Dataset</a> has been set up, the <code>mlst</code> directory will contain <a href="https://github.com/sanger-pathogens/ariba">Ariba</a> and <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> results for a <a href="https://pubmlst.org/">PubMLST.org</a> schema.</p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── mlst
+    ├── ariba
+    │   ├── assembled_genes.fa.gz
+    │   ├── assembled_seqs.fa.gz
+    │   ├── assemblies.fa.gz
+    │   ├── debug.report.tsv
+    │   ├── log.clusters.gz
+    │   ├── mlst_report.details.tsv
+    │   ├── mlst_report.tsv
+    │   ├── report.tsv
+    │   └── version_info.txt
+    └── blast
+        └── ${SAMPLE_NAME}-blast.json
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>assembled_genes.fa.gz</td>
+<td>A gzipped FASTA file of only assembled gene sequences (with extensions).</td>
+</tr>
+<tr>
+<td>assembled_seqs.fa.gz</td>
+<td>A gzipped FASTA of the assembled sequences (genes and non-coding).</td>
+</tr>
+<tr>
+<td>assemblies.fa.gz</td>
+<td>A gzipped FASTA file of the assemblies (complete, unedited, contigs).</td>
+</tr>
+<tr>
+<td>debug.report.tsv</td>
+<td>The complete list of clusters, including those that did not pass filtering.</td>
+</tr>
+<tr>
+<td>log.clusters.gz</td>
+<td>Detailed logging for the progress of each cluster.</td>
+</tr>
+<tr>
+<td>mlst_report.details.tsv</td>
+<td>A more detailed summary of the allele calls.</td>
+</tr>
+<tr>
+<td>mlst_report.tsv</td>
+<td>A summary of the allele calls and identified sequence type.</td>
+</tr>
+<tr>
+<td>report.tsv</td>
+<td>A detailed <a href="https://github.com/sanger-pathogens/ariba/wiki/Task:-run#report-file">report file</a> of clusters which passed filtering.</td>
+</tr>
+<tr>
+<td>summary.csv</td>
+<td>A more condensed <a href="https://github.com/sanger-pathogens/ariba/wiki/Task:-summary">summary</a> of the report.tsv</td>
+</tr>
+<tr>
+<td>version_info.txt</td>
+<td>Information on the versions of ARIBA and its dependencies at runtime.</td>
+</tr>
+<tr>
+<td>-blast.json</td>
+<td>Allele calls and identified sequence type based on BLAST</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quality-control"><code>quality-control</code><a class="headerlink" href="#quality-control" title="Permanent link">&para;</a></h3>
+<p>The <code>quality-control</code> directory contains the cleaned up FASTQs (<a href="https://jgi.doe.gov/data-and-tools/bbtools/">BBTools</a> and <a href="https://github.com/mourisl/Lighter">Lighter</a>) and summary statitics (<a href="https://github.com/s-andrews/FastQC">FastQC</a> and <a href="https://github.com/rpetit3/fastq-scan">Fastq-Scan</a>) before and after cleanup.</p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── quality-control
+    ├── logs
+    │   ├── bbduk-adapter.log
+    │   └── bbduk-phix.log
+    ├── ${SAMPLE_NAME}(|_R1|_R2).fastq.gz
+    └── summary-(original|final)
+        ├── ${SAMPLE_NAME}(|_R1|_R2)-(original|final)_fastqc.html
+        ├── ${SAMPLE_NAME}(|_R1|_R2)-(original|final)_fastqc.zip
+        └── ${SAMPLE_NAME}(|_R1|_R2)-(original|final).json
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-adapter.log</td>
+<td>A description of how many reads were filtered during the adapter removal step</td>
+</tr>
+<tr>
+<td>-phix.log</td>
+<td>A description of how many reads were filtered during the PhiX removal step</td>
+</tr>
+<tr>
+<td>.fastq.gz</td>
+<td>The cleaned up FASTQ(s), <code>_R1</code> and <code>_R2</code> for paired-end reads, and an empty string for single-end reads.</td>
+</tr>
+<tr>
+<td>_fastqc.html</td>
+<td>The FastQC html report of the original and final FASTQ(s)</td>
+</tr>
+<tr>
+<td>_fastqc.zip</td>
+<td>The zipped FastQC full report of the original and final FASTQ(s)</td>
+</tr>
+<tr>
+<td>.json</td>
+<td>Summary statistics (e.g. qualities and read lengths) of the original and final FASTQ(s)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="variants"><code>variants</code><a class="headerlink" href="#variants" title="Permanent link">&para;</a></h3>
+<p>The <code>variants</code> directory contains the results of <a href="https://github.com/tseemann/snippy">Snippy</a> variant calls against one or more reference genomes. There are two subdirectories <code>auto</code> and <code>user</code>. </p>
+<p>The <code>auto</code> directory includes variants calls against automatically selected reference genome(s) based on nearest Mash distance to RefSeq completed genomes. This process only happens if a <a href="/datasets/#species-specific">Species Specific Dataset</a> was a created. By default, only a single reference genome (nearest) is selected. This feature can be disabled (<code>--disable_auto_variants</code>) or the number of genomes changed (<code>--max_references INT</code>).</p>
+<p>The <code>user</code> directory contains variant calls against for each of the <a href="/datasets/#reference-genomes">User Populated Reference Genomes</a>.</p>
+<p>The following description of files was directly taken from <a href="https://github.com/tseemann/snippy#output-files">Snippy's Output Files</a> section. Slight modifications were made to the order of rows.</p>
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── variants
+    └── (auto|user)
+        └── ${REFERENCE_NAME}
+            ├── ${SAMPLE_NAME}.aligned.fa
+            ├── ${SAMPLE_NAME}.annotated.vcf
+            ├── ${SAMPLE_NAME}.bam
+            ├── ${SAMPLE_NAME}.bam.bai
+            ├── ${SAMPLE_NAME}.bed
+            ├── ${SAMPLE_NAME}.consensus.fa
+            ├── ${SAMPLE_NAME}.consensus.subs.fa
+            ├── ${SAMPLE_NAME}.consensus.subs.masked.fa
+            ├── ${SAMPLE_NAME}.coverage.txt
+            ├── ${SAMPLE_NAME}.csv
+            ├── ${SAMPLE_NAME}.filt.vcf
+            ├── ${SAMPLE_NAME}.gff
+            ├── ${SAMPLE_NAME}.html
+            ├── ${SAMPLE_NAME}.log
+            ├── ${SAMPLE_NAME}.raw.vcf
+            ├── ${SAMPLE_NAME}.subs.vcf
+            ├── ${SAMPLE_NAME}.tab
+            ├── ${SAMPLE_NAME}.txt
+            └── ${SAMPLE_NAME}.vcf
+</pre></div>
+
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.aligned.fa</td>
+<td>A version of the reference but with <code>-</code> at position with <code>depth=0</code> and <code>N</code> for <code>0 &lt; depth &lt; --mincov</code> (<strong>does not have variants</strong>)</td>
+</tr>
+<tr>
+<td>.annotated.vcf</td>
+<td>The final variant calls with additional annotations from Reference genome's GenBank file</td>
+</tr>
+<tr>
+<td>.bam</td>
+<td>The alignments in <a href="http://en.wikipedia.org/wiki/SAMtools">BAM</a> format. Includes unmapped, multimapping reads. Excludes duplicates.</td>
+</tr>
+<tr>
+<td>.bam.bai</td>
+<td>Index for the .bam file</td>
+</tr>
+<tr>
+<td>.bed</td>
+<td>The variants in <a href="http://genome.ucsc.edu/FAQ/FAQformat.html#format1">BED</a> format</td>
+</tr>
+<tr>
+<td>.consensus.fa</td>
+<td>A version of the reference genome with <em>all</em> variants instantiated</td>
+</tr>
+<tr>
+<td>.consensus.subs.fa</td>
+<td>A version of the reference genome with <em>only substitution</em> variants instantiated</td>
+</tr>
+<tr>
+<td>.consensus.subs.masked.fa</td>
+<td>A version of the reference genome with <em>only substitution</em> variants instantiated and low-coverage regions masked</td>
+</tr>
+<tr>
+<td>.coverage.txt</td>
+<td>The per-base coverage of each position in the reference genome</td>
+</tr>
+<tr>
+<td>.csv</td>
+<td>A <a href="http://en.wikipedia.org/wiki/Comma-separated_values">comma-separated</a> version of the .tab file</td>
+</tr>
+<tr>
+<td>.filt.vcf</td>
+<td>The filtered variant calls from Freebayes</td>
+</tr>
+<tr>
+<td>.gff</td>
+<td>The variants in <a href="http://www.sequenceontology.org/gff3.shtml">GFF3</a> format</td>
+</tr>
+<tr>
+<td>.html</td>
+<td>A <a href="http://en.wikipedia.org/wiki/HTML">HTML</a> version of the .tab file</td>
+</tr>
+<tr>
+<td>.log</td>
+<td>A log file with the commands run and their outputs</td>
+</tr>
+<tr>
+<td>.raw.vcf</td>
+<td>The unfiltered variant calls from Freebayes</td>
+</tr>
+<tr>
+<td>.subs.vcf</td>
+<td><em>Only substitution</em> variants from the final annotated variants</td>
+</tr>
+<tr>
+<td>.tab</td>
+<td>A simple <a href="http://en.wikipedia.org/wiki/Tab-separated_values">tab-separated</a> summary of all the variants</td>
+</tr>
+<tr>
+<td>.txt</td>
+<td>A summary of the Snippy run.</td>
+</tr>
+<tr>
+<td>.vcf</td>
+<td>The final annotated variants in <a href="http://en.wikipedia.org/wiki/Variant_Call_Format">VCF</a> format</td>
+</tr>
+</tbody>
+</table>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../workflow-overview/" title="Workflow Overview" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Workflow Overview
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../usage-complete/" title="Complete Usage" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Complete Usage
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2019 Robert A. Petit III. All rights reserved.
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

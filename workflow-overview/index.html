@@ -1,0 +1,1377 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="An extensive workflow to process Illumina sequencing for bacterial genomes.">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/bactopia/workflow-overview/">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.1">
+    
+    
+      
+        <title>Workflow Overview - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-104199698-2", "bactopia.github.io")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#workflow-overview" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://bactopia.github.io/bactopia" title="Bactopia" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Bactopia
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Workflow Overview
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href=".." title="Bactopia" class="md-tabs__link md-tabs__link--active">
+          Bactopia
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../tools/bactopia-tools/" title="Bactopia Tools" class="md-tabs__link">
+          Bactopia Tools
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://bactopia.github.io/bactopia" title="Bactopia" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Bactopia
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        Bactopia
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../quick-start/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tutorial/" title="Tutorial" class="md-nav__link">
+      Tutorial
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../datasets/" title="Build Datasets" class="md-nav__link">
+      Build Datasets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-basic/" title="Basic Usage" class="md-nav__link">
+      Basic Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Workflow Overview
+      </label>
+    
+    <a href="./" title="Workflow Overview" class="md-nav__link md-nav__link--active">
+      Workflow Overview
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#always-enabled-steps" title="Always Enabled Steps" class="md-nav__link">
+    Always Enabled Steps
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gather-fastqs" title="Gather FASTQs" class="md-nav__link">
+    Gather FASTQs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate-fastqs" title="Validate FASTQs" class="md-nav__link">
+    Validate FASTQs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#original-summary" title="Original Summary" class="md-nav__link">
+    Original Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genome-size" title="Genome Size" class="md-nav__link">
+    Genome Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" title="Quality Control" class="md-nav__link">
+    Quality Control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qc-summary" title="QC Summary" class="md-nav__link">
+    QC Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-31-mers" title="Count 31-mers" class="md-nav__link">
+    Count 31-mers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmer-sketch" title="Minmer Sketch" class="md-nav__link">
+    Minmer Sketch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-novo-assembly" title="De novo Assembly" class="md-nav__link">
+    De novo Assembly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genome-annotation" title="Genome Annotation" class="md-nav__link">
+    Genome Annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antimicrobial-resistance" title="Antimicrobial Resistance" class="md-nav__link">
+    Antimicrobial Resistance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-enabled-steps" title="Dataset Enabled Steps" class="md-nav__link">
+    Dataset Enabled Steps
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#public-datasets" title="Public Datasets" class="md-nav__link">
+    Public Datasets
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#call-variants-auto" title="Call Variants (Auto)" class="md-nav__link">
+    Call Variants (Auto)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-assembly" title="Local Assembly" class="md-nav__link">
+    Local Assembly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmer-query" title="Minmer Query" class="md-nav__link">
+    Minmer Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence-type" title="Sequence Type" class="md-nav__link">
+    Sequence Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-datasets" title="User Datasets" class="md-nav__link">
+    User Datasets
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blast-alignment" title="BLAST Alignment" class="md-nav__link">
+    BLAST Alignment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call-variants-user" title="Call Variants (User)" class="md-nav__link">
+    Call Variants (User)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertion-sites" title="Insertion Sites" class="md-nav__link">
+    Insertion Sites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-mapping" title="Reference Mapping" class="md-nav__link">
+    Reference Mapping
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../output-overview/" title="Output Overview" class="md-nav__link">
+      Output Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../usage-complete/" title="Complete Usage" class="md-nav__link">
+      Complete Usage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../troubleshooting/" title="Troubleshooting" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../acknowledgements/" title="Acknowledgements" class="md-nav__link">
+      Acknowledgements
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Bactopia Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Bactopia Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/bactopia-tools/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tools/cgtree/" title="Core-Genome Phylogeny" class="md-nav__link">
+      Core-Genome Phylogeny
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#always-enabled-steps" title="Always Enabled Steps" class="md-nav__link">
+    Always Enabled Steps
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gather-fastqs" title="Gather FASTQs" class="md-nav__link">
+    Gather FASTQs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate-fastqs" title="Validate FASTQs" class="md-nav__link">
+    Validate FASTQs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#original-summary" title="Original Summary" class="md-nav__link">
+    Original Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genome-size" title="Genome Size" class="md-nav__link">
+    Genome Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" title="Quality Control" class="md-nav__link">
+    Quality Control
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qc-summary" title="QC Summary" class="md-nav__link">
+    QC Summary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-31-mers" title="Count 31-mers" class="md-nav__link">
+    Count 31-mers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmer-sketch" title="Minmer Sketch" class="md-nav__link">
+    Minmer Sketch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#de-novo-assembly" title="De novo Assembly" class="md-nav__link">
+    De novo Assembly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#genome-annotation" title="Genome Annotation" class="md-nav__link">
+    Genome Annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#antimicrobial-resistance" title="Antimicrobial Resistance" class="md-nav__link">
+    Antimicrobial Resistance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset-enabled-steps" title="Dataset Enabled Steps" class="md-nav__link">
+    Dataset Enabled Steps
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#public-datasets" title="Public Datasets" class="md-nav__link">
+    Public Datasets
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#call-variants-auto" title="Call Variants (Auto)" class="md-nav__link">
+    Call Variants (Auto)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-assembly" title="Local Assembly" class="md-nav__link">
+    Local Assembly
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minmer-query" title="Minmer Query" class="md-nav__link">
+    Minmer Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence-type" title="Sequence Type" class="md-nav__link">
+    Sequence Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-datasets" title="User Datasets" class="md-nav__link">
+    User Datasets
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#blast-alignment" title="BLAST Alignment" class="md-nav__link">
+    BLAST Alignment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call-variants-user" title="Call Variants (User)" class="md-nav__link">
+    Call Variants (User)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insertion-sites" title="Insertion Sites" class="md-nav__link">
+    Insertion Sites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-mapping" title="Reference Mapping" class="md-nav__link">
+    Reference Mapping
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/workflow-overview.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="workflow-overview">Workflow Overview<a class="headerlink" href="#workflow-overview" title="Permanent link">&para;</a></h1>
+<p>Bactopia is an extensive workflow integrating numerous steps in bacterial genome analysis. Through out the workflow there are steps that are <em>always enabled</em> and <em>dataset enabled</em>. Each of the steps depicted in the image below are described in this section. </p>
+<p>A list of software <strong>directly</strong> used in each step is also listed. Please check out the <a href="/acknowledgements/">Acknowledgements</a> section to get the full list of software as well how to download and cite said software.</p>
+<p><img alt="Bactopia Workflow" src="../data/bactopia-workflow.png" /></p>
+<h2 id="always-enabled-steps">Always Enabled Steps<a class="headerlink" href="#always-enabled-steps" title="Permanent link">&para;</a></h2>
+<p>The <em>Always Enabled Steps</em> are always executed by Bactopia. These steps do not depend of external datasets and thus are always enabled.</p>
+<h4 id="gather-fastqs">Gather FASTQs<a class="headerlink" href="#gather-fastqs" title="Permanent link">&para;</a></h4>
+<p>Specifies exactly where the input FASTQs are coming from. If you are using local inputs (e.g. <code>--R1/--R2</code>, <code>--fastqs</code>) it will verify they can be accessed. If ENA/SRA accessions (<code>--accession</code> or <code>--accessions</code>) were given, they corresponding FASTQs are downloaded in this step.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rpetit3/ena-dl">ena-dl</a></td>
+<td align="left">Download FASTQ files from ENA</td>
+</tr>
+</tbody>
+</table>
+<h4 id="validate-fastqs">Validate FASTQs<a class="headerlink" href="#validate-fastqs" title="Permanent link">&para;</a></h4>
+<p>Determines if the FASTQ file contains enough sequencing to continue processing. The <code>--min_reads</code> and <code>--min_basepairs</code> parameters adjust the minimum amount of sequencing required to continue processing. This step does not <em>directly</em> test the validity of the FASTQ format (although, it would fail if the format is invalid!).</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-scan">fastq-scan</a></td>
+<td align="left">Determine total read and basepairs of FASTQ</td>
+</tr>
+</tbody>
+</table>
+<h4 id="original-summary">Original Summary<a class="headerlink" href="#original-summary" title="Permanent link">&para;</a></h4>
+<p>Produces summary statistics (read lengths, quality scores, etc...) based on the original input FASTQs.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/s-andrews/FastQC">FastQC</a></td>
+<td align="left">Generates a HTML report of original FASTQ summary statistics</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-scan">fastq-scan</a></td>
+<td align="left">Generates original FASTQ summary statistics in JSON format</td>
+</tr>
+</tbody>
+</table>
+<h4 id="genome-size">Genome Size<a class="headerlink" href="#genome-size" title="Permanent link">&para;</a></h4>
+<p>The genome size is by various programs in the Bactopia workflow. By default, if no genome size is given one is estimated using Mash. Otherwise, a specific genome size can be specified or completely disabled using the <code>--genome_size</code> parameter. See <a href="/usage-basic/#-genome_size">Genome Size Parameter</a> to learn more about specifying the genome size. </p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/marbl/Mash">Mash</a></td>
+<td align="left">If not given, estimates genome size of sample</td>
+</tr>
+</tbody>
+</table>
+<h4 id="quality-control">Quality Control<a class="headerlink" href="#quality-control" title="Permanent link">&para;</a></h4>
+<p>The input FASTQs go through a few clean up steps. First, Illumina related adapters and phiX contaminants are removed. Then reads that fail to pass length and/or quality requirements are filtered out. If the genome size is available, sequence error-corrections are made and the total sequencing is reduced to a specified coverage. After this step, all downstream analyses are based on the QC'd FASTQ and the original is no longer used.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://jgi.doe.gov/data-and-tools/bbtools/">BBTools</a></td>
+<td align="left">Removes Illumina adapters, phiX contaminants, filters reads based on length and quality score, and reduces inputs to a specified coverage.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mourisl/Lighter">Lighter</a></td>
+<td align="left">Corrects sequencing errors</td>
+</tr>
+</tbody>
+</table>
+<h4 id="qc-summary">QC Summary<a class="headerlink" href="#qc-summary" title="Permanent link">&para;</a></h4>
+<p>Produces summary statistics (read lengths, quality scores, etc...) based on the final set of QC'd FASTQs.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/s-andrews/FastQC">FastQC</a></td>
+<td align="left">Generates a HTML report of QC'd FASTQ summary statistics</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-scan">fastq-scan</a></td>
+<td align="left">Generates QC'd FASTQ summary statistics in JSON format</td>
+</tr>
+</tbody>
+</table>
+<h4 id="count-31-mers">Count 31-mers<a class="headerlink" href="#count-31-mers" title="Permanent link">&para;</a></h4>
+<p>All 31 basepair (31-mers) sequences are counted and the singletons (those 31-mers only counted once) are filtered out.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/mcveanlab/mccortex">McCortex</a></td>
+<td align="left">Counts 31-mers in the input FASTQ</td>
+</tr>
+</tbody>
+</table>
+<h4 id="minmer-sketch">Minmer Sketch<a class="headerlink" href="#minmer-sketch" title="Permanent link">&para;</a></h4>
+<p>A minmer sketch and signature is created based on the QC'd FASTQs for multiple values of <em>k</em>. If datasets are available, the sketches/signatures are used for further downstream analysis.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/marbl/Mash">Mash</a></td>
+<td align="left">Produces a sketch (<em>k</em>=21,31) of tje QC'd FASTQ</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dib-lab/sourmash">Sourmash</a></td>
+<td align="left">Produces a signature (<em>k</em>=21,31,51) of the QC'd FASTQ</td>
+</tr>
+</tbody>
+</table>
+<h4 id="de-novo-assembly">De novo Assembly<a class="headerlink" href="#de-novo-assembly" title="Permanent link">&para;</a></h4>
+<p>The QC'd FASTQs are assembled using the <a href="https://github.com/tseemann/shovill">Shovill</a> pipeline. This allows for a seamless assembly process using <a href="https://github.com/voutcn/megahit">MEGAHIT</a>, <a href="https://github.com/ncbi/SKESA">SKESA</a>, <a href="https://github.com/ablab/spades">SPAdes</a> or <a href="https://github.com/dzerbino/velvet">Velvet</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rpetit3/assembly-scan">assembly-scan</a></td>
+<td align="left">Generates summary statistics of the final assembly</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/shovill">Shovill</a></td>
+<td align="left">Manages multiple steps in the Illumina assembly process</td>
+</tr>
+</tbody>
+</table>
+<h4 id="genome-annotation">Genome Annotation<a class="headerlink" href="#genome-annotation" title="Permanent link">&para;</a></h4>
+<p>Genes are predicted and annotated from the assembled genome using <a href="https://github.com/tseemann/prokka">Prokka</a>. If available, a <a href="/datasets/#species-specific">clustered RefSeq protein set</a> is used for the first pass of annotation.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/tseemann/prokka">Prokka</a></td>
+<td align="left">Predicts and annotates assembled genomes</td>
+</tr>
+</tbody>
+</table>
+<h4 id="antimicrobial-resistance">Antimicrobial Resistance<a class="headerlink" href="#antimicrobial-resistance" title="Permanent link">&para;</a></h4>
+<p>Searches for antimicrobial resistance genes and assosiated point mutations in the annotated gene and protein sequences. If datasets are available, <a href="/workflow-overview/#local-assembly">local assemblies</a> can also be used to predict antibiotic resistance.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/ncbi/amr">AMRFinderPlus</a></td>
+<td align="left">Predicts antimicrobial resistance based on genes and point mutations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dataset-enabled-steps">Dataset Enabled Steps<a class="headerlink" href="#dataset-enabled-steps" title="Permanent link">&para;</a></h2>
+<p>The remaining <em>Dataset Enabled Steps</em> require supplemental datasets to be available to be executed. There are many datasets available that Bactopia can take advantage of. To learn more about setting up these datasets, check out <a href="/datasets/#build-datasets">Build Datasets</a>. These datasets can be broken into two groups, <em>Public Datasets</em> and <em>User Datasets</em>.</p>
+<h3 id="public-datasets">Public Datasets<a class="headerlink" href="#public-datasets" title="Permanent link">&para;</a></h3>
+<p><a href="/datasets/#general">Publicly available datasets</a> can be used for futher analysis.</p>
+<h4 id="call-variants-auto">Call Variants (Auto)<a class="headerlink" href="#call-variants-auto" title="Permanent link">&para;</a></h4>
+<p>Variants are predicted using <a href="https://github.com/tseemann/snippy">Snippy</a>. The QC'd FASTQs are aligned to the nearest (based on Mash distance) RefSeq completed genome. By default, only the nearest genome is selected, but multiple genomes can be selected (<code>--max_references</code>) or this feature can be completely disabled (<code>disable_auto_variants</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/arq5x/bedtools2">Bedtools</a></td>
+<td align="left">Generates the per-base coverage of the reference alignment</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kblin/ncbi-genome-download">NCBI Genome Download</a></td>
+<td align="left">Downloads the RefSeq completed genome</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/snippy">Snippy</a></td>
+<td align="left">Manages multiple steps in the haploid variant calling process</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/vcf-annotator">vcf-annotator</a></td>
+<td align="left">Adds annotations from reference GenBank to the final VCF</td>
+</tr>
+</tbody>
+</table>
+<h4 id="local-assembly">Local Assembly<a class="headerlink" href="#local-assembly" title="Permanent link">&para;</a></h4>
+<p>Using available <a href="/acknowledgements/#ariba-reference-datasets">Ariba reference datasets</a>, determines which reference sequences were found with an additional detailed report summarizing the results.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td align="left">Creates local assemblies of reference sequences</td>
+</tr>
+</tbody>
+</table>
+<h4 id="minmer-query">Minmer Query<a class="headerlink" href="#minmer-query" title="Permanent link">&para;</a></h4>
+<p>Screens QC'd FASTQs and signatures against available <a href="/acknowledgements/#minmer-datasets">Minmer Datasets</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/marbl/Mash">Mash</a></td>
+<td align="left">Screens against RefSeq and/or PLSDB sketches</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dib-lab/sourmash">Sourmash</a></td>
+<td align="left">Screens signature against GenBank</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sequence-type">Sequence Type<a class="headerlink" href="#sequence-type" title="Permanent link">&para;</a></h4>
+<p>Uses a <a href="https://pubmlst.org/">PubMLST.org</a> MLST schema to determine the sequence type of the sample.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td align="left">Runs QC'd FASTQ against a MLST database</td>
+</tr>
+<tr>
+<td><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a></td>
+<td align="left">Aligns MLST loci against the assembled genome</td>
+</tr>
+</tbody>
+</table>
+<h3 id="user-datasets">User Datasets<a class="headerlink" href="#user-datasets" title="Permanent link">&para;</a></h3>
+<p>Another option is for users to <a href="/datasets/#user-populated-folders">provide their own data</a> to include in the analysis.</p>
+<h4 id="blast-alignment">BLAST Alignment<a class="headerlink" href="#blast-alignment" title="Permanent link">&para;</a></h4>
+<p>Each gene, protein, or primer sequence provided by the user is aligned against the assembled genome.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a></td>
+<td align="left">Aligns reference sequences against the assembled genome</td>
+</tr>
+</tbody>
+</table>
+<h4 id="call-variants-user">Call Variants (User)<a class="headerlink" href="#call-variants-user" title="Permanent link">&para;</a></h4>
+<p>Uses the same procedure as <a href="/workflow-overview/#call-variants-auto">Call Variants (Auto)</a>, except variants are called against each reference provided by the user.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/arq5x/bedtools2">Bedtools</a></td>
+<td align="left">Generates the per-base coverage of the reference alignment</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/snippy">Snippy</a></td>
+<td align="left">Manages multiple steps in the haploid variant calling process</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/vcf-annotator">vcf-annotator</a></td>
+<td align="left">Adds annotations from reference GenBank to the final VCF</td>
+</tr>
+</tbody>
+</table>
+<h4 id="insertion-sites">Insertion Sites<a class="headerlink" href="#insertion-sites" title="Permanent link">&para;</a></h4>
+<p>Identifies the location of insertion sites (if any) for each insertion sequence provided by the user.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/jhawkey/IS_mapper">ISMapper</a></td>
+<td align="left">Predicts insertion site locations for insertion sequences</td>
+</tr>
+</tbody>
+</table>
+<h4 id="reference-mapping">Reference Mapping<a class="headerlink" href="#reference-mapping" title="Permanent link">&para;</a></h4>
+<p>Aligns the QC'd FASTQs to each sequence provided by the user.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/arq5x/bedtools2">Bedtools</a></td>
+<td align="left">Generates the per-base coverage of the reference alignment</td>
+</tr>
+<tr>
+<td><a href="https://github.com/lh3/bwa/">BWA</a></td>
+<td align="left">Aligns QC'd FASTQ to a reference sequence</td>
+</tr>
+<tr>
+<td><a href="https://github.com/samtools/samtools">Samtools</a></td>
+<td align="left">Converts alignment from SAM to BAM</td>
+</tr>
+</tbody>
+</table>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../usage-basic/" title="Basic Usage" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Basic Usage
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../output-overview/" title="Output Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Output Overview
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2019 Robert A. Petit III. All rights reserved.
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>
