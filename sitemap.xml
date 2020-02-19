@@ -2,67 +2,87 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://bactopia.github.io/bactopia/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/quick-start/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/installation/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/tutorial/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/datasets/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/usage-basic/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/workflow-overview/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/output-overview/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/usage-complete/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/troubleshooting/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/acknowledgements/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://bactopia.github.io/bactopia/tools/bactopia-tools/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://bactopia.github.io/bactopia/tools/cgtree/</loc>
-     <lastmod>2019-10-25</lastmod>
+     <loc>https://bactopia.github.io/bactopia/tools/fastani/</loc>
+     <lastmod>2020-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://bactopia.github.io/bactopia/tools/gtdb/</loc>
+     <lastmod>2020-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://bactopia.github.io/bactopia/tools/phyloflash/</loc>
+     <lastmod>2020-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://bactopia.github.io/bactopia/tools/roary/</loc>
+     <lastmod>2020-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://bactopia.github.io/bactopia/tools/summary/</loc>
+     <lastmod>2020-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
