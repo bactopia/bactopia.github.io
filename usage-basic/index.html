@@ -559,6 +559,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-nfconfig" title="--nfconfig" class="md-nav__link">
+    --nfconfig
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-resume" title="-resume" class="md-nav__link">
+    -resume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-keep_all_files" title="--keep_all_files" class="md-nav__link">
     --keep_all_files
   </a>
@@ -926,6 +940,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-nfconfig" title="--nfconfig" class="md-nav__link">
+    --nfconfig
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-resume" title="-resume" class="md-nav__link">
+    -resume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-keep_all_files" title="--keep_all_files" class="md-nav__link">
     --keep_all_files
   </a>
@@ -1029,6 +1057,12 @@ Nextflow Related Parameters:
     --condadir DIR          Directory to Nextflow should use for Conda environments
                                 Default: Bactopia&#39;s Nextflow directory
 
+    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows 
+                                you to create profiles specific to your environment (e.g. SGE,
+                                AWS, SLURM, etc...). This config file is loaded last and will 
+                                overwrite existing variables if set.
+                                Default: Bactopia&#39;s default configs
+
     --nfdir                 Print directory Nextflow has pulled Bactopia to
 
     --overwrite             Nextflow will overwrite existing output files.
@@ -1041,6 +1075,9 @@ Nextflow Related Parameters:
     --sleep_time            After reading datases, the amount of time (seconds) Nextflow
                                 will wait before execution.
                                 Default: 5 seconds
+
+    -resume                 Nextflow will attempt to resume a previous run. Please notice it is 
+                                only a single &#39;-&#39;
 
 Useful Parameters:
     --available_datasets    Print a list of available datasets found based
@@ -1315,6 +1352,43 @@ ILLUMINA ACCESSIONS: 5 (./ena-accessions.txt)
 <p class="admonition-title">Mash may not be the most accurate estimate</p>
 <p>Mash is very convenient to quickly estimate a genome size, but it may not be the most accurate in all cases and will differ between samples. It is recommended that when possible a known genome size or one based off completed genomes should be used. </p>
 </div>
+<h2 id="-nfconfig"><code>--nfconfig</code><a class="headerlink" href="#-nfconfig" title="Permanent link">&para;</a></h2>
+<p>A key feature of Nextflow is you can provide your own config files. What this boils down to you can easily set Bactopia to run on your environment. With <code>--nfconfig</code> you can tell Bactopia to import your config file. </p>
+<p><code>--nfconfig</code> has been set up so that it is the last config file to be loaded by Nextflow. This means that if your config file contains variables (e.g. params or profiles) already set they will be overwritten by your values.</p>
+<p><a href="https://www.nextflow.io/docs/latest/config.html">Nextflow goes into great details on how to create configuration files.</a> Please check the following links for adjustsments you be interested in making.</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.nextflow.io/docs/latest/config.html#scope-env">env</a></td>
+<td>Set any environment variables that might be required</td>
+</tr>
+<tr>
+<td><a href="https://www.nextflow.io/docs/latest/config.html#scope-params">params</a></td>
+<td>Change the default values of command line arguments</td>
+</tr>
+<tr>
+<td><a href="https://www.nextflow.io/docs/latest/config.html#scope-process">process</a></td>
+<td>Adjust perprocess configurations such as containers, conda envs, or resource usage</td>
+</tr>
+<tr>
+<td><a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">profile</a></td>
+<td>Create predefined profiles for your <a href="https://www.nextflow.io/docs/latest/operator.html#filtering-operators">Executor</a></td>
+</tr>
+</tbody>
+</table>
+<p>There are <a href="https://www.nextflow.io/docs/latest/config.html#config-scopes">many other scopes</a> that you might be interested in checking out.</p>
+<p>You are most like going to want to create a custom profile. By doing so you can specify it at runtime (<code>-profile myProfile</code>) and Nextflow will be excuted based on that profile. Often times your custom profile will include information on the executor (queues, allocations, apths, etc...).</p>
+<p>If you need help please <a href="https://github.com/bactopia/bactopia/issues/new/choose">reach out</a>!</p>
+<p><em>If you're using the standard profile (did not specify -profile 'xyz') this might not be necessary.</em></p>
+<h2 id="-resume"><code>-resume</code><a class="headerlink" href="#-resume" title="Permanent link">&para;</a></h2>
+<p>Bactopia relies on <a href="https://www.nextflow.io/docs/latest/getstarted.html#modify-and-resume">Nextflow's Resume Feature</a> to resume runs. You can tell Bactopia to resume by adding <code>-resume</code> to your command line. When <code>-resume</code> is used, Nextflow will review the cache and determine if the previous run is resumable. If the previous run is not resumable, execution will
+start at the beginning.</p>
 <h2 id="-keep_all_files"><code>--keep_all_files</code><a class="headerlink" href="#-keep_all_files" title="Permanent link">&para;</a></h2>
 <p>In some processes, Bactopia will delete large intermediate files (e.g. multiple uncompressed FASTQs) <strong>only</strong> after a process successfully completes. Since this a per-process function, it does not affect Nextflow's ability to resume (<code>-resume</code>)a workflow. You can deactivate this feature using <code>--keep_all_files</code>. Please, keep in mind the <em>work</em> directory is already large, this will make it 2-3 times larger.</p>
                 
