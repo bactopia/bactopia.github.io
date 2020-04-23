@@ -1136,6 +1136,9 @@
                                 to resume Nextflow runs, and only occurs at the end
                                 of the process.
 
+    --dry_run               Mimics workflow execution, to help determine if conda environments
+                                or container images are properly set up.
+
     --version               Print workflow version information
 
     --help                  Show this message and exit
@@ -1186,10 +1189,11 @@ start at the beginning.</p>
 <p>The description and default values for these parameters were taken from the program to which they apply.</p>
 <p>It is important to note, not all of the available parameters for each and every program are available in Bactopia. If there is a parameter that was overlooked and should probably be included, please make a suggestion!</p>
 <h3 id="annotation">Annotation<a class="headerlink" href="#annotation" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span>    --centre STR            Sequencing centre ID
-                                Default: &#39;&#39;
+<div class="highlight"><pre><span></span>    --compliant             Force Genbank/ENA/DDJB compliance: --genes --mincontiglen 500 --centre &#39;Bactopia&#39;
+                                    Default: False
 
-    --addgenes              Add &#39;gene&#39; features for each &#39;CDS&#39; feature
+    --centre STR            Sequencing centre ID
+                                Default: &#39;Bactopia&#39;
 
     --addmrna               Add &#39;mRNA&#39; features for each &#39;CDS&#39; feature
 
@@ -1202,6 +1206,8 @@ start at the beginning.</p>
 
     --prokka_coverage INT   Minimum coverage on query protein
                                  Default: 80
+
+    --nogenes               Do not add &#39;gene&#39; features for each &#39;CDS&#39; feature
 
     --norrna                Don&#39;t run rRNA search
 
@@ -1315,9 +1321,6 @@ start at the beginning.</p>
     --max_target_seqs INT   Maximum number of aligned sequences to
                                 keep
                                 Default: 2000
-
-    --outfmt STR            BLAST alignment view options
-                                Default: &#39;6 qseqid qlen qstart qend sseqid slen sstart send length evalue bitscore pident nident mismatch gaps qcovs qcovhsp&#39;
 </pre></div>
 
 <h3 id="counting-31mers">Counting 31mers<a class="headerlink" href="#counting-31mers" title="Permanent link">&para;</a></h3>

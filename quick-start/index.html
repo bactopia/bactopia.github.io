@@ -748,16 +748,16 @@ conda activate bactopia
 <h3 id="single-sample">Single Sample<a class="headerlink" href="#single-sample" title="Permanent link">&para;</a></h3>
 <h4 id="paired-end">Paired-End<a class="headerlink" href="#paired-end" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span>bactopia --R1 ${SAMPLE}_R1.fastq.gz --R2 ${SAMPLE}_R2.fastq.gz --sample ${SAMPLE} \
-         --dataset datasets/ --outdir ${OUTDIR}
+         --datasets datasets/ --outdir ${OUTDIR}
 </pre></div>
 
 <h4 id="single-end">Single-End<a class="headerlink" href="#single-end" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span>bactopia --SE ${SAMPLE}.fastq.gz --sample ${SAMPLE} --dataset datasets/ --outdir ${OUTDIR}
+<div class="highlight"><pre><span></span>bactopia --SE ${SAMPLE}.fastq.gz --sample ${SAMPLE} --datasets datasets/ --outdir ${OUTDIR}
 </pre></div>
 
 <h3 id="multiple-samples">Multiple Samples<a class="headerlink" href="#multiple-samples" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span>bactopia prepare directory-of-fastqs/ &gt; fastqs.txt
-bactopia --fastqs fastqs.txt --dataset datasets --outdir ${OUTDIR}
+bactopia --fastqs fastqs.txt --datasets datasets --outdir ${OUTDIR}
 </pre></div>
                 
                   
