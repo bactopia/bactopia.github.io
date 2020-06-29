@@ -474,6 +474,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#assembly-quality-assessment" title="Assembly Quality Assessment" class="md-nav__link">
+    Assembly Quality Assessment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#genome-annotation" title="Genome Annotation" class="md-nav__link">
     Genome Annotation
   </a>
@@ -559,13 +566,6 @@
           <li class="md-nav__item">
   <a href="#call-variants-user" title="Call Variants (User)" class="md-nav__link">
     Call Variants (User)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#insertion-sites" title="Insertion Sites" class="md-nav__link">
-    Insertion Sites
   </a>
   
 </li>
@@ -688,6 +688,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../bactopia-tools/eggnog/" title="eggnog" class="md-nav__link">
+      eggnog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../bactopia-tools/fastani/" title="fastani" class="md-nav__link">
       fastani
     </a>
@@ -712,8 +724,44 @@
 
 
   <li class="md-nav__item">
+    <a href="../bactopia-tools/ismapper/" title="ismapper" class="md-nav__link">
+      ismapper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bactopia-tools/mashtree/" title="mashtree" class="md-nav__link">
+      mashtree
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../bactopia-tools/phyloflash/" title="phyloflash" class="md-nav__link">
       phyloflash
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bactopia-tools/pirate/" title="pirate" class="md-nav__link">
+      pirate
     </a>
   </li>
 
@@ -839,6 +887,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#assembly-quality-assessment" title="Assembly Quality Assessment" class="md-nav__link">
+    Assembly Quality Assessment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#genome-annotation" title="Genome Annotation" class="md-nav__link">
     Genome Annotation
   </a>
@@ -929,13 +984,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#insertion-sites" title="Insertion Sites" class="md-nav__link">
-    Insertion Sites
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#reference-mapping" title="Reference Mapping" class="md-nav__link">
     Reference Mapping
   </a>
@@ -978,7 +1026,8 @@
 <h2 id="always-enabled-steps">Always Enabled Steps<a class="headerlink" href="#always-enabled-steps" title="Permanent link">&para;</a></h2>
 <p>The <em>Always Enabled Steps</em> are always executed by Bactopia. These steps do not depend of external datasets and thus are always enabled.</p>
 <h4 id="gather-fastqs">Gather FASTQs<a class="headerlink" href="#gather-fastqs" title="Permanent link">&para;</a></h4>
-<p>Specifies exactly where the input FASTQs are coming from. If you are using local inputs (e.g. <code>--R1/--R2</code>, <code>--fastqs</code>) it will verify they can be accessed. If ENA/SRA accessions (<code>--accession</code> or <code>--accessions</code>) were given, they corresponding FASTQs are downloaded in this step.</p>
+<p>Specifies exactly where the input FASTQ/FASTAs are coming from. If you are using local inputs (e.g. <code>--R1/--R2</code>, <code>--fastqs</code>) it will verify they can be accessed. </p>
+<p>If an accession(s) (<code>--accession</code> or <code>--accessions</code>) was given, the corresponding FASTQs (SRA/ENA) or assemblies (NCBI Assembly) are downloaded in this step. All assemblies will have 2x250bp Illumina reads simulated withour insertions or deletions and a minimum PHRED score of Q33.</p>
 <table>
 <thead>
 <tr>
@@ -988,8 +1037,16 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="https://github.com/rpetit3/ena-dl">ART</a></td>
+<td align="left">Generate simulated Illumina reads from an assembly</td>
+</tr>
+<tr>
 <td><a href="https://github.com/rpetit3/ena-dl">ena-dl</a></td>
 <td align="left">Download FASTQ files from ENA</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/ena-dl">ncbi-genome-download</a></td>
+<td align="left">Download GenBank/RefSeq assemblies from NCBI Assembly database</td>
 </tr>
 </tbody>
 </table>
@@ -1122,7 +1179,7 @@
 </tbody>
 </table>
 <h4 id="de-novo-assembly">De novo Assembly<a class="headerlink" href="#de-novo-assembly" title="Permanent link">&para;</a></h4>
-<p>The QC'd FASTQs are assembled using the <a href="https://github.com/tseemann/shovill">Shovill</a> pipeline. This allows for a seamless assembly process using <a href="https://github.com/voutcn/megahit">MEGAHIT</a>, <a href="https://github.com/ncbi/SKESA">SKESA</a>, <a href="https://github.com/ablab/spades">SPAdes</a> or <a href="https://github.com/dzerbino/velvet">Velvet</a>.</p>
+<p>The QC'd FASTQs are assembled using the <a href="https://github.com/tseemann/shovill">Shovill</a> pipeline. This allows for a seamless assembly process using <a href="https://github.com/voutcn/megahit">MEGAHIT</a>, <a href="https://github.com/ncbi/SKESA">SKESA</a>, <a href="https://github.com/ablab/spades">SPAdes</a> or <a href="https://github.com/dzerbino/velvet">Velvet</a>. Alternatively, if long reads are available to complement Illumina paired-end reads, hybrid assembly is available through <a href="https://github.com/rrwick/Unicycler">Unicycler</a>.</p>
 <table>
 <thead>
 <tr>
@@ -1138,6 +1195,30 @@
 <tr>
 <td><a href="https://github.com/tseemann/shovill">Shovill</a></td>
 <td align="left">Manages multiple steps in the Illumina assembly process</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rrwick/Unicycler">Unicycler</a></td>
+<td align="left">Manages multiple steps in the hybrid assembly process</td>
+</tr>
+</tbody>
+</table>
+<h4 id="assembly-quality-assessment">Assembly Quality Assessment<a class="headerlink" href="#assembly-quality-assessment" title="Permanent link">&para;</a></h4>
+<p>After assembly, the <em>de novo</em> assembly is assessed for its biological (e.g. containment &amp; contamination) as well as its technical (e.g. misassemblies and errors) quality using <a href="https://github.com/Ecogenomics/CheckM">CheckM</a> and <a href="http://quast.sourceforge.net/">QUAST</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th align="left">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/Ecogenomics/CheckM">CheckM</a></td>
+<td align="left">Assess the biological quality of a <em>de novo</em> assembly based on presence of marker genes</td>
+</tr>
+<tr>
+<td><a href="http://quast.sourceforge.net/">QUAST</a></td>
+<td align="left">Gives a summary on the technical (e.g. misassemblies etc) quality of a <em>de novo</em> assembly</td>
 </tr>
 </tbody>
 </table>
@@ -1176,7 +1257,7 @@
 <h2 id="dataset-enabled-steps">Dataset Enabled Steps<a class="headerlink" href="#dataset-enabled-steps" title="Permanent link">&para;</a></h2>
 <p>The remaining <em>Dataset Enabled Steps</em> require supplemental datasets to be available to be executed. There are many datasets available that Bactopia can take advantage of. To learn more about setting up these datasets, check out <a href="/datasets/#build-datasets">Build Datasets</a>. These datasets can be broken into two groups, <em>Public Datasets</em> and <em>User Datasets</em>.</p>
 <h3 id="public-datasets">Public Datasets<a class="headerlink" href="#public-datasets" title="Permanent link">&para;</a></h3>
-<p><a href="/datasets/#general">Publicly available datasets</a> can be used for futher analysis.</p>
+<p><a href="/datasets/#general">Publicly available datasets</a> can be used for further analysis.</p>
 <h4 id="call-variants-auto">Call Variants (Auto)<a class="headerlink" href="#call-variants-auto" title="Permanent link">&para;</a></h4>
 <p>Variants are predicted using <a href="https://github.com/tseemann/snippy">Snippy</a>. The QC'd FASTQs are aligned to the nearest (based on Mash distance) RefSeq completed genome. By default, only the nearest genome is selected, but multiple genomes can be selected (<code>--max_references</code>) or this feature can be completely disabled (<code>disable_auto_variants</code>).</p>
 <table>
@@ -1300,22 +1381,6 @@
 <tr>
 <td><a href="https://github.com/rpetit3/vcf-annotator">vcf-annotator</a></td>
 <td align="left">Adds annotations from reference GenBank to the final VCF</td>
-</tr>
-</tbody>
-</table>
-<h4 id="insertion-sites">Insertion Sites<a class="headerlink" href="#insertion-sites" title="Permanent link">&para;</a></h4>
-<p>Identifies the location of insertion sites (if any) for each insertion sequence provided by the user.</p>
-<table>
-<thead>
-<tr>
-<th>Software</th>
-<th align="left">Usage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="https://github.com/jhawkey/IS_mapper">ISMapper</a></td>
-<td align="left">Predicts insertion site locations for insertion sequences</td>
 </tr>
 </tbody>
 </table>

@@ -13,7 +13,7 @@
         <meta name="description" content="An extensive workflow to process Illumina sequencing for bacterial genomes.">
       
       
-        <link rel="canonical" href="https://bactopia.github.io/bactopia-tools/fastani/">
+        <link rel="canonical" href="https://bactopia.github.io/bactopia-tools/eggnog/">
       
       
         <meta name="author" content="Robert A. Petit III">
@@ -42,7 +42,7 @@
     
     
       
-        <title>fastani - Bactopia</title>
+        <title>eggnog - Bactopia</title>
       
     
     
@@ -134,7 +134,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                fastani
+                eggnog
               
             </span>
           
@@ -470,18 +470,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../eggnog/" title="eggnog" class="md-nav__link">
-      eggnog
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -493,11 +481,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        fastani
+        eggnog
       </label>
     
-    <a href="./" title="fastani" class="md-nav__link md-nav__link--active">
-      fastani
+    <a href="./" title="eggnog" class="md-nav__link md-nav__link--active">
+      eggnog
     </a>
     
       
@@ -540,20 +528,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#references" title="references" class="md-nav__link">
-    references
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#refseqfasta" title="refseq/fasta" class="md-nav__link">
-    refseq/fasta
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -579,7 +553,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references_1" title="References" class="md-nav__link">
+  <a href="#references" title="References" class="md-nav__link">
     References
   </a>
   
@@ -593,6 +567,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fastani/" title="fastani" class="md-nav__link">
+      fastani
+    </a>
   </li>
 
         
@@ -735,20 +721,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#references" title="references" class="md-nav__link">
-    references
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#refseqfasta" title="refseq/fasta" class="md-nav__link">
-    refseq/fasta
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -774,7 +746,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#references_1" title="References" class="md-nav__link">
+  <a href="#references" title="References" class="md-nav__link">
     References
   </a>
   
@@ -796,48 +768,32 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/bactopia-tools/fastani.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/bactopia-tools/eggnog.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="bactopia-tools-fastani">Bactopia Tools - <em>fastani</em><a class="headerlink" href="#bactopia-tools-fastani" title="Permanent link">&para;</a></h1>
-<p>The <code>fastani</code> tool uses <a href="https://github.com/ParBLiSS/FastANI">FastANI</a> to calcualte 
-the average nucleotide identity (ANI) between your samples. Although, sometimes you
-might be more interested in calculating the ANI of your samples against a reference
-genome. Fortunately, using <a href="https://github.com/kblin/ncbi-genome-download">ncbi-genome-download</a>, 
-the <code>fastani</code> tool allows you  specify either a specific NCBI Assembly RefSeq 
-accession (<code>--accession</code>) or a species name (<code>--species</code>) for which to download 
-all RefSeq genomes for.</p>
+<p>The <code>eggnog</code> tool uses <a href="https://github.com/eggnogdb/eggnog-mapper">eggNOG-mapper</a> to 
+assign functional annotation to protein sequences. eggNOG-mapper uses orthologous groups
+and phylogenies from the eggNOG database to more precisely functionally annotate than 
+traditional homology methods.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span>bactopia tools fastani \
+<p>The following command will run <code>eggnog</code> on each available sample.
+<div class="highlight"><pre><span></span>bactopia tools eggnog \
     --bactopia ~/bactopia-tutorial/bactopia \
-    --phyloflash ~/bactopia-tutorial/bactopia-datasets/16s/138 \
-    --exclude ~/bactopia-tutorial/bactopia-tools/summary/bactopia-exclude.txt \
-    --accession &quot;GCF_900475245.1&quot; \
-
-awk &#39;{if ($3 &gt; 95){print $0}}&#39; ~/bactopia-tutorial/bactopia-tools/fastani/fastani.tsv | \
-    grep -v &quot;GCF_900475245&quot; &gt; ~/bactopia-tutorial/GCF_900475245-include.txt
-</pre></div>
-
-<p>Above is a good example of subsetting your samples. In the example, all samples would
-have had their ANI to GCF_900475245 calculated. Then with awk, all samples that had 
-greater than 95% ANI to GCF_900475245 were output to a text file. This text file could 
-then be used with the <code>--include</code> parameter for other Bactopia Tools.</p>
+    --eggnog ~/bactopia-tutorial/eggnogdb
+</pre></div></p>
 <h2 id="output-overview">Output Overview<a class="headerlink" href="#output-overview" title="Permanent link">&para;</a></h2>
-<p>Below is the default output structure for the <code>fastani</code> tool. Where possible the 
+<p>Below is the default output structure for the <code>eggnog</code> tool. Where possible the 
 file descriptions below were modified from a tools description.</p>
 <div class="highlight"><pre><span></span>bactopia-tools/
-└── fastani/
+└── eggnog/
     └── ${PREFIX}
-        ├── bactopia-info
-        │   ├── fastani-report.html
-        │   ├── fastani-timeline.html
-        │   └── fastani-trace.txt
-        ├── fastani.tsv
-        ├── references
-        │   └── ${REFERENCE}.tsv
-        └── refseq
-            └── fasta
-                └── ${REFERENCE}.fna
+        └── bactopia-info
+        │   ├── eggnog-report.html
+        │   ├── eggnog-timeline.html
+        │   └── eggnog-trace.txt
+        ├── ${SAMPLE_NAME}.emapper.annotations
+        └── ${SAMPLE_NAME}.emapper.seed_orthologs
 </pre></div>
 
 <table>
@@ -849,8 +805,12 @@ file descriptions below were modified from a tools description.</p>
 </thead>
 <tbody>
 <tr>
-<td>fastani.tsv</td>
-<td>All the FastANI results (<em>references/*.tsv</em>) merged into a single file.</td>
+<td>${SAMPLE_NAME}.emapper.annotations</td>
+<td>The final <a href="https://github.com/eggnogdb/eggnog-mapper/wiki/eggNOG-mapper-v2#v200">eggNOG functional annotations</a></td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.emapper.seed_orthologs</td>
+<td>A list of best match for each query against the whole eggNOG protein space</td>
 </tr>
 </tbody>
 </table>
@@ -865,52 +825,29 @@ file descriptions below were modified from a tools description.</p>
 </thead>
 <tbody>
 <tr>
-<td>fastani-report.html</td>
+<td>eggnog-report.html</td>
 <td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#execution-report">Execution Report</a></td>
 </tr>
 <tr>
-<td>fastani-timeline.html</td>
+<td>eggnog-timeline.html</td>
 <td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">Timeline Report</a></td>
 </tr>
 <tr>
-<td>fastani-trace.txt</td>
+<td>eggnog-trace.txt</td>
 <td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#trace-report">Trace</a> report</td>
-</tr>
-</tbody>
-</table>
-<h4 id="references">references<a class="headerlink" href="#references" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Filename</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>${REFERENCE}.tsv</td>
-<td>FastANI results of all samples against a reference genome</td>
-</tr>
-</tbody>
-</table>
-<h4 id="refseqfasta">refseq/fasta<a class="headerlink" href="#refseqfasta" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th>Filename</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>${REFERENCE}.fna</td>
-<td>FASTA formated genome downloaded from NCBI Assembly database.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span>Required Parameters:
     --bactopia STR          Directory containing Bactopia analysis results for all samples.
+
+    --eggnog STR            Directory containing the the eggNOG database files:
+                                eggnog.db and eggnog_proteins.dmnd.  If the database is not
+                                found, you must use &#39;--download_eggnog&#39;.
+                                WARNING: eggNOG databases stored on NFS will see a significant
+                                         increase in runtimes. If possible, SSD or Ramdisk 
+                                         should be used.
 
 Optional Parameters:
     --include STR           A text file containing sample names to include in the
@@ -920,7 +857,7 @@ Optional Parameters:
                                 analysis. The expected format is a single sample per line.
 
     --prefix DIR            Prefix to use for final output files
-                                Default: fastani
+                                Default: emapper
 
     --outdir DIR            Directory to write results to
                                 Default: ./
@@ -935,35 +872,79 @@ Optional Parameters:
                                 process.
                                 Default: 1
 
-RefSeq Assemblies Related Parameters:
-    This is a completely optional step and is meant to supplement your dataset with
-    high-quality completed genomes.
+eggNOG-mapper Parameters:
+*Note: Unless specified the eggNOG-mapper defaults are used.*
 
-    --species STR           The name of the species to download RefSeq assemblies for. This
-                                is a completely optional step and is meant to supplement
-                                your dataset with high-quality completed genomes.
+    --download_eggnog       Download the latest eggNOG database, even if it exists.
 
-    --accession STR         A NCBI Assembly database RefSeq accession to be downloaded and included
-                                in the pan-genome analysis.
+eggNOG Annotation Parameters:
+    --tax_scope STR         Fix the taxonomic scope used for annotation, so only orthologs
+                                from a particular clade are used for functional transfer.
 
-    --limit INT             Limit the number of RefSeq assemblies to download. If the the
-                                number of available genomes exceeds the given limit, a 
-                                random subset will be selected.
-                                Default: Download all available genomes
+    --target_orthologs STR  Defines what type of orthologs should be used for functional
+                                transfer.
+                                Choices are: one2one, many2one, one2many, many2many, all
 
-    --refseq_only           Pairwise ANI&#39;s will only be calulated against download RefSeq genomes.
+    --go_evidence STR       Defines what type of GO terms should be used for annotation. Choices are:
+                                &#39;experimental&#39;: Use only terms inferred from experimental evidence
+                                &#39;non-electronic&#39;: Use only non- electronically curated terms
 
-FastANI Related Parameters:
-    --kmer INT              kmer size &lt;= 16
-                                Default: null
+eggNOG HMM Search Parameters:
+    --hmm_maxhits INT       Max number of hits to report.
 
-    --fragLen INT           fragment length
-                                Default: 3000
+    --hmm_evalue FLOAT      E-value threshold.
 
-    --minFraction FLOAT     Minimum fraction of genome that must be shared for trusting ANI.
-                                If reference and query genome size differ, smaller one among
-                                the two is considered.
-                                Default: 0.2
+    --hmm_score INT         Bit score threshold.
+
+    --hmm_maxseqlen INT     Ignore query sequences larger than `maxseqlen`.
+
+    --hmm_qcov FLOAT        Min query coverage (from 0 to 1).
+
+    --Z INT                 Fixed database size used in phmmer/hmmscan (allows comparing e-values
+                                among databases).
+
+eggNOG DIAMOND Search Parameters:
+    --use_diamond           Use DIAMOND instead of HMMER.
+
+    --matrix STR            Scoring matrix. Choices are: BLOSUM62, BLOSUM90, BLOSUM80, BLOSUM50,
+                                                         BLOSUM45, PAM250, PAM70, PAM30
+
+    --gapopen INT           Gap open penalty
+
+    --gapextend INT         Gap extend penalty
+
+    --query_cover FLOAT     Report only alignments above the given percentage of query cover.
+
+    --subject_cover FLOAT   Report only alignments above the given percentage of subject cover.
+
+eggNOG Seed Ortholog Search Parameters:
+    --seed_ortholog_evalue FLOAT
+                            Min E-value expected when searching for seed eggNOG ortholog.
+                                Applies to phmmer/diamond searches. Queries not having a
+                                --significant seed orthologs will not be annotated.
+
+    --seed_ortholog_score INT
+                            Min bit score expected when searching for seed eggNOG ortholog.
+                                Applies to phmmer/diamond searches. Queries not having a
+                                --significant seed orthologs will not be annotated.
+
+eggNOG Output Parameters:
+    --keep_mapping_files    Do not delete temporary mapping files used for annotation (i.e.
+                                HMMER and DIAMOND search outputs)
+
+    --no_annot              Skip functional annotation, reporting only hits
+
+    --no_file_comments      No header lines nor stats are included in the output files
+
+    --no_refine             Skip hit refinement, reporting only HMM hits.
+
+    --no_search             Skip HMM search mapping. Use existing hits file
+
+eggNOG Predict Orthologs Parameters:
+    --target_taxa STR       Taxa that will be searched for orthologs
+
+    --predict_output_format STR
+                            Choose the output format among: per_query, per_species.
 
 Nextflow Related Parameters:
     --publish_mode          Set Nextflow&#39;s method for publishing output files. Allowed methods are:
@@ -993,6 +974,16 @@ Nextflow Related Parameters:
     --sleep_time            After reading datases, the amount of time (seconds) Nextflow
                                 will wait before execution.
                                 Default: 5 seconds
+
+    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows
+                                you to create profiles specific to your environment (e.g. SGE,
+                                AWS, SLURM, etc...). This config file is loaded last and will
+                                overwrite existing variables if set.
+                                Default: Bactopia&#39;s default configs
+
+    -resume                 Nextflow will attempt to resume a previous run. Please notice it is
+                                only a single &#39;-&#39;
+
 Useful Parameters:
     --version               Print workflow version information
     --help                  Show this message and exit
@@ -1000,23 +991,22 @@ Useful Parameters:
 
 <h2 id="conda-environment">Conda Environment<a class="headerlink" href="#conda-environment" title="Permanent link">&para;</a></h2>
 <p>Below is the command used to create the Conda environment.
-<div class="highlight"><pre><span></span>conda create -y -n bactopia-fastani -c conda-forge -c bioconda \
-    fastani \
-    ncbi-genome-download \
-    rename 
+<div class="highlight"><pre><span></span>conda create -n bactopia-eggnog -c conda-forge -c bioconda \
+    eggnog-mapper
 </pre></div></p>
-<h2 id="references_1">References<a class="headerlink" href="#references_1" title="Permanent link">&para;</a></h2>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
-<p><strong><a href="https://github.com/ParBLiSS/FastANI">FastANI</a></strong><br />
-<em>Jain, C., Rodriguez-R, L. M., Phillippy, A. M., Konstantinidis, K. T. &amp; Aluru, S. 
-<a href="http://dx.doi.org/10.1038/s41467-018-07641-9">High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.</a>
- Nat. Commun. 9, 5114 (2018)</em>  </p>
+<p><strong><a href="">DIAMOND</a></strong><br />
+<em>B. Buchfink, C. Xie, D. H. Huson, <a href="http://dx.doi.org/10.1038/nmeth.3176">Fast and sensitive protein alignment using DIAMOND.</a> Nat. Methods. 12, 59–60 (2015).</em>  </p>
 </li>
 <li>
-<p><strong><a href="https://github.com/kblin/ncbi-genome-download">ncbi-genome-download</a></strong><br />
-<em>Blin, K. <a href="https://github.com/kblin/ncbi-genome-download">ncbi-genome-download: Scripts to download genomes from the NCBI FTP 
-servers</a></em>  </p>
+<p><strong><a href="https://github.com/eggnogdb/eggnog-mapper">eggNOG-mapper</a></strong><br />
+<em>J. Huerta-Cepas, K. Forslund, L. P. Coelho, D. Szklarczyk, L. J. Jensen, C. von Mering, P. Bork, <a href="http://dx.doi.org/10.1093/molbev/msx148">Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.</a> Mol. Biol. Evol. 34, 2115–2122 (2017).</em>  </p>
+</li>
+<li>
+<p><strong><a href="http://eggnog.embl.de/">eggNOG 5.0 Database</a></strong><br />
+<em>J. Huerta-Cepas, D. Szklarczyk, D. Heller, A. Hernández-Plaza, S. K. Forslund, H. Cook, D. R. Mende, I. Letunic, T. Rattei, L. J. Jensen, C. von Mering, P. Bork, <a href="https://doi.org/10.1093/nar/gky1085">eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses.</a> Nucleic Acids Res. 47, D309–D314 (2019).</em>  </p>
 </li>
 </ul>
                 
@@ -1039,7 +1029,7 @@ servers</a></em>  </p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../eggnog/" title="eggnog" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../" title="Introduction" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1048,19 +1038,19 @@ servers</a></em>  </p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                eggnog
+                Introduction
               </span>
             </div>
           </a>
         
         
-          <a href="../gtdb/" title="gtdb" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../fastani/" title="fastani" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                gtdb
+                fastani
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

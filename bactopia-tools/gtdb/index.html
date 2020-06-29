@@ -472,6 +472,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../eggnog/" title="eggnog" class="md-nav__link">
+      eggnog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../fastani/" title="fastani" class="md-nav__link">
       fastani
     </a>
@@ -579,6 +591,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conda-environment" title="Conda Environment" class="md-nav__link">
+    Conda Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" title="References" class="md-nav__link">
     References
   </a>
@@ -602,8 +621,44 @@
 
 
   <li class="md-nav__item">
+    <a href="../ismapper/" title="ismapper" class="md-nav__link">
+      ismapper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mashtree/" title="mashtree" class="md-nav__link">
+      mashtree
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../phyloflash/" title="phyloflash" class="md-nav__link">
       phyloflash
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pirate/" title="pirate" class="md-nav__link">
+      pirate
     </a>
   </li>
 
@@ -726,6 +781,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conda-environment" title="Conda Environment" class="md-nav__link">
+    Conda Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" title="References" class="md-nav__link">
     References
   </a>
@@ -758,73 +820,75 @@ done through the use of the <a href="https://gtdb.ecogenomic.org/">Genome Taxono
 If you are unsure of your sequences, <code>gtdb</code> is useful tool to help determine
 the taxonomy of your samples.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>The following command will use <code>gtdb</code> to assign a taxonomic classification on all 
+samples except those listed in the <em>exclude</em> file.
 <div class="highlight"><pre><span></span>bactopia tools gtdb \
     --bactopia ~/bactopia-tutorial/bactopia \
     --gtdb ~/bactopia-tutorial/bactopia-datasets/gtdb/db \
     --exclude ~/bactopia-tutorial/bactopia-tools/summary/bactopia-exclude.txt \
     --cpus 4
-</pre></div>
-
+</pre></div></p>
 <h2 id="output-overview">Output Overview<a class="headerlink" href="#output-overview" title="Permanent link">&para;</a></h2>
 <p>Below is the default output structure for the <code>gtdb</code> tool. Where possible the 
 file descriptions below were modified from descriptions at the 
 <a href="https://github.com/Ecogenomics/GTDBTk#classify-workflow">GTDB-Tk Classify Workflow</a> page.</p>
 <div class="highlight"><pre><span></span>bactopia-tools/
 └── gtdb
-    ├── bactopia-info
-    │   ├── gtdb-report.html
-    │   ├── gtdb-timeline.html
-    │   └── gtdb-trace.txt
-    └── classify
-        ├── align
-        │   ├── gtdb.(ar122|bac120).filtered.tsv
-        │   ├── gtdb.(ar122|bac120).msa.fasta
-        │   ├── gtdb.(ar122|bac120).user_msa.fasta
-        │   └── intermediate_results
-        │       └── gtdb.(ar122|bac120).marker_info.tsv
-        ├── classify
-        │   ├── gtdb.(ar122|bac120).classify.tree
-        │   ├── gtdb.(ar122|bac120).summary.tsv
-        │   └── intermediate_results
-        │       ├── gtdb.(ar122|bac120).classification_pplacer.tsv
-        │       ├── gtdb.(ar122|bac120).red_dictionary.tsv
-        │       └── pplacer
-        │           ├── pplacer.(ar122|bac120).json
-        │           └── pplacer.(ar122|bac120).out
-        ├── gtdb.(ar122|bac120).classify.tree
-        ├── gtdb.(ar122|bac120).filtered.tsv
-        ├── gtdb.(ar122|bac120).markers_summary.tsv
-        ├── gtdb.(ar122|bac120).msa.fasta
-        ├── gtdb.(ar122|bac120).summary.tsv
-        ├── gtdb.(ar122|bac120).user_msa.fasta
-        ├── gtdbtk.log
-        ├── gtdbtk.warnings.log
-        ├── gtdb.translation_table_summary.tsv
-        └── identify
-            ├── gtdb.ar122.markers_summary.tsv
-            ├── gtdb.bac120.markers_summary.tsv
+    └── ${PREFIX}
+        ├── bactopia-info
+        │   ├── gtdb-report.html
+        │   ├── gtdb-timeline.html
+        │   └── gtdb-trace.txt
+        └── classify
+            ├── align
+            │   ├── gtdb.(ar122|bac120).filtered.tsv
+            │   ├── gtdb.(ar122|bac120).msa.fasta
+            │   ├── gtdb.(ar122|bac120).user_msa.fasta
+            │   └── intermediate_results
+            │       └── gtdb.(ar122|bac120).marker_info.tsv
+            ├── classify
+            │   ├── gtdb.(ar122|bac120).classify.tree
+            │   ├── gtdb.(ar122|bac120).summary.tsv
+            │   └── intermediate_results
+            │       ├── gtdb.(ar122|bac120).classification_pplacer.tsv
+            │       ├── gtdb.(ar122|bac120).red_dictionary.tsv
+            │       └── pplacer
+            │           ├── pplacer.(ar122|bac120).json
+            │           └── pplacer.(ar122|bac120).out
+            ├── gtdb.(ar122|bac120).classify.tree
+            ├── gtdb.(ar122|bac120).filtered.tsv
+            ├── gtdb.(ar122|bac120).markers_summary.tsv
+            ├── gtdb.(ar122|bac120).msa.fasta
+            ├── gtdb.(ar122|bac120).summary.tsv
+            ├── gtdb.(ar122|bac120).user_msa.fasta
+            ├── gtdbtk.log
+            ├── gtdbtk.warnings.log
             ├── gtdb.translation_table_summary.tsv
-            └── intermediate_results
-                └── marker_genes
-                    └── ${SAMPLE_NAME}
-                        ├── prodigal_translation_table.tsv
-                        ├── prodigal_translation_table.tsv.sha256
-                        ├── ${SAMPLE_NAME}_pfam_tophit.tsv
-                        ├── ${SAMPLE_NAME}_pfam_tophit.tsv.sha256
-                        ├── ${SAMPLE_NAME}_pfam.tsv
-                        ├── ${SAMPLE_NAME}_pfam.tsv.sha256
-                        ├── ${SAMPLE_NAME}_protein.faa
-                        ├── ${SAMPLE_NAME}_protein.faa.sha256
-                        ├── ${SAMPLE_NAME}_protein.fna
-                        ├── ${SAMPLE_NAME}_protein.fna.sha256
-                        ├── ${SAMPLE_NAME}_protein.gff
-                        ├── ${SAMPLE_NAME}_protein.gff.sha256
-                        ├── ${SAMPLE_NAME}_tigrfam.out
-                        ├── ${SAMPLE_NAME}_tigrfam.out.sha256
-                        ├── ${SAMPLE_NAME}_tigrfam_tophit.tsv
-                        ├── ${SAMPLE_NAME}_tigrfam_tophit.tsv.sha256
-                        ├── ${SAMPLE_NAME}_tigrfam.tsv
-                        └── ${SAMPLE_NAME}_tigrfam.tsv.sha256
+            └── identify
+                ├── gtdb.ar122.markers_summary.tsv
+                ├── gtdb.bac120.markers_summary.tsv
+                ├── gtdb.translation_table_summary.tsv
+                └── intermediate_results
+                    └── marker_genes
+                        └── ${SAMPLE_NAME}
+                            ├── prodigal_translation_table.tsv
+                            ├── prodigal_translation_table.tsv.sha256
+                            ├── ${SAMPLE_NAME}_pfam_tophit.tsv
+                            ├── ${SAMPLE_NAME}_pfam_tophit.tsv.sha256
+                            ├── ${SAMPLE_NAME}_pfam.tsv
+                            ├── ${SAMPLE_NAME}_pfam.tsv.sha256
+                            ├── ${SAMPLE_NAME}_protein.faa
+                            ├── ${SAMPLE_NAME}_protein.faa.sha256
+                            ├── ${SAMPLE_NAME}_protein.fna
+                            ├── ${SAMPLE_NAME}_protein.fna.sha256
+                            ├── ${SAMPLE_NAME}_protein.gff
+                            ├── ${SAMPLE_NAME}_protein.gff.sha256
+                            ├── ${SAMPLE_NAME}_tigrfam.out
+                            ├── ${SAMPLE_NAME}_tigrfam.out.sha256
+                            ├── ${SAMPLE_NAME}_tigrfam_tophit.tsv
+                            ├── ${SAMPLE_NAME}_tigrfam_tophit.tsv.sha256
+                            ├── ${SAMPLE_NAME}_tigrfam.tsv
+                            └── ${SAMPLE_NAME}_tigrfam.tsv.sha256
 </pre></div>
 
 <table>
@@ -1064,6 +1128,10 @@ Useful Parameters:
     --help                  Show this message and exit
 </pre></div>
 
+<h2 id="conda-environment">Conda Environment<a class="headerlink" href="#conda-environment" title="Permanent link">&para;</a></h2>
+<p>Below is the command used to create the Conda environment.
+<div class="highlight"><pre><span></span>conda create -y -n bactopia-gtdb -c conda-forge -c bioconda gtdbtk
+</pre></div></p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -1147,13 +1215,13 @@ PLoS Comput. Biol. 7, e1002195 (2011)</em>  </p>
           </a>
         
         
-          <a href="../phyloflash/" title="phyloflash" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../ismapper/" title="ismapper" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                phyloflash
+                ismapper
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

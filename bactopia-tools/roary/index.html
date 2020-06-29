@@ -472,6 +472,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../eggnog/" title="eggnog" class="md-nav__link">
+      eggnog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../fastani/" title="fastani" class="md-nav__link">
       fastani
     </a>
@@ -496,8 +508,44 @@
 
 
   <li class="md-nav__item">
+    <a href="../ismapper/" title="ismapper" class="md-nav__link">
+      ismapper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mashtree/" title="mashtree" class="md-nav__link">
+      mashtree
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../phyloflash/" title="phyloflash" class="md-nav__link">
       phyloflash
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pirate/" title="pirate" class="md-nav__link">
+      pirate
     </a>
   </li>
 
@@ -605,6 +653,13 @@
         <li class="md-nav__item">
   <a href="#usage" title="Usage" class="md-nav__link">
     Usage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conda-environment" title="Conda Environment" class="md-nav__link">
+    Conda Environment
   </a>
   
 </li>
@@ -740,6 +795,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conda-environment" title="Conda Environment" class="md-nav__link">
+    Conda Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" title="References" class="md-nav__link">
     References
   </a>
@@ -781,80 +843,83 @@ core genome phylogeny using <a href="https://github.com/xavierdidelot/ClonalFram
 The core genome pair-wise SNP distance for each sample is also calculated with
 <a href="https://github.com/tseemann/snp-dists">snp-dists</a>.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>The following command will run Roary, on a set of samples in the <em>include</em> file. Then it 
+will create a phylogenetic tree based on the core-genome alignment.
 <div class="highlight"><pre><span></span>bactopia tools roary \
     --bactopia ~/bactopia-tutorial/bactopia \
     --include ~/bactopia-tutorial/GCF_900475245-include.txt \
     --cpus 4 \
     --n
-</pre></div>
-
+</pre></div></p>
 <h2 id="output-overview">Output Overview<a class="headerlink" href="#output-overview" title="Permanent link">&para;</a></h2>
 <p>Below is the default output structure for the <code>roary</code> tool. Where possible the 
 file descriptions below were modified from a tools description.
-<div class="highlight"><pre><span></span>roary/
-├── bactopia-info
-│   ├── roary-report.html
-│   ├── roary-timeline.html
-│   └── roary-trace.txt
-├── clonalframe
-│   ├── clonalframe.emsim.txt
-│   ├── clonalframe.em.txt
-│   ├── clonalframe.importation_status.txt
-│   ├── clonalframe.labelled_tree.newick
-│   ├── clonalframe.ML_sequence.fasta
-│   ├── clonalframe.position_cross_reference.txt
-│   ├── core_gene_alignment-masked.aln.gz
-│   ├── start-tree.bionj
-│   ├── start-tree.ckp.gz
-│   ├── start-tree.iqtree
-│   ├── start-tree.log
-│   ├── start-tree.mldist
-│   ├── start-tree.model.gz
-│   └── start-tree.treefile
-├── core-genome.aligned.fa.gz
-├── core-genome.distance.txt
-├── core-genome.iqtree
-├── iqtree
-│   ├── core-genome.alninfo
-│   ├── core-genome.bionj
-│   ├── core-genome.ckp.gz
-│   ├── core-genome.contree
-│   ├── core-genome.iqtree
-│   ├── core-genome.log
-│   ├── core-genome.mldist
-│   ├── core-genome.model.gz
-│   ├── core-genome.splits.nex
-│   ├── core-genome.treefile
-│   └── core-genome.ufboot
-├── refseq
-│   ├── fasta
-│   │   └── GCF_900475245.fna
-│   └── gff
-│       └── GCF_900475245.gff
-└── roary
-| accessory_binary_genes.fa
-| accessory_binary_genes.fa.newick
-| accessory_graph.dot
-| accessory.header.embl
-| accessory.tab
-| blast_identity_frequency.Rtab
-| clustered_proteins
-| conserved_vs_total_genes.png
-| core_accessory_graph.dot
-| core_accessory.header.embl
-| core_accessory.tab
-| core_alignment_header.embl
-| core_gene_alignment.aln.gz
-| gene_presence_absence.csv
-| gene_presence_absence.Rtab
-| number_of_conserved_genes.Rtab
-| number_of_genes_in_pan_genome.Rtab
-| number_of_new_genes.Rtab
-| number_of_unique_genes.Rtab
-| pan_genome_reference.fa
-| Rplots.pdf
-| summary_statistics.txt
-    └── unique_vs_new_genes.png
+<div class="highlight"><pre><span></span>bactopia-tools
+└──roary/
+   └── ${PREFIX}
+       ├── bactopia-info
+       │   ├── roary-report.html
+       │   ├── roary-timeline.html
+       │   └── roary-trace.txt
+       ├── clonalframe
+       │   ├── clonalframe.emsim.txt
+       │   ├── clonalframe.em.txt
+       │   ├── clonalframe.importation_status.txt
+       │   ├── clonalframe.labelled_tree.newick
+       │   ├── clonalframe.ML_sequence.fasta
+       │   ├── clonalframe.position_cross_reference.txt
+       │   ├── core_gene_alignment-masked.aln.gz
+       │   ├── start-tree.bionj
+       │   ├── start-tree.ckp.gz
+       │   ├── start-tree.iqtree
+       │   ├── start-tree.log
+       │   ├── start-tree.mldist
+       │   ├── start-tree.model.gz
+       │   └── start-tree.treefile
+       ├── core-genome.aligned.fa.gz
+       ├── core-genome.distance.txt
+       ├── core-genome.iqtree
+       ├── iqtree
+       │   ├── core-genome.alninfo
+       │   ├── core-genome.bionj
+       │   ├── core-genome.ckp.gz
+       │   ├── core-genome.contree
+       │   ├── core-genome.iqtree
+       │   ├── core-genome.log
+       │   ├── core-genome.mldist
+       │   ├── core-genome.model.gz
+       │   ├── core-genome.splits.nex
+       │   ├── core-genome.treefile
+       │   └── core-genome.ufboot
+       ├── refseq
+       │   ├── fasta
+       │   │   └── GCF_900475245.fna
+       │   └── gff
+       │       └── GCF_900475245.gff
+       └── roary
+           ├── accessory_binary_genes.fa
+           ├── accessory_binary_genes.fa.newick
+           ├── accessory_graph.dot
+           ├── accessory.header.embl
+           ├── accessory.tab
+           ├── blast_identity_frequency.Rtab
+           ├── clustered_proteins
+           ├── conserved_vs_total_genes.png
+           ├── core_accessory_graph.dot
+           ├── core_accessory.header.embl
+           ├── core_accessory.tab
+           ├── core_alignment_header.embl
+           ├── core_gene_alignment.aln.gz
+           ├── gene_presence_absence.csv
+           ├── gene_presence_absence.Rtab
+           ├── number_of_conserved_genes.Rtab
+           ├── number_of_genes_in_pan_genome.Rtab
+           ├── number_of_new_genes.Rtab
+           ├── number_of_unique_genes.Rtab
+           ├── pan_genome_reference.fa
+           ├── Rplots.pdf
+           ├── summary_statistics.txt
+           └── unique_vs_new_genes.png
 </pre></div></p>
 <table>
 <thead>
@@ -1187,6 +1252,16 @@ RefSeq Assemblies Related Parameters:
                                 is a completely optional step and is meant to supplement
                                 your dataset with high-quality completed genomes.
 
+    --accession STR         A NCBI Assembly database RefSeq accession to be downloaded and included
+                                in the pan-genome analysis.
+
+    --limit INT             Limit the number of RefSeq assemblies to download. If the the
+                                number of available genomes exceeds the given limit, a 
+                                random subset will be selected.
+                                Default: Download all available genomes
+
+    --only_completed        Pan-genome will be created using only the completed RefSeq genomes.    
+
     --prokka_evalue STR     Similarity e-value cut-off
                                 Default: 1e-09
 
@@ -1292,6 +1367,21 @@ Useful Parameters:
     --help                  Show this message and exit
 </pre></div>
 
+<h2 id="conda-environment">Conda Environment<a class="headerlink" href="#conda-environment" title="Permanent link">&para;</a></h2>
+<p>Below is the command that was used to create the Conda environment.
+<div class="highlight"><pre><span></span>conda create -y -n bactopia-roary -c r -c conda-forge -c bioconda \
+    clonalframeml \
+    iqtree \
+    maskrc-svg \
+    ncbi-genome-download \
+    pigz \
+    prokka \
+    r-ggplot2 \
+    rename \
+    roary \
+    snp-dists \
+    tbl2asn-forever
+</pre></div></p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -1357,7 +1447,7 @@ Bioinformatics 30, 2068–2069 (2014).</em>  </p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../phyloflash/" title="phyloflash" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../pirate/" title="pirate" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1366,7 +1456,7 @@ Bioinformatics 30, 2068–2069 (2014).</em>  </p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                phyloflash
+                pirate
               </span>
             </div>
           </a>

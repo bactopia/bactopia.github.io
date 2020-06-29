@@ -448,6 +448,33 @@
     assembly
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard" title="standard" class="md-nav__link">
+    standard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid" title="hybrid" class="md-nav__link">
+    hybrid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-reports" title="quality reports" class="md-nav__link">
+    quality reports
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -460,13 +487,6 @@
           <li class="md-nav__item">
   <a href="#genome-size" title="genome-size" class="md-nav__link">
     genome-size
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#insertion-sequences" title="insertion-sequences" class="md-nav__link">
-    insertion-sequences
   </a>
   
 </li>
@@ -607,6 +627,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../bactopia-tools/eggnog/" title="eggnog" class="md-nav__link">
+      eggnog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../bactopia-tools/fastani/" title="fastani" class="md-nav__link">
       fastani
     </a>
@@ -631,8 +663,44 @@
 
 
   <li class="md-nav__item">
+    <a href="../bactopia-tools/ismapper/" title="ismapper" class="md-nav__link">
+      ismapper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bactopia-tools/mashtree/" title="mashtree" class="md-nav__link">
+      mashtree
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../bactopia-tools/phyloflash/" title="phyloflash" class="md-nav__link">
       phyloflash
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bactopia-tools/pirate/" title="pirate" class="md-nav__link">
+      pirate
     </a>
   </li>
 
@@ -720,6 +788,33 @@
     assembly
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard" title="standard" class="md-nav__link">
+    standard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid" title="hybrid" class="md-nav__link">
+    hybrid
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-reports" title="quality reports" class="md-nav__link">
+    quality reports
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -732,13 +827,6 @@
           <li class="md-nav__item">
   <a href="#genome-size" title="genome-size" class="md-nav__link">
     genome-size
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#insertion-sequences" title="insertion-sequences" class="md-nav__link">
-    insertion-sequences
   </a>
   
 </li>
@@ -818,7 +906,6 @@
 ├── ariba
 ├── assembly
 ├── blast
-├── insertion-sequences
 ├── kmers
 ├── mapping
 ├── minmers
@@ -998,18 +1085,20 @@
 </tbody>
 </table>
 <h3 id="assembly"><code>assembly</code><a class="headerlink" href="#assembly" title="Permanent link">&para;</a></h3>
-<p>The <code>assembly</code> folder contains the results of the sample's assembly. Assembly is managed by <a href="https://github.com/tseemann/shovill">Shovill</a> and by default <a href="https://github.com/ncbi/SKESA">SKESA</a> is used for assembly. Alternative assemblers include <a href="https://github.com/ablab/spades">SPAdes</a>, <a href="https://github.com/voutcn/megahit">MEGAHIT</a>, and <a href="https://github.com/dzerbino/velvet">Velvet</a>. Depending on the choice of assembler, additional output files (e.g. assembly graphs) may be given.</p>
-<p>Files descriptions with some modifications were directly taken from <a href="https://github.com/tseemann/shovill#output-files">Shovill's Output Files</a> section as well as the <a href="https://sourceforge.net/p/flashpage/code/ci/master/tree/flash.c#l114">FLASH usage</a>.</p>
+<p>The <code>assembly</code> folder contains the results of the sample's assembly. </p>
+<h4 id="standard">standard<a class="headerlink" href="#standard" title="Permanent link">&para;</a></h4>
+<p>The standard assembly is managed by <a href="https://github.com/tseemann/shovill">Shovill</a> and by default <a href="https://github.com/ncbi/SKESA">SKESA</a> is used for assembly. Alternative assemblers include <a href="https://github.com/ablab/spades">SPAdes</a>, <a href="https://github.com/voutcn/megahit">MEGAHIT</a>, and <a href="https://github.com/dzerbino/velvet">Velvet</a>. Depending on the choice of assembler, additional output files (e.g. assembly graphs) may be given.</p>
+<p>Files descriptions with some modifications were directly taken from <a href="https://github.com/tseemann/shovill#output-files">Shovill's Output Files</a> section as well as the <a href="https://sourceforge.net/p/flashpage/code/ci/master/tree/flash.c#l114">FLASH usage</a>.
 <div class="highlight"><pre><span></span>${SAMPLE_NAME}/
 └── assembly
+    ├── cointigs.fa
     ├── flash.hist
     ├── flash.histogram
     ├── shovill.corrections
     ├── shovill.log
     ├── ${SAMPLE_NAME}.fna
     └── ${SAMPLE_NAME}.fna.json
-</pre></div>
-
+</pre></div></p>
 <table>
 <thead>
 <tr>
@@ -1019,12 +1108,16 @@
 </thead>
 <tbody>
 <tr>
+<td>contigs.fa</td>
+<td>Final assembly without renamed headers.</td>
+</tr>
+<tr>
 <td>flash.hist</td>
 <td>Numeric histogram of merged read lengths.</td>
 </tr>
 <tr>
 <td>flash.histogram</td>
-<td>Visual histogram of merged read lengths.</td>
+<td>Visual histogram of merged read lengths</td>
 </tr>
 <tr>
 <td>shovill.log</td>
@@ -1036,11 +1129,194 @@
 </tr>
 <tr>
 <td>${SAMPLE_NAME}.fna</td>
-<td>The final assembly you should use</td>
+<td>The final assembly, with renamed header to include sample name</td>
 </tr>
 <tr>
 <td>${SAMPLE_NAME}.fna.json</td>
 <td>Summary statistics of the assembly</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">FASTA inputs are not reassembled by default</p>
+<p>In the case where an assembly is given as an input, the only files that will be available are <code>${SAMPLE_NAME}.fna</code> (the original unmodified assembly) and <code>${SAMPLE_NAME}.fna.json</code>. If <code>--reassemble</code> is also given, then all the files seen above will be available.</p>
+</div>
+<h4 id="hybrid">hybrid<a class="headerlink" href="#hybrid" title="Permanent link">&para;</a></h4>
+<p>If long reads are available to supplement input paired-end Illumina reads, a hybrid assembly can be created using <a href="https://github.com/rrwick/Unicycler">Unicycler</a>.</p>
+<p>Files descriptions with some modifications were directly taken from <a href="https://github.com/rrwick/Unicycler#output-files">Unicycler's Output Files</a>.
+<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
+└── assembly
+    ├── 001_best_spades_graph.gfa
+    ├── 002_overlaps_removed.gfa
+    ├── 003_long_read_assembly.gfa
+    ├── 004_bridges_applied.gfa
+    ├── 005_final_clean.gfa
+    ├── 006_polished.gfa
+    ├── 007_rotated.gfa
+    ├── assembly.fasta
+    ├── assembly.gfa
+    ├── ${SAMPLE_NAME}.fna
+    ├── ${SAMPLE_NAME}.fna.json
+    └── unicycler.log
+</pre></div></p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001_best_spades_graph.gfa</td>
+<td>The best SPAdes short-read assembly graph, with a bit of graph clean-up</td>
+</tr>
+<tr>
+<td>002_overlaps_removed.gfa</td>
+<td>Overlap-free version of the SPAdes graph, with some more graph clean-up</td>
+</tr>
+<tr>
+<td>003_long_read_assembly.gfa</td>
+<td>Assembly graph after long read assembly</td>
+</tr>
+<tr>
+<td>004_bridges_applied.gfa</td>
+<td>Bridges applied, before any cleaning or merging</td>
+</tr>
+<tr>
+<td>005_final_clean.gfa</td>
+<td>Assembly graph after more redundant contigs removed</td>
+</tr>
+<tr>
+<td>006_polished.gfa</td>
+<td>Assembly graph after a round of Pilon polishing</td>
+</tr>
+<tr>
+<td>007_rotated.gfa</td>
+<td>Assembly graph after ircular replicons rotated and/or flipped to a start position</td>
+</tr>
+<tr>
+<td>assembly.fasta</td>
+<td>The final assembly in FASTA format (same contigs names as in assembly.gfa)</td>
+</tr>
+<tr>
+<td>assembly.gfa</td>
+<td>The final assembly in <a href="https://github.com/GFA-spec/GFA-spec/blob/master/GFA1.md">GFA v1</a> graph format</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.fna</td>
+<td>The final assembly with renamed header to include sample name</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.fna.json</td>
+<td>Summary statistics of the assembly</td>
+</tr>
+<tr>
+<td>unicycler.log</td>
+<td>Unicycler log file (same info as stdout)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="quality-reports">quality reports<a class="headerlink" href="#quality-reports" title="Permanent link">&para;</a></h4>
+<p>Each assembly will have its biological and technical quality assessed with <a href="https://github.com/Ecogenomics/CheckM">CheckM</a> and <a href="http://quast.sourceforge.net/">QUAST</a>. This assessment is done no matter the input type (paired, single, hybrid, or assembly).</p>
+<p>Files descriptions with some modifications were directly taken from <a href="https://github.com/Ecogenomics/CheckM/blob/master/bin/checkm">CheckM's Usage</a>  and <a href="http://quast.sourceforge.net/docs/manual.html#sec3">QUAST's Output Files</a>.
+<div class="highlight"><pre><span></span>assembly/
+├── checkm
+│   ├── bins/
+│   ├── checkm-genes.aln
+│   ├── checkm.log
+│   ├── checkm-results.txt
+│   ├── lineage.ms
+│   └── storage/
+└── quast
+    ├── basic_stats/
+    ├── icarus.html
+    ├── icarus_viewers
+    │   └── contig_size_viewer.html
+    ├── predicted_genes
+    │   ├── GCF_003431365_glimmer_genes.gff.gz
+    │   └── GCF_003431365_glimmer.stderr
+    ├── quast.log
+    ├── report.{html|pdf|tex|tsv|txt}
+    ├── transposed_report.tex
+    ├── transposed_report.tsv
+    └── transposed_report.txt
+</pre></div></p>
+<p><em>CheckM Outputs</em>  </p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bins/</td>
+<td>A folder with inputs (e.g. proteins) for processing by CheckM</td>
+</tr>
+<tr>
+<td>checkm-genes.aln</td>
+<td>Alignment of multi-copy genes and their AAI identity</td>
+</tr>
+<tr>
+<td>checkm.log</td>
+<td>The output log of CheckM</td>
+</tr>
+<tr>
+<td>checkm-results.txt</td>
+<td>Final results of <a href="https://github.com/Ecogenomics/CheckM/wiki/Workflows#lineage-specific-workflow">CheckM's lineage_wf</a></td>
+</tr>
+<tr>
+<td>lineage.ms</td>
+<td>Output file describing marker set for each bin</td>
+</tr>
+<tr>
+<td>storage/</td>
+<td>A folder with intermediate results from CheckM processing</td>
+</tr>
+</tbody>
+</table>
+<p><em>QUAST Outputs</em>  </p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_stats</td>
+<td>A folder with plots of assembly metrics (e.g. GC content, NGx, Nx)</td>
+</tr>
+<tr>
+<td>icarus.html</td>
+<td>Icarus main menu with links to interactive viewers.</td>
+</tr>
+<tr>
+<td>icarus_viewers/</td>
+<td>Additional reports for Icarus</td>
+</tr>
+<tr>
+<td>predicted_genes/</td>
+<td>Predicted gene output</td>
+</tr>
+<tr>
+<td>quast.log</td>
+<td>Detailed information about the QUAST run</td>
+</tr>
+<tr>
+<td>report.{html|pdf }</td>
+<td>Assessement summary including all tables and plots</td>
+</tr>
+<tr>
+<td>report.{tex|tsv|txt}</td>
+<td>Assessment summary in multiple different formats</td>
+</tr>
+<tr>
+<td>transposed_report.{tex|tsv|txt}</td>
+<td>Transposed version of the assessment summary</td>
 </tr>
 </tbody>
 </table>
@@ -1096,72 +1372,6 @@
 <h3 id="genome-size"><code>genome-size</code><a class="headerlink" href="#genome-size" title="Permanent link">&para;</a></h3>
 <p>For every sample <code>${SAMPLE_NAME}-genome-size.txt</code> file is created. This file contains the genome size that was used for analysis. Genome size is used throughout Bactopia for various tasks including error correction, subsampling, and assembly.</p>
 <p>By default, the genome size is estimated with Mash, but users have the option to provide their own value or completely disable genome size related features. Learn more about changing the genome size at <a href="/usage-basic/#-genome_size">Basic Usage - Genome Size</a></p>
-<h3 id="insertion-sequences"><code>insertion-sequences</code><a class="headerlink" href="#insertion-sequences" title="Permanent link">&para;</a></h3>
-<p>The <code>insertion-sequences</code> directory contains <a href="https://github.com/jhawkey/IS_mapper">ISMapper</a> results for each of the <a href="/datasets/#insertion-sequences">User Populated Insertion Sequences</a>. 
-<div class="highlight"><pre><span></span>${SAMPLE_NAME}/
-└── insertion-sequences
-    ├── ${INSERTION_NAME}
-    │   ├── ${SAMPLE_NAME}_${INSERTION_NAME}_(left|right)_final.fastq
-    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}_finalcov.bed
-    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}_merged.sorted.bed
-    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}.sorted.bam
-    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}.sorted.bam.bai
-    │   ├── ${SAMPLE_NAME}_(left|right)_${SAMPLE_NAME}_${CONTIG_NUMBER}_unpaired.bed
-    │   ├── ${SAMPLE_NAME}__${SAMPLE_NAME}_${CONTIG_NUMBER}_closest.bed
-    │   ├── ${SAMPLE_NAME}__${SAMPLE_NAME}_${CONTIG_NUMBER}_intersect.bed
-    │   ├── ${SAMPLE_NAME}__${SAMPLE_NAME}_${CONTIG_NUMBER}_table.txt
-    └── ${SAMPLE_NAME}-${INSERTION_NAME}.log
-</pre></div></p>
-<table>
-<thead>
-<tr>
-<th>Extension</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>_final.fastq</td>
-<td>Sequences (FASTQ format) that mapped to the flanking regions of the IS query</td>
-</tr>
-<tr>
-<td>_finalcov.bed</td>
-<td>Contains information about the coverage of the IS query</td>
-</tr>
-<tr>
-<td>_merged.sorted.bed</td>
-<td>Merged overlapping regions that passed coverage cutoffs</td>
-</tr>
-<tr>
-<td>.sorted.bam</td>
-<td>Reads mapped to the IS query.</td>
-</tr>
-<tr>
-<td>.sorted.bam.bai</td>
-<td>An index of the sorted BAM file.</td>
-</tr>
-<tr>
-<td>_unpaired.bed</td>
-<td>All unpaired mappings to the IS query</td>
-</tr>
-<tr>
-<td>_closest.bed</td>
-<td>Merged regions that are close but do not overlap</td>
-</tr>
-<tr>
-<td>_intersect.bed</td>
-<td>An intersection of merged regions from the left and right flanks.</td>
-</tr>
-<tr>
-<td>_table.txt</td>
-<td>A <a href="https://github.com/jhawkey/IS_mapper#single-isolate-output">detailed description</a> of the IS query results.</td>
-</tr>
-<tr>
-<td>.log</td>
-<td>Information logged during the execution of ISMapper</td>
-</tr>
-</tbody>
-</table>
 <h3 id="kmers"><code>kmers</code><a class="headerlink" href="#kmers" title="Permanent link">&para;</a></h3>
 <p>The <code>kmers</code> directory contains <a href="https://github.com/mcveanlab/mccortex">McCortex</a> 31-mer counts of the cleaned up FASTQ sequences. </p>
 <div class="highlight"><pre><span></span>${SAMPLE_NAME}/
@@ -1255,21 +1465,22 @@
 </tbody>
 </table>
 <h3 id="mlst"><code>mlst</code><a class="headerlink" href="#mlst" title="Permanent link">&para;</a></h3>
-<p>If a <a href="/datasets/#species-specific">Species Specific Dataset</a> has been set up, the <code>mlst</code> directory will contain <a href="https://github.com/sanger-pathogens/ariba">Ariba</a> and <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> results for a <a href="https://pubmlst.org/">PubMLST.org</a> schema.</p>
+<p>If a <a href="/datasets/#species-specific">Species Specific Dataset</a> has been set up, the <code>mlst</code> directory will contain <a href="https://github.com/sanger-pathogens/ariba">Ariba</a> and <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> results for a <a href="https://pubmlst.org/">PubMLST.org</a> schema. For most organisms there is only one MLST schema available, and it will be labeled as <code>default</code>. In cases where a organism has multiple schemas available they will be named following pubMLST's naming.</p>
 <div class="highlight"><pre><span></span>${SAMPLE_NAME}/
 └── mlst
-    ├── ariba
-    │   ├── assembled_genes.fa.gz
-    │   ├── assembled_seqs.fa.gz
-    │   ├── assemblies.fa.gz
-    │   ├── debug.report.tsv
-    │   ├── log.clusters.gz
-    │   ├── mlst_report.details.tsv
-    │   ├── mlst_report.tsv
-    │   ├── report.tsv
-    │   └── version_info.txt
-    └── blast
-        └── ${SAMPLE_NAME}-blast.json
+    └── ${SCHEMA}
+       ├── ariba
+       │   ├── assembled_genes.fa.gz
+       │   ├── assembled_seqs.fa.gz
+       │   ├── assemblies.fa.gz
+       │   ├── debug.report.tsv
+       │   ├── log.clusters.gz
+       │   ├── mlst_report.details.tsv
+       │   ├── mlst_report.tsv
+       │   ├── report.tsv
+       │   └── version_info.txt
+       └── blast
+           └── ${SAMPLE_NAME}-blast.json
 </pre></div>
 
 <table>

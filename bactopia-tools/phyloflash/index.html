@@ -472,6 +472,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../eggnog/" title="eggnog" class="md-nav__link">
+      eggnog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../fastani/" title="fastani" class="md-nav__link">
       fastani
     </a>
@@ -486,6 +498,30 @@
   <li class="md-nav__item">
     <a href="../gtdb/" title="gtdb" class="md-nav__link">
       gtdb
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ismapper/" title="ismapper" class="md-nav__link">
+      ismapper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../mashtree/" title="mashtree" class="md-nav__link">
+      mashtree
     </a>
   </li>
 
@@ -591,6 +627,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conda-environment" title="Conda Environment" class="md-nav__link">
+    Conda Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" title="References" class="md-nav__link">
     References
   </a>
@@ -605,6 +648,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pirate/" title="pirate" class="md-nav__link">
+      pirate
+    </a>
   </li>
 
         
@@ -726,6 +781,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#conda-environment" title="Conda Environment" class="md-nav__link">
+    Conda Environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" title="References" class="md-nav__link">
     References
   </a>
@@ -757,76 +819,77 @@ resconstruct 16S rRNA genes from your input samples. Optionally these reconstruc
 genes can then be aligned to one another with <a href="https://mafft.cbrc.jp/alignment/software/">MAFFT</a> 
 and a phylogenetic representation created using <a href="http://www.iqtree.org/">IQ-TREE</a></p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>The following command will reconstruct the 16S rRNA gene for each sample except those listed in the <em>exclude</em> file.
 <div class="highlight"><pre><span></span>bactopia tools phyloflash \
     --bactopia ~/bactopia-tutorial/bactopia \
     --phyloflash ~/bactopia-tutorial/bactopia-datasets/16s/138 \
     --exclude ~/bactopia-tutorial/bactopia-tools/summary/bactopia-exclude.txt
-</pre></div>
-
+</pre></div></p>
 <h2 id="output-overview">Output Overview<a class="headerlink" href="#output-overview" title="Permanent link">&para;</a></h2>
 <p>Below is the default output structure for the  <code>phyloflash</code> tool. Where possible the 
 file descriptions below were modified from a tools description.</p>
 <div class="highlight"><pre><span></span>bactopia-tools/
 └── phyloflash/
-    ├── alignment
-    │   ├── phyloflash-alignment.fasta
-    │   └── phyloflash-matches.txt
-    ├── bactopia-info
-    │   ├── phyloflash-report.html
-    │   ├── phyloflash-timeline.html
-    │   └── phyloflash-trace.txt
-    ├── iqtree
-    │   ├── 16s.alninfo
-    │   ├── 16s.bionj
-    │   ├── 16s.ckp.gz
-    │   ├── 16s.iqtree
-    │   ├── 16s.log
-    │   ├── 16s.mldist
-    │   ├── 16s.model.gz
-    │   ├── 16s.treefile
-    │   └── 16s.uniqueseq.phy
-    ├── phyloflash.iqtree
-    ├── phyloflash-summary.txt
-    └── samples
-        └── ${SAMPLE_NAME}
-            ├── ${SAMPLE_NAME}.all.dbhits.NR97.fa
-            ├── ${SAMPLE_NAME}.all.final.fasta
-            ├── ${SAMPLE_NAME}.all.final.phyloFlash.dbhits.fa
-            ├── ${SAMPLE_NAME}.all.final.phyloFlash.notmatched.fa
-            ├── ${SAMPLE_NAME}.all.vsearch.csv
-            ├── ${SAMPLE_NAME}.assemratio.csv
-            ├── ${SAMPLE_NAME}.assemratio.csv.svg
-            ├── ${SAMPLE_NAME}.bbmap.out
-            ├── ${SAMPLE_NAME}.bbmap.sam
-            ├── ${SAMPLE_NAME}.hitstats
-            ├── ${SAMPLE_NAME}.idhistogram
-            ├── ${SAMPLE_NAME}.idhistogram.svg
-            ├── ${SAMPLE_NAME}.inserthistogram
-            ├── ${SAMPLE_NAME}.inserthistogram.svg
-            ├── ${SAMPLE_NAME}.mapratio.csv
-            ├── ${SAMPLE_NAME}.mapratio.csv.svg
-            ├── ${SAMPLE_NAME}.phyloFlash
-            ├── ${SAMPLE_NAME}.phyloFlash.extractedSSUclassifications.csv
-            ├── ${SAMPLE_NAME}.phyloFlash.html
-            ├── ${SAMPLE_NAME}.phyloFlash.json
-            ├── ${SAMPLE_NAME}.phyloFlash.NTUabundance.csv
-            ├── ${SAMPLE_NAME}.phyloFlash.NTUabundance.csv.svg
-            ├── ${SAMPLE_NAME}.phyloFlash.NTUfull_abundance.csv
-            ├── ${SAMPLE_NAME}.phyloFlash.report.csv
-            ├── ${SAMPLE_NAME}.phyloFlash.unassembled.NTUabundance.csv
-            ├── ${SAMPLE_NAME}.remap_spades.bbmap.out
-            ├── ${SAMPLE_NAME}.spades.out
-            ├── ${SAMPLE_NAME}.spades_rRNAs.final.fasta
-            ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.1.fq
-            ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.2.fq
-            ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.sam
-            ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU_spades.sam
-            ├── ${SAMPLE_NAME}.SSU.collection.alignment.fasta
-            ├── ${SAMPLE_NAME}.SSU.collection.fasta
-            ├── ${SAMPLE_NAME}.SSU.collection.fasta.tree
-            ├── ${SAMPLE_NAME}.SSU.collection.fasta.tree.svg
-            ├── ${SAMPLE_NAME}.toalign.fasta
-            └── ${SAMPLE_NAME}-unprocessed.txt
+    └── ${PREFIX}
+        ├── alignment
+        │   ├── phyloflash-alignment.fasta
+        │   └── phyloflash-matches.txt
+        ├── bactopia-info
+        │   ├── phyloflash-report.html
+        │   ├── phyloflash-timeline.html
+        │   └── phyloflash-trace.txt
+        ├── iqtree
+        │   ├── 16s.alninfo
+        │   ├── 16s.bionj
+        │   ├── 16s.ckp.gz
+        │   ├── 16s.iqtree
+        │   ├── 16s.log
+        │   ├── 16s.mldist
+        │   ├── 16s.model.gz
+        │   ├── 16s.treefile
+        │   └── 16s.uniqueseq.phy
+        ├── phyloflash.iqtree
+        ├── phyloflash-summary.txt
+        └── samples
+            └── ${SAMPLE_NAME}
+                ├── ${SAMPLE_NAME}.all.dbhits.NR97.fa
+                ├── ${SAMPLE_NAME}.all.final.fasta
+                ├── ${SAMPLE_NAME}.all.final.phyloFlash.dbhits.fa
+                ├── ${SAMPLE_NAME}.all.final.phyloFlash.notmatched.fa
+                ├── ${SAMPLE_NAME}.all.vsearch.csv
+                ├── ${SAMPLE_NAME}.assemratio.csv
+                ├── ${SAMPLE_NAME}.assemratio.csv.svg
+                ├── ${SAMPLE_NAME}.bbmap.out
+                ├── ${SAMPLE_NAME}.bbmap.sam
+                ├── ${SAMPLE_NAME}.hitstats
+                ├── ${SAMPLE_NAME}.idhistogram
+                ├── ${SAMPLE_NAME}.idhistogram.svg
+                ├── ${SAMPLE_NAME}.inserthistogram
+                ├── ${SAMPLE_NAME}.inserthistogram.svg
+                ├── ${SAMPLE_NAME}.mapratio.csv
+                ├── ${SAMPLE_NAME}.mapratio.csv.svg
+                ├── ${SAMPLE_NAME}.phyloFlash
+                ├── ${SAMPLE_NAME}.phyloFlash.extractedSSUclassifications.csv
+                ├── ${SAMPLE_NAME}.phyloFlash.html
+                ├── ${SAMPLE_NAME}.phyloFlash.json
+                ├── ${SAMPLE_NAME}.phyloFlash.NTUabundance.csv
+                ├── ${SAMPLE_NAME}.phyloFlash.NTUabundance.csv.svg
+                ├── ${SAMPLE_NAME}.phyloFlash.NTUfull_abundance.csv
+                ├── ${SAMPLE_NAME}.phyloFlash.report.csv
+                ├── ${SAMPLE_NAME}.phyloFlash.unassembled.NTUabundance.csv
+                ├── ${SAMPLE_NAME}.remap_spades.bbmap.out
+                ├── ${SAMPLE_NAME}.spades.out
+                ├── ${SAMPLE_NAME}.spades_rRNAs.final.fasta
+                ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.1.fq
+                ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.2.fq
+                ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.sam
+                ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU_spades.sam
+                ├── ${SAMPLE_NAME}.SSU.collection.alignment.fasta
+                ├── ${SAMPLE_NAME}.SSU.collection.fasta
+                ├── ${SAMPLE_NAME}.SSU.collection.fasta.tree
+                ├── ${SAMPLE_NAME}.SSU.collection.fasta.tree.svg
+                ├── ${SAMPLE_NAME}.toalign.fasta
+                └── ${SAMPLE_NAME}-unprocessed.txt
 </pre></div>
 
 <table>
@@ -1224,6 +1287,14 @@ Useful Parameters:
     --help                  Show this message and exit
 </pre></div>
 
+<h2 id="conda-environment">Conda Environment<a class="headerlink" href="#conda-environment" title="Permanent link">&para;</a></h2>
+<p>Below is the command that was used to create the Conda environment.
+<div class="highlight"><pre><span></span>conda create -y -n bactopia-gtdb -c conda-forge -c bioconda \
+    phyloflash \
+    mafft \
+    iqtree \
+    pigz
+</pre></div></p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -1309,7 +1380,7 @@ Journal of computational biology 19.5 (2012): 455-477.</em>  </p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../gtdb/" title="gtdb" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../mashtree/" title="mashtree" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1318,19 +1389,19 @@ Journal of computational biology 19.5 (2012): 455-477.</em>  </p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                gtdb
+                mashtree
               </span>
             </div>
           </a>
         
         
-          <a href="../roary/" title="roary" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../pirate/" title="pirate" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                roary
+                pirate
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

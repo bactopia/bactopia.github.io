@@ -398,8 +398,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fastq-inputs" title="FASTQ Inputs" class="md-nav__link">
-    FASTQ Inputs
+  <a href="#inputs" title="Inputs" class="md-nav__link">
+    Inputs
   </a>
   
     <nav class="md-nav">
@@ -446,13 +446,6 @@
           <li class="md-nav__item">
   <a href="#usage_1" title="Usage" class="md-nav__link">
     Usage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" title="Examples" class="md-nav__link">
-    Examples
   </a>
   
 </li>
@@ -692,6 +685,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../bactopia-tools/eggnog/" title="eggnog" class="md-nav__link">
+      eggnog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../bactopia-tools/fastani/" title="fastani" class="md-nav__link">
       fastani
     </a>
@@ -716,8 +721,44 @@
 
 
   <li class="md-nav__item">
+    <a href="../bactopia-tools/ismapper/" title="ismapper" class="md-nav__link">
+      ismapper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bactopia-tools/mashtree/" title="mashtree" class="md-nav__link">
+      mashtree
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../bactopia-tools/phyloflash/" title="phyloflash" class="md-nav__link">
       phyloflash
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../bactopia-tools/pirate/" title="pirate" class="md-nav__link">
+      pirate
     </a>
   </li>
 
@@ -779,8 +820,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fastq-inputs" title="FASTQ Inputs" class="md-nav__link">
-    FASTQ Inputs
+  <a href="#inputs" title="Inputs" class="md-nav__link">
+    Inputs
   </a>
   
     <nav class="md-nav">
@@ -827,13 +868,6 @@
           <li class="md-nav__item">
   <a href="#usage_1" title="Usage" class="md-nav__link">
     Usage
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" title="Examples" class="md-nav__link">
-    Examples
   </a>
   
 </li>
@@ -982,12 +1016,10 @@
                 <h1 id="basic-usage-for-bactopia">Basic Usage For Bactopia<a class="headerlink" href="#basic-usage-for-bactopia" title="Permanent link">&para;</a></h1>
 <p>Bactopia is a wrapper around many different tools. Each of these tools may (or may not) have there own configurable parameters for you to tweak. In order to facilitate getting started with Bactopia, this section has been limited to discussion of only a few parameters. However, if you are interested in the full list of configurable parameters in Bactopia, please check out the <a href="../usage-complete/">Complete Usage</a> section.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span>bactopia
-
-Required Parameters:
+<div class="highlight"><pre><span></span>Required Parameters:
     ### For Procesessing Multiple Samples
     --fastqs STR            An input file containing the sample name and
-                                absolute paths to FASTQs to process
+                                absolute paths to FASTQ/FASTAs to process
 
     ### For Processing A Single Sample
     --R1 STR                First set of reads for paired end in compressed (gzip)
@@ -998,14 +1030,24 @@ Required Parameters:
 
     --SE STR                Single end set of reads in compressed (gzip) FASTQ format
 
+    --hybrid                The SE should be treated as long reads for hybrid assembly.
+
     --sample STR            The name of the input sequences
 
-    ### For Downloading from ENA
-    --accessions            An input file containing ENA/SRA experiement accessions to
-                                be processed
+    ### For Downloading from SRA/ENA or NCBI Assembly
+    **Note: Assemblies will have error free Illumina reads simulated for processing.**
+    --accessions            An input file containing ENA/SRA Experiment accessions or
+                                NCBI Assembly accessions to be processed
 
-    --accession             A single ENA/SRA Experiment accession to be processed
+    --accession             A single ENA/SRA Experiment accession or NCBI Assembly accession
+                                to be processed
 
+    ### For Processing an Assembly
+    **Note: The assembly will have error free Illumina reads simulated for processing.**
+    --assembly STR          A assembled genome in compressed FASTA format.
+
+    --reassemble            The simulated reads will be used to create a new assembly.
+                                Default: Use the original assembly, do not reassemble
 
 Dataset Parameters:
     --datasets DIR          The path to available datasets that have
@@ -1031,24 +1073,26 @@ Optional Parameters:
                                 Default: .
 
 Nextflow Queue Parameters:
-    At execution, Nextflow creates a queue and the number of slots in the queue is determined by the total number 
-    of cores on the system. When a task is submitted to the queue, the total number of slots it occupies is 
-    determined by the value set by &quot;--cpus&quot;. 
+    At execution, Nextflow creates a queue and the number of slots in the queue is determined 
+    by the total number of cores on the system. When a task is submitted to the queue, the 
+    total number of slots it occupies is determined by the value set by &quot;--cpus&quot;.
 
-    This can have a significant effect on the efficiency of the Nextflow&#39;s queue system. If &quot;--cpus&quot; is set to a 
-    value that is equal to the number of cores availabe, in most cases only a single task will be able to run 
-    because its occupying all available slots.
+    This can have a significant effect on the efficiency of the Nextflow&#39;s queue system. 
+    If &quot;--cpus&quot; is set to a value that is equal to the number of cores availabe, in most 
+    cases only a single task will be able to run because its occupying all available slots.
 
-    When in doubt, &quot;--cpus 4&quot; is a safe bet, it is also the default value if you don&#39;t use &quot;--cpus&quot;.
+    When in doubt, &quot;--cpus 4&quot; is a safe bet, it is also the default value if you 
+    don&#39;t use &quot;--cpus&quot;.
 
-    --max_time INT          The maximum number of minutes a task should run before being halted.
-                                Default: 120 minutes
+    --max_time INT          The maximum number of minutes a single task should run before 
+                                being halted.
+                                Default: 240 minutes
 
     --max_memory INT        The maximum amount of memory (Gb) allowed to a single task.
                                 Default: 32 Gb
 
     --cpus INT              Number of processors made available to a single task.
-                                Default: 4
+                                Default: 39
 
 Nextflow Related Parameters:
     --infodir DIR           Directory to write Nextflow summary files to
@@ -1057,9 +1101,9 @@ Nextflow Related Parameters:
     --condadir DIR          Directory to Nextflow should use for Conda environments
                                 Default: Bactopia&#39;s Nextflow directory
 
-    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows 
+    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows
                                 you to create profiles specific to your environment (e.g. SGE,
-                                AWS, SLURM, etc...). This config file is loaded last and will 
+                                AWS, SLURM, etc...). This config file is loaded last and will
                                 overwrite existing variables if set.
                                 Default: Bactopia&#39;s default configs
 
@@ -1074,9 +1118,31 @@ Nextflow Related Parameters:
 
     --sleep_time            After reading datases, the amount of time (seconds) Nextflow
                                 will wait before execution.
-                                Default: 5 seconds
+                                Default: 1 seconds
 
-    -resume                 Nextflow will attempt to resume a previous run. Please notice it is 
+    --publish_mode          Set Nextflow&#39;s method for publishing output files. Allowed methods are:
+                                &#39;copy&#39; (default) Copies the output files into the published 
+                                                 directory.
+
+                                &#39;copyNoFollow&#39; Copies the output files into the published directory
+                                               without following symlinks ie. copies the links 
+                                               themselves.
+
+                                &#39;link&#39;    Creates a hard link in the published directory for each
+                                          process output file.
+
+                                &#39;rellink&#39; Creates a relative symbolic link in the published 
+                                          directory for each process output file.
+
+                                &#39;symlink&#39; Creates an absolute symbolic link in the published 
+                                          directory for each process output file.
+
+                                Default: copy
+
+    --force                 Nextflow will overwrite existing output files.
+                                Default: false
+
+    -resume                 Nextflow will attempt to resume a previous run. Please notice it is
                                 only a single &#39;-&#39;
 
 Useful Parameters:
@@ -1095,7 +1161,6 @@ Useful Parameters:
                                 to resume Nextflow runs, and only occurs at the end
                                 of the process.
 
-
     --dry_run               Mimics workflow execution, to help determine if conda environments
                                 or container images are properly set up.
 
@@ -1106,11 +1171,14 @@ Useful Parameters:
     --help_all              Show a complete list of adjustable parameters
 </pre></div>
 
-<h2 id="fastq-inputs">FASTQ Inputs<a class="headerlink" href="#fastq-inputs" title="Permanent link">&para;</a></h2>
-<p>Bactopia has multiple approaches to specify your input sequences. You can make use of your local FASTQs or download FASTQs from the <a href="https://www.ebi.ac.uk/ena">European Nucleotide Archive (ENA)</a>. Which approach really depends on what you need to achieve! The following sections describe methods to process single samples, multiple samples, downloading samples from the ENA.</p>
+<h2 id="inputs">Inputs<a class="headerlink" href="#inputs" title="Permanent link">&para;</a></h2>
+<p>Bactopia has multiple approaches to specify your input sequences. Bactopia can process Illumina FASTQs, assemblies, and long reads for hybrid assembly.</p>
+<p>Illumina FASTQs a can be your local FASTQs or a Experiment accession to download associated FASTQs from the <a href="https://www.ebi.ac.uk/ena">European Nucleotide Archive (ENA)</a>. </p>
+<p>Likewise assemblies can be local, or a GenBank/RefSeq accession to download from NCBI Assembly. Input assemblies will have Illumina reads simulated so that the complete Bactopia pipeline run. By default, the assembly will not be reassembled.</p>
+<p>Which approach really depends on what you need to achieve! The following sections describe methods to process single samples, multiple samples, downloading samples from the ENA.</p>
 <h3 id="local">Local<a class="headerlink" href="#local" title="Permanent link">&para;</a></h3>
 <h4 id="single-sample">Single Sample<a class="headerlink" href="#single-sample" title="Permanent link">&para;</a></h4>
-<p>When you only need to process a single sample at a time, Bactopia allows that! You only have to the sample name (<code>--sample</code>) and the whether the read set is paired-end (<code>--R1</code> and <code>--R2</code>) or a single-end (<code>--SE</code>). </p>
+<p>When you only need to process a single sample at a time, Bactopia allows that! You only have to the sample name (<code>--sample</code>) and the whether the read set is paired-end (<code>--R1</code> and <code>--R2</code>), single-end (<code>--SE</code>), Illumina paired-end + long reads (<code>--hybrid</code>), or an assembly (<code>--assembly</code>).</p>
 <div class="admonition info">
 <p class="admonition-title">Use --R1, --R2 for Paired-End FASTQs</p>
 <p><code>bactopia --sample my-sample --R1 /path/to/my-sample_R1.fastq.gz --R2 /path/to/my-sample_R2.fastq.gz</code></p>
@@ -1119,8 +1187,24 @@ Useful Parameters:
 <p class="admonition-title">Use --SE for Single-End FASTQs</p>
 <p><code>bactopia --sample my-sample --SE /path/to/my-sample.fastq.gz</code></p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Use --R1, --R2, --SE, and --hybrid for Paired-End FASTQs with Long Reads</p>
+<p>At the assembly step, Unicycler will be used to create a hybrid assembly using the paired-end reads and the long reads.
+<div class="highlight"><pre><span></span>bactopia --sample my-sample 
+         --R1 /path/to/my-sample_R1.fastq.gz \
+         --R2 /path/to/my-sample_R2.fastq.gz \
+         --SE /path/to/my-sample.fastq.gz \
+         --hybrid
+</pre></div></p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Use --assembly for an assembled FASTA</p>
+<p>Assemblies will have 2x250bp Illumina reads simulated without insertions or deletions in the sequence and a minimum PHRED score of Q33. By default, the input assembly will be used for all downstream analyses (e.g. annotation) which use an assembly. If the <code>--reassemble</code> parameter is given, then the a assembly will be created from the simulated reads.
+<div class="highlight"><pre><span></span>bactopia --sample my-sample --assembly /path/to/my-sample.fna.gz 
+</pre></div></p>
+</div>
 <h4 id="multiple-samples">Multiple Samples<a class="headerlink" href="#multiple-samples" title="Permanent link">&para;</a></h4>
-<p>For multiple samples, you must create a file with information about the inputs, a <em>file of filenames</em> (FOFN). This file specifies sample names and location of FASTQs to be processed. Using this information, paired-end or single-end information can be extracted as well as naming output files.</p>
+<p>For multiple samples, you must create a file with information about the inputs, a <em>file of filenames</em> (FOFN). This file specifies sample names and location of FASTQs/FASTAs to be processed. Using this information, paired-end, single-end, hybrid or assembly information can be extracted as well as naming output files.</p>
 <p>While this is an additional step for you, the user, it helps to avoid potential pattern matching errors. </p>
 <p>Most importantly, by taking this approach, you can process hundreds of samples in a single command. There is also the added benefit of knowing which FASTQs were analysed and their location at a later time!</p>
 <div class="admonition info">
@@ -1134,22 +1218,32 @@ N E X T F L O W  ~  version 19.01.0
 Launching `/home/rpetit/illumina-cleanup/bin/illumina-cleanup` [naughty_borg] - revision: 0416ba407c
 Printing example input for &quot;--fastqs&quot;
 
-sample  r1      r2
-test001 /path/to/fastqs/test_R1.fastq.gz        /path/to/fastqs/test_R2.fastq.gz
-test002 /path/to/fastqs/test.fastq.gz
+sample  runtype r1  r2  extra
+SA103113    assembly            /example/SA103113.fna.gz
+SA110685    hybrid  /example/SA110685_R1.fastq.gz   /SA110685_R2.fastq.gz   /example/SA110685.fastq.gz
+SA123186    paired-end  /example/SA123186_R1.fastq.gz   /example/SA123186_R2.fastq.gz
+SA123456    single-end  /example/SA12345.fastq.gz
 </pre></div>
 
 <p>The expected structure is a <strong>tab-delimited</strong> table with three columns:</p>
 <ol>
 <li><code>sample</code>: A unique prefix, or unique name, to be used for naming output files</li>
+<li><code>runtype</code>: Informs Bactopia what type of input the sample is</li>
 <li><code>r1</code>: If paired-end, the first pair of reads, else the single-end reads</li>
 <li><code>r2</code>: If paired-end, the second pair of reads</li>
+<li><code>extra</code>: Either the assembly or long reads associated with a sample.</li>
 </ol>
-<p>These three columns are used as the header for the file. In other words, all input FOFNs require their first line to be:
-<div class="highlight"><pre><span></span>sample  r1      r2
+<p>These five columns are used as the header for the file. In other words, all input FOFNs require their first line to be:
+<div class="highlight"><pre><span></span>sample  runtype r1  r2  extra
 </pre></div></p>
 <p>All lines after the header line, contain unique sample names and location(s) to associated FASTQ file(s). Absolute paths should be used to prevent any <em>file not found</em> errors due to the relative path changing.</p>
-<p>In the example above, two samples would be processed by Bactopia. Sample <code>test001</code> has two FASTQs and would be processed as pair-end reads. While sample <code>test002</code> only has a single FASTQ and would be processed as single-end reads.</p>
+<p>In the example above, four samples would be processed by Bactopia. </p>
+<ol>
+<li><code>SA103113</code> would have simulated reads crreated from the assembly</li>
+<li><code>SA110685</code> would have a hybrid assembly created using the paired-end reads and long-reads</li>
+<li><code>SA123186</code> would be processed as paired-end reads</li>
+<li><code>SA123456</code> would be processed as single-end reads</li>
+</ol>
 <h5 id="generating-a-fofn">Generating A FOFN<a class="headerlink" href="#generating-a-fofn" title="Permanent link">&para;</a></h5>
 <p><code>bactopia prepare</code> has been included to help aid (hopefully!) the process of creating a FOFN for your samples. This script will attempt to find FASTQ files in a given directory and output the expected FOFN format. It will also output any potential issues associated with the pattern matching.</p>
 <div class="admonition error">
@@ -1157,50 +1251,48 @@ test002 /path/to/fastqs/test.fastq.gz
 <p>This is currently an experimental function. There are likely bugs to be ironed out. Please be sure to give the resulting FOFN a quick look over.</p>
 </div>
 <h6 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h6>
-<div class="highlight"><pre><span></span>bactopia prepare [-h] [-e STR] [-s STR] [--pattern STR] [--version] STR
+<div class="highlight"><pre><span></span>usage: bactopia prepare [-h] [-f STR] [-a STR] [--fastq_seperator STR]
+                        [--fastq_pattern STR] [--assembly_pattern STR]
+                        [--long_reads] [--version]
+                        STR
 
-bactopia prepare - Read a directory and prepare a FOFN of FASTQs
+bactopia prepare - Read a directory and prepare a FOFN of FASTQs/FASTAs
 
 positional arguments:
-  STR                Directory where FASTQ files are stored
+  STR                   Directory where FASTQ files are stored
 
 optional arguments:
-  -h, --help         show this help message and exit
-  -e STR, --ext STR  Extension of the FASTQs. Default: .fastq.gz
-  -s STR, --sep STR  Split FASTQ name on the last occurrence of the separator.
-                     Default: _
-  --pattern STR      Glob pattern to match FASTQs. Default: *.fastq.gz
-  --version          show program&#39;s version number and exit
+  -h, --help            show this help message and exit
+  -f STR, --fastq_ext STR
+                        Extension of the FASTQs. Default: .fastq.gz
+  -a STR, --assembly_ext STR
+                        Extension of the FASTA assemblies. Default: .fna.gz
+  --fastq_seperator STR
+                        Split FASTQ name on the last occurrence of the
+                        separator. Default: _
+  --fastq_pattern STR   Glob pattern to match FASTQs. Default: *.fastq.gz
+  --assembly_pattern STR
+                        Glob pattern to match assembly FASTAs. Default:
+                        *.fna.gz
+  --long_reads          Single-end reads should be treated as long reads
+  --version             show program&#39;s version number and exit
 </pre></div>
 
-<h6 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h6>
-<p>Here is an example using the default parameters. In the example, sample <em>SRR00000</em> has more than 2 FASTQs matched to it, which is recognized as an error.</p>
-<div class="highlight"><pre><span></span>bactopia prepare  tests/dummy-fastqs/
-sample  r1      r2
-SRR00000        /home/rpetit/projects/bactopia/bactopia/tests/dummy-fastqs/SRR00000.fastq.gz /home/rpetit/projects/bactopia/bactopia/tests/dummy-fastqs/SRR00000_1.fastq.gz       /home/rpetit/projects/bactopia/bactopia/tests/dummy-fastqs/SRR00000_2.fastq.gz
-ERROR: &quot;SRR00000&quot; has more than two different FASTQ files, please check.
-</pre></div>
-
-<p>After tweaking the <code>--pattern</code> parameter a little bit. The error is corrected and sample <em>SRR00000</em> is properly recognized as a paired-end read set.</p>
-<div class="highlight"><pre><span></span>bactopia prepare  tests/dummy-fastqs/ --pattern *_[12].fastq.gz
-sample  r1      r2
-SRR00000        /home/rpetit/projects/bactopia/bactopia/tests/dummy-fastqs/SRR00000_1.fastq.gz       /home/rpetit/projects/bactopia/bactopia/tests/dummy-fastqs/SRR00000_2.fastq.gz
-</pre></div>
-
-<p>There are a number of ways to tweak the pattern. Just please be sure to give a quick look over of the resulting FOFN.</p>
 <h5 id="validating-fofn">Validating FOFN<a class="headerlink" href="#validating-fofn" title="Permanent link">&para;</a></h5>
 <p>When a FOFN is given, the first thing Bactopia does is verify all FASTQ files are found. If everything checks out, each sample will then be processed, otherwise a list of samples with errors will be output to STDERR. </p>
 <p>If you would like to only validate your FOFN (and not run the full pipeline), you can use the <code>--check_fastqs</code> parameter.</p>
 <h6 id="without-errors">Without Errors<a class="headerlink" href="#without-errors" title="Permanent link">&para;</a></h6>
-<p><div class="highlight"><pre><span></span>bactopia --check_fastqs --fastqs example-data/good-fastqs.txt
-N E X T F L O W  ~  version 19.01.0
-Launching `/home/rpetit3/bactopia/bactopia` [astonishing_colden] - revision: 96c6a1a7ae
+<p><div class="highlight"><pre><span></span>N E X T F L O W  ~  version 20.01.0
+Launching `/home/rpetit3/repos/bactopia/main.nf` [gigantic_meitner] - revision: 6a0fbfbd9c
 Printing what would have been processed. Each line consists of an array of
-three elements: [SAMPLE_NAME, IS_SINGLE_END, [FASTQ_1, FASTQ_2]]
+five elements: [SAMPLE_NAME, RUNTYPE, IS_SINGLE_END, [FASTQ_1, FASTQ_2], EXTRA]
 
 Found:
-[test001, false, [/home/rpetit3/bactopia/tests/fastqs/test_R1.fastq.gz, /home/rpetit3/bactopia/tests/fastqs/test_R2.fastq.gz]]
-[test002, true, [/home/rpetit3/bactopia/tests/fastqs/test.fastq.gz]]
+
+[SA103113, assembly, false, [null, null], /example/SA103113.fna.gz]
+[SA110685, hybrid, false, [/example/SA110685_R1.fastq.gz, /example/SA110685_R2.fastq.gz], /example/SA110685.fastq.gz]
+[SA123186, paired-end, false, [/example/SA123186_R1.fastq.gz, /example/SA123186_R2.fastq.gz], null]
+[SA12345, single-end, true, [/example/SA12345.fastq.gz], null]
 </pre></div>
 Each sample has passed validation and is put into a three element array:</p>
 <ol>
@@ -1210,34 +1302,37 @@ Each sample has passed validation and is put into a three element array:</p>
 </ol>
 <p>This array is then automatically queued up for proccessing by Nextflow.</p>
 <h6 id="with-errors">With errors<a class="headerlink" href="#with-errors" title="Permanent link">&para;</a></h6>
-<div class="highlight"><pre><span></span>bactopia --check_fastqs --fastqs tests/data/bad-fastqs.txt
-N E X T F L O W  ~  version 19.01.0
-Launching `/home/rpetit3/bactopia/bactopia` [kickass_mestorf] - revision: 222a5ad8b1
-LINE 4:ERROR: Please verify /home/rpetit3/bactopia/test/fastqs/test003_R1.fastq.gz exists, and try again
-LINE 5:ERROR: Please verify /home/rpetit3/bactopia/test/fastqs/test003_R1.fastq.gz exists, and try again
-LINE 5:ERROR: Please verify /home/rpetit3/bactopia/test/fastqs/test002_R2.fastq.gz exists, and try again
-Sample name &quot;test002&quot; is not unique, please revise sample names
-The header line (line 1) does not follow expected structure.
-Verify sample names are unique and/or FASTQ paths are correct
+<div class="highlight"><pre><span></span>N E X T F L O W  ~  version 20.01.0
+Launching `/home/rpetit3/repos/bactopia/main.nf` [special_ampere] - revision: 6a0fbfbd9c
+LINE 4:ERROR: Please verify /example-bad/SA123186_R1.fastq.gz exists, and try again
+LINE 4:ERROR: Please verify /example-bad/SA123186_R2.fastq.gz exists, and try again
+LINE 5:ERROR: Please verify /example-bad/SA12345.fastq.gz exists, and try again
+Sample name &quot;SA123186&quot; is not unique, please revise sample names
+Verify sample names are unique and/or FASTA/FASTQ paths are correct
 See &quot;--example_fastqs&quot; for an example
 Exiting
 </pre></div>
 
-<p>In the above example, there are mulitple errors. Lines 4 and 5 (<code>LINE 4:ERROR</code> or <code>LINE 5:ERROR</code>) suggest that based on the given paths the FASTQs do not exist. The sample name <code>test002</code> has been used multiple times, and must be corrected. There is also an issue with the header line that must be looked into.</p>
+<p>In the above example, there are multiple errors. Lines 4 and 5 (<code>LINE 4:ERROR</code> or <code>LINE 5:ERROR</code>) suggest that based on the given paths the FASTQs do not exist. The sample name <code>SA123186</code> has been used multiple times, and must be corrected.</p>
 <h3 id="ena-sra">ENA &amp; SRA<a class="headerlink" href="#ena-sra" title="Permanent link">&para;</a></h3>
-<p>There are a lot of publicly avilable sequences available from the <a href="https://www.ebi.ac.uk/ena">European Nucleotide Archive</a> (ENA) and the <a href="https://www.ncbi.nlm.nih.gov/sra">Sequence Read Archive</a> (SRA). There's a good chance you might want to include some of those sequences in your analysis! If that sounds like you, Bactopia has that built in for you! You can give a single <em>Experiment</em> accession (<code>--accession</code>) or a file where each line is a single <em>Experiment</em> accession (<code>--accessions</code>). Bactopia will then query ENA to determine <em>Run</em> accession(s) associated with the given Experiment accession and proceed download the corresponding FASTQ files from either the SRA (default) or ENA (<code>--use_ena</code>). After the download is completed, it will be processed through Bactopia.</p>
+<p>There are a lot of publicly avilable sequences available from the <a href="https://www.ebi.ac.uk/ena">European Nucleotide Archive</a> (ENA) and the <a href="https://www.ncbi.nlm.nih.gov/sra">Sequence Read Archive</a> (SRA). There's a good chance you might want to include some of those sequences in your analysis! If that sounds like you, Bactopia has that built in for you! You can give a single <em>Experiment</em> accession (<code>--accession</code>) or a file where each line is a single <em>Experiment</em> accession (<code>--accessions</code>). Bactopia will then query ENA to determine <em>Run</em> accession(s) associated with the given Experiment accession and proceed download the corresponding FASTQ files from either the SRA (default) or ENA (<code>--use_ena</code>). </p>
+<p>After the download is completed, it will be processed through Bactopia.</p>
 <div class="admonition info">
 <p class="admonition-title">Use --accession for a Single Experiment Accession</p>
-<p>SRA: <code>bactopia --accession SRX476958</code>
+<p>SRA: <code>bactopia --accession SRX476958</code><br />
 ENA: <code>bactopia --accession SRX476958 --use_ena</code></p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Use --accessions for Multiple Experiment Accessions</p>
-<p>SRA: <code>bactopia --accessions my-accessions.txt</code>
+<p>SRA: <code>bactopia --accessions my-accessions.txt</code><br />
 ENA: <code>bactopia --accessions my-accessions.txt --use_ena</code></p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">What happens when an Experiment has multiple Runs?</p>
+<p>In cases where a single Experiment might have multiple Run accessions associated with it, the FASTQ files from each Run are merged into a single set of sequences.</p>
+</div>
 <h4 id="generating-accession-list">Generating Accession List<a class="headerlink" href="#generating-accession-list" title="Permanent link">&para;</a></h4>
-<p><code>bactopia search</code> has been made to help assist in generating a list of Experiment accessions to be procesed by Bactopia (via <code>--accessions</code>). Users can provide a Taxon ID (e.g. 1280), a binary name (e.g. Staphylococcus aureus), or Study accessions (e.g. PRJNA480016). This value is then queried against ENA's <a href="https://www.ebi.ac.uk/ena/browse/search-rest">Data Warehouse API</a>), and a list of all Experiment accessions associated with the query is returned.</p>
+<p><code>bactopia search</code> has been made to help assist in generating a list of Experiment accessions to be procesed by Bactopia (via <code>--accessions</code>). Users can provide a Taxon ID (e.g. 1280), a binary name (e.g. Staphylococcus aureus), a Study accession (e.g. PRJNA480016), a BioSample accession (e.g. SAMN01737350), or a Run accession (e.g. SRR578340). This value is then queried against ENA's <a href="https://www.ebi.ac.uk/ena/browse/search-rest">Data Warehouse API</a>), and a list of all Experiment accessions associated with the query is returned.</p>
 <h5 id="usage_2">Usage<a class="headerlink" href="#usage_2" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span>usage: bactopia search [-h] [--exact_taxon] [--outdir OUTPUT_DIRECTORY]
                        [--prefix PREFIX] [--limit INT] [--version]
@@ -1246,7 +1341,7 @@ ENA: <code>bactopia --accessions my-accessions.txt --use_ena</code></p>
 bactopia search - Search ENA for associated WGS samples
 
 positional arguments:
-  STR                   Taxon ID or Study accession
+  STR                   Taxon ID or Study, BioSample, or Run accession
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -1262,6 +1357,8 @@ example usage:
   bactopia search PRJNA480016 --limit 20
   bactopia search 1280 --exact_taxon --limit 20&#39;
   bactopia search &quot;staphylococcus aureus&quot; --limit 20
+  bactopia search SAMN01737350
+  bactopia search SRR578340
 </pre></div>
 
 <h5 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h5>
