@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="An extensive workflow to process Illumina sequencing for bacterial genomes.">
       
@@ -18,27 +16,8 @@
       
         <meta name="author" content="Robert A. Petit III">
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.1">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.0">
     
     
       
@@ -46,119 +25,97 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.b5d04df8.min.css">
       
       
     
-    
-      <script src="../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
-        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700%7CUbuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
     
       
         
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-104199698-2", "bactopia.github.io")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-104199698-2","bactopia.github.io"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
   </head>
   
+  
     <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#build-datasets" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#build-datasets" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://bactopia.github.io/" title="Bactopia" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Bactopia
-            </span>
-            <span class="md-header-nav__topic">
-              
-                Tutorial
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://bactopia.github.io/" title="Bactopia" class="md-header-nav__button md-logo" aria-label="Bactopia">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Bactopia
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Tutorial
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Type to start searching
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -166,45 +123,35 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     GitHub
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
         
+          
 
   
 
-<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -213,7 +160,7 @@
   
     <li class="md-tabs__item">
       
-        <a href=".." title="Bactopia" class="md-tabs__link md-tabs__link--active">
+        <a href=".." class="md-tabs__link md-tabs__link--active">
           Bactopia
         </a>
       
@@ -226,7 +173,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../bactopia-tools/" title="Bactopia Tools" class="md-tabs__link">
+        <a href="../bactopia-tools/" class="md-tabs__link">
           Bactopia Tools
         </a>
       
@@ -237,38 +184,33 @@
     </ul>
   </div>
 </nav>
+        
       
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://bactopia.github.io/" title="Bactopia" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://bactopia.github.io/" title="Bactopia" class="md-nav__button md-logo" aria-label="Bactopia">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
     </a>
     Bactopia
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     GitHub
   </div>
@@ -286,13 +228,19 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
       Bactopia
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Bactopia" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Bactopia
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -343,11 +291,14 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Tutorial
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
       </label>
     
     <a href="./" title="Tutorial" class="md-nav__link md-nav__link--active">
@@ -355,52 +306,57 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-datasets" title="Build Datasets" class="md-nav__link">
+  <a href="#build-datasets" class="md-nav__link">
     Build Datasets
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#acquire-staphopia-datasets" title="Acquire Staphopia Datasets" class="md-nav__link">
+  <a href="#acquire-staphopia-datasets" class="md-nav__link">
     Acquire Staphopia Datasets
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-bactopia" title="Running Bactopia" class="md-nav__link">
+  <a href="#running-bactopia" class="md-nav__link">
     Running Bactopia
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Running Bactopia">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#samples-on-sra" title="Samples on SRA" class="md-nav__link">
+  <a href="#samples-on-sra" class="md-nav__link">
     Samples on SRA
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Samples on SRA">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#single-sample" title="Single Sample" class="md-nav__link">
+  <a href="#single-sample" class="md-nav__link">
     Single Sample
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#multiple-samples" title="Multiple Samples" class="md-nav__link">
+  <a href="#multiple-samples" class="md-nav__link">
     Multiple Samples
   </a>
   
@@ -412,30 +368,30 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#local-samples" title="Local Samples" class="md-nav__link">
+  <a href="#local-samples" class="md-nav__link">
     Local Samples
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Local Samples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#single-sample_1" title="Single Sample" class="md-nav__link">
+  <a href="#single-sample_1" class="md-nav__link">
     Single Sample
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Single Sample">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#paired-end" title="Paired-End" class="md-nav__link">
+  <a href="#paired-end" class="md-nav__link">
     Paired-End
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#single-end" title="Single-End" class="md-nav__link">
+  <a href="#single-end" class="md-nav__link">
     Single-End
   </a>
   
@@ -447,7 +403,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#multiple-samples-fofn" title="Multiple Samples (FOFN)" class="md-nav__link">
+  <a href="#multiple-samples-fofn" class="md-nav__link">
     Multiple Samples (FOFN)
   </a>
   
@@ -464,15 +420,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-next" title="What's next?" class="md-nav__link">
+  <a href="#whats-next" class="md-nav__link">
     What's next?
   </a>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -577,13 +529,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Bactopia Tools
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Bactopia Tools" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Bactopia Tools
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -725,52 +683,57 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#build-datasets" title="Build Datasets" class="md-nav__link">
+  <a href="#build-datasets" class="md-nav__link">
     Build Datasets
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#acquire-staphopia-datasets" title="Acquire Staphopia Datasets" class="md-nav__link">
+  <a href="#acquire-staphopia-datasets" class="md-nav__link">
     Acquire Staphopia Datasets
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-bactopia" title="Running Bactopia" class="md-nav__link">
+  <a href="#running-bactopia" class="md-nav__link">
     Running Bactopia
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Running Bactopia">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#samples-on-sra" title="Samples on SRA" class="md-nav__link">
+  <a href="#samples-on-sra" class="md-nav__link">
     Samples on SRA
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Samples on SRA">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#single-sample" title="Single Sample" class="md-nav__link">
+  <a href="#single-sample" class="md-nav__link">
     Single Sample
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#multiple-samples" title="Multiple Samples" class="md-nav__link">
+  <a href="#multiple-samples" class="md-nav__link">
     Multiple Samples
   </a>
   
@@ -782,30 +745,30 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#local-samples" title="Local Samples" class="md-nav__link">
+  <a href="#local-samples" class="md-nav__link">
     Local Samples
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Local Samples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#single-sample_1" title="Single Sample" class="md-nav__link">
+  <a href="#single-sample_1" class="md-nav__link">
     Single Sample
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Single Sample">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#paired-end" title="Paired-End" class="md-nav__link">
+  <a href="#paired-end" class="md-nav__link">
     Paired-End
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#single-end" title="Single-End" class="md-nav__link">
+  <a href="#single-end" class="md-nav__link">
     Single-End
   </a>
   
@@ -817,7 +780,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#multiple-samples-fofn" title="Multiple Samples (FOFN)" class="md-nav__link">
+  <a href="#multiple-samples-fofn" class="md-nav__link">
     Multiple Samples (FOFN)
   </a>
   
@@ -834,15 +797,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#whats-next" title="What's next?" class="md-nav__link">
+  <a href="#whats-next" class="md-nav__link">
     What's next?
   </a>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -856,7 +815,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/tutorial.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/tutorial.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
                 
                 
                   <h1>Tutorial</h1>
@@ -885,16 +849,16 @@ For this tutorial, we will attempt to replicate the <a href="https://staphopia.e
 </div>
 <h2 id="build-datasets">Build Datasets<a class="headerlink" href="#build-datasets" title="Permanent link">&para;</a></h2>
 <p>First let's create a directory to work in and activate our Bactopia environment.
-<div class="highlight"><pre><span></span>mkdir bactopia-tutorial
+<div class="highlight"><pre><span></span><code>mkdir bactopia-tutorial
 cd bactopia-tutorial
 conda activate bactopia
-</pre></div></p>
+</code></pre></div></p>
 <p>Now we are ready to build our datasets!</p>
-<div class="highlight"><pre><span></span>bactopia datasets datasets/ --ariba &quot;vfdb_core,card&quot; \
+<div class="highlight"><pre><span></span><code>bactopia datasets datasets/ --ariba &quot;vfdb_core,card&quot; \
                             --species &quot;Staphylococcus aureus&quot; \
                             --include_genus \
                             --cpus 4
-</pre></div>
+</code></pre></div>
 
 <p>Let's review what is happening here.</p>
 <p><code>datasets/</code> is where our datasets will be downloaded, processed and stored.</p>
@@ -911,13 +875,13 @@ conda activate bactopia
 <h2 id="acquire-staphopia-datasets">Acquire Staphopia Datasets<a class="headerlink" href="#acquire-staphopia-datasets" title="Permanent link">&para;</a></h2>
 <p>Staphopia includes a few <em>optional</em> datasets such as <em>S. aureus</em> N315 reference genome and SCCmec sequences (primers, proteins, full cassettes).</p>
 <p>We will acquire these files using the <a href="https://github.com/bactopia/bactopia-datasets">Bactopia Datasets</a> GitHub repository. For this tutorial a <a href="https://github.com/bactopia/bactopia-datasets/tree/staphopia-v1">Staphopia v1</a> branch has been created, which includes this optional dataset. Now let's clone the repository.</p>
-<div class="highlight"><pre><span></span>git clone -b staphopia-v1 https://github.com/bactopia/bactopia-datasets.git
-</pre></div>
+<div class="highlight"><pre><span></span><code>git clone -b staphopia-v1 https://github.com/bactopia/bactopia-datasets.git
+</code></pre></div>
 
 <p>Next we'll copy the files into our recently built datasets folder and delete the <code>bactopia-datasets</code> repository since we no longer need it.</p>
-<div class="highlight"><pre><span></span>cp -r bactopia-datasets/species-specific/ datasets/
+<div class="highlight"><pre><span></span><code>cp -r bactopia-datasets/species-specific/ datasets/
 rm -rf bactopia-datasets/
-</pre></div>
+</code></pre></div>
 
 <p>~Voilà! </p>
 <p>That should be it. You should now have the Staphopia v1 datasets included with your recentely built datasets (e.g. <em>S. aureus</em> protein clusters, RefSeq sketch, etc...)</p>
@@ -926,14 +890,14 @@ rm -rf bactopia-datasets/
 <h3 id="samples-on-sra">Samples on SRA<a class="headerlink" href="#samples-on-sra" title="Permanent link">&para;</a></h3>
 <h4 id="single-sample">Single Sample<a class="headerlink" href="#single-sample" title="Permanent link">&para;</a></h4>
 <p>Let's start this by downloading a single sample from the <a href="https://www.ncbi.nlm.nih.gov/sra">Sequence Read Archive</a> (SRA), and processing it through Bactopia.</p>
-<div class="highlight"><pre><span></span>bactopia --accession SRX4563634 \
+<div class="highlight"><pre><span></span><code>bactopia --accession SRX4563634 \
          --datasets datasets/ \
          --species &quot;Staphylococcus aureus&quot; \
          --coverage 100 \
          --genome_size median \
          --cpus 2 \
          --outdir ena-single-sample
-</pre></div>
+</code></pre></div>
 
 <p>So, what's happening here?</p>
 <p><code>--accession SRX4563634</code> is telling Bactopia to download FASTQs associated with Exeriment accession SRX4563634.</p>
@@ -952,27 +916,27 @@ rm -rf bactopia-datasets/
 <p>Once complete, the results from numerous tools available to you in <code>ena-single-sample/SRX4563634/</code>. </p>
 <h4 id="multiple-samples">Multiple Samples<a class="headerlink" href="#multiple-samples" title="Permanent link">&para;</a></h4>
 <p>Now we are going to have Bactopia download and process 5 samples from ENA. To do this we can use the <code>bactopia search</code> function.</p>
-<div class="highlight"><pre><span></span>bactopia search PRJNA480016 --limit 5
-</pre></div>
+<div class="highlight"><pre><span></span><code>bactopia search PRJNA480016 --limit 5
+</code></pre></div>
 
 <p>This will produce three files: <code>ena-accessions.txt</code>, <code>ena-results.txt</code> and <code>ena-summary.txt</code>. To learn more about these files see <a href="/usage-basic/#generating-accession-list">Generating Accession List</a>.</p>
 <p>For this tutorial, <code>ena-accessions.txt</code> is the file we need. It contains five Experiment accessions, a single one per line. Just like this:
-<div class="highlight"><pre><span></span>SRX4563688
+<div class="highlight"><pre><span></span><code>SRX4563688
 SRX4563687
 SRX4563686
 SRX4563689
 SRX4563690
-</pre></div></p>
+</code></pre></div></p>
 <p><em>Note: you may have 5 different accessions from the PRJNA480016 project.</em></p>
 <p>To process these samples, we will adjust our command used previously.</p>
-<div class="highlight"><pre><span></span>bactopia --accessions ena-accessions.txt \
+<div class="highlight"><pre><span></span><code>bactopia --accessions ena-accessions.txt \
          --datasets datasets/ \
          --species &quot;Staphylococcus aureus&quot; \
          --coverage 100 \
          --genome_size median \
          --cpus 2 \
          --outdir ena-multiple-samples
-</pre></div>
+</code></pre></div>
 
 <p>Instead of <code>--accession</code> we are now using <code>--accessions ena-accessions.txt</code> which tells Bactopia to read <code>ena-accessions.txt</code>, and download each Experiment accession from SRA (for ENA add <code>--use_ena</code>) and then process it.</p>
 <p>At this point, you might want to go for a walk or make yourself a coffee! This step has an <strong>approximate completion time of ~45-120 minutes</strong>, which again is fully dependent on the cpus used and the download times from SRA (or ENA).</p>
@@ -980,20 +944,20 @@ SRX4563690
 <h3 id="local-samples">Local Samples<a class="headerlink" href="#local-samples" title="Permanent link">&para;</a></h3>
 <p>So for the local samples, we're going to recycle some of the samples we downloaded from SRA/ENA.</p>
 <p>First let's make a directory to put the FASTQs into:
-<div class="highlight"><pre><span></span>mkdir fastqs
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>mkdir fastqs
+</code></pre></div></p>
 <p>Now let's move some the FASTQs from our SRX4563634 sample into this folder.
-<div class="highlight"><pre><span></span>cp ena-single-sample/SRX4563634/quality-control/SRX4563634*.fastq.gz fastqs/
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>cp ena-single-sample/SRX4563634/quality-control/SRX4563634*.fastq.gz fastqs/
+</code></pre></div></p>
 <p>Finally let's also make a single-end version of SRX4563634.
-<div class="highlight"><pre><span></span>cat fastqs/SRX4563634*.fastq.gz &gt; fastqs/SRX4563634-SE.fastq.gz
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>cat fastqs/SRX4563634*.fastq.gz &gt; fastqs/SRX4563634-SE.fastq.gz
+</code></pre></div></p>
 <p>OK! Now we are ready to continue the tutorial!</p>
 <h4 id="single-sample_1">Single Sample<a class="headerlink" href="#single-sample_1" title="Permanent link">&para;</a></h4>
 <p>Again we'll mostly be using the same parameters as previous, but with a few new ones. To process a single sample you can use the <code>--R1</code>/<code>--R2</code> (paired-end), <code>--SE</code> (single-end), and <code>--sample</code> parameters.</p>
 <h5 id="paired-end">Paired-End<a class="headerlink" href="#paired-end" title="Permanent link">&para;</a></h5>
 <p>For paired-end reads you will want to use <code>--R1</code>, <code>--R2</code>, and <code>--sample</code>. For this paired-end example we'll use SRX4563634 again which we've copied to the <code>fastqs</code> folder.</p>
-<div class="highlight"><pre><span></span>bactopia --R1 fastqs/SRX4563634_R1.fastq.gz \
+<div class="highlight"><pre><span></span><code>bactopia --R1 fastqs/SRX4563634_R1.fastq.gz \
          --R2 fastqs/SRX4563634_R2.fastq.gz \
          --sample SRX4563634 \
          --datasets datasets/ \
@@ -1002,7 +966,7 @@ SRX4563690
          --genome_size median \
          --cpus 2 \
          --outdir local-single-sample
-</pre></div>
+</code></pre></div>
 
 <p>Now Bactopia will recognize the <code>--R1</code> and <code>--R2</code> parameters as paired-end reads and process. The <code>--sample</code> is required and will be used for naming the output.</p>
 <p>Similar to the single SRA/ENA sample, the <strong>approximate completion time is ~15-30 minutes</strong> depending on the number of cpus given.</p>
@@ -1010,7 +974,7 @@ SRX4563690
 <h5 id="single-end">Single-End<a class="headerlink" href="#single-end" title="Permanent link">&para;</a></h5>
 <p>In the case of Illumina reads, you're very unlikely to produce single-end reads, but they do exist in the wild (early days of Illumina!). Nevertheless, because single-end reads do exist, single-end support was built into Bactopia.</p>
 <p>To analyze single-end reads, the <code>--SE</code> parameter will replace <code>--R1</code> and <code>--R2</code>. 
-<div class="highlight"><pre><span></span>bactopia --SE fastqs/SRX4563634-SE.fastq.gz \
+<div class="highlight"><pre><span></span><code>bactopia --SE fastqs/SRX4563634-SE.fastq.gz \
          --sample SRX4563634-SE \
          --datasets datasets/ \
          --species &quot;Staphylococcus aureus&quot; \
@@ -1018,7 +982,7 @@ SRX4563690
          --genome_size median \
          --cpus 2 \
          --outdir local-single-sample
-</pre></div></p>
+</code></pre></div></p>
 <p>Now SRX4563634-SE will be processed as a single-end sample. For single-end processing there are some paired-end only analyses (e.g. error correction, insertion sequences) that will be skipped. This leads to single-end samples being processed a little bit faster than pair-end samples. But, the <strong>approximate completion time is still ~15-30 minutes</strong>.</p>
 <p>Once complete, you'll the results from numerous tools available to you in <code>local-single-sample/SRX4563634-SE/</code>. </p>
 <p>If you made it this far, you're almost done!</p>
@@ -1026,19 +990,19 @@ SRX4563690
 <p>Here we go! The final way you can process samples in Bactopia!</p>
 <p>Bactopia allows you to give a text file describing the input samples. This file of file names (FOFN), contains sample names and location to associated FASTQs. The Bactopia FOFN format is described in detail at <a href="/usage-basic/#multiple-samples">Basic Usage -&gt; Multiple Samples</a>.</p>
 <p>First we'll need to prepare a FOFN describing the FASTQ files in our <code>fastqs</code> folder. We can use <code>bactopia prepare</code> to do so:</p>
-<div class="highlight"><pre><span></span>bactopia prepare fastqs/ &gt; fastqs.txt
-</pre></div>
+<div class="highlight"><pre><span></span><code>bactopia prepare fastqs/ &gt; fastqs.txt
+</code></pre></div>
 
 <p>This command will try to create a FOFN for you. For this turorial, the FASTQ names are pretty straight forward and should produce a correct FOFN (or at least it should! ... hopefully!). If that wasn't the case for you, there are ways to <a href="/usage-basic/#generating-a-fofn">tweak <code>bactopia prepare</code></a>.</p>
 <p>Now we can use the <code>--fastqs</code> parameters to process samples in the FOFN.</p>
-<div class="highlight"><pre><span></span>bactopia --fastqs fastqs.txt \
+<div class="highlight"><pre><span></span><code>bactopia --fastqs fastqs.txt \
          --datasets datasets/ \
          --species &quot;Staphylococcus aureus&quot; \
          --coverage 100 \
          --genome_size median \
          --cpus 2 \
          --outdir local-multiple-samples
-</pre></div>
+</code></pre></div>
 
 <p>We no longer need <code>--R1</code>, <code>--R2</code>, <code>--SE</code>, or <code>--sample</code> as the values for these parameters can be determined from the FOFN. </p>
 <p>Here it is, the final wait! This step has an <strong>approximate completion time of ~45-120 minutes</strong>. So, you will definitely want to go for a walk or make yourself a coffee! You've earned it! </p>
@@ -1051,8 +1015,6 @@ SRX4563690
 <p>That should do it! Hopefully you have succeeded (yay! 🎉) and would like to use Bactopia on your own data! </p>
 <p>In this tutorial we covered how to build datasets (<code>bactopia datasets</code>) and how process samples. We also covered the <code>bactopia search</code> and <code>bactopia prepare</code> to prepare file for multiple sample processing.</p>
 <p>If your ran into any issues, please let me know by submitting a <a href="https://github.com/bactopia/bactopia/issues">GitHub Issue</a>.</p>
-                
-                  
                 
               
               
@@ -1069,34 +1031,34 @@ SRX4563690
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../installation/" title="Installation" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../installation/" title="Installation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
                 Installation
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../datasets/" title="Build Datasets" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../datasets/" title="Build Datasets" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
                 Build Datasets
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
             </div>
           </a>
         
@@ -1111,11 +1073,10 @@ SRX4563690
             Copyright © 2019 Robert A. Petit III. All rights reserved.
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -1124,9 +1085,18 @@ SRX4563690
       
     </div>
     
-      <script src="../assets/javascripts/application.c648116f.js"></script>
+      <script src="../assets/javascripts/vendor.92ffa368.min.js"></script>
+      <script src="../assets/javascripts/bundle.5123e3d4.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>
+        app = initialize({
+          base: "..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
     
   </body>

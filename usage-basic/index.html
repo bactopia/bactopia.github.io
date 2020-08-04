@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="An extensive workflow to process Illumina sequencing for bacterial genomes.">
       
@@ -18,27 +16,8 @@
       
         <meta name="author" content="Robert A. Petit III">
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.1">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.0">
     
     
       
@@ -46,119 +25,97 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.b5d04df8.min.css">
       
       
     
-    
-      <script src="../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700|Ubuntu+Mono&display=fallback">
-        <style>body,input{font-family:"Ubuntu","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono","Courier New",Courier,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700%7CUbuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
     
       
         
-<script>
-  window.ga = window.ga || function() {
-    (ga.q = ga.q || []).push(arguments)
-  }
-  ga.l = +new Date
-  /* Setup integration and send page view */
-  ga("create", "UA-104199698-2", "bactopia.github.io")
-  ga("set", "anonymizeIp", true)
-  ga("send", "pageview")
-  /* Register handler to log search on blur */
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.forms.search) {
-      var query = document.forms.search.query
-      query.addEventListener("blur", function() {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value)
-        }
-      })
-    }
-  })
-</script>
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-104199698-2","bactopia.github.io"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
 <script async src="https://www.google-analytics.com/analytics.js"></script>
       
     
     
   </head>
   
+  
     <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
-        
-      </defs>
-    </svg>
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#basic-usage-for-bactopia" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-usage-for-bactopia" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://bactopia.github.io/" title="Bactopia" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Bactopia
-            </span>
-            <span class="md-header-nav__topic">
-              
-                Basic Usage
-              
-            </span>
-          
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://bactopia.github.io/" title="Bactopia" class="md-header-nav__button md-logo" aria-label="Bactopia">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Bactopia
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Basic Usage
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Type to start searching
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -166,45 +123,35 @@
     </div>
   </div>
 </div>
+    
+    
+      <div class="md-header-nav__source">
         
-      </div>
-      
-        <div class="md-flex__cell md-flex__cell--shrink">
-          <div class="md-header-nav__source">
-            
-
-
-  
-
-<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     GitHub
   </div>
 </a>
-          </div>
-        </div>
-      
-    </div>
+      </div>
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
         
+          
 
   
 
-<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
@@ -213,7 +160,7 @@
   
     <li class="md-tabs__item">
       
-        <a href=".." title="Bactopia" class="md-tabs__link md-tabs__link--active">
+        <a href=".." class="md-tabs__link md-tabs__link--active">
           Bactopia
         </a>
       
@@ -226,7 +173,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../bactopia-tools/" title="Bactopia Tools" class="md-tabs__link">
+        <a href="../bactopia-tools/" class="md-tabs__link">
           Bactopia Tools
         </a>
       
@@ -237,38 +184,33 @@
     </ul>
   </div>
 </nav>
+        
       
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://bactopia.github.io/" title="Bactopia" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://bactopia.github.io/" title="Bactopia" class="md-nav__button md-logo" aria-label="Bactopia">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
     </a>
     Bactopia
   </label>
   
     <div class="md-nav__source">
       
-
-
-  
-
-<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source" data-md-source="github">
-  
-    <div class="md-source__icon">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <use xlink:href="#__github" width="24" height="24"></use>
-      </svg>
-    </div>
-  
+<a href="https://github.com/bactopia/bactopia/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
   <div class="md-source__repository">
     GitHub
   </div>
@@ -286,13 +228,19 @@
 
   <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
     
     <label class="md-nav__link" for="nav-1">
       Bactopia
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Bactopia" data-md-level="1">
       <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Bactopia
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -367,13 +315,16 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Basic Usage
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
       </label>
     
     <a href="./" title="Basic Usage" class="md-nav__link md-nav__link--active">
@@ -381,70 +332,75 @@
     </a>
     
       
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usage" title="Usage" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     Usage
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#inputs" title="Inputs" class="md-nav__link">
+  <a href="#inputs" class="md-nav__link">
     Inputs
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Inputs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#local" title="Local" class="md-nav__link">
+  <a href="#local" class="md-nav__link">
     Local
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Local">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#single-sample" title="Single Sample" class="md-nav__link">
+  <a href="#single-sample" class="md-nav__link">
     Single Sample
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#multiple-samples" title="Multiple Samples" class="md-nav__link">
+  <a href="#multiple-samples" class="md-nav__link">
     Multiple Samples
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Multiple Samples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-fofn-format" title="The FOFN Format" class="md-nav__link">
+  <a href="#the-fofn-format" class="md-nav__link">
     The FOFN Format
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#generating-a-fofn" title="Generating A FOFN" class="md-nav__link">
+  <a href="#generating-a-fofn" class="md-nav__link">
     Generating A FOFN
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Generating A FOFN">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage_1" title="Usage" class="md-nav__link">
+  <a href="#usage_1" class="md-nav__link">
     Usage
   </a>
   
@@ -456,22 +412,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#validating-fofn" title="Validating FOFN" class="md-nav__link">
+  <a href="#validating-fofn" class="md-nav__link">
     Validating FOFN
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Validating FOFN">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#without-errors" title="Without Errors" class="md-nav__link">
+  <a href="#without-errors" class="md-nav__link">
     Without Errors
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#with-errors" title="With errors" class="md-nav__link">
+  <a href="#with-errors" class="md-nav__link">
     With errors
   </a>
   
@@ -493,30 +449,30 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ena-sra" title="ENA &amp; SRA" class="md-nav__link">
+  <a href="#ena-sra" class="md-nav__link">
     ENA &amp; SRA
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="ENA &amp; SRA">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#generating-accession-list" title="Generating Accession List" class="md-nav__link">
+  <a href="#generating-accession-list" class="md-nav__link">
     Generating Accession List
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Generating Accession List">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage_2" title="Usage" class="md-nav__link">
+  <a href="#usage_2" class="md-nav__link">
     Usage
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#example" title="Example" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     Example
   </a>
   
@@ -538,43 +494,39 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-cpus" title="--cpus" class="md-nav__link">
+  <a href="#-cpus" class="md-nav__link">
     --cpus
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-genome_size" title="--genome_size" class="md-nav__link">
+  <a href="#-genome_size" class="md-nav__link">
     --genome_size
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-nfconfig" title="--nfconfig" class="md-nav__link">
+  <a href="#-nfconfig" class="md-nav__link">
     --nfconfig
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-resume" title="-resume" class="md-nav__link">
+  <a href="#-resume" class="md-nav__link">
     -resume
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-keep_all_files" title="--keep_all_files" class="md-nav__link">
+  <a href="#-keep_all_files" class="md-nav__link">
     --keep_all_files
   </a>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -655,13 +607,19 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Bactopia Tools
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
     </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+    <nav class="md-nav" aria-label="Bactopia Tools" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
         Bactopia Tools
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -803,70 +761,75 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usage" title="Usage" class="md-nav__link">
+  <a href="#usage" class="md-nav__link">
     Usage
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#inputs" title="Inputs" class="md-nav__link">
+  <a href="#inputs" class="md-nav__link">
     Inputs
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Inputs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#local" title="Local" class="md-nav__link">
+  <a href="#local" class="md-nav__link">
     Local
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Local">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#single-sample" title="Single Sample" class="md-nav__link">
+  <a href="#single-sample" class="md-nav__link">
     Single Sample
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#multiple-samples" title="Multiple Samples" class="md-nav__link">
+  <a href="#multiple-samples" class="md-nav__link">
     Multiple Samples
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Multiple Samples">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-fofn-format" title="The FOFN Format" class="md-nav__link">
+  <a href="#the-fofn-format" class="md-nav__link">
     The FOFN Format
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#generating-a-fofn" title="Generating A FOFN" class="md-nav__link">
+  <a href="#generating-a-fofn" class="md-nav__link">
     Generating A FOFN
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Generating A FOFN">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage_1" title="Usage" class="md-nav__link">
+  <a href="#usage_1" class="md-nav__link">
     Usage
   </a>
   
@@ -878,22 +841,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#validating-fofn" title="Validating FOFN" class="md-nav__link">
+  <a href="#validating-fofn" class="md-nav__link">
     Validating FOFN
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Validating FOFN">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#without-errors" title="Without Errors" class="md-nav__link">
+  <a href="#without-errors" class="md-nav__link">
     Without Errors
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#with-errors" title="With errors" class="md-nav__link">
+  <a href="#with-errors" class="md-nav__link">
     With errors
   </a>
   
@@ -915,30 +878,30 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ena-sra" title="ENA &amp; SRA" class="md-nav__link">
+  <a href="#ena-sra" class="md-nav__link">
     ENA &amp; SRA
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="ENA &amp; SRA">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#generating-accession-list" title="Generating Accession List" class="md-nav__link">
+  <a href="#generating-accession-list" class="md-nav__link">
     Generating Accession List
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Generating Accession List">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#usage_2" title="Usage" class="md-nav__link">
+  <a href="#usage_2" class="md-nav__link">
     Usage
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#example" title="Example" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     Example
   </a>
   
@@ -960,43 +923,39 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#-cpus" title="--cpus" class="md-nav__link">
+  <a href="#-cpus" class="md-nav__link">
     --cpus
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-genome_size" title="--genome_size" class="md-nav__link">
+  <a href="#-genome_size" class="md-nav__link">
     --genome_size
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-nfconfig" title="--nfconfig" class="md-nav__link">
+  <a href="#-nfconfig" class="md-nav__link">
     --nfconfig
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-resume" title="-resume" class="md-nav__link">
+  <a href="#-resume" class="md-nav__link">
     -resume
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#-keep_all_files" title="--keep_all_files" class="md-nav__link">
+  <a href="#-keep_all_files" class="md-nav__link">
     --keep_all_files
   </a>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -1010,13 +969,18 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/usage-basic.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/bactopia/bactopia/edit/master/docs/usage-basic.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
                 
                 
                 <h1 id="basic-usage-for-bactopia">Basic Usage For Bactopia<a class="headerlink" href="#basic-usage-for-bactopia" title="Permanent link">&para;</a></h1>
 <p>Bactopia is a wrapper around many different tools. Each of these tools may (or may not) have there own configurable parameters for you to tweak. In order to facilitate getting started with Bactopia, this section has been limited to discussion of only a few parameters. However, if you are interested in the full list of configurable parameters in Bactopia, please check out the <a href="../usage-complete/">Complete Usage</a> section.</p>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span>Required Parameters:
+<div class="highlight"><pre><span></span><code>Required Parameters:
     ### For Procesessing Multiple Samples
     --fastqs STR            An input file containing the sample name and
                                 absolute paths to FASTQ/FASTAs to process
@@ -1169,7 +1133,7 @@ Useful Parameters:
     --help                  Show this message and exit
 
     --help_all              Show a complete list of adjustable parameters
-</pre></div>
+</code></pre></div>
 
 <h2 id="inputs">Inputs<a class="headerlink" href="#inputs" title="Permanent link">&para;</a></h2>
 <p>Bactopia has multiple approaches to specify your input sequences. Bactopia can process Illumina FASTQs, assemblies, and long reads for hybrid assembly.</p>
@@ -1190,18 +1154,18 @@ Useful Parameters:
 <div class="admonition info">
 <p class="admonition-title">Use --R1, --R2, --SE, and --hybrid for Paired-End FASTQs with Long Reads</p>
 <p>At the assembly step, Unicycler will be used to create a hybrid assembly using the paired-end reads and the long reads.
-<div class="highlight"><pre><span></span>bactopia --sample my-sample 
+<div class="highlight"><pre><span></span><code>bactopia --sample my-sample 
          --R1 /path/to/my-sample_R1.fastq.gz \
          --R2 /path/to/my-sample_R2.fastq.gz \
          --SE /path/to/my-sample.fastq.gz \
          --hybrid
-</pre></div></p>
+</code></pre></div></p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Use --assembly for an assembled FASTA</p>
 <p>Assemblies will have 2x250bp Illumina reads simulated without insertions or deletions in the sequence and a minimum PHRED score of Q33. By default, the input assembly will be used for all downstream analyses (e.g. annotation) which use an assembly. If the <code>--reassemble</code> parameter is given, then the a assembly will be created from the simulated reads.
-<div class="highlight"><pre><span></span>bactopia --sample my-sample --assembly /path/to/my-sample.fna.gz 
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>bactopia --sample my-sample --assembly /path/to/my-sample.fna.gz 
+</code></pre></div></p>
 </div>
 <h4 id="multiple-samples">Multiple Samples<a class="headerlink" href="#multiple-samples" title="Permanent link">&para;</a></h4>
 <p>For multiple samples, you must create a file with information about the inputs, a <em>file of filenames</em> (FOFN). This file specifies sample names and location of FASTQs/FASTAs to be processed. Using this information, paired-end, single-end, hybrid or assembly information can be extracted as well as naming output files.</p>
@@ -1213,7 +1177,7 @@ Useful Parameters:
 </div>
 <h5 id="the-fofn-format">The FOFN Format<a class="headerlink" href="#the-fofn-format" title="Permanent link">&para;</a></h5>
 <p>You can use the <code>--example_fastqs</code> to get an example of the expected structure for the input FASTQs FOFN.</p>
-<div class="highlight"><pre><span></span>bactopia --example_fastqs
+<div class="highlight"><pre><span></span><code>bactopia --example_fastqs
 N E X T F L O W  ~  version 19.01.0
 Launching `/home/rpetit/illumina-cleanup/bin/illumina-cleanup` [naughty_borg] - revision: 0416ba407c
 Printing example input for &quot;--fastqs&quot;
@@ -1223,7 +1187,7 @@ SA103113    assembly            /example/SA103113.fna.gz
 SA110685    hybrid  /example/SA110685_R1.fastq.gz   /SA110685_R2.fastq.gz   /example/SA110685.fastq.gz
 SA123186    paired-end  /example/SA123186_R1.fastq.gz   /example/SA123186_R2.fastq.gz
 SA123456    single-end  /example/SA12345.fastq.gz
-</pre></div>
+</code></pre></div>
 
 <p>The expected structure is a <strong>tab-delimited</strong> table with three columns:</p>
 <ol>
@@ -1234,8 +1198,8 @@ SA123456    single-end  /example/SA12345.fastq.gz
 <li><code>extra</code>: Either the assembly or long reads associated with a sample.</li>
 </ol>
 <p>These five columns are used as the header for the file. In other words, all input FOFNs require their first line to be:
-<div class="highlight"><pre><span></span>sample  runtype r1  r2  extra
-</pre></div></p>
+<div class="highlight"><pre><span></span><code>sample  runtype r1  r2  extra
+</code></pre></div></p>
 <p>All lines after the header line, contain unique sample names and location(s) to associated FASTQ file(s). Absolute paths should be used to prevent any <em>file not found</em> errors due to the relative path changing.</p>
 <p>In the example above, four samples would be processed by Bactopia. </p>
 <ol>
@@ -1251,7 +1215,7 @@ SA123456    single-end  /example/SA12345.fastq.gz
 <p>This is currently an experimental function. There are likely bugs to be ironed out. Please be sure to give the resulting FOFN a quick look over.</p>
 </div>
 <h6 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h6>
-<div class="highlight"><pre><span></span>usage: bactopia prepare [-h] [-f STR] [-a STR] [--fastq_seperator STR]
+<div class="highlight"><pre><span></span><code>usage: bactopia prepare [-h] [-f STR] [-a STR] [--fastq_seperator STR]
                         [--fastq_pattern STR] [--assembly_pattern STR]
                         [--long_reads] [--version]
                         STR
@@ -1276,13 +1240,13 @@ optional arguments:
                         *.fna.gz
   --long_reads          Single-end reads should be treated as long reads
   --version             show program&#39;s version number and exit
-</pre></div>
+</code></pre></div>
 
 <h5 id="validating-fofn">Validating FOFN<a class="headerlink" href="#validating-fofn" title="Permanent link">&para;</a></h5>
 <p>When a FOFN is given, the first thing Bactopia does is verify all FASTQ files are found. If everything checks out, each sample will then be processed, otherwise a list of samples with errors will be output to STDERR. </p>
 <p>If you would like to only validate your FOFN (and not run the full pipeline), you can use the <code>--check_fastqs</code> parameter.</p>
 <h6 id="without-errors">Without Errors<a class="headerlink" href="#without-errors" title="Permanent link">&para;</a></h6>
-<p><div class="highlight"><pre><span></span>N E X T F L O W  ~  version 20.01.0
+<p><div class="highlight"><pre><span></span><code>N E X T F L O W  ~  version 20.01.0
 Launching `/home/rpetit3/repos/bactopia/main.nf` [gigantic_meitner] - revision: 6a0fbfbd9c
 Printing what would have been processed. Each line consists of an array of
 five elements: [SAMPLE_NAME, RUNTYPE, IS_SINGLE_END, [FASTQ_1, FASTQ_2], EXTRA]
@@ -1293,7 +1257,7 @@ Found:
 [SA110685, hybrid, false, [/example/SA110685_R1.fastq.gz, /example/SA110685_R2.fastq.gz], /example/SA110685.fastq.gz]
 [SA123186, paired-end, false, [/example/SA123186_R1.fastq.gz, /example/SA123186_R2.fastq.gz], null]
 [SA12345, single-end, true, [/example/SA12345.fastq.gz], null]
-</pre></div>
+</code></pre></div>
 Each sample has passed validation and is put into a three element array:</p>
 <ol>
 <li>sample - the name for this sample</li>
@@ -1302,7 +1266,7 @@ Each sample has passed validation and is put into a three element array:</p>
 </ol>
 <p>This array is then automatically queued up for proccessing by Nextflow.</p>
 <h6 id="with-errors">With errors<a class="headerlink" href="#with-errors" title="Permanent link">&para;</a></h6>
-<div class="highlight"><pre><span></span>N E X T F L O W  ~  version 20.01.0
+<div class="highlight"><pre><span></span><code>N E X T F L O W  ~  version 20.01.0
 Launching `/home/rpetit3/repos/bactopia/main.nf` [special_ampere] - revision: 6a0fbfbd9c
 LINE 4:ERROR: Please verify /example-bad/SA123186_R1.fastq.gz exists, and try again
 LINE 4:ERROR: Please verify /example-bad/SA123186_R2.fastq.gz exists, and try again
@@ -1311,7 +1275,7 @@ Sample name &quot;SA123186&quot; is not unique, please revise sample names
 Verify sample names are unique and/or FASTA/FASTQ paths are correct
 See &quot;--example_fastqs&quot; for an example
 Exiting
-</pre></div>
+</code></pre></div>
 
 <p>In the above example, there are multiple errors. Lines 4 and 5 (<code>LINE 4:ERROR</code> or <code>LINE 5:ERROR</code>) suggest that based on the given paths the FASTQs do not exist. The sample name <code>SA123186</code> has been used multiple times, and must be corrected.</p>
 <h3 id="ena-sra">ENA &amp; SRA<a class="headerlink" href="#ena-sra" title="Permanent link">&para;</a></h3>
@@ -1334,7 +1298,7 @@ ENA: <code>bactopia --accessions my-accessions.txt --use_ena</code></p>
 <h4 id="generating-accession-list">Generating Accession List<a class="headerlink" href="#generating-accession-list" title="Permanent link">&para;</a></h4>
 <p><code>bactopia search</code> has been made to help assist in generating a list of Experiment accessions to be procesed by Bactopia (via <code>--accessions</code>). Users can provide a Taxon ID (e.g. 1280), a binary name (e.g. Staphylococcus aureus), a Study accession (e.g. PRJNA480016), a BioSample accession (e.g. SAMN01737350), or a Run accession (e.g. SRR578340). This value is then queried against ENA's <a href="https://www.ebi.ac.uk/ena/browse/search-rest">Data Warehouse API</a>), and a list of all Experiment accessions associated with the query is returned.</p>
 <h5 id="usage_2">Usage<a class="headerlink" href="#usage_2" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span>usage: bactopia search [-h] [--exact_taxon] [--outdir OUTPUT_DIRECTORY]
+<div class="highlight"><pre><span></span><code>usage: bactopia search [-h] [--exact_taxon] [--outdir OUTPUT_DIRECTORY]
                        [--prefix PREFIX] [--limit INT] [--version]
                        STR
 
@@ -1359,21 +1323,21 @@ example usage:
   bactopia search &quot;staphylococcus aureus&quot; --limit 20
   bactopia search SAMN01737350
   bactopia search SRR578340
-</pre></div>
+</code></pre></div>
 
 <h5 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span>bactopia search PRJNA480016 --limit 5
-</pre></div>
+<div class="highlight"><pre><span></span><code>bactopia search PRJNA480016 --limit 5
+</code></pre></div>
 
 <p>When completed three files are produced:</p>
 <ol>
 <li><code>ena-accessions.txt</code> - Contains a list of Experiment accessions to be processed.
-   <div class="highlight"><pre><span></span>SRX4563686
+   <div class="highlight"><pre><span></span><code>SRX4563686
 SRX4563689
 SRX4563687
 SRX4563690
 SRX4563688
-</pre></div></li>
+</code></pre></div></li>
 </ol>
 <div class="admonition info">
 <p class="admonition-title">Input for Bactopia</p>
@@ -1385,11 +1349,11 @@ SRX4563688
 </li>
 <li>
 <p><code>ena-summary.txt</code> - Contains a small summary of the completed request
-    <div class="highlight"><pre><span></span>QUERY: (study_accession=PRJNA480016 OR secondary_study_accession=PRJNA480016)
+    <div class="highlight"><pre><span></span><code>QUERY: (study_accession=PRJNA480016 OR secondary_study_accession=PRJNA480016)
 LIMIT: 5
 RESULTS: 5 (./ena-results.txt)
 ILLUMINA ACCESSIONS: 5 (./ena-accessions.txt)
-</pre></div></p>
+</code></pre></div></p>
 </li>
 </ol>
 <h2 id="-cpus"><code>--cpus</code><a class="headerlink" href="#-cpus" title="Permanent link">&para;</a></h2>
@@ -1489,8 +1453,6 @@ start at the beginning.</p>
 <h2 id="-keep_all_files"><code>--keep_all_files</code><a class="headerlink" href="#-keep_all_files" title="Permanent link">&para;</a></h2>
 <p>In some processes, Bactopia will delete large intermediate files (e.g. multiple uncompressed FASTQs) <strong>only</strong> after a process successfully completes. Since this a per-process function, it does not affect Nextflow's ability to resume (<code>-resume</code>)a workflow. You can deactivate this feature using <code>--keep_all_files</code>. Please, keep in mind the <em>work</em> directory is already large, this will make it 2-3 times larger.</p>
                 
-                  
-                
               
               
                 
@@ -1506,34 +1468,34 @@ start at the beginning.</p>
 <footer class="md-footer">
   
     <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../datasets/" title="Build Datasets" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+          <a href="../datasets/" title="Build Datasets" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
                 Build Datasets
-              </span>
+              </div>
             </div>
           </a>
         
         
-          <a href="../workflow-overview/" title="Workflow Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
+          <a href="../workflow-overview/" title="Workflow Overview" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
                 Workflow Overview
-              </span>
+              </div>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
             </div>
           </a>
         
@@ -1548,11 +1510,10 @@ start at the beginning.</p>
             Copyright © 2019 Robert A. Petit III. All rights reserved.
           </div>
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
     </div>
@@ -1561,9 +1522,18 @@ start at the beginning.</p>
       
     </div>
     
-      <script src="../assets/javascripts/application.c648116f.js"></script>
+      <script src="../assets/javascripts/vendor.92ffa368.min.js"></script>
+      <script src="../assets/javascripts/bundle.5123e3d4.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>
+        app = initialize({
+          base: "..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.a68abb33.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
     
   </body>
