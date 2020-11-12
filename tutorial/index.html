@@ -854,18 +854,19 @@ cd bactopia-tutorial
 conda activate bactopia
 </code></pre></div></p>
 <p>Now we are ready to build our datasets!</p>
-<div class="highlight"><pre><span></span><code>bactopia datasets datasets/ --ariba &quot;vfdb_core,card&quot; \
-                            --species &quot;Staphylococcus aureus&quot; \
-                            --include_genus \
-                            --cpus 4
+<div class="highlight"><pre><span></span><code>bactopia datasets \
+    --ariba &quot;vfdb_core,card&quot; \
+    --species &quot;Staphylococcus aureus&quot; \
+    --include_genus \
+    --cpus 4
 </code></pre></div>
 
 <p>Let's review what is happening here.</p>
-<p><code>datasets/</code> is where our datasets will be downloaded, processed and stored.</p>
 <p><code>--ariba "vfdb_core,card"</code> says to download and setup the <a href="http://www.mgc.ac.cn/VFs/">VFDB Core</a> and the <a href="https://card.mcmaster.ca/">CARD</a> databases to be used by Ariba.</p>
-<p><code>--species "Staphylococcus aureus"</code> will download MLST schemas associated with <em>S. aureus</em> it will also download completed <em>S. aureus</em> genomes (RefSeq only) that are used to create a set of protein set for annotation, a Mash sketch for automatic variant calling to the nearest neighbor, and calulate genome size statistics.</p>
+<p><code>--species "Staphylococcus aureus"</code> will download MLST schemas associated with <em>S. aureus</em> it will also download completed <em>S. aureus</em> genomes (RefSeq only) that are used to create a set of protein set for annotation, a Mash sketch for automatic variant calling to the nearest neighbor, and calculate genome size statistics.</p>
 <p><code>--include_genus</code> will also download completed genomes from the <em>Staphylococcus</em> genus that will be used for the protein set. These completed genomes <strong>are not</strong> used for the sketch creation or genome size calculation.</p>
 <p><code>--cpus 4</code> will use 4 cpus for downloading and the clustering step. Adjust this number according to your setup!</p>
+<p>These datasets will be built into the default <code>datasets/</code> folder which can be changed using <code>--outdir</code></p>
 <div class="admonition info">
 <p class="admonition-title">Use CARD over MEGARes</p>
 <p>Staphopia v1 made use of MEGARes, for the purposes of this tutorial we are going to use the CARD database instead.</p>

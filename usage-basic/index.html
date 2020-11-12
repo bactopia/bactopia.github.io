@@ -494,8 +494,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-cleanup_workdir" class="md-nav__link">
+    --cleanup_workdir
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-cpus" class="md-nav__link">
     --cpus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-qs" class="md-nav__link">
+    -qs
   </a>
   
 </li>
@@ -923,8 +937,22 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-cleanup_workdir" class="md-nav__link">
+    --cleanup_workdir
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#-cpus" class="md-nav__link">
     --cpus
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-qs" class="md-nav__link">
+    -qs
   </a>
   
 </li>
@@ -1037,26 +1065,29 @@ Optional Parameters:
                                 Default: .
 
 Nextflow Queue Parameters:
-    At execution, Nextflow creates a queue and the number of slots in the queue is determined 
-    by the total number of cores on the system. When a task is submitted to the queue, the 
-    total number of slots it occupies is determined by the value set by &quot;--cpus&quot;.
+    At execution, Nextflow creates a queue and the number of slots in the queue is determined by the total number
+    of cores on the system. When a task is submitted to the queue, the total number of slots it occupies is
+    determined by the value set by &quot;--cpus&quot;.
 
-    This can have a significant effect on the efficiency of the Nextflow&#39;s queue system. 
-    If &quot;--cpus&quot; is set to a value that is equal to the number of cores availabe, in most 
-    cases only a single task will be able to run because its occupying all available slots.
+    This can have a significant effect on the efficiency of the Nextflow&#39;s queue system. If &quot;--cpus&quot; is set to a
+    value that is equal to the number of cores availabe, in most cases only a single task will be able to run
+    because its occupying all available slots.
 
-    When in doubt, &quot;--cpus 4&quot; is a safe bet, it is also the default value if you 
-    don&#39;t use &quot;--cpus&quot;.
+    When in doubt, &quot;--cpus 4&quot; is a safe bet, it is also the default value if you don&#39;t use &quot;--cpus&quot;.
 
-    --max_time INT          The maximum number of minutes a single task should run before 
-                                being halted.
+    --max_time INT          The maximum number of minutes a single task should run before being halted.
                                 Default: 240 minutes
 
     --max_memory INT        The maximum amount of memory (Gb) allowed to a single task.
-                                Default: 32 Gb
+                                Default: 64 Gb
 
     --cpus INT              Number of processors made available to a single task.
-                                Default: 39
+                                Default: 4
+
+    -qs                     Nextflow queue size. This parameter is very useful to limit the total number of
+                                processors used on desktops, laptops or shared resources.
+                                Default: Nextflow defaults to the total number of processors on your system.
+
 
 Nextflow Related Parameters:
     --infodir DIR           Directory to write Nextflow summary files to
@@ -1082,24 +1113,22 @@ Nextflow Related Parameters:
 
     --sleep_time            After reading datases, the amount of time (seconds) Nextflow
                                 will wait before execution.
-                                Default: 1 seconds
+                                Default: 5 seconds
 
     --publish_mode          Set Nextflow&#39;s method for publishing output files. Allowed methods are:
-                                &#39;copy&#39; (default) Copies the output files into the published 
-                                                 directory.
+                                &#39;copy&#39; (default)    Copies the output files into the published directory.
 
                                 &#39;copyNoFollow&#39; Copies the output files into the published directory
-                                               without following symlinks ie. copies the links 
-                                               themselves.
+                                               without following symlinks ie. copies the links themselves.
 
                                 &#39;link&#39;    Creates a hard link in the published directory for each
                                           process output file.
 
-                                &#39;rellink&#39; Creates a relative symbolic link in the published 
-                                          directory for each process output file.
+                                &#39;rellink&#39; Creates a relative symbolic link in the published directory
+                                          for each process output file.
 
-                                &#39;symlink&#39; Creates an absolute symbolic link in the published 
-                                          directory for each process output file.
+                                &#39;symlink&#39; Creates an absolute symbolic link in the published directory
+                                          for each process output file.
 
                                 Default: copy
 
@@ -1109,7 +1138,12 @@ Nextflow Related Parameters:
     -resume                 Nextflow will attempt to resume a previous run. Please notice it is
                                 only a single &#39;-&#39;
 
+    --cleanup_workdir       After Bactopia is successfully executed, the work firectory will be deleted.
+                                Warning: by doing this you lose the ability to resume workflows.
+
 Useful Parameters:
+    --skip_logs             Logs for each process per sample will not be kept.
+
     --available_datasets    Print a list of available datasets found based
                                 on location given by &quot;--datasets&quot;
 
@@ -1124,9 +1158,6 @@ Useful Parameters:
                                 files are removed. This will not affect the ability
                                 to resume Nextflow runs, and only occurs at the end
                                 of the process.
-
-    --dry_run               Mimics workflow execution, to help determine if conda environments
-                                or container images are properly set up.
 
     --version               Print workflow version information
 
@@ -1356,6 +1387,12 @@ ILLUMINA ACCESSIONS: 5 (./ena-accessions.txt)
 </code></pre></div></p>
 </li>
 </ol>
+<h2 id="-cleanup_workdir"><code>--cleanup_workdir</code><a class="headerlink" href="#-cleanup_workdir" title="Permanent link">&para;</a></h2>
+<p>After you run Bactopia, you will notice a directory called <code>work</code>. This directory is where Nextflow runs all the processes and stores the intermediate files. After a process completes successfully, the appropriate results are pulled out and placed in the sample's result folder. The <code>work</code> directory can grow very large very quickly! Please keep this in mind when using Bactopia. To help prevent the build up of the <code>work</code> directory you can use <code>--cleanup_workdir</code> to delete intermediate files after a successful execution of Bactopia.</p>
+<div class="admonition info">
+<p class="admonition-title">Bactopia and Bactopia Tools use separate <code>work</code> directories</p>
+<p>Inside the <code>work</code> directory there will be separate subfolders that correspond to a Bactopia run or a specific Bactopia Tool run. This allows you to more easily identify which are ok to delete. The <code>work</code> directory is always ok to delete after a successful run.</p>
+</div>
 <h2 id="-cpus"><code>--cpus</code><a class="headerlink" href="#-cpus" title="Permanent link">&para;</a></h2>
 <p>At execution, Nextflow creates a queue and the number of slots in the queue is determined by the total number of cores on the system. So if you have a 24-core system, that means Nextflow will have a queue with 24-slots available. This feature kind of makes <code>--cpus</code> a little misleading. Typically when you give <code>--cpus</code> you are saying <em>"use this amount of cpus"</em>. But that is not the case for Nextflow and Bactopia. When you use <code>--cpus</code> what you are actually saying is <em>"for any particular task, use this amount of slots"</em>. Commands within a task processors will use the amount specified by <code>--cpus</code>.</p>
 <div class="admonition error">
@@ -1368,6 +1405,18 @@ ILLUMINA ACCESSIONS: 5 (./ena-accessions.txt)
 <div class="admonition info">
 <p class="admonition-title">When in doubt <code>--cpus 4</code> is a safe value.</p>
 <p>This is also the default value for Bactopia.</p>
+</div>
+<h2 id="-qs"><code>-qs</code><a class="headerlink" href="#-qs" title="Permanent link">&para;</a></h2>
+<p>The <code>-qs</code> parameter is short for <em>queue size</em>. As described above for <code>--cpus</code>, the default value for <code>-qs</code> is set to the total number of cores on the system. This parameter allows you to adjust the maximum number of cores Nextflow can use at any given moment.</p>
+<div class="admonition error">
+<p class="admonition-title"><code>-qs</code> allows you to play nicely on shared resources</p>
+<p>From the example above, if you have a system with 24-cores. The default queue size if 24 slots.</p>
+<p><code>bactopia ... --cpus 4</code> says <em>for any particular task, use a maximum of 4 slots</em>. Nextflow will give each task 4 slots out of 24 slots. But there might be other people also using the server.</p>
+<p><code>bactopia ... --cpus 4 -qs 12</code> says <em>for any particular task, use a maximum of 4 slots, but don't use more than 12 slots</em>. Nextflow will give each task 4 slots out of 12 slots. Now instead of using all the cores on the server, the maximum that can be used in 12.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title"><code>-qs</code> might need adjusting for job schedulers.</p>
+<p>The default value for <code>-qs</code> is set to 100 when using a job scheduler (e.g. SLURM, AWS Batch). There may be times when you need adjust this to meet your needs. For example, if using AWS Batch you might want to increase the value to have more jobs processed at once (e.g. 100 vs 500).</p>
 </div>
 <h2 id="-genome_size"><code>--genome_size</code><a class="headerlink" href="#-genome_size" title="Permanent link">&para;</a></h2>
 <p>Throughout the Bactopia workflow a genome size is used for various tasks. By default, a genome size is estimated using Mash. However, users can provide their own value for genome size, use values based on <a href="/datasets/#species-specific">Species Specific Datasets</a>, or completely disable it.</p>

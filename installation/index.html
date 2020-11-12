@@ -647,7 +647,7 @@
 <a href="https://conda.io/en/latest/miniconda.html">Miniconda installer</a>,
 but the <a href="https://www.anaconda.com/distribution/">Anaconda installer</a> should
 work the same.</p>
-<p>A Docker container based on the Bioconda install is also available.</p>
+<p>Containers (Docker and Singularity) are also available.</p>
 <h2 id="bioconda">Bioconda<a class="headerlink" href="#bioconda" title="Permanent link">&para;</a></h2>
 <p>Once you have Conda all set up, you are ready to create an environment for
 Bactopia. To do so, you can use the following command:</p>
@@ -660,6 +660,14 @@ Bactopia. To do so, you can use the following command:</p>
 
 <p>And voilà, you are all set to get started processing your data!</p>
 <p>But first, it is highly recommended that you take the time to <a href="../datasets/">Build Datasets</a> that Bactopia can take advantage of.</p>
+<div class="admonition error">
+<p class="admonition-title">OSX has limited support</p>
+<p>I have developed Bactopia primarily for Linux, but I recognize it is useable on Mac OSX. Currently the support for OSX will be limited due to not having significant resources available for testing OSX extensively. My current setup, a mid-2013 MacBook, only allows me to maintain the Conda YAMLS for OSX. Please keep this in mind when using Bactopia on OSX. I will still try to help out if you run into any issues!</p>
+</div>
+<div class="admonition error">
+<p class="admonition-title">Windows is not supported, please use Windows Subsystem for Linux</p>
+<p>Bactopia will never support Windows natively due to dependencies. To use Bactopia on a Windows 10 machine, you will need to set up Windows Subsystem for Linux (WSL). This would allow you to run Bactopia inside the Linux subsystem. I have not tested Bactopia on WSL, but assume it should work fine. I have limited resources to test Bactopia in WSL, but if you give it a go and run into any issues please reach out!</p>
+</div>
 <h2 id="container">Container<a class="headerlink" href="#container" title="Permanent link">&para;</a></h2>
 <p>A Docker and Singularity container has been created that is based off the Conda install.</p>
 <div class="highlight"><pre><span></span><code># Docker 
@@ -668,6 +676,12 @@ docker pull bactopia/bactopia
 # Singularity
 singularity pull library://rpetit3/bactopia/bactopia
 </code></pre></div>
+
+<div class="admonition error">
+<p class="admonition-title">These might not be available</p>
+<p>Recent changes to DockerHub and Singularity policies have made the availability of these containers questionable. While I will try my best to make sure they are available, please understand if they are not. </p>
+<p>If they are not available, I maintain the <code>Dockerfile</code> and <code>Singularity</code> files which can be used to build the containers locally.</p>
+</div>
                 
               
               

@@ -408,7 +408,14 @@
     --cpus
   </a>
   
-    <nav class="md-nav" aria-label="--cpus">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-qs" class="md-nav__link">
+    -qs
+  </a>
+  
+    <nav class="md-nav" aria-label="-qs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -428,7 +435,14 @@
     Helpers
   </a>
   
-    <nav class="md-nav" aria-label="Helpers">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-cleanup_workdir" class="md-nav__link">
+    --cleanup_workdir
+  </a>
+  
+    <nav class="md-nav" aria-label="--cleanup_workdir">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -819,7 +833,14 @@
     --cpus
   </a>
   
-    <nav class="md-nav" aria-label="--cpus">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-qs" class="md-nav__link">
+    -qs
+  </a>
+  
+    <nav class="md-nav" aria-label="-qs">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -839,7 +860,14 @@
     Helpers
   </a>
   
-    <nav class="md-nav" aria-label="Helpers">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-cleanup_workdir" class="md-nav__link">
+    --cleanup_workdir
+  </a>
+  
+    <nav class="md-nav" aria-label="--cleanup_workdir">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1051,7 +1079,7 @@
 </code></pre></div></p>
 <h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h2>
 <p>If you followed the steps in <a href="../datasets/">Build Datasets</a>, you can use the following parameters to point Bactopia to you datasets.</p>
-<div class="highlight"><pre><span></span><code>    --datasets DIR          The path to available public datasets that have
+<div class="highlight"><pre><span></span><code>    --datasets DIR          The path to available datasets that have
                                 already been set up
 
     --species STR           Determines which species-specific dataset to
@@ -1083,6 +1111,10 @@
 
     --cpus INT              Number of processors made available to a single task.
                                 Default: 4
+
+    -qs                     Nextflow queue size. This parameter is very useful to limit the total number of
+                                processors used on desktops, laptops or shared resources.
+                                Default: Nextflow defaults to the total number of processors on your system.
 </code></pre></div>
 
 <h2 id="-cpus"><code>--cpus</code><a class="headerlink" href="#-cpus" title="Permanent link">&para;</a></h2>
@@ -1097,6 +1129,18 @@
 <div class="admonition info">
 <p class="admonition-title">When in doubt <code>--cpus 4</code> is a safe value.</p>
 <p>This is also the default value for Bactopia.</p>
+</div>
+<h2 id="-qs"><code>-qs</code><a class="headerlink" href="#-qs" title="Permanent link">&para;</a></h2>
+<p>The <code>-qs</code> parameter is short for <em>queue size</em>. As described above for <code>--cpus</code>, the default value for <code>-qs</code> is set to the total number of cores on the system. This parameter allows you to adjust the maximum number of cores Nextflow can use at any given moment.</p>
+<div class="admonition error">
+<p class="admonition-title"><code>-qs</code> allows you to play nicely on shared resources</p>
+<p>From the example above, if you have a system with 24-cores. The default queue size if 24 slots.</p>
+<p><code>bactopia ... --cpus 4</code> says <em>for any particular task, use a maximum of 4 slots</em>. Nextflow will give each task 4 slots out of 24 slots. But there might be other people also using the server.</p>
+<p><code>bactopia ... --cpus 4 -qs 12</code> says <em>for any particular task, use a maximum of 4 slots, but don't use more than 12 slots</em>. Nextflow will give each task 4 slots out of 12 slots. Now instead of using all the cores on the server, the maximum that can be used in 12.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title"><code>-qs</code> might need adjusting for job schedulers.</p>
+<p>The default value for <code>-qs</code> is set to 100 when using a job scheduler (e.g. SLURM, AWS Batch). There may be times when you need adjust this to meet your needs. For example, if using AWS Batch you might want to increase the value to have more jobs processed at once (e.g. 100 vs 500).</p>
 </div>
 <h3 id="-genome_size"><code>--genome_size</code><a class="headerlink" href="#-genome_size" title="Permanent link">&para;</a></h3>
 <p>Throughout the Bactopia workflow a genome size is used for various tasks. By default, a genome size is estimated using Mash. However, users can provide their own value for genome size, use values based on <a href="/datasets/#species-specific">Species Specific Datasets</a>, or completely disable it.</p>
@@ -1150,9 +1194,9 @@
     --condadir DIR          Directory to Nextflow should use for Conda environments
                                 Default: Bactopia&#39;s Nextflow directory
 
-    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows 
+    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows
                                 you to create profiles specific to your environment (e.g. SGE,
-                                AWS, SLURM, etc...). This config file is loaded last and will 
+                                AWS, SLURM, etc...). This config file is loaded last and will
                                 overwrite existing variables if set.
                                 Default: Bactopia&#39;s default configs
 
@@ -1169,8 +1213,33 @@
                                 will wait before execution.
                                 Default: 5 seconds
 
-    -resume                 Nextflow will attempt to resume a previous run. Please notice it is 
+    --publish_mode          Set Nextflow&#39;s method for publishing output files. Allowed methods are:
+                                &#39;copy&#39; (default)    Copies the output files into the published directory.
+
+                                &#39;copyNoFollow&#39; Copies the output files into the published directory
+                                               without following symlinks ie. copies the links themselves.
+
+                                &#39;link&#39;    Creates a hard link in the published directory for each
+                                          process output file.
+
+                                &#39;rellink&#39; Creates a relative symbolic link in the published directory
+                                          for each process output file.
+
+                                &#39;symlink&#39; Creates an absolute symbolic link in the published directory
+                                          for each process output file.
+
+                                Default: copy
+
+    --force                 Nextflow will overwrite existing output files.
+                                Default: false
+
+    -resume                 Nextflow will attempt to resume a previous run. Please notice it is
                                 only a single &#39;-&#39;
+
+    --cleanup_workdir       After Bactopia is successfully executed, the work firectory will be deleted.
+                                Warning: by doing this you lose the ability to resume workflows.
+
+    --skip_logs             Logs for each process per sample will not be kept.
 
     --available_datasets    Print a list of available datasets found based
                                 on location given by &quot;--datasets&quot;
@@ -1187,15 +1256,18 @@
                                 to resume Nextflow runs, and only occurs at the end
                                 of the process.
 
-    --dry_run               Mimics workflow execution, to help determine if conda environments
-                                or container images are properly set up.
-
     --version               Print workflow version information
 
     --help                  Show this message and exit
 
     --help_all              Show a complete list of adjustable parameters
 </code></pre></div></p>
+<h2 id="-cleanup_workdir"><code>--cleanup_workdir</code><a class="headerlink" href="#-cleanup_workdir" title="Permanent link">&para;</a></h2>
+<p>After you run Bactopia, you will notice a directory called <code>work</code>. This directory is where Nextflow runs all the processes and stores the intermediate files. After a process completes successfully, the appropriate results are pulled out and placed in the sample's result folder. The <code>work</code> directory can grow very large very quickly! Please keep this in mind when using Bactopia. To help prevent the build up of the <code>work</code> directory you can use <code>--cleanup_workdir</code> to delete intermediate files after a successful execution of Bactopia.</p>
+<div class="admonition info">
+<p class="admonition-title">Bactopia and Bactopia Tools use separate <code>work</code> directories</p>
+<p>Inside the <code>work</code> directory there will be separate subfolders that correspond to a Bactopia run or a specific Bactopia Tool run. This allows you to more easily identify which are ok to delete. The <code>work</code> directory is always ok to delete after a successful run.</p>
+</div>
 <h3 id="-nfconfig"><code>--nfconfig</code><a class="headerlink" href="#-nfconfig" title="Permanent link">&para;</a></h3>
 <p>A key feature of Nextflow is you can provide your own config files. What this boils down to you can easily set Bactopia to run on your environment. With <code>--nfconfig</code> you can tell Bactopia to import your config file. </p>
 <p><code>--nfconfig</code> has been set up so that it is the last config file to be loaded by Nextflow. This means that if your config file contains variables (e.g. params or profiles) already set they will be overwritten by your values.</p>
@@ -1252,6 +1324,8 @@ start at the beginning.</p>
 
     --aspera_speed STR      Speed at which Aspera Connect will download.
                                 Default: 100M
+
+    --no_cache              Don&#39;t cache the assembly summary file from ncbi-genome-download
 </code></pre></div>
 
 <h3 id="fastq-minimum-requirements-parameters">FASTQ Minimum Requirements Parameters<a class="headerlink" href="#fastq-minimum-requirements-parameters" title="Permanent link">&para;</a></h3>
@@ -1263,6 +1337,12 @@ start at the beginning.</p>
     --min_reads INT         The minimum amount of input sequenced reads required
                                 to continue downstream analyses.
                                 Default: 7472
+
+    --min_proportion FLOAT  The minimum proportion of basepairs for paired-end reads to continue
+                                downstream analyses. Example: If set to 0.75 the R1 and R2 must
+                                have &gt; 75% proportion of reads (e.g. R1 100bp, R2 75bp, not
+                                R1 100bp, R2 50bp)
+                                Default: 0.5
 
     --skip_fastq_check      The input FASTQs will not be check to verify they meet the
                                 minimum requirements to be processed. This parameter
@@ -1285,6 +1365,11 @@ start at the beginning.</p>
 
 <h3 id="qc-reads-parameters">QC Reads Parameters<a class="headerlink" href="#qc-reads-parameters" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>QC Reads Parameters:
+    --skip_qc               The QC step qill be skipped and it will be assumed the inputs
+                                sequences have already been QCed.
+
+    --skip_error_correction FLASH error correction of paired-end reads will be skipped.
+
     --qc_ram INT            Try to keep RAM usage below this many GB
                                 Default: 3 GB
 
@@ -1416,7 +1501,7 @@ start at the beginning.</p>
     --nocorr                Disable post-assembly correction
 
     Hybrid Assembly:
-    --unicycler_ram INT     Try to keep RAM usage below this many GB
+    --unicycler_ram INT       Try to keep RAM usage below this many GB
                                 Default: 32 GB
 
     --unicycler_mode STR    Bridging mode used by Unicycler, choices are:
@@ -1451,7 +1536,7 @@ start at the beginning.</p>
 </code></pre></div>
 
 <h3 id="assembly-quality-control-parameters">Assembly Quality Control Parameters<a class="headerlink" href="#assembly-quality-control-parameters" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>Assembly Quality Control Parameters
+<div class="highlight"><pre><span></span><code>Assembly Quality Control Parameters:
     --checkm_unique INT     Minimum number of unique phylogenetic markers required
                                 to use lineage-specific marker set.
                                 Default: 10
