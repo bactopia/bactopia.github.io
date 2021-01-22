@@ -12,6 +12,17 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v1
 
+      - name: Pull Bactopia
+        uses: actions/checkout@v1
+        with:
+          repository: bactopia/bactopia
+          path: bactopia
+      
+      - name: Stage latest CHANGELOG
+        run: |
+         cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
+         rm -rf $GITHUB_WORKSPACE/bactopia
+
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
