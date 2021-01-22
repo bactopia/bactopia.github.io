@@ -2,7 +2,7 @@
 site_name: Bactopia
 site_author: Robert A. Petit III
 site_description: An extensive workflow to process Illumina sequencing for bacterial genomes.
-copyright: "Copyright © 2019 Robert A. Petit III. All rights reserved."
+copyright: "Copyright © 2019-2021 Robert A. Petit III. All rights reserved."
 
 site_url: https://bactopia.github.io/
 repo_url: https://github.com/bactopia/bactopia
@@ -41,13 +41,23 @@ theme:
     scheme: slate
     primary: blue grey
     accent: teal
-
   font:
     text: 'Ubuntu'
     code: 'Ubuntu Mono'
   features:
     - navigation.tabs
     - navigation.tabs.sticky
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/bactopia/bactopia
+    - icon: fontawesome/brands/gitter
+      link: https://gitter.im/bactopia/Lobby
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/r/bactopia/bactopia
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/rpetit3
 
 markdown_extensions:
   - admonition
