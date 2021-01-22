@@ -36,30 +36,54 @@ nav:
       - 'summary': bactopia-tools/summary.md
 
 theme:
-    name: 'material'
-    font:
-      text: 'Ubuntu'
-      code: 'Ubuntu Mono'
-    features:
-      - tabs
+  name: 'material'
+  palette:
+    scheme: slate
+    primary: blue grey
+    accent: teal
+
+  font:
+    text: 'Ubuntu'
+    code: 'Ubuntu Mono'
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
 
 markdown_extensions:
-  - pymdownx.arithmatex
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
   - pymdownx.inlinehilite
-  - pymdownx.magiclink
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-  - admonition
-  - toc:
-      permalink: true
