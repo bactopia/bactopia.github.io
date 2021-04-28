@@ -76,7 +76,7 @@ Below is a description of `staph-typer` outputs.
 | -agr_operon.fna | Agr operon extracted from in-silico PCR |
 | -agr_operon_frameshifts.tab | Frameshift mutations in CDS of extracted agr operon detected by Snippy |
 | log.txt | Log files from programs called by `AgrVATE` |
-| -{mummer|snippy}/ | Intermediate files from mummer and snippy |
+| -{mummer\|snippy}/ | Intermediate files from mummer and snippy |
 | -summary.tab | A final summary report for agr typing |
 
 
