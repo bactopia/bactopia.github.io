@@ -11,7 +11,6 @@ all RefSeq genomes for.
 ```
 bactopia tools fastani \
     --bactopia ~/bactopia-tutorial/bactopia \
-    --phyloflash ~/bactopia-tutorial/bactopia-datasets/16s/138 \
     --exclude ~/bactopia-tutorial/bactopia-tools/summary/bactopia-exclude.txt \
     --accession "GCF_900475245.1" \
 

@@ -50,6 +50,9 @@ Pairwise average nucleotide identity
 __[gtdb](/bactopia-tools/gtdb/)__  
 Identify marker genes and assign taxonomic classifications
 
+__[hicap](/bactopia-tools/hicap/)__  
+In silico typing of the *H. influenzae* cap locus  
+
 __[ismapper](/bactopia-tools/ismapper/)__  
 Identify positions of insertion sites 
 
@@ -63,7 +66,10 @@ __[pirate](/bactopia-tools/pirate/)__
 Pan-genome, core-genome alignment and tree 
 
 __[roary](/bactopia-tools/roary/)__  
-Pan-genome, core-genome alignment and tree 
+Pan-genome, core-genome alignment and tree  
+
+__[staph-typer](/bactopia-tools/staph-typer/)__  
+A set of tools for typing *Staphylococcus aureus*  
 
 __[summary](/bactopia-tools/summary/)__  
 A report summarizing Bactopia project

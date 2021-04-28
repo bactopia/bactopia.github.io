@@ -58,22 +58,22 @@ We have now completed the dataset creation step! Pat yourself on the back! Next 
 ## Acquire Staphopia Datasets
 Staphopia includes a few *optional* datasets such as *S. aureus* N315 reference genome and SCCmec sequences (primers, proteins, full cassettes).
 
-We will acquire these files using the [Bactopia Datasets](https://github.com/bactopia/bactopia-datasets) GitHub repository. For this tutorial a [Staphopia v1](https://github.com/bactopia/bactopia-datasets/tree/staphopia-v1) branch has been created, which includes this optional dataset. Now let's clone the repository.
+We will acquire these files using the [Bactopia Datasets](https://github.com/bactopia-datasets) GitHub repository. For this tutorial a we'll be using the *[Staphylococcus aureus](https://github.com/bactopia-datasets/staphylococcus-aureus)* dataset repository. Now let's clone the repository.
 
 ```
-git clone -b staphopia-v1 https://github.com/bactopia/bactopia-datasets.git
+git clone https://github.com/bactopia-datasets/staphylococcus-aureus.git
 ```
 
-Next we'll copy the files into our recently built datasets folder and delete the `bactopia-datasets` repository since we no longer need it.
+Next we'll copy the files into our recently built datasets folder and delete the `staphylococcus-aureus` repository since we no longer need it.
 
 ```
-cp -r bactopia-datasets/species-specific/ datasets/
-rm -rf bactopia-datasets/
+cp -r staphylococcus-aureus/species-specific/ datasets/
+rm -rf staphylococcus-aureus/
 ```
 
 ~Voilà! 
 
-That should be it. You should now have the Staphopia v1 datasets included with your recentely built datasets (e.g. *S. aureus* protein clusters, RefSeq sketch, etc...)
+That should be it. You should now have the *S. aureus* datasets included with your recently built datasets (e.g. *S. aureus* protein clusters, RefSeq sketch, etc...)
 
 ## Running Bactopia
 OK! Get your servers started up! It is time to get processing!

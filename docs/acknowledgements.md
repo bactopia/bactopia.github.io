@@ -105,6 +105,10 @@ Nucleic Acids Res. 41, D590–6 (2013)_
 ## Software Included In Bactopia
 Below is a list of software (alphabetical) used (directly and indirectly) by Bactopia. A link to the software page as well as the citation (if available) have been included.
 
+* __[AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)__  
+Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.  
+_Raghuram V., [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE)_  
+
 * __[AMRFinderPlus](https://github.com/ncbi/amr)__  
 Find acquired antimicrobial resistance genes and some point mutations in protein or assembled nucleotide sequences.  
 _Feldgarden, M. et al. [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). Antimicrob. Agents Chemother. (2019)_  
@@ -228,6 +232,10 @@ A toolkit for assigning objective taxonomic classifications to bacterial and arc
 _Chaumeil, P.-A., Mussig, A. J., Hugenholtz, P. & Parks, D. H. 
 [GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database.](https://doi.org/10.1093/bioinformatics/btz848)
  Bioinformatics (2019)_  
+
+* __[hicap](https://github.com/scwatts/hicap)__  
+in silico typing of the *H. influenzae* cap locus  
+_Watts S.C. and Holt K.E. [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) Journal of Clinical Microbiology, JCM.00190-19 (2019)._  
 
 * __[HMMER](http://hmmer.org/)__  
 Biosequence analysis using profile hidden Markov models  
@@ -420,6 +428,15 @@ of DNA](http://dx.doi.org/10.21105/joss.00027). JOSS 1, 27 (2016)._
 * __[SPAdes](https://github.com/ablab/spades)__  
 An assembly toolkit containing various assembly pipelines.  
 _Bankevich, A., et al. [SPAdes: a new genome assembly algorithm and its applications to single-cell sequencing.](https://doi.org/10.1089/cmb.2012.0021) Journal of computational biology 19.5 (2012): 455-477._  
+
+* __[spaTyper](https://github.com/HCGB-IGTP/spaTyper)__  
+Computational method for finding spa types.  
+_Harmsen D., Claus H., Witte W., Rothgänger J., Claus H., Turnwald D., and Vogel U.. [Typing of methicillin-resistant Staphylococcus aureus in a university hospital setting using a novel software for spa-repeat determination and database management.](https://doi.org/10.1128/jcm.41.12.5442-5448.2003) J. Clin. Microbiol. 41:5442-5448 (2003)._  
+_Sanchez-Herrero J. F., and Sullivan M. (2020, October 2). [spaTyper: Staphylococcal protein A (spa) characterization pipeline](http://doi.org/10.5281/zenodo.4063625). Zenodo._  
+
+* __[staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec)__  
+A standalone version of Staphopia's SCCmec typing method.  
+_Petit III R. A., Read T. D., [Staphylococcus aureus viewed from the perspective of 40,000+ genomes.](http://dx.doi.org/10.7717/peerj.5261) PeerJ 6, e5261 (2018)._  
 
 * __[Trimmomatic](http://www.usadellab.org/cms/index.php?page=trimmomatic)__  
 A flexible read trimming tool for Illumina NGS data  
