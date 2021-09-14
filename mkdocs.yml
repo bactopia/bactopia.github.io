@@ -5,7 +5,7 @@ site_description: An extensive workflow to process Illumina sequencing for bacte
 copyright: "Copyright © 2019-2021 Robert A. Petit III. All rights reserved."
 
 site_url: https://bactopia.github.io/
-repo_url: https://github.com/bactopia/bactopia.github.io
+repo_url: https://github.com/bactopia/bactopia
 google_analytics: ['UA-104199698-2', 'bactopia.github.io']
 dev_addr: 0.0.0.0:8000
 
