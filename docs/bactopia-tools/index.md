@@ -18,10 +18,10 @@ input parameters:
                                 analysis. The expected format is a single sample per line.
 ```
 
-#### `--bactiopia`
+#### `--bactopia`
 This parameter tells each tool where to find your Bactopia outputs from your project. 
 Using this path, the tool will identify the required inputs and begin analysis. What 
-this means is there is no need for you to wrangle up input files for compartive analyses.
+this means is there is no need for you to wrangle up input files for comparative analyses.
 
 #### `--exclude`
 What `--exclude` allows is for you to give a text file with a list of samples that 
