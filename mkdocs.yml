@@ -38,7 +38,8 @@ nav:
       - 'summary': bactopia-tools/summary.md
 
 theme:
-  name: 'material'
+  name: material
+  custom_dir: overrides
   palette:
     scheme: default
   font:
