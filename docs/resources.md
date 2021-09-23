@@ -16,7 +16,7 @@ Slides: [Web](http://bit.ly/3aKszf4), [PDF](/data/resources/2020-staph-b-bactopi
 
 - _Bacterial Genome Analysis Workflows: Staphopia and Bactopia (March 2020)_  
 The talk presented by [Dr. Timothy Read](https://twitter.com/tdread_emory) at NIAID Webinar Series which provides an overview of the Bactopia and Staphopia pipelines and how you can use them to investigate bacterial genomes.  
-Slides: [Web](http://bit.ly/3aKszf4), [PDF](/data/resources/2020-niaid-bactopia-staphopia.pdf)  
+Slides: [Web](https://bit.ly/3lQpZKo), [PDF](/data/resources/2020-niaid-bactopia-staphopia.pdf)  
 
 ## Posters
 - _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (September 2021)_  
