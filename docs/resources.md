@@ -13,7 +13,10 @@ Slides: [Web](https://bit.ly/3asgn2C)  , [PDF](/data/resources/2021-integrating-
 The talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [State Public Health Bioinformatics (StaPH-B) Monthly Webinar](https://staphb.org/videos.html) which provides a introduction into Bactopia and some of the earlier practices implemented into Bactopia.  
 Video: [YouTube](https://www.youtube.com/watch?v=hECn_fTr_uM)  
 Slides: [Web](http://bit.ly/3aKszf4), [PDF](/data/resources/2020-staph-b-bactopia.pdf)  
-  
+
+- _Bacterial Genome Analysis Workflows: Staphopia and Bactopia (March 2020)_  
+The talk presented by [Dr. Timothy Read](https://twitter.com/tdread_emory) at NIAID Webinar Series which provides an overview of the Bactopia and Staphopia pipelines and how you can use them to investigate bacterial genomes.  
+Slides: [Web](http://bit.ly/3aKszf4), [PDF](/data/resources/2020-niaid-bactopia-staphopia.pdf)  
 
 ## Posters
 - _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (September 2021)_  
