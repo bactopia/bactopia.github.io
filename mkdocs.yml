@@ -21,6 +21,7 @@ nav:
       - 'Output Overview': 'output-overview.md'
       - 'Complete Usage': 'usage-complete.md'
       - 'Troubleshooting': 'troubleshooting.md'
+      - 'Resources': 'resources.md'
       - 'Acknowledgements': 'acknowledgements.md'
       - 'Changelog': 'changelog.md'
     - 'Bactopia Tools':
