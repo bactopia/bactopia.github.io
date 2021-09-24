@@ -8,7 +8,6 @@ A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) 
 Video: [YouTube](https://www.youtube.com/watch?v=ijW_ZwZrwSs)  
 Slides: [Web](https://bit.ly/3asgn2C)  , [PDF](/data/resources/2021-integrating-staphopia.pdf)
 
-
 - _Bacterial Genome Analysis Using Bactopia (May 2020)_  
 The talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [State Public Health Bioinformatics (StaPH-B) Monthly Webinar](https://staphb.org/videos.html) which provides a introduction into Bactopia and some of the earlier practices implemented into Bactopia.  
 Video: [YouTube](https://www.youtube.com/watch?v=hECn_fTr_uM)  
@@ -21,6 +20,7 @@ Slides: [Web](https://bit.ly/3lQpZKo), [PDF](/data/resources/2020-niaid-bactopia
 ## Posters
 - _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (September 2021)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) previewing version 2 of Bactopia and the many changes it will bring.  
+Video: [YouTube](https://youtu.be/boRuctfZTfw)  
 Slides: [Web](https://bit.ly/3u4UbVN), [PDF](/data/resources/2021-sfaf-eposter-bactopia-v2.pdf)  
 
 - _Using Bactopia to process 67,000 Staphylococcus aureus genomes with AWS Batch (May 2021)_  
