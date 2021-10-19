@@ -1,7 +1,7 @@
 # pip install pygments mkdocs-material pymdown-extensions
 site_name: Bactopia
 site_author: Robert A. Petit III
-site_description: An extensive workflow to process Illumina sequencing for bacterial genomes.
+site_description: An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
 copyright: "Copyright © 2019-2021 Robert A. Petit III. All rights reserved."
 
 site_url: https://bactopia.github.io/
