@@ -32,6 +32,16 @@ jobs:
           python3 bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
           cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
           rm -rf $GITHUB_WORKSPACE/bactopia
+          git add docs/
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "ci: update docs" -a | exit 0
+
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
