@@ -43,11 +43,6 @@ extra:
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/rpetit3
 
-plugins:
-    - search
-    - markdownextradata:
-        data: data
-
 markdown_extensions:
   - admonition
   - abbr
