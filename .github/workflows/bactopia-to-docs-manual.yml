@@ -1,0 +1,43 @@
+name: Convert Bactopia to Docs (Manual)
+on:
+  push:
+    branches: [ main, master]
+
+jobs:
+  build:
+    name: Deploy docs
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+
+      - name: Pull Bactopia
+        uses: actions/checkout@v2
+        with:
+          repository: bactopia/bactopia
+          path: bactopia
+      
+      - name: Setup miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: bactopia
+          auto-activate-base: false
+
+      - name: Setup Docs Environment
+        run: |
+          conda install -c conda-forge -c bioconda nextflow jinja2 pyyaml 'python>3.6'
+        
+      - name: Convert Bactopia to Docs
+        run: |
+          nextflow config -flat $GITHUB_WORKSPACE/bactopia/main.nf > $GITHUB_WORKSPACE/bactopia/nextflow_config.txt
+          python3 $GITHUB_WORKSPACE/bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
+          rm -rf $GITHUB_WORKSPACE/bactopia
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          default_author: github_actions
+          add: 'docs/'
