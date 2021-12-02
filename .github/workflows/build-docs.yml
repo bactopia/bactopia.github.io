@@ -7,9 +7,6 @@ jobs:
   build:
     name: Deploy docs
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash -l {0}
     steps:
       - name: Checkout main
         uses: actions/checkout@v2
@@ -20,38 +17,10 @@ jobs:
           repository: bactopia/bactopia
           path: bactopia
       
-      - name: Setup miniconda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          activate-environment: bactopia
-          auto-activate-base: false
-
-      - name: Setup Docs Environment
+      - name: Stage latest CHANGELOG
         run: |
-          conda install -c conda-forge -c bioconda nextflow jinja2 pygments pymdown-extensions mkdocs-material-extensions pyyaml 'python>3.6'
-        
-      - name: Build Latest Docs
-        run: |
-          nextflow config -flat $GITHUB_WORKSPACE/bactopia/main.nf > $GITHUB_WORKSPACE/bactopia/nextflow_config.txt
-          python3 $GITHUB_WORKSPACE/bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
-          cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
-          rm -rf $GITHUB_WORKSPACE/bactopia
-          tree
-
-      - name: Update and Commit
-        run: |
-          echo ${{ github.ref }}
-          git add docs/
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "ci: update docs" -a | exit 0
-
-      - name: Push Changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
-
+         cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
+         rm -rf $GITHUB_WORKSPACE/bactopia
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master
         env:
