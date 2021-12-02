@@ -27,14 +27,19 @@ jobs:
           auto-activate-base: false
 
       - name: Setup Docs Environment
-        run: conda install -c conda-forge -c bioconda nextflow jinja2 pygments pymdown-extensions mkdocs-material-extensions pyyaml
-
-      - name: Stage latest CHANGELOG
+        run: |
+          conda install -c conda-forge -c bioconda nextflow jinja2 pygments pymdown-extensions mkdocs-material-extensions pyyaml 'pyhton>3.6'
+        
+      - name: Build Latest Docs
         run: |
           nextflow config -flat $GITHUB_WORKSPACE/bactopia/main.nf > $GITHUB_WORKSPACE/bactopia/nextflow_config.txt
-          python3 bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
+          python3 $GITHUB_WORKSPACE/bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
           cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
           rm -rf $GITHUB_WORKSPACE/bactopia
+
+      - name: Update and Commit
+        run: |
+          echo ${{ github.ref }}
           git add docs/
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
