@@ -58,8 +58,8 @@ These optional parameters can be useful in certain settings.
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--outdir` | Base directory to write results and Nextflow related outputs to | ./ |
-| `--run_name` | Name of the directory to hold results (e.g. ${params.outdir}/${params.run_name}/<SAMPLE_NAME> | bactopia |
+| `--outdir` | Base directory to write results to | ./ |
+| `--run_name` | Name of the directory to hold results | bactopia |
 | `--skip_compression` | Ouput files will not be compressed | False |
 | `--keep_all_files` | Keeps all analysis files created | False |
 
@@ -72,6 +72,7 @@ Set the top limit for requested resources for any single job.
 | `--max_cpus` | Maximum number of CPUs that can be requested for any single job. | 4 |
 | `--max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. | 32 |
 | `--max_time` | Maximum amount of time (in minutes) that can be requested for any single job. | 120 |
+| `--max_downloads` | Maximum number of samples to download at a time | 3 |
 
 ### Nextflow Configuration Parameters
 Parameters to fine-tune your Nextflow setup.
@@ -92,6 +93,7 @@ Parameters to fine-tune your Nextflow setup.
 | `--condadir` | Directory to Nextflow should use for Conda environments |  |
 | `--registry` | Docker registry to pull containers from. | dockerhub |
 | `--singularity_cache` | Directory where remote Singularity images are stored. |  |
+| `--singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |  |
 | `--queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) | general,high-memory |
 | `--disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. | False |
 
@@ -120,6 +122,8 @@ Uncommonly used parameters that might be useful.
 | `--sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. | 5 |
 | `--validate_params` | Boolean whether to validate parameters against the schema at runtime | True |
 | `--help` | Display help text. |  |
+| `--wf` | Specify which workflow or Bactopia Tool to execute | bactopia |
+| `--list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' |  |
 | `--show_hidden_params` | Show all params when using `--help` |  |
 | `--help_all` | An alias for --help --show_hidden_params |  |
 | `--version` | Display version text. |  |
