@@ -28,7 +28,7 @@ jobs:
 
       - name: Setup Docs Environment
         run: |
-          conda install -c conda-forge -c bioconda nextflow jinja2 pygments pymdown-extensions mkdocs-material-extensions pyyaml 'pyhton>3.6'
+          conda install -c conda-forge -c bioconda nextflow jinja2 pygments pymdown-extensions mkdocs-material-extensions pyyaml 'python>3.6'
         
       - name: Build Latest Docs
         run: |
