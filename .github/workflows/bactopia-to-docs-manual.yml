@@ -37,5 +37,7 @@ jobs:
       - name: Commit changes
         uses: EndBug/add-and-commit@v7
         with:
-          default_author: github_actions
+          message: "ci - auto build from bactopia"
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
           add: 'docs/'
