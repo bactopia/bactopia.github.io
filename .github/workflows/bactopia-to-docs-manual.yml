@@ -1,7 +1,5 @@
 name: Convert Bactopia to Docs (Manual)
-on:
-  push:
-    branches: [ main, master]
+on: workflow_dispatch
 
 jobs:
   build:
