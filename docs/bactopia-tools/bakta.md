@@ -7,15 +7,15 @@ tags:
 
 
 
-# Bactopia Tool - `eggnog`
-The `eggnog` module uses [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper) to assign 
-functional annotation to protein sequences. eggNOG-mapper uses orthologous groups and phylogenies
-from the eggNOG database to more precisely functionally annotate than traditional homology methods.
+# Bactopia Tool - `bakta`
+The `bakta` module uses [Bakta](https://github.com/oschwengers/bakta) to rapidly annotate bacterial 
+genomes and plasmids in a standardized fashion. Bakta makes use of a large database ([40+ GB](https://doi.org/10.5281/zenodo.4247252))
+to provide extensive annotations including: tRNA, tmRNA, rRNA, ncRNA, CRISPR, CDS, and sORFs.
 
 
 ## Example Usage
 ```
-bactopia --wf eggnog \
+bactopia --wf bakta \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -39,27 +39,29 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### eggNOG Downloader Parameters
+### Bakta Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--eggnog` | Path to existing or destination for eggNOG databases |  |
-| `--download_eggnog` | Required if downloading latest eggNOG database, will overwrite existing databases. | False |
-| `--skip_diamond` | Do not install the diamond database | False |
-| `--install_mmseq` | Install the MMseqs2 database | False |
-| `--install_pfam` | Install the Pfam database, required for de novo annotation or realignment | False |
-| `--install_hmm` | Install the HMMER database specified with --hmmer_taxid | False |
-| `--hmmer_taxid` | Tax ID of eggNOG HMM database to download | 2 |
-
-### eggNOG Mapper Parameters
-
-
-| Parameter | Description | Default |
-|---|---|---|
-| `--genepred` | Method to use for gene prediction | search |
-| `--mode` | Method to search against eggNOG sequences | diamond |
-| `--eggnog_opts` | Extra eggNOG Mapper options in quotes |  |
+| `--bakta_db` | Path to the Bakta database |  |
+| `--proteins` | FASTA file of trusted proteins to first annotate from |  |
+| `--prodigal_tf` | Training file to use for Prodigal |  |
+| `--replicons` | Replicon information table (tsv/csv) |  |
+| `--min_contig_length` | Minimum contig size to annotate | 1 |
+| `--keep_contig_headers` | Keep original contig headers | False |
+| `--compliant` | Force Genbank/ENA/DDJB compliance | False |
+| `--skip_trna` | Skip tRNA detection & annotation | False |
+| `--skip_tmrna` | Skip tmRNA detection & annotation | False |
+| `--skip_rrna` | Skip rRNA detection & annotation | False |
+| `--skip_ncrna` | Skip ncRNA detection & annotation | False |
+| `--skip_ncrna_region` | Skip ncRNA region detection & annotation | False |
+| `--skip_crispr` | Skip CRISPR array detection & annotation | False |
+| `--skip_cds` | Skip CDS detection & annotation | False |
+| `--skip_sorf` | Skip sORF detection & annotation | False |
+| `--skip_gap` | Skip gap detection & annotation | False |
+| `--skip_ori` | Skip oriC/oriT detection & annotation | False |
+| `--bakta_opts` | Extra Backa options in quotes. Example: '--gram +' |  |
 
 
 ### Optional Parameters
@@ -134,15 +136,12 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `eggnog` in your analysis, please cite the following.
+If you use Bactopia and `bakta` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [eggNOG 5.0 Database](http://eggnog.embl.de/)  
-    Huerta-Cepas J, Szklarczyk D, Heller D, Hernández-Plaza A, Forslund SK, Cook H, Mende DR, Letunic I, Rattei T, Jensen LJ, von Mering C, Bork P [eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses.](https://doi.org/10.1093/nar/gky1085) _Nucleic Acids Res._ 47, D309–D314 (2019)
-  
-- [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)  
-    Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115–2122 (2017)
+- [Bakta](https://github.com/oschwengers/bakta)  
+    Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A [Bakta - rapid and standardized annotation of bacterial genomes via alignment-free sequence identification.](https://doi.org/10.1099/mgen.0.000685) _Microbial Genomics_ 7(11) (2021)
   

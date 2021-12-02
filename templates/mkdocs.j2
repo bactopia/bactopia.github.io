@@ -105,23 +105,15 @@ nav:
   - 'Bactopia Tools':
     - 'Introduction': 'bactopia-tools/index.md'
     - 'Subworkflows':
-      - 'eggnog': 'bactopia-tools/eggnog.md'
-      - 'pangenome': 'bactopia-tools/pangenome.md'
-      - 'staphtyper': 'bactopia-tools/staphtyper.md'
+{%- for tool in tools | sort -%}
+    {% if tools[tool].is_subworkflow == True %}
+      - '{{ tool }}': 'bactopia-tools/{{ tool }}.md'
+    {%- endif -%}  
+{% endfor %}
     - 'Modules':
-      - 'agrvate': 'bactopia-tools/agrvate.md'
-      - 'bakta': 'bactopia-tools/bakta.md'
-      - 'ectyper': 'bactopia-tools/ectyper.md'
-      - 'emmtyper': 'bactopia-tools/emmtyper.md'
-      - 'fastani': 'bactopia-tools/fastani.md'
-      - 'hicap': 'bactopia-tools/hicap.md'
-      - 'ismapper': 'bactopia-tools/ismapper.md'
-      - 'kleborate': 'bactopia-tools/kleborate.md'
-      - 'lissero': 'bactopia-tools/lissero.md'
-      - 'mashtree': 'bactopia-tools/mashtree.md'
-      - 'meningotype': 'bactopia-tools/meningotype.md'
-      - 'ngmaster': 'bactopia-tools/ngmaster.md'
-      - 'seqsero2': 'bactopia-tools/seqsero2.md'
-      - 'spatyper': 'bactopia-tools/spatyper.md'
-      - 'staphopiasccmec': 'bactopia-tools/staphopiasccmec.md'
-      - 'tbprofiler': 'bactopia-tools/tbprofiler.md'
+{%- for tool in tools | sort -%}
+    {% if tools[tool].is_module == True %}
+      - '{{ tool }}': 'bactopia-tools/{{ tool }}.md'
+    {%- endif -%}  
+{% endfor %}
+

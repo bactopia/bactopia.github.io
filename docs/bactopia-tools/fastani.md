@@ -1,181 +1,139 @@
-# Bactopia Tools - *fastani*
-The `fastani` tool uses [FastANI](https://github.com/ParBLiSS/FastANI) to calcualte 
-the average nucleotide identity (ANI) between your samples. Although, sometimes you
-might be more interested in calculating the ANI of your samples against a reference
-genome. Fortunately, using [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download), 
-the `fastani` tool allows you  specify either a specific NCBI Assembly RefSeq 
-accession (`--accession`) or a species name (`--species`) for which to download 
-all RefSeq genomes for.
+---
+tags:
+   - ani
+   - fastani
+   - simularity
+---
 
-## Example
+
+
+# Bactopia Tool - `fastani`
+The `fastani` module uses [FastANI](https://github.com/ParBLiSS/FastANI) to calculate the average 
+nucleotide identity (ANI) between your samples. Although, sometimes you might be more interested 
+in calculating the ANI of your samples against a reference genome. Fortunately, using 
+[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download), the `fastani` module allows 
+you specify either a specific NCBI Assembly RefSeq accession (`--accession`) or a species name 
+(`--species`) for which to download all RefSeq genomes.
+
+
+## Example Usage
 ```
-bactopia tools fastani \
-    --bactopia ~/bactopia-tutorial/bactopia \
-    --exclude ~/bactopia-tutorial/bactopia-tools/summary/bactopia-exclude.txt \
-    --accession "GCF_900475245.1" \
-
-awk '{if ($3 > 95){print $0}}' ~/bactopia-tutorial/bactopia-tools/fastani/fastani.tsv | \
-    grep -v "GCF_900475245" > ~/bactopia-tutorial/GCF_900475245-include.txt
-```
-
-Above is a good example of subsetting your samples. In the example, all samples would
-have had their ANI to GCF_900475245 calculated. Then with awk, all samples that had 
-greater than 95% ANI to GCF_900475245 were output to a text file. This text file could 
-then be used with the `--include` parameter for other Bactopia Tools.
-
-## Output Overview
-Below is the default output structure for the `fastani` tool. Where possible the 
-file descriptions below were modified from a tools description.
-
-```
-bactopia-tools/
-└── fastani/
-    └── ${PREFIX}
-        ├── bactopia-info
-        │   ├── fastani-report.html
-        │   ├── fastani-timeline.html
-        │   └── fastani-trace.txt
-        ├── fastani.tsv
-        ├── references
-        │   └── ${REFERENCE}.tsv
-        └── refseq
-            └── fasta
-                └── ${REFERENCE}.fna
+bactopia --wf fastani \
+  --bactopia /path/to/your/bactopia/results \ 
+  --include includes.txt  
 ```
 
-| Filename | Description |
-|-----------|-------------|
-| fastani.tsv | All the FastANI results (_references/*.tsv_) merged into a single file.  |
+## Parameters
 
 
-### Directory Description
-#### bactopia-info
-| Filename | Description |
-|----------|-------------|
-| fastani-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| fastani-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| fastani-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+### Required Parameters
+Define where the pipeline should find input data and save output data.
 
-#### references
-| Filename | Description |
-|----------|-------------|
-| ${REFERENCE}.tsv | FastANI results of all samples against a reference genome |
+| Parameter | Description | Default |
+|---|---|---|
+| `--bactopia` | The path to bactopia results to use as inputs |  |
 
-#### refseq/fasta
-| Filename | Description |
-|----------|-------------|
-| ${REFERENCE}.fna | FASTA formated genome downloaded from NCBI Assembly database. |
+### Filtering Parameters
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Description | Default |
+|---|---|---|
+| `--include` | A text file containing sample names (one per line) to include from the analysis |  |
+| `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-## Usage
-```
-Required Parameters:
-    --bactopia STR          Directory containing Bactopia analysis results for all samples.
+### fastANI Parameters
 
-Optional Parameters:
-    --include STR           A text file containing sample names to include in the
-                                analysis. The expected format is a single sample per line.
 
-    --exclude STR           A text file containing sample names to exclude from the
-                                analysis. The expected format is a single sample per line.
+| Parameter | Description | Default |
+|---|---|---|
+| `--kmer` | kmer size (<= 16) for ANI calculation  | 16 |
+| `--fragLen` | agr typing only. Skips agr operon extraction and frameshift detection | 3000 |
+| `--minFraction ` | Minimum fraction of genome that must be shared for trusting ANI. | 0.2 |
+| `--skip_pairwise` | Skip pairwise ANI calculations for all samples | False |
 
-    --prefix DIR            Prefix to use for final output files
-                                Default: fastani
 
-    --outdir DIR            Directory to write results to
-                                Default: ./
+### Optional Parameters
+These optional parameters can be useful in certain settings.
 
-    --max_time INT          The maximum number of minutes a job should run before being halted.
-                                Default: 120 minutes
+| Parameter | Description | Default |
+|---|---|---|
+| `--outdir` | Base directory to write results and Nextflow related outputs to | ./ |
+| `--run_name` | Name of the directory to hold results (e.g. ${params.outdir}/${params.run_name}/<SAMPLE_NAME> | bactopia |
+| `--skip_compression` | Ouput files will not be compressed | False |
+| `--keep_all_files` | Keeps all analysis files created | False |
 
-    --max_memory INT        The maximum amount of memory (Gb) allowed to a single process.
-                                Default: 32 Gb
+### Max Job Request Parameters
+Set the top limit for requested resources for any single job.
 
-    --cpus INT              Number of processors made available to a single
-                                process.
-                                Default: 1
+| Parameter | Description | Default |
+|---|---|---|
+| `--max_retry` | Maximum times to retry a process before allowing it to fail. | 3 |
+| `--max_cpus` | Maximum number of CPUs that can be requested for any single job. | 4 |
+| `--max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. | 32 |
+| `--max_time` | Maximum amount of time (in minutes) that can be requested for any single job. | 120 |
 
-RefSeq Assemblies Related Parameters:
-    This is a completely optional step and is meant to supplement your dataset with
-    high-quality completed genomes.
+### Nextflow Configuration Parameters
+Parameters to fine-tune your Nextflow setup.
 
-    --species STR           The name of the species to download RefSeq assemblies for. This
-                                is a completely optional step and is meant to supplement
-                                your dataset with high-quality completed genomes.
+| Parameter | Description | Default |
+|---|---|---|
+| `--nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |  |
+| `--publish_dir_mode` | Method used to save pipeline results to output directory. | copy |
+| `--infodir` | Directory to keep pipeline Nextflow logs and reports. | ${params.outdir}/pipeline_info |
+| `--force` | Nextflow will overwrite existing output files. | False |
+| `--cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. | False |
 
-    --accession STR         A NCBI Assembly database RefSeq accession to be downloaded and included
-                                in the pan-genome analysis.
+### Nextflow Profile Parameters
+Parameters to fine-tune your Nextflow setup.
 
-    --limit INT             Limit the number of RefSeq assemblies to download. If the the
-                                number of available genomes exceeds the given limit, a 
-                                random subset will be selected.
-                                Default: Download all available genomes
+| Parameter | Description | Default |
+|---|---|---|
+| `--condadir` | Directory to Nextflow should use for Conda environments |  |
+| `--registry` | Docker registry to pull containers from. | dockerhub |
+| `--singularity_cache` | Directory where remote Singularity images are stored. |  |
+| `--queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) | general,high-memory |
+| `--disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. | False |
 
-    --refseq_only           Pairwise ANI's will only be calulated against download RefSeq genomes.
+### AWS Batch Profile (-profile awsbatch) Parameters
+Parameters to fine-tune your AWS Batch setup.
 
-FastANI Related Parameters:
-    --kmer INT              kmer size <= 16
-                                Default: null
+| Parameter | Description | Default |
+|---|---|---|
+| `--aws_region` | AWS Region to be used by Nextflow | us-east-1 |
+| `--aws_volumes` | Volumes to be mounted from the EC2 instance to the Docker container | /opt/conda:/mnt/conda |
+| `--aws_cli_path` | Path to the AWS CLI for Nextflow to use. | /home/ec2-user/conda/bin/aws |
+| `--aws_upload_storage_class` | The S3 storage slass to use for storing files on S3 | STANDARD |
+| `--aws_max_parallel_transfers` | The number of parallele transfers between EC2 and S3 | 8 |
+| `--aws_delay_between_attempts` | The duration of sleep (in seconds) between each transfer between EC2 and S3 | 15 |
+| `--aws_max_transfer_attempts` | The maximum number of times to retry transferring a file between EC2 and S3 | 3 |
+| `--aws_max_retry` | The maximum number of times to retry a process on AWS Batch | 4 |
+| `--aws_ecr_registry` | The ECR registry containing Bactopia related containers. |  |
 
-    --fragLen INT           fragment length
-                                Default: 3000
+### Helpful Parameters
+Uncommonly used parameters that might be useful.
 
-    --minFraction FLOAT     Minimum fraction of genome that must be shared for trusting ANI.
-                                If reference and query genome size differ, smaller one among
-                                the two is considered.
-                                Default: 0.2
+| Parameter | Description | Default |
+|---|---|---|
+| `--monochrome_logs` | Do not use coloured log outputs. |  |
+| `--nfdir` | Print directory Nextflow has pulled Bactopia to |  |
+| `--sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. | 5 |
+| `--validate_params` | Boolean whether to validate parameters against the schema at runtime | True |
+| `--help` | Display help text. |  |
+| `--show_hidden_params` | Show all params when using `--help` |  |
+| `--help_all` | An alias for --help --show_hidden_params |  |
+| `--version` | Display version text. |  |
 
-Nextflow Related Parameters:
-    --condadir DIR          Directory to Nextflow should use for Conda environments
-                                Default: Bactopia's Nextflow directory
+## Citations
+If you use Bactopia and `fastani` in your analysis, please cite the following.
 
-    --publish_mode          Set Nextflow's method for publishing output files. Allowed methods are:
-                                'copy' (default)    Copies the output files into the published directory.
+- [Bactopia](https://bactopia.github.io/)  
+    Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+  
 
-                                'copyNoFollow' Copies the output files into the published directory
-                                               without following symlinks ie. copies the links themselves.
-
-                                'link'    Creates a hard link in the published directory for each
-                                          process output file.
-
-                                'rellink' Creates a relative symbolic link in the published directory
-                                          for each process output file.
-
-                                'symlink' Creates an absolute symbolic link in the published directory
-                                          for each process output file.
-
-                                Default: copy
-
-    --force                 Nextflow will overwrite existing output files.
-                                Default: false
-
-    --conatainerPath        Path to Singularity containers to be used by the 'slurm'
-                                profile.
-                                Default: /opt/bactopia/singularity
-
-    --sleep_time            After reading datases, the amount of time (seconds) Nextflow
-                                will wait before execution.
-                                Default: 5 seconds
-Useful Parameters:
-    --version               Print workflow version information
-    --help                  Show this message and exit
-```
-
-## Conda Environment
-Below is the command used to create the Conda environment.
-```
-conda create -y -n bactopia-fastani -c conda-forge -c bioconda \
-    fastani \
-    ncbi-genome-download \
-    rename 
-```
-
-## References
-* __[FastANI](https://github.com/ParBLiSS/FastANI)__  
-_Jain, C., Rodriguez-R, L. M., Phillippy, A. M., Konstantinidis, K. T. & Aluru, S. 
-[High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.](http://dx.doi.org/10.1038/s41467-018-07641-9)
- Nat. Commun. 9, 5114 (2018)_  
-
-* __[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)__  
-_Blin, K. [ncbi-genome-download: Scripts to download genomes from the NCBI FTP 
-servers](https://github.com/kblin/ncbi-genome-download)_  
+- [FastANI](https://github.com/ParBLiSS/FastANI)  
+    Jain C, Rodriguez-R LM, Phillippy AM, Konstantinidis KT, Aluru S [High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.](http://dx.doi.org/10.1038/s41467-018-07641-9) _Nat. Commun._ 9, 5114 (2018)
+  
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+    Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+  

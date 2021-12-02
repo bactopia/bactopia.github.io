@@ -1,21 +1,20 @@
 ---
 tags:
-   - annotation
    - fasta
-   - prokaryote
+   - Streptococcus pyogenes
+   - typing
 ---
 
 
 
-# Bactopia Tool - `eggnog`
-The `eggnog` module uses [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper) to assign 
-functional annotation to protein sequences. eggNOG-mapper uses orthologous groups and phylogenies
-from the eggNOG database to more precisely functionally annotate than traditional homology methods.
+# Bactopia Tool - `emmtyper`
+The `emmtyper` module uses [emmtyper](https://github.com/MDU-PHL/emmtyper) for 
+emm-typing of _Streptococcus pyogenes_ using a de novo or complete assembly.
 
 
 ## Example Usage
 ```
-bactopia --wf eggnog \
+bactopia --wf emmtyper \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -39,27 +38,21 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### eggNOG Downloader Parameters
+### emmtyper Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--eggnog` | Path to existing or destination for eggNOG databases |  |
-| `--download_eggnog` | Required if downloading latest eggNOG database, will overwrite existing databases. | False |
-| `--skip_diamond` | Do not install the diamond database | False |
-| `--install_mmseq` | Install the MMseqs2 database | False |
-| `--install_pfam` | Install the Pfam database, required for de novo annotation or realignment | False |
-| `--install_hmm` | Install the HMMER database specified with --hmmer_taxid | False |
-| `--hmmer_taxid` | Tax ID of eggNOG HMM database to download | 2 |
-
-### eggNOG Mapper Parameters
-
-
-| Parameter | Description | Default |
-|---|---|---|
-| `--genepred` | Method to use for gene prediction | search |
-| `--mode` | Method to search against eggNOG sequences | diamond |
-| `--eggnog_opts` | Extra eggNOG Mapper options in quotes |  |
+| `--emmtyper_wf` | Workflow for emmtyper to use. | blast |
+| `--cluster_distance` | Distance between cluster of matches to consider as different clusters | 500 |
+| `--percid` | Minimal percent identity of sequence | 95 |
+| `--culling_limit` | Total hits to return in a position | 5 |
+| `--mismatch` | Threshold for number of mismatch to allow in BLAST hit | 5 |
+| `--align_diff` | Threshold for difference between alignment length and subject length in BLAST | 5 |
+| `--gap` | Threshold gap to allow in BLAST hit | 2 |
+| `--min_perfect` | Minimum size of perfect match at 3 primer end | 15 |
+| `--min_good` | Minimum size where there must be 2 matches for each mismatch | 15 |
+| `--max_size` | Maximum size of PCR product | 2000 |
 
 
 ### Optional Parameters
@@ -134,15 +127,12 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `eggnog` in your analysis, please cite the following.
+If you use Bactopia and `emmtyper` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [eggNOG 5.0 Database](http://eggnog.embl.de/)  
-    Huerta-Cepas J, Szklarczyk D, Heller D, Hernández-Plaza A, Forslund SK, Cook H, Mende DR, Letunic I, Rattei T, Jensen LJ, von Mering C, Bork P [eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses.](https://doi.org/10.1093/nar/gky1085) _Nucleic Acids Res._ 47, D309–D314 (2019)
-  
-- [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)  
-    Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115–2122 (2017)
+- [emmtyper](https://github.com/MDU-PHL/emmtyper)  
+    Tan A, Seemann T, Lacey D, Davies M, Mcintyre L, Frost H, Williamson D, Gonçalves da Silva A [emmtyper - emm Automatic Isolate Labeller](https://github.com/MDU-PHL/emmtyper) (GitHub)
   

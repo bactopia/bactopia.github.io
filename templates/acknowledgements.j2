@@ -1,0 +1,77 @@
+# Acknowledgements
+
+Bactopia is truly a case of *"standing upon the shoulders of giants"*. Bactopia
+currently includes more than {{ total }} datasets and software packages. Nearly 
+every component uses, from the workflow, datasets, software packages, even the 
+framework for this site, was created by others and made freely available to the public.
+
+I would like to personally extend my many thanks and gratitude to the authors
+of these software packages and public datasets. If you've made it this far, I 
+owe you a beer 🍻 (or coffee ☕!) if we ever encounter one another in person. 
+Really, thank you very much!
+
+!!! info "Please Cite Datasets and Tools"
+    If you have used Bactopia in your work, please be sure to cite any datasets
+    or software you may have used.
+
+## Influences
+
+### nf-core
+[nf-core](https://nf-co.re/) is group of great individuals volunteering 
+their time to create a set of curated Nextflow analysis pipelines. The [nf-core Team](https://nf-co.re/about)
+is putting together some amazing practices that I think really strengthen the 
+Nextflow community as a whole!
+
+Since the beginning I have always had the idea of Bactopia one day being 
+apart of nf-core. Unfortunately, I think Bactopia is a much to big at this point to fit the nf-core mold, but that's OK! 
+There are still many nf-core practices I've been able to adapt into Bactopia.
+
+1. Arguement parsing based on nf-core library
+2. All Bactopia Tools are adapted from nf-core/modules
+3. Testing implemented to follow nf-core/modules
+
+By implementing these practices, Bactopia I believe is much better pipeline to use. For this I'm very 
+grateful to the nf-core community! Thank you!
+
+{{ citations.influences.nfcore.cite }}
+
+## Public Datasets
+Below is a list of {{ total_datasets }} public datasets that could have potentially 
+been included during the *[Build Datasets](datasets.md)* step.
+
+### Ariba Reference Datasets
+These datasets are available using Ariba's `getref` function. You can learn 
+more about this function at [Ariba's Wiki](https://github.com/sanger-pathogens/ariba/wiki/Task:-getref).
+
+{% for dataset in citations.datasets_ariba -%}
+
+{{ loop.index }}. __[{{ citations.datasets_ariba[dataset].name }}]({{ citations.datasets_ariba[dataset].link }})__   
+{{ citations.datasets_ariba[dataset].cite }}  
+{% endfor %}
+
+### Minmer Datasets
+{% for dataset in citations.datasets_minmer -%}
+
+{{ loop.index }}. __[{{ citations.datasets_minmer[dataset].name }}]({{ citations.datasets_minmer[dataset].link }})__   
+{{ citations.datasets_minmer[dataset].cite }}  
+{% endfor %}
+
+### Everything Else
+
+{% for dataset in citations.datasets_generic -%}
+
+{{ loop.index }}. __[{{ citations.datasets_generic[dataset].name }}]({{ citations.datasets_generic[dataset].link }})__   
+{{ citations.datasets_generic[dataset].cite }}  
+{% endfor %}
+
+## Software Included In Bactopia
+Below are {{ citations.tools | length }} of software packages used (directly and indirectly) by 
+Bactopia. A link to the software page as well as the citation (if available) 
+have been included.
+
+{% for tool in citations.tools -%}
+
+{{ loop.index }}. __[{{ citations.tools[tool].name }}]({{ citations.tools[tool].link }})__  
+{{ citations.tools[tool].description }}  
+{{ citations.tools[tool].cite }}  
+{% endfor %}

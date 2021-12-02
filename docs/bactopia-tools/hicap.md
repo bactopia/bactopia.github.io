@@ -1,211 +1,136 @@
-# Bactopia Tools - *hicap*
-The `hicap` tool uses [hicap](https://github.com/scwatts/hicap) for the in-silico typing of the *H. influenzae* cap locus.
+---
+tags:
+   - capsule
+   - Haemophilus influenzae
+   - serotype
+---
 
-## Example
-The following command will run `hicap` on each available sample.
-```
-bactopia tools hicap --bactopia ~/bactopia-tutorial/bactopia
-```
 
-## Output Overview
-Below is the default output structure for the `hicap` tool. Where possible the 
-file descriptions below were modified from a [tools description](https://github.com/scwatts/hicap#outputs).
+
+# Bactopia Tool - `hicap`
+The `hicap` module uses [hicap](https://github.com/scwatts/hicap) allong wih an assembly for
+the _in silico_ typing of the _Haemophilus influenzae_ cap locus.
+
+
+## Example Usage
 ```
-bactopia-tools/
-└── hicap/
-    └── ${PREFIX}/
-        ├── bactopia-info
-        │   ├── hicap-report.html
-        │   ├── hicap-timeline.html
-        │   └── hicap-trace.txt
-        └── ${SAMPLE_NAME}
-        │  ├── ${SAMPLE_NAME}.gbk
-        │  ├── ${SAMPLE_NAME}.svg
-        │  └── ${SAMPLE_NAME}.tsv 
-        └── hicap-results.txt
+bactopia --wf hicap \
+  --bactopia /path/to/your/bactopia/results \ 
+  --include includes.txt  
 ```
 
-Below is a description of `hicap` outputs.
-
-| Filename | Description |
-|-----------|-------------|
-| hicap-results.txt| Merged set of outputs from `hicap` |
+## Parameters
 
 
-### Directory Description
-#### bactopia-info
-| Filename | Description |
-|----------|-------------|
-| hicap-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| hicap-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| hicap-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+### Required Parameters
+Define where the pipeline should find input data and save output data.
 
-#### Per Sample
-| Extension | Description |
-|-----------|-------------|
-| .gbk | GenBank file with sequence marked up with cap locus annotations |
-| .svg | visual representation of the annotated cap locus |
-| .tsv | detailed summary information |
+| Parameter | Description | Default |
+|---|---|---|
+| `--bactopia` | The path to bactopia results to use as inputs |  |
+
+### Filtering Parameters
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Description | Default |
+|---|---|---|
+| `--include` | A text file containing sample names (one per line) to include from the analysis |  |
+| `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-## Usage
-```
-Required Parameters:
-    --bactopia STR          Directory containing Bactopia analysis results for all samples.
+### hicap Parameters
 
-hicap Related Parameters
-    --database_dir STR      Directory containing locus database.
-                                Default: Use hicap's default
 
-    --model_fp STR    Path to prodigal model.
-                                Default: Use hicap's default
+| Parameter | Description | Default |
+|---|---|---|
+| `--database_dir` | Directory containing locus database |  |
+| `--model_fp` | Path to prodigal model |  |
+| `--full_sequence` | Write the full input sequence out to the genbank file rather than just the region surrounding and including the locus | False |
+| `--hicap_debug` | hicap will print debug messages | False |
+| `--gene_coverage` | Minimum percentage coverage to consider a single gene complete | 0.8 |
+| `--gene_identity` | Minimum percentage identity to consider a single gene complete | 0.7 |
+| `--broken_gene_length` | Minimum length to consider a broken gene | 60 |
+| `--broken_gene_identity` | Minimum percentage identity to consider a broken gene | 0.8 |
 
-    --full_sequence BOOL    Write the full input sequence out to the genbank file rather than
-                                just the region surrounding and including the locus
 
-    --gene_coverage FLOAT   Minimum percentage coverage to consider a single gene complete.
-                                Default: 0.8
+### Optional Parameters
+These optional parameters can be useful in certain settings.
 
-    --gene_identity FLOAT   Minimum percentage identity to consider a single gene complete.
-                                Default: 0.7
+| Parameter | Description | Default |
+|---|---|---|
+| `--outdir` | Base directory to write results and Nextflow related outputs to | ./ |
+| `--run_name` | Name of the directory to hold results (e.g. ${params.outdir}/${params.run_name}/<SAMPLE_NAME> | bactopia |
+| `--skip_compression` | Ouput files will not be compressed | False |
+| `--keep_all_files` | Keeps all analysis files created | False |
 
-    --broken_gene_length INT
-                            Minimum length to consider a broken gene.
-                                Default: 60
+### Max Job Request Parameters
+Set the top limit for requested resources for any single job.
 
-    --broken_gene_identity FLOAT
-                            Minimum percentage identity to consider a broken gene
-                                Default: 0.8
+| Parameter | Description | Default |
+|---|---|---|
+| `--max_retry` | Maximum times to retry a process before allowing it to fail. | 3 |
+| `--max_cpus` | Maximum number of CPUs that can be requested for any single job. | 4 |
+| `--max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. | 32 |
+| `--max_time` | Maximum amount of time (in minutes) that can be requested for any single job. | 120 |
 
-    --log_fp                Record logging messages to file
+### Nextflow Configuration Parameters
+Parameters to fine-tune your Nextflow setup.
 
-    --debug                 Print debug messages
+| Parameter | Description | Default |
+|---|---|---|
+| `--nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |  |
+| `--publish_dir_mode` | Method used to save pipeline results to output directory. | copy |
+| `--infodir` | Directory to keep pipeline Nextflow logs and reports. | ${params.outdir}/pipeline_info |
+| `--force` | Nextflow will overwrite existing output files. | False |
+| `--cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. | False |
 
-Optional Parameters:
-    --include STR           A text file containing sample names to include in the
-                                analysis. The expected format is a single sample per line.
+### Nextflow Profile Parameters
+Parameters to fine-tune your Nextflow setup.
 
-    --exclude STR           A text file containing sample names to exclude from the
-                                analysis. The expected format is a single sample per line.
+| Parameter | Description | Default |
+|---|---|---|
+| `--condadir` | Directory to Nextflow should use for Conda environments |  |
+| `--registry` | Docker registry to pull containers from. | dockerhub |
+| `--singularity_cache` | Directory where remote Singularity images are stored. |  |
+| `--queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) | general,high-memory |
+| `--disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. | False |
 
-    --prefix DIR            Prefix to use for final output files
-                                Default: hicap
+### AWS Batch Profile (-profile awsbatch) Parameters
+Parameters to fine-tune your AWS Batch setup.
 
-    --outdir DIR            Directory to write results to
-                                Default: ./
+| Parameter | Description | Default |
+|---|---|---|
+| `--aws_region` | AWS Region to be used by Nextflow | us-east-1 |
+| `--aws_volumes` | Volumes to be mounted from the EC2 instance to the Docker container | /opt/conda:/mnt/conda |
+| `--aws_cli_path` | Path to the AWS CLI for Nextflow to use. | /home/ec2-user/conda/bin/aws |
+| `--aws_upload_storage_class` | The S3 storage slass to use for storing files on S3 | STANDARD |
+| `--aws_max_parallel_transfers` | The number of parallele transfers between EC2 and S3 | 8 |
+| `--aws_delay_between_attempts` | The duration of sleep (in seconds) between each transfer between EC2 and S3 | 15 |
+| `--aws_max_transfer_attempts` | The maximum number of times to retry transferring a file between EC2 and S3 | 3 |
+| `--aws_max_retry` | The maximum number of times to retry a process on AWS Batch | 4 |
+| `--aws_ecr_registry` | The ECR registry containing Bactopia related containers. |  |
 
-    --min_time INT          The minimum number of minutes a job should run before being halted.
-                                Default: 60 minutes
+### Helpful Parameters
+Uncommonly used parameters that might be useful.
 
-    --max_time INT          The maximum number of minutes a job should run before being halted.
-                                Default: 120 minutes
+| Parameter | Description | Default |
+|---|---|---|
+| `--monochrome_logs` | Do not use coloured log outputs. |  |
+| `--nfdir` | Print directory Nextflow has pulled Bactopia to |  |
+| `--sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. | 5 |
+| `--validate_params` | Boolean whether to validate parameters against the schema at runtime | True |
+| `--help` | Display help text. |  |
+| `--show_hidden_params` | Show all params when using `--help` |  |
+| `--help_all` | An alias for --help --show_hidden_params |  |
+| `--version` | Display version text. |  |
 
-    --max_memory INT        The maximum amount of memory (Gb) allowed to a single process.
-                                Default: 32 Gb
+## Citations
+If you use Bactopia and `hicap` in your analysis, please cite the following.
 
-    --cpus INT              Number of processors made available to a single
-                                process.
-                                Default: 1
+- [Bactopia](https://bactopia.github.io/)  
+    Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+  
 
-Nextflow Related Parameters:
-    --condadir DIR          Directory to Nextflow should use for Conda environments
-                                Default: Bactopia's Nextflow directory
-
-    --registry STR          Docker registry to pull containers from.
-                                Available options: dockerhub, quay, or github
-                                Default: dockerhub
-
-    --singularity_cache STR Directory where remote Singularity images are stored. If using a cluster, it must
-                                be accessible from all compute nodes.
-                                Default: NXF_SINGULARITY_CACHEDIR evironment variable, otherwise /local/home/rpetit/.bactopia/singularity
-
-    --queue STR             The name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM).
-                                If using multiple queues, please seperate queues by a comma without spaces.
-                                Default: general
-
-    --disable_scratch       All intermediate files created on worker nodes of will be transferred to the head node.
-                                Default: Only result files are transferred back
-
-    --cleanup_workdir       After Bactopia is successfully executed, the work directory will be deleted.
-                                Warning: by doing this you lose the ability to resume workflows.
-
-    --publish_mode          Set Nextflow's method for publishing output files. Allowed methods are:
-                                'copy' (default)    Copies the output files into the published directory.
-
-                                'copyNoFollow' Copies the output files into the published directory
-                                               without following symlinks ie. copies the links themselves.
-
-                                'link'    Creates a hard link in the published directory for each
-                                          process output file.
-
-                                'rellink' Creates a relative symbolic link in the published directory
-                                          for each process output file.
-
-                                'symlink' Creates an absolute symbolic link in the published directory
-                                          for each process output file.
-
-                                Default: copy
-
-    --force                 Nextflow will overwrite existing output files.
-                                Default: true
-
-    --sleep_time            After reading datases, the amount of time (seconds) Nextflow
-                                will wait before execution.
-                                Default: 5 seconds
-
-    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows
-                                you to create profiles specific to your environment (e.g. SGE,
-                                AWS, SLURM, etc...). This config file is loaded last and will
-                                overwrite existing variables if set.
-                                Default: Bactopia's default configs
-
-    -resume                 Nextflow will attempt to resume a previous run. Please notice it is
-                                only a single '-'
-
-AWS Batch Related Parameters:
-    --aws_region STR        AWS Region to be used by Nextflow
-                                Default: us-east-1
-
-    --aws_volumes STR       Volumes to be mounted from the EC2 instance to the Docker container
-                                Default: /opt/conda:/mnt/conda
-
-    --aws_cli_path STR       Path to the AWS CLI for Nextflow to use.
-                                Default: /home/ec2-user/conda/bin/aws
-
-    --aws_upload_storage_class STR
-                            The S3 storage slass to use for storing files on S3
-                                Default: STANDARD
-
-    --aws_max_parallel_transfers INT
-                            The number of parallele transfers between EC2 and S3
-                                Default: 8
-
-    --aws_delay_between_attempts INT
-                            The duration of sleep (in seconds) between each transfer between EC2 and S3
-                                Default: 15
-
-    --aws_max_transfer_attempts INT
-                            The maximum number of times to retry transferring a file between EC2 and S3
-                                Default: 3
-
-    --aws_max_retry INT     The maximum number of times to retry a process on AWS Batch
-                                Default: 4
-
-    --aws_ecr_registry STR  The ECR registry containing Bactopia related containers.
-                                Default: Use the registry given by --registry
-
-Useful Parameters:
-    --version               Print workflow version information
-    --help                  Show this message and exit
-```
-
-## Conda Environment
-Below is the command used to create the Conda environment.
-```
-conda create -n hicap -c conda-forge -c bioconda hicap
-```
-
-## References
-* __[hicap](https://github.com/scwatts/hicap)__  
-in silico typing of the *H. influenzae* cap locus  
-_Watts S. C. and Holt K. E. [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) Journal of Clinical Microbiology, JCM.00190-19 (2019)._  
+- [hicap](https://github.com/scwatts/hicap)  
+    Watts SC, Holt KE [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) _Journal of Clinical Microbiology_ JCM.00190-19 (2019)
+  

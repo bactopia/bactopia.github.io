@@ -1,5 +1,6 @@
-You should now have a directory named `datasets` that has all the available datasets to be used by Bactopia.# Tutorial
-For this tutorial, we will attempt to replicate the [Staphopia](https://staphopia.emory.edu) analysis pipeline with Bactopia. 
+# Tutorial
+
+You should now have a directory named `datasets` that has all the available datasets to be used by Bactopia. For this tutorial, we will attempt to replicate the [Staphopia](https://staphopia.emory.edu) analysis pipeline with Bactopia.
 
 We will use *S. aureus* samples associated with cystic fibrosis lung infections that were recently published (details below, shameless self plug!) and are available from BioProject accession [PRJNA480016](https://www.ebi.ac.uk/ena/data/view/PRJNA480016).
 
@@ -260,3 +261,6 @@ That should do it! Hopefully you have succeeded (yay! 🎉) and would like to us
 In this tutorial we covered how to build datasets (`bactopia datasets`) and how process samples. We also covered the `bactopia search` and `bactopia prepare` to prepare file for multiple sample processing.
 
 If your ran into any issues, please let me know by submitting a [GitHub Issue](https://github.com/bactopia/bactopia/issues).
+
+!!! success "Outputs are available from figshare"
+    Incase you find it useful, the outputs from this tutorial are available from figshare at https://doi.org/10.6084/m9.figshare.17097156.v1

@@ -1,21 +1,22 @@
 ---
 tags:
-   - annotation
-   - fasta
-   - prokaryote
+   - alignment
+   - recombination
 ---
 
 
 
-# Bactopia Tool - `eggnog`
-The `eggnog` module uses [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper) to assign 
-functional annotation to protein sequences. eggNOG-mapper uses orthologous groups and phylogenies
-from the eggNOG database to more precisely functionally annotate than traditional homology methods.
+# Bactopia Tool - `clonalframeml`
+The `clonalframeml` module uses [ClonalFrameML](https://github.com/xavierdidelot/ClonalFrameML) to predict 
+recombination in bacterial genomes. A starting tree is first created with [IQ-TREE](https://github.com/Cibiv/IQ-TREE) 
+(`-fast` mode) using the input alignment. Then the alignment and tree are provided ClonalFrameML which uses 
+maximum likelihood to predict recombinant regions in the alignment. Finally, [maskrc-svg](https://github.com/kwongj/maskrc-svg) 
+is used to create and additional alignment with the recombinant regions masked.
 
 
 ## Example Usage
 ```
-bactopia --wf eggnog \
+bactopia --wf clonalframeml \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -39,27 +40,14 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### eggNOG Downloader Parameters
+### ClonalFrameML Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--eggnog` | Path to existing or destination for eggNOG databases |  |
-| `--download_eggnog` | Required if downloading latest eggNOG database, will overwrite existing databases. | False |
-| `--skip_diamond` | Do not install the diamond database | False |
-| `--install_mmseq` | Install the MMseqs2 database | False |
-| `--install_pfam` | Install the Pfam database, required for de novo annotation or realignment | False |
-| `--install_hmm` | Install the HMMER database specified with --hmmer_taxid | False |
-| `--hmmer_taxid` | Tax ID of eggNOG HMM database to download | 2 |
-
-### eggNOG Mapper Parameters
-
-
-| Parameter | Description | Default |
-|---|---|---|
-| `--genepred` | Method to use for gene prediction | search |
-| `--mode` | Method to search against eggNOG sequences | diamond |
-| `--eggnog_opts` | Extra eggNOG Mapper options in quotes |  |
+| `--emsim` | Number of simulations to estimate uncertainty in the EM results | 100 |
+| `--clonal_opts` | Extra ClonalFrameML options in quotes |  |
+| `--skip_recombination` | Skip ClonalFrameML execution in subworkflows | False |
 
 
 ### Optional Parameters
@@ -134,15 +122,20 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `eggnog` in your analysis, please cite the following.
+If you use Bactopia and `clonalframeml` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [eggNOG 5.0 Database](http://eggnog.embl.de/)  
-    Huerta-Cepas J, Szklarczyk D, Heller D, Hernández-Plaza A, Forslund SK, Cook H, Mende DR, Letunic I, Rattei T, Jensen LJ, von Mering C, Bork P [eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses.](https://doi.org/10.1093/nar/gky1085) _Nucleic Acids Res._ 47, D309–D314 (2019)
+- [ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)  
+    Didelot X, Wilson DJ [ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.](https://doi.org/10.1371/journal.pcbi.1004041) _PLoS Comput Biol_ 11(2) e1004041 (2015)
   
-- [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)  
-    Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115–2122 (2017)
+- [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
+    Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
   
+- [ModelFinder](https://github.com/Cibiv/IQ-TREE)  
+    Kalyaanamoorthy S, Minh BQ, Wong TKF, von Haeseler A, Jermiin LS [ModelFinder - Fast model selection for accurate phylogenetic estimates.](https://doi.org/10.1038/nmeth.4285) _Nat. Methods_ 14:587-589 (2017)
+  
+- [maskrc-svg](https://github.com/kwongj/maskrc-svg)  
+    Kwong J [maskrc-svg - Masks recombination as detected by ClonalFrameML or Gubbins and draws an SVG.](https://github.com/kwongj/maskrc-svg) (GitHub)  

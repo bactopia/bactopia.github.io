@@ -1,191 +1,143 @@
-# Bactopia Tools - *mashtree*
-The `mashtree` tool allows you to create a tree of your samples using 
-[Mashtree](https://github.com/lskatz/mashtree). 
+---
+tags:
+   - fasta
+   - mash
+   - tree
+---
 
-Often times, you may also want to see how your samples compare to completed genomes.
-This is possible with the `mashtree` tool. If you use the `--species` parameter,
-all completed genomes available from RefSeq will be downloaded with 
-[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) and 
-included in your tree.
 
-## Example
-The following command will run Mashtree on a set of Bactopia samples, as well as 
-all completed *Bacillus cereus* genomes from RefSeq.
-```
-bactopia tools mashree \
-    --bactopia ~/bactopia-tutorial/bactopia \
-    --species "Bacillus cereus" \
-    --cpus 4
-```
 
-## Output Overview
-Below is the default output structure for the `mashtree` tool. Where possible the 
-file descriptions below were modified from a tools description.
+# Bactopia Tool - `mashtree`
+The `mashtree` module uses [Mashtree](https://github.com/lskatz/mashtree) to create a tree of your samples
+using [Mash](https://github.com/marbl/Mash) distance. You can use use `--species` or `-accessions` to to
+see how your samples compare to completed genomes. If used, 
+[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) will download available completed 
+genomes available from RefSeq and they will be included in your tree.
+
+
+## Example Usage
 ```
-bactopia-tools/
-└── mashtree
-    └── ${PREFIX}
-        ├── bactopia-info
-        │   ├── mashtree-report.html
-        │   ├── mashtree-timeline.html
-        │   └── mashtree-trace.txt
-        ├── refseq
-        │   └── fasta
-        │       └── ${SAMPLE_NAME}.fna
-        ├── ${PREFIX}-mashtree.dnd
-        └── ${PREFIX}-matrix.txt
+bactopia --wf mashtree \
+  --bactopia /path/to/your/bactopia/results \ 
+  --include includes.txt  
 ```
 
-| Filename | Description |
-|-----------|-------------|
-| ${PREFIX}-mashtree.dnd| A newick formatted tree based on Mash distances |
-| ${PREFIX}-matrix.txt | Pair-wise Mash distance for each sample |
-
-### Directory Description
-#### bactopia-info
-| Filename | Description |
-|----------|-------------|
-| mashtree-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| mashtree-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| mashtree-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
-
-#### refseq
-| Extension | Description |
-|----------|-------------|
-| .fna | FASTA formated genome downloaded from NCBI Assembly database. |
+## Parameters
 
 
-## Usage
-```
-Required Parameters:
-    --bactopia STR          Directory containing Bactopia analysis results for all samples.
+### Required Parameters
+Define where the pipeline should find input data and save output data.
 
-Optional Parameters:
-    --include STR           A text file containing sample names to include in the
-                                analysis. The expected format is a single sample per line.
+| Parameter | Description | Default |
+|---|---|---|
+| `--bactopia` | The path to bactopia results to use as inputs |  |
 
-    --exclude STR           A text file containing sample names to exclude from the
-                                analysis. The expected format is a single sample per line.
+### Filtering Parameters
+Use these parameters to specify which samples to include or exclude.
 
-    --prefix DIR            Prefix to use for final output files
-                                Default: mashtree
+| Parameter | Description | Default |
+|---|---|---|
+| `--include` | A text file containing sample names (one per line) to include from the analysis |  |
+| `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
-    --outdir DIR            Directory to write results to
-                                Default: ./
 
-    --max_time INT          The maximum number of minutes a job should run before being halted.
-                                Default: 120 minutes
+### Mashtree Parameters
 
-    --max_memory INT        The maximum amount of memory (Gb) allowed to a single process.
-                                Default: 32 Gb
 
-    --cpus INT              Number of processors made available to a single
-                                process.
-                                Default: 1
+| Parameter | Description | Default |
+|---|---|---|
+| `--trunclength` | How many characters to keep in a filename | 250 |
+| `--sortorder` | For neighbor-joining, the sort order can make a difference. | ABC |
+| `--genomesize` | Genome size of the input samples | 5000000 |
+| `--mindepth` | If mindepth is zero, then it will be chosen in a smart but slower method, to discard lower-abundance kmers. | 5 |
+| `--kmerlength` | Hashes will be based on strings of this many nucleotides | 21 |
+| `--sketchsize` | Each sketch will have at most this many non-redundant min-hashes | 10000 |
 
-RefSeq Assemblies Related Parameters:
-    This is a completely optional step and is meant to supplement your dataset with
-    high-quality completed genomes.
 
-    --species STR           The name of the species to download RefSeq assemblies for.
+### Optional Parameters
+These optional parameters can be useful in certain settings.
 
-    --accession STR         The Assembly accession (e.g. GCF*.*) download from RefSeq.
+| Parameter | Description | Default |
+|---|---|---|
+| `--outdir` | Base directory to write results and Nextflow related outputs to | ./ |
+| `--run_name` | Name of the directory to hold results (e.g. ${params.outdir}/${params.run_name}/<SAMPLE_NAME> | bactopia |
+| `--skip_compression` | Ouput files will not be compressed | False |
+| `--keep_all_files` | Keeps all analysis files created | False |
 
-    --limit INT             Limit the number of RefSeq assemblies to download. If the the
-                                number of available genomes exceeds the given limit, a
-                                random subset will be selected.
-                                Default: Download all available genomes
+### Max Job Request Parameters
+Set the top limit for requested resources for any single job.
 
-User Procided Reference:
-    --reference STR         A reference genome to calculate
+| Parameter | Description | Default |
+|---|---|---|
+| `--max_retry` | Maximum times to retry a process before allowing it to fail. | 3 |
+| `--max_cpus` | Maximum number of CPUs that can be requested for any single job. | 4 |
+| `--max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. | 32 |
+| `--max_time` | Maximum amount of time (in minutes) that can be requested for any single job. | 120 |
 
-Mashtree Related Parameters
-    --trunclength INT       How many characters to keep in a filename
-                                Default: 250
+### Nextflow Configuration Parameters
+Parameters to fine-tune your Nextflow setup.
 
-    --sortorder STR         For neighbor-joining, the sort order can make a difference.
-                                Options include:  ABC (alphabetical), random, input-order
-                                Default: ABC
+| Parameter | Description | Default |
+|---|---|---|
+| `--nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |  |
+| `--publish_dir_mode` | Method used to save pipeline results to output directory. | copy |
+| `--infodir` | Directory to keep pipeline Nextflow logs and reports. | ${params.outdir}/pipeline_info |
+| `--force` | Nextflow will overwrite existing output files. | False |
+| `--cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. | False |
 
-    --genomesize INT        Genome size of the input samples.
-                                Default: 5000000
+### Nextflow Profile Parameters
+Parameters to fine-tune your Nextflow setup.
 
-    --mindepth INT          If mindepth is zero, then it will be chosen in a smart but slower
-                                method, to discard lower-abundance kmers.
-                                Default: 5
+| Parameter | Description | Default |
+|---|---|---|
+| `--condadir` | Directory to Nextflow should use for Conda environments |  |
+| `--registry` | Docker registry to pull containers from. | dockerhub |
+| `--singularity_cache` | Directory where remote Singularity images are stored. |  |
+| `--queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) | general,high-memory |
+| `--disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. | False |
 
-    --kmerlength INT        Hashes will be based on strings of this many nucleotides.
-                                Default: 21
+### AWS Batch Profile (-profile awsbatch) Parameters
+Parameters to fine-tune your AWS Batch setup.
 
-    --sketchsize INT        Each sketch will have at most this
-                                many non-redundant min-hashes.
-                                Default: 10000
+| Parameter | Description | Default |
+|---|---|---|
+| `--aws_region` | AWS Region to be used by Nextflow | us-east-1 |
+| `--aws_volumes` | Volumes to be mounted from the EC2 instance to the Docker container | /opt/conda:/mnt/conda |
+| `--aws_cli_path` | Path to the AWS CLI for Nextflow to use. | /home/ec2-user/conda/bin/aws |
+| `--aws_upload_storage_class` | The S3 storage slass to use for storing files on S3 | STANDARD |
+| `--aws_max_parallel_transfers` | The number of parallele transfers between EC2 and S3 | 8 |
+| `--aws_delay_between_attempts` | The duration of sleep (in seconds) between each transfer between EC2 and S3 | 15 |
+| `--aws_max_transfer_attempts` | The maximum number of times to retry transferring a file between EC2 and S3 | 3 |
+| `--aws_max_retry` | The maximum number of times to retry a process on AWS Batch | 4 |
+| `--aws_ecr_registry` | The ECR registry containing Bactopia related containers. |  |
 
-Nextflow Related Parameters:
-    --condadir DIR          Directory to Nextflow should use for Conda environments
-                                Default: Bactopia's Nextflow directory
+### Helpful Parameters
+Uncommonly used parameters that might be useful.
 
-    --publish_mode          Set Nextflow's method for publishing output files. Allowed methods are:
-                                'copy' (default)    Copies the output files into the published directory.
+| Parameter | Description | Default |
+|---|---|---|
+| `--monochrome_logs` | Do not use coloured log outputs. |  |
+| `--nfdir` | Print directory Nextflow has pulled Bactopia to |  |
+| `--sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. | 5 |
+| `--validate_params` | Boolean whether to validate parameters against the schema at runtime | True |
+| `--help` | Display help text. |  |
+| `--show_hidden_params` | Show all params when using `--help` |  |
+| `--help_all` | An alias for --help --show_hidden_params |  |
+| `--version` | Display version text. |  |
 
-                                'copyNoFollow' Copies the output files into the published directory
-                                               without following symlinks ie. copies the links themselves.
+## Citations
+If you use Bactopia and `mashtree` in your analysis, please cite the following.
 
-                                'link'    Creates a hard link in the published directory for each
-                                          process output file.
+- [Bactopia](https://bactopia.github.io/)  
+    Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+  
 
-                                'rellink' Creates a relative symbolic link in the published directory
-                                          for each process output file.
-
-                                'symlink' Creates an absolute symbolic link in the published directory
-                                          for each process output file.
-
-                                Default: copy
-
-    --force                 Nextflow will overwrite existing output files.
-                                Default: false
-
-    --conatainerPath        Path to Singularity containers to be used by the 'slurm'
-                                profile.
-                                Default: /opt/bactopia/singularity
-
-    --sleep_time            After reading datases, the amount of time (seconds) Nextflow
-                                will wait before execution.
-                                Default: 5 seconds
-
-    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows
-                                you to create profiles specific to your environment (e.g. SGE,
-                                AWS, SLURM, etc...). This config file is loaded last and will
-                                overwrite existing variables if set.
-                                Default: Bactopia's default configs
-
-    -resume                 Nextflow will attempt to resume a previous run. Please notice it is
-                                only a single '-'
-
-Useful Parameters:
-    --version               Print workflow version information
-    --help                  Show this message and exit
-```
-
-## Conda Environment
-Below is the command that was used to create the Conda environment.
-```
-conda create -n bactopia-mashtree -c conda-forge -c bioconda \
-    mashtree \
-    ncbi-genome-download \
-    rename
-```
-
-## References
-
-* __[Mash](https://github.com/marbl/Mash)__  
-_Ondov, B. D. et al. [Mash: fast genome and metagenome distance 
-estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). 
-Genome Biol. 17, 132 (2016)._  
-
-* __[Mashtree](https://github.com/lskatz/mashtree)__  
-_Katz, L. S., Griswold, T., Morrison, S., Caravas, J., Zhang, S., den Bakker, H.C., Deng, X., and Carleton, H. A. [Mashtree: a rapid comparison of whole genome sequence files.](https://doi.org/10.21105/joss.01762) Journal of Open Source Software, 4(44), 1762, (2019)_  
-
-* __[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)__  
-_Blin, K. [ncbi-genome-download: Scripts to download genomes from the NCBI FTP 
-servers](https://github.com/kblin/ncbi-genome-download)_  
+- [Mash](https://github.com/marbl/Mash)  
+    Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+  
+- [Mashtree](https://github.com/lskatz/mashtree)  
+    Katz LS, Griswold T, Morrison S, Caravas J, Zhang S, den Bakker HC, Deng X, Carleton HA [Mashtree: a rapid comparison of whole genome sequence files.](https://doi.org/10.21105/joss.01762) _Journal of Open Source Software_, 4(44), 1762 (2019)
+  
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+    Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+  

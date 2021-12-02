@@ -17,10 +17,21 @@ jobs:
           repository: bactopia/bactopia
           path: bactopia
       
+      - name: Setup miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: bactopia
+          auto-activate-base: false
+
+      - name: Setup Docs Environment
+        run: conda install -c conda-forge -c bioconda nextflow jinja2 pygments pymdown-extensions mkdocs-material-extensions pyyaml
+
       - name: Stage latest CHANGELOG
         run: |
-         cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
-         rm -rf $GITHUB_WORKSPACE/bactopia
+          nextflow config -flat $GITHUB_WORKSPACE/bactopia/main.nf > $GITHUB_WORKSPACE/bactopia/nextflow_config.txt
+          python3 bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
+          cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
+          rm -rf $GITHUB_WORKSPACE/bactopia
 
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master

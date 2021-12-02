@@ -1,0 +1,43 @@
+---
+tags:
+{%- for tag in meta.tags | sort %}
+   - {{ tag -}}
+{% endfor %}
+---
+
+{% for tool in tools | sort -%}
+    {% if tools[tool].is_module == True -%}
+| [{{ tools[tool].name }}](/bactopia-tools/{{ tools[tool].name }}/) | {{ tools[tool].description }} |
+    {% endif -%}  
+{% endfor %}
+
+# Bactopia Tool - `{{ meta.name }}`
+{{ meta.introduction }}
+
+## Example Usage
+```
+bactopia --wf {{ meta.name }} \
+  --bactopia /path/to/your/bactopia/results \ 
+  --include includes.txt {% if 'example' in meta %} \
+  meta.example
+  {% endif %} 
+```
+
+## Parameters
+
+{{ params.bactopia_tools }}
+
+{{ params.module }}
+
+{{ params.generic }}
+
+## Citations
+If you use Bactopia and `{{ meta.name }}` in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}

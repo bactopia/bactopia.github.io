@@ -1,7 +1,9 @@
 # Acknowledgements
 
-Bactopia is truly a case of *"standing upon the shoulders of giants"*. Nearly 
-every component of Bactopia was created by others and made freely available to the public.
+Bactopia is truly a case of *"standing upon the shoulders of giants"*. Bactopia
+currently includes more than 118 datasets and software packages. Nearly 
+every component uses, from the workflow, datasets, software packages, even the 
+framework for this site, was created by others and made freely available to the public.
 
 I would like to personally extend my many thanks and gratitude to the authors
 of these software packages and public datasets. If you've made it this far, I 
@@ -9,465 +11,504 @@ owe you a beer 🍻 (or coffee ☕!) if we ever encounter one another in person.
 Really, thank you very much!
 
 !!! info "Please Cite Datasets and Tools"
-    If you have used Bactopia in your work, please be sure to cite any datasets or software you may have used. A citation link for each dataset/software has been made available.
+    If you have used Bactopia in your work, please be sure to cite any datasets
+    or software you may have used.
 
-    A BibTeX file of each citation is also available at [Bactopia Datasets and Software BibTeX](https://github.com/bactopia/bactopia/blob/master/docs/data/bactopia-datasets-software.bib)
+## Influences
+
+### nf-core
+[nf-core](https://nf-co.re/) is group of great individuals volunteering 
+their time to create a set of curated Nextflow analysis pipelines. The [nf-core Team](https://nf-co.re/about)
+is putting together some amazing practices that I think really strengthen the 
+Nextflow community as a whole!
+
+Since the beginning I have always had the idea of Bactopia one day being 
+apart of nf-core. Unfortunately, I think Bactopia is a much to big at this point to fit the nf-core mold, but that's OK! 
+There are still many nf-core practices I've been able to adapt into Bactopia.
+
+1. Arguement parsing based on nf-core library
+2. All Bactopia Tools are adapted from nf-core/modules
+3. Testing implemented to follow nf-core/modules
+
+By implementing these practices, Bactopia I believe is much better pipeline to use. For this I'm very 
+grateful to the nf-core community! Thank you!
+
+Ewels P, Peltzer A, Fillinger S, Patel H, Alneberg J, Wilm A, Garcia MU, Di Tommaso P, Nahnsen S [The nf-core framework for community-curated bioinformatics pipelines.](https://dx.doi.org/10.1038/s41587-020-0439-x) _Nat Biotechnol._ (2020)
+
 
 ## Public Datasets
-Below is a list of public datasets (alphabetical) that could have potentially 
+Below is a list of 16 public datasets that could have potentially 
 been included during the *[Build Datasets](datasets.md)* step.
 
 ### Ariba Reference Datasets
 These datasets are available using Ariba's `getref` function. You can learn 
 more about this function at [Ariba's Wiki](https://github.com/sanger-pathogens/ariba/wiki/Task:-getref).
 
-* __[ARG-ANNOT](http://en.mediterranee-infection.com/article.php?laref=283%26titre=arg-annot)__  
-_Gupta, S. K. et al. [ARG-ANNOT, a new bioinformatic tool to 
-discover antibiotic resistance genes in bacterial genomes.](http://www.ncbi.nlm.nih.gov/pubmed/24145532) 
-Antimicrob. Agents Chemother. 58, 212–220 (2014)._  
+1. __[ARG-ANNOT](http://en.mediterranee-infection.com/article.php?laref=283%26titre=arg-annot)__   
+Gupta SK, Padmanabhan BR, Diene SM, Lopez-Rojas R, Kempf M, Landraud L, Rolain J-M [ARG-ANNOT, a new bioinformatic tool to discover antibiotic resistance genes in bacterial genomes.](https://doi.org/10.1128/aac.01310-13) _Antimicrob. Agents Chemother_ 58, 212–220 (2014)
+  
+2. __[CARD](https://card.mcmaster.ca/)__   
+Alcock BP, Raphenya AR, Lau TTY, Tsang KK, Bouchard M, Edalatmand A, Huynh W, Nguyen A-L V, Cheng AA, Liu S, Min SY, Miroshnichenko A, Tran H-K, Werfalli RE, Nasir JA, Oloni M, Speicher DJ, Florescu A, Singh B, Faltyn M, Hernandez-Koutoucheva A, Sharma AN, Bordeleau E, Pawlowski AC, Zubyk HL, Dooley D, Griffiths E, Maguire F, Winsor GL, Beiko RG, Brinkman FSL, Hsiao WWL, Domselaar GV, McArthur AG [CARD 2020: antibiotic resistome surveillance with the comprehensive antibiotic resistance database.](https://doi.org/10.1093/nar/gkz935) _Nucleic acids research_ 48.D1, D517-D525 (2020)
+  
+3. __[MEGARes](https://megares.meglab.org/)__   
+Lakin SM, Dean C, Noyes NR, Dettenwanger A, Ross AS, Doster E, Rovira P, Abdo Z, Jones KL, Ruiz J, Belk KE, Morley PS, Boucher C [MEGARes: an antimicrobial resistance database for high throughput sequencing.](https://doi.org/10.1093/nar/gkw1009) _Nucleic Acids Res._ 45, D574–D580 (2017)
+  
+4. __[NCBI Reference Gene Catalog](https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA313047)__   
+Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
+  
+5. __[PlasmidFinder](https://cge.cbs.dtu.dk/services/PlasmidFinder/)__   
+Carattoli A, Zankari E, García-Fernández A, Larsen MV, Lund O, Villa L, Aarestrup FM, Hasman H [In silico detection and typing of plasmids using PlasmidFinder and plasmid multilocus sequence typing.](https://doi.org/10.1128/aac.02412-14) _Antimicrob. Agents Chemother._ 58, 3895–3903 (2014)
+  
+6. __[ResFinder](https://cge.cbs.dtu.dk//services/ResFinder/)__   
+Zankari E, Hasman H, Cosentino S, Vestergaard M, Rasmussen S, Lund O, Aarestrup FM, Larsen MV [Identification of acquired antimicrobial resistance genes.](https://doi.org/10.1093/jac/dks261) _J. Antimicrob. Chemother._ 67, 2640–2644 (2012)
+  
+7. __[SRST2](https://github.com/katholt/srst2)__   
+Inouye M, Dashnow H, Raven L-A, Schultz MB, Pope BJ, Tomita T, Zobel J, Holt KE [SRST2: Rapid genomic surveillance for public health and hospital microbiology labs.](https://doi.org/10.1186/s13073-014-0090-6) _Genome Med._ 6, 90 (2014)
+  
+8. __[VFDB](http://www.mgc.ac.cn/VFs/)__   
+Chen L, Zheng D, Liu B, Yang J, Jin Q [VFDB 2016: hierarchical and refined dataset for big data analysis--10 years on.](https://doi.org/10.1093/nar/gkv1239) _Nucleic Acids Res._ 44, D694–7 (2016)
+  
+9. __[VirulenceFinder](https://cge.cbs.dtu.dk/services/VirulenceFinder/)__   
+Joensen KG, Scheutz F, Lund O, Hasman H, Kaas RS, Nielsen EM, Aarestrup FM [Real-time whole-genome sequencing for routine typing, surveillance, and outbreak detection of verotoxigenic _Escherichia coli_.](https://doi.org/10.1128/jcm.03617-13) _J. Clin. Microbiol._ 52, 1501–1510 (2014)
+  
 
-* __[CARD](https://card.mcmaster.ca/)__  
-_Alcock, Brian P., et al. [CARD 2020: antibiotic resistome surveillance with the comprehensive antibiotic resistance database.](https://www.ncbi.nlm.nih.gov/pubmed/31665441) Nucleic acids research 48.D1, D517-D525 (2020)._
-
-* __[MEGARes](https://megares.meglab.org/)__  
-_Lakin, S. M. et al. [MEGARes: an antimicrobial resistance database for high 
-throughput sequencing](http://www.ncbi.nlm.nih.gov/pubmed/27899569). 
-Nucleic Acids Res. 45, D574–D580 (2017)._  
-
-* __[NCBI Reference Gene Catalog](https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA313047)__  
-_Feldgarden, M. et al. [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). Antimicrob. Agents Chemother. (2019)_  
-
-* __[plasmidfinder](https://cge.cbs.dtu.dk/services/PlasmidFinder/)__  
-_Carattoli, A. et al. [In silico detection and typing of plasmids using 
-PlasmidFinder and plasmid multilocus sequence typing.](http://www.ncbi.nlm.nih.gov/pubmed/24777092) 
-Antimicrob. Agents Chemother. 58, 3895–3903 (2014)._
-
-* __[resfinder](https://cge.cbs.dtu.dk//services/ResFinder/)__  
-_Zankari, E. et al. [Identification of acquired antimicrobial resistance genes.](http://www.ncbi.nlm.nih.gov/pubmed/22782487) 
-J. Antimicrob. Chemother. 67, 2640–2644 (2012)._  
-
-* __[SRST2](https://github.com/katholt/srst2)__  
-_Inouye, M. et al. [SRST2: Rapid genomic surveillance for public health and 
-hospital microbiology labs.](http://www.ncbi.nlm.nih.gov/pubmed/25422674) 
-Genome Med. 6, 90 (2014)._  
-
-* __[VFDB](http://www.mgc.ac.cn/VFs/)__  
-_Chen, L., Zheng, D., Liu, B., Yang, J. & Jin, Q. [VFDB 2016: hierarchical 
-and refined dataset for big data analysis--10 years on.](http://www.ncbi.nlm.nih.gov/pubmed/26578559) 
-Nucleic Acids Res. 44, D694–7 (2016)._  
-
-* __[VirulenceFinder](https://cge.cbs.dtu.dk/services/VirulenceFinder/)__  
-_Joensen, K. G. et al. [Real-time whole-genome sequencing for routine typing, 
-surveillance, and outbreak detection of verotoxigenic Escherichia coli.](http://www.ncbi.nlm.nih.gov/pubmed/24574290) 
-J. Clin. Microbiol. 52, 1501–1510 (2014)._  
 
 ### Minmer Datasets
-* __[Mash Refseq (release 88) Sketch](https://mash.readthedocs.io/en/latest/data.html)__  
-_Ondov, B. D. et al. [Mash Screen: High-throughput sequence containment 
-estimation for genome discovery.](https://doi.org/10.1101/557314) bioRxiv 557314 (2019)._  
+1. __[Mash Refseq (release 88) Sketch](https://mash.readthedocs.io/en/latest/data.html)__   
+Ondov BD, Starrett GJ, Sappington A, Kostic A, Koren S, Buck CB, Phillippy AM [Mash Screen: high-throughput sequence containment estimation for genome discovery](https://doi.org/10.1186/s13059-019-1841-x) _Genome Biol_ 20, 232 (2019)
+  
+2. __[Sourmash Genbank LCA Signature](https://sourmash.readthedocs.io/en/latest/databases.html)__   
+Brown CT, Irber L [sourmash: a library for MinHash sketching of DNA](http://dx.doi.org/10.21105/joss.00027). _JOSS_ 1, 27 (2016)
+  
 
-* __[Sourmash Genbank LCA Signature](https://sourmash.readthedocs.io/en/latest/databases.html)__  
-_Titus Brown, C. & Irber, L. [sourmash: a library for MinHash sketching of DNA.](http://joss.theoj.org/papers/10.21105/joss.00027) 
-JOSS 1, 27 (2016)._  
 
 ### Everything Else
-* __[eggNOG 5.0 Database](http://eggnog.embl.de/)__  
-_J. Huerta-Cepas, D. Szklarczyk, D. Heller, A. Hernández-Plaza, S. K. Forslund, H. Cook, D. R. Mende, I. Letunic, T. Rattei, L. J. Jensen, C. von Mering, P. Bork, [eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses.](https://doi.org/10.1093/nar/gky1085) Nucleic Acids Res. 47, D309–D314 (2019)._  
 
-* __[Genome Taxonomy Database](https://gtdb.ecogenomic.org/)__  
-_Parks, D. H. et al. 
-[A standardized bacterial taxonomy based on genome phylogeny substantially revises the tree of life.](https://doi.org/10.1038/nbt.4229)
- Nat. Biotechnol. 36, 996–1004 (2018)_  
-_Parks, D. H. et al. 
-[Selection of representative genomes for 24,706 bacterial and archaeal species clusters provide a complete genome-based taxonomy.](https://doi.org/10.1101/771964)
- bioRxiv 771964 (2019)_  
+1. __[eggNOG 5.0 Database](http://eggnog.embl.de/)__   
+Huerta-Cepas J, Szklarczyk D, Heller D, Hernández-Plaza A, Forslund SK, Cook H, Mende DR, Letunic I, Rattei T, Jensen LJ, von Mering C, Bork P [eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses.](https://doi.org/10.1093/nar/gky1085) _Nucleic Acids Res._ 47, D309–D314 (2019)
+  
+2. __[Genome Taxonomy Database](https://gtdb.ecogenomic.org/)__   
+Parks DH, Chuvochina M, Rinke C, Mussig AJ, Chaumeil P-A, Hugenholtz P [GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy](https://doi.org/10.1093/nar/gkab776) _Nucleic Acids Research_ gkab776 (2021)
+  
+3. __[NCBI RefSeq Database](https://www.ncbi.nlm.nih.gov/refseq/)__   
+O'Leary NA, Wright MW, Brister JR, Ciufo S, Haddad D, McVeigh R, Rajput B, Robbertse B, Smith-White B, Ako-Adjei D, Astashyn A, Badretdin A, Bao Y, Blinkova O0, Brover V, Chetvernin V, Choi J, Cox E, Ermolaeva O, Farrell CM, Goldfarb T, Gupta T, Haft D, Hatcher E, Hlavina W, Joardar VS, Kodali VK, Li W, Maglott D, Masterson P, McGarvey KM, Murphy MR, O'Neill K, Pujar S, Rangwala SH, Rausch D, Riddick LD, Schoch C, Shkeda A, Storz SS, Sun H, Thibaud-Nissen F, Tolstoy I, Tully RE, Vatsan AR, Wallin C, Webb D, Wu W, Landrum MJ, Kimchi A, Tatusova T, DiCuccio M, Kitts P, Murphy TD, Pruitt KD [Reference sequence (RefSeq) database at NCBI: current status, taxonomic expansion, and functional annotation.](https://doi.org/10.1093/nar/gkv1189) _Nucleic Acids Res._ 44, D733–45 (2016)
+  
+4. __[PubMLST.org](https://pubmlst.org/)__   
+Jolley KA, Bray JE, Maiden MCJ [Open-access bacterial population genomics: BIGSdb software, the PubMLST.org website and their applications.](http://dx.doi.org/10.12688/wellcomeopenres.14826.1) _Wellcome Open Res_ 3, 124 (2018)
+  
+5. __[SILVA rRNA Database](https://www.arb-silva.de/)__   
+Quast C, Pruesse E, Yilmaz P, Gerken J, Schweer T, Yarza P, Peplies J, Glöckner FO [The SILVA ribosomal RNA gene database project: improved data processing and web-based tools.](https://doi.org/10.1093/nar/gks1219) _Nucleic Acids Res._ 41, D590–6 (2013)
+  
 
-* __[NCBI RefSeq Database](https://www.ncbi.nlm.nih.gov/refseq/)__  
-_O’Leary, N. A. et al. [Reference sequence (RefSeq) database at NCBI: current status, 
-taxonomic expansion, and functional annotation](http://dx.doi.org/10.1093/nar/gkv1189). 
-Nucleic Acids Res. 44, D733–45 (2016)._  
-
-* __[PLSDB - A plasmid database](https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/)__  
-_Galata, V., Fehlmann, T., Backes, C. & Keller, A. [PLSDB: a resource of complete bacterial 
-plasmids](http://dx.doi.org/10.1093/nar/gky1050). 
-Nucleic Acids Res. 47, D195–D202 (2019)._  
-
-* __[PubMLST.org](https://pubmlst.org/)__  
-_Jolley, K. A., Bray, J. E. & Maiden, M. C. J. [Open-access bacterial population genomics: BIGSdb 
-software, the PubMLST.org website and their applications](http://dx.doi.org/10.12688/wellcomeopenres.14826.1). 
-Wellcome Open Res 3, 124 (2018)._  
-
-* __[SILVA rRNA Database](https://www.arb-silva.de/)__  
-_Quast, C. et al. 
-[The SILVA ribosomal RNA gene database project: improved data processing and web-based tools.](https://doi.org/10.1093/nar/gks1219) 
-Nucleic Acids Res. 41, D590–6 (2013)_
 
 ## Software Included In Bactopia
-Below is a list of software (alphabetical) used (directly and indirectly) by Bactopia. A link to the software page as well as the citation (if available) have been included.
+Below are 102 of software packages used (directly and indirectly) by 
+Bactopia. A link to the software page as well as the citation (if available) 
+have been included.
 
-* __[AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)__  
+1. __[AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)__  
 Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.  
-_Raghuram V., [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE)_  
-
-* __[AMRFinderPlus](https://github.com/ncbi/amr)__  
+Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
+  
+2. __[AMRFinderPlus](https://github.com/ncbi/amr)__  
 Find acquired antimicrobial resistance genes and some point mutations in protein or assembled nucleotide sequences.  
-_Feldgarden, M. et al. [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). Antimicrob. Agents Chemother. (2019)_  
-
-* __[Aragorn](http://130.235.244.92/ARAGORN/Downloads/)__  
+Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
+  
+3. __[any2fasta](https://github.com/tseemann/any2fasta)__  
+Convert various sequence formats to FASTA  
+Seemann T [any2fasta: Convert various sequence formats to FASTA](https://github.com/tseemann/any2fasta) (GitHub)
+  
+4. __[Aragorn](http://130.235.244.92/ARAGORN/Downloads/)__  
 Finds transfer RNA features (tRNA)  
-_Laslett D. and B. Canback, [ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences.](https://doi.org/10.1093/nar/gkh152) Nucleic Acids Res. 32(1):11-6. (2004)_  
-
-* __[Ariba](https://github.com/sanger-pathogens/ariba)__  
+Laslett D, Canback B [ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences.](https://doi.org/10.1093/nar/gkh152) _Nucleic Acids Res_. 32(1):11-6 (2004)
+  
+5. __[Ariba](https://github.com/sanger-pathogens/ariba)__  
 Antimicrobial Resistance Identification By Assembly  
-_Hunt, M. et al. [ARIBA: rapid antimicrobial resistance genotyping directly from 
-sequencing reads](http://dx.doi.org/10.1099/mgen.0.000131). 
-Microb Genom 3, e000131 (2017)._  
-
-* __[ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm)__  
+Hunt M, Mather AE​, Sánchez-Busó L​, Page AJ​, Parkhill J​, Keane JA​, Harris SR [ARIBA: rapid antimicrobial resistance genotyping directly from sequencing reads](http://dx.doi.org/10.1099/mgen.0.000131). _Microb Genom_ 3, e000131 (2017)
+  
+6. __[ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm)__  
 A set of simulation tools to generate synthetic next-generation sequencing reads  
-_W. Huang, L. Li, J. R. Myers, G. T. Marth, [ART: a next-generation sequencing read simulator.](http://dx.doi.org/10.1093/bioinformatics/btr708) Bioinformatics. 28, 593–594 (2012)._  
-
-* __[assembly-scan](https://github.com/rpetit3/assembly-scan)__  
+Huang W, Li L, Myers JR, Marth GT [ART: a next-generation sequencing read simulator.](http://dx.doi.org/10.1093/bioinformatics/btr708) _Bioinformatics_ 28, 593–594 (2012)
+  
+7. __[assembly-scan](https://github.com/rpetit3/assembly-scan)__  
 Generate basic stats for an assembly.  
-_Petit III, R. A. [assembly-scan: generate basic stats for an 
-assembly](https://github.com/rpetit3/assembly-scan)._  
-
-* __[Barrnap](https://github.com/tseemann/barrnap)__  
+Petit III RA [assembly-scan: generate basic stats for an assembly](https://github.com/rpetit3/assembly-scan) (GitHub)
+  
+8. __[Bakta](https://github.com/oschwengers/bakta)__  
+Rapid & standardized annotation of bacterial genomes & plasmids  
+Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A [Bakta - rapid and standardized annotation of bacterial genomes via alignment-free sequence identification.](https://doi.org/10.1099/mgen.0.000685) _Microbial Genomics_ 7(11) (2021)
+  
+9. __[Barrnap](https://github.com/tseemann/barrnap)__  
 Bacterial ribosomal RNA predictor  
-_Seemann, T. [Barrnap: Bacterial ribosomal RNA predictor](https://github.com/tseemann/barrnap)_  
-
-* __[BBTools](https://jgi.doe.gov/data-and-tools/bbtools/)__  
+Seemann T [Barrnap: Bacterial ribosomal RNA predictor](https://github.com/tseemann/barrnap) (GitHub)
+  
+10. __[BBTools](https://jgi.doe.gov/data-and-tools/bbtools/)__  
 BBTools is a suite of fast, multithreaded bioinformatics tools designed for analysis of DNA and RNA sequence data.  
-_Bushnell, B. [BBMap short read aligner, and other bioinformatic tools.](http://sourceforge.net/projects/bbmap/)_  
-
-* __[BCFtools](https://github.com/samtools/bcftools)__  
+Bushnell B [BBMap short read aligner, and other bioinformatic tools.](http://sourceforge.net/projects/bbmap/) (Link)
+  
+11. __[BCFtools](https://github.com/samtools/bcftools)__  
 Utilities for variant calling and manipulating VCFs and BCFs.  
-_Danecek, P. et al. [BCFtools - Utilities for variant calling and manipulating VCFs and BCFs.](http://github.com/samtools/bcftools)_  
-
-* __[Bedtools](https://github.com/arq5x/bedtools2)__  
+Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H [Twelve years of SAMtools and BCFtools](https://doi.org/10.1093/gigascience/giab008) _GigaScience_ Volume 10, Issue 2 (2021)
+  
+12. __[Bedtools](https://github.com/arq5x/bedtools2)__  
 A powerful toolset for genome arithmetic.  
-_Quinlan, A. R. & Hall, I. M. [BEDTools: a flexible suite of utilities for 
-comparing genomic features](http://dx.doi.org/10.1093/bioinformatics/btq033). 
-Bioinformatics 26, 841–842 (2010)._  
-
-* __[BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)__  
+Quinlan AR, Hall IM [BEDTools: a flexible suite of utilities for comparing genomic features](http://dx.doi.org/10.1093/bioinformatics/btq033). _Bioinformatics_ 26, 841–842 (2010)
+  
+13. __[BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)__  
 Basic Local Alignment Search Tool  
-_Camacho, C. et al. [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). 
-BMC Bioinformatics 10, 421 (2009)._  
-
-* __[Bowtie2](https://github.com/BenLangmead/bowtie2)__  
+Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+  
+14. __[Bowtie2](https://github.com/BenLangmead/bowtie2)__  
 A fast and sensitive gapped read aligner  
-_B. Langmead, S. L. Salzberg, [Fast gapped-read alignment with Bowtie 2.](http://dx.doi.org/10.1038/nmeth.1923) Nat. Methods. 9, 357–359 (2012)._  
-
-* __[BWA](https://github.com/lh3/bwa/)__  
+Langmead B, Salzberg SL [Fast gapped-read alignment with Bowtie 2.](http://dx.doi.org/10.1038/nmeth.1923) _Nat. Methods._ 9, 357–359 (2012)
+  
+15. __[BWA](https://github.com/lh3/bwa/)__  
 Burrow-Wheeler Aligner for short-read alignment  
-_Li, H. [Aligning sequence reads, clone sequences and assembly contigs with 
-BWA-MEM](http://arxiv.org/abs/1303.3997). arXiv [q-bio.GN] (2013)._  
-
-* __[CD-Hit](https://github.com/weizhongli/cdhit)__  
+Li H [Aligning sequence reads, clone sequences and assembly contigs with BWA-MEM](http://arxiv.org/abs/1303.3997). _arXiv_ [q-bio.GN] (2013)
+  
+16. __[CD-HIT](https://github.com/weizhongli/cdhit)__  
 Accelerated for clustering the next-generation sequencing data  
-_Li, W. & Godzik, A. [Cd-hit: a fast program for clustering and comparing large sets of protein 
-or nucleotide sequences](http://dx.doi.org/10.1093/bioinformatics/btl158). 
-Bioinformatics 22, 1658–1659 (2006)._  
-_Fu, L., Niu, B., Zhu, Z., Wu, S. & Li, W. [CD-HIT: accelerated for clustering the next-generation 
-sequencing data](http://dx.doi.org/10.1093/bioinformatics/bts565). 
-Bioinformatics 28, 3150–3152 (2012)._  
-
-* __[CheckM](https://github.com/Ecogenomics/CheckM)__  
+Li W, Godzik A [Cd-hit: a fast program for clustering and comparing large sets of protein or nucleotide sequences](http://dx.doi.org/10.1093/bioinformatics/btl158). _Bioinformatics_ 22, 1658–1659 (2006)
+  
+17. __[CD-HIT-EST](https://github.com/weizhongli/cdhit)__  
+Accelerated for clustering the next-generation sequencing data  
+Fu L, Niu B, Zhu Z, Wu S, Li W [CD-HIT: accelerated for clustering the next-generation sequencing data](http://dx.doi.org/10.1093/bioinformatics/bts565). _Bioinformatics_ 28, 3150–3152 (2012)
+  
+18. __[CheckM](https://github.com/Ecogenomics/CheckM)__  
 Assess the quality of microbial genomes recovered from isolates, single cells, and metagenomes  
-_D. H. Parks, M. Imelfort, C. T. Skennerton, P. Hugenholtz, G. W. Tyson, [CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes.](http://dx.doi.org/10.1101/gr.186072.114) Genome Res. 25, 1043–1055 (2015)._  
-
-* __[ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)__  
+Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW [CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes.](http://dx.doi.org/10.1101/gr.186072.114) _Genome Res_ 25, 1043–1055 (2015)
+  
+19. __[ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)__  
 Efficient Inference of Recombination in Whole Bacterial Genomes  
-_Didelot, X. & Wilson, D. J. 
-[ClonalFrameML: efficient inference of recombination in whole bacterial genomes.](http://dx.doi.org/10.1371/journal.pcbi.1004041)
- PLoS Comput. Biol. 11, e1004041 (2015)_  
-
-* __[DIAMOND](https://github.com/bbuchfink/diamond)__  
+Didelot X, Wilson DJ [ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.](https://doi.org/10.1371/journal.pcbi.1004041) _PLoS Comput Biol_ 11(2) e1004041 (2015)
+  
+20. __[DIAMOND](https://github.com/bbuchfink/diamond)__  
 Accelerated BLAST compatible local sequence aligner.  
-_B. Buchfink, C. Xie, D. H. Huson, [Fast and sensitive protein alignment using DIAMOND.](http://dx.doi.org/10.1038/nmeth.3176) Nat. Methods. 12, 59–60 (2015)._  
-
-* __[eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)__  
+Buchfink B, Xie C, Huson DH [Fast and sensitive protein alignment using DIAMOND.](http://dx.doi.org/10.1038/nmeth.3176) _Nat. Methods._ 12, 59–60 (2015)
+  
+21. __[ECTyper](https://github.com/phac-nml/ecoli_serotyping)__  
+In-silico prediction of _Escherichia coli_ serotype  
+Laing C, Bessonov K, Sung S, La Rose C [ECTyper - In silico prediction of _Escherichia coli_ serotype](https://github.com/phac-nml/ecoli_serotyping) (GitHub)  
+22. __[eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)__  
 Fast genome-wide functional annotation through orthology assignment  
-_J. Huerta-Cepas, K. Forslund, L. P. Coelho, D. Szklarczyk, L. J. Jensen, C. von Mering, P. Bork, [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) Mol. Biol. Evol. 34, 2115–2122 (2017)._  
-
-* __[FastANI](https://github.com/ParBLiSS/FastANI)__  
+Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115–2122 (2017)
+  
+23. __[emmtyper](https://github.com/MDU-PHL/emmtyper)__  
+emm Automatic Isolate Labeller  
+Tan A, Seemann T, Lacey D, Davies M, Mcintyre L, Frost H, Williamson D, Gonçalves da Silva A [emmtyper - emm Automatic Isolate Labeller](https://github.com/MDU-PHL/emmtyper) (GitHub)
+  
+24. __[FastANI](https://github.com/ParBLiSS/FastANI)__  
 Fast Whole-Genome Similarity (ANI) Estimation  
-_Jain, C., Rodriguez-R, L. M., Phillippy, A. M., Konstantinidis, K. T. & Aluru, S. 
-[High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.](http://dx.doi.org/10.1038/s41467-018-07641-9)
- Nat. Commun. 9, 5114 (2018)_  
-
-* __[FastQC](https://github.com/s-andrews/FastQC)__  
+Jain C, Rodriguez-R LM, Phillippy AM, Konstantinidis KT, Aluru S [High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.](http://dx.doi.org/10.1038/s41467-018-07641-9) _Nat. Commun._ 9, 5114 (2018)
+  
+25. __[FastQC](https://github.com/s-andrews/FastQC)__  
 A quality control analysis tool for high throughput sequencing data.  
-_Andrews, S. [FastQC: a quality control tool for high throughput sequence data.](http://www.bioinformatics.babraham.ac.uk/projects/fastqc)._  
-
-* __[fastq-dl](https://github.com/rpetit3/fastq-dl)__  
+Andrews S [FastQC: a quality control tool for high throughput sequence data.](http://www.bioinformatics.babraham.ac.uk/projects/fastqc) (WebLink)
+  
+26. __[fastq-dl](https://github.com/rpetit3/fastq-dl)__  
 Download FASTQ files from SRA or ENA repositories.  
-_Petit III, R. A. [fastq-dl: Download FASTQ files from SRA or ENA repositories.](https://github.com/rpetit3/fastq-dl)_  
-
-* __[fastq-scan](https://github.com/rpetit3/fastq-scan)__  
+Petit III RA [fastq-dl: Download FASTQ files from SRA or ENA repositories.](https://github.com/rpetit3/fastq-dl) (GitHub)
+  
+27. __[fastq-scan](https://github.com/rpetit3/fastq-scan)__  
 Output FASTQ summary statistics in JSON format  
-_Petit III, R. A. [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan)_  
-
-* __[FastTree 2](http://www.microbesonline.org/fasttree)__  
+Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
+  
+28. __[FastTree](http://www.microbesonline.org/fasttree)__  
 Approximately-maximum-likelihood phylogenetic trees  
-_Price, M. N., Dehal, P. S. & Arkin, A. P. 
-[FastTree 2 – Approximately Maximum-Likelihood Trees for Large Alignments.](https://dx.doi.org/10.1371%2Fjournal.pone.0009490)
- PLoS One 5, e9490 (2010)_  
-
-* __[FLASH](https://ccb.jhu.edu/software/FLASH/)__  
+Price MN, Dehal PS, Arkin AP [FastTree 2 – Approximately Maximum-Likelihood Trees for Large Alignments.](https://dx.doi.org/10.1371%2Fjournal.pone.0009490) _PLoS One_ 5, e9490 (2010)
+  
+29. __[FLASH](https://ccb.jhu.edu/software/FLASH/)__  
 A fast and accurate tool to merge paired-end reads.  
-_Magoč, T., and S. L. Salzberg, [FLASH: fast length adjustment of short reads to improve genome assemblies.](https://doi.org/10.1093/bioinformatics/btr507) Bioinformatics 27.21 (2011): 2957-2963._  
-
-* __[freebayes](https://github.com/ekg/freebayes)__  
+Magoč T, Salzberg SL [FLASH: fast length adjustment of short reads to improve genome assemblies.](https://doi.org/10.1093/bioinformatics/btr507) _Bioinformatics_ 27.21 2957-2963 (2011)
+  
+30. __[Flye](https://github.com/fenderglass/Flye)__  
+De novo assembler for single molecule sequencing reads using repeat graphs  
+Kolmogorov M, Yuan J, Lin Y, Pevzner P [Assembly of Long Error-Prone Reads Using Repeat Graphs](https://doi.org/10.1038/s41587-019-0072-8) _Nature Biotechnology_ (2019)
+  
+31. __[freebayes](https://github.com/ekg/freebayes)__  
 Bayesian haplotype-based genetic polymorphism discovery and genotyping  
-_Garrison E., and G. Marth, [Haplotype-based variant detection from short-read sequencing.](https://arxiv.org/abs/1207.3907) arXiv preprint arXiv:1207.3907 [q-bio.GN] (2012)_  
-
-* __[GNU Parallel](https://www.gnu.org/software/parallel/)__  
+Garrison E, Marth G [Haplotype-based variant detection from short-read sequencing.](https://arxiv.org/abs/1207.3907) arXiv preprint arXiv:1207.3907 [q-bio.GN] (2012)
+  
+32. __[GNU Parallel](https://www.gnu.org/software/parallel/)__  
 A shell tool for executing jobs in parallel  
-_Tange, O. [GNU Parallel](https://doi.org/10.5281/zenodo.1146014) 2018, March 2018_  
-
-* __[GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)__  
+Tange O [GNU Parallel](https://doi.org/10.5281/zenodo.1146014) (2018)
+  
+33. __[GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)__  
 A toolkit for assigning objective taxonomic classifications to bacterial and archaeal genomes  
-_Chaumeil, P.-A., Mussig, A. J., Hugenholtz, P. & Parks, D. H. 
-[GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database.](https://doi.org/10.1093/bioinformatics/btz848)
- Bioinformatics (2019)_  
-
-* __[hicap](https://github.com/scwatts/hicap)__  
-in silico typing of the *H. influenzae* cap locus  
-_Watts S.C. and Holt K.E. [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) Journal of Clinical Microbiology, JCM.00190-19 (2019)._  
-
-* __[HMMER](http://hmmer.org/)__  
+Chaumeil PA, Mussig AJ, Hugenholtz P, Parks DH [GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database.](https://doi.org/10.1093/bioinformatics/btz848) _Bioinformatics_ (2019)
+  
+34. __[hicap](https://github.com/scwatts/hicap)__  
+in silico typing of the _H. influenzae_ cap locus  
+Watts SC, Holt KE [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) _Journal of Clinical Microbiology_ JCM.00190-19 (2019)
+  
+35. __[HMMER](http://hmmer.org/)__  
 Biosequence analysis using profile hidden Markov models  
-_Eddy, S. R. 
-[Accelerated Profile HMM Searches.](https://doi.org/10.1371/journal.pcbi.1002195) 
-PLoS Comput. Biol. 7, e1002195 (2011)_  
-
-* __[Infernal](http://eddylab.org/infernal/)__  
+Eddy SR [Accelerated Profile HMM Searches.](https://doi.org/10.1371/journal.pcbi.1002195) _PLoS Comput. Biol._ 7, e1002195 (2011)
+  
+36. __[Infernal](http://eddylab.org/infernal/)__  
 Searches DNA sequence databases for RNA structure and sequence similarities  
-_Nawrocki, E. P., and S. R. Eddy, [Infernal 1.1: 100-fold faster RNA homology searches.](https://doi.org/10.1093/bioinformatics/btt509) Bioinformatics, 29(22), 2933-2935. (2013)_  
-
-* __[IQ-TREE](https://github.com/Cibiv/IQ-TREE)__  
+Nawrocki EP, Eddy SR [Infernal 1.1: 100-fold faster RNA homology searches.](https://doi.org/10.1093/bioinformatics/btt509) _Bioinformatics_ 29(22), 2933-2935 (2013)
+  
+37. __[IQ-TREE](https://github.com/Cibiv/IQ-TREE)__  
 Efficient phylogenomic software by maximum likelihood  
-_L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, B.Q. Minh (2015) 
-[IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300)
- Mol. Biol. Evol., 32:268-274._  
-_S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, L.S. Jermiin (2017) 
-[ModelFinder: Fast model selection for accurate phylogenetic estimates.](https://doi.org/10.1038/nmeth.4285) 
-Nat. Methods, 14:587-589._  
-_D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, L.S. Vinh (2018) [
-UFBoot2: Improving the ultrafast bootstrap approximation.](https://doi.org/10.1093/molbev/msx281)
- Mol. Biol. Evol., 35:518–522._  
-
-* __[ISMapper](https://github.com/jhawkey/IS_mapper)__  
+Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
+  
+38. __[ModelFinder](https://github.com/Cibiv/IQ-TREE)__  
+Used for automatic model selection  
+Kalyaanamoorthy S, Minh BQ, Wong TKF, von Haeseler A, Jermiin LS [ModelFinder - Fast model selection for accurate phylogenetic estimates.](https://doi.org/10.1038/nmeth.4285) _Nat. Methods_ 14:587-589 (2017)
+  
+39. __[UFBoot2](https://github.com/Cibiv/IQ-TREE)__  
+Used to conduct ultrafast bootstrapping  
+Hoang DT, Chernomor O, von Haeseler A, Minh BQ, Vinh LS [UFBoot2: Improving the ultrafast bootstrap approximation.](https://doi.org/10.1093/molbev/msx281) _Mol. Biol. Evol._ 35:518–522 (2018)
+  
+40. __[ISMapper](https://github.com/jhawkey/IS_mapper)__  
 IS mapping software  
-_Hawkey, J. et al. [ISMapper: identifying transposase insertion sites in 
-bacterial genomes from short read sequence data](http://dx.doi.org/10.1186/s12864-015-1860-2). 
-BMC Genomics 16, 667 (2015)._  
-
-* __[Lighter](https://github.com/mourisl/Lighter)__  
+Hawkey J, Hamidian M, Wick RR, Edwards DJ, Billman-Jacobe H, Hall RM, Holt KE [ISMapper: identifying transposase insertion sites in bacterial genomes from short read sequence data](http://dx.doi.org/10.1186/s12864-015-1860-2). _BMC Genomics_ 16, 667 (2015)
+  
+41. __[Kaptive](https://github.com/katholt/Kaptive)__  
+Surface polysaccharide loci for _Klebsiella pneumoniae_ species complex and _Acinetobacter baumannii_ genomes  
+Wyres KL, Wick RR, Gorrie C, Jenney A, Follador R, Thomson NR, Holt KE [Identification of Klebsiella capsule synthesis loci from whole genome data.](https://doi.org/10.1099/mgen.0.000102) _Microbial genomics_ 2(12) (2016)
+  
+42. __[Kleborate](https://github.com/katholt/Kleborate)__  
+Genotyping tool for _Klebsiella pneumoniae_ and its related species complex  
+Lam MMC, Wick RR, Watts, SC, Cerdeira LT, Wyres KL, Holt KE [A genomic surveillance framework and genotyping tool for Klebsiella pneumoniae and its related species complex.](https://doi.org/10.1038/s41467-021-24448-3) _Nat Commun_ 12, 4188 (2021)
+  
+43. __[KMC](https://github.com/refresh-bio/KMC)__  
+Fast and frugal disk based k-mer counter  
+Deorowicz S, Kokot M, Grabowski Sz, Debudaj-Grabysz A [KMC 2: Fast and resource-frugal k-mer counting](https://doi.org/10.1093/bioinformatics/btv022) _Bioinformatics_ 31(10):1569–1576 (2015)
+  
+44. __[Lighter](https://github.com/mourisl/Lighter)__  
 Fast and memory-efficient sequencing error corrector  
-_Song, L., Florea, L. and B. Langmead, [Lighter: Fast and Memory-efficient Sequencing Error Correction without Counting](http://genomebiology.com/2014/15/11/509/). Genome Biol. 2014 Nov 15;15(11):509._
-
-* __[MAFFT](https://mafft.cbrc.jp/alignment/software/)__  
+Song L, Florea L, Langmead B [Lighter: Fast and Memory-efficient Sequencing Error Correction without Counting](https://doi.org/10.1186/s13059-014-0509-9). _Genome Biol._ 15(11):509 (2014)
+  
+45. __[LisSero](https://github.com/MDU-PHL/LisSero)__  
+_In silico_ serotype prediction for _Listeria monocytogenes_  
+Kwong J, Zhang J, Seeman T, Horan, K, Gonçalves da Silva A [LisSero - _In silico_ serotype prediction for _Listeria monocytogenes_](https://github.com/MDU-PHL/LisSero) (GitHub)
+  
+46. __[MAFFT](https://mafft.cbrc.jp/alignment/software/)__  
 Multiple alignment program for amino acid or nucleotide sequences  
-_Katoh, K. & Standley, D. M. 
-[MAFFT multiple sequence alignment software version 7: improvements in performance and usability.](https://doi.org/10.1093/molbev/mst010) 
-Mol. Biol. Evol. 30, 772–780 (2013)_  
-
-* __[Mash](https://github.com/marbl/Mash)__  
+Katoh K, Standley DM [MAFFT multiple sequence alignment software version 7: improvements in performance and usability.](https://doi.org/10.1093/molbev/mst010) _Mol. Biol. Evol._ 30, 772–780 (2013)
+  
+47. __[Mash](https://github.com/marbl/Mash)__  
 Fast genome and metagenome distance estimation using MinHash  
-_Ondov, B. D. et al. [Mash: fast genome and metagenome distance 
-estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). 
-Genome Biol. 17, 132 (2016)._  
-_Ondov, B. D. et al. [Mash Screen: High-throughput sequence 
-containment estimation for genome discovery](http://dx.doi.org/10.1101/557314). 
-bioRxiv 557314 (2019)._  
-
-* __[Mashtree](https://github.com/lskatz/mashtree)__  
+Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+  
+48. __[Mash](https://github.com/marbl/Mash)__  
+High-throughput sequence containment estimation  
+Ondov BD, Starrett GJ, Sappington A, Kostic A, Koren S, Buck CB, Phillippy AM [Mash Screen: high-throughput sequence containment estimation for genome discovery](https://doi.org/10.1186/s13059-019-1841-x) _Genome Biol_ 20, 232 (2019)
+  
+49. __[Mashtree](https://github.com/lskatz/mashtree)__  
 Create a tree using Mash distances  
-_Katz, L. S., Griswold, T., Morrison, S., Caravas, J., Zhang, S., den Bakker, H.C., Deng, X., and Carleton, H. A. [Mashtree: a rapid comparison of whole genome sequence files.](https://doi.org/10.21105/joss.01762) Journal of Open Source Software, 4(44), 1762, (2019)_  
-
-* __[maskrc-svg](https://github.com/kwongj/maskrc-svg)__  
+Katz LS, Griswold T, Morrison S, Caravas J, Zhang S, den Bakker HC, Deng X, Carleton HA [Mashtree: a rapid comparison of whole genome sequence files.](https://doi.org/10.21105/joss.01762) _Journal of Open Source Software_, 4(44), 1762 (2019)
+  
+50. __[maskrc-svg](https://github.com/kwongj/maskrc-svg)__  
 Masks recombination as detected by ClonalFrameML or Gubbins  
-_Kwong, J. [maskrc-svg - Masks recombination as detected by ClonalFrameML or Gubbins and draws an SVG.](https://github.com/kwongj/maskrc-svg)_  
-
-* __[McCortex](https://github.com/mcveanlab/mccortex)__  
+Kwong J [maskrc-svg - Masks recombination as detected by ClonalFrameML or Gubbins and draws an SVG.](https://github.com/kwongj/maskrc-svg) (GitHub)  
+51. __[McCortex](https://github.com/mcveanlab/mccortex)__  
 De novo genome assembly and multisample variant calling  
-_Turner, I., Garimella, K. V., Iqbal, Z. and G. McVean, [Integrating long-range 
-connectivity information into de Bruijn graphs.](http://dx.doi.org/10.1093/bioinformatics/bty157) 
-Bioinformatics 34, 2556–2565 (2018)._  
-
-* __[MEGAHIT](https://github.com/voutcn/megahit)__  
+Turner I, Garimella KV, Iqbal Z, McVean G [Integrating long-range connectivity information into de Bruijn graphs.](http://dx.doi.org/10.1093/bioinformatics/bty157) _Bioinformatics_ 34, 2556–2565 (2018)
+  
+52. __[Medaka](None)__  
+Sequence correction provided by ONT Research  
+ONT Research [Medaka: Sequence correction provided by ONT Research](https://github.com/nanoporetech/medaka) (GitHub)
+  
+53. __[meningotype](https://github.com/MDU-PHL/meningotype)__  
+In silico serotyping, finetyping and Bexsero antigen sequence typing of _Neisseria meningitidis_  
+Kwong JC, Gonçalves da Silva A, Stinear TP, Howden BP, & Seemann T [meningotype: in silico typing for _Neisseria meningitidis_.](https://github.com/MDU-PHL/meningotype) (GitHub)
+  
+54. __[MEGAHIT](https://github.com/voutcn/megahit)__  
 Ultra-fast and memory-efficient (meta-)genome assembler  
-_Li, D., et al. [MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph.](https://doi.org/10.1093/bioinformatics/btv033) Bioinformatics 31.10 (2015): 1674-1676._  
-
-* __[MinCED](https://github.com/ctSkennerton/minced)__  
+Li D, Liu C-M, Luo R, Sadakane K, Lam T-W [MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph.](https://doi.org/10.1093/bioinformatics/btv033) _Bioinformatics_ 31.10 1674-1676 (2015)
+  
+55. __[MinCED](https://github.com/ctSkennerton/minced)__  
 Mining CRISPRs in Environmental Datasets  
-_Skennerton, C. [MinCED: Mining CRISPRs in Environmental Datasets](https://github.com/ctSkennerton/minced)_  
-
-* __[Minimap2](https://github.com/lh3/minimap2)__  
+Skennerton C [MinCED: Mining CRISPRs in Environmental Datasets](https://github.com/ctSkennerton/minced) (GitHub)
+  
+56. __[Miniasm](https://github.com/lh3/miniasm)__  
+Ultrafast de novo assembly for long noisy reads (though having no consensus step)  
+Li H [Miniasm: Ultrafast de novo assembly for long noisy reads](https://github.com/lh3/miniasm) (GitHub)
+  
+57. __[Minimap2](https://github.com/lh3/minimap2)__  
 A versatile pairwise aligner for genomic and spliced nucleotide sequences  
-_Li, H. [Minimap2: pairwise alignment for nucleotide sequences.](https://doi.org/10.1093/bioinformatics/bty191) Bioinformatics, 34:3094-3100. (2018)_  
-
-* __[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)__  
+Li H [Minimap2: pairwise alignment for nucleotide sequences.](https://doi.org/10.1093/bioinformatics/bty191) _Bioinformatics_ 34:3094-3100 (2018)
+  
+58. __[NanoPlot](https://github.com/wdecoster/NanoPlot)__  
+Plotting scripts for long read sequencing data  
+De Coster W, D’Hert S, Schultz DT, Cruts M, Van Broeckhoven C [NanoPack: visualizing and processing long-read sequencing data](https://doi.org/10.1093/bioinformatics/bty149) _Bioinformatics_ Volume 34, Issue 15 (2018) 
+  
+59. __[Nanoq](https://github.com/esteinig/nanoq)__  
+Minimal but speedy quality control for nanopore reads in Rust  
+Steinig E [Nanoq: Minimal but speedy quality control for nanopore reads in Rust](https://github.com/esteinig/nanoq) (GitHub)
+  
+60. __[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)__  
 Scripts to download genomes from the NCBI FTP servers  
-_Blin, K. [ncbi-genome-download: Scripts to download genomes from the NCBI FTP 
-servers](https://github.com/kblin/ncbi-genome-download)_  
-
-* __[Nextflow](https://github.com/nextflow-io/nextflow)__  
+Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+  
+61. __[Nextflow](https://github.com/nextflow-io/nextflow)__  
 A DSL for data-driven computational pipelines.  
-_Di Tommaso, P., Chatzou, M., Floden, E. W., Barja, P.P., Palumbo, E., Notredame, C., 2017. [Nextflow enables reproducible computational workflows.](https://www.nature.com/articles/nbt.3820.pdf?origin=ppub) Nat. Biotechnol. 35, 316–319._
-
-* __[nhmmer](http://hmmer.org/)__  
+Di Tommaso P, Chatzou M, Floden EW, Barja PP, Palumbo E, Notredame C [Nextflow enables reproducible computational workflows.](https://www.nature.com/articles/nbt.3820.pdf?origin=ppub) _Nat. Biotechnol._ 35, 316–319 (2017)
+  
+62. __[ngmaster](https://github.com/MDU-PHL/ngmaster)__  
+_In silico_ multi-antigen sequence typing for _Neisseria gonorrhoeae_ (NG-MAST)  
+Kwong J, Gonçalves da Silva A, Schultz M, Seeman T [ngmaster - _In silico_ multi-antigen sequence typing for _Neisseria gonorrhoeae_ (NG-MAST)](https://github.com/MDU-PHL/ngmaster) (GitHub)
+  
+63. __[nhmmer](http://hmmer.org/)__  
 DNA homology search with profile HMMs.  
-_Wheeler, T. J. & Eddy, S. R. 
-[nhmmer: DNA homology search with profile HMMs.](https://doi.org/10.1093/bioinformatics/btt403)
- Bioinformatics 29, 2487–2489 (2013)_  
-
-* __[phyloFlash](https://github.com/HRGV/phyloFlash)__  
+Wheeler TJ, Eddy SR [nhmmer: DNA homology search with profile HMMs.](https://doi.org/10.1093/bioinformatics/btt403) _Bioinformatics_ 29, 2487–2489 (2013)
+  
+64. __[phyloFlash](https://github.com/HRGV/phyloFlash)__  
 A pipeline to rapidly reconstruct the SSU rRNAs and explore phylogenetic composition of an illumina (meta)genomic dataset.  
-_H. R. Gruber-Vodicka, B.KB. Seah, E. Pruesse. 
-[phyloFlash — Rapid SSU rRNA profiling and targeted assembly from metagenomes.](https://doi.org/10.1101/521922) 
-bioRxiv 521922_  
-
-* __[Pigz](https://zlib.net/pigz/)__  
+Gruber-Vodicka HR, Seah BKB, Pruesse E [phyloFlash: Rapid Small-Subunit rRNA Profiling and Targeted Assembly from Metagenomes](https://doi.org/10.1128/mSystems.00920-20) _mSystems_ 5 (2020)
+  
+65. __[Pigz](https://zlib.net/pigz/)__  
 A parallel implementation of gzip for modern multi-processor, multi-core machines.  
-_Adler, M. [pigz: A parallel implementation of gzip for modern multi-processor, multi-core machines.](https://zlib.net/pigz/) Jet Propulsion Laboratory (2015)._  
-
-* __[Pilon](https://github.com/broadinstitute/pilon/)__  
+Adler M. [pigz: A parallel implementation of gzip for modern multi-processor, multi-core machines.](https://zlib.net/pigz/) _Jet Propulsion Laboratory_ (2015)
+  
+66. __[Pilon](https://github.com/broadinstitute/pilon/)__  
 An automated genome assembly improvement and variant detection tool  
-_Walker, B. J., et al. [Pilon: an integrated tool for comprehensive microbial variant detection and genome assembly improvement.](https://doi.org/10.1371/journal.pone.0112963) PloS one 9.11 (2014): e112963._  
-
-* __[PIRATE](http://github.com/SionBayliss/PIRATE)__  
+Walker BJ, Abeel T,  Shea T, Priest M, Abouelliel A, Sakthikumar S, Cuomo CA, Zeng Q, Wortman J, Young SK, Earl AM [Pilon: an integrated tool for comprehensive microbial variant detection and genome assembly improvement.](https://doi.org/10.1371/journal.pone.0112963) _PloS one_ 9.11 e112963 (2014)
+  
+67. __[PIRATE](http://github.com/SionBayliss/PIRATE)__  
 A toolbox for pangenome analysis and threshold evaluation.  
-_S. C. Bayliss, H. A. Thorpe, N. M. Coyle, S. K. Sheppard, E. J. Feil 
-[PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) 
-Gigascience. 8 (2019)_  
-
-* __[pplacer](https://github.com/matsen/pplacer)__  
+Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ [PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) _Gigascience_ 8 (2019)
+  
+68. __[Porechop](https://github.com/rrwick/Porechop)__  
+adapter trimmer for Oxford Nanopore reads  
+Wick RR, Judd LM, Gorrie CL, Holt KE. [Completing bacterial genome assemblies with multiplex MinION sequencing.](https://doi.org/10.1099/mgen.0.000132) _Microb Genom._ 3(10):e000132 (2017)
+  
+69. __[pplacer](https://github.com/matsen/pplacer)__  
 Phylogenetic placement and downstream analysis  
-_Matsen, F. A., Kodner, R. B. & Armbrust, E. V. 
-[pplacer: linear time maximum-likelihood and Bayesian phylogenetic placement of sequences onto a fixed reference tree.](https://doi.org/10.1186/1471-2105-11-538)
- BMC Bioinformatics 11, 538 (2010)_  
-
-* __[Prodigal](https://github.com/hyattpd/Prodigal)__  
+Matsen FA, Kodner RB, Armbrust EV [pplacer: linear time maximum-likelihood and Bayesian phylogenetic placement of sequences onto a fixed reference tree.](https://doi.org/10.1186/1471-2105-11-538) _BMC Bioinformatics_ 11, 538 (2010)
+  
+70. __[Prodigal](https://github.com/hyattpd/Prodigal)__  
 Fast, reliable protein-coding gene prediction for prokaryotic genomes.  
-_Hyatt, D., et al. [Prodigal: prokaryotic gene recognition and translation initiation site identification.](https://doi.org/10.1186/1471-2105-11-119) BMC Bioinformatics 11.1 (2010): 119._  
-
-* __[Prokka](https://github.com/tseemann/prokka)__  
+Hyatt D, Chen G-L, LoCascio PF, Land ML, Larimer FW, Hauser LJ [Prodigal: prokaryotic gene recognition and translation initiation site identification.](https://doi.org/10.1186/1471-2105-11-119) _BMC Bioinformatics_ 11.1 119 (2010)
+  
+71. __[Prokka](https://github.com/tseemann/prokka)__  
 Rapid prokaryotic genome annotation  
-_Seemann, T. [Prokka: rapid prokaryotic genome annotation](http://dx.doi.org/10.1093/bioinformatics/btu153). 
-Bioinformatics 30, 2068–2069 (2014)._  
-
-* __[QUAST](http://quast.sourceforge.net/)__  
+Seemann T [Prokka: rapid prokaryotic genome annotation](http://dx.doi.org/10.1093/bioinformatics/btu153) _Bioinformatics_ 30, 2068–2069 (2014)
+  
+72. __[QUAST](http://quast.sourceforge.net/)__  
 Quality Assessment Tool for Genome  
-_A. Gurevich, V. Saveliev, N. Vyahhi, G. Tesler, [QUAST: quality assessment tool for genome assemblies.](http://dx.doi.org/10.1093/bioinformatics/btt086) Bioinformatics. 29, 1072–1075 (2013)._  
-
-* __[Racon](https://github.com/lbcb-sci/racon)__  
+Gurevich A, Saveliev V, Vyahhi N, Tesler G [QUAST: quality assessment tool for genome assemblies.](http://dx.doi.org/10.1093/bioinformatics/btt086) _Bioinformatics_ 29, 1072–1075 (2013)
+  
+73. __[Racon](https://github.com/lbcb-sci/racon)__  
 Ultrafast consensus module for raw de novo genome assembly of long uncorrected reads  
-_R. Vaser, I. Sović, N. Nagarajan, M. Šikić, [Fast and accurate de novo genome assembly from long uncorrected reads.](http://dx.doi.org/10.1101/gr.214270.116) Genome Res. 27, 737–746 (2017)._  
-
-* __[RNAmmer](http://www.cbs.dtu.dk/services/RNAmmer/)__  
+Vaser R, Sović I, Nagarajan N, Šikić M [Fast and accurate de novo genome assembly from long uncorrected reads.](http://dx.doi.org/10.1101/gr.214270.116) _Genome Res_ 27, 737–746 (2017)
+  
+74. __[Rasusa](https://github.com/mbhall88/rasusa)__  
+Randomly subsample sequencing reads to a specified coverage  
+Hall MB [Rasusa: Randomly subsample sequencing reads to a specified coverage.](https://doi.org/10.5281/zenodo.3731394) (2019).
+  
+75. __[Raven](https://github.com/lbcb-sci/raven)__  
+De novo genome assembler for long uncorrected reads  
+Vaser R, Šikić M [Time- and memory-efficient genome assembly with Raven.](https://doi.org/10.1038/s43588-021-00073-4) _Nat Comput Sci_ 1, 332–336 (2021)
+  
+76. __[RNAmmer](http://www.cbs.dtu.dk/services/RNAmmer/)__  
 Consistent and rapid annotation of ribosomal RNA genes  
-_Lagesen, K., et al. [RNAmmer: consistent annotation of rRNA genes in genomic sequences.](https://dx.doi.org/10.1093%2Fnar%2Fgkm160) Nucleic Acids Res 35.9: 3100-3108. (2007)_  
-
-* __[Roary](https://github.com/sanger-pathogens/Roary)__  
+Lagesen K, Hallin P, Rødland EA, Stærfeldt H-H, Rognes T, Ussery DW [RNAmmer: consistent annotation of rRNA genes in genomic sequences.](https://dx.doi.org/10.1093%2Fnar%2Fgkm160) _Nucleic Acids Res_ 35.9: 3100-3108 (2007)
+  
+77. __[Roary](https://github.com/sanger-pathogens/Roary)__  
 Rapid large-scale prokaryote pan genome analysis  
-_Page, A. J. et al. 
-[Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421)
- Bioinformatics 31, 3691–3693 (2015)_  
-
-* __[samclip](https://github.com/tseemann/samclip)__  
+Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691–3693 (2015)
+  
+78. __[samclip](https://github.com/tseemann/samclip)__  
 Filter SAM file for soft and hard clipped alignments  
-_Seemann, T. [Samclip: Filter SAM file for soft and hard clipped alignments](https://github.com/tseemann/samclip)_  
-
-* __[Samtools](https://github.com/samtools/samtools)__  
+Seemann T [Samclip: Filter SAM file for soft and hard clipped alignments](https://github.com/tseemann/samclip) (GitHub)
+  
+79. __[Samtools](https://github.com/samtools/samtools)__  
 Tools for manipulating next-generation sequencing data  
-_Li, H. et al. [The Sequence Alignment/Map format and SAMtools](http://dx.doi.org/10.1093/bioinformatics/btp352). 
-Bioinformatics 25, 2078–2079 (2009)._
-
-* __[Seqtk](https://github.com/lh3/seqtk)__  
+Li H, Handsaker B, Wysoker A, Fennell T, Ruan J, Homer N, Marth G, Abecasis G, Durbin R [The Sequence Alignment/Map format and SAMtools](http://dx.doi.org/10.1093/bioinformatics/btp352). _Bioinformatics_ 25, 2078–2079 (2009)
+  
+80. __[Scoary](https://github.com/AdmiralenOla/Scoary)__  
+Pan-genome wide association studies  
+Brynildsrud O, Bohlin J, Scheffer L, Eldholm V [Rapid scoring of genes in microbial pan-genome-wide association studies with Scoary.](https://doi.org/10.1186/s13059-016-1108-8) _Genome Biol._ 17:238 (2016)
+  
+81. __[SeqSero2](https://github.com/denglab/SeqSero2)__  
+Salmonella serotype prediction from genome sequencing data  
+Zhang S, Den-Bakker HC, Li S, Dinsmore BA, Lane C, Lauer AC, Fields PI, Deng X. [SeqSero2: rapid and improved Salmonella serotype determination using whole genome sequencing data.](https://doi.org/10.1128/AEM.01746-19) _Appl Environ Microbiology_ 85(23):e01746-19 (2019)
+  
+82. __[Seqtk](https://github.com/lh3/seqtk)__  
 A fast and lightweight tool for processing sequences in the FASTA or FASTQ format.  
-_Li, H. [Toolkit for processing sequences in FASTA/Q formats](https://github.com/lh3/seqtk)_  
-
-* __[Shovill](https://github.com/tseemann/shovill)__  
+Li H [Toolkit for processing sequences in FASTA/Q formats](https://github.com/lh3/seqtk) (GitHub)
+  
+83. __[Shovill](https://github.com/tseemann/shovill)__  
 Faster assembly of Illumina reads  
-_Seemann, T. [Shovill: De novo assembly pipeline for Illumina paired reads](https://github.com/tseemann/shovill)_  
-
-* __[SignalP](http://www.cbs.dtu.dk/services/SignalP-4.0/)__  
+Seemann T [Shovill: De novo assembly pipeline for Illumina paired reads](https://github.com/tseemann/shovill) (GitHub)
+  
+84. __[SignalP](http://www.cbs.dtu.dk/services/SignalP-4.0/)__  
 Finds signal peptide features in CDS  
-_Petersen, T. N., et al. [SignalP 4.0: discriminating signal peptides from transmembrane regions.](https://doi.org/10.1038/nmeth.1701) Nature methods 8.10: 785.(2011)_  
-
-* __[SKESA](https://github.com/ncbi/SKESA)__  
+Petersen TN, Brunak S, von Heijne G, Nielsen H [SignalP 4.0: discriminating signal peptides from transmembrane regions.](https://doi.org/10.1038/nmeth.1701) _Nature methods_ 8.10: 785 (2011)
+  
+85. __[SKESA](https://github.com/ncbi/SKESA)__  
 Strategic Kmer Extension for Scrupulous Assemblies  
-_Souvorov, A., Agarwala, R. and D. J. Lipman. [SKESA: strategic k-mer extension for scrupulous assemblies.](https://doi.org/10.1186/s13059-018-1540-z) Genome Biology 19:153 (2018).__  
-
-* __[Snippy](https://github.com/tseemann/snippy)__  
+Souvorov A, Agarwala R, Lipman DJ [SKESA: strategic k-mer extension for scrupulous assemblies.](https://doi.org/10.1186/s13059-018-1540-z) _Genome Biology_ 19:153 (2018)
+  
+86. __[Snippy](https://github.com/tseemann/snippy)__  
 Rapid haploid variant calling and core genome alignment  
-_Seemann, T. [Snippy: fast bacterial variant calling from NGS reads](https://github.com/tseemann/snippy)
-(2015)_  
-
-* __[SnpEff](http://snpeff.sourceforge.net/)__  
+Seemann T [Snippy: fast bacterial variant calling from NGS reads](https://github.com/tseemann/snippy) (GitHub)
+  
+87. __[SnpEff](http://snpeff.sourceforge.net/)__  
 Genomic variant annotations and functional effect prediction toolbox.  
-_Cingolani, P., et al. [A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3.](https://doi.org/10.4161/fly.19695) Fly, 6(2), 80-92 (2012)_  
-
-* __[snp-dists](https://github.com/tseemann/snp-dists)__  
+Cingolani P, Platts A, Wang LL, Coon M, Nguyen T, Wang L, Land SJ, Lu X, Douglas M [A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3.](https://doi.org/10.4161/fly.19695) _Fly_ 6(2), 80-92 (2012)
+  
+88. __[snp-dists](https://github.com/tseemann/snp-dists)__  
 Pairwise SNP distance matrix from a FASTA sequence alignment  
-_Seemann, T. [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists)_  
-
-* __[SNP-sites](https://github.com/sanger-pathogens/snp-sites)__  
+Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+  
+89. __[SNP-sites](https://github.com/sanger-pathogens/snp-sites)__  
 Rapidly extracts SNPs from a multi-FASTA alignment.  
-_Page, A. J., et al. [SNP-sites: rapid efficient extraction of SNPs from multi-FASTA alignments.](https://dx.doi.org/10.1099%2Fmgen.0.000056) Microbial Genomics 2.4 (2016)._  
-
-* __[Sourmash](https://github.com/dib-lab/sourmash)__  
+Page AJ, Taylor B, Delaney AJ, Soares J, Seemann T, Keane JA, Harris SR [SNP-sites: rapid efficient extraction of SNPs from multi-FASTA alignments.](https://dx.doi.org/10.1099%2Fmgen.0.000056) _Microbial Genomics_ 2.4 (2016)
+  
+90. __[Sourmash](https://github.com/dib-lab/sourmash)__  
 Compute and compare MinHash signatures for DNA data sets.  
-_Titus Brown, C. and L. Irber [sourmash: a library for MinHash sketching 
-of DNA](http://dx.doi.org/10.21105/joss.00027). JOSS 1, 27 (2016)._  
-
-* __[SPAdes](https://github.com/ablab/spades)__  
+Brown CT, Irber L [sourmash: a library for MinHash sketching of DNA](http://dx.doi.org/10.21105/joss.00027). _JOSS_ 1, 27 (2016)
+  
+91. __[SPAdes](https://github.com/ablab/spades)__  
 An assembly toolkit containing various assembly pipelines.  
-_Bankevich, A., et al. [SPAdes: a new genome assembly algorithm and its applications to single-cell sequencing.](https://doi.org/10.1089/cmb.2012.0021) Journal of computational biology 19.5 (2012): 455-477._  
-
-* __[spaTyper](https://github.com/HCGB-IGTP/spaTyper)__  
+Bankevich A, Nurk S, Antipov D, Gurevich AA, Dvorkin M, Kulikov AS, Lesin VM, Nikolenko SI, Pham S, Prjibelski AD, Pyshkin AV, Sirotkin AV, Vyahhi N, Tesler G, Alekseyev MA, Pevzner PA [SPAdes: a new genome assembly algorithm and its applications to single-cell sequencing.](https://doi.org/10.1089/cmb.2012.0021) _Journal of computational biology_ 19.5 455-477 (2012)
+  
+92. __[spaTyper](https://github.com/HCGB-IGTP/spaTyper)__  
 Computational method for finding spa types.  
-_Harmsen D., Claus H., Witte W., Rothgänger J., Claus H., Turnwald D., and Vogel U.. [Typing of methicillin-resistant Staphylococcus aureus in a university hospital setting using a novel software for spa-repeat determination and database management.](https://doi.org/10.1128/jcm.41.12.5442-5448.2003) J. Clin. Microbiol. 41:5442-5448 (2003)._  
-_Sanchez-Herrero J. F., and Sullivan M. (2020, October 2). [spaTyper: Staphylococcal protein A (spa) characterization pipeline](http://doi.org/10.5281/zenodo.4063625). Zenodo._  
-
-* __[staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec)__  
+Sanchez-Herrero JF, and Sullivan M [spaTyper: Staphylococcal protein A (spa) characterization pipeline](http://doi.org/10.5281/zenodo.4063625). Zenodo. (2020)
+  
+93. __[spaTyper Database](https://cge.cbs.dtu.dk/services/spatyper/)__  
+Database used by spaTyper  
+Harmsen D, Claus H, Witte W, Rothgänger J, Claus H, Turnwald D, and Vogel U [Typing of methicillin-resistant _Staphylococcus aureus_ in a university hospital setting using a novel software for spa-repeat determination and database management.](https://doi.org/10.1128/jcm.41.12.5442-5448.2003) _J. Clin. Microbiol._ 41:5442-5448 (2003)
+  
+94. __[staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec)__  
 A standalone version of Staphopia's SCCmec typing method.  
-_Petit III R. A., Read T. D., [Staphylococcus aureus viewed from the perspective of 40,000+ genomes.](http://dx.doi.org/10.7717/peerj.5261) PeerJ 6, e5261 (2018)._  
-
-* __[Trimmomatic](http://www.usadellab.org/cms/index.php?page=trimmomatic)__  
+Petit III RA, Read TD [_Staphylococcus aureus_ viewed from the perspective of 40,000+ genomes.](http://dx.doi.org/10.7717/peerj.5261) _PeerJ_ 6, e5261 (2018)
+  
+95. __[TBProfiler](https://github.com/jodyphelan/TBProfiler)__  
+Profiling tool for _Mycobacterium tuberculosis_ to detect resistance and strain type  
+Phelan JE, O’Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O’Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+  
+96. __[Trimmomatic](http://www.usadellab.org/cms/index.php?page=trimmomatic)__  
 A flexible read trimming tool for Illumina NGS data  
-_Bolger, A. M., Lohse, M., and B. Usadel. [Trimmomatic: a flexible trimmer for Illumina sequence data.](https://doi.org/10.1093/bioinformatics/btu170) Bioinformatics 30.15 (2014): 2114-2120._  
-
-* __[Unicycler](https://github.com/rrwick/Unicycler)__  
+Bolger AM, Lohse M, Usadel B [Trimmomatic: a flexible trimmer for Illumina sequence data.](https://doi.org/10.1093/bioinformatics/btu170) _Bioinformatics_ 30.15 2114-2120 (2014)
+  
+97. __[Unicycler](https://github.com/rrwick/Unicycler)__  
 Hybrid assembly pipeline for bacterial genomes  
-_R. R. Wick, L. M. Judd, C. L. Gorrie, K. E. Holt, [Unicycler: Resolving bacterial genome assemblies from short and long sequencing reads.](http://dx.doi.org/10.1371/journal.pcbi.1005595) PLoS Comput. Biol. 13, e1005595 (2017)._  
-
-* __[VCF-Annotator](https://github.com/rpetit3/vcf-annotator)__  
+Wick RR, Judd LM, Gorrie CL, Holt KE [Unicycler: Resolving bacterial genome assemblies from short and long sequencing reads.](http://dx.doi.org/10.1371/journal.pcbi.1005595) _PLoS Comput. Biol._ 13, e1005595 (2017)
+  
+98. __[VCF-Annotator](https://github.com/rpetit3/vcf-annotator)__  
 Add biological annotations to variants in a VCF file.  
-_Petit III, R. A. [VCF-Annotator: Add biological annotations to variants 
-in a VCF file.](https://github.com/rpetit3/vcf-annotator)._  
-
-* __[Vcflib](https://github.com/vcflib/vcflib)__  
+Petit III RA [VCF-Annotator: Add biological annotations to variants in a VCF file.](https://github.com/rpetit3/vcf-annotator) (GitHub)
+  
+99. __[Vcflib](https://github.com/vcflib/vcflib)__  
 a simple C++ library for parsing and manipulating VCF files  
-_Garrison, E. [Vcflib: A C++ library for parsing and manipulating VCF files](https://github.com/vcflib/vcflib)_  
-
-* __[Velvet](https://github.com/dzerbino/velvet)__  
+Garrison E [Vcflib: A C++ library for parsing and manipulating VCF files](https://github.com/vcflib/vcflib) (GitHub)
+  
+100. __[Velvet](https://github.com/dzerbino/velvet)__  
 Short read de novo assembler using de Bruijn graphs  
-_Zerbino, D. R., and E. Birney. [Velvet: algorithms for de novo short read assembly using de Bruijn graphs.](http://www.genome.org/cgi/doi/10.1101/gr.074492.107) Genome research 18.5 (2008): 821-829._  
-
-* __[VSEARCH](https://github.com/torognes/vsearch)__  
+Zerbino DR, Birney E [Velvet: algorithms for de novo short read assembly using de Bruijn graphs.](http://www.genome.org/cgi/doi/10.1101/gr.074492.107) _Genome research_ 18.5 821-829 (2008)
+  
+101. __[VSEARCH](https://github.com/torognes/vsearch)__  
 Versatile open-source tool for metagenomics  
-_Rognes, T., Flouri, T., Nichols, B., Quince, C. & Mahé, F. 
-[VSEARCH: a versatile open source tool for metagenomics.](https://doi.org/10.7717/peerj.2584)
- PeerJ 4, e2584 (2016)_  
-
-* __[vt](https://github.com/atks/vt)__  
+Rognes T, Flouri T, Nichols B, Quince C, Mahé F [VSEARCH: a versatile open source tool for metagenomics.](https://doi.org/10.7717/peerj.2584) _PeerJ_ 4, e2584 (2016)
+  
+102. __[vt](https://github.com/atks/vt)__  
 A tool set for short variant discovery in genetic sequence data.  
-_Tan, A., Abecasis, G. R., and H. M. Kang, [Unified representation of genetic variants.](https://doi.org/10.1093/bioinformatics/btv112) Bioinformatics, 31(13), 2202-2204. (2015)_  
-
-
-
+Tan A, Abecasis GR, Kang HM [Unified representation of genetic variants.](https://doi.org/10.1093/bioinformatics/btv112) _Bioinformatics_ 31(13), 2202-2204 (2015)
+  

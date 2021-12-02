@@ -1,21 +1,27 @@
 ---
 tags:
-   - annotation
+   - enterics
    - fasta
-   - prokaryote
+   - klebsiella
+   - serotype
 ---
 
 
 
-# Bactopia Tool - `eggnog`
-The `eggnog` module uses [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper) to assign 
-functional annotation to protein sequences. eggNOG-mapper uses orthologous groups and phylogenies
-from the eggNOG database to more precisely functionally annotate than traditional homology methods.
+# Bactopia Tool - `kleborate`
+The `kleborate` module uses [Kleborate](https://github.com/katholt/Kleborate) to screen genome assemblies of 
+_Klebsiella pneumoniae_ and the _Klebsiella pneumoniae_ species complex (KpSC). Kleborate predicts:
+
+- MLST, species,
+- ICEKp associated virulence loci
+- virulence plasmid associated loci
+- antimicrobial resistance determinants,
+- K (capsule) and O antigen (LPS) serotype prediction.
 
 
 ## Example Usage
 ```
-bactopia --wf eggnog \
+bactopia --wf kleborate \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -39,27 +45,19 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### eggNOG Downloader Parameters
+### Kleborate Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--eggnog` | Path to existing or destination for eggNOG databases |  |
-| `--download_eggnog` | Required if downloading latest eggNOG database, will overwrite existing databases. | False |
-| `--skip_diamond` | Do not install the diamond database | False |
-| `--install_mmseq` | Install the MMseqs2 database | False |
-| `--install_pfam` | Install the Pfam database, required for de novo annotation or realignment | False |
-| `--install_hmm` | Install the HMMER database specified with --hmmer_taxid | False |
-| `--hmmer_taxid` | Tax ID of eggNOG HMM database to download | 2 |
-
-### eggNOG Mapper Parameters
-
-
-| Parameter | Description | Default |
-|---|---|---|
-| `--genepred` | Method to use for gene prediction | search |
-| `--mode` | Method to search against eggNOG sequences | diamond |
-| `--eggnog_opts` | Extra eggNOG Mapper options in quotes |  |
+| `--skip_resistance` | Turn off resistance genes screening | False |
+| `--skip_kaptive` | Turn off Kaptive screening of K and O loci | False |
+| `--min_identity` | Minimum alignment percent identity for main results | 90.0 |
+| `--min_coverage` | Minimum alignment percent coverage for main results | 80.0 |
+| `--min_spurious_identity` | Minimum alignment percent identity for spurious results | 80.0 |
+| `--min_spurious_coverage` | Minimum alignment percent coverage for spurious results | 40.0 |
+| `--min_kaptive_confidence` | Minimum Kaptive confidence to call K/O loci - confidence levels below this will be reported as unknown | Good |
+| `--force_index` | Rebuild the BLAST index at the start of execution | False |
 
 
 ### Optional Parameters
@@ -134,15 +132,15 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `eggnog` in your analysis, please cite the following.
+If you use Bactopia and `kleborate` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [eggNOG 5.0 Database](http://eggnog.embl.de/)  
-    Huerta-Cepas J, Szklarczyk D, Heller D, Hernández-Plaza A, Forslund SK, Cook H, Mende DR, Letunic I, Rattei T, Jensen LJ, von Mering C, Bork P [eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses.](https://doi.org/10.1093/nar/gky1085) _Nucleic Acids Res._ 47, D309–D314 (2019)
+- [Kaptive](https://github.com/katholt/Kaptive)  
+    Wyres KL, Wick RR, Gorrie C, Jenney A, Follador R, Thomson NR, Holt KE [Identification of Klebsiella capsule synthesis loci from whole genome data.](https://doi.org/10.1099/mgen.0.000102) _Microbial genomics_ 2(12) (2016)
   
-- [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)  
-    Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115–2122 (2017)
+- [Kleborate](https://github.com/katholt/Kleborate)  
+    Lam MMC, Wick RR, Watts, SC, Cerdeira LT, Wyres KL, Holt KE [A genomic surveillance framework and genotyping tool for Klebsiella pneumoniae and its related species complex.](https://doi.org/10.1038/s41467-021-24448-3) _Nat Commun_ 12, 4188 (2021)
   
