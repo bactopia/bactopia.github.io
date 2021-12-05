@@ -1,0 +1,27 @@
+name: Publish docs via GitHub Pages (manual)
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: Deploy docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+
+      - name: Pull Bactopia
+        uses: actions/checkout@v2
+        with:
+          repository: bactopia/bactopia
+          path: bactopia
+      
+      - name: Stage latest CHANGELOG
+        run: |
+         cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
+         rm -rf $GITHUB_WORKSPACE/bactopia
+      - name: Deploy docs
+        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_FILE: mkdocs.yml
+          EXTRA_PACKAGES: build-base
