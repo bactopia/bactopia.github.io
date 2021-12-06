@@ -89,7 +89,7 @@ bactopia --accession SRX4563634 \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --cpus 2 \
+         --max_cpus 2 \
          --outdir ena-single-sample
 ```
 
@@ -105,7 +105,7 @@ So, what's happening here?
 
 `--genome_size median` tells Bactopia to use the median genome size of completed *S. aureus* genomes. The minimum, maximum, median, and mean genome sizes were calculated during the dataset building step. If a genome size was not given, it would have been estimated by Mash.
 
-`--cpus 2` tells Bactopia to use a maximum of 2 cpus per process. Adjust this parameter to fit your setup!
+`--max_cpus 2` tells Bactopia to use a maximum of 2 cpus per process. Adjust this parameter to fit your setup!
 
 `--outdir ena-single-sample` tells Bactopia to dump the results into the `ena-single-sample` folder. Please keep in mind, this will not stop Nextflow from creating files (.nextflow, trace.txt, etc...) and directories (work and .nextflow/) within your current directory.
 
@@ -146,7 +146,7 @@ bactopia --accessions ena-accessions.txt \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --cpus 2 \
+         --max_cpus 2 \
          --outdir ena-multiple-samples
 ```
 
@@ -190,7 +190,7 @@ bactopia --R1 fastqs/SRX4563634_R1.fastq.gz \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --cpus 2 \
+         --max_cpus 2 \
          --outdir local-single-sample
 ```
 
@@ -211,7 +211,7 @@ bactopia --SE fastqs/SRX4563634-SE.fastq.gz \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --cpus 2 \
+         --max_cpus 2 \
          --outdir local-single-sample
 ```
 
@@ -242,7 +242,7 @@ bactopia --fastqs fastqs.txt \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --cpus 2 \
+         --max_cpus 2 \
          --outdir local-multiple-samples
 ```
 
