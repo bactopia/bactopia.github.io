@@ -18,9 +18,6 @@ Allows reference datasets (resistance, virulence, and plamids) to be automatical
 **[GenBank Sourmash Signatures](https://sourmash.readthedocs.io/en/latest/datasets.html?highlight=--track-abundance#genbank-lca-dataset)**  
 ~87,000 microbial genomes (includes viral and fungal) from NCBI GenBank, also gives an idea of what is your sequencing data.  
 
-**[PLSDB Mash Sketch & BLAST](https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/)**  
-Includes meta data/annotations, Mash sketches, and BLAST database files of all plasmids stored in PLSDB.  
-
 ### Species Specific
 
 **[PubMLST.org MLST Schemas](https://pubmlst.org/datasets/)**  
@@ -79,22 +76,15 @@ This will setup the MLST schema (if available) and a protein cluster FASTA file 
 
 ## Usage
 ``` 
-bactopia datasets [-h] [--outdir STR] [--skip_ariba] [--ariba STR]
-                  [--species STR] [--skip_mlst] [--skip_prokka]
-                  [--include_genus]
-                  [--assembly_level {all,complete,chromosome,scaffold,contig}]
-                  [--limit INT] [--accessions STR] [--identity FLOAT]
-                  [--overlap FLOAT] [--max_memory INT] [--fast_cluster]
-                  [--skip_minmer] [--skip_plsdb] [--prodigal_tf STR]
-                  [--reference STR] [--mapping STR] [--genes STR]
-                  [--proteins STR] [--primers STR] [--force_optional]
-                  [--cpus INT] [--clear_cache] [--force]
-                  [--force_ariba] [--force_mlst] [--force_prokka]
-                  [--force_minmer] [--force_plsdb] [--keep_files]
-                  [--available_datasets] [--depends] [--version]
-                  [--verbose] [--silent]
+usage: bactopia datasets [-h] [--outdir STR] [--skip_ariba] [--ariba STR] [--species STR] [--skip_mlst] [--skip_prokka] [--include_genus] [--assembly_level {all,complete,chromosome,scaffold,contig}] [--limit INT] [--accessions STR] [--identity FLOAT]
+                         [--overlap FLOAT] [--max_memory INT] [--fast_cluster] [--skip_minmer] [--skip_amr] [--prodigal_tf STR] [--reference STR] [--mapping STR] [--genes STR] [--proteins STR] [--primers STR] [--force_optional] [--cpus INT]
+                         [--clear_cache] [--force] [--force_ariba] [--force_mlst] [--force_prokka] [--force_minmer] [--force_amr] [--keep_files] [--available_datasets] [--depends] [--version] [--verbose] [--silent]
+                         PUBMLST
 
-bactopia datasets - Setup public datasets for Bactopia
+bactopia datasets (v2.0.0) - Setup public datasets for Bactopia
+
+positional arguments:
+  PUBMLST               Bactopia config file with PubMLST schema mappings for Ariba.
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -102,64 +92,38 @@ optional arguments:
 
 Ariba Reference Datasets:
   --skip_ariba          Skip setup of Ariba datasets
-  --ariba STR           Comma separated list of Ariba datasets to download and
-                        setup. Available datasets include: argannot, card,
-                        ncbi, megares, plasmidfinder, resfinder,
-                        srst2_argannot, vfdb_core, vfdb_full, virulencefinder
-                        (Default: "vfdb_core,card") Use --available_datasets
-                        to see the full list.
+  --ariba STR           Comma separated list of Ariba datasets to download and setup. Available datasets include: argannot, card, ncbi, megares, plasmidfinder, resfinder, srst2_argannot, vfdb_core, vfdb_full, virulencefinder (Default:
+                        "vfdb_core,card") Use --available_datasets to see the full list.
 
 Bacterial Species:
-  --species STR         Download available MLST schemas and completed genomes
-                        for a given species or a list of species in a text
-                        file.
+  --species STR         Download available MLST schemas and completed genomes for a given species or a list of species in a text file.
   --skip_mlst           Skip setup of MLST schemas for each species
 
 Custom Prokka Protein FASTA:
-  --skip_prokka         Skip creation of a Prokka formatted fasta for each
-                        species
+  --skip_prokka         Skip creation of a Prokka formatted fasta for each species
   --include_genus       Include all genus members in the Prokka proteins FASTA
   --assembly_level {all,complete,chromosome,scaffold,contig}
-                        Assembly levels of genomes to download (Default:
-                        complete).
-  --limit INT           If available completed genomes exceeds a given limit,
-                        a random subsample will be taken. (Default 1000)
+                        Assembly levels of genomes to download (Default: complete).
+  --limit INT           If available completed genomes exceeds a given limit, a random subsample will be taken. (Default 1000)
   --accessions STR      A list of RefSeq accessions to download.
-  --identity FLOAT      CD-HIT (-c) sequence identity threshold. (Default:
-                        0.9)
+  --identity FLOAT      CD-HIT (-c) sequence identity threshold. (Default: 0.9)
   --overlap FLOAT       CD-HIT (-s) length difference cutoff. (Default: 0.8)
   --max_memory INT      CD-HIT (-M) memory limit (in MB). (Default: unlimited
-  --fast_cluster        Use CD-HIT's (-g 0) fast clustering algorithm, instead
-                        of the accurate but slow algorithm.
+  --fast_cluster        Use CD-HIT's (-g 0) fast clustering algorithm, instead of the accurate but slow algorithm.
 
 Minmer Datasets:
-  --skip_minmer         Skip download of pre-computed minmer datasets (mash,
-                        sourmash)
+  --skip_minmer         Skip download of pre-computed minmer datasets (mash, sourmash)
 
-PLSDB (Plasmid) BLAST/Sketch:
-  --skip_plsdb          Skip download of pre-computed PLSDB datbases (blast,
-                        mash)
+Antimicrobial Resistance Datasets:
+  --skip_amr            Skip download of antimicrobial resistance databases (e.g. AMRFinder+)
 
 Optional User Provided Datasets:
-  --prodigal_tf STR     A pre-built Prodigal training file to add to the
-                        species annotation folder. Requires a single species
-                        (--species) and will replace existing training files.
-  --reference STR       A reference genome (FASTA/GenBank (preferred)) file or
-                        directory to be added to the optional folder for
-                        variant calling. Requires a single species
-                        (--species).
-  --mapping STR         A reference sequence (FASTA) file or directory to be
-                        added to the optional folder for mapping. Requires a
-                        single species (--species).
-  --genes STR           A gene sequence (FASTA) file or directory to be added
-                        to the optional folder for BLAST. Requires a single
-                        species (--species).
-  --proteins STR        A protein sequence (FASTA) file or directory to be
-                        added to the optional folder for BLAST. Requires a
-                        single species (--species).
-  --primers STR         A primer sequence (FASTA) file or directory to be
-                        added to the optional folder for BLAST. Requires a
-                        single species (--species).
+  --prodigal_tf STR     A pre-built Prodigal training file to add to the species annotation folder. Requires a single species (--species) and will replace existing training files.
+  --reference STR       A reference genome (FASTA/GenBank (preferred)) file or directory to be added to the optional folder for variant calling. Requires a single species (--species).
+  --mapping STR         A reference sequence (FASTA) file or directory to be added to the optional folder for mapping. Requires a single species (--species).
+  --genes STR           A gene sequence (FASTA) file or directory to be added to the optional folder for BLAST. Requires a single species (--species).
+  --proteins STR        A protein sequence (FASTA) file or directory to be added to the optional folder for BLAST. Requires a single species (--species).
+  --primers STR         A primer sequence (FASTA) file or directory to be added to the optional folder for BLAST. Requires a single species (--species).
   --force_optional      Overwrite any existing files in the optional folders
 
 Custom Options:
@@ -170,10 +134,9 @@ Custom Options:
   --force_mlst          Forcibly overwrite existing MLST datasets.
   --force_prokka        Forcibly overwrite existing Prokka datasets.
   --force_minmer        Forcibly overwrite existing minmer datasets.
-  --force_plsdb         Forcibly overwrite existing PLSDB datasets.
+  --force_amr           Forcibly overwrite existing antimicrobial resistance datasets.
   --keep_files          Keep all downloaded and intermediate files.
-  --available_datasets  List Ariba reference datasets and MLST schemas
-                        available for setup.
+  --available_datasets  List Ariba reference datasets and MLST schemas available for setup.
   --depends             Verify dependencies are installed.
 
 Adjust Verbosity:
@@ -221,9 +184,9 @@ After creating datasets you will have a directory structure that Bactopia recogn
 Here is the directory structure for the Bactopia Datasets. Some of these include files from public datasets that can be used directly, but there are also other folders you can populate yourself to fit your needs.
 ```
 ${DATASET_FOLDER}
+├── antimicrobial-resistance
 ├── ariba
 ├── minmer
-├── plasmid
 └── species-specific
     └── ${SPECIES}
         ├── annotation
@@ -257,17 +220,22 @@ ${DATASET_FOLDER}
                 └── ${NAME}.{gbk|fasta}
 ```
 ### General Datasets
-General datasets can be used for all bacterial samples. There are three general dataset folders: `ariba`, `minmer` and `plasmid`.
+General datasets can be used for all bacterial samples. There are three general dataset folders: `antimicrobial-resistance`, `ariba`, and `minmer`.
+
+The `antimicrobial-resistance` folder contains pre-formatted datasets available from [NCBI's AMRFinderPlus](https://github.com/ncbi/amr).
 
 The `ariba` folder contains pre-formatted datasets available from [Ariba's `getref` Reference Datasets](https://github.com/sanger-pathogens/ariba/wiki/Task:-getref). 
 
-The `minmer` folder contains a [RefSeq Mash Sketch](https://mash.readthedocs.io/en/latest/data.html) and [GenBank Sourmash Signatures](https://sourmash.readthedocs.io/en/latest/datasets.html?highlight=--track-abundance#genbank-lca-dataset) of more than 100,000 genomes.
+Finally `minmer` folder contains a [RefSeq Mash Sketch](https://mash.readthedocs.io/en/latest/data.html) and [GenBank Sourmash Signatures](https://sourmash.readthedocs.io/en/latest/datasets.html?highlight=--track-abundance#genbank-lca-dataset) of more than 100,000 genomes.
 
-Finally, the `plasmid` folder contains a [PLSDB Mash Sketch & BLAST database](https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/) from a curated set of plasmids.
-
-!!! warning "Changing files in `ariba`, `minmer` and `plasmid` is not recommended"
+!!! warning "Changing files in `antimicrobial-resistance`, `ariba`, and `minmer` is not recommended"
     These directories are for general analysis and have been precomputed. Modifying these files
     may cause errors during analysis.
+
+!!! warning "AMRFinder+ databases can sometimes require specific versions"
+    Occasionally, AMRFinder+ require a specic version of AMRFinder+ and things stop working. 
+    If this occurs you can press forward using `--skip_amr` in Bactopia, but also please
+    submit a [Issue for this](https://github.com/bactopia/bactopia/issues/new/choose).
 
 ### Species Specific Datasets
 Bactopia allows the datasets to be created for a specific species. The following sections outline the species specific datasets.
