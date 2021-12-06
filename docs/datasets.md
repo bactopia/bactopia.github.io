@@ -39,8 +39,7 @@ Included in Bactopia is the `setup-datasets.py` script (located in the `bin` fol
 ``` bash
 bactopia datasets
 ```
-This will set up Ariba datasets (`card` and `vfdb_core`), RefSeq Mash sketch, GenBank Sourmash Signatures, and PLSDB in the newly created `datasets` folder. By default, `datasets` is used for the output directory, but this can be changed with `--outdir` .
-
+This will set up Ariba datasets (`card` and `vfdb_core`), RefSeq Mash sketch, and GenBank Sourmash Signatures in the newly created `datasets` folder. By default, `datasets` is used for the output directory, but this can be changed with `--outdir` .
 
 ### A Single Bacterial Species
 ``` bash
