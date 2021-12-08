@@ -6,7 +6,6 @@ copyright: "Copyright © 2019-2021 Robert A. Petit III. All rights reserved."
 
 site_url: https://bactopia.github.io/
 repo_url: https://github.com/bactopia/bactopia
-google_analytics: ['UA-104199698-2', 'bactopia.github.io']
 dev_addr: 0.0.0.0:8000
 
 theme:
@@ -33,6 +32,9 @@ theme:
     - navigation.tabs.sticky
 
 extra:
+  analytics:
+    provider: google
+    property: UA-104199698-2
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/bactopia/bactopia
