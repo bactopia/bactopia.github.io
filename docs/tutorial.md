@@ -34,7 +34,7 @@ bactopia datasets \
     --ariba "vfdb_core,card" \
     --species "Staphylococcus aureus" \
     --include_genus \
-    --limit 100
+    --limit 100 \
     --cpus 4
 ```
 
