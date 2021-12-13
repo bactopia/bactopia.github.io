@@ -34,6 +34,7 @@ bactopia datasets \
     --ariba "vfdb_core,card" \
     --species "Staphylococcus aureus" \
     --include_genus \
+    --limit 100
     --cpus 4
 ```
 
@@ -44,6 +45,8 @@ Let's review what is happening here.
 `--species "Staphylococcus aureus"` will download MLST schemas associated with *S. aureus* it will also download completed *S. aureus* genomes (RefSeq only) that are used to create a set of protein set for annotation, a Mash sketch for automatic variant calling to the nearest neighbor, and calculate genome size statistics.
 
 `--include_genus` will also download completed genomes from the *Staphylococcus* genus that will be used for the protein set. These completed genomes **are not** used for the sketch creation or genome size calculation.
+
+`--limit 100` will limit the number of completed genomes downloaded to 100.
 
 `--cpus 4` will use 4 cpus for downloading and the clustering step. Adjust this number according to your setup!
 
