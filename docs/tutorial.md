@@ -92,8 +92,8 @@ bactopia --accession SRX4563634 \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --max_cpus 2 \
-         --outdir ena-single-sample
+         --outdir ena-single-sample \
+         --max_cpus 2
 ```
 
 So, what's happening here?
@@ -108,9 +108,9 @@ So, what's happening here?
 
 `--genome_size median` tells Bactopia to use the median genome size of completed *S. aureus* genomes. The minimum, maximum, median, and mean genome sizes were calculated during the dataset building step. If a genome size was not given, it would have been estimated by Mash.
 
-`--max_cpus 2` tells Bactopia to use a maximum of 2 cpus per process. Adjust this parameter to fit your setup!
-
 `--outdir ena-single-sample` tells Bactopia to dump the results into the `ena-single-sample` folder. Please keep in mind, this will not stop Nextflow from creating files (.nextflow, trace.txt, etc...) and directories (work and .nextflow/) within your current directory.
+
+`--max_cpus 2` tells Bactopia to use a maximum of 2 cpus per process. Adjust this parameter to fit your setup!
 
 !!! info "Use --use_ena to download from ENA"
     If you append `--use_ena` to the command above the FASTQ files for SRX4563634 will be downloaded from the [European Nucleotide Archive](https://www.ebi.ac.uk/ena) (ENA) instead of SRA.
@@ -149,8 +149,8 @@ bactopia --accessions ena-accessions.txt \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --max_cpus 2 \
-         --outdir ena-multiple-samples
+         --outdir ena-multiple-samples \
+         --max_cpus 2
 ```
 
 Instead of `--accession` we are now using `--accessions ena-accessions.txt` which tells Bactopia to read `ena-accessions.txt`, and download each Experiment accession from SRA (for ENA add `--use_ena`) and then process it.
@@ -193,8 +193,8 @@ bactopia --R1 fastqs/SRX4563634_R1.fastq.gz \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --max_cpus 2 \
-         --outdir local-single-sample
+         --outdir local-single-sample \
+         --max_cpus 2
 ```
 
 Now Bactopia will recognize the `--R1` and `--R2` parameters as paired-end reads and process. The `--sample` is required and will be used for naming the output.
@@ -214,8 +214,8 @@ bactopia --SE fastqs/SRX4563634-SE.fastq.gz \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --max_cpus 2 \
-         --outdir local-single-sample
+         --outdir local-single-sample \
+         --max_cpus 2
 ```
 
 Now SRX4563634-SE will be processed as a single-end sample. For single-end processing there are some paired-end only analyses (e.g. error correction, insertion sequences) that will be skipped. This leads to single-end samples being processed a little bit faster than pair-end samples. But, the **approximate completion time is still ~15-30 minutes**.
@@ -245,8 +245,8 @@ bactopia --fastqs fastqs.txt \
          --species "Staphylococcus aureus" \
          --coverage 100 \
          --genome_size median \
-         --max_cpus 2 \
-         --outdir local-multiple-samples
+         --outdir local-multiple-samples \
+         --max_cpus 2
 ```
 
 We no longer need `--R1`, `--R2`, `--SE`, or `--sample` as the values for these parameters can be determined from the FOFN. 
