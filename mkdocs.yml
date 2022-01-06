@@ -103,6 +103,8 @@ nav:
     - 'Introduction': 'bactopia-tools/index.md'
     - 'Subworkflows':
       - 'eggnog': 'bactopia-tools/eggnog.md'
+      - 'gtdb': 'bactopia-tools/gtdb.md'
+      - 'merlin': 'bactopia-tools/merlin.md'
       - 'pangenome': 'bactopia-tools/pangenome.md'
       - 'staphtyper': 'bactopia-tools/staphtyper.md'
     - 'Modules':
@@ -115,6 +117,7 @@ nav:
       - 'ismapper': 'bactopia-tools/ismapper.md'
       - 'kleborate': 'bactopia-tools/kleborate.md'
       - 'lissero': 'bactopia-tools/lissero.md'
+      - 'mashdist': 'bactopia-tools/mashdist.md'
       - 'mashtree': 'bactopia-tools/mashtree.md'
       - 'meningotype': 'bactopia-tools/meningotype.md'
       - 'ngmaster': 'bactopia-tools/ngmaster.md'
