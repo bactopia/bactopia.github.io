@@ -10,21 +10,23 @@ you valuable time by allowing you to make further use of the
 [many output files](output-overview/) to extend your analyses.
 
 ### Available Bactopia Tools
-There are currently 19 Bactopia Tools that you can make use of.
+There are currently 22 Bactopia Tools that you can make use of.
 Below are a list of available Bactopia Tools, grouped as __Subworkflows__ and __Modules__. 
 
-#### Subworkflows (3)
+#### Subworkflows (5)
 Subworkflows string together 
 tools to create an complete pipeline.  
 
 | Subworkflow | Description |
 |-------------|-------------|
 | [eggnog](/bactopia-tools/eggnog/) | Functional annotation of proteins using orthologous groups and phylogenies |
+    | [gtdb](/bactopia-tools/gtdb/) | Identify marker genes and assign taxonomic classifications |
+    | [merlin](/bactopia-tools/merlin/) | MinmER assisted species-specific bactopia tool seLectIoN |
     | [pangenome](/bactopia-tools/pangenome/) | Pangenome analysis with optional core-genome phylogeny |
     | [staphtyper](/bactopia-tools/staphtyper/) | Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes |
     
 
-#### Modules  (16)
+#### Modules  (17)
 Modules are workflows consisting of only one tool.
 
 | Module | Description |
@@ -38,6 +40,7 @@ Modules are workflows consisting of only one tool.
     | [ismapper](/bactopia-tools/ismapper/) | Identify insertion sites positions in bacterial genomes |
     | [kleborate](/bactopia-tools/kleborate/) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
     | [lissero](/bactopia-tools/lissero/) | Serogroup typing prediction for _Listeria monocytogenes_ |
+    | [mashdist](/bactopia-tools/mashdist/) | Calculate Mash distances between sequences |
     | [mashtree](/bactopia-tools/mashtree/) | Quickly create a tree using Mash distances |
     | [meningotype](/bactopia-tools/meningotype/) | Serotyping of Neisseria meningitidis |
     | [ngmaster](/bactopia-tools/ngmaster/) | Multi-antigen sequence typing for _Neisseria gonorrhoeae_ |

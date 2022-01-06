@@ -48,9 +48,9 @@ Use these parameters to specify which samples to include or exclude.
 | Parameter | Description | Default |
 |---|---|---|
 | `--kmer` | kmer size (<= 16) for ANI calculation  | 16 |
-| `--fragLen` | agr typing only. Skips agr operon extraction and frameshift detection | 3000 |
-| `--minFraction ` | Minimum fraction of genome that must be shared for trusting ANI. | 0.2 |
-| `--skip_pairwise` | Skip pairwise ANI calculations for all samples | False |
+| `--min_fraction` | Minimum fraction of genome that must be shared for trusting ANI. | 0.2 |
+| `--frag_len` | fragment length | 3000 |
+| `--skip_pairwise` | Only use RefSeq or local assemblies for ANI calculations | False |
 
 
 ### Optional Parameters
@@ -95,22 +95,8 @@ Parameters to fine-tune your Nextflow setup.
 | `--singularity_cache` | Directory where remote Singularity images are stored. |  |
 | `--singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |  |
 | `--queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) | general,high-memory |
+| `--cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |  |
 | `--disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. | False |
-
-### AWS Batch Profile (-profile awsbatch) Parameters
-Parameters to fine-tune your AWS Batch setup.
-
-| Parameter | Description | Default |
-|---|---|---|
-| `--aws_region` | AWS Region to be used by Nextflow | us-east-1 |
-| `--aws_volumes` | Volumes to be mounted from the EC2 instance to the Docker container | /opt/conda:/mnt/conda |
-| `--aws_cli_path` | Path to the AWS CLI for Nextflow to use. | /home/ec2-user/conda/bin/aws |
-| `--aws_upload_storage_class` | The S3 storage slass to use for storing files on S3 | STANDARD |
-| `--aws_max_parallel_transfers` | The number of parallele transfers between EC2 and S3 | 8 |
-| `--aws_delay_between_attempts` | The duration of sleep (in seconds) between each transfer between EC2 and S3 | 15 |
-| `--aws_max_transfer_attempts` | The maximum number of times to retry transferring a file between EC2 and S3 | 3 |
-| `--aws_max_retry` | The maximum number of times to retry a process on AWS Batch | 4 |
-| `--aws_ecr_registry` | The ECR registry containing Bactopia related containers. |  |
 
 ### Helpful Parameters
 Uncommonly used parameters that might be useful.

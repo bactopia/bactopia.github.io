@@ -1,21 +1,15 @@
 ---
 tags:
-   - Escherichia coli
-   - fasta
-   - serotype
 ---
 
 
 
-# Bactopia Tool - `ectyper`
-The `ectyper` module used [ECTyper](https://github.com/phac-nml/ecoli_serotyping) to conduct
-_in silico_ prediction of serotype for _Escherichia coli_ genomes. It uses the genome assemblies
-tp provide basic species identification and the predicted _E. coli_ serotype (e.g. O174:H21).
+# Bactopia Tool - `mashdist`
 
 
 ## Example Usage
 ```
-bactopia --wf ectyper \
+bactopia --wf mashdist \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -39,17 +33,21 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### ECTyper Parameters
+### mashdist Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--opid` | Percent identity required for an O antigen allele match | 90 |
-| `--opcov` | Minumum percent coverage required for an O antigen allele match | 90 |
-| `--hpid` | Percent identity required for an H antigen allele match | 95 |
-| `--hpcov` | Minumum percent coverage required for an H antigen allele match | 50 |
-| `--verify` | Enable E. coli species verification | False |
-| `--print_alleles` | Prints the allele sequences if enabled as the final column | False |
+| `--mash_sketch` | The reference sequence as a Mash Sketch (.msh file) |  |
+| `--mash_seed` | Seed to provide to the hash function | 42 |
+| `--mash_table` |  Table output (fields will be blank if they do not meet the p-value threshold) | False |
+| `--mash_m` | Minimum copies of each k-mer required to pass noise filter for reads | 1 |
+| `--mash_w` | Probability threshold for warning about low k-mer size. | 0.01 |
+| `--max_p` | Maximum p-value to report. | 1.0 |
+| `--max_dist` | Maximum distance to report. | 1.0 |
+| `--merlin_dist` | Maximum distance to report when using Merlin . | 0.1 |
+| `--full_merlin` | Go full Merlin and run all species-specific tools, no matter the Mash distance | False |
+| `--use_fastqs` | Query with FASTQs instead of the assemblies | False |
 
 
 ### Optional Parameters
@@ -114,11 +112,9 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `ectyper` in your analysis, please cite the following.
+If you use Bactopia and `mashdist` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [ECTyper](https://github.com/phac-nml/ecoli_serotyping)  
-    Laing C, Bessonov K, Sung S, La Rose C [ECTyper - In silico prediction of _Escherichia coli_ serotype](https://github.com/phac-nml/ecoli_serotyping) (GitHub)  

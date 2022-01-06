@@ -1,257 +1,125 @@
-# Bactopia Tools - *gtdb*
-The `gtdb` tool uses [GTDB-Tk's](https://github.com/Ecogenomics/GTDBTk) classify 
-workflow to assign taxonomic classifications to your set of samples. This is 
-done through the use of the [Genome Taxonomy Database](https://gtdb.ecogenomic.org/). 
-If you are unsure of your sequences, `gtdb` is useful tool to help determine
-the taxonomy of your samples.
+---
+tags:
+---
 
-## Example
-The following command will use `gtdb` to assign a taxonomic classification on all 
-samples except those listed in the *exclude* file.
+
+
+# Bactopia Tool - `gtdb`
+
+
+## Example Usage
 ```
-bactopia tools gtdb \
-    --bactopia ~/bactopia-tutorial/bactopia \
-    --gtdb ~/bactopia-tutorial/bactopia-datasets/gtdb/db \
-    --exclude ~/bactopia-tutorial/bactopia-tools/summary/bactopia-exclude.txt \
-    --cpus 4
+bactopia --wf gtdb \
+  --bactopia /path/to/your/bactopia/results \ 
+  --include includes.txt  
 ```
 
-## Output Overview
-Below is the default output structure for the `gtdb` tool. Where possible the 
-file descriptions below were modified from descriptions at the 
-[GTDB-Tk Classify Workflow](https://github.com/Ecogenomics/GTDBTk#classify-workflow) page.
-
-```
-bactopia-tools/
-└── gtdb
-    └── ${PREFIX}
-        ├── bactopia-info
-        │   ├── gtdb-report.html
-        │   ├── gtdb-timeline.html
-        │   └── gtdb-trace.txt
-        └── classify
-            ├── align
-            │   ├── gtdb.(ar122|bac120).filtered.tsv
-            │   ├── gtdb.(ar122|bac120).msa.fasta
-            │   ├── gtdb.(ar122|bac120).user_msa.fasta
-            │   └── intermediate_results
-            │       └── gtdb.(ar122|bac120).marker_info.tsv
-            ├── classify
-            │   ├── gtdb.(ar122|bac120).classify.tree
-            │   ├── gtdb.(ar122|bac120).summary.tsv
-            │   └── intermediate_results
-            │       ├── gtdb.(ar122|bac120).classification_pplacer.tsv
-            │       ├── gtdb.(ar122|bac120).red_dictionary.tsv
-            │       └── pplacer
-            │           ├── pplacer.(ar122|bac120).json
-            │           └── pplacer.(ar122|bac120).out
-            ├── gtdb.(ar122|bac120).classify.tree
-            ├── gtdb.(ar122|bac120).filtered.tsv
-            ├── gtdb.(ar122|bac120).markers_summary.tsv
-            ├── gtdb.(ar122|bac120).msa.fasta
-            ├── gtdb.(ar122|bac120).summary.tsv
-            ├── gtdb.(ar122|bac120).user_msa.fasta
-            ├── gtdbtk.log
-            ├── gtdbtk.warnings.log
-            ├── gtdb.translation_table_summary.tsv
-            └── identify
-                ├── gtdb.ar122.markers_summary.tsv
-                ├── gtdb.bac120.markers_summary.tsv
-                ├── gtdb.translation_table_summary.tsv
-                └── intermediate_results
-                    └── marker_genes
-                        └── ${SAMPLE_NAME}
-                            ├── prodigal_translation_table.tsv
-                            ├── prodigal_translation_table.tsv.sha256
-                            ├── ${SAMPLE_NAME}_pfam_tophit.tsv
-                            ├── ${SAMPLE_NAME}_pfam_tophit.tsv.sha256
-                            ├── ${SAMPLE_NAME}_pfam.tsv
-                            ├── ${SAMPLE_NAME}_pfam.tsv.sha256
-                            ├── ${SAMPLE_NAME}_protein.faa
-                            ├── ${SAMPLE_NAME}_protein.faa.sha256
-                            ├── ${SAMPLE_NAME}_protein.fna
-                            ├── ${SAMPLE_NAME}_protein.fna.sha256
-                            ├── ${SAMPLE_NAME}_protein.gff
-                            ├── ${SAMPLE_NAME}_protein.gff.sha256
-                            ├── ${SAMPLE_NAME}_tigrfam.out
-                            ├── ${SAMPLE_NAME}_tigrfam.out.sha256
-                            ├── ${SAMPLE_NAME}_tigrfam_tophit.tsv
-                            ├── ${SAMPLE_NAME}_tigrfam_tophit.tsv.sha256
-                            ├── ${SAMPLE_NAME}_tigrfam.tsv
-                            └── ${SAMPLE_NAME}_tigrfam.tsv.sha256
-```
-
-| Filename | Description |
-|-----------|-------------|
-| gtdb.(ar122\|bac120).classify.tree | Reference tree in Newick format containing query genomes placed with pplacer |
-| gtdb.(ar122\|bac120).filtered.tsv | List of genomes with an insufficient number of amino acids in MSA |
-| gtdb.(ar122\|bac120).markers_summary.tsv | Markers used in generation of the concatenated MSA and the order in which they were applied |
-| gtdb.(ar122\|bac120).msa.fasta | FASTA file containing MSA of submitted and reference genomes |
-| gtdb.(ar122\|bac120).summary.tsv | A summary of classifications provided by GTDB-Tk, see [classification summary](https://github.com/Ecogenomics/GTDBTk#classification-summary-file) for more details |
-| gtdb.(ar122\|bac120).user_msa.fasta | FASTA file containing MSA of the submitted genomes |
-| gtdbtk.log | A log of the run |
-| gtdbtk.warnings.log | A log of any warnings produced by the run |
-| gtdb.translation_table_summary.tsv | Summary of the tranlastlation table used for each genome |
-
-### Directory Description
-
-#### align
-| Filename | Description |
-|----------|-------------|
-| gtdb.(ar122\|bac120).filtered.tsv | List of genomes with an insufficient number of amino acids in MSA |
-| gtdb.(ar122\|bac120).msa.fasta | FASTA file containing MSA of submitted and reference genomes |
-| gtdb.(ar122\|bac120).user_msa.fasta | FASTA file containing MSA of the submitted genomes |
-| gtdb.(ar122\|bac120).marker_info.tsv | Markers used in generation of the concatenated MSA and the order in which they were applied |
-
-#### bactopia-info
-| Filename | Description |
-|----------|-------------|
-| gtdb-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| gtdb-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| gtdb-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
-
-#### classify
-| Filename | Description |
-|----------|-------------|
-| gtdb.(ar122\|bac120).classify.tree | Reference tree in Newick format containing query genomes placed with pplacer |
-| gtdb.(ar122\|bac120).summary.tsv | Classification of query genomes based on their placement in the reference tree, relative evolutionary divergence, and ANI to reference genomes |
-| gtdb.(ar122\|bac120).classification_pplacer.tsv | Classification of query genomes based only on their placement in the reference tree |
-| gtdb.(ar122\|bac120).red_dictionary.tsv | Median RED values for taxonomic ranks |
-| pplacer.(ar122\|bac120).json | Output information generated by pplacer in JSON format |
-| pplacer.(ar122\|bac120).out | Output information generated by pplacer |
-
-#### identify
-| Filename | Description |
-|----------|-------------|
-| gtdb.ar122.markers_summary.tsv | Summary of unique, duplicated, and missing markers within the 122 archaeal marker set for each submitted genome |
-| gtdb.bac120.markers_summary.tsv | Summary of unique, duplicated, and missing markers within the 120 bacterial marker set for each submitted genome |
-| gtdb.translation_table_summary.tsv | The predicted translation table used for gene calling for each genome |
-| identify/intermediate_results/marker_genes/ | Contains individual genome results for gene calling using Prodigal and gene identification based on TIGRFAM and Pfam HMMs |
+## Parameters
 
 
-## Usage
-```
-Required Parameters:
-    --bactopia STR          Directory containing Bactopia analysis results for all samples.
+### Required Parameters
+Define where the pipeline should find input data and save output data.
 
-    --gtdb STR              Location of a GTDB database. If a database is not found, you must
-                                use '--download_gtdb'.
+| Parameter | Description | Default |
+|---|---|---|
+| `--bactopia` | The path to bactopia results to use as inputs |  |
 
-Optional Parameters:
-    --include STR           A text file containing sample names to include in the
-                                analysis. The expected format is a single sample per line.
+### Filtering Parameters
+Use these parameters to specify which samples to include or exclude.
 
-    --exclude STR           A text file containing sample names to exclude from the
-                                analysis. The expected format is a single sample per line.
+| Parameter | Description | Default |
+|---|---|---|
+| `--include` | A text file containing sample names (one per line) to include from the analysis |  |
+| `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
-    --prefix DIR            Prefix to use for final output files
-                                Default: gtdb
 
-    --outdir DIR            Directory to write results to
-                                Default: ./
+### GTDB Setup Parameters
 
-    --max_time INT          The maximum number of minutes a job should run before being halted.
-                                Default: 120 minutes
 
-    --max_memory INT        The maximum amount of memory (Gb) allowed to a single process.
-                                Default: 32 Gb
+| Parameter | Description | Default |
+|---|---|---|
+| `--gtdb` | Location of a GTDB database. If a database is not found, you must use '--download_gtdb' |  |
+| `--download_gtdb` | Download the latest GTDB database, even it exists | False |
+| `--skip_check` | Do not check the installation of GTDB database | False |
 
-    --cpus INT              Number of processors made available to a single
-                                process.
-                                Default: 1
+### GTDB Classify Parameters
 
-GTDB-Tk Related Parameters:
-    --download_gtdb         Download the latest GTDB database, even it exists.
 
-    --min_perc_aa INT       Filter genomes with an insufficient percentage of AA in the MSA
-                                Default: 10
+| Parameter | Description | Default |
+|---|---|---|
+| `--min_af` | Minimum alignment fraction to consider closest genome | 0.65 |
+| `--min_perc_aa` | Filter genomes with an insufficient percentage of AA in the MSA | 10 |
+| `--gtdb_tmp` | Specify alternative directory for temporary files | /tmp |
+| `--gtdb_use_scratch` | Reduce pplacer memory usage by writing to --gtdb_tmp location (slower) | False |
+| `--gtdb_debug` | Create intermediate files for debugging purposes | False |
+| `--force_gtdb` | Continue processing if an error occurs on a single genome | False |
 
-    --recalculate_red       Recalculate RED values based on the reference tree and all added
-                                user genomes
 
-    --force_gtdb            Force GTDB to continue processing if an error occurrs on a single
-                                genome
+### Optional Parameters
+These optional parameters can be useful in certain settings.
 
-    --debug                 Create intermediate files for debugging purposes
+| Parameter | Description | Default |
+|---|---|---|
+| `--outdir` | Base directory to write results to | ./ |
+| `--run_name` | Name of the directory to hold results | bactopia |
+| `--skip_compression` | Ouput files will not be compressed | False |
+| `--keep_all_files` | Keeps all analysis files created | False |
 
-Nextflow Related Parameters:
-    --condadir DIR          Directory to Nextflow should use for Conda environments
-                                Default: Bactopia's Nextflow directory
+### Max Job Request Parameters
+Set the top limit for requested resources for any single job.
 
-    --publish_mode          Set Nextflow's method for publishing output files. Allowed methods are:
-                                'copy' (default)    Copies the output files into the published directory.
+| Parameter | Description | Default |
+|---|---|---|
+| `--max_retry` | Maximum times to retry a process before allowing it to fail. | 3 |
+| `--max_cpus` | Maximum number of CPUs that can be requested for any single job. | 4 |
+| `--max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. | 32 |
+| `--max_time` | Maximum amount of time (in minutes) that can be requested for any single job. | 120 |
+| `--max_downloads` | Maximum number of samples to download at a time | 3 |
 
-                                'copyNoFollow' Copies the output files into the published directory
-                                               without following symlinks ie. copies the links themselves.
+### Nextflow Configuration Parameters
+Parameters to fine-tune your Nextflow setup.
 
-                                'link'    Creates a hard link in the published directory for each
-                                          process output file.
+| Parameter | Description | Default |
+|---|---|---|
+| `--nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |  |
+| `--publish_dir_mode` | Method used to save pipeline results to output directory. | copy |
+| `--infodir` | Directory to keep pipeline Nextflow logs and reports. | ${params.outdir}/pipeline_info |
+| `--force` | Nextflow will overwrite existing output files. | False |
+| `--cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. | False |
 
-                                'rellink' Creates a relative symbolic link in the published directory
-                                          for each process output file.
+### Nextflow Profile Parameters
+Parameters to fine-tune your Nextflow setup.
 
-                                'symlink' Creates an absolute symbolic link in the published directory
-                                          for each process output file.
+| Parameter | Description | Default |
+|---|---|---|
+| `--condadir` | Directory to Nextflow should use for Conda environments |  |
+| `--registry` | Docker registry to pull containers from. | dockerhub |
+| `--singularity_cache` | Directory where remote Singularity images are stored. |  |
+| `--singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |  |
+| `--queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) | general,high-memory |
+| `--cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |  |
+| `--disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. | False |
 
-                                Default: copy
+### Helpful Parameters
+Uncommonly used parameters that might be useful.
 
-    --force                 Nextflow will overwrite existing output files.
-                                Default: false
+| Parameter | Description | Default |
+|---|---|---|
+| `--monochrome_logs` | Do not use coloured log outputs. |  |
+| `--nfdir` | Print directory Nextflow has pulled Bactopia to |  |
+| `--sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. | 5 |
+| `--validate_params` | Boolean whether to validate parameters against the schema at runtime | True |
+| `--help` | Display help text. |  |
+| `--wf` | Specify which workflow or Bactopia Tool to execute | bactopia |
+| `--list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' |  |
+| `--show_hidden_params` | Show all params when using `--help` |  |
+| `--help_all` | An alias for --help --show_hidden_params |  |
+| `--version` | Display version text. |  |
 
-    --conatainerPath        Path to Singularity containers to be used by the 'slurm'
-                                profile.
-                                Default: /opt/bactopia/singularity
+## Citations
+If you use Bactopia and `gtdb` in your analysis, please cite the following.
 
-    --sleep_time            After reading datases, the amount of time (seconds) Nextflow
-                                will wait before execution.
-                                Default: 5 seconds
+- [Bactopia](https://bactopia.github.io/)  
+    Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+  
 
-Useful Parameters:
-    --version               Print workflow version information
-    --help                  Show this message and exit
-```
-
-## Conda Environment
-Below is the command used to create the Conda environment.
-```
-conda create -y -n bactopia-gtdb -c conda-forge -c bioconda gtdbtk
-```
-
-## References
-* __[FastANI](https://github.com/ParBLiSS/FastANI)__  
-_Jain, C., Rodriguez-R, L. M., Phillippy, A. M., Konstantinidis, K. T. & Aluru, S. 
-[High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.](http://dx.doi.org/10.1038/s41467-018-07641-9)
- Nat. Commun. 9, 5114 (2018)_  
-
-* __[FastTree 2](http://www.microbesonline.org/fasttree)__  
-_Price, M. N., Dehal, P. S. & Arkin, A. P. 
-[FastTree 2 – Approximately Maximum-Likelihood Trees for Large Alignments.](https://dx.doi.org/10.1371%2Fjournal.pone.0009490)
- PLoS One 5, e9490 (2010)_  
-
-* __[Genome Taxonomy Database](https://gtdb.ecogenomic.org/)__  
-_Parks, D. H. et al. 
-[A standardized bacterial taxonomy based on genome phylogeny substantially revises the tree of life.](https://doi.org/10.1038/nbt.4229)
- Nat. Biotechnol. 36, 996–1004 (2018) _  
-_Parks, D. H. et al. 
-[Selection of representative genomes for 24,706 bacterial and archaeal species clusters provide a complete genome-based taxonomy.](https://doi.org/10.1101/771964)
- bioRxiv 771964 (2019)_  
-
-* __[GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)__  
-_Chaumeil, P.-A., Mussig, A. J., Hugenholtz, P. & Parks, D. H. 
-[GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database.](https://doi.org/10.1093/bioinformatics/btz848)
- Bioinformatics (2019)_  
-
-* __[HMMER3](http://hmmer.org/)__  
-_Eddy, S. R. 
-[Accelerated Profile HMM Searches.](https://doi.org/10.1371/journal.pcbi.1002195) 
-PLoS Comput. Biol. 7, e1002195 (2011)_  
-
-* __[pplacer](https://github.com/matsen/pplacer)__  
-_Matsen, F. A., Kodner, R. B. & Armbrust, E. V. 
-[pplacer: linear time maximum-likelihood and Bayesian phylogenetic placement of sequences onto a fixed reference tree.](https://doi.org/10.1186/1471-2105-11-538)
- BMC Bioinformatics 11, 538 (2010)_  
-
-* __[Prodigal](https://github.com/hyattpd/Prodigal)__  
-_Hyatt, D. et al. 
-[Prodigal: prokaryotic gene recognition and translation initiation site identification.](https://doi.org/10.1186/1471-2105-11-119)
- BMC Bioinformatics 11, 119 (2010)_  
