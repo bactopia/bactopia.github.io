@@ -3,10 +3,14 @@ Below are links to talks, posters, and blog posts associated with Bactopia.
 
 ## Talks
 
+- _Bactopia and using workflow managers in bioinformatics_  
+In episodes 72 and 73 of the [Micro Binfie Podcast](https://soundcloud.com/microbinfie) we discussed the origins of Bactopia and all the fun things Bactopia does. We also discuss why you should consider using workflow managers in you bioinformatic analyses.  
+Sound Cloud: [Part 1](https://soundcloud.com/microbinfie/bactopia-part-1), [Part 2](https://soundcloud.com/microbinfie/bactopia-part-2)  
+
 - _Integrating Staphopia into S. aureus genomic investigations (February 2021)_  
 A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Virtual _S. aureus_ Seminar Series Early Career Symposium](https://twitter.com/Keenan__Lacey/status/1352391835994509314), demonstrating how you can use [Staphopia](https://staphopia.emory.edu/) for the analysis of _S. aureus_. Staphopia is now a part of Bactopia.   
 Video: [YouTube](https://www.youtube.com/watch?v=ijW_ZwZrwSs)  
-Slides: [Web](https://bit.ly/3asgn2C)  , [PDF](/data/resources/2021-integrating-staphopia.pdf)
+Slides: [Web](https://bit.ly/3asgn2C), [PDF](/data/resources/2021-integrating-staphopia.pdf)
 
 - _Bacterial Genome Analysis Using Bactopia (May 2020)_  
 The talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [State Public Health Bioinformatics (StaPH-B) Monthly Webinar](https://staphb.org/videos.html) which provides a introduction into Bactopia and some of the earlier practices implemented into Bactopia.  
