@@ -3,7 +3,12 @@ Below are links to talks, posters, and blog posts associated with Bactopia.
 
 ## Talks
 
-- _Bactopia and using workflow managers in bioinformatics_  
+- _Deeper dives, workflows and Bactopia (February 2022)_  
+A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [CLIMB Big Data - Bioinformatics Skills for Microbial Genomics Workshop](https://www.climb.ac.uk/bioinformatics-skills-microbial-genomics/), covering some topics including [Bioconda](https://bioconda.github.io/), [nf-core](https://nf-co.re/), and a slight peek behind the scenes of Bactopia  
+Slides: [Web](https://bit.ly/32PNhue), [PDF](/data/resources/2022-bactopia-climb-binf-wokshop.pdf)  
+
+
+- _Bactopia and using workflow managers in bioinformatics (January 2022)_  
 In episodes 72 and 73 of the [Micro Binfie Podcast](https://soundcloud.com/microbinfie) we discussed the origins of Bactopia and all the fun things Bactopia does. We also discuss why you should consider using workflow managers in you bioinformatic analyses.  
 Sound Cloud: [Part 1](https://soundcloud.com/microbinfie/bactopia-part-1), [Part 2](https://soundcloud.com/microbinfie/bactopia-part-2)  
 
