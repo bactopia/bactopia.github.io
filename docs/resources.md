@@ -5,6 +5,7 @@ Below are links to talks, posters, and blog posts associated with Bactopia.
 
 - _Deeper dives, workflows and Bactopia (February 2022)_  
 A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [CLIMB Big Data - Bioinformatics Skills for Microbial Genomics Workshop](https://www.climb.ac.uk/bioinformatics-skills-microbial-genomics/), covering some topics including [Bioconda](https://bioconda.github.io/), [nf-core](https://nf-co.re/), and a slight peek behind the scenes of Bactopia.  
+Video: [YouTube](https://www.youtube.com/watch?v=s0nxMZd58VY)
 Slides: [Web](https://bit.ly/32PNhue), [PDF](/data/resources/2022-bactopia-climb-binf-wokshop.pdf)  
 
 
