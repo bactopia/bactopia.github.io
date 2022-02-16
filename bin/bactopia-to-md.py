@@ -9,7 +9,8 @@ WORKFLOWS = 'params.available_workflows.bactopia'
 SUBWORKFLOWS = 'params.available_workflows.bactopiatools.subworkflows'
 MODULES = 'params.available_workflows.bactopiatools.modules'
 MODULES_RENAME = {
-    'abricate_run': 'abricate', 'amrfinderplus_run': 'amrfinderplus', 'mobsuite_recon': 'mobsuite'
+    'abricate_run': 'abricate', 'amrfinderplus_run': 'amrfinderplus', 
+    'checkm_lineagewf': 'checkm', 'mobsuite_recon': 'mobsuite'
 }
 
 def get_citations(citation_path):
