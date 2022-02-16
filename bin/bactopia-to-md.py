@@ -53,13 +53,12 @@ def get_modules(module_path):
     """ Find all modules in modules path. """
     modules = {}
     for params_json in Path(module_path).rglob('*params.json'):
-        print(params_json)
         module_name = str(params_json).replace('/params.json', '')
         if 'local' in module_name:
             module_name = module_name.split('local/bactopia/')[1]
         else:
             # nf-core module
-            module_name = module_name.split('/nf-core/modules/')[1].replace('/', '_')
+            module_name = module_name.split('/nf-core/modules/')[1].replace('/', '_').replace('_run', '')
         print(f"{module_name} - {params_json}")
         with open(params_json, "rt") as params_fh:
             modules[module_name] = json.load(params_fh)
