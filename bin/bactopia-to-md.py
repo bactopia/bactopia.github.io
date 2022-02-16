@@ -60,6 +60,7 @@ def get_modules(module_path):
         else:
             # nf-core module
             module_name = module_name.split('/nf-core/modules/')[1].replace('/', '_')
+        print(f"{module_name} - {params_json}")
         with open(params_json, "rt") as params_fh:
             modules[module_name] = json.load(params_fh)
     return modules
