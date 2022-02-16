@@ -8,6 +8,9 @@ from pathlib import Path
 WORKFLOWS = 'params.available_workflows.bactopia'
 SUBWORKFLOWS = 'params.available_workflows.bactopiatools.subworkflows'
 MODULES = 'params.available_workflows.bactopiatools.modules'
+MODULES_RENAME = {
+    'abricate_run': 'abricate', 'amrfinderplus_run': 'amrfinderplus', 'mobsuite_recon': 'mobsuite'
+}
 
 def get_citations(citation_path):
     """ """
@@ -59,6 +62,8 @@ def get_modules(module_path):
         else:
             # nf-core module
             module_name = module_name.split('/nf-core/modules/')[1].replace('/', '_').replace('_run', '')
+        if module_name in MODULES_RENAME:
+            module_name = MODULES_RENAME[module_name]
         print(f"{module_name} - {params_json}")
         with open(params_json, "rt") as params_fh:
             modules[module_name] = json.load(params_fh)
