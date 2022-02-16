@@ -142,6 +142,7 @@ if __name__ == '__main__':
         if is_bactopia_tool:
             module_params = []
             for module in vals['modules']:
+                print(f"working on {name} - {module}")
                 module_params += format_params(modules[module])
             params = {
                 'bactopia_tools': '\n'.join(format_params(generic["bactopia-tools"])),
