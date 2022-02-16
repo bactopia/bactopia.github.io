@@ -53,6 +53,7 @@ def get_modules(module_path):
     """ Find all modules in modules path. """
     modules = {}
     for params_json in Path(module_path).rglob('*params.json'):
+        print(params_json)
         module_name = str(params_json).replace('/params.json', '')
         if 'local' in module_name:
             module_name = module_name.split('local/bactopia/')[1]
