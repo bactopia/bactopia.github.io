@@ -4,14 +4,12 @@ tags:
 
 
 
-# Bactopia Tool - `roary`
-The `roary` module uses [Roary](https://github.com/sanger-pathogens/Roary) to create a pan-genome of 
-your samples.
-
+# Bactopia Tool - `mobsuite`
+The `mobsuite` module uses [MOB-suite](https://github.com/phac-nml/mob-suite) to reconstruct and annotate plasmids in draft assemblies.
 
 ## Example Usage
 ```
-bactopia --wf roary \
+bactopia --wf mobsuite \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -35,19 +33,15 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### Roary Parameters
+### MOB-suite Recon Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--use_prank` | Use PRANK instead of MAFFT for core gene | False |
-| `--use_roary` | Use Roary instead of PIRATE in the 'pangenome' subworkflow | False |
-| `--i` | Minimum percentage identity for blastp | 95 |
-| `--cd` | Percentage of isolates a gene must be in to be core | 99 |
-| `--g` | Maximum number of clusters | 50000 |
-| `--s` | Do not split paralogs | False |
-| `--ap` | Allow paralogs in core alignment | False |
-| `--iv` | MCL inflation value | 1.5 |
+| `--mb_max_contig_size` | Maximum size of a contig to be considered a plasmid | 310000 |
+| `--mb_min_contig_size` | Minimum length of contigs to classify | 1000 |
+| `--mb_max_plasmid_size` | Maximum size of a reconstructed plasmid | 350000 |
+| `--mobsuite_opts` | Extra MOB-suite options in quotes. Example: '--min_mob_evalue 0.001' |  |
 
 
 ### Optional Parameters
@@ -113,12 +107,15 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `roary` in your analysis, please cite the following.
+If you use Bactopia and `mobsuite` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [Roary](https://github.com/sanger-pathogens/Roary)  
-    Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691–3693 (2015)
+- [MOB-suite](https://github.com/phac-nml/mob-suite)  
+    Robertson J, Nash JHE [MOB-suite: software tools for clustering, reconstruction and typing of plasmids from draft assemblies.](https://doi.org/10.1099/mgen.0.000206) _Microbial Genomics_ 4(8). (2018)
+  
+- [MOB-suite Database](https://github.com/phac-nml/mob-suite)  
+    Robertson J, Bessonov K, Schonfeld J, Nash JHE. [Universal whole-sequence-based plasmid typing and its utility to prediction of host range and epidemiological surveillance.](https://doi.org/10.1099/mgen.0.000435) _Microbial Genomics_, 6(10)(2020)
   

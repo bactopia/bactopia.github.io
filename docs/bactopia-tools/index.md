@@ -10,7 +10,7 @@ you valuable time by allowing you to make further use of the
 [many output files](output-overview/) to extend your analyses.
 
 ### Available Bactopia Tools
-There are currently 22 Bactopia Tools that you can make use of.
+There are currently 28 Bactopia Tools that you can make use of.
 Below are a list of available Bactopia Tools, grouped as __Subworkflows__ and __Modules__. 
 
 #### Subworkflows (5)
@@ -26,23 +26,29 @@ tools to create an complete pipeline.
     | [staphtyper](/bactopia-tools/staphtyper/) | Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes |
     
 
-#### Modules  (17)
+#### Modules  (23)
 Modules are workflows consisting of only one tool.
 
 | Module | Description |
 |-------------|-------------|
-| [agrvate](/bactopia-tools/agrvate/) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants. |
+| [abricate](/bactopia-tools/abricate/) | Mass screening of contigs for antimicrobial and virulence genes |
+    | [agrvate](/bactopia-tools/agrvate/) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants. |
+    | [amrfinderplus](/bactopia-tools/amrfinderplus/) | Identify antimicrobial resistance in genes or proteins |
     | [bakta](/bactopia-tools/bakta/) | Rapid annotation of bacterial genomes and plasmids |
+    | [checkm](/bactopia-tools/checkm/) | Assess the assembly quality of your samples |
     | [ectyper](/bactopia-tools/ectyper/) | In-silico prediction of _Escherichia coli_ serotype |
     | [emmtyper](/bactopia-tools/emmtyper/) | emm-typing of _Streptococcus pyogenes_ assemblies |
     | [fastani](/bactopia-tools/fastani/) | fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
     | [hicap](/bactopia-tools/hicap/) | Identify cap locus serotype and structure in your _Haemophilus influenzae_ assemblies |
     | [ismapper](/bactopia-tools/ismapper/) | Identify insertion sites positions in bacterial genomes |
     | [kleborate](/bactopia-tools/kleborate/) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
+    | [kraken](/bactopia-tools/kraken/) | Taxonomic classifications of sequence reads |
     | [lissero](/bactopia-tools/lissero/) | Serogroup typing prediction for _Listeria monocytogenes_ |
     | [mashdist](/bactopia-tools/mashdist/) | Calculate Mash distances between sequences |
     | [mashtree](/bactopia-tools/mashtree/) | Quickly create a tree using Mash distances |
     | [meningotype](/bactopia-tools/meningotype/) | Serotyping of Neisseria meningitidis |
+    | [mlst](/bactopia-tools/mlst/) | Automatic MLST calling from assembled contigs |
+    | [mobsuite](/bactopia-tools/mobsuite/) | Reconstruct and annotate plasmids in bacterial assemblies |
     | [ngmaster](/bactopia-tools/ngmaster/) | Multi-antigen sequence typing for _Neisseria gonorrhoeae_ |
     | [seqsero2](/bactopia-tools/seqsero2/) | Salmonella serotype prediction from reads or assemblies |
     | [spatyper](/bactopia-tools/spatyper/) | Computational method for finding spa types in _Staphylococcus aureus_ |

@@ -4,14 +4,14 @@ tags:
 
 
 
-# Bactopia Tool - `roary`
-The `roary` module uses [Roary](https://github.com/sanger-pathogens/Roary) to create a pan-genome of 
-your samples.
+# Bactopia Tool - `kraken`
+The `kraken2` module uses [Kraken2](https://github.com/DerrickWood/kraken2) to assign taxonomic 
+classifications to your sequence reads.
 
 
 ## Example Usage
 ```
-bactopia --wf roary \
+bactopia --wf kraken \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -35,19 +35,21 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### Roary Parameters
+### Kraken2 Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--use_prank` | Use PRANK instead of MAFFT for core gene | False |
-| `--use_roary` | Use Roary instead of PIRATE in the 'pangenome' subworkflow | False |
-| `--i` | Minimum percentage identity for blastp | 95 |
-| `--cd` | Percentage of isolates a gene must be in to be core | 99 |
-| `--g` | Maximum number of clusters | 50000 |
-| `--s` | Do not split paralogs | False |
-| `--ap` | Allow paralogs in core alignment | False |
-| `--iv` | MCL inflation value | 1.5 |
+| `--kraken2_db` | The path to a Kraken2 formatted database |  |
+| `--quick_mode` | Quick operation (use first hit or hits) | False |
+| `--confidence` | Confidence score threshold between 0 and 1 | 0.0 |
+| `--minimum_base_quality` | Minimum base quality used in classification | 0 |
+| `--use_mpa_style` | Format report output like Kraken 1's kraken-mpa-report | False |
+| `--report_zero_counts` | Report counts for ALL taxa, even if counts are zero | False |
+| `--report_minimizer_data` | Include minimizer and distinct minimizer count information in report | False |
+| `--use_names` | Print scientific names instead of just taxids | False |
+| `--memory_mapping` | Avoid loading database into RAM | False |
+| `--minimum_hit_groups` | Minimum number of hit groups needed to make a call | 2 |
 
 
 ### Optional Parameters
@@ -113,12 +115,12 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `roary` in your analysis, please cite the following.
+If you use Bactopia and `kraken` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [Roary](https://github.com/sanger-pathogens/Roary)  
-    Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691–3693 (2015)
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+    Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
   

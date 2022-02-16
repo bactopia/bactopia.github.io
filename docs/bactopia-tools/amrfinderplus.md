@@ -1,17 +1,19 @@
 ---
 tags:
+   - antimicrobial resistance
+   - fasta
 ---
 
 
 
-# Bactopia Tool - `roary`
-The `roary` module uses [Roary](https://github.com/sanger-pathogens/Roary) to create a pan-genome of 
-your samples.
+# Bactopia Tool - `amrfinderplus`
+The `amrfinderplus` module uses [AMRFinder+](https://github.com/ncbi/amr) to screen assemblies and proteins
+for antimicrobial resistance and virulence genes.
 
 
 ## Example Usage
 ```
-bactopia --wf roary \
+bactopia --wf amrfinderplus \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -35,19 +37,20 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### Roary Parameters
+### AMRFinder+ Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--use_prank` | Use PRANK instead of MAFFT for core gene | False |
-| `--use_roary` | Use Roary instead of PIRATE in the 'pangenome' subworkflow | False |
-| `--i` | Minimum percentage identity for blastp | 95 |
-| `--cd` | Percentage of isolates a gene must be in to be core | 99 |
-| `--g` | Maximum number of clusters | 50000 |
-| `--s` | Do not split paralogs | False |
-| `--ap` | Allow paralogs in core alignment | False |
-| `--iv` | MCL inflation value | 1.5 |
+| `--amrfinder_db` | Path to your AMRFinder+ database as a tarball, if not given database will be built |  |
+| `--force_update` | Force AMRFinder+ to rebuild the database | False |
+| `--ident_min` | Minimum proportion of identical amino acids in alignment for hit (0..1) | -1 |
+| `--coverage_min` | Minimum coverage of the reference protein (0..1) | 0.5 |
+| `--organism` | Taxonomy group to run additional screens against |  |
+| `--translation_table` | NCBI genetic code for translated BLAST | 11 |
+| `--report_common` | Report proteins common to a taxonomy group | False |
+| `--report_all_equal` | Report all equally-scoring BLAST and HMM matches | False |
+| `--amrfinder_opts` | Extra AMRFinder+ options in quotes. |  |
 
 
 ### Optional Parameters
@@ -113,12 +116,12 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `roary` in your analysis, please cite the following.
+If you use Bactopia and `amrfinderplus` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [Roary](https://github.com/sanger-pathogens/Roary)  
-    Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691–3693 (2015)
+- [AMRFinderPlus](https://github.com/ncbi/amr)  
+    Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
   

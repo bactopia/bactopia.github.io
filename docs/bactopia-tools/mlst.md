@@ -4,14 +4,15 @@ tags:
 
 
 
-# Bactopia Tool - `roary`
-The `roary` module uses [Roary](https://github.com/sanger-pathogens/Roary) to create a pan-genome of 
-your samples.
+# Bactopia Tool - `mlst`
+The `mlst` module uses [mlst](https://github.com/tseemann/mlst) scan assemblies and determine the sequence type.
+It makes use of [PubMLST](https://pubmlst.org/) schemes and by default automatically scans each schema. To specify
+a specific scheme to scan, you can provide it with `--scheme`.
 
 
 ## Example Usage
 ```
-bactopia --wf roary \
+bactopia --wf mlst \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
@@ -35,19 +36,16 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### Roary Parameters
+### MLST Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--use_prank` | Use PRANK instead of MAFFT for core gene | False |
-| `--use_roary` | Use Roary instead of PIRATE in the 'pangenome' subworkflow | False |
-| `--i` | Minimum percentage identity for blastp | 95 |
-| `--cd` | Percentage of isolates a gene must be in to be core | 99 |
-| `--g` | Maximum number of clusters | 50000 |
-| `--s` | Do not split paralogs | False |
-| `--ap` | Allow paralogs in core alignment | False |
-| `--iv` | MCL inflation value | 1.5 |
+| `--scheme` | Don't autodetect, force this scheme on all inputs |  |
+| `--minid` | Minimum DNA percent identity of full allelle to consider 'similar' | 95 |
+| `--mincov` | Minimum DNA percent coverage to report partial allele at all | 10 |
+| `--minscore` | Minumum score out of 100 to match a scheme | 50 |
+| `--nopath` | Strip filename paths from FILE column | False |
 
 
 ### Optional Parameters
@@ -113,12 +111,15 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `roary` in your analysis, please cite the following.
+If you use Bactopia and `mlst` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [Roary](https://github.com/sanger-pathogens/Roary)  
-    Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691–3693 (2015)
+- [mlst](https://github.com/tseemann/mlst)  
+    Seemann T [mlst: scan contig files against PubMLST typing schemes](https://github.com/tseemann/mlst) (GitHub)
+  
+- [PubMLST.org](https://pubmlst.org/)  
+    Jolley KA, Bray JE, Maiden MCJ [Open-access bacterial population genomics: BIGSdb software, the PubMLST.org website and their applications.](http://dx.doi.org/10.12688/wellcomeopenres.14826.1) _Wellcome Open Res_ 3, 124 (2018)
   

@@ -92,6 +92,7 @@ Parameters to fine-tune your Nextflow setup.
 | `--registry` | Docker registry to pull containers from. | dockerhub |
 | `--singularity_cache` | Directory where remote Singularity images are stored. |  |
 | `--singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |  |
+| `--force_rebuild` | Force overwrite of existing pre-built environments. | False |
 | `--queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) | general,high-memory |
 | `--cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |  |
 | `--disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. | False |
