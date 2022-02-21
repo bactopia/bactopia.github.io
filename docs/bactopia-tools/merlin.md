@@ -112,6 +112,13 @@ Use these parameters to specify which samples to include or exclude.
 | `--min_kaptive_confidence` | Minimum Kaptive confidence to call K/O loci - confidence levels below this will be reported as unknown | Good |
 | `--force_index` | Rebuild the BLAST index at the start of execution | False |
 
+### legsta Parameters
+
+
+| Parameter | Description | Default |
+|---|---|---|
+| `--noheader` | Don't print header row | False |
+
 ### LisSero Parameters
 
 
@@ -146,6 +153,13 @@ You can use these parameters to fine-tune your meningotype analysis
 | `--run_mode` | Workflow to run. 'a' allele mode, or 'k' k-mer mode | k |
 | `--input_type` | Input format to analyze. 'assembly' or 'fastq' | assembly |
 | `--bwa_mode` | Algorithms for bwa mapping for allele mode | mem |
+
+### SISTR Parameters
+
+
+| Parameter | Description | Default |
+|---|---|---|
+| `--full_cgmlst` |  Use the full set of cgMLST alleles which can include highly similar alleles | False |
 
 ### spaTyper Parameters
 

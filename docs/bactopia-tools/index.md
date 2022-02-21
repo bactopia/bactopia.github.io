@@ -10,7 +10,7 @@ you valuable time by allowing you to make further use of the
 [many output files](output-overview/) to extend your analyses.
 
 ### Available Bactopia Tools
-There are currently 28 Bactopia Tools that you can make use of.
+There are currently 33 Bactopia Tools that you can make use of.
 Below are a list of available Bactopia Tools, grouped as __Subworkflows__ and __Modules__. 
 
 #### Subworkflows (5)
@@ -26,7 +26,7 @@ tools to create an complete pipeline.
     | [staphtyper](/bactopia-tools/staphtyper/) | Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes |
     
 
-#### Modules  (23)
+#### Modules  (28)
 Modules are workflows consisting of only one tool.
 
 | Module | Description |
@@ -40,9 +40,11 @@ Modules are workflows consisting of only one tool.
     | [emmtyper](/bactopia-tools/emmtyper/) | emm-typing of _Streptococcus pyogenes_ assemblies |
     | [fastani](/bactopia-tools/fastani/) | fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
     | [hicap](/bactopia-tools/hicap/) | Identify cap locus serotype and structure in your _Haemophilus influenzae_ assemblies |
+    | [hpsuissero](/bactopia-tools/hpsuissero/) | Serotype prediction of _Haemophilus parasuis_ assemblies |
     | [ismapper](/bactopia-tools/ismapper/) | Identify insertion sites positions in bacterial genomes |
     | [kleborate](/bactopia-tools/kleborate/) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
     | [kraken](/bactopia-tools/kraken/) | Taxonomic classifications of sequence reads |
+    | [legsta](/bactopia-tools/legsta/) | Typing of Legionella pneumophila assemblies |
     | [lissero](/bactopia-tools/lissero/) | Serogroup typing prediction for _Listeria monocytogenes_ |
     | [mashdist](/bactopia-tools/mashdist/) | Calculate Mash distances between sequences |
     | [mashtree](/bactopia-tools/mashtree/) | Quickly create a tree using Mash distances |
@@ -50,8 +52,11 @@ Modules are workflows consisting of only one tool.
     | [mlst](/bactopia-tools/mlst/) | Automatic MLST calling from assembled contigs |
     | [mobsuite](/bactopia-tools/mobsuite/) | Reconstruct and annotate plasmids in bacterial assemblies |
     | [ngmaster](/bactopia-tools/ngmaster/) | Multi-antigen sequence typing for _Neisseria gonorrhoeae_ |
+    | [rgi](/bactopia-tools/rgi/) | Predict antibiotic resistance from assemblies |
     | [seqsero2](/bactopia-tools/seqsero2/) | Salmonella serotype prediction from reads or assemblies |
+    | [sistr](/bactopia-tools/sistr/) | Serovar prediction of Salmonella assemblies |
     | [spatyper](/bactopia-tools/spatyper/) | Computational method for finding spa types in _Staphylococcus aureus_ |
+    | [ssuissero](/bactopia-tools/ssuissero/) | Serotype prediction of _Streptococcus suis_ assemblies |
     | [staphopiasccmec](/bactopia-tools/staphopiasccmec/) | Primer based SCCmec typing of _Staphylococcus aureus_ genomes |
     | [tbprofiler](/bactopia-tools/tbprofiler/) | Detect resistance and lineages of _Mycobacterium tuberculosis_ genomes |
     
