@@ -9,6 +9,8 @@ repo_url: https://github.com/bactopia/bactopia
 dev_addr: 0.0.0.0:8000
 
 theme:
+  logo: assets/bactopia-small-logo.png
+  favicon: assets/favicon.ico
   name: material
   custom_dir: overrides
   palette:
@@ -44,6 +46,15 @@ extra:
       link: https://hub.docker.com/r/bactopia/bactopia
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/rpetit3
+
+extra_css:
+  - custom/magnific-popup.css
+  - custom/extra.css
+
+extra_javascript:
+  - custom/jquery.min.js
+  - custom/jquery.magnific-popup.min.js
+  - custom/extra.js
 
 markdown_extensions:
   - admonition

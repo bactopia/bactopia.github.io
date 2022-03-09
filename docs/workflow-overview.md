@@ -3,7 +3,9 @@ Bactopia is an extensive workflow integrating numerous steps in bacterial genome
 
 A list of software **directly** used in each step is also listed. Please check out the [Acknowledgements](/acknowledgements/) section to get the full list of software as well how to download and cite said software.
 
-![Bactopia Workflow](data/bactopia-workflow.png)
+<a class="zoom" href="/assets/bactopia-workflow.png">
+![Bactopia Workflow](/assets/bactopia-workflow.png)
+</a>
 
 ## Always Enabled Steps
 The *Always Enabled Steps* are always executed by Bactopia. These steps do not depend of external datasets and thus are always enabled.
