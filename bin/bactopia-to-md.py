@@ -157,14 +157,15 @@ if __name__ == '__main__':
                 'module':  '\n'.join(module_params),
                 'generic': '\n'.join(format_params(generic["generic"]))
             }
-            template = env.get_template('bactopia-tools-single.j2')
-            output = template.render(
-                meta=vals,
-                params=params,
-                citations=module_citations
-            )
-            with open(f'{args.docs_repo}/docs/bactopia-tools/{name}.md', 'wt') as md_fh:
-                md_fh.write(output)
+            if "docs" in vals:
+                template = env.get_template('bactopia-tools-single.j2')
+                output = template.render(
+                    meta=vals,
+                    params=params,
+                    citations=module_citations
+                )
+                with open(f'{args.docs_repo}/docs/bactopia-tools/{name}.md', 'wt') as md_fh:
+                    md_fh.write(output)
 
     # Build Acknowledgements Page
     template = env.get_template('acknowledgements.j2')

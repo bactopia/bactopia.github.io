@@ -20,6 +20,116 @@ bactopia --wf seqsero2 \
   --include includes.txt  
 ```
 
+## Output Overview
+
+Below is the default output structure for the `seqsero2` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+seqsero2/
+├── <SAMPLE_NAME>
+│   ├── <SAMPLE_NAME>_log.txt
+│   ├── <SAMPLE_NAME>_result.tsv
+│   ├── <SAMPLE_NAME>_result.txt
+│   └── logs
+│       └── seqsero2
+│           ├── nf-seqsero2.{begin,err,log,out,run,sh,trace}
+│           └── versions.yml
+├── logs
+│   ├── csvtk_concat
+│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   └── custom_dumpsoftwareversions
+│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── seqsero2-dag.dot
+│   ├── seqsero2-report.html
+│   ├── seqsero2-timeline.html
+│   └── seqsero2-trace.txt
+├── seqsero2.tsv
+├── software_versions.yml
+└── software_versions_mqc.yml
+
+```
+
+!!! info "Directory structure might be different"
+
+    `seqsero2` is available as a standalone Bactopia Tool, as well as from
+    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+    from Bactopia, the `seqsero2` directory structure might be different, but the
+    output descriptions below still apply.
+
+
+
+### Results
+
+#### Top Level
+
+Below are results that are in the base directory.
+
+
+| Filename    | Description |
+|-------------|-------------|
+| seqsero2.tsv  | A merged TSV file with `seqsero2` results from all samples |
+
+
+#### SeqSero2
+
+Below is a description of the _per-sample_ results from [SeqSero2](https://github.com/denglab/SeqSero2).
+
+
+| Filename                 | Description |
+|--------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.tsv  | A tab-delimited file with `SeqSero2` results |
+| &lt;SAMPLE_NAME&gt;.txt  | A text file with key-value pairs of `SeqSero2` results |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| seqsero2-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| seqsero2-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| seqsero2-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| seqsero2-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
+
 ## Parameters
 
 

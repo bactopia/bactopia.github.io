@@ -9,8 +9,7 @@ tags:
 
 # Bactopia Tool - `agrvate`
 The `agrvate` module uses [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE) 
-to rapidly identify the _agr_ locus type in _Staphylococcus aureus_ genomes. It uses the contigs from 
-assemblies to determine _agr_ type and any possible variants in the _agr_ operon.
+to rapidly identify the _agr_ locus type in _Staphylococcus aureus_ assemblies.
 
 
 ## Example Usage
@@ -19,6 +18,117 @@ bactopia --wf agrvate \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
+
+## Output Overview
+
+Below is the default output structure for the `agrvate` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+agrvate/
+├── <SAMPLE_NAME>
+│   ├── <SAMPLE_NAME>-agr_gp.tab
+│   ├── <SAMPLE_NAME>-blastn_log.txt
+│   ├── <SAMPLE_NAME>-summary.tab
+│   └── logs
+│       └── agrvate
+│           ├── nf-agrvate.{begin,err,log,out,run,sh,trace}
+│           └── versions.yml
+├── logs
+│   ├── csvtk_concat
+│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   └── custom_dumpsoftwareversions
+│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── agrvate-dag.dot
+│   ├── agrvate-report.html
+│   ├── agrvate-timeline.html
+│   └── agrvate-trace.txt
+├── agrvate.tsv
+├── software_versions.yml
+└── software_versions_mqc.yml
+
+```
+
+!!! info "Directory structure might be different"
+
+    `agrvate` is available as a standalone Bactopia Tool, as well as from
+    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+    from Bactopia, the `agrvate` directory structure might be different, but the
+    output descriptions below still apply.
+
+
+
+### Results
+
+#### Top Level
+
+Below are results that are in the base directory.
+
+
+| Filename    | Description |
+|-------------|-------------|
+| agrvate.tsv | A merged TSV file with `AgrVATE` results from all samples |
+
+
+#### AgrVATE
+
+Below is a description of the _per-sample_ results from [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE).
+
+
+| Extension       | Description |
+|-----------------|-------------|
+| -agr_gp.tab     | Detailed report for _agr_ kmer matches |
+| -blastn_log.txt | Log files from programs called by `AgrVATE` |
+| -summary.tab    | A final summary report for _agr_ typing |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| agrvate-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| agrvate-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| agrvate-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| agrvate-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
 
 ## Parameters
 

@@ -20,6 +20,101 @@ bactopia --wf eggnog \
   --include includes.txt  
 ```
 
+## Output Overview
+
+Below is the default output structure for the `eggnog` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+eggnog/
+├── <SAMPLE_NAME>
+│   ├── <SAMPLE_NAME>.emapper.annotations
+│   ├── <SAMPLE_NAME>.emapper.hits
+│   ├── <SAMPLE_NAME>.emapper.seed_orthologs
+│   └── logs
+│       └── eggnog
+│           ├── nf-eggnog.{begin,err,log,out,run,sh,trace}
+│           └── versions.yml
+├── logs
+│   └── custom_dumpsoftwareversions
+│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   └── eggnog-trace.txt
+├── software_versions.yml
+└── software_versions_mqc.yml
+
+```
+
+
+
+### Results
+
+#### eggNOG-mapper
+
+Below is a description of the _per-sample_ results from [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper).
+For full details about each of the eggNOG output files, see
+[eggNOG-mapper - Ouputs](https://github.com/eggnogdb/eggnog-mapper/wiki/eggNOG-mapper-v2.1.5-to-v2.1.7#Output_format).
+
+
+| Filename                 | Description |
+|--------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.emapper.annotations           | Results from the annotation phase |
+| &lt;SAMPLE_NAME&gt;.emapper.hits                  | Results from the search phase, from HMMER, Diamond or MMseqs2 |
+| &lt;SAMPLE_NAME&gt;.emapper.seed_orthologs        | Results from parsing the hits |
+| &lt;SAMPLE_NAME&gt;.emapper.annotations.xlsx      | (Optional) Annotations in .xlsx format |
+| &lt;SAMPLE_NAME&gt;.emapper.orthologs             | (Optional) List of orthologs found for each query |
+| &lt;SAMPLE_NAME&gt;.emapper.genepred.fasta        | (Optional) Sequences of predicted CDS |
+| &lt;SAMPLE_NAME&gt;.emapper.gff                   | (Optional) GFF of predicted CDS |
+| &lt;SAMPLE_NAME&gt;.emapper.no_annotations.fasta  | (Optional) Sequences without annotation |
+| &lt;SAMPLE_NAME&gt;.emapper.pfam                  | (Optional) Positions of the PFAM domains identified |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| eggnog-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| eggnog-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| eggnog-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| eggnog-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
+
 ## Parameters
 
 

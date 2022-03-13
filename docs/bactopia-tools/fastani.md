@@ -9,11 +9,12 @@ tags:
 
 # Bactopia Tool - `fastani`
 The `fastani` module uses [FastANI](https://github.com/ParBLiSS/FastANI) to calculate the average 
-nucleotide identity (ANI) between your samples. Although, sometimes you might be more interested 
-in calculating the ANI of your samples against a reference genome. Fortunately, using 
-[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download), the `fastani` module allows 
-you specify either a specific NCBI Assembly RefSeq accession (`--accession`) or a species name 
-(`--species`) for which to download all RefSeq genomes.
+nucleotide identity (ANI) between your samples.
+
+Although, sometimes you might be more interested in calculating the ANI of your samples against
+a reference genome. Fortunately, using [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download),
+the `fastani` module allows you specify either a specific NCBI Assembly RefSeq accession (`--accession`) 
+or a species name (`--species`) for which to download all RefSeq genomes.
 
 
 ## Example Usage
@@ -22,6 +23,106 @@ bactopia --wf fastani \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
+
+## Output Overview
+
+Below is the default output structure for the `fastani` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+fastani/
+├── <SAMPLE_NAME>
+│   ├── <SAMPLE_NAME>.tsv
+│   └── logs
+│       └── fastani
+│           ├── nf-fastani.{begin,err,log,out,run,sh,trace}
+│           └── versions.yml
+├── logs
+│   ├── csvtk_concat
+│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   └── custom_dumpsoftwareversions
+│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── fastani-dag.dot
+│   ├── fastani-report.html
+│   ├── fastani-timeline.html
+│   └── fastani-trace.txt
+├── fastani.tsv
+├── software_versions.yml
+└── software_versions_mqc.yml
+
+```
+
+
+
+### Results
+
+#### Top Level
+
+Below are results that are in the base directory.
+
+
+| Filename    | Description |
+|-------------|-------------|
+| fastani.tsv  | A merged TSV file with `FastANI` results from all samples |
+
+
+#### FastANI
+
+Below is a description of the _per-sample_ results from [FastANI](https://github.com/ParBLiSS/FastANI).
+
+
+| Filename                 | Description |
+|--------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.tsv  | FastANI results of all samples against a reference genome |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| fastani-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| fastani-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| fastani-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| fastani-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
 
 ## Parameters
 

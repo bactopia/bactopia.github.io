@@ -5,8 +5,8 @@ tags:
 
 
 # Bactopia Tool - `rgi`
-The `rgi` module uses [Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi) to identify antibiotic resistance genes in
-assemblies.
+The `rgi` module uses [Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi) to identify antibiotic
+resistance genes in assemblies.
 
 
 ## Example Usage
@@ -15,6 +15,113 @@ bactopia --wf rgi \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
+
+## Output Overview
+
+Below is the default output structure for the `rgi` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+rgi/
+├── <SAMPLE_NAME>
+│   ├── <SAMPLE_NAME>.json
+│   ├── <SAMPLE_NAME>.txt
+│   └── logs
+│       └── rgi
+│           ├── nf-rgi.{begin,err,log,out,run,sh,trace}
+│           └── versions.yml
+├── logs
+│   ├── csvtk_concat
+│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   ├── custom_dumpsoftwareversions
+│   │   ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   └── rgi_heatmap
+│       ├── nf-rgi_heatmap.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── rgi-dag.dot
+│   ├── rgi-report.html
+│   ├── rgi-timeline.html
+│   └── rgi-trace.txt
+├── rgi-20.{csv,eps,png}
+├── rgi.tsv
+├── software_versions.yml
+└── software_versions_mqc.yml
+
+```
+
+
+
+### Results
+
+#### Top Level
+
+Below are results that are in the base directory.
+
+
+| Filename    | Description |
+|-------------|-------------|
+| rgi-20.{csv,eps,png}  | Heatmap representations as text and images, see [RGI - Heatmap](https://github.com/arpcard/rgi#generating-heat-maps-of-rgi-main-results) for more details |
+| rgi.tsv  | A merged TSV file with `rgi` results from all samples |
+
+
+#### rgi
+
+Below is a description of the _per-sample_ results from [RGI](https://github.com/arpcard/rgi).
+
+
+| Filename                 | Description |
+|--------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.json  | A JSON file with `rgi` results |
+| &lt;SAMPLE_NAME&gt;.txt  | A tab-delimited file with `egi` results, see [RGI - Output Details](https://github.com/arpcard/rgi#rgi-main-tab-delimited-output-details) for more details |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| rgi-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| rgi-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| rgi-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| rgi-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
 
 ## Parameters
 

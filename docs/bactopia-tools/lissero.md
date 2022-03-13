@@ -19,6 +19,113 @@ bactopia --wf lissero \
   --include includes.txt  
 ```
 
+## Output Overview
+
+Below is the default output structure for the `lissero` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+lissero/
+├── <SAMPLE_NAME>
+│   ├── <SAMPLE_NAME>.tsv
+│   └── logs
+│       └── lissero
+│           ├── nf-lissero.{begin,err,log,out,run,sh,trace}
+│           └── versions.yml
+├── logs
+│   ├── csvtk_concat
+│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   └── custom_dumpsoftwareversions
+│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── lissero-dag.dot
+│   ├── lissero-report.html
+│   ├── lissero-timeline.html
+│   └── lissero-trace.txt
+├── lissero.tsv
+├── software_versions.yml
+└── software_versions_mqc.yml
+
+```
+
+!!! info "Directory structure might be different"
+
+    `lissero` is available as a standalone Bactopia Tool, as well as from
+    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+    from Bactopia, the `lissero` directory structure might be different, but the
+    output descriptions below still apply.
+
+
+
+### Results
+
+#### Top Level
+
+Below are results that are in the base directory.
+
+
+| Filename    | Description |
+|-------------|-------------|
+| lissero.tsv  | A merged TSV file with `LisSero` results from all samples |
+
+
+#### LisSero
+
+Below is a description of the _per-sample_ results from [LisSero](https://github.com/MDU-PHL/LisSero).
+
+
+| Filename                 | Description |
+|--------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.tsv  | A tab-delimited file with `LisSero` results |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| lissero-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| lissero-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| lissero-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| lissero-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
+
 ## Parameters
 
 

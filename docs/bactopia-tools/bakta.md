@@ -20,6 +20,111 @@ bactopia --wf bakta \
   --include includes.txt  
 ```
 
+## Output Overview
+
+Below is the default output structure for the `bakta` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+bakta/
+├── <SAMPLE_NAME>
+│   ├── <SAMPLE_NAME>.embl
+│   ├── <SAMPLE_NAME>.faa
+│   ├── <SAMPLE_NAME>.ffn
+│   ├── <SAMPLE_NAME>.fna
+│   ├── <SAMPLE_NAME>.gbff
+│   ├── <SAMPLE_NAME>.gff3
+│   ├── <SAMPLE_NAME>.hypotheticals.faa
+│   ├── <SAMPLE_NAME>.hypotheticals.tsv
+│   ├── <SAMPLE_NAME>.tsv
+│   ├── <SAMPLE_NAME>.txt
+│   └── logs
+│       └── bakta
+│           ├── <SAMPLE_NAME>.log
+│           ├── nf-bakta.{begin,err,log,out,run,sh,trace}
+│           └── versions.yml
+├── logs
+│   └── custom_dumpsoftwareversions
+│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── bakta-dag.dot
+│   ├── bakta-report.html
+│   ├── bakta-timeline.html
+│   └── bakta-trace.txt
+├── software_versions.yml
+└── software_versions_mqc.yml
+
+```
+
+
+
+### Results
+
+#### Bakta
+
+Below is a description of the _per-sample_ results from [Bakta](https://github.com/oschwengers/bakta).
+
+
+| Extension          | Description |
+|--------------------|-------------|
+| .embl              | Annotations & sequences in (multi) EMBL format |
+| .faa               | CDS/sORF amino acid sequences as FASTA |
+| .ffn               | Feature nucleotide sequences as FASTA |
+| .fna               | Replicon/contig DNA sequences as FASTA |
+| .gbff              | Annotations & sequences in (multi) GenBank format |
+| .gff3              | Annotations & sequences in GFF3 format |
+| .hypotheticals.faa | Hypothetical protein CDS amino acid sequences as FASTA |
+| .hypotheticals.tsv | Further information on hypothetical protein CDS as simple human readble tab separated values |
+| .tsv               | Annotations as simple human readble tab separated values |
+| .txt               | Broad summary of `Bakta` annotations |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| bakta-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| bakta-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| bakta-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| bakta-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
+
 ## Parameters
 
 

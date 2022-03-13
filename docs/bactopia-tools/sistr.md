@@ -5,8 +5,8 @@ tags:
 
 
 # Bactopia Tool - `sistr`
-The `sistr` module uses [Salmonella In Silico Typing Resource](https://github.com/phac-nml/sistr_cmd), or SISTR, for 
-serovar prediction of Salmonella assemblies.
+The `sistr` module uses [Salmonella In Silico Typing Resource](https://github.com/phac-nml/sistr_cmd),
+or SISTR, for serovar prediction of Salmonella assemblies.
 
 
 ## Example Usage
@@ -15,6 +15,119 @@ bactopia --wf sistr \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
+
+## Output Overview
+
+Below is the default output structure for the `sistr` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+sistr/
+├── <SAMPLE_NAME>
+│   ├── <SAMPLE_NAME>-allele.fasta.gz
+│   ├── <SAMPLE_NAME>-allele.json.gz
+│   ├── <SAMPLE_NAME>-cgmlst.csv
+│   ├── <SAMPLE_NAME>.tsv
+│   └── logs
+│       └── sistr
+│           ├── nf-sistr.{begin,err,log,out,run,sh,trace}
+│           └── versions.yml
+├── logs
+│   ├── csvtk_concat
+│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   └── custom_dumpsoftwareversions
+│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── sistr-dag.dot
+│   ├── sistr-report.html
+│   ├── sistr-timeline.html
+│   └── sistr-trace.txt
+├── sistr.tsv
+├── software_versions.yml
+└── software_versions_mqc.yml
+
+```
+
+!!! info "Directory structure might be different"
+
+    `sistr` is available as a standalone Bactopia Tool, as well as from
+    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+    from Bactopia, the `sistr` directory structure might be different, but the
+    output descriptions below still apply.
+
+
+
+### Results
+
+#### Top Level
+
+Below are results that are in the base directory.
+
+
+| Filename    | Description |
+|-------------|-------------|
+| sistr.tsv  | A merged TSV file with `SISTR` results from all samples |
+
+
+#### SISTR
+
+Below is a description of the _per-sample_ results from [SISTR](https://github.com/phac-nml/sistr_cmd).
+
+
+| Filename                 | Description |
+|--------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;-allele.fasta.gz  | A FASTA file of the cgMLST allele search results  |
+| &lt;SAMPLE_NAME&gt;-allele.json.gz  | JSON formated cgMLST allele search results, see [SISTR - cgMLST search results](https://github.com/phac-nml/sistr_cmd#cgmlst-allele-search-results) for more details |
+| &lt;SAMPLE_NAME&gt;-cgmlst.csv  | A comma-delimited summary of the cgMLST allele search results |
+| &lt;SAMPLE_NAME&gt;.tsv  | A tab-delimited file with `SISTR` results, see [SISTR - Primary results](https://github.com/phac-nml/sistr_cmd#primary-results-output--o-sistr-results) for more details |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| sistr-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| sistr-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| sistr-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| sistr-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
 
 ## Parameters
 

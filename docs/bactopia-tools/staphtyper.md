@@ -8,7 +8,17 @@ tags:
 
 
 # Bactopia Tool - `staphtyper`
-The `staphytyper` subworkflows combines multiple _Staphylococcus aureus_ specific tools to Determine the _agr_ ([AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)), _spa_ ([spaTyper](https://github.com/HCGB-IGTP/spaTyper)) and SCCmec ([staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec)) types of assemblies.
+The `staphtyper` subworkflow includes multiple tools that are specific for typing certain features
+of *Staphylococcus aureus*. Currently `staphtyper` includes
+
+1. [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE) - *agr* locus type and *agr* operon variants.
+2. [spaTyper](https://github.com/HCGB-IGTP/spaTyper) - *spa* type
+3. [staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec) - SCCmec type
+
+This tool will evolve with *S. aureus* genomics, so you can expect it to add more typing methods
+(maybe even replace current methods) in the future. If a certain typing method for *S. aureus*
+please feel free to suggest it be added!~
+
 
 ## Example Usage
 ```
@@ -16,6 +26,159 @@ bactopia --wf staphtyper \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
+
+## Output Overview
+
+Below is the default output structure for the `staphtyper` tool. Where possible the 
+file descriptions below were modified from a tools description.
+
+```{bash}
+staphtyper/
+├── <SAMPLE_NAME>
+│   ├── agrvate
+│   │   ├── <SAMPLE_NAME>-agr_gp.tab
+│   │   ├── <SAMPLE_NAME>-blastn_log.txt
+│   │   └── <SAMPLE_NAME>-summary.tab
+│   ├── logs
+│   │   ├── agrvate
+│   │   │   ├── nf-agrvate.{begin,err,log,out,run,sh,trace}
+│   │   │   └── versions.yml
+│   │   ├── spatyper
+│   │   │   ├── nf-spatyper.{begin,err,log,out,run,sh,trace}
+│   │   │   └── versions.yml
+│   │   └── staphopiasccmec
+│   │       ├── nf-staphopiasccmec.{begin,err,log,out,run,sh,trace}
+│   │       └── versions.yml
+│   ├── spatyper
+│   │   └── <SAMPLE_NAME>.tsv
+│   └── staphopiasccmec
+│       └── <SAMPLE_NAME>.tsv
+├── logs
+│   ├── csvtk_concat
+│   │   ├── agrvate
+│   │   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   │   └── versions.yml
+│   │   ├── spatyper
+│   │   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   │   └── versions.yml
+│   │   └── staphopiasccmec
+│   │       ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │       └── versions.yml
+│   └── custom_dumpsoftwareversions
+│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── staphtyper-dag.dot
+│   ├── staphtyper-report.html
+│   ├── staphtyper-timeline.html
+│   └── staphtyper-trace.txt
+├── agrvate.tsv
+├── software_versions.yml
+├── software_versions_mqc.yml
+├── spatyper.tsv
+└── staphopiasccmec.tsv
+
+```
+
+!!! info "Directory structure might be different"
+
+    `staphtyper` is available as a standalone Bactopia Tool, as well as from
+    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+    from Bactopia, the `staphtyper` directory structure might be different, but the
+    output descriptions below still apply.
+
+
+
+### Results
+
+#### Top Level
+
+Below are results that are in the base directory.
+
+
+| Filename    | Description |
+|-------------|-------------|
+| agrvate.tsv | A merged TSV file with `AgrVATE` results from all samples |
+| spatyper.tsv  | A merged TSV file with `spaTyper` results from all samples |
+| staphopiasccmec.tsv  | A merged TSV file with `staphopia-sccmec` results from all samples |
+
+
+#### AgrVATE
+
+Below is a description of the _per-sample_ results from [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE).
+
+
+| Extension       | Description |
+|-----------------|-------------|
+| -agr_gp.tab     | Detailed report for _agr_ kmer matches |
+| -blastn_log.txt | Log files from programs called by `AgrVATE` |
+| -summary.tab    | A final summary report for _agr_ typing |
+
+
+#### spaTyper
+
+Below is a description of the _per-sample_ results from [spaTyper](https://github.com/HCGB-IGTP/spaTyper).
+
+
+| Filename                 | Description |
+|--------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.tsv  | A tab-delimited file with `spaTyper` results |
+
+
+#### staphopia-sccmec
+
+Below is a description of the _per-sample_ results from [staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec).
+
+
+| Filename                 | Description |
+|--------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.tsv  | A tab-delimited file with `staphopia-sccmec` results |
+
+
+
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs 
+
+Each process that is executed will have a `logs` folder containing helpful files for you to review
+if the need ever arises.
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
+| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
+| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
+| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml                  | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| staphtyper-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| staphtyper-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| staphtyper-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| staphtyper-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+
+
+#### Program Versions
+
+At the end of each run, each of the `versions.yml` files are merged into the files below.
+
+| Filename                  | Description |
+|---------------------------|-------------|
+| software_versions.yml     | A complete list of programs and versions used by each process | 
+| software_versions_mqc.yml | A complete list of programs and versions formatted for [MultiQC](https://multiqc.info/) |
 
 ## Parameters
 
