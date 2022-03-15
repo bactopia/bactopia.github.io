@@ -28,6 +28,11 @@ The talk presented by [Dr. Timothy Read](https://twitter.com/tdread_emory) at NI
 Slides: [Web](https://bit.ly/3lQpZKo), [PDF](/data/resources/2020-niaid-bactopia-staphopia.pdf)  
 
 ## Posters
+
+- _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (March 2022)_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) previewing version 2 of Bactopia and the many changes it will bring.  
+Slides: [Web](https://bit.ly/3i6bBvM), [PDF](/data/resources/2022-sfaf-eposter-bactopia-v2-part2.pdf)  
+
 - _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (September 2021)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) previewing version 2 of Bactopia and the many changes it will bring.  
 Video: [YouTube](https://youtu.be/boRuctfZTfw)  
