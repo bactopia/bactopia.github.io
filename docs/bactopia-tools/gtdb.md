@@ -16,13 +16,15 @@ the taxonomy of your samples.
 ```
 bactopia --wf gtdb \
   --bactopia /path/to/your/bactopia/results \ 
+  --gtdb /path/to/your/gtdb/db
   --include includes.txt  
 ```
 
 ## Output Overview
 
 Below is the default output structure for the `gtdb` tool. Where possible the 
-file descriptions below were modified from a tools description.
+file descriptions below were modified from descriptions at the 
+[GTDB-Tk Classify Workflow](https://github.com/Ecogenomics/GTDBTk#classify-workflow) page.
 
 ```{bash}
 gtdb/
@@ -72,11 +74,6 @@ gtdb/
 ### Results
 
 #### GTDB-Tk
-
-Below is a description of the _per-sample_ results from [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper).
-For full details about each of the eggNOG output files, see
-[eggNOG-mapper - Ouputs](https://github.com/eggnogdb/eggnog-mapper/wiki/eggNOG-mapper-v2.1.5-to-v2.1.7#Output_format).
-
 
 | Filename | Description |
 |-----------|-------------|
