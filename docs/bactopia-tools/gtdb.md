@@ -22,9 +22,7 @@ bactopia --wf gtdb \
 
 ## Output Overview
 
-Below is the default output structure for the `gtdb` tool. Where possible the 
-file descriptions below were modified from descriptions at the 
-[GTDB-Tk Classify Workflow](https://github.com/Ecogenomics/GTDBTk#classify-workflow) page.
+Below is the default output structure for the `gtdb` tool. Where possible the file descriptions below were modified from a tools description.
 
 ```{bash}
 gtdb/
@@ -75,6 +73,10 @@ gtdb/
 
 #### GTDB-Tk
 
+Below is a description of the _per-sample_ results from [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk).
+For full details about each of the eggNOG output files, see
+[GTDB-Tk Classify Workflow](https://github.com/Ecogenomics/GTDBTk#classify-workflow) page.
+          
 | Filename | Description |
 |-----------|-------------|
 | gtdb.(ar122\|bac120).classify.tree | Reference tree in Newick format containing query genomes placed with pplacer |
