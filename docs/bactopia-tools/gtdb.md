@@ -74,7 +74,7 @@ gtdb/
 #### GTDB-Tk
 
 Below is a description of the _per-sample_ results from [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk).
-For full details about each of the eggNOG output files, see
+For full details about each of the GTDB output files, see
 [GTDB-Tk Classify Workflow](https://github.com/Ecogenomics/GTDBTk#classify-workflow) page.
           
 | Filename | Description |
