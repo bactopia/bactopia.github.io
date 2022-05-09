@@ -122,15 +122,11 @@ Most importantly, by taking this approach, you can process hundreds of samples i
 !!! info "Use --fastqs for Multiple Samples"
     `bactopia --fastqs my-samples.txt`
 
+
 ##### The FOFN Format
-You can use the `--example_fastqs` to get an example of the expected structure for the input FASTQs FOFN.
+Here is an example FOFN created by `bactopia prepare`.
 
 ```
-bactopia --example_fastqs
-N E X T F L O W  ~  version 19.01.0
-Launching `/home/rpetit/illumina-cleanup/bin/illumina-cleanup` [naughty_borg] - revision: 0416ba407c
-Printing example input for "--fastqs"
-
 sample	runtype	r1	r2	extra
 SA103113	assembly			/example/SA103113.fna.gz
 SA110685	hybrid	/example/SA110685_R1.fastq.gz	/SA110685_R2.fastq.gz	/example/SA110685.fastq.gz
@@ -162,6 +158,8 @@ In the example above, four samples would be processed by Bactopia.
 4. `SA123456` would be processed as single-end reads
 5. `SA123456ONT` would be processed as Nanopore reads
 
+!!! info "Use `bactopia prepare` to generate the FOFN"
+    You can manually create the FOFN, but it is highly recommended to always use `bactopia prepare` to generate the FOFN. By using a FOFN generated from `bactopia prepare` you can be confident your FOFN will work with Bactopia.
 
 ##### Generating A FOFN
 `bactopia prepare` has been included to help aid (hopefully!) the process of creating a FOFN for your samples. This script will attempt to find FASTQ files in a given directory and output the expected FOFN format. It will also output any potential issues associated with the pattern matching.
