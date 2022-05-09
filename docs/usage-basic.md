@@ -87,15 +87,19 @@ Which approach really depends on what you need to achieve! The following section
 #### Single Sample
 When you only need to process a single sample at a time, Bactopia allows that! You only have to the sample name (`--sample`) and the whether the read set is paired-end (`--R1` and `--R2`), single-end (`--SE`), Illumina paired-end + long reads (`--hybrid`), or an assembly (`--assembly`).
 
+##### Paired-End
 !!! info "Use --R1, --R2 for Paired-End FASTQs"
     `bactopia --sample my-sample --R1 /path/to/my-sample_R1.fastq.gz --R2 /path/to/my-sample_R2.fastq.gz`
 
+##### Single-End
 !!! info "Use --SE for Single-End FASTQs"
     `bactopia --sample my-sample --SE /path/to/my-sample.fastq.gz`
 
+##### Nanopore
 !!! info "Use --SE and --ont for Oxford Nanopore FASTQs"
     `bactopia --sample my-sample --SE /path/to/my-ont-sample.fastq.gz --ont`
 
+##### Hybrid Assembly
 !!! info "Use --R1, --R2, --SE, and --hybrid for Paired-End FASTQs with Long Reads"
     At the assembly step, Unicycler will be used to create a hybrid assembly using the paired-end reads and the long reads.
     ```
@@ -106,6 +110,7 @@ When you only need to process a single sample at a time, Bactopia allows that! Y
              --hybrid
     ```
 
+##### Assembly
 !!! info "Use --assembly for an assembled FASTA"
     Assemblies will have 2x250bp Illumina reads simulated without insertions or deletions in the sequence and a minimum PHRED score of Q33. By default, the input assembly will be used for all downstream analyses (e.g. annotation) which use an assembly. If the `--reassemble` parameter is given, then the a assembly will be created from the simulated reads.
     ```
