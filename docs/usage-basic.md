@@ -172,7 +172,6 @@ In the example above, four samples would be processed by Bactopia.
 !!! error "Verify accuracy of FOFN"
     This is currently an experimental function. There are likely bugs to be ironed out. Please be sure to give the resulting FOFN a quick look over.
 
-###### Usage
 ```
 usage: bactopia prepare [-h] [-f STR] [-a STR] [--fastq_separator STR] [--fastq_pattern STR] 
                         [--pe1_pattern STR] [--pe2_pattern STR] [--assembly_pattern STR] [-r] 
@@ -203,6 +202,7 @@ optional arguments:
   --version             show program's version number and exit
 ```
 
+###### Nanopore
 !!! info "Use `--long_reads` to tell Bactopia to process as Nanopore reads"
     When `--long_reads` is used, any reads that are identified as single-end will be given a `runtype` of `ont`. This will tell Bactopia to process these reads as Nanopore reads.
 
