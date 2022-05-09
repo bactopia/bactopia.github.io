@@ -3,168 +3,81 @@ Bactopia is a wrapper around many different tools. Each of these tools may (or m
 
 ## Usage
 ```
-Required Parameters:
-    ### For Procesessing Multiple Samples
-    --fastqs STR            An input file containing the sample name and
-                                absolute paths to FASTQ/FASTAs to process
+---------------------------------------------
+   _                _              _
+  | |__   __ _  ___| |_ ___  _ __ (_) __ _
+  | '_ \ / _` |/ __| __/ _ \| '_ \| |/ _` |
+  | |_) | (_| | (__| || (_) | |_) | | (_| |
+  |_.__/ \__,_|\___|\__\___/| .__/|_|\__,_|
+                            |_|
+  bactopia v2.x.x
+  Bactopia is a flexible pipeline for complete analysis of bacterial genomes.
+---------------------------------------------
+Typical pipeline command:
 
-    ### For Processing A Single Sample
-    --R1 STR                First set of reads for paired end in compressed (gzip)
-                                FASTQ format
+  bactopia --fastqs samples.txt --datasets datasets/ --species 'Staphylococcus aureus' -profile singularity
 
-    --R2 STR                Second set of reads for paired end in compressed (gzip)
-                                FASTQ format
+Required Parameters
+  ### For Procesessing Multiple Samples
+  --fastqs                            [string]  A FOFN with sample names and paths to FASTQ/FASTAs to process
 
-    --SE STR                Single end set of reads in compressed (gzip) FASTQ format
+  ### For Processing A Single Sample
+  --R1                                [string]  First set of compressed (gzip) paired-end FASTQ reads (requires --R2 and --sample)
+  --R2                                [string]  Second set of compressed (gzip) paired-end FASTQ reads (requires --R1 and --sample)
+  --SE                                [string]  Compressed (gzip) single-end FASTQ reads  (requires --sample)
+  --ont                               [boolean] Treat `--SE` or `--accession` as long reads for analysis. (requires --sample if using --SE)
+  --hybrid                            [boolean] Treat `--SE` as long reads for hybrid assembly.  (requires --R1, --R2, --SE and --sample)
+  --sample                            [string]  Sample name to use for the input sequences
 
-    --hybrid                The SE should be treated as long reads for hybrid assembly.
+  ### For Downloading from SRA/ENA or NCBI Assembly
+  **Note: Downloaded assemblies will have error free Illumina reads simulated for processing.**
+  --accessions                        [string]  A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed
+  --accession                         [string]  Sample name to use for the input sequences
 
-    --sample STR            The name of the input sequences
+  ### For Processing an Assembly
+  **Note: Assemblies will have error free Illumina reads simulated for processing.**
+  --assembly                          [string]  A assembled genome in compressed FASTA format. (requires --sample)
 
-    ### For Downloading from SRA/ENA or NCBI Assembly
-    **Note: Assemblies will have error free Illumina reads simulated for processing.**
-    --accessions            An input file containing ENA/SRA Experiment accessions or
-                                NCBI Assembly accessions to be processed
+Dataset Parameters
+  --datasets                          [string]  The path to datasets that have already been set up
+  --species                           [string]  Name of species for species-specific dataset to use
+  --ask_merlin                        [boolean] Ask Merlin to execute species specific Bactopia tools based on Mash distances
+  --coverage                          [integer] Reduce samples to a given coverage [default: 100]
+  --genome_size                       [string]  Expected genome size (bp) for all samples, a value of '0' will disable read error correction and read
+                                                subsampling, otherwise estimate with Mash [default: 0]
 
-    --accession             A single ENA/SRA Experiment accession or NCBI Assembly accession
-                                to be processed
+Annotate Genome Parameters
+  --use_bakta                         [boolean] Use Bakta for genome annotation (requires --bakta_db)
 
-    ### For Processing an Assembly
-    **Note: The assembly will have error free Illumina reads simulated for processing.**
-    --assembly STR          A assembled genome in compressed FASTA format.
+Optional Parameters
+  --outdir                            [string]  Base directory to write results to [default: ./]
+  --run_name                          [string]  Name of the directory to hold results [default: bactopia]
 
-    --reassemble            The simulated reads will be used to create a new assembly.
-                                Default: Use the original assembly, do not reassemble
+Helpful Parameters
+  --wf                                [string]  Specify which workflow or Bactopia Tool to execute [default: bactopia]
+  --list_wfs                          [boolean] List the available workflows and Bactopia Tools to use with '--wf'
+  --help_all                          [boolean] An alias for --help --show_hidden_params
+  --version                           [boolean] Display version text.
 
-Dataset Parameters:
-    --datasets DIR          The path to available datasets that have
-                                already been set up
+!! Hiding 166 params, use --show_hidden_params (or --help_all) to show them !!
+--------------------------------------------------------------------
+If you use bactopia for your analysis please cite:
 
-    --species STR           Determines which species-specific dataset to
-                                use for the input sequencing
+* Bactopia
+  https://doi.org/10.1128/mSystems.00190-20
 
-Optional Parameters:
-    --coverage INT          Reduce samples to a given coverage
-                                Default: 100x
+* The nf-core framework
+  https://doi.org/10.1038/s41587-020-0439-x
 
-    --genome_size INT       Expected genome size (bp) for all samples, a value of '0'
-                                will disable read error correction and read subsampling.
-                                Special values (requires --species):
-                                    'min': uses minimum completed genome size of species
-                                    'median': uses median completed genome size of species
-                                    'mean': uses mean completed genome size of species
-                                    'max': uses max completed genome size of species
-                                Default: Mash estimate
-
-    --outdir DIR            Directory to write results to
-                                Default: .
-
-Nextflow Queue Parameters:
-    At execution, Nextflow creates a queue and the number of slots in the queue is determined by the total number
-    of cores on the system. When a task is submitted to the queue, the total number of slots it occupies is
-    determined by the value set by "--cpus".
-
-    This can have a significant effect on the efficiency of the Nextflow's queue system. If "--cpus" is set to a
-    value that is equal to the number of cores availabe, in most cases only a single task will be able to run
-    because its occupying all available slots.
-
-    When in doubt, "--cpus 4" is a safe bet, it is also the default value if you don't use "--cpus".
-
-    --max_time INT          The maximum number of minutes a single task should run before being halted.
-                                Default: 240 minutes
-
-    --max_memory INT        The maximum amount of memory (Gb) allowed to a single task.
-                                Default: 64 Gb
-
-    --cpus INT              Number of processors made available to a single task.
-                                Default: 4
-
-    -qs                     Nextflow queue size. This parameter is very useful to limit the total number of
-                                processors used on desktops, laptops or shared resources.
-                                Default: Nextflow defaults to the total number of processors on your system.
-
-
-Nextflow Related Parameters:
-    --infodir DIR           Directory to write Nextflow summary files to
-                                Default: ./bactopia-info
-
-    --condadir DIR          Directory to Nextflow should use for Conda environments
-                                Default: Bactopia's Nextflow directory
-
-    --nfconfig STR          A Nextflow compatible config file for custom profiles. This allows
-                                you to create profiles specific to your environment (e.g. SGE,
-                                AWS, SLURM, etc...). This config file is loaded last and will
-                                overwrite existing variables if set.
-                                Default: Bactopia's default configs
-
-    --nfdir                 Print directory Nextflow has pulled Bactopia to
-
-    --overwrite             Nextflow will overwrite existing output files.
-                                Default: false
-
-    --conatainerPath        Path to Singularity containers to be used by the 'slurm'
-                                profile.
-                                Default: /opt/bactopia/singularity
-
-    --sleep_time            After reading datases, the amount of time (seconds) Nextflow
-                                will wait before execution.
-                                Default: 5 seconds
-
-    --publish_mode          Set Nextflow's method for publishing output files. Allowed methods are:
-                                'copy' (default)    Copies the output files into the published directory.
-
-                                'copyNoFollow' Copies the output files into the published directory
-                                               without following symlinks ie. copies the links themselves.
-
-                                'link'    Creates a hard link in the published directory for each
-                                          process output file.
-
-                                'rellink' Creates a relative symbolic link in the published directory
-                                          for each process output file.
-
-                                'symlink' Creates an absolute symbolic link in the published directory
-                                          for each process output file.
-
-                                Default: copy
-
-    --force                 Nextflow will overwrite existing output files.
-                                Default: false
-
-    -resume                 Nextflow will attempt to resume a previous run. Please notice it is
-                                only a single '-'
-
-    --cleanup_workdir       After Bactopia is successfully executed, the work firectory will be deleted.
-                                Warning: by doing this you lose the ability to resume workflows.
-
-Useful Parameters:
-    --skip_logs             Logs for each process per sample will not be kept.
-
-    --available_datasets    Print a list of available datasets found based
-                                on location given by "--datasets"
-
-    --example_fastqs        Print example of expected input for FASTQs file
-
-    --check_fastqs          Verify "--fastqs" produces the expected inputs
-
-    --compress              Compress (gzip) select outputs (e.g. annotation, variant calls)
-                                to reduce overall storage footprint.
-
-    --keep_all_files        Keeps all analysis files created. By default, intermediate
-                                files are removed. This will not affect the ability
-                                to resume Nextflow runs, and only occurs at the end
-                                of the process.
-
-    --version               Print workflow version information
-
-    --help                  Show this message and exit
-
-    --help_all              Show a complete list of adjustable parameters
+* Software dependencies
+  https://bactopia.github.io/acknowledgements/
+--------------------------------------------------------------------
 ```
 
 ## Inputs
-Bactopia has multiple approaches to specify your input sequences. Bactopia can process Illumina FASTQs, assemblies, and long reads for hybrid assembly.
+Bactopia has multiple approaches to specify your input sequences. Bactopia can process Illumina and Nanopore FASTQs and assemblies.
 
-Illumina FASTQs a can be your local FASTQs or a Experiment accession to download associated FASTQs from the [European Nucleotide Archive (ENA)](https://www.ebi.ac.uk/ena). 
+Illumina and Nanopore FASTQs a can be locally available or an Experiment accession to download associated FASTQs from the [European Nucleotide Archive (ENA)](https://www.ebi.ac.uk/ena). If you have Illumina and Nanopore reads for a sample you have choose to do a hybrid assembly.
 
 Likewise assemblies can be local, or a GenBank/RefSeq accession to download from NCBI Assembly. Input assemblies will have Illumina reads simulated so that the complete Bactopia pipeline run. By default, the assembly will not be reassembled.
 
@@ -180,13 +93,16 @@ When you only need to process a single sample at a time, Bactopia allows that! Y
 !!! info "Use --SE for Single-End FASTQs"
     `bactopia --sample my-sample --SE /path/to/my-sample.fastq.gz`
 
+!!! info "Use --SE and --ont for Oxford Nanopore FASTQs"
+    `bactopia --sample my-sample --SE /path/to/my-ont-sample.fastq.gz --ont`
+
 !!! info "Use --R1, --R2, --SE, and --hybrid for Paired-End FASTQs with Long Reads"
     At the assembly step, Unicycler will be used to create a hybrid assembly using the paired-end reads and the long reads.
     ```
     bactopia --sample my-sample 
              --R1 /path/to/my-sample_R1.fastq.gz \
              --R2 /path/to/my-sample_R2.fastq.gz \
-             --SE /path/to/my-sample.fastq.gz \
+             --SE /path/to/my-ont-sample.fastq.gz \
              --hybrid
     ```
 
@@ -194,11 +110,10 @@ When you only need to process a single sample at a time, Bactopia allows that! Y
     Assemblies will have 2x250bp Illumina reads simulated without insertions or deletions in the sequence and a minimum PHRED score of Q33. By default, the input assembly will be used for all downstream analyses (e.g. annotation) which use an assembly. If the `--reassemble` parameter is given, then the a assembly will be created from the simulated reads.
     ```
     bactopia --sample my-sample --assembly /path/to/my-sample.fna.gz 
-
     ```
 
 #### Multiple Samples
-For multiple samples, you must create a file with information about the inputs, a *file of filenames* (FOFN). This file specifies sample names and location of FASTQs/FASTAs to be processed. Using this information, paired-end, single-end, hybrid or assembly information can be extracted as well as naming output files.
+For multiple samples, you must create a file with information about the inputs, a *file of filenames* (FOFN). This file specifies sample names and location of FASTQs/FASTAs to be processed. Using this information, paired-end, single-end, nanopore, hybrid or assembly information can be extracted as well as naming output files.
 
 While this is an additional step for you, the user, it helps to avoid potential pattern matching errors. 
 
@@ -221,6 +136,7 @@ SA103113	assembly			/example/SA103113.fna.gz
 SA110685	hybrid	/example/SA110685_R1.fastq.gz	/SA110685_R2.fastq.gz	/example/SA110685.fastq.gz
 SA123186	paired-end	/example/SA123186_R1.fastq.gz	/example/SA123186_R2.fastq.gz
 SA123456	single-end	/example/SA12345.fastq.gz
+SA123456ONT	ont	/example/SA12345ONT.fastq.gz
 ```
 
 The expected structure is a **tab-delimited** table with three columns:
@@ -244,6 +160,8 @@ In the example above, four samples would be processed by Bactopia.
 2. `SA110685` would have a hybrid assembly created using the paired-end reads and long-reads
 3. `SA123186` would be processed as paired-end reads
 4. `SA123456` would be processed as single-end reads
+5. `SA123456ONT` would be processed as Nanopore reads
+
 
 ##### Generating A FOFN
 `bactopia prepare` has been included to help aid (hopefully!) the process of creating a FOFN for your samples. This script will attempt to find FASTQ files in a given directory and output the expected FOFN format. It will also output any potential issues associated with the pattern matching.
@@ -253,10 +171,9 @@ In the example above, four samples would be processed by Bactopia.
 
 ###### Usage
 ```
-usage: bactopia prepare [-h] [-f STR] [-a STR] [--fastq_seperator STR]
-                        [--fastq_pattern STR] [--assembly_pattern STR]
-                        [--long_reads] [--version]
-                        STR
+usage: bactopia prepare [-h] [-f STR] [-a STR] [--fastq_separator STR] [--fastq_pattern STR] 
+                        [--pe1_pattern STR] [--pe2_pattern STR] [--assembly_pattern STR] [-r] 
+                        [--long_reads] [--merge] [--prefix STR] [--version] STR
 
 bactopia prepare - Read a directory and prepare a FOFN of FASTQs/FASTAs
 
@@ -269,23 +186,22 @@ optional arguments:
                         Extension of the FASTQs. Default: .fastq.gz
   -a STR, --assembly_ext STR
                         Extension of the FASTA assemblies. Default: .fna.gz
-  --fastq_seperator STR
-                        Split FASTQ name on the last occurrence of the
-                        separator. Default: _
+  --fastq_separator STR
+                        Split FASTQ name on the last occurrence of the separator. Default: _
   --fastq_pattern STR   Glob pattern to match FASTQs. Default: *.fastq.gz
-  --pe1_pattern STR     Designates difference first set of paired-end reads.
-                        Default: ([Aa]|[Rr]1) (R1, r1, 1, A, a)
-  --pe2_pattern STR     Designates difference second set of paired-end reads.
-                        Default: ([Bb]|[Rr]2) (R2, r2, 2, AB b)
+  --pe1_pattern STR     Designates difference first set of paired-end reads. Default: ([Aa]|[Rr]1|1) (R1, r1, 1, A, a)
+  --pe2_pattern STR     Designates difference second set of paired-end reads. Default: ([Bb]|[Rr]2|2) (R2, r2, 2, AB b)
   --assembly_pattern STR
-                        Glob pattern to match assembly FASTAs. Default:
-                        *.fna.gz
+                        Glob pattern to match assembly FASTAs. Default: *.fna.gz
   -r, --recursive       Directories will be traversed recursively
   --long_reads          Single-end reads should be treated as long reads
-  --merge               Flag samples with multiple read sets to be merged by
-                        Bactopia
+  --merge               Flag samples with multiple read sets to be merged by Bactopia
+  --prefix STR          Replace the absolute path with a given string. Default: Use absolute path
   --version             show program's version number and exit
 ```
+
+!!! error "Use `--long_reads` to tell Bactopia to process as Nanopore reads"
+    When `--long_reads` is used, any reads that are identified as single-end will be given a `runtype` of `ont`. This will tell Bactopia to process these reads as Nanopore reads.
 
 ##### Validating FOFN
 When a FOFN is given, the first thing Bactopia does is verify all FASTQ files are found. If everything checks out, each sample will then be processed, otherwise a list of samples with errors will be output to STDERR. 
@@ -305,12 +221,15 @@ Found:
 [SA110685, hybrid, false, [/example/SA110685_R1.fastq.gz, /example/SA110685_R2.fastq.gz], /example/SA110685.fastq.gz]
 [SA123186, paired-end, false, [/example/SA123186_R1.fastq.gz, /example/SA123186_R2.fastq.gz], null]
 [SA12345, single-end, true, [/example/SA12345.fastq.gz], null]
+[SA12345ONT, ont, true, [/example/SA12345ONT.fastq.gz], null]
 ```
-Each sample has passed validation and is put into a three element array:
+Each sample has passed validation and is put into a five element array:
 
 1. sample - the name for this sample
-2. is_single_end - the reads are single-end (true) or paired-end (false)
-3. fastq_array - the fastqs associated with the sample
+2. runtype - the type of run (paired, single, ont, etc...) that should be used
+3. is_single_end - the reads are single-end (true) or paired-end (false)
+4. fastq_array - the fastqs associated with the sample
+5. extra - Extra column for reads to be used in hybrid assembly
 
 This array is then automatically queued up for proccessing by Nextflow.
 
@@ -413,30 +332,30 @@ After you run Bactopia, you will notice a directory called `work`. This director
 !!! info "Bactopia and Bactopia Tools use separate `work` directories"
     Inside the `work` directory there will be separate subfolders that correspond to a Bactopia run or a specific Bactopia Tool run. This allows you to more easily identify which are ok to delete. The `work` directory is always ok to delete after a successful run.
 
-## `--cpus`
-At execution, Nextflow creates a queue and the number of slots in the queue is determined by the total number of cores on the system. So if you have a 24-core system, that means Nextflow will have a queue with 24-slots available. This feature kind of makes `--cpus` a little misleading. Typically when you give `--cpus` you are saying *"use this amount of cpus"*. But that is not the case for Nextflow and Bactopia. When you use `--cpus` what you are actually saying is *"for any particular task, use this amount of slots"*. Commands within a task processors will use the amount specified by `--cpus`.
+## `--max_cpus`
+At execution, Nextflow creates a queue and the number of slots in the queue is determined by the total number of cores on the system. So if you have a 24-core system, that means Nextflow will have a queue with 24-slots available. This feature kind of makes `--max_cpus` a little misleading. Typically when you give `--max_cpus` you are saying *"use this amount of cpus"*. But that is not the case for Nextflow and Bactopia. When you use `--max_cpus` what you are actually saying is *"for any particular task, use this amount of slots"*. Commands within a task processors will use the amount specified by `--max_cpus`.
 
-!!! error "`--cpus` can have a significant effect on the efficiency of Bactopia"
+!!! error "`--max_cpus` can have a significant effect on the efficiency of Bactopia"
     So for example if you have a system with 24-cores.
 
-    This command, `bactopia ... --cpus 24`, says *for any particular task, use 24 slots*. Nextflow will give tasks in Bactopia 24 slots out of 24 available (24-core machine). In other words the queue can one have one task running at once because each task occupies 24 slots.
+    This command, `bactopia ... --max_cpus 24`, says *for any particular task, use 24 slots*. Nextflow will give tasks in Bactopia 24 slots out of 24 available (24-core machine). In other words the queue can one have one task running at once because each task occupies 24 slots.
 
-    On the other hand, `bactopia ... --cpus 4` says *for any particular task, use 4 slots*. Now, for Nextflow will give each task 4 slots out of 24 slots. Which means 6 tasks can be running at once. This can lead to much better efficiency because less jobs are stuck waiting in line. 
+    On the other hand, `bactopia ... --max_cpus 4` says *for any particular task, use 4 slots*. Now, for Nextflow will give each task 4 slots out of 24 slots. Which means 6 tasks can be running at once. This can lead to much better efficiency because less jobs are stuck waiting in line. 
 
-    There are some tasks in Bactopia that will only ever use a single slot because they are single-core tasks. But for example the `annotation` step will always use the number of slots specified by `--cpus`. If the `--cpus` is too high, the `annotation` will get bogged down, which causes tasks dependent on `annotation` to also get bogged down.
+    There are some tasks in Bactopia that will only ever use a single slot because they are single-core tasks. But for example the `annotation` step will always use the number of slots specified by `--max_cpus`. If the `--max_cpus` is too high, the `annotation` will get bogged down, which causes tasks dependent on `annotation` to also get bogged down.
 
-!!! info "When in doubt `--cpus 4` is a safe value."
+!!! info "When in doubt `--max_cpus 4` is a safe value."
     This is also the default value for Bactopia.
 
 ## `-qs`
-The `-qs` parameter is short for *queue size*. As described above for `--cpus`, the default value for `-qs` is set to the total number of cores on the system. This parameter allows you to adjust the maximum number of cores Nextflow can use at any given moment.
+The `-qs` parameter is short for *queue size*. As described above for `--max_cpus`, the default value for `-qs` is set to the total number of cores on the system. This parameter allows you to adjust the maximum number of cores Nextflow can use at any given moment.
 
 !!! error "`-qs` allows you to play nicely on shared resources"
     From the example above, if you have a system with 24-cores. The default queue size if 24 slots.
 
-    `bactopia ... --cpus 4` says *for any particular task, use a maximum of 4 slots*. Nextflow will give each task 4 slots out of 24 slots. But there might be other people also using the server.
+    `bactopia ... --max_cpus 4` says *for any particular task, use a maximum of 4 slots*. Nextflow will give each task 4 slots out of 24 slots. But there might be other people also using the server.
 
-    `bactopia ... --cpus 4 -qs 12` says *for any particular task, use a maximum of 4 slots, but don't use more than 12 slots*. Nextflow will give each task 4 slots out of 12 slots. Now instead of using all the cores on the server, the maximum that can be used in 12.
+    `bactopia ... --max_cpus 4 -qs 12` says *for any particular task, use a maximum of 4 slots, but don't use more than 12 slots*. Nextflow will give each task 4 slots out of 12 slots. Now instead of using all the cores on the server, the maximum that can be used in 12.
 
 !!! info "`-qs` might need adjusting for job schedulers."
     The default value for `-qs` is set to 100 when using a job scheduler (e.g. SLURM, AWS Batch). There may be times when you need adjust this to meet your needs. For example, if using AWS Batch you might want to increase the value to have more jobs processed at once (e.g. 100 vs 500).
