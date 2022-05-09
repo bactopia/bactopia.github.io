@@ -203,7 +203,7 @@ optional arguments:
   --version             show program's version number and exit
 ```
 
-!!! error "Use `--long_reads` to tell Bactopia to process as Nanopore reads"
+!!! info "Use `--long_reads` to tell Bactopia to process as Nanopore reads"
     When `--long_reads` is used, any reads that are identified as single-end will be given a `runtype` of `ont`. This will tell Bactopia to process these reads as Nanopore reads.
 
 ##### Validating FOFN
