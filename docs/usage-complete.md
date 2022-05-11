@@ -3,7 +3,7 @@
 Bactopia includes numerous (180+) configurable parameters. Now that doesn't mean you need to go in there and start changing them, but there will be times when you might have to. By exposing all these parameters, you can easily change them to fit your needs. In the following sections, these parameters are grouped by which Nextflow process they are applicable to. The description and default values for these parameters were taken from the program to which they apply.
 
 !!! note "Not all of the available parameters for each and every program are available"
-  If you see a tool in which a parameter has not been made available, please make a suggestion!
+    If you see a tool in which a parameter has not been made available, please make a suggestion!
 
 ## Required Parameters
 The required parameters depends on how many samples are to be proccessed. You can learn more about which approach to take at [Specifying Input FASTQs](usage-basic.md#fastq-inputs).
