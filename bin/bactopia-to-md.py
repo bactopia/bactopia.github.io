@@ -44,20 +44,19 @@ def get_subworkflows(subworkflow_path, is_subworkflow, is_module):
     total_subworkflows = 0
     for meta_yml in Path(subworkflow_path).rglob('*meta.yml'):
         subworkflow_name = str(meta_yml).replace('/meta.yml', '').split('local/')[1]
-        if subworkflow_name not in ["busco", "snippy"]:
-            with open(meta_yml, "rt") as meta_fh:
-                subworkflows[subworkflow_name] = yaml.safe_load(meta_fh)
-                if subworkflow_name in is_subworkflow:
-                    total_subworkflows += 1
-                    subworkflows[subworkflow_name]['is_subworkflow'] = True
-                    subworkflows[subworkflow_name]['is_module'] = False
-                elif subworkflow_name in is_module:
-                    total_modules += 1
-                    subworkflows[subworkflow_name]['is_subworkflow'] = False
-                    subworkflows[subworkflow_name]['is_module'] = True
-                else:
-                    subworkflows[subworkflow_name]['is_subworkflow'] = False
-                    subworkflows[subworkflow_name]['is_module'] = False
+        with open(meta_yml, "rt") as meta_fh:
+            subworkflows[subworkflow_name] = yaml.safe_load(meta_fh)
+            if subworkflow_name in is_subworkflow:
+                total_subworkflows += 1
+                subworkflows[subworkflow_name]['is_subworkflow'] = True
+                subworkflows[subworkflow_name]['is_module'] = False
+            elif subworkflow_name in is_module:
+                total_modules += 1
+                subworkflows[subworkflow_name]['is_subworkflow'] = False
+                subworkflows[subworkflow_name]['is_module'] = True
+            else:
+                subworkflows[subworkflow_name]['is_subworkflow'] = False
+                subworkflows[subworkflow_name]['is_module'] = False
     return [subworkflows, total_subworkflows, total_modules]
 
 def get_modules(module_path):
