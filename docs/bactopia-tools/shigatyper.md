@@ -1,83 +1,83 @@
 ---
 tags:
-   - annotation
-   - fasta
-   - prokaryote
 ---
 
 
 
-# Bactopia Tool - `bakta`
-The `bakta` module uses [Bakta](https://github.com/oschwengers/bakta) to rapidly annotate bacterial 
-genomes and plasmids in a standardized fashion. Bakta makes use of a large database ([40+ GB](https://doi.org/10.5281/zenodo.4247252))
-to provide extensive annotations including: tRNA, tmRNA, rRNA, ncRNA, CRISPR, CDS, and sORFs.
+# Bactopia Tool - `shigatyper`
+The `shigatyper` module uses [ShigaTyyper](https://github.com/CFSAN-Biostatistics/shigatyper) to rapidly determine 
+Shigella serotype using Illumina (single or paired-end) or Oxford Nanopore reads taxonomic.
 
 
 ## Example Usage
 ```
-bactopia --wf bakta \
+bactopia --wf shigatyper \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `bakta` tool. Where possible the 
+Below is the default output structure for the `shigatyper` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
-bakta/
+shigatyper/
 ├── <SAMPLE_NAME>
-│   ├── <SAMPLE_NAME>.embl
-│   ├── <SAMPLE_NAME>.faa
-│   ├── <SAMPLE_NAME>.ffn
-│   ├── <SAMPLE_NAME>.fna
-│   ├── <SAMPLE_NAME>.gbff
-│   ├── <SAMPLE_NAME>.gff3
-│   ├── <SAMPLE_NAME>.hypotheticals.faa
-│   ├── <SAMPLE_NAME>.hypotheticals.tsv
+│   ├── <SAMPLE_NAME>-hits.tsv
 │   ├── <SAMPLE_NAME>.tsv
-│   ├── <SAMPLE_NAME>.txt
 │   └── logs
-│       └── bakta
-│           ├── <SAMPLE_NAME>.log
-│           ├── nf-bakta.{begin,err,log,out,run,sh,trace}
+│       └── shigatyper
+│           ├── nf-shigatyper.{begin,err,log,out,run,sh,trace}
 │           └── versions.yml
 ├── logs
+│   ├── csvtk_concat
+│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
 │   └── custom_dumpsoftwareversions
 │       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
 │       └── versions.yml
 ├── nf-reports
-│   ├── bakta-dag.dot
-│   ├── bakta-report.html
-│   ├── bakta-timeline.html
-│   └── bakta-trace.txt
+│   ├── shigatyper-dag.dot
+│   ├── shigatyper-report.html
+│   ├── shigatyper-timeline.html
+│   └── shigatyper-trace.txt
+├── shigatyper.tsv
 ├── software_versions.yml
 └── software_versions_mqc.yml
 
 ```
 
+!!! info "Directory structure might be different"
+
+    `shigatyper` is available as a standalone Bactopia Tool, as well as from
+    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+    from Bactopia, the `shigatyper` directory structure might be different, but the
+    output descriptions below still apply.
+
 
 
 ### Results
 
-#### Bakta
+#### Top Level
 
-Below is a description of the _per-sample_ results from [Bakta](https://github.com/oschwengers/bakta).
+Below are results that are in the base directory.
 
 
-| Extension          | Description |
-|--------------------|-------------|
-| .embl              | Annotations & sequences in (multi) EMBL format |
-| .faa               | CDS/sORF amino acid sequences as FASTA |
-| .ffn               | Feature nucleotide sequences as FASTA |
-| .fna               | Replicon/contig DNA sequences as FASTA |
-| .gbff              | Annotations & sequences in (multi) GenBank format |
-| .gff3              | Annotations & sequences in GFF3 format |
-| .hypotheticals.faa | Hypothetical protein CDS amino acid sequences as FASTA |
-| .hypotheticals.tsv | Further information on hypothetical protein CDS as simple human readble tab separated values |
-| .tsv               | Annotations as simple human readble tab separated values |
-| .txt               | Broad summary of `Bakta` annotations |
+| Filename    | Description |
+|-------------|-------------|
+| shigatyper.tsv | A merged TSV file with `ShigaTyper` results from all samples |
+
+
+#### ShigaTyper
+
+Below is a description of the _per-sample_ results from [ShigaTyyper](https://github.com/CFSAN-Biostatistics/shigatyper).
+
+
+| Filename               | Description                                             |
+|------------------------|---------------------------------------------------------|
+| <SAMPLE_NAME>-hits.tsv | Detailed statistics about each individual gene hit      |
+| <SAMPLE_NAME>.tsv      | The final predicted serotype by `ShigaTyper`            |
 
 
 
@@ -110,10 +110,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| bakta-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| bakta-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| bakta-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| bakta-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| shigatyper-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| shigatyper-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| shigatyper-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| shigatyper-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -144,36 +144,11 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### Bakta Download Parameters
+### ShigaTyper Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--bakta_db` | Path to the Bakta database |  |
-| `--download_bakta` | Download the Bakta database to the path given by --bakta_db | False |
-
-### Bakta Parameters
-
-
-| Parameter | Description | Default |
-|---|---|---|
-| `--proteins` | FASTA file of trusted proteins to first annotate from |  |
-| `--prodigal_tf` | Training file to use for Prodigal |  |
-| `--replicons` | Replicon information table (tsv/csv) |  |
-| `--min_contig_length` | Minimum contig size to annotate | 1 |
-| `--keep_contig_headers` | Keep original contig headers | False |
-| `--compliant` | Force Genbank/ENA/DDJB compliance | False |
-| `--skip_trna` | Skip tRNA detection & annotation | False |
-| `--skip_tmrna` | Skip tmRNA detection & annotation | False |
-| `--skip_rrna` | Skip rRNA detection & annotation | False |
-| `--skip_ncrna` | Skip ncRNA detection & annotation | False |
-| `--skip_ncrna_region` | Skip ncRNA region detection & annotation | False |
-| `--skip_crispr` | Skip CRISPR array detection & annotation | False |
-| `--skip_cds` | Skip CDS detection & annotation | False |
-| `--skip_sorf` | Skip sORF detection & annotation | False |
-| `--skip_gap` | Skip gap detection & annotation | False |
-| `--skip_ori` | Skip oriC/oriT detection & annotation | False |
-| `--bakta_opts` | Extra Backa options in quotes. Example: '--gram +' |  |
 
 
 ### Optional Parameters
@@ -239,12 +214,12 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `bakta` in your analysis, please cite the following.
+If you use Bactopia and `shigatyper` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [Bakta](https://github.com/oschwengers/bakta)  
-    Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A [Bakta - rapid and standardized annotation of bacterial genomes via alignment-free sequence identification.](https://doi.org/10.1099/mgen.0.000685) _Microbial Genomics_ 7(11) (2021)
+- [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper)  
+    Wu Y, Lau HK, Lee T, Lau DK, Payne J [In Silico Serotyping Based on Whole-Genome Sequencing Improves the Accuracy of Shigella Identification.](https://doi.org/10.1128/AEM.00165-19) *Applied and Environmental Microbiology*, 85(7). (2019)
   

@@ -9,8 +9,12 @@ WORKFLOWS = 'params.available_workflows.bactopia'
 SUBWORKFLOWS = 'params.available_workflows.bactopiatools.subworkflows'
 MODULES = 'params.available_workflows.bactopiatools.modules'
 MODULES_RENAME = {
-    'abricate_run': 'abricate', 'amrfinderplus_run': 'amrfinderplus', 
-    'checkm_lineagewf': 'checkm', 'mobsuite_recon': 'mobsuite',
+    'abricate_run': 'abricate',
+    'amrfinderplus_run': 'amrfinderplus',
+    'ariba_run': 'ariba', 
+    'bakta_run': 'bakta', 
+    'checkm_lineagewf': 'checkm',
+    'mobsuite_recon': 'mobsuite',
     'rgi_main': 'rgi'
 }
 
@@ -28,6 +32,7 @@ def get_citations(citation_path):
 def get_generic_params(generic_path):
     generic = {}
     for params_json in Path(generic_path).glob('*.json'):
+        print(params_json)
         with open(params_json, "rt") as params_fh:
             generic[str(params_json.stem)] = json.load(params_fh)
     return generic
@@ -39,19 +44,20 @@ def get_subworkflows(subworkflow_path, is_subworkflow, is_module):
     total_subworkflows = 0
     for meta_yml in Path(subworkflow_path).rglob('*meta.yml'):
         subworkflow_name = str(meta_yml).replace('/meta.yml', '').split('local/')[1]
-        with open(meta_yml, "rt") as meta_fh:
-            subworkflows[subworkflow_name] = yaml.safe_load(meta_fh)
-            if subworkflow_name in is_subworkflow:
-                total_subworkflows += 1
-                subworkflows[subworkflow_name]['is_subworkflow'] = True
-                subworkflows[subworkflow_name]['is_module'] = False
-            elif subworkflow_name in is_module:
-                total_modules += 1
-                subworkflows[subworkflow_name]['is_subworkflow'] = False
-                subworkflows[subworkflow_name]['is_module'] = True
-            else:
-                subworkflows[subworkflow_name]['is_subworkflow'] = False
-                subworkflows[subworkflow_name]['is_module'] = False
+        if subworkflow_name not in ["busco", "snippy"]:
+            with open(meta_yml, "rt") as meta_fh:
+                subworkflows[subworkflow_name] = yaml.safe_load(meta_fh)
+                if subworkflow_name in is_subworkflow:
+                    total_subworkflows += 1
+                    subworkflows[subworkflow_name]['is_subworkflow'] = True
+                    subworkflows[subworkflow_name]['is_module'] = False
+                elif subworkflow_name in is_module:
+                    total_modules += 1
+                    subworkflows[subworkflow_name]['is_subworkflow'] = False
+                    subworkflows[subworkflow_name]['is_module'] = True
+                else:
+                    subworkflows[subworkflow_name]['is_subworkflow'] = False
+                    subworkflows[subworkflow_name]['is_module'] = False
     return [subworkflows, total_subworkflows, total_modules]
 
 def get_modules(module_path):
@@ -67,8 +73,9 @@ def get_modules(module_path):
         if module_name in MODULES_RENAME:
             module_name = MODULES_RENAME[module_name]
         print(f"{module_name} - {params_json}")
-        with open(params_json, "rt") as params_fh:
-            modules[module_name] = json.load(params_fh)
+        if module_name not in ["busco", "snippy"]:
+            with open(params_json, "rt") as params_fh:
+                modules[module_name] = json.load(params_fh)
     return modules
 
 def read_nextflow_config(nf_config):
@@ -150,8 +157,11 @@ if __name__ == '__main__':
         if is_bactopia_tool:
             module_params = []
             for module in vals['modules']:
+                module_name = module
+                if module_name in MODULES_RENAME:
+                    module_name = MODULES_RENAME[module_name]
                 print(f"working on {name} - {module}")
-                module_params += format_params(modules[module])
+                module_params += format_params(modules[module_name])
             params = {
                 'bactopia_tools': '\n'.join(format_params(generic["bactopia-tools"])),
                 'module':  '\n'.join(module_params),

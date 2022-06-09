@@ -1,57 +1,48 @@
 ---
 tags:
-   - annotation
+   - antimicrobial resistance
    - fasta
-   - prokaryote
+   - virulence
 ---
 
 
 
-# Bactopia Tool - `bakta`
-The `bakta` module uses [Bakta](https://github.com/oschwengers/bakta) to rapidly annotate bacterial 
-genomes and plasmids in a standardized fashion. Bakta makes use of a large database ([40+ GB](https://doi.org/10.5281/zenodo.4247252))
-to provide extensive annotations including: tRNA, tmRNA, rRNA, ncRNA, CRISPR, CDS, and sORFs.
+# Bactopia Tool - `gamma`
+The `gamma` module uses [GAMMA](https://github.com/rastanton/GAMMA) to identify, classify, and annotate 
+translated gene matches from assemblies.
 
 
 ## Example Usage
 ```
-bactopia --wf bakta \
+bactopia --wf gamma \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `bakta` tool. Where possible the 
+Below is the default output structure for the `gamma` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
-bakta/
+gamma
 ├── <SAMPLE_NAME>
-│   ├── <SAMPLE_NAME>.embl
-│   ├── <SAMPLE_NAME>.faa
-│   ├── <SAMPLE_NAME>.ffn
-│   ├── <SAMPLE_NAME>.fna
-│   ├── <SAMPLE_NAME>.gbff
-│   ├── <SAMPLE_NAME>.gff3
-│   ├── <SAMPLE_NAME>.hypotheticals.faa
-│   ├── <SAMPLE_NAME>.hypotheticals.tsv
-│   ├── <SAMPLE_NAME>.tsv
-│   ├── <SAMPLE_NAME>.txt
+│   ├── <SAMPLE_NAME>.fasta
+│   ├── <SAMPLE_NAME>.gamma
+│   ├── <SAMPLE_NAME>.gff
+│   ├── <SAMPLE_NAME>.psl
 │   └── logs
-│       └── bakta
-│           ├── <SAMPLE_NAME>.log
-│           ├── nf-bakta.{begin,err,log,out,run,sh,trace}
+│       └── gamma
+│           ├── nf-gamma.{begin,err,log,out,run,sh,trace}
 │           └── versions.yml
 ├── logs
+│   ├── csvtk_concat
+│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
 │   └── custom_dumpsoftwareversions
 │       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
 │       └── versions.yml
-├── nf-reports
-│   ├── bakta-dag.dot
-│   ├── bakta-report.html
-│   ├── bakta-timeline.html
-│   └── bakta-trace.txt
+├── gamma.tsv
 ├── software_versions.yml
 └── software_versions_mqc.yml
 
@@ -61,23 +52,27 @@ bakta/
 
 ### Results
 
-#### Bakta
+#### Top Level
 
-Below is a description of the _per-sample_ results from [Bakta](https://github.com/oschwengers/bakta).
+Below are results that are in the base directory.
 
 
-| Extension          | Description |
-|--------------------|-------------|
-| .embl              | Annotations & sequences in (multi) EMBL format |
-| .faa               | CDS/sORF amino acid sequences as FASTA |
-| .ffn               | Feature nucleotide sequences as FASTA |
-| .fna               | Replicon/contig DNA sequences as FASTA |
-| .gbff              | Annotations & sequences in (multi) GenBank format |
-| .gff3              | Annotations & sequences in GFF3 format |
-| .hypotheticals.faa | Hypothetical protein CDS amino acid sequences as FASTA |
-| .hypotheticals.tsv | Further information on hypothetical protein CDS as simple human readble tab separated values |
-| .tsv               | Annotations as simple human readble tab separated values |
-| .txt               | Broad summary of `Bakta` annotations |
+| Filename    | Description |
+|-------------|-------------|
+| gamma.tsv   | A merged TSV file with `GAMMA` results from all samples |
+
+
+#### GAMMA
+
+Below is a description of the _per-sample_ results from [GAMMA](https://github.com/rastanton/GAMMA).
+
+
+| Extension     | Description |
+|---------------|-------------|
+| .fasta        | Annotated gene sequences is FASTA format  |
+| .gamma        | A TSV file with annotated gene matches |
+| .gff          | Annotated gene matches is GFF3 format  |
+| .psl          | A PSL file with BLAT gene alignments   |
 
 
 
@@ -110,10 +105,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| bakta-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| bakta-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| bakta-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| bakta-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| gamma-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| gamma-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| gamma-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| gamma-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -144,36 +139,17 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### Bakta Download Parameters
+### GAMMA Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--bakta_db` | Path to the Bakta database |  |
-| `--download_bakta` | Download the Bakta database to the path given by --bakta_db | False |
-
-### Bakta Parameters
-
-
-| Parameter | Description | Default |
-|---|---|---|
-| `--proteins` | FASTA file of trusted proteins to first annotate from |  |
-| `--prodigal_tf` | Training file to use for Prodigal |  |
-| `--replicons` | Replicon information table (tsv/csv) |  |
-| `--min_contig_length` | Minimum contig size to annotate | 1 |
-| `--keep_contig_headers` | Keep original contig headers | False |
-| `--compliant` | Force Genbank/ENA/DDJB compliance | False |
-| `--skip_trna` | Skip tRNA detection & annotation | False |
-| `--skip_tmrna` | Skip tmRNA detection & annotation | False |
-| `--skip_rrna` | Skip rRNA detection & annotation | False |
-| `--skip_ncrna` | Skip ncRNA detection & annotation | False |
-| `--skip_ncrna_region` | Skip ncRNA region detection & annotation | False |
-| `--skip_crispr` | Skip CRISPR array detection & annotation | False |
-| `--skip_cds` | Skip CDS detection & annotation | False |
-| `--skip_sorf` | Skip sORF detection & annotation | False |
-| `--skip_gap` | Skip gap detection & annotation | False |
-| `--skip_ori` | Skip oriC/oriT detection & annotation | False |
-| `--bakta_opts` | Extra Backa options in quotes. Example: '--gram +' |  |
+| `--gamma_db` | A gene database (FASTA) for GAMMA |  |
+| `--percent_identity` | The minimum nucleotide sequence identiy % used by the Blat search | 90 |
+| `--all_matches` | Include all gene matches, even overlaps | False |
+| `--extended` | Writes out all protein mutations | False |
+| `--write_fasta` | Write FASTA of gene matches | False |
+| `--write_gff` | Write gene matches as GFF file | False |
 
 
 ### Optional Parameters
@@ -239,12 +215,12 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `bakta` in your analysis, please cite the following.
+If you use Bactopia and `gamma` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [Bakta](https://github.com/oschwengers/bakta)  
-    Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A [Bakta - rapid and standardized annotation of bacterial genomes via alignment-free sequence identification.](https://doi.org/10.1099/mgen.0.000685) _Microbial Genomics_ 7(11) (2021)
+- [GAMMA](https://github.com/rastanton/GAMMA)  
+    Stanton RA, Vlachos N, Halpin AL [GAMMA: a tool for the rapid identification, classification, and annotation of translated gene matches from sequencing data.](https://doi.org/10.1093/bioinformatics/btab607) _Bioinformatics_ (2021)
   

@@ -16,13 +16,13 @@ the taxonomy of your samples.
 ```
 bactopia --wf gtdb \
   --bactopia /path/to/your/bactopia/results \ 
-  --gtdb /path/to/your/gtdb/db
   --include includes.txt  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `gtdb` tool. Where possible the file descriptions below were modified from a tools description.
+Below is the default output structure for the `gtdb` tool. Where possible the 
+file descriptions below were modified from a tools description.
 
 ```{bash}
 gtdb/
@@ -76,7 +76,8 @@ gtdb/
 Below is a description of the _per-sample_ results from [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk).
 For full details about each of the GTDB output files, see
 [GTDB-Tk Classify Workflow](https://github.com/Ecogenomics/GTDBTk#classify-workflow) page.
-          
+
+
 | Filename | Description |
 |-----------|-------------|
 | gtdb.(ar122\|bac120).classify.tree | Reference tree in Newick format containing query genomes placed with pplacer |

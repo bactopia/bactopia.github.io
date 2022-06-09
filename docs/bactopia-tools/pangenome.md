@@ -403,6 +403,8 @@ Use these parameters to specify which samples to include or exclude.
 |---|---|---|
 | `--proteins` | FASTA file of trusted proteins to first annotate from |  |
 | `--prodigal_tf` | Training file to use for Prodigal |  |
+| `--compliant` | Force Genbank/ENA/DDJB compliance | False |
+| `--centre` | Sequencing centre ID | Bactopia |
 | `--prokka_coverage` | Minimum coverage on query protein | 80 |
 | `--prokka_evalue` | Similarity e-value cut-off | 1e-09 |
 | `--prokka_opts` | Extra Prokka options in quotes. |  |

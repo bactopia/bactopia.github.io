@@ -71,7 +71,7 @@ Below are results that are in the base directory.
 | amrfinderplus-proteins.tsv | A merged TSV file with `AMRFinder+` results using protein inputs |
 
 
-#### AgrVATE
+#### AMRFinder+
 
 Below is a description of the _per-sample_ results from [AMRFinder+](https://github.com/ncbi/amr).
 
