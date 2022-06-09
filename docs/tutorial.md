@@ -31,7 +31,6 @@ Now we are ready to build our datasets!
 
 ```
 bactopia datasets \
-    --ariba "vfdb_core,card" \
     --species "Staphylococcus aureus" \
     --include_genus \
     --limit 100 \
@@ -39,8 +38,6 @@ bactopia datasets \
 ```
 
 Let's review what is happening here.
-
-`--ariba "vfdb_core,card"` says to download and setup the [VFDB Core](http://www.mgc.ac.cn/VFs/) and the [CARD](https://card.mcmaster.ca/) databases to be used by Ariba.
 
 `--species "Staphylococcus aureus"` will download MLST schemas associated with *S. aureus* it will also download completed *S. aureus* genomes (RefSeq only) that are used to create a set of protein set for annotation, a Mash sketch for automatic variant calling to the nearest neighbor, and calculate genome size statistics.
 
@@ -132,11 +129,11 @@ This will produce three files: `ena-accessions.txt`, `ena-results.txt` and `ena-
 
 For this tutorial, `ena-accessions.txt` is the file we need. It contains five Experiment accessions, a single one per line. Just like this:
 ```
-SRX4563688
-SRX4563687
-SRX4563686
-SRX4563689
-SRX4563690
+SRX4563688    illummina
+SRX4563687    illummina
+SRX4563686    illummina
+SRX4563689    illummina
+SRX4563690    illummina
 ```
 
 *Note: you may have 5 different accessions from the PRJNA480016 project.*
@@ -240,7 +237,7 @@ This command will try to create a FOFN for you. For this turorial, the FASTQ nam
 Now we can use the `--fastqs` parameters to process samples in the FOFN.
 
 ```
-bactopia --fastqs fastqs.txt \
+bactopia --samples fastqs.txt \
          --datasets datasets/ \
          --species "Staphylococcus aureus" \
          --coverage 100 \
