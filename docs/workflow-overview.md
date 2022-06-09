@@ -123,13 +123,6 @@ Variants are predicted using [Snippy](https://github.com/tseemann/snippy). The Q
 | [Snippy](https://github.com/tseemann/snippy)   | Manages multiple steps in the haploid variant calling process |
 | [vcf-annotator](https://github.com/rpetit3/vcf-annotator) | Adds annotations from reference GenBank to the final VCF |
 
-#### Local Assembly
-Using available [Ariba reference datasets](/acknowledgements/#ariba-reference-datasets), determines which reference sequences were found with an additional detailed report summarizing the results.
-
-| Software | Usage   |
-|----------|:--------------|
-| [Ariba](https://github.com/sanger-pathogens/ariba)    | Creates local assemblies of reference sequences |
-
 #### Minmer Query
 Screens QC'd FASTQs and signatures against available [Minmer Datasets](/acknowledgements/#minmer-datasets).
 
