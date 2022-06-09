@@ -20,11 +20,11 @@ The required parameters depends on how many samples are to be proccessed. You ca
 ---------------------------------------------
 Typical pipeline command:
 
-  bactopia --fastqs samples.txt --datasets datasets/ --species 'Staphylococcus aureus'
+  bactopia --samples samples.txt --datasets datasets/ --species 'Staphylococcus aureus'
 
 Required Parameters
   ### For Procesessing Multiple Samples
-  --fastqs                      [string]  A FOFN with sample names and paths to 
+  --samples                     [string]  A FOFN with sample names and paths to 
                                             FASTQ/FASTAs to process
 
   ### For Processing A Single Sample
@@ -273,31 +273,6 @@ Antimicrobial Resistance Parameters
   --amr_coverage_min            [number]  Minimum coverage of the reference protein
                                             [default: 0.5]
   --amr_translation_table       [integer] NCBI genetic code for translated BLAST [default: 11]
-```
-
-## Ariba Analysis Parameters
-```{bash}
-Ariba Analysis Parameters
-  --nucmer_min_id               [integer] Minimum alignment identity (delta-filter -i)
-                                            [default: 90]
-  --nucmer_min_len              [integer] Minimum alignment identity (delta-filter -i)
-                                            [default: 20]
-  --nucmer_breaklen             [integer] Value to use for -breaklen when running nucmer
-                                            [default: 200]
-  --assembly_cov                [integer] Target read coverage when sampling reads for
-                                            assembly [default: 50]
-  --min_scaff_depth             [integer] Minimum number of read pairs needed as evidence for
-                                            scaffold link between two contigs [default: 10]
-  --spades_options              [string]  Extra options to pass to Spades assembler
-  --assembled_threshold         [number]  If proportion of gene assembled (regardless of
-                                            into how many contigs) is at least this value then
-                                            the flag gene_assembled is set [default: 0.95]
-  --gene_nt_extend              [integer] Max number of nucleotides to extend ends of gene
-                                            matches to look for start/stop codons [default: 30]
-  --unique_threshold            [number]  If proportion of bases in gene assembled more than
-                                            once is <= this value, then the flag unique_contig
-                                            is set [default: 0.03]
-  --ariba_no_clean              [boolean] Do not clean up intermediate files created by Ariba.
 ```
 
 ## BLAST Parameters
