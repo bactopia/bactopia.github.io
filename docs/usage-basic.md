@@ -15,11 +15,11 @@ Bactopia is a wrapper around many different tools. Each of these tools may (or m
 ---------------------------------------------
 Typical pipeline command:
 
-  bactopia --fastqs samples.txt --datasets datasets/ --species 'Staphylococcus aureus' -profile singularity
+  bactopia --samples samples.txt --datasets datasets/ --species 'Staphylococcus aureus' -profile singularity
 
 Required Parameters
   ### For Procesessing Multiple Samples
-  --fastqs                            [string]  A FOFN with sample names and paths to FASTQ/FASTAs to process
+  --samples                           [string]  A FOFN with sample names and paths to FASTQ/FASTAs to process
 
   ### For Processing A Single Sample
   --R1                                [string]  First set of compressed (gzip) paired-end FASTQ reads (requires --R2 and --sample)
@@ -124,8 +124,8 @@ While this is an additional step for you, the user, it helps to avoid potential 
 
 Most importantly, by taking this approach, you can process hundreds of samples in a single command. There is also the added benefit of knowing which FASTQs were analysed and their location at a later time!
 
-!!! info "Use --fastqs for Multiple Samples"
-    `bactopia --fastqs my-samples.txt`
+!!! info "Use --samples for Multiple Samples"
+    `bactopia --samples my-samples.txt`
 
 
 ##### The FOFN Format
@@ -209,7 +209,7 @@ optional arguments:
 ##### Validating FOFN
 When a FOFN is given, the first thing Bactopia does is verify all FASTQ files are found. If everything checks out, each sample will then be processed, otherwise a list of samples with errors will be output to STDERR. 
 
-If you would like to only validate your FOFN (and not run the full pipeline), you can use the `--check_fastqs` parameter.
+If you would like to only validate your FOFN (and not run the full pipeline), you can use the `--check_samples` parameter.
 
 ###### Without Errors
 ```
