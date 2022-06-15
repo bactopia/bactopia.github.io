@@ -1,0 +1,170 @@
+conda_submissions:
+    - title: "Submitted Mashpit to Bioconda"
+      date: 2022-06-02
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35199"
+      pr_name: "bioconda/bioconda-recipes#35199"
+      tool: "mashpit"
+      tool_url: "https://github.com/tongzhouxu/mashpit"
+      description: "Sketch-based surveillance platform"
+
+    - title: "Submitted peregrine-2021 to Bioconda"
+      date: 2022-02-08
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/32810"
+      pr_name: "bioconda/bioconda-recipes/#32810"
+      tool: "peregrine-2021"
+      tool_url: "https://github.com/cschin/peregrine-2021"
+      description: "Long read assembler written in Rust"
+
+    - title: "Submitted pmga to Bioconda"
+      date: 2022-02-07
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/32801"
+      pr_name: "bioconda/bioconda-recipes/#32801"
+      tool: "pmga"
+      tool_url: "https://github.com/CDCgov/BMGAP"
+      description: "Command-line version of PMGA (PubMLST Genome Annotator)"
+
+    - title: "Submitted pLannotate to Bioconda"
+      date: 2022-02-04
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/32760"
+      pr_name: "bioconda/bioconda-recipes/#32760"
+      tool: "pLannotate"
+      tool_url: "https://github.com/barricklab/pLannotate"
+      description: "Tool for annotating engineered plasmids"
+
+    - title: "Submitted SRA Human Scrubber to Bioconda"
+      date: 2021-08-04
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/29926"
+      pr_name: "bioconda/bioconda-recipes#29926"
+      tool: "sra-human-scrubber"
+      tool_url: "https://github.com/ncbi/sra-human-scrubber"
+      description: "Identify and remove human reads from FASTQ files"
+
+    - title: "Submitted VADR to Bioconda"
+      date: 2021-07-30
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/29855"
+      pr_name: "bioconda/bioconda-recipes#29855"
+      tool: "VADR"
+      tool_url: "https://github.com/ncbi/vadr"
+      description: "classification and annotation of viral sequences based on RefSeq"
+
+    - title: "Submitted Bio-Easel to Bioconda"
+      date: 2021-07-28
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/29824"
+      pr_name: "bioconda/bioconda-recipes#29824"
+      tool: "Bio-Easel"
+      tool_url: "https://github.com/nawrockie/Bio-Easel"
+      description: "Perl modules and scripts for easel sequence analysis library"
+      
+    - title: "Submitted Sequip to Bioconda"
+      date: 2021-07-28
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/29820"
+      pr_name: "bioconda/bioconda-recipes#29820"
+      tool: "Sequip"
+      tool_url: "https://github.com/nawrockie/sequip"
+      description: "Perl module for biological sequence analysis and supporting utilities"
+
+    - title: "Submitted SerotypeFinder to Bioconda"
+      date: 2021-07-22
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/29718"
+      pr_name: "bioconda/bioconda-recipes#29718"
+      tool: "SerotypeFinder"
+      tool_url: "https://bitbucket.org/genomicepidemiology/serotypefinder/src/master/"
+      description: "Identifies the serotype in total or partial sequenced isolates of E. coli"
+
+    - title: "Submitted Dragonflye to Bioconda"
+      date: 2021-07-21
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/29696"
+      pr_name: "bioconda/bioconda-recipes#29696"
+      tool: "Dragonflye"
+      tool_url: "https://github.com/rpetit3/dragonflye"
+      description: "Assemble bacterial isolate genomes from Nanopore reads"
+
+    - title: "Submitted Phirbo to Bioconda"
+      date: 2021-01-11
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/26144"
+      pr_name: "bioconda/bioconda-recipes#26144"
+      tool: "Phirbo"
+      tool_url: "https://github.com/aziele/phirbo"
+      description: "predict prokaryotic hosts for phage (meta) genomic sequences"
+
+    - title: "Submitted spaTyper to Bioconda"
+      date: 2021-01-04
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/26044"
+      pr_name: "bioconda/bioconda-recipes#26044"
+      tool: "spaTyper"
+      tool_url: "https://github.com/HCGB-IGTP/spaTyper"
+      description: "computational method for finding *spa* types"
+
+    - title: "Submitted clinker to Bioconda"
+      date: 2021-01-04
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/26043"
+      pr_name: "bioconda/bioconda-recipes#26043"
+      tool: "clinker"
+      tool_url: "https://github.com/gamcil/clinker"
+      description: "gene cluster comparison figure generator"
+
+    - title: "Submitted RFPlasmid to Bioconda"
+      date: 2020-12-16
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/25849"
+      pr_name: "bioconda/bioconda-recipes#25849"
+      tool: "RFPlasmid"
+      tool_url: "https://github.com/aldertzomer/RFPlasmid"
+      description: "predicting plasmid contigs from assemblies"
+
+    - title: "Submitted GenoTyphi to Bioconda"
+      date: 2020-12-08
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/25674"
+      pr_name: "bioconda/bioconda-recipes#25674"
+      tool: "GenoTyphi"
+      tool_url: "https://github.com/katholt/genotyphi"
+      description: "assign genotypes to *Salmonella* Typhi genomes"
+
+    - title: "Submitted tbl2asn-forever Bioconda"
+      date: 2020-01-31
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/20073"
+      pr_name: "bioconda/bioconda-recipes#20073"
+      tool: "tbl2asn-forever"
+      tool_url: "https://github.com/rpetit3/tbl2asn-forever"
+      description: "use tbl2asn forever by pretending that it's still 2019"
+
+    - title: "Submitted ISMapper to Bioconda"
+      date: 2019-03-25
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/14180"
+      pr_name: "bioconda/bioconda-recipes#14180"
+      tool: "ISMapper"
+      tool_url: "https://github.com/jhawkey/IS_mapper"
+      description: "insertion sequence mapping software"
+
+    - title: "Submitted Executor to Conda-Forge"
+      date: 2019-08-07
+      pr_url: "https://github.com/conda-forge/staged-recipes/pull/9457"
+      pr_name: "conda-forge/staged-recipes#9457"
+      tool: "executor"
+      tool_url: "https://github.com/xolox/python-executor"
+      description: "programmer friendly Python subprocess wrapper"
+
+    - title: "Submitted Property-Manager to Conda-Forge"
+      date: 2019-08-06
+      pr_url: "https://github.com/conda-forge/staged-recipes/pull/9442"
+      pr_name: "conda-forge/staged-recipes#9442"
+      tool: "property-manager"
+      tool_url: "https://github.com/xolox/python-property-manager"
+      description: "useful property variants for Python programming"
+
+conda_updates:
+    - title: ""
+      date: 2022-01-01
+      pr_url: ""
+      pr_name: ""
+      tool: ""
+      tool_url: ""
+      description: ""
+      
+nfcore_modules:
+    - title: ""
+      date: 2022-01-01
+      pr_url: ""
+      pr_name: ""
+      tool: ""
+      tool_url: ""
+      description: ""
