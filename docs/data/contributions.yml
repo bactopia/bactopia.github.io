@@ -176,6 +176,13 @@ conda_submissions:
       description: "Output FASTQ summary statistics in JSON format"
 
 conda_updates:
+    - title: "Update genotyphi recipe for mykrobe based analysis"
+      date: 2022-06-15
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35388"
+      pr_name: "bioconda/bioconda-recipes#35388"
+      tool: "GenoTyphi"
+      tool_url: "https://github.com/katholt/genotyphi"
+
     - title: "Add database to Seroba recipe"
       date: 2022-06-15
       pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35378"
