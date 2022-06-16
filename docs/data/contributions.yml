@@ -824,3 +824,130 @@ nfcore_modules:
       new_module: true
       tool: "Prokka"
       tool_url: "https://github.com/tseemann/prokka"
+
+other:
+    - title: "let tempfile determine temp dir location"
+      date: 2022-06-14
+      pr_url: "https://github.com/sanger-pathogens/seroba/pull/68"
+      pr_name: "https://github.com/sanger-pathogens/seroba#68"
+      tool: "Seroba"
+      tool_url: "https://github.com/sanger-pathogens/seroba"
+
+    - title: "allow the user to specify temp dir or use the system default"
+      date: 2022-06-14
+      pr_url: "https://github.com/sanger-pathogens/pymummer/pull/36"
+      pr_name: "sanger-pathogens/pymummer#36"
+      tool: "pymummer"
+      tool_url: "https://github.com/sanger-pathogens/pymummer"
+
+    - title: "Fix install process"
+      date: 2022-03-10
+      pr_url: "https://github.com/CFSAN-Biostatistics/shigatyper/pull/10"
+      pr_name: "CFSAN-Biostatistics/shigatyper#10"
+      tool: "ShigaTyper"
+      tool_url: "https://github.com/CFSAN-Biostatistics/shigatyper"
+
+    - title: "use grep -q to play nice with bioconda docker build"
+      date: 2022-02-17
+      pr_url: "https://github.com/tseemann/legsta/pull/17"
+      pr_name: "tseemann/legsta#17"
+      tool: "legsta"
+      tool_url: "https://github.com/tseemann/legsta"
+
+    - title: "Add single-end and ONT support, add GitHub Actions, update readme"
+      date: 2022-02-11
+      pr_url: "https://github.com/CFSAN-Biostatistics/shigatyper/pull/9"
+      pr_name: "CFSAN-Biostatistics/shigatyper#9"
+      tool: "ShigaTyper"
+      tool_url: "https://github.com/CFSAN-Biostatistics/shigatyper"
+
+    - title: "Ignore comments column and drop Bio.Alphabet"
+      date: 2022-01-03
+      pr_url: "https://github.com/sanger-pathogens/ariba/pull/319"
+      pr_name: "sanger-pathogens/ariba#319"
+      tool: "Ariba"
+      tool_url: "https://github.com/sanger-pathogens/ariba"
+
+    - title: "Add ClonalFrameML and maskrc-svg multipackage"
+      date: 2021-11-02
+      pr_url: "https://github.com/BioContainers/multi-package-containers/pull/1923"
+      pr_name: BioContainers/multi-package-containers#1923"
+      tool: "BioContainers"
+      tool_url: "https://github.com/BioContainers/multi-package-containers"
+
+    - title: "Add --kaptive_path to specify path to kaptive data"
+      date: 2021-09-17
+      pr_url: "https://github.com/katholt/Kleborate/pull/59"
+      pr_name: "katholt/Kleborate#59"
+      tool: "Kleborate"
+      tool_url: "https://github.com/katholt/Kleborate"
+
+    - title: "fix SPAdes version capture"
+      date: 2021-09-09
+      pr_url: "https://github.com/sanger-pathogens/ariba/pull/315"
+      pr_name: "sanger-pathogens/ariba#315"
+      tool: "Ariba"
+      tool_url: "https://github.com/sanger-pathogens/ariba"
+
+    - title: "Fix for dots in sample names"
+      date: 2021-04-28
+      pr_url: "https://github.com/VishnuRaghuram94/AgrVATE/pull/9"
+      pr_name: "VishnuRaghuram94/AgrVATE#9"
+      tool: "AgrVATE"
+      tool_url: "https://github.com/VishnuRaghuram94/AgrVATE"
+
+    - title: "Add minimum feature length option"
+      date: 2020-08-25
+      pr_url: "https://github.com/SionBayliss/PIRATE/pull/53"
+      pr_name: "SionBayliss/PIRATE#53"
+      tool: "PIRATE"
+      tool_url: "https://github.com/SionBayliss/PIRATE"
+
+    - title: "Fix for changes in PubMLST url"
+      date: 2020-08-17
+      pr_url: "https://github.com/sanger-pathogens/ariba/pull/305"
+      pr_name: "sanger-pathogens/ariba#305"
+      tool: "Ariba"
+      tool_url: "https://github.com/sanger-pathogens/ariba"
+
+    - title: "Solution 1: for fixing CARD download"
+      date: 2020-08-12
+      pr_url: "https://github.com/sanger-pathogens/ariba/pull/302"
+      pr_name: "sanger-pathogens/ariba#302"
+      tool: "Ariba"
+      tool_url: "https://github.com/sanger-pathogens/ariba"
+
+    - title: "Rename VERSION to BOWTIE2_VERSION"
+      date: 2020-06-29
+      pr_url: "https://github.com/BenLangmead/bowtie2/pull/302"
+      pr_name: "BenLangmead/bowtie2#302"
+      tool: "bowtie2"
+      tool_url: "https://github.com/BenLangmead/bowtie2"
+
+    - title: "Improved single end support"
+      date: 2020-01-10
+      pr_url: "https://github.com/HRGV/phyloFlash/pull/102"
+      pr_name: "HRGV/phyloFlash#102"
+      tool: "phyloFlash"
+      tool_url: "https://github.com/HRGV/phyloFlash"
+
+    - title: "set min_range and max_range args to be a float"
+      date: 2019-04-06
+      pr_url: "https://github.com/jhawkey/IS_mapper/pull/38"
+      pr_name: "jhawkey/IS_mapper#38"
+      tool: "ISMapper"
+      tool_url: "https://github.com/jhawkey/IS_mapper"
+
+    - title: "Add requirements.txt for python modules"
+      date: 2018-04-10
+      pr_url: "https://github.com/kwongj/maskrc-svg/pull/2"
+      pr_name: "kwongj/maskrc-svg#2"
+      tool: "maskrc-svg"
+      tool_url: "https://github.com/kwongj/maskrc-svg"
+
+    - title: "Added shovill-se for processing single-end reads"
+      date: 2018-03-18
+      pr_url: "https://github.com/tseemann/shovill/pull/105"
+      pr_name: "tseemann/shovill#105"
+      tool: "Shovill"
+      tool_url: "https://github.com/tseemann/shovill"
