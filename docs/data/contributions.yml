@@ -836,7 +836,7 @@ other:
     - title: "let tempfile determine temp dir location"
       date: 2022-06-14
       pr_url: "https://github.com/sanger-pathogens/seroba/pull/68"
-      pr_name: "https://github.com/sanger-pathogens/seroba#68"
+      pr_name: "sanger-pathogens/seroba#68"
       tool: "Seroba"
       tool_url: "https://github.com/sanger-pathogens/seroba"
 

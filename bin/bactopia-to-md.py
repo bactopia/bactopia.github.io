@@ -17,6 +17,7 @@ MODULES_RENAME = {
     'mobsuite_recon': 'mobsuite',
     'rgi_main': 'rgi'
 }
+IGNORE_LIST = ["LIST_OF_MODULES"]
 
 def get_citations(citation_path):
     """ """
@@ -28,6 +29,12 @@ def get_citations(citation_path):
             for ref, vals in refs.items():
                 module_citations[ref] = vals
     return [citations, module_citations]
+
+def get_enhancements(docs_path):
+    enhancements = {}
+    with open(f'{docs_path}/docs/data/contributions.yml', "rt") as citations_fh:
+        enhancements = yaml.safe_load(citations_fh)
+    return enhancements
 
 def get_generic_params(generic_path):
     generic = {}
@@ -72,9 +79,12 @@ def get_modules(module_path):
         if module_name in MODULES_RENAME:
             module_name = MODULES_RENAME[module_name]
         print(f"{module_name} - {params_json}")
-        if module_name not in ["busco", "snippy"]:
+        try:
             with open(params_json, "rt") as params_fh:
                 modules[module_name] = json.load(params_fh)
+        except Exception as e:
+            IGNORE_LIST.append(module_name)
+            print(f"skipping {module_name} - {params_json}")
     return modules
 
 def read_nextflow_config(nf_config):
@@ -135,6 +145,7 @@ if __name__ == '__main__':
     modules = get_modules(f'{args.bactopia_repo}/modules')
     generic = get_generic_params(f'{args.bactopia_repo}/conf/schema')
     citations, module_citations = get_citations(args.bactopia_repo)
+    enhancements = get_enhancements(args.docs_repo)
 
     file_loader = FileSystemLoader('templates')
     env = Environment(loader=file_loader)
@@ -157,10 +168,11 @@ if __name__ == '__main__':
             module_params = []
             for module in vals['modules']:
                 module_name = module
-                if module_name in MODULES_RENAME:
-                    module_name = MODULES_RENAME[module_name]
-                print(f"working on {name} - {module}")
-                module_params += format_params(modules[module_name])
+                if module_name not in IGNORE_LIST:
+                    if module_name in MODULES_RENAME:
+                        module_name = MODULES_RENAME[module_name]
+                    print(f"working on {name} - {module}")
+                    module_params += format_params(modules[module_name])
             params = {
                 'bactopia_tools': '\n'.join(format_params(generic["bactopia-tools"])),
                 'module':  '\n'.join(module_params),
@@ -186,8 +198,22 @@ if __name__ == '__main__':
     with open(f'{args.docs_repo}/docs/acknowledgements.md', 'wt') as md_fh:
         md_fh.write(output)
 
+    # Build enhancements Page
+    template = env.get_template('enhancements.j2')
+    output = template.render(
+        total_contributions=len(enhancements["conda_submissions"])+len(enhancements["conda_updates"])+len(enhancements["nfcore_modules"])+len(enhancements["other"]),
+        conda_submissions=enhancements["conda_submissions"],
+        conda_updates=enhancements["conda_updates"],
+        nfcore_modules=enhancements["nfcore_modules"],
+        other=enhancements["other"]
+    )
+    with open(f'{args.docs_repo}/docs/enhancements.md', 'wt') as md_fh:
+        md_fh.write(output)
+
     # Build mkdocs.yml Page
     template = env.get_template('mkdocs.j2')
     output = template.render(tools=subworkflows)
     with open(f'{args.docs_repo}/mkdocs.yml', 'wt') as md_fh:
         md_fh.write(output)
+
+    print(enhancements["conda_submissions"][0])
