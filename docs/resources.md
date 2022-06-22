@@ -34,7 +34,7 @@ Slides: [Web](https://bit.ly/3lQpZKo), [PDF](/data/resources/2020-niaid-bactopia
 ## Posters
 
 - _Using Bactopia for highly scalable, portable and customizable bacterial genome analyses_
-A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) in-person conference outlining how you can use Bactopia in your bacterial genome analyses.
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) in-person conference outlining how you can use Bactopia in your bacterial genome analyses.  
 Slides: [Web](https://bit.ly/3QCgrkB), [PDF](/data/resources/2022-sfaf-poster-final.pdf) 
 
 - _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (April 2022)_  
