@@ -1,4 +1,4 @@
-# Resources
+# Presentations
 Below are links to talks, posters, and blog posts associated with Bactopia.
 
 ## Talks
