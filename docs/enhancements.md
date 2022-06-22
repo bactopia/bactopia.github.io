@@ -13,13 +13,14 @@ few design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-These requirements have paved the way for Bactopia to make more than 126 
-contributions to the bioinformatics community. 
-
-
-!!! note "These are contributions to the community"
-    Users do not have to use Bactopia to take advantage of these contributions. This allows
-    Bactopia to better support the bioinformatics community.
+!!! tip "Bactopia has made 126+ contributions to the bioinformatics community"
+    - [x] 22 new Conda recipes, 33 
+    updated recipes, and [1,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
+    - [x] 53 contributions to nf-core/modules
+    - [x] 18 contributions to other tools
+    
+    These are contributions do not reuire you to use Bactopia to take advantage of these contributions.
+    By taking this approach, Bactopia is better able to support the bioinformatics community.
 
 ## Bioconda Contributions
 
