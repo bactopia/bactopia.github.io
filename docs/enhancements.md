@@ -19,8 +19,7 @@ few design requirements:
     - [x] 53 contributions to nf-core/modules
     - [x] 18 contributions to other tools
     
-    These contributions do not require you to use Bactopia to take advantage of these contributions.
-    By taking this approach, Bactopia is better able to support the bioinformatics community.
+    These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
 
 ## Bioconda Contributions
 
