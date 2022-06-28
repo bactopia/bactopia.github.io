@@ -201,10 +201,11 @@ if __name__ == '__main__':
     # Build enhancements Page
     template = env.get_template('enhancements.j2')
     output = template.render(
-        total_contributions=len(enhancements["conda_submissions"])+len(enhancements["conda_updates"])+len(enhancements["nfcore_modules"])+len(enhancements["other"]),
+        total_contributions=len(enhancements["tools"])+len(enhancements["conda_submissions"])+len(enhancements["conda_updates"])+len(enhancements["nfcore_modules"])+len(enhancements["other"]),
         conda_submissions=enhancements["conda_submissions"],
         conda_updates=enhancements["conda_updates"],
         nfcore_modules=enhancements["nfcore_modules"],
+        tools=enhancements["tools"],
         other=enhancements["other"]
     )
     with open(f'{args.docs_repo}/docs/enhancements.md', 'wt') as md_fh:
