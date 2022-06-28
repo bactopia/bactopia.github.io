@@ -13,8 +13,8 @@ few design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 129+ contributions to the bioinformatics community"
-    - [x] 0 standa-alone tools, each available from Bioconda
+!!! tip "Bactopia has provided 137+ contributions to the bioinformatics community"
+    - [x] 8 standa-alone tools, each available from Bioconda
     - [x] 22 new Conda recipes, 33 
     updated recipes, and [1,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
     - [x] 56 contributions to nf-core/modules
@@ -26,10 +26,18 @@ few design requirements:
 
 Occasionally tools are developed for specific tasks in Bactopia. For example, [Dragonflye](https://github.com/rpetit3/dragonflye)
 was developed to add Nanopore support to Bactopia. When these tools were developed, they are developed to be stand-alone. Below are 
-0 tools, originally built for Bactopia that you can make use of outside of Bactopia.
+8 tools, originally built for Bactopia that you can make use of outside of Bactopia.
 
 | Tool | Description |
 |------|-------------|
+| [assembly-scan](https://github.com/rpetit3/assembly-scan) | Generate basic stats for an assembly |
+| [dragonflye](https://github.com/rpetit3/dragonflye) | Assemble bacterial isolate genomes from Nanopore reads |
+| [fastq-dl](https://github.com/rpetit3/fastq-dl) | Download FASTQ files from SRA or ENA repositories. |
+| [fastq-scan](https://github.com/rpetit3/fastq-scan) | Output FASTQ summary statistics in JSON format |
+| [pmga](https://github.com/rpetit3/pmga) | A fork of PMGA for all Neisseria species and Haemophilus influenzae |
+| [shovill-se](https://github.com/rpetit3/shovill) | A fork of Shovill that includes support for single end reads |
+| [staphopia-sccmec](https://github.com/rpetit3/vcf-annotator) | A standalone version of Staphopia’s SCCmec typing method |
+| [vcf-annotator](https://github.com/staphopia/staphopia-sccmec) | Add biological annotations to variants in a given VCF file |
 
 
 
