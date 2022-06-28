@@ -13,13 +13,25 @@ few design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 126+ contributions to the bioinformatics community"
+!!! tip "Bactopia has provided 129+ contributions to the bioinformatics community"
+    - [x] 0 standa-alone tools, each available from Bioconda
     - [x] 22 new Conda recipes, 33 
     updated recipes, and [1,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
-    - [x] 53 contributions to nf-core/modules
+    - [x] 56 contributions to nf-core/modules
     - [x] 18 contributions to other tools
     
     These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
+
+## Stand-Alone Tools
+
+Occasionally tools are developed for specific tasks in Bactopia. For example, [Dragonflye](https://github.com/rpetit3/dragonflye)
+was developed to add Nanopore support to Bactopia. When these tools were developed, they are developed to be stand-alone. Below are 
+0 tools, originally built for Bactopia that you can make use of outside of Bactopia.
+
+| Tool | Description |
+|------|-------------|
+
+
 
 ## Bioconda Contributions
 
@@ -123,11 +135,14 @@ own Nextflow DSL2 pipelines. To facilitate this, A requirement was made that eac
 [Bactopia Tool](https://bactopia.github.io/bactopia-tools/), separate workflows, would require that a corresponding 
 module be available from nf-core/modules, and if its not available it would be added.
 
-By adopting this practice, there have been 53 contributions to nf-core/modules in the 
+By adopting this practice, there have been 56 contributions to nf-core/modules in the 
 form of new modules, module updates, and testing adjustments.
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [Mykrobe](https://github.com/Mykrobe-tools/mykrobe) | add module for mykrobe/predict | [nf-core/modules#1818](https://github.com/nf-core/modules/pull/1818) |
+| [GenoTyphi](https://github.com/katholt/genotyphi) | add module for genotyphi/parse | [nf-core/modules#1818](https://github.com/nf-core/modules/pull/1818) |
+| [Seroba](https://sanger-pathogens.github.io/seroba/) | add module for seroba | [nf-core/modules#1816](https://github.com/nf-core/modules/pull/1816) |
 | [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder) | add plasmidfinder module | [nf-core/modules#1773](https://github.com/nf-core/modules/pull/1773) |
 | [mcroni](https://github.com/liampshaw/mcroni) | add mcroni module | [nf-core/modules#1750](https://github.com/nf-core/modules/pull/1750) |
 | [Ariba](https://github.com/sanger-pathogens/ariba) | add ariba module | [nf-core/modules#1731](https://github.com/nf-core/modules/pull/1731) |
