@@ -14,12 +14,26 @@ few design requirements:
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
 !!! tip "Bactopia has provided {{ total_contributions }}+ contributions to the bioinformatics community"
+    - [x] {{ tools | length }} standa-alone tools, each available from Bioconda
     - [x] {{ conda_submissions | length }} new Conda recipes, {{ conda_updates | length }} 
     updated recipes, and [1,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
     - [x] {{ nfcore_modules | length }} contributions to nf-core/modules
     - [x] {{ other | length }} contributions to other tools
     
     These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
+
+## Stand-Alone Tools
+
+There are some tools that were developed to be used by Bactopia. When these tools were developed, they were 
+developed to be stand-alone. This allows you to make use of these tools outside of Bactopia. Below are 
+{{ tools | length }} tools:
+
+| Tool | Description |
+|------|-------------|
+{% for tool in tools | sort(attribute='tool') -%}
+| [{{ tool.tool }}]({{ tool.tool_url }}) | {{ tool.description }} |
+{% endfor %}
+
 
 ## Bioconda Contributions
 
