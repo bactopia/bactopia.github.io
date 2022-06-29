@@ -47,7 +47,7 @@ In the command above, be sure to replace *SEQS.fastq.gz* with the name of your F
 ### Multiple Samples
 ```
 bactopia prepare directory-of-fastqs/ > fastqs.txt
-bactopia --fastqs fastqs.txt --datasets datasets --outdir OUTDIR
+bactopia --samples fastqs.txt --datasets datasets --outdir OUTDIR
 ```
 
 In the command above, be sure to replace *OUTDIR* with a directory name you would like to use for results.
