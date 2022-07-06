@@ -13,11 +13,11 @@ few design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 137+ contributions to the bioinformatics community"
+!!! tip "Bactopia has provided 138+ contributions to the bioinformatics community"
     - [x] 8 standa-alone tools, each available from Bioconda
     - [x] 22 new Conda recipes, 33 
     updated recipes, and [1,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
-    - [x] 56 contributions to nf-core/modules
+    - [x] 57 contributions to nf-core/modules
     - [x] 18 contributions to other tools
     
     These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
@@ -143,11 +143,12 @@ own Nextflow DSL2 pipelines. To facilitate this, A requirement was made that eac
 [Bactopia Tool](https://bactopia.github.io/bactopia-tools/), separate workflows, would require that a corresponding 
 module be available from nf-core/modules, and if its not available it would be added.
 
-By adopting this practice, there have been 56 contributions to nf-core/modules in the 
+By adopting this practice, there have been 57 contributions to nf-core/modules in the 
 form of new modules, module updates, and testing adjustments.
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [snippy-core](https://github.com/tseemann/snippy) | add snippy/core module | [nf-core/modules#1855](https://github.com/nf-core/modules/pull/1855) |
 | [Mykrobe](https://github.com/Mykrobe-tools/mykrobe) | add module for mykrobe/predict | [nf-core/modules#1818](https://github.com/nf-core/modules/pull/1818) |
 | [GenoTyphi](https://github.com/katholt/genotyphi) | add module for genotyphi/parse | [nf-core/modules#1818](https://github.com/nf-core/modules/pull/1818) |
 | [Seroba](https://sanger-pathogens.github.io/seroba/) | add module for seroba | [nf-core/modules#1816](https://github.com/nf-core/modules/pull/1816) |
