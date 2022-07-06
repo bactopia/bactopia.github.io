@@ -441,6 +441,14 @@ conda_updates:
       tool_url: "https://github.com/WGS-TB/MentaLiST"
       
 nfcore_modules:
+    - title: "add snippy/core module"
+      date: 2022-07-05
+      pr_url: "https://github.com/nf-core/modules/pull/1855"
+      pr_name: "nf-core/modules#1855"
+      new_module: true
+      tool: "snippy-core"
+      tool_url: "https://github.com/tseemann/snippy"
+
     - title: "add module for mykrobe/predict"
       date: 2022-06-27
       pr_url: "https://github.com/nf-core/modules/pull/1818"
