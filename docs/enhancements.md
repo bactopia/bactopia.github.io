@@ -16,7 +16,7 @@ few design requirements:
 !!! tip "Bactopia has provided 138+ contributions to the bioinformatics community"
     - [x] 8 standa-alone tools, each available from Bioconda
     - [x] 22 new Conda recipes, 33 
-    updated recipes, and [1,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
+    updated recipes, and [1,500+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
     - [x] 57 contributions to nf-core/modules
     - [x] 18 contributions to other tools
     
