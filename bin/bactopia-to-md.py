@@ -14,10 +14,13 @@ MODULES_RENAME = {
     'ariba_run': 'ariba', 
     'bakta_run': 'bakta', 
     'checkm_lineagewf': 'checkm',
+    'genotyphi_parse': 'genotyphi',
     'mobsuite_recon': 'mobsuite',
-    'rgi_main': 'rgi'
+    'mykrobe_predict': 'mykrobe',
+    'rgi_main': 'rgi',
+    'snippy_run': 'snippy'
 }
-IGNORE_LIST = ["LIST_OF_MODULES"]
+IGNORE_LIST = ["LIST_OF_MODULES", "plasmidid"]
 
 def get_citations(citation_path):
     """ """
@@ -163,30 +166,31 @@ if __name__ == '__main__':
 
     # Build each Bactopia Tool Page
     for name, vals in subworkflows.items():
-        is_bactopia_tool = False if name in nf_config[WORKFLOWS] else True
-        if is_bactopia_tool:
-            module_params = []
-            for module in vals['modules']:
-                module_name = module
-                if module_name not in IGNORE_LIST:
-                    if module_name in MODULES_RENAME:
-                        module_name = MODULES_RENAME[module_name]
-                    print(f"working on {name} - {module}")
-                    module_params += format_params(modules[module_name])
-            params = {
-                'bactopia_tools': '\n'.join(format_params(generic["bactopia-tools"])),
-                'module':  '\n'.join(module_params),
-                'generic': '\n'.join(format_params(generic["generic"]))
-            }
-            if "docs" in vals:
-                template = env.get_template('bactopia-tools-single.j2')
-                output = template.render(
-                    meta=vals,
-                    params=params,
-                    citations=module_citations
-                )
-                with open(f'{args.docs_repo}/docs/bactopia-tools/{name}.md', 'wt') as md_fh:
-                    md_fh.write(output)
+        if name not in IGNORE_LIST:
+            is_bactopia_tool = True if name in nf_config[SUBWORKFLOWS] or name in nf_config[MODULES] else False
+            if is_bactopia_tool:
+                module_params = []
+                for module in vals['modules']:
+                    module_name = module
+                    if module_name not in IGNORE_LIST:
+                        if module_name in MODULES_RENAME:
+                            module_name = MODULES_RENAME[module_name]
+                        print(f"working on {name} - {module}")
+                        module_params += format_params(modules[module_name])
+                params = {
+                    'bactopia_tools': '\n'.join(format_params(generic["bactopia-tools"])),
+                    'module':  '\n'.join(module_params),
+                    'generic': '\n'.join(format_params(generic["generic"]))
+                }
+                if "docs" in vals:
+                    template = env.get_template('bactopia-tools-single.j2')
+                    output = template.render(
+                        meta=vals,
+                        params=params,
+                        citations=module_citations
+                    )
+                    with open(f'{args.docs_repo}/docs/bactopia-tools/{name}.md', 'wt') as md_fh:
+                        md_fh.write(output)
 
     # Build Acknowledgements Page
     template = env.get_template('acknowledgements.j2')
