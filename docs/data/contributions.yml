@@ -1,3 +1,36 @@
+tools:
+    - tool: "assembly-scan"
+      tool_url: "https://github.com/rpetit3/assembly-scan"
+      description: "Generate basic stats for an assembly"
+
+    - tool: "dragonflye"
+      tool_url: "https://github.com/rpetit3/dragonflye"
+      description: "Assemble bacterial isolate genomes from Nanopore reads"
+
+    - tool: "fastq-dl"
+      tool_url: "https://github.com/rpetit3/fastq-dl"
+      description: "Download FASTQ files from SRA or ENA repositories."
+
+    - tool: "fastq-scan"
+      tool_url: "https://github.com/rpetit3/fastq-scan"
+      description: "Output FASTQ summary statistics in JSON format"
+
+    - tool: "pmga"
+      tool_url: "https://github.com/rpetit3/pmga"
+      description: "A fork of PMGA for all Neisseria species and Haemophilus influenzae"
+
+    - tool: "shovill-se"
+      tool_url: "https://github.com/rpetit3/shovill"
+      description: "A fork of Shovill that includes support for single end reads"
+
+    - tool: "staphopia-sccmec"
+      tool_url: "https://github.com/rpetit3/vcf-annotator"
+      description: "A standalone version of Staphopia’s SCCmec typing method"
+
+    - tool: "vcf-annotator"
+      tool_url: "https://github.com/staphopia/staphopia-sccmec"
+      description: "Add biological annotations to variants in a given VCF file"
+
 conda_submissions:
     - title: "Added Mashpit to Bioconda"
       date: 2022-06-02
@@ -408,6 +441,38 @@ conda_updates:
       tool_url: "https://github.com/WGS-TB/MentaLiST"
       
 nfcore_modules:
+    - title: "add snippy/core module"
+      date: 2022-07-05
+      pr_url: "https://github.com/nf-core/modules/pull/1855"
+      pr_name: "nf-core/modules#1855"
+      new_module: true
+      tool: "snippy-core"
+      tool_url: "https://github.com/tseemann/snippy"
+
+    - title: "add module for mykrobe/predict"
+      date: 2022-06-27
+      pr_url: "https://github.com/nf-core/modules/pull/1818"
+      pr_name: "nf-core/modules#1818"
+      new_module: true
+      tool: "Mykrobe"
+      tool_url: "https://github.com/Mykrobe-tools/mykrobe"
+      
+    - title: "add module for genotyphi/parse"
+      date: 2022-06-27
+      pr_url: "https://github.com/nf-core/modules/pull/1818"
+      pr_name: "nf-core/modules#1818"
+      new_module: true
+      tool: "GenoTyphi"
+      tool_url: "https://github.com/katholt/genotyphi"
+      
+    - title: "add module for seroba"
+      date: 2022-06-27
+      pr_url: "https://github.com/nf-core/modules/pull/1816"
+      pr_name: "nf-core/modules#1816"
+      new_module: true
+      tool: "Seroba"
+      tool_url: "https://sanger-pathogens.github.io/seroba/"
+
     - title: "add plasmidfinder module"
       date: 2022-06-13
       pr_url: "https://github.com/nf-core/modules/pull/1773"

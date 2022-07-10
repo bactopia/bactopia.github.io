@@ -1,4 +1,4 @@
-# Resources
+# Presentations
 Below are links to talks, posters, and blog posts associated with Bactopia.
 
 ## Talks
@@ -12,7 +12,6 @@ Slides: [Web](https://bit.ly/3LA2SiB), [PDF](/data/resources/2022-abn-bactopia.p
 A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [CLIMB Big Data - Bioinformatics Skills for Microbial Genomics Workshop](https://www.climb.ac.uk/bioinformatics-skills-microbial-genomics/), covering some topics including [Bioconda](https://bioconda.github.io/), [nf-core](https://nf-co.re/), and a slight peek behind the scenes of Bactopia.  
 Video: [YouTube](https://www.youtube.com/watch?v=s0nxMZd58VY)  
 Slides: [Web](https://bit.ly/32PNhue), [PDF](/data/resources/2022-bactopia-climb-binf-wokshop.pdf)  
-
 
 - _Bactopia and using workflow managers in bioinformatics (January 2022)_  
 In episodes 72 and 73 of the [Micro Binfie Podcast](https://soundcloud.com/microbinfie) we discussed the origins of Bactopia and all the fun things Bactopia does. We also discuss why you should consider using workflow managers in you bioinformatic analyses.  
@@ -33,6 +32,15 @@ The talk presented by [Dr. Timothy Read](https://twitter.com/tdread_emory) at NI
 Slides: [Web](https://bit.ly/3lQpZKo), [PDF](/data/resources/2020-niaid-bactopia-staphopia.pdf)  
 
 ## Posters
+
+- _Using Bactopia for highly scalable, portable and customizable bacterial genome analyses_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) in-person conference outlining how you can use Bactopia in your bacterial genome analyses.  
+Slides: [Web](https://bit.ly/3QCgrkB), [PDF](/data/resources/2022-sfaf-poster-final.pdf) 
+
+- _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (April 2022)_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [APHL Annual Conference]([https://coursesandconferences.wellcomeconnectingscience.org/event/antimicrobial-resistance-genomes-big-data-and-emerging-technologies-virtual-conference-20220427/](https://www.aphl.org/conferences/annualmeeting/Pages/default.aspx)) covering Bactopia and ways to use it in your own analyses.  
+Video: [YouTube](https://youtu.be/pWVa-blIw48)  
+Slides: [Web](https://bit.ly/3OLWDdu), [PDF](/data/resources/2022-aphl-conference.pdf)  
 
 - _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (April 2022)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [Antimicrobial Resistance – Genomes, Big Data and Emerging Technologies (Virtual Conference)](https://coursesandconferences.wellcomeconnectingscience.org/event/antimicrobial-resistance-genomes-big-data-and-emerging-technologies-virtual-conference-20220427/) covering Bactopia and ways to use it in your own analyses.  
