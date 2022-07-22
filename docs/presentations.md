@@ -3,8 +3,13 @@ Below are links to talks, posters, and blog posts associated with Bactopia.
 
 ## Talks
 
+- _Bactopia & it's usage of nf-core components (July 2022)_  
+A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [nf-core Bytesize sries]([https://twitter.com/AfriBioinfoNet/status/1514593623710519299?s=20&t=ntqNaWDlqXt-M946vRtF3g](https://nf-co.re/events/2022/bytesize-bactopia)). This is a brief talk on how Bactopia has modified and applied some nf-core components.  
+Video: [YouTube](https://www.youtube.com/watch?v=egjgcmeJ0wQ)  
+Slides: [PDF](/data/resources/2022-nf-core-bytesize-bactopia.pdf)  
+
 - _Using Bactopia for the complete analysis of bacterial genomes (April 2022)_  
-A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [African Bioinformatics Netwrok Webinar](https://twitter.com/AfriBioinfoNet/status/1514593623710519299?s=20&t=ntqNaWDlqXt-M946vRtF3g). In this talk I give some background on Bactopia and demonstrate how you can use it in your own analyses.  
+A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [African Bioinformatics Netwrok Webinar](https://twitter.com/AfriBioinfoNet/status/1514593623710519299?s=20&t=ntqNaWDlqXt-M946vRtF3g). In this talk background on Bactopia is provided and a demonstration how you can use it in your own analyses.  
 Video: [YouTube](https://youtu.be/x-xNO1zZ54s)  
 Slides: [Web](https://bit.ly/3LA2SiB), [PDF](/data/resources/2022-abn-bactopia.pdf)  
 
