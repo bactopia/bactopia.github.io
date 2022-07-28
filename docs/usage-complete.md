@@ -451,6 +451,8 @@ start at the beginning.
 Nextflow Profile Parameters
   --condadir                    [string]  Directory to Nextflow should use for Conda
                                             environments
+  --use_mamba                   [boolean] Uses mamba instead of conda for building 
+                                            environments [default: false]
   --registry                    [string]  Docker registry to pull containers from. 
                                             [default: dockerhub]
   --singularity_cache           [string]  Directory where remote Singularity images are stored.
