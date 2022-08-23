@@ -15,6 +15,14 @@ tools:
       tool_url: "https://github.com/rpetit3/fastq-scan"
       description: "Output FASTQ summary statistics in JSON format"
 
+    - tool: "pasty"
+      tool_url: "https://github.com/rpetit3/pasty"
+      description: "A tool for in silico serogrouping of Pseudomonas aeruginosa isolates"
+      
+    - tool: "pbptyper"
+      tool_url: "https://github.com/rpetit3/pbptyper"
+      description: "In silico Penicillin Binding Protein typer for Streptococcus pneumoniae"
+
     - tool: "pmga"
       tool_url: "https://github.com/rpetit3/pmga"
       description: "A fork of PMGA for all Neisseria species and Haemophilus influenzae"
@@ -32,6 +40,30 @@ tools:
       description: "Add biological annotations to variants in a given VCF file"
 
 conda_submissions:
+    - title: "Added pbptyper to Bioconda"
+      date: 2022-08-03
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/36222"
+      pr_name: "bioconda/bioconda-recipes#36222"
+      tool: "pbptyper"
+      tool_url: "https://github.com/rpetit3/pbptyper"
+      description: "In silico Penicillin Binding Protein typer for Streptococcus pneumoniae"
+
+    - title: "Added pasty to Bioconda"
+      date: 2022-07-20
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35930"
+      pr_name: "bioconda/bioconda-recipes#35930"
+      tool: "pasty"
+      tool_url: "https://github.com/rpetit3/pasty"
+      description: "A tool for in silico serogrouping of Pseudomonas aeruginosa isolates"
+
+    - title: "Added ParallelTask to Conda-Forge"
+      date: 2022-07-11
+      pr_url: "https://github.com/conda-forge/staged-recipes/pull/19616"
+      pr_name: "conda-forge/staged-recipes#19616"
+      tool: "ParallelTask"
+      tool_url: "https://github.com/moold/ParallelTask"
+      description: "A simple and lightweight parallel task engine"
+
     - title: "Added Mashpit to Bioconda"
       date: 2022-06-02
       pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35199"
@@ -209,6 +241,20 @@ conda_submissions:
       description: "Output FASTQ summary statistics in JSON format"
 
 conda_updates:
+    - title: "Update pinnings in pggb"
+      date: 2022-07-13
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35734"
+      pr_name: "bioconda/bioconda-recipes#35734"
+      tool: "pggb"
+      tool_url: "https://github.com/pangenome/pggb"
+
+    - title: "Rebuild nullarbor container"
+      date: 2022-07-09
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35687"
+      pr_name: "bioconda/bioconda-recipes#35687"
+      tool: "Nullarbor"
+      tool_url: "https://github.com/tseemann/nullarbor"
+
     - title: "Update genotyphi recipe for mykrobe based analysis"
       date: 2022-06-15
       pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35388"
