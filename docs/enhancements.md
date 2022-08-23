@@ -13,9 +13,9 @@ few design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 138+ contributions to the bioinformatics community"
-    - [x] 8 standa-alone tools, each available from Bioconda
-    - [x] 22 new Conda recipes, 33 
+!!! tip "Bactopia has provided 145+ contributions to the bioinformatics community"
+    - [x] 10 stand-alone tools, each available from Bioconda
+    - [x] 25 new Conda recipes, 35 
     updated recipes, and [1,500+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
     - [x] 57 contributions to nf-core/modules
     - [x] 18 contributions to other tools
@@ -26,7 +26,7 @@ few design requirements:
 
 Occasionally tools are developed for specific tasks in Bactopia. For example, [Dragonflye](https://github.com/rpetit3/dragonflye)
 was developed to add Nanopore support to Bactopia. When these tools were developed, they are developed to be stand-alone. Below are 
-8 tools, originally built for Bactopia that you can make use of outside of Bactopia.
+10 tools, originally built for Bactopia that you can make use of outside of Bactopia.
 
 | Tool | Description |
 |------|-------------|
@@ -34,6 +34,8 @@ was developed to add Nanopore support to Bactopia. When these tools were develop
 | [dragonflye](https://github.com/rpetit3/dragonflye) | Assemble bacterial isolate genomes from Nanopore reads |
 | [fastq-dl](https://github.com/rpetit3/fastq-dl) | Download FASTQ files from SRA or ENA repositories. |
 | [fastq-scan](https://github.com/rpetit3/fastq-scan) | Output FASTQ summary statistics in JSON format |
+| [pasty](https://github.com/rpetit3/pasty) | A tool for in silico serogrouping of Pseudomonas aeruginosa isolates |
+| [pbptyper](https://github.com/rpetit3/pbptyper) | In silico Penicillin Binding Protein typer for Streptococcus pneumoniae |
 | [pmga](https://github.com/rpetit3/pmga) | A fork of PMGA for all Neisseria species and Haemophilus influenzae |
 | [shovill-se](https://github.com/rpetit3/shovill) | A fork of Shovill that includes support for single end reads |
 | [staphopia-sccmec](https://github.com/rpetit3/vcf-annotator) | A standalone version of Staphopia’s SCCmec typing method |
@@ -50,12 +52,12 @@ that doesn't end with `conda install! For every recipe added to Bioconda, a Dock
 [Galaxy Project](https://galaxyproject.org/). At the end of the day, a single recipe makes a huge contribution
 to the community.
 
-Bactopia has led to  22 new recipes, 33 updated recipes, and 
+Bactopia has led to  25 new recipes, 35 updated recipes, and 
 [more than 1,000 pull requests have been reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
 
 ### New Recipes
 
-Bactopia has led to the addition of 22 new recipes to
+Bactopia has led to the addition of 25 new recipes to
 [Bioconda](https://bioconda.github.io/) and [conda-forge](https://conda-forge.org/). These new recipes allow users
 to rapidly begin using these tools for their own analyses, and include:
 
@@ -73,6 +75,9 @@ to rapidly begin using these tools for their own analyses, and include:
 | [illumina-cleanup](https://github.com/rpetit3/illumina-cleanup) | A simple pipeline for pre-processing Illumina FASTQ files | [bioconda/bioconda-recipes#11481](https://github.com/bioconda/bioconda-recipes/pull/11481) |
 | [ISMapper](https://github.com/jhawkey/IS_mapper) | insertion sequence mapping software | [bioconda/bioconda-recipes#14180](https://github.com/bioconda/bioconda-recipes/pull/14180) |
 | [mashpit](https://github.com/tongzhouxu/mashpit) | Sketch-based surveillance platform | [bioconda/bioconda-recipes#35199](https://github.com/bioconda/bioconda-recipes/pull/35199) |
+| [ParallelTask](https://github.com/moold/ParallelTask) | A simple and lightweight parallel task engine | [conda-forge/staged-recipes#19616](https://github.com/conda-forge/staged-recipes/pull/19616) |
+| [pasty](https://github.com/rpetit3/pasty) | A tool for in silico serogrouping of Pseudomonas aeruginosa isolates | [bioconda/bioconda-recipes#35930](https://github.com/bioconda/bioconda-recipes/pull/35930) |
+| [pbptyper](https://github.com/rpetit3/pbptyper) | In silico Penicillin Binding Protein typer for Streptococcus pneumoniae | [bioconda/bioconda-recipes#36222](https://github.com/bioconda/bioconda-recipes/pull/36222) |
 | [pmga](https://github.com/CDCgov/BMGAP) | Command-line version of PMGA (PubMLST Genome Annotator) | [bioconda/bioconda-recipes/#32801](https://github.com/bioconda/bioconda-recipes/pull/32801) |
 | [property-manager](https://github.com/xolox/python-property-manager) | useful property variants for Python programming | [conda-forge/staged-recipes#9442](https://github.com/conda-forge/staged-recipes/pull/9442) |
 | [RFPlasmid](https://github.com/aldertzomer/RFPlasmid) | predicting plasmid contigs from assemblies | [bioconda/bioconda-recipes#25849](https://github.com/bioconda/bioconda-recipes/pull/25849) |
@@ -100,6 +105,8 @@ made to improve or fix the Bioconda recipe. Below is a list fixes and improvemen
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [pggb](https://github.com/pangenome/pggb) | Update pinnings in pggb | [bioconda/bioconda-recipes#35734](https://github.com/bioconda/bioconda-recipes/pull/35734) |
+| [Nullarbor](https://github.com/tseemann/nullarbor) | Rebuild nullarbor container | [bioconda/bioconda-recipes#35687](https://github.com/bioconda/bioconda-recipes/pull/35687) |
 | [GenoTyphi](https://github.com/katholt/genotyphi) | Update genotyphi recipe for mykrobe based analysis | [bioconda/bioconda-recipes#35388](https://github.com/bioconda/bioconda-recipes/pull/35388) |
 | [Seroba](https://github.com/sanger-pathogens/seroba) | Add database to Seroba recipe | [bioconda/bioconda-recipes#35378](https://github.com/bioconda/bioconda-recipes/pull/35378) |
 | [Ariba](https://github.com/sanger-pathogens/ariba) | Update ariba dependencies for latest pymummer | [bioconda/bioconda-recipes#35383](https://github.com/bioconda/bioconda-recipes/pull/35383) |
