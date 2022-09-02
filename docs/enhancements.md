@@ -155,7 +155,7 @@ form of new modules, module updates, and testing adjustments.
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
-| [pbptyper](https://github.com/rpetit3/pbptyper) | add snippy/core module | [nf-core/modules#2005](https://github.com/nf-core/modules/pull/2005) |
+| [pbptyper](https://github.com/rpetit3/pbptyper) | add pbptyper module | [nf-core/modules#2005](https://github.com/nf-core/modules/pull/2005) |
 | [pasty](https://github.com/rpetit3/pasty) | add module for pasty | [nf-core/modules#2003](https://github.com/nf-core/modules/pull/2003) |
 | [snippy-core](https://github.com/tseemann/snippy) | add snippy/core module | [nf-core/modules#1855](https://github.com/nf-core/modules/pull/1855) |
 | [Mykrobe](https://github.com/Mykrobe-tools/mykrobe) | add module for mykrobe/predict | [nf-core/modules#1818](https://github.com/nf-core/modules/pull/1818) |
