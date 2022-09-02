@@ -13,11 +13,11 @@ few design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 145+ contributions to the bioinformatics community"
+!!! tip "Bactopia has provided 147+ contributions to the bioinformatics community"
     - [x] 10 stand-alone tools, each available from Bioconda
     - [x] 25 new Conda recipes, 35 
     updated recipes, and [1,500+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
-    - [x] 57 contributions to nf-core/modules
+    - [x] 59 contributions to nf-core/modules
     - [x] 18 contributions to other tools
     
     These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
@@ -150,11 +150,13 @@ own Nextflow DSL2 pipelines. To facilitate this, A requirement was made that eac
 [Bactopia Tool](https://bactopia.github.io/bactopia-tools/), separate workflows, would require that a corresponding 
 module be available from nf-core/modules, and if its not available it would be added.
 
-By adopting this practice, there have been 57 contributions to nf-core/modules in the 
+By adopting this practice, there have been 59 contributions to nf-core/modules in the 
 form of new modules, module updates, and testing adjustments.
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [pbptyper](https://github.com/rpetit3/pbptyper) | add snippy/core module | [nf-core/modules#2005](https://github.com/nf-core/modules/pull/2005) |
+| [pasty](https://github.com/rpetit3/pasty) | add module for pasty | [nf-core/modules#2003](https://github.com/nf-core/modules/pull/2003) |
 | [snippy-core](https://github.com/tseemann/snippy) | add snippy/core module | [nf-core/modules#1855](https://github.com/nf-core/modules/pull/1855) |
 | [Mykrobe](https://github.com/Mykrobe-tools/mykrobe) | add module for mykrobe/predict | [nf-core/modules#1818](https://github.com/nf-core/modules/pull/1818) |
 | [GenoTyphi](https://github.com/katholt/genotyphi) | add module for genotyphi/parse | [nf-core/modules#1818](https://github.com/nf-core/modules/pull/1818) |
