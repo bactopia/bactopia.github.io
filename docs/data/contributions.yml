@@ -487,7 +487,7 @@ conda_updates:
       tool_url: "https://github.com/WGS-TB/MentaLiST"
       
 nfcore_modules:
-    - title: "add snippy/core module"
+    - title: "add pbptyper module"
       date: 2022-09-02
       pr_url: "https://github.com/nf-core/modules/pull/2005"
       pr_name: "nf-core/modules#2005"
