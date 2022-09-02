@@ -488,6 +488,22 @@ conda_updates:
       
 nfcore_modules:
     - title: "add snippy/core module"
+      date: 2022-09-02
+      pr_url: "https://github.com/nf-core/modules/pull/2005"
+      pr_name: "nf-core/modules#2005"
+      new_module: true
+      tool: "pbptyper"
+      tool_url: "https://github.com/rpetit3/pbptyper"
+
+    - title: "add module for pasty"
+      date: 2022-09-02
+      pr_url: "https://github.com/nf-core/modules/pull/2003"
+      pr_name: "nf-core/modules#2003"
+      new_module: true
+      tool: "pasty"
+      tool_url: "https://github.com/rpetit3/pasty"
+
+    - title: "add snippy/core module"
       date: 2022-07-05
       pr_url: "https://github.com/nf-core/modules/pull/1855"
       pr_name: "nf-core/modules#1855"
