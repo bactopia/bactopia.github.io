@@ -1,5 +1,6 @@
-name: Publish docs via GitHub Pages
+name: Publish Docs
 on:
+  workflow_dispatch:
   push:
     branches: [ main, master]
 
@@ -7,6 +8,9 @@ jobs:
   build:
     name: Deploy docs
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
     steps:
       - name: Checkout main
         uses: actions/checkout@v2
@@ -17,13 +21,47 @@ jobs:
           repository: bactopia/bactopia
           path: bactopia
       
-      - name: Stage latest CHANGELOG
-        run: |
-         cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
-         rm -rf $GITHUB_WORKSPACE/bactopia
-      - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+      - name: Setup miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: bactopia
+          auto-activate-base: false
+
+      - name: Setup Docs Environment
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CONFIG_FILE: mkdocs.yml
-          EXTRA_PACKAGES: build-base
+          MKDOCS_INSIDERS: ${{ secrets.MKDOCS_INSIDERS }}
+        run: |
+          # Conda dependencies
+          conda install -c conda-forge -c bioconda nextflow jinja2 pyyaml 'python>3.6'
+          # MkDocs dependencies
+          pip install \
+            "cairosvg>=2.5" \
+            "mkdocs-git-committers-plugin-2<1" \
+            "mkdocs-git-revision-date-localized-plugin>=1.0" \
+            "mkdocs-minify-plugin>=0.3" \
+            "mkdocs-rss-plugin>=1.1" \
+            "mkdocs-redirects>=1.0" \
+            "pillow<10"
+          # MkDocs Insiders
+          pip install \
+            git+https://${MKDOCS_INSIDERS}@github.com/rpetit3/mkdocs-material-insiders.git
+          mkdocs --version
+
+      - name: Convert Bactopia to Docs
+        run: |
+          nextflow config -flat $GITHUB_WORKSPACE/bactopia/main.nf > $GITHUB_WORKSPACE/bactopia/nextflow_config.txt
+          python3 $GITHUB_WORKSPACE/bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
+          cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
+          rm -rf $GITHUB_WORKSPACE/bactopia
+
+      - name: Deploy Docs
+        run: |
+          mkdocs gh-deploy --force --config-file mkdocs.insiders.yml
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: "ci - auto build from bactopia"
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
+          add: 'mkdocs.yml docs/'
