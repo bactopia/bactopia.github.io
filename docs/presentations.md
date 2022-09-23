@@ -43,7 +43,7 @@ A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [
 Slides: [Web](https://bit.ly/3QCgrkB), [PDF](/data/resources/2022-sfaf-poster-final.pdf) 
 
 - _Bactopia v2: Highly scalable, portable and customizable bacterial genome analyses (April 2022)_  
-A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [APHL Annual Conference]([https://coursesandconferences.wellcomeconnectingscience.org/event/antimicrobial-resistance-genomes-big-data-and-emerging-technologies-virtual-conference-20220427/](https://www.aphl.org/conferences/annualmeeting/Pages/default.aspx)) covering Bactopia and ways to use it in your own analyses.  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [APHL Annual Conference](https://www.aphl.org/conferences/annualmeeting/Pages/default.aspx) covering Bactopia and ways to use it in your own analyses.  
 Video: [YouTube](https://youtu.be/pWVa-blIw48)  
 Slides: [Web](https://bit.ly/3OLWDdu), [PDF](/data/resources/2022-aphl-conference.pdf)  
 
