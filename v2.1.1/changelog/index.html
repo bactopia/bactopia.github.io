@@ -1,0 +1,5725 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/v2.1.1/changelog/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3+insiders-4.23.5">
+    
+    
+      
+        <title>Changelog - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fb3608a7.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../custom/magnific-popup.css">
+    
+      <link rel="stylesheet" href="../custom/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-104199698-2","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");ga("send","event","feedback","click",t,e),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){ga("send","pageview",e.pathname)})});var e=document.createElement("script");e.async=!0,e.src="https://www.google-analytics.com/analytics.js",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Changelog - Bactopia" >
+      
+        <meta  property="og:description"  content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes." >
+      
+        <meta  property="og:image"  content="https://bactopia.github.io/v2.1.1/assets/images/social/changelog.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://bactopia.github.io/v2.1.1/changelog/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Changelog - Bactopia" >
+      
+        <meta  name="twitter:description"  content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes." >
+      
+        <meta  name="twitter:image"  content="https://bactopia.github.io/v2.1.1/assets/images/social/changelog.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bactopia" class="md-header__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bactopia
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+
+  
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link md-tabs__link--active">
+          
+  
+    
+  
+  Bactopia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../bactopia-tools/" class="md-tabs__link">
+          
+  
+    
+  
+  Bactopia Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bactopia" class="md-nav__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+        
+        
+          <label class="md-nav__link" for="__nav_1">
+            
+  
+  <span class="md-ellipsis">
+    Bactopia
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Bactopia" data-md-level="1">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Bactopia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Datasets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow-overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output-overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Output Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage-complete/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complete Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enhancements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enhancements to OSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acknowledgements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v211-bactopiabactopia-dragon-twister-20220709" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.1.1 bactopia/bactopia "Dragon Twister" - 2022/07/09
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.1.1 bactopia/bactopia "Dragon Twister" - 2022/07/09">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhancements-to-oss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhancements to OSS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v210-bactopiabactopia-silver-mist-20220608" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.1.0 bactopia/bactopia "Silver Mist" - 2022/06/08
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.1.0 bactopia/bactopia "Silver Mist" - 2022/06/08">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v203-bactopiabactopia-king-cobra-20220323" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.0.3 bactopia/bactopia "King Cobra" - 2022/03/23
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.0.3 bactopia/bactopia "King Cobra" - 2022/03/23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v202-bactopiabactopia-black-mamba-20220222" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.0.2 bactopia/bactopia "Black Mamba" - 2022/02/22
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.0.2 bactopia/bactopia "Black Mamba" - 2022/02/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v201-bactopiabactopia-red-roc-20220106" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.0.1 bactopia/bactopia "Red Roc" - 2022/01/06
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.0.1 bactopia/bactopia "Red Roc" - 2022/01/06">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v200-bactopiabactopia-red-hawk-20211205" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.0.0 bactopia/bactopia "Red Hawk" - 2021/12/05
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.0.0 bactopia/bactopia "Red Hawk" - 2021/12/05">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adapted-from-nf-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adapted from nf-core
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process-consolidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process Consolidation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v171-bactopiabactopia-shellbuster-20210604" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.7.1 bactopia/bactopia "Shellbuster" - 2021/06/04
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.7.1 bactopia/bactopia "Shellbuster" - 2021/06/04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      'Removed'
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v170-bactopiabactopia-chocobo-wand-20210427" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.7.0 bactopia/bactopia "Chocobo Wand" - 2021/04/27
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.7.0 bactopia/bactopia "Chocobo Wand" - 2021/04/27">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      'Removed'
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v165-bactopiabactopia-zs-trident-20210330" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.5 bactopia/bactopia "Z's Trident" - 2021/03/30
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.5 bactopia/bactopia "Z's Trident" - 2021/03/30">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v164-bactopiabactopia-trident-1-20210326" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.4 bactopia/bactopia "Trident +1" - 2021/03/26
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.4 bactopia/bactopia "Trident +1" - 2021/03/26">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v163-bactopiabactopia-trident-20210325" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.3 bactopia/bactopia "Trident" - 2021/03/25
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.3 bactopia/bactopia "Trident" - 2021/03/25">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v162-bactopiabactopia-fuscina-20210319" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.2 bactopia/bactopia "Fuscina" - 2021/03/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.2 bactopia/bactopia "Fuscina" - 2021/03/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v161-bactopiabactopia-obelisk-20210222" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.1 bactopia/bactopia "Obelisk" - 2021/02/22
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.1 bactopia/bactopia "Obelisk" - 2021/02/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v160-bactopiabactopia-harpoon-20210122" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.0 bactopia/bactopia "Harpoon" - 2021/01/22
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.0 bactopia/bactopia "Harpoon" - 2021/01/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v156-bactopiabactopia-metal-slime-earring-20210113" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.6 bactopia/bactopia "Metal Slime Earring" - 2021/01/13
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.6 bactopia/bactopia "Metal Slime Earring" - 2021/01/13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v155-bactopiabactopia-avengers-earring-20210104" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.5 bactopia/bactopia "Avenger's Earring" - 2021/01/04
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.5 bactopia/bactopia "Avenger's Earring" - 2021/01/04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v154-bactopiabactopia-nemesis-earring-20201217" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.4 bactopia/bactopia "Nemesis Earring" - 2020/12/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.4 bactopia/bactopia "Nemesis Earring" - 2020/12/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v153-bactopiabactopia-morion-earring-20201204" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.3 bactopia/bactopia "Morion Earring" - 2020/12/04
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.3 bactopia/bactopia "Morion Earring" - 2020/12/04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v152-bactopiabactopia-physical-earring-20201118" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.2 bactopia/bactopia "Physical Earring" - 2020/11/18
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.2 bactopia/bactopia "Physical Earring" - 2020/11/18">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v151-bactopiabactopia-astral-earring-20201117" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.1 bactopia/bactopia "Astral Earring" - 2020/11/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.1 bactopia/bactopia "Astral Earring" - 2020/11/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v150-bactopiabactopia-cassie-earring-20201112" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.0 bactopia/bactopia "Cassie Earring" - 2020/11/12
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.0 bactopia/bactopia "Cassie Earring" - 2020/11/12">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1411-bactopiabactopia-metamorph-ring-20200919" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.11 bactopia/bactopia "Metamorph Ring" - 2020/09/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.11 bactopia/bactopia "Metamorph Ring" - 2020/09/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1410-bactopiabactopia-jelly-ring-20200825" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.10 bactopia/bactopia "Jelly Ring" - 2020/08/25
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.10 bactopia/bactopia "Jelly Ring" - 2020/08/25">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v149-bactopiabactopia-toreadors-ring-20200823" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.9 bactopia/bactopia "Toreador's Ring" - 2020/08/23
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.9 bactopia/bactopia "Toreador's Ring" - 2020/08/23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v148-bactopiabactopia-shikaree-ring-20200820" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.8 bactopia/bactopia "Shikaree Ring" - 2020/08/20
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.8 bactopia/bactopia "Shikaree Ring" - 2020/08/20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v147-bactopiabactopia-serket-ring-20200817" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.7 bactopia/bactopia "Serket Ring" - 2020/08/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.7 bactopia/bactopia "Serket Ring" - 2020/08/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v146-bactopiabactopia-astral-ring-20200817" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.6 bactopia/bactopia "Astral Ring" - 2020/08/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.6 bactopia/bactopia "Astral Ring" - 2020/08/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v145-bactopiabactopia-bomb-queen-ring-20200813" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.5 bactopia/bactopia "Bomb Queen Ring" - 2020/08/13
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.5 bactopia/bactopia "Bomb Queen Ring" - 2020/08/13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v144-bactopiabactopia-vilmas-ring-20200813" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.4 bactopia/bactopia "Vilma's Ring" - 2020/08/13
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.4 bactopia/bactopia "Vilma's Ring" - 2020/08/13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v143-bactopiabactopia-sattva-ring-20200813" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.3 bactopia/bactopia "Sattva Ring" - 2020/08/13
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.3 bactopia/bactopia "Sattva Ring" - 2020/08/13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v142-bactopiabactopia-tamas-ring-20200810" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.2 bactopia/bactopia "Tamas Ring" - 2020/08/10
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.2 bactopia/bactopia "Tamas Ring" - 2020/08/10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v141-bactopiabactopia-rajas-ring-20200806" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.1 bactopia/bactopia "Rajas Ring" - 2020/08/06
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.1 bactopia/bactopia "Rajas Ring" - 2020/08/06">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v140-bactopiabactopia-archers-ring-20200701" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.0 bactopia/bactopia "Archer's Ring" - 2020/07/01
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.0 bactopia/bactopia "Archer's Ring" - 2020/07/01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v131-bactopiabactopia-emperor-hairpin-20200420" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.3.1 bactopia/bactopia "Emperor Hairpin" - 2020/04/20
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.3.1 bactopia/bactopia "Emperor Hairpin" - 2020/04/20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v130-bactopiabactopia-leaping-boots-20200219" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.3.0 bactopia/bactopia "Leaping Boots" - 2020/02/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.3.0 bactopia/bactopia "Leaping Boots" - 2020/02/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v124-bactopiabactopia-rabbit-charm-20191220" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.4 bactopia/bactopia "Rabbit Charm" - 2019/12/20
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.4 bactopia/bactopia "Rabbit Charm" - 2019/12/20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v123-bactopiabactopia-tropical-punches-1-20191219" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.3 bactopia/bactopia "Tropical Punches +1" - 2019/12/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.3 bactopia/bactopia "Tropical Punches +1" - 2019/12/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v122-bactopiabactopia-tropical-punches-20191022" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.2 bactopia/bactopia "Tropical Punches" - 2019/10/22
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.2 bactopia/bactopia "Tropical Punches" - 2019/10/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v121-bactopiabactopia-fruit-punches-20191017" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.1 bactopia/bactopia "Fruit Punches" - 2019/10/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.1 bactopia/bactopia "Fruit Punches" - 2019/10/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v120-bactopiabactopia-beestinger-20191016" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.0 bactopia/bactopia "Beestinger" - 2019/10/16
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.0 bactopia/bactopia "Beestinger" - 2019/10/16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v110-bactopiabactopia-wooden-sword-1-20190919" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.1.0 bactopia/bactopia "Wooden Sword +1" - 2019/09/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.1.0 bactopia/bactopia "Wooden Sword +1" - 2019/09/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v101-bactopiabactopia-wooden-sword-20190912" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.0.1 bactopia/bactopia "Wooden Sword" - 2019/09/12
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.0.1 bactopia/bactopia "Wooden Sword" - 2019/09/12">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v100-bactopiabactopia-wooden-sword-20190904" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.0.0 bactopia/bactopia "Wooden Sword" - 2019/09/04
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        
+        
+          <label class="md-nav__link" for="__nav_2">
+            
+  
+  <span class="md-ellipsis">
+    Bactopia Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Bactopia Tools" data-md-level="1">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Bactopia Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        
+        
+          <label class="md-nav__link" for="__nav_2_2">
+            
+  
+  <span class="md-ellipsis">
+    Subworkflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Subworkflows" data-md-level="2">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Subworkflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ariba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ariba
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bakta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/eggnog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eggnog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/gtdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gtdb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    merlin
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/pangenome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pangenome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/snippy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snippy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/staphtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    staphtyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+        
+        
+          <label class="md-nav__link" for="__nav_2_3">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Modules" data-md-level="2">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/abricate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    abricate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/agrvate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    agrvate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    amrfinderplus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/busco/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    busco
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/checkm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ectyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ectyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/emmtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    emmtyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/fastani/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fastani
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/gamma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gamma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/genotyphi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    genotyphi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/hicap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hicap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/hpsuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hpsuissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ismapper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ismapper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/kleborate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kleborate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/kraken2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kraken2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/legsta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    legsta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/lissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mashdist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mashdist
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mashtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mashtree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mcroni/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mcroni
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/meningotype/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    meningotype
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlst
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mobsuite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mobsuite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mykrobe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mykrobe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ngmaster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ngmaster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/plasmidfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    plasmidfinder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/prokka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prokka
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/rgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rgi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/seqsero2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seqsero2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/seroba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seroba
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/shigatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shigatyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/sistr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sistr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/spatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spatyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ssuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ssuissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/staphopiasccmec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    staphopiasccmec
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/tbprofiler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tbprofiler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        
+        
+          <label class="md-nav__link" for="__nav_3">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Blog" data-md-level="1">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bactopia Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v211-bactopiabactopia-dragon-twister-20220709" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.1.1 bactopia/bactopia "Dragon Twister" - 2022/07/09
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.1.1 bactopia/bactopia "Dragon Twister" - 2022/07/09">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhancements-to-oss" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhancements to OSS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v210-bactopiabactopia-silver-mist-20220608" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.1.0 bactopia/bactopia "Silver Mist" - 2022/06/08
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.1.0 bactopia/bactopia "Silver Mist" - 2022/06/08">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v203-bactopiabactopia-king-cobra-20220323" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.0.3 bactopia/bactopia "King Cobra" - 2022/03/23
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.0.3 bactopia/bactopia "King Cobra" - 2022/03/23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v202-bactopiabactopia-black-mamba-20220222" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.0.2 bactopia/bactopia "Black Mamba" - 2022/02/22
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.0.2 bactopia/bactopia "Black Mamba" - 2022/02/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v201-bactopiabactopia-red-roc-20220106" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.0.1 bactopia/bactopia "Red Roc" - 2022/01/06
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.0.1 bactopia/bactopia "Red Roc" - 2022/01/06">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v200-bactopiabactopia-red-hawk-20211205" class="md-nav__link">
+    <span class="md-ellipsis">
+      v2.0.0 bactopia/bactopia "Red Hawk" - 2021/12/05
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2.0.0 bactopia/bactopia "Red Hawk" - 2021/12/05">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adapted-from-nf-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adapted from nf-core
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process-consolidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Process Consolidation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v171-bactopiabactopia-shellbuster-20210604" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.7.1 bactopia/bactopia "Shellbuster" - 2021/06/04
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.7.1 bactopia/bactopia "Shellbuster" - 2021/06/04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      'Removed'
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v170-bactopiabactopia-chocobo-wand-20210427" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.7.0 bactopia/bactopia "Chocobo Wand" - 2021/04/27
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.7.0 bactopia/bactopia "Chocobo Wand" - 2021/04/27">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      'Removed'
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v165-bactopiabactopia-zs-trident-20210330" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.5 bactopia/bactopia "Z's Trident" - 2021/03/30
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.5 bactopia/bactopia "Z's Trident" - 2021/03/30">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v164-bactopiabactopia-trident-1-20210326" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.4 bactopia/bactopia "Trident +1" - 2021/03/26
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.4 bactopia/bactopia "Trident +1" - 2021/03/26">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v163-bactopiabactopia-trident-20210325" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.3 bactopia/bactopia "Trident" - 2021/03/25
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.3 bactopia/bactopia "Trident" - 2021/03/25">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v162-bactopiabactopia-fuscina-20210319" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.2 bactopia/bactopia "Fuscina" - 2021/03/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.2 bactopia/bactopia "Fuscina" - 2021/03/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v161-bactopiabactopia-obelisk-20210222" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.1 bactopia/bactopia "Obelisk" - 2021/02/22
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.1 bactopia/bactopia "Obelisk" - 2021/02/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v160-bactopiabactopia-harpoon-20210122" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.6.0 bactopia/bactopia "Harpoon" - 2021/01/22
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.6.0 bactopia/bactopia "Harpoon" - 2021/01/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v156-bactopiabactopia-metal-slime-earring-20210113" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.6 bactopia/bactopia "Metal Slime Earring" - 2021/01/13
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.6 bactopia/bactopia "Metal Slime Earring" - 2021/01/13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v155-bactopiabactopia-avengers-earring-20210104" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.5 bactopia/bactopia "Avenger's Earring" - 2021/01/04
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.5 bactopia/bactopia "Avenger's Earring" - 2021/01/04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v154-bactopiabactopia-nemesis-earring-20201217" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.4 bactopia/bactopia "Nemesis Earring" - 2020/12/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.4 bactopia/bactopia "Nemesis Earring" - 2020/12/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v153-bactopiabactopia-morion-earring-20201204" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.3 bactopia/bactopia "Morion Earring" - 2020/12/04
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.3 bactopia/bactopia "Morion Earring" - 2020/12/04">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v152-bactopiabactopia-physical-earring-20201118" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.2 bactopia/bactopia "Physical Earring" - 2020/11/18
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.2 bactopia/bactopia "Physical Earring" - 2020/11/18">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v151-bactopiabactopia-astral-earring-20201117" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.1 bactopia/bactopia "Astral Earring" - 2020/11/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.1 bactopia/bactopia "Astral Earring" - 2020/11/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v150-bactopiabactopia-cassie-earring-20201112" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.5.0 bactopia/bactopia "Cassie Earring" - 2020/11/12
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.5.0 bactopia/bactopia "Cassie Earring" - 2020/11/12">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1411-bactopiabactopia-metamorph-ring-20200919" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.11 bactopia/bactopia "Metamorph Ring" - 2020/09/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.11 bactopia/bactopia "Metamorph Ring" - 2020/09/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v1410-bactopiabactopia-jelly-ring-20200825" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.10 bactopia/bactopia "Jelly Ring" - 2020/08/25
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.10 bactopia/bactopia "Jelly Ring" - 2020/08/25">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v149-bactopiabactopia-toreadors-ring-20200823" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.9 bactopia/bactopia "Toreador's Ring" - 2020/08/23
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.9 bactopia/bactopia "Toreador's Ring" - 2020/08/23">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v148-bactopiabactopia-shikaree-ring-20200820" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.8 bactopia/bactopia "Shikaree Ring" - 2020/08/20
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.8 bactopia/bactopia "Shikaree Ring" - 2020/08/20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v147-bactopiabactopia-serket-ring-20200817" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.7 bactopia/bactopia "Serket Ring" - 2020/08/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.7 bactopia/bactopia "Serket Ring" - 2020/08/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v146-bactopiabactopia-astral-ring-20200817" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.6 bactopia/bactopia "Astral Ring" - 2020/08/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.6 bactopia/bactopia "Astral Ring" - 2020/08/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v145-bactopiabactopia-bomb-queen-ring-20200813" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.5 bactopia/bactopia "Bomb Queen Ring" - 2020/08/13
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.5 bactopia/bactopia "Bomb Queen Ring" - 2020/08/13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v144-bactopiabactopia-vilmas-ring-20200813" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.4 bactopia/bactopia "Vilma's Ring" - 2020/08/13
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.4 bactopia/bactopia "Vilma's Ring" - 2020/08/13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fixed_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v143-bactopiabactopia-sattva-ring-20200813" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.3 bactopia/bactopia "Sattva Ring" - 2020/08/13
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.3 bactopia/bactopia "Sattva Ring" - 2020/08/13">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v142-bactopiabactopia-tamas-ring-20200810" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.2 bactopia/bactopia "Tamas Ring" - 2020/08/10
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.2 bactopia/bactopia "Tamas Ring" - 2020/08/10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v141-bactopiabactopia-rajas-ring-20200806" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.1 bactopia/bactopia "Rajas Ring" - 2020/08/06
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.1 bactopia/bactopia "Rajas Ring" - 2020/08/06">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v140-bactopiabactopia-archers-ring-20200701" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.4.0 bactopia/bactopia "Archer's Ring" - 2020/07/01
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.4.0 bactopia/bactopia "Archer's Ring" - 2020/07/01">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v131-bactopiabactopia-emperor-hairpin-20200420" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.3.1 bactopia/bactopia "Emperor Hairpin" - 2020/04/20
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.3.1 bactopia/bactopia "Emperor Hairpin" - 2020/04/20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v130-bactopiabactopia-leaping-boots-20200219" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.3.0 bactopia/bactopia "Leaping Boots" - 2020/02/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.3.0 bactopia/bactopia "Leaping Boots" - 2020/02/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v124-bactopiabactopia-rabbit-charm-20191220" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.4 bactopia/bactopia "Rabbit Charm" - 2019/12/20
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.4 bactopia/bactopia "Rabbit Charm" - 2019/12/20">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v123-bactopiabactopia-tropical-punches-1-20191219" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.3 bactopia/bactopia "Tropical Punches +1" - 2019/12/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.3 bactopia/bactopia "Tropical Punches +1" - 2019/12/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v122-bactopiabactopia-tropical-punches-20191022" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.2 bactopia/bactopia "Tropical Punches" - 2019/10/22
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.2 bactopia/bactopia "Tropical Punches" - 2019/10/22">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v121-bactopiabactopia-fruit-punches-20191017" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.1 bactopia/bactopia "Fruit Punches" - 2019/10/17
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.1 bactopia/bactopia "Fruit Punches" - 2019/10/17">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v120-bactopiabactopia-beestinger-20191016" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.2.0 bactopia/bactopia "Beestinger" - 2019/10/16
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.2.0 bactopia/bactopia "Beestinger" - 2019/10/16">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removed_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v110-bactopiabactopia-wooden-sword-1-20190919" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.1.0 bactopia/bactopia "Wooden Sword +1" - 2019/09/19
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.1.0 bactopia/bactopia "Wooden Sword +1" - 2019/09/19">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v101-bactopiabactopia-wooden-sword-20190912" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.0.1 bactopia/bactopia "Wooden Sword" - 2019/09/12
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v1.0.1 bactopia/bactopia "Wooden Sword" - 2019/09/12">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#added_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      Added
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v100-bactopiabactopia-wooden-sword-20190904" class="md-nav__link">
+    <span class="md-ellipsis">
+      v1.0.0 bactopia/bactopia "Wooden Sword" - 2019/09/04
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+<!-- Edit button -->
+
+  <a
+    href="https://github.com/bactopia/bactopia.github.io/edit/master/docs/changelog.md"
+    title="Edit this page"
+    class="md-content__button md-icon"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it
+  doesn't, the page title (or respectively site name) is used
+  as the main headline.
+-->
+
+
+<!-- Markdown content -->
+<h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v211-bactopiabactopia-dragon-twister-20220709">v2.1.1 bactopia/bactopia "Dragon Twister" - 2022/07/09<a class="headerlink" href="#v211-bactopiabactopia-dragon-twister-20220709" title="Permanent link">&para;</a></h2>
+<h3 id="added"><code>Added</code><a class="headerlink" href="#added" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Add Panaroo to the <code>pangenome</code> Bactopia Tools</li>
+<li>Add <code>genotyphi</code> and <code>seroba</code> to Merlin</li>
+<li>bump <code>fastq-dl</code> to v1.1.1</li>
+<li>Bactopia Tools (<code>bactopia --wf &lt;NAME&gt;</code>)<ul>
+<li><code>busco</code> - Assembly completeness based on evolutionarily informed expectations</li>
+<li><code>genotyphi</code> - Salmonella Typhi genotyping with Mykrobe outputs</li>
+<li><code>gubbins</code> - Rapid phylogenetic analysis of recombinant bacterial sequences</li>
+<li><code>mcroni</code> - Sequence variation in mobilized colistin resistance (mcr-1) genes</li>
+<li><code>mykrobe</code> - Antimicrobial resistance detection for specific species</li>
+<li><code>panaroo</code> - Pipeline for pangenome investigations</li>
+<li><code>plasmidfinder</code> - Plasmid identification from assemblies</li>
+<li><code>seroba</code> - Serotyping of Streptococcus pneumoniae from sequence reads</li>
+<li><code>snippy</code> - Rapid variant calling from Illumina sequence reads with optional core-SNP phylogeny</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed"><code>Fixed</code><a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>improve GTDB db handling</li>
+<li>Properly capture assemblies with 0</li>
+<li>user provided adapters and phix fastas</li>
+<li><code>--available_datasets</code> in the <code>bactopia datasets</code></li>
+<li>name collisions in the Ariba Bactopia Tool</li>
+<li>bare double-quotes in Ariba reports</li>
+<li>updated tests for new version</li>
+</ul>
+<h3 id="enhancements-to-oss"><code>Enhancements to OSS</code><a class="headerlink" href="#enhancements-to-oss" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Add database to Seroba recipe <a href="https://github.com/bioconda/bioconda-recipes/pull/35378">bioconda/bioconda-recipes#35378</a></li>
+<li>Update ariba dependencies <a href="https://github.com/bioconda/bioconda-recipes/pull/35383">bioconda/bioconda-recipes#35383</a></li>
+<li>patch pymummer recipe <a href="https://github.com/bioconda/bioconda-recipes/pull/35379">bioconda/bioconda-recipes#35379</a></li>
+<li>Update PlasmidFinder for better container support <a href="https://github.com/bioconda/bioconda-recipes/pull/35314">bioconda/bioconda-recipes#35314</a></li>
+<li>add module for ariba <a href="https://github.com/nf-core/modules/pull/1731">nf-core/modules#1731</a></li>
+<li>add module for mcroni <a href="https://github.com/nf-core/modules/pull/1750">nf-core/modules#1750</a></li>
+<li>add module for Mykrobe and GenoTyphi <a href="https://github.com/nf-core/modules/pull/1818">nf-core/modules#1731</a></li>
+<li>add module for plasmidfinder <a href="https://github.com/nf-core/modules/pull/1773">nf-core/modules#1773</a></li>
+<li>add module for Seroba <a href="https://github.com/nf-core/modules/pull/1816">nf-core/modules#1731</a></li>
+<li>add module for snippy/core <a href="https://github.com/nf-core/modules/pull/1855">nf-core/modules#1855</a></li>
+<li>let tempfile determine temp dir location <a href="https://github.com/sanger-pathogens/seroba/pull/68">sanger-pathogens/seroba#68</a></li>
+<li>allow the user to specify temp dir or use the system default <a href="https://github.com/sanger-pathogens/pymummer/pull/36">sanger-pathogens/pymummer#36</a></li>
+</ul>
+<h2 id="v210-bactopiabactopia-silver-mist-20220608">v2.1.0 bactopia/bactopia "Silver Mist" - 2022/06/08<a class="headerlink" href="#v210-bactopiabactopia-silver-mist-20220608" title="Permanent link">&para;</a></h2>
+<h3 id="added_1"><code>Added</code><a class="headerlink" href="#added_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--use_bakta</code> to replace Prokka with Bakta in main workflow</li>
+<li>Split Bakta into two processes <code>download</code> and <code>run</code></li>
+<li>added <code>shigatyper</code> to Merlin</li>
+<li>custom profile for <code>arcc</code></li>
+<li><code>bactopia prepare</code> error message when nothing found, and <code>--examples</code> for example use cases</li>
+<li>renamed <code>--fastqs</code> to <code>--samples</code> to better reflect its usage (fastqs and assemblies)</li>
+<li>add <code>--check_samples</code> to validate user generated FOFNs</li>
+<li><code>--short_polish</code> for short read polishing for long-read assemblies</li>
+<li>Moved Ariba to Bactopia Tools</li>
+<li>bump versions in Bactopia envs</li>
+<li>bump Bactopia Tool versions<ul>
+<li><code>amrfinder+</code> version to 3.10.30</li>
+<li><code>gtdb</code> version to 2.1.0</li>
+<li><code>mlst</code> version to 2.22.0</li>
+</ul>
+</li>
+<li>Bactopia Tools (<code>bactopia --wf &lt;NAME&gt;</code>)<ul>
+<li><code>ariba</code> - Gene identification by local assemblies</li>
+<li><code>gamma</code> - Identification, classification, and annotation of translated gene matches</li>
+<li><code>shigatyper</code>: Shigella serotype from Illumina or Oxford Nanopore reads</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed_1"><code>Fixed</code><a class="headerlink" href="#fixed_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a class="magiclink magiclink-github magiclink-mention" href="https://github.com/nickjhathaway" title="GitHub User: nickjhathaway">@nickjhathaway</a> Fixed assembly_level in <code>bactopia datasets</code> and auto <code>call_variants</code></li>
+<li><code>bactopia search</code> now supports ONT reads</li>
+<li><code>vcf-annotator</code> unable to write to <code>/dev/stdout</code></li>
+<li>typo in <code>bactopia download</code> when using singularity</li>
+<li><code>bactopia download</code> will not rebuild envs its already built in a run</li>
+<li><code>--include_genus</code> with <code>bactopia datasets</code> now works with multiple samples</li>
+<li>Parameters to copy optional species-specific files in <code>bactopia datasets</code></li>
+<li>Don't use <code>AUTO</code> for IQ-TREE cpus</li>
+<li><code>gtdb</code> download working again</li>
+<li>empty FASTQs after adapter and phix removal</li>
+<li>low read count error for ONT samples</li>
+<li>Removed <code>sequence_type</code> environment</li>
+</ul>
+<h2 id="v203-bactopiabactopia-king-cobra-20220323">v2.0.3 bactopia/bactopia "King Cobra" - 2022/03/23<a class="headerlink" href="#v203-bactopiabactopia-king-cobra-20220323" title="Permanent link">&para;</a></h2>
+<h3 id="added_2"><code>Added</code><a class="headerlink" href="#added_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>logo and new metro style workflow</li>
+<li>added <code>test</code> profile for easy testing</li>
+<li><code>mashdist</code> now outputs a merged TSV</li>
+<li>print missing required parameters in Bactopia Tools</li>
+<li>bump bakta to v1.4.0</li>
+</ul>
+<h3 id="fixed_2"><code>Fixed</code><a class="headerlink" href="#fixed_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>typo in <code>bakta</code> subworkflow</li>
+<li><code>ismapper</code> not available in <code>bactopia-tools.nf</code></li>
+<li><code>kraken2</code> not available in <code>bactopia-tools.nf</code></li>
+<li>Traits file being required for <code>pangenome</code></li>
+<li><code>mashtree</code> module not collecting all FASTA</li>
+<li>tests for ISMapper</li>
+</ul>
+<h2 id="v202-bactopiabactopia-black-mamba-20220222">v2.0.2 bactopia/bactopia "Black Mamba" - 2022/02/22<a class="headerlink" href="#v202-bactopiabactopia-black-mamba-20220222" title="Permanent link">&para;</a></h2>
+<h3 id="added_3"><code>Added</code><a class="headerlink" href="#added_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia download</code> which merges the <code>bactopia build</code> and <code>bactopia pull</code> commands</li>
+<li>modules can now use prebuilt envs</li>
+<li><code>--available_species</code> to print the species in a bactopia dataset</li>
+<li><code>--bbduk_opts</code> to fine tune bbduk</li>
+<li>set <code>quay</code> as default docker registry</li>
+<li>Let Nextflow handle stdout and stderr</li>
+<li>added <code>hpsuissero</code>, <code>legsta</code>, <code>sistr</code>, <code>ssuissero</code> to Merlin</li>
+<li>Bactopia Tools (<code>bactopia --wf &lt;NAME&gt;</code>)<ul>
+<li><code>amrfinderplus</code>: Identify antimicrobial resistance in genes or proteins</li>
+<li><code>abricate</code>: Mass screening of contigs for antimicrobial and virulence genes</li>
+<li><code>checkm</code>: Assess the assembly quality of your samples</li>
+<li><code>hpsuissero</code>: Serotype prediction of Haemophilus parasuis assemblies</li>
+<li><code>kraken2</code>: Taxonomic classification of sequence reads</li>
+<li><code>legsta</code>: Typing of Legionella pneumophila assemblies</li>
+<li><code>mlst</code>: Scan contig files against PubMLST typing schemes</li>
+<li><code>mobsuite</code>: Reconstruct and annotate plasmids in bacterial assemblies</li>
+<li><code>rgi</code>: Predict antibiotic resistance from assemblies</li>
+<li><code>sistr</code>: Serovar prediction of Salmonella assemblies</li>
+<li><code>ssuissero</code>: Serotype prediction of Streptococcus suis assemblies</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed_3"><code>Fixed</code><a class="headerlink" href="#fixed_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>toInteger</code> on <code>null</code> genome size</li>
+<li>Index out of bounds in mlst-blast.py (caused by non allele columns)</li>
+<li>FOFN will fail if sample name is <code>null</code></li>
+<li>improve available workflow logic</li>
+<li>PIRATE not exporting gene_presence_absence.csv correctly</li>
+<li>channel imports for <code>scoary</code> workflow</li>
+<li><code>argument type mismatch</code> when using <code>--use_roary</code></li>
+<li>missing channel when <code>agrvate</code> not ran as <code>staphtyper</code></li>
+<li>float required options to the top when missing</li>
+<li>broken tests due to changes</li>
+<li><code>bactopia datasets</code> including hidden directories</li>
+<li>Bioperl pinnings for prokka and pirate</li>
+</ul>
+<h2 id="v201-bactopiabactopia-red-roc-20220106">v2.0.1 bactopia/bactopia "Red Roc" - 2022/01/06<a class="headerlink" href="#v201-bactopiabactopia-red-roc-20220106" title="Permanent link">&para;</a></h2>
+<h3 id="added_4"><code>Added</code><a class="headerlink" href="#added_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Merlin for auto selection of species-specific tools based</li>
+<li><code>--ask_merlin</code> to execute the Merlin subworkflow in Bactopia</li>
+<li>Schema compatible with NF-Tower</li>
+<li><code>--skip_qc_plots</code> to skip FastQC and Nanoplot</li>
+<li>Disable CheckM by default, must use <code>--run_checkm</code></li>
+<li><code>--cluster_opts</code> for passing additional options to SLURM</li>
+<li>inclusion of local files (assembly, gff) in some subworkflows</li>
+<li>workflow for dev conda builds</li>
+<li>all subworkflows can be imported on other workflows</li>
+<li>Bactopia Tools (<code>bactopia --wf &lt;NAME&gt;</code>)<ul>
+<li><code>gtdb</code>: Identify marker genes and assign taxonomic classifications</li>
+<li><code>mashdist</code>: Calculate Mash distances between sequences</li>
+<li><code>merlin</code>: MinmER assisted species-specific bactopia tool seLectIoN</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed_4"><code>Fixed</code><a class="headerlink" href="#fixed_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Resource over allocation for java related programs (-Xmx)</li>
+<li>ordering of skipped steps when <code>--datasets</code> not used</li>
+<li>logic in container selection for nf-core modules</li>
+<li>channel manipulation in <code>ncbigenomedownload</code></li>
+<li>missing logic for <code>fastani</code></li>
+<li>version captures in subworkflows</li>
+<li>spell check for species with <code>[</code> or <code>]</code> in their names</li>
+<li>version outputs for Staphtyper subworkflow</li>
+<li>use process names in version.yml</li>
+<li><code>CSVTK_CONCAT</code> empty channels</li>
+<li><code>options.suffix</code> now used as <code>prefix</code> in modules</li>
+</ul>
+<h2 id="v200-bactopiabactopia-red-hawk-20211205">v2.0.0 bactopia/bactopia "Red Hawk" - 2021/12/05<a class="headerlink" href="#v200-bactopiabactopia-red-hawk-20211205" title="Permanent link">&para;</a></h2>
+<p>With Bactopia v2 comes <strong>a lot</strong> of changes! I would like to extend a huge thanks to Davi Marcon and Abhinav Sharma for their work initially converting Bactopia to DSL2. Your efforts were the momentum I needed to get the ball rolling on Bactopia v2. Thank you very much for taking your time to make such a siginificant contribution!</p>
+<h3 id="added_5"><code>Added</code><a class="headerlink" href="#added_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>support for Nanopore reads</li>
+<li><code>staphopia</code> as a named pipeline (alias for <code>bactopia --wf staphopia</code>) for <em>S. aureus</em> genomes</li>
+<li><code>bactopia/bactopia-tests</code> repo with test data</li>
+<li>walkthrough for testing</li>
+<li><code>bactopia-datasets/staphylococcus_aureus</code> repo with curatated <em>S. aureus</em> datasets</li>
+<li>per-module testing via <code>pytest</code> (100+ tests and 7000+ outputs tested)</li>
+<li>per-module <code>meta.yml</code> and <code>params.json</code> for auto-building docs site</li>
+<li>framefork for adding new Bactopia Tools</li>
+<li>19 total Bactopia Tools (<code>bactopia --wf &lt;NAME&gt;</code>)<ul>
+<li>Subworkflows (3)<ul>
+<li><code>eggnog</code>: Functional annotation of proteins using orthologous groups and phylogenies</li>
+<li><code>pangenome</code>: Pangenome analysis with optional core-genome phylogeny</li>
+<li><code>staphtyper</code>: Determine the agr, spa and SCCmec types for <em>Staphylococcus aureus</em> genomes</li>
+</ul>
+</li>
+<li>Modules (16):<ul>
+<li><code>agrvate</code>: Rapid identification of <em>Staphylococcus aureus</em> agr locus type and agr operon variants.</li>
+<li><code>bakta</code>: Rapid annotation of bacterial genomes and plasmids</li>
+<li><code>ectyper</code>: In-silico prediction of <em>Escherichia coli</em> serotype</li>
+<li><code>emmtyper</code>: emm-typing of <em>Streptococcus pyogenes</em> assemblies</li>
+<li><code>fastani</code>: fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI)</li>
+<li><code>hicap</code>: Identify cap locus serotype and structure in your <em>Haemophilus influenzae</em> assemblies</li>
+<li><code>ismapper</code>: Identify insertion sites positions in bacterial genomes</li>
+<li><code>kleborate</code>: Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest</li>
+<li><code>lissero</code>: Serogroup typing prediction for <em>Listeria monocytogenes</em></li>
+<li><code>mashtree</code>: Quickly create a tree using Mash distances</li>
+<li><code>meningotype</code>: Serotyping of <em>Neisseria meningitidis</em></li>
+<li><code>ngmaster</code>: Multi-antigen sequence typing for <em>Neisseria gonorrhoeae</em></li>
+<li><code>seqsero2</code>: Salmonella serotype prediction from reads or assemblies</li>
+<li><code>spatyper</code>: Computational method for finding spa types in <em>Staphylococcus aureus</em></li>
+<li><code>staphopiasccmec</code>: Primer based SCCmec typing of <em>Staphylococcus aureus</em> genomes</li>
+<li><code>tbprofiler</code>: Detect resistance and lineages of <em>Mycobacterium tuberculosis</em> genomes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Use <code>mamba</code> instead of conda for env building</li>
+<li>Reduced total Conda envs/Docker containers down to 7 (previously 12 not including bactopia tools)</li>
+<li>default to compressed outputs (<code>--skip_compression</code> to output uncompressed outputs)</li>
+<li>Tutorial outputs made available</li>
+<li>update github actions</li>
+</ul>
+<h3 id="fixed_5"><code>Fixed</code><a class="headerlink" href="#fixed_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Cache issue causing <code>-resume</code> to fail</li>
+<li>amrfinder+ database not compatible error</li>
+<li>incorrectly parsed system memory</li>
+</ul>
+<h3 id="adapted-from-nf-core">Adapted from <code>nf-core</code><a class="headerlink" href="#adapted-from-nf-core" title="Permanent link">&para;</a></h3>
+<ul>
+<li>nf-core pytest setup</li>
+<li>nf-core/modules for bactopia tools<ul>
+<li>Bactopia v2 release contributed 20+ modules to nf-core/modules</li>
+</ul>
+</li>
+<li>nf-core/tools arg parser<ul>
+<li>adapted to import params and usage based on config file</li>
+</ul>
+</li>
+</ul>
+<h3 id="process-consolidation">Process Consolidation<a class="headerlink" href="#process-consolidation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>makeblastdb</code> -&gt; <code>assemble_genome</code></li>
+<li><code>call_variants</code>, <code>download_reference</code> -&gt; <code>call_variants</code></li>
+<li><code>fastq_status</code>, <code>estiamte_genome_size</code> -&gt; <code>gather_samples</code></li>
+<li><code>count_31mers</code> -&gt; <code>minmer_sketch</code></li>
+</ul>
+<h3 id="removed"><code>Removed</code><a class="headerlink" href="#removed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia tools</code> -&gt; Handled by Nextflow now (<code>bactopia --wf &lt;NAME&gt;</code>)</li>
+<li><code>bactopia versions</code> -&gt; Program versions are output ever run now.</li>
+</ul>
+<h2 id="v171-bactopiabactopia-shellbuster-20210604">v1.7.1 bactopia/bactopia "Shellbuster" - 2021/06/04<a class="headerlink" href="#v171-bactopiabactopia-shellbuster-20210604" title="Permanent link">&para;</a></h2>
+<h3 id="added_6"><code>Added</code><a class="headerlink" href="#added_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>bumped GTDB to v1.5.0</li>
+<li>added soft ulimit for <code>staph-typer</code></li>
+</ul>
+<h3 id="fixed_6"><code>Fixed</code><a class="headerlink" href="#fixed_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Matched PIRATE's parameter syntax for the tools</li>
+<li><code>staph-typer</code> now uses GetBaseName</li>
+</ul>
+<h3 id="removed_1">'Removed'<a class="headerlink" href="#removed_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>PLSDB references in <code>bactopia datasets</code></li>
+</ul>
+<h2 id="v170-bactopiabactopia-chocobo-wand-20210427">v1.7.0 bactopia/bactopia "Chocobo Wand" - 2021/04/27<a class="headerlink" href="#v170-bactopiabactopia-chocobo-wand-20210427" title="Permanent link">&para;</a></h2>
+<h3 id="added_7"><code>Added</code><a class="headerlink" href="#added_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Bactopia Tool <code>staph_typer</code> for agr, spa, and sccmec typing</li>
+<li><code>--min_coverage</code> parameter to filter based on min coverage</li>
+</ul>
+<h3 id="removed_2">'Removed'<a class="headerlink" href="#removed_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>plasmid_blast</code> no longer apart of main workflow</li>
+</ul>
+<h2 id="v165-bactopiabactopia-zs-trident-20210330">v1.6.5 bactopia/bactopia "Z's Trident" - 2021/03/30<a class="headerlink" href="#v165-bactopiabactopia-zs-trident-20210330" title="Permanent link">&para;</a></h2>
+<h3 id="added_8"><code>Added</code><a class="headerlink" href="#added_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>version pins to process envs</li>
+</ul>
+<h3 id="fixed_7"><code>Fixed</code><a class="headerlink" href="#fixed_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>syntax for sourmash 4.0</li>
+</ul>
+<h2 id="v164-bactopiabactopia-trident-1-20210326">v1.6.4 bactopia/bactopia "Trident +1" - 2021/03/26<a class="headerlink" href="#v164-bactopiabactopia-trident-1-20210326" title="Permanent link">&para;</a></h2>
+<h3 id="added_9"><code>Added</code><a class="headerlink" href="#added_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>added Python3.6+ to all environments</li>
+</ul>
+<h2 id="v163-bactopiabactopia-trident-20210325">v1.6.3 bactopia/bactopia "Trident" - 2021/03/25<a class="headerlink" href="#v163-bactopiabactopia-trident-20210325" title="Permanent link">&para;</a></h2>
+<h3 id="added_10"><code>Added</code><a class="headerlink" href="#added_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>extra fields to <code>mlst-blast.py</code> outputs</li>
+<li>added Python3 to <code>qc_reads</code> environment</li>
+</ul>
+<h3 id="fixed_8"><code>Fixed</code><a class="headerlink" href="#fixed_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>rstrip on empty extra fields in mlst profile</li>
+<li>different BLAST+ software versions mismatch</li>
+<li>tbb pinnings</li>
+<li><code>--help</code> and <code>--version</code> for <code>bactopia tools</code></li>
+</ul>
+<h2 id="v162-bactopiabactopia-fuscina-20210319">v1.6.2 bactopia/bactopia "Fuscina" - 2021/03/19<a class="headerlink" href="#v162-bactopiabactopia-fuscina-20210319" title="Permanent link">&para;</a></h2>
+<h3 id="added_11"><code>Added</code><a class="headerlink" href="#added_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>inputs are checked to be gzipped (this does not include FOFN)</li>
+<li><code>--skip_amr</code> to skip AMRFinder+ analysis</li>
+<li>new  <code>bactopia tool</code> for <code>hicap</code></li>
+<li><code>unicycler</code> can be used for Illumina reads only (<code>--assembler unicycler</code>)</li>
+</ul>
+<h3 id="fixed_9"><code>Fixed</code><a class="headerlink" href="#fixed_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li>AMRFinder+ software and database version mismatch</li>
+<li>check-fastqs.py syntax errors with prints</li>
+<li><code>ismapper</code> tool processing of include/exclude files</li>
+</ul>
+<h2 id="v161-bactopiabactopia-obelisk-20210222">v1.6.1 bactopia/bactopia "Obelisk" - 2021/02/22<a class="headerlink" href="#v161-bactopiabactopia-obelisk-20210222" title="Permanent link">&para;</a></h2>
+<h3 id="fixed_10"><code>Fixed</code><a class="headerlink" href="#fixed_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>sample names with "." in them breaking auto variant calling</li>
+<li>contig naming incompatible with GenBank</li>
+</ul>
+<h2 id="v160-bactopiabactopia-harpoon-20210122">v1.6.0 bactopia/bactopia "Harpoon" - 2021/01/22<a class="headerlink" href="#v160-bactopiabactopia-harpoon-20210122" title="Permanent link">&para;</a></h2>
+<h3 id="added_12"><code>Added</code><a class="headerlink" href="#added_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia pull</code> to pre-build Singularity images</li>
+<li><code>--singularity_cache</code> parameter to set location of image downloads</li>
+<li><code>--registry</code> to choose Docker registry to use (DockerHub, GitHub, Quay)</li>
+<li><code>--max_downloads</code> sets maximum number of downloads (FASTQ/assembly) allowed at once</li>
+<li><code>--min_time</code> sets the minimum amount of time a job should be given</li>
+<li><code>bactopia search</code> now uses POST requests, and groups accessions into single query</li>
+<li>strip HTML from FASTA headers used in BLAST</li>
+<li>Dockerfiles now have conda.md5 label to determine if rebuild is necessary<ul>
+<li>MD5 is updated in Dockerfile when env is updated</li>
+</ul>
+</li>
+<li>AMRFinder+ database is now provided by <code>bactopia datasets</code></li>
+<li>Parameterized profile (slurm, awsbatch, etc...) variables</li>
+<li><code>bactopia build</code>  <ul>
+<li>will retry in case of HTTP connection issues</li>
+<li><code>--include_tool</code> will build Bactopia Tool environments</li>
+</ul>
+</li>
+<li>GitHub Actions<ul>
+<li>build Docker containers on new release (or manual trigger)</li>
+<li>test that the Conda environment yamls are still valid</li>
+<li>test bactopia with conda on Linux and OSX</li>
+<li>test bactopia on Linux with Docker and Singularity</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed_11"><code>Fixed</code><a class="headerlink" href="#fixed_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>redundant environment version files</li>
+<li>failed FASTQ/Assembly downloads no longer stop whole run</li>
+<li><code>--max_retry</code> is honored now</li>
+<li>antimicrobial_resistance process honors <code>amrdir</code> variable</li>
+<li>change directory <code>antimicrobial_resistance</code> to <code>antimicrobial-resistance</code></li>
+<li>rename <code>check_staging.py</code> to <code>check-staging.py</code> for consistency</li>
+<li>Bactopia not producing valid exit code on failure</li>
+</ul>
+<h3 id="removed_3"><code>Removed</code><a class="headerlink" href="#removed_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--containerPath</code> variable is replaced by <code>--singularity_cache</code></li>
+<li>Native Singularity recipes, will now convert Docker to Singularity</li>
+<li>docs are now on bactopia.github.io repo</li>
+</ul>
+<h2 id="v156-bactopiabactopia-metal-slime-earring-20210113">v1.5.6 bactopia/bactopia "Metal Slime Earring" - 2021/01/13<a class="headerlink" href="#v156-bactopiabactopia-metal-slime-earring-20210113" title="Permanent link">&para;</a></h2>
+<h3 id="added_13"><code>Added</code><a class="headerlink" href="#added_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>tweaks to the CI (via GitHub Actions)</li>
+<li>docker containers use quay.io now</li>
+<li>docker containers now use conda-pack</li>
+<li><code>--nfconfig</code> will skip the conda environment build step</li>
+<li>input accessions are checked to be Assembly or Experiment accessions</li>
+<li>improved version increment script</li>
+<li>executor profiles can be configured by parameters</li>
+</ul>
+<h3 id="fixed_12"><code>Fixed</code><a class="headerlink" href="#fixed_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>phyloflash and download_reference environment errors</li>
+<li>environment path in Bactopia Tools Dockerfile and Singularity recipes</li>
+<li>moved version from conda yaml to conda version file</li>
+<li>streamlined Docker recipes</li>
+<li>undefined <code>--ftp_only</code> message</li>
+<li>typo in singularity profile</li>
+<li>stderr logged to file is also printed to screen</li>
+<li><code>qc_reads</code> memory used now determined by base config</li>
+</ul>
+<h2 id="v155-bactopiabactopia-avengers-earring-20210104">v1.5.5 bactopia/bactopia "Avenger's Earring" - 2021/01/04<a class="headerlink" href="#v155-bactopiabactopia-avengers-earring-20210104" title="Permanent link">&para;</a></h2>
+<h3 id="added_14"><code>Added</code><a class="headerlink" href="#added_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--prefix</code> option for <code>bactopia prepare</code></li>
+<li>date is included in <code>bactopia summary</code> output</li>
+</ul>
+<h3 id="fixed_13"><code>Fixed</code><a class="headerlink" href="#fixed_13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>removed usage personal (rpetit3) conda channel<ul>
+<li>aspera connect no longer supported</li>
+<li>shovill-se is now used from Bioconda</li>
+</ul>
+</li>
+<li>updated conda environments (phyloflash broken)</li>
+</ul>
+<h2 id="v154-bactopiabactopia-nemesis-earring-20201217">v1.5.4 bactopia/bactopia "Nemesis Earring" - 2020/12/17<a class="headerlink" href="#v154-bactopiabactopia-nemesis-earring-20201217" title="Permanent link">&para;</a></h2>
+<h3 id="fixed_14"><code>Fixed</code><a class="headerlink" href="#fixed_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>quoted arguments being broken up (e.g. <code>--species "Staphylococcus aureus</code> -&gt; <code>--species Staphylococcus</code>)</li>
+<li><code>mashtree</code> tool failure to download with <code>--accessions</code></li>
+<li>remove ncbi-genome-download header when using <code>--dry-run</code></li>
+<li>undefined <code>name</code> variable in plasmid_blast</li>
+<li>custom work dir causing two <code>-w</code> parameters</li>
+<li><code>bactopia search</code> results now contains all (illumina and non-illumina)</li>
+</ul>
+<h2 id="v153-bactopiabactopia-morion-earring-20201204">v1.5.3 bactopia/bactopia "Morion Earring" - 2020/12/04<a class="headerlink" href="#v153-bactopiabactopia-morion-earring-20201204" title="Permanent link">&para;</a></h2>
+<h3 id="added_15"><code>Added</code><a class="headerlink" href="#added_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Changelog moved to docs</li>
+<li>recursive search for <code>bactopia prepare</code></li>
+<li>allow multiple FASTQs per sample (FASTQs are merged)</li>
+</ul>
+<h3 id="fixed_15"><code>Fixed</code><a class="headerlink" href="#fixed_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>unable to run <code>bactopia datasets</code> without parameters</li>
+<li>PLSDB blast results in invalid JSON format</li>
+<li>Error message for unaccepted <code>run_type</code></li>
+</ul>
+<h2 id="v152-bactopiabactopia-physical-earring-20201118">v1.5.2 bactopia/bactopia "Physical Earring" - 2020/11/18<a class="headerlink" href="#v152-bactopiabactopia-physical-earring-20201118" title="Permanent link">&para;</a></h2>
+<h3 id="fixed_16"><code>Fixed</code><a class="headerlink" href="#fixed_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--skip_qc</code> causing "file not found"</li>
+<li><code>qc_reads</code> not honoring FINAL_BP and FINAL_READS checks</li>
+</ul>
+<h2 id="v151-bactopiabactopia-astral-earring-20201117">v1.5.1 bactopia/bactopia "Astral Earring" - 2020/11/17<a class="headerlink" href="#v151-bactopiabactopia-astral-earring-20201117" title="Permanent link">&para;</a></h2>
+<h3 id="fixed_17"><code>Fixed</code><a class="headerlink" href="#fixed_17" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia tools</code> not a valid project name</li>
+<li><code>bactopia tools</code> <code>--cleanup_workdir</code> unrecognized variable</li>
+</ul>
+<h2 id="v150-bactopiabactopia-cassie-earring-20201112">v1.5.0 bactopia/bactopia "Cassie Earring" - 2020/11/12<a class="headerlink" href="#v150-bactopiabactopia-cassie-earring-20201112" title="Permanent link">&para;</a></h2>
+<h3 id="added_16"><code>Added</code><a class="headerlink" href="#added_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Conda environments will check if in sync with latest version now</li>
+<li>md5sums of all conda envs</li>
+<li>Verify species-specific datasets exist</li>
+<li>separate work dir for bactopia and bactopia tools</li>
+<li><code>--cleanup_workdir</code> to delete work directory after successful run</li>
+<li>default values for <code>bactopia datasets</code> summary.json</li>
+<li>Fallback to NCBI Assembly when eUtils is down</li>
+<li>Additional pre-process QC checks</li>
+<li>OSX/Linux conda envs for Bactopia Tools</li>
+<li>Documentation edits and updates</li>
+<li>Bactopia and Nextflow versions are now output for logging purposes</li>
+<li>option to skip QC step (<code>--skip_qc</code>)</li>
+<li><code>bactopia datasets</code> can now specify assembly level</li>
+<li><code>bactopia tools</code> now use reusable conda envs</li>
+<li><code>bactopia tools</code> for Roary and PIRATE can now include local assemblies</li>
+</ul>
+<h3 id="fixed_18"><code>Fixed</code><a class="headerlink" href="#fixed_18" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Warn user if no completed genomes are available</li>
+<li>use of <code>--genera</code> for ncbi-genome-download</li>
+<li>improved genome_size handling</li>
+<li>explicit file passing for AWS Batch</li>
+<li>Memory estimates now floored</li>
+<li>PLSDB blast not being executed</li>
+</ul>
+<h2 id="v1411-bactopiabactopia-metamorph-ring-20200919">v1.4.11 bactopia/bactopia "Metamorph Ring" - 2020/09/19<a class="headerlink" href="#v1411-bactopiabactopia-metamorph-ring-20200919" title="Permanent link">&para;</a></h2>
+<h3 id="added_17"><code>Added</code><a class="headerlink" href="#added_17" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia build</code> checks if each environment is built before building</li>
+<li>Can specify <code>bactopia build</code> to build a specific environment</li>
+<li>Removed build numbers in Conda environment yamls</li>
+<li>Created separate Conda yamls for Linux and Mac</li>
+<li>NCBI assembly accessions will retrieve the most current version (e.g. .1, .2, .3, etc...)</li>
+</ul>
+<h3 id="fixed_19"><code>Fixed</code><a class="headerlink" href="#fixed_19" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia datasets</code> trailing whitespace in species names</li>
+<li><code>bactopia datasets</code> random subsample missing specified species when <code>--limit</code> and <code>--include_genus</code> used</li>
+<li>GitLab CI OSX compatibility</li>
+<li>Adaptive resource allocations</li>
+<li>Datasets are checked for existence</li>
+<li>Variant calls against references with multiple chromosomes</li>
+</ul>
+<h2 id="v1410-bactopiabactopia-jelly-ring-20200825">v1.4.10 bactopia/bactopia "Jelly Ring" - 2020/08/25<a class="headerlink" href="#v1410-bactopiabactopia-jelly-ring-20200825" title="Permanent link">&para;</a></h2>
+<h3 id="added_18"><code>Added</code><a class="headerlink" href="#added_18" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>card</code> is back as a default Ariba dataset</li>
+<li>Added timestamps to <code>versions</code> files</li>
+</ul>
+<h3 id="fixed_20"><code>Fixed</code><a class="headerlink" href="#fixed_20" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia search</code> not creating <code>--outdir</code></li>
+<li><code>gtdb</code> tool not using prefix in outdir naming</li>
+<li><code>pirate</code> tool using pangenome alignment instead of core</li>
+<li>Use of <code>scratch</code> causing logs to fail</li>
+</ul>
+<h2 id="v149-bactopiabactopia-toreadors-ring-20200823">v1.4.9 bactopia/bactopia "Toreador's Ring" - 2020/08/23<a class="headerlink" href="#v149-bactopiabactopia-toreadors-ring-20200823" title="Permanent link">&para;</a></h2>
+<h3 id="added_19"><code>Added</code><a class="headerlink" href="#added_19" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Support for multiple accession<ul>
+<li><code>bactopia search</code> (SRA)</li>
+<li>Bactopia Tools: <code>fastani</code>, <code>mashtree</code>, <code>pirate</code>, <code>roary</code> (Assembly)</li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed_21"><code>Fixed</code><a class="headerlink" href="#fixed_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Undefined variable in <code>mapping_query.sh</code></li>
+<li>ENA API endpoint for <code>bactopia search</code></li>
+<li>Updated GTDB-TK to 1.3.0 to support latest downloads</li>
+<li>FastANI tool merge_results in no longer a separate step<ul>
+<li>ANI is now one-to-many calculations</li>
+</ul>
+</li>
+<li><code>--reassemble</code> misapplied</li>
+</ul>
+<h2 id="v148-bactopiabactopia-shikaree-ring-20200820">v1.4.8 bactopia/bactopia "Shikaree Ring" - 2020/08/20<a class="headerlink" href="#v148-bactopiabactopia-shikaree-ring-20200820" title="Permanent link">&para;</a></h2>
+<h3 id="added_20"><code>Added</code><a class="headerlink" href="#added_20" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Versions are logged for Bactopia</li>
+<li>STDOUT/STDERR logs are kept for each sample<ul>
+<li>can be skipped using <code>--skip_logs</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="fixed_22"><code>Fixed</code><a class="headerlink" href="#fixed_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Long sample names breaking Prokka annotation</li>
+<li>Syntax errors in Bactopia tools</li>
+<li>null values being tested as integers</li>
+<li>Ariba card and mlst downloads not working</li>
+<li>missing parameter in GTDB Bactopia tool</li>
+</ul>
+<h2 id="v147-bactopiabactopia-serket-ring-20200817">v1.4.7 bactopia/bactopia "Serket Ring" - 2020/08/17<a class="headerlink" href="#v147-bactopiabactopia-serket-ring-20200817" title="Permanent link">&para;</a></h2>
+<h3 id="added_21"><code>Added</code><a class="headerlink" href="#added_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--no_cache</code> to skip caching ncbi assembly info</li>
+</ul>
+<h2 id="v146-bactopiabactopia-astral-ring-20200817">v1.4.6 bactopia/bactopia "Astral Ring" - 2020/08/17<a class="headerlink" href="#v146-bactopiabactopia-astral-ring-20200817" title="Permanent link">&para;</a></h2>
+<h3 id="added_22"><code>Added</code><a class="headerlink" href="#added_22" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Option to rebuild conda envs to default location</li>
+<li>Updated fastq-dl for sra-toolkit forced interaction workaround</li>
+</ul>
+<h2 id="v145-bactopiabactopia-bomb-queen-ring-20200813">v1.4.5 bactopia/bactopia "Bomb Queen Ring" - 2020/08/13<a class="headerlink" href="#v145-bactopiabactopia-bomb-queen-ring-20200813" title="Permanent link">&para;</a></h2>
+<h3 id="fixed_23"><code>Fixed</code><a class="headerlink" href="#fixed_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--min_basepairs</code> and <code>--min_reads</code> not being honored</li>
+</ul>
+<h2 id="v144-bactopiabactopia-vilmas-ring-20200813">v1.4.4 bactopia/bactopia "Vilma's Ring" - 2020/08/13<a class="headerlink" href="#v144-bactopiabactopia-vilmas-ring-20200813" title="Permanent link">&para;</a></h2>
+<h3 id="fixed_24"><code>Fixed</code><a class="headerlink" href="#fixed_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>annotate_genome</code> name clashes</li>
+<li>Updated <code>fastq-dl</code> version to support new ENA API endpoint</li>
+</ul>
+<h2 id="v143-bactopiabactopia-sattva-ring-20200813">v1.4.3 bactopia/bactopia "Sattva Ring" - 2020/08/13<a class="headerlink" href="#v143-bactopiabactopia-sattva-ring-20200813" title="Permanent link">&para;</a></h2>
+<h3 id="added_23"><code>Added</code><a class="headerlink" href="#added_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--skip_ariba</code> option in <code>bactopia datasets</code></li>
+</ul>
+<h3 id="fixed_25"><code>Fixed</code><a class="headerlink" href="#fixed_25" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia versions</code> and <code>bactopia citations</code> improper execution</li>
+<li>Convert spaces to tabs in citation doc</li>
+<li>Corrected CheckM name in program version info file</li>
+<li>CARD no longer default Ariba dataset download for <code>bactopia datasets</code></li>
+</ul>
+<h2 id="v142-bactopiabactopia-tamas-ring-20200810">v1.4.2 bactopia/bactopia "Tamas Ring" - 2020/08/10<a class="headerlink" href="#v142-bactopiabactopia-tamas-ring-20200810" title="Permanent link">&para;</a></h2>
+<h3 id="added_24"><code>Added</code><a class="headerlink" href="#added_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li>added requirement checks of <code>--accessions</code> in <code>bactopia datasets</code></li>
+<li>improved ENA spell check for species name</li>
+</ul>
+<h3 id="fixed_26"><code>Fixed</code><a class="headerlink" href="#fixed_26" title="Permanent link">&para;</a></h3>
+<ul>
+<li>file of accessions not working with <code>bactopia datasets</code></li>
+<li>Dockerfile and Singularity being missed by <code>update-version.sh</code></li>
+</ul>
+<h2 id="v141-bactopiabactopia-rajas-ring-20200806">v1.4.1 bactopia/bactopia "Rajas Ring" - 2020/08/06<a class="headerlink" href="#v141-bactopiabactopia-rajas-ring-20200806" title="Permanent link">&para;</a></h2>
+<h3 id="added_25"><code>Added</code><a class="headerlink" href="#added_25" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Links to publication (woohoo!)</li>
+<li>Can pass a Prodigal training file to <code>bactopia datasets</code></li>
+</ul>
+<h3 id="fixed_27"><code>Fixed</code><a class="headerlink" href="#fixed_27" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Typos in the Docs</li>
+<li>blast_primers now uses <code>blastn</code> and blast_genes uses <code>megablast</code></li>
+<li>validExitStatus deprecation warning</li>
+</ul>
+<h2 id="v140-bactopiabactopia-archers-ring-20200701">v1.4.0 bactopia/bactopia "Archer's Ring" - 2020/07/01<a class="headerlink" href="#v140-bactopiabactopia-archers-ring-20200701" title="Permanent link">&para;</a></h2>
+<h3 id="added_26"><code>Added</code><a class="headerlink" href="#added_26" title="Permanent link">&para;</a></h3>
+<ul>
+<li>New Bactopia Tools<ul>
+<li><code>eggnog</code> for functional annotation using eggNOG-mapper</li>
+<li><code>mashtree</code> to create a tree using Mash distances</li>
+<li><code>pirate</code> to create pangenome using PIRATE</li>
+<li><code>ismapper</code> for insertion site discovery</li>
+<li>Documentation for new tools and tweaks to existing</li>
+</ul>
+</li>
+<li>BTs <code>roary</code> and <code>pirate</code> can now be run on just completed genomes</li>
+<li>Can limit number of completed genomes downloaded where applicable</li>
+<li><code>bactopia datasets</code> can provide list of RefSeq accessions to download</li>
+<li><code>bactopia search</code> can now use BioSample and Run accessions</li>
+<li><code>bactopia search</code> can select a subset of Experiments associated with a BioSample</li>
+<li>Support for organisms with multiple MLST schemas</li>
+<li>Assembly QC via QUAST and CheckM</li>
+<li>Assemblies (local or NCBI Assembly accession) as inputs for Bactopia</li>
+<li>Long reads as supplementary to paired end reads for hybrid assembly</li>
+<li>Tools versions are locked to the minor version, not the patch</li>
+</ul>
+<h3 id="fixed_28"><code>Fixed</code><a class="headerlink" href="#fixed_28" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>summary</code> will now determine absolute path of inputs</li>
+<li><code>fastani</code> improved user reference import</li>
+<li>went back a version on <code>call_variants</code> openjdk version</li>
+<li>all bactopia tools now put nextflow info in the same folder as outputs</li>
+<li>Typos in docs</li>
+<li>Bactopia Tools now check existence of include and exclude files</li>
+<li>Lots more documentation</li>
+<li>Updated citations/tools used by Bactopia</li>
+<li>Did I mention typos?</li>
+</ul>
+<h3 id="removed_4"><code>Removed</code><a class="headerlink" href="#removed_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ISMapper as part of the main pipeline (its now a tool)</li>
+<li><code>insertion-sequences</code> in bactopia datasets</li>
+</ul>
+<h2 id="v131-bactopiabactopia-emperor-hairpin-20200420">v1.3.1 bactopia/bactopia "Emperor Hairpin" - 2020/04/20<a class="headerlink" href="#v131-bactopiabactopia-emperor-hairpin-20200420" title="Permanent link">&para;</a></h2>
+<h3 id="added_27"><code>Added</code><a class="headerlink" href="#added_27" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>summary</code> tool now gives reason for rank</li>
+<li><code>summary</code> tools now splits <code>failed</code> into <code>exclude</code> and <code>qc-failure</code></li>
+<li>Better documentation on how <code>--cpus</code> works in Nextflow</li>
+<li>Efficiency info when executed on standard profile</li>
+<li>split <code>blast_query</code> into <code>blast_genes</code>, <code>blast_primers</code> and <code>blast_proteins</code></li>
+<li><code>mapping_query</code> now creates multifasta of fastas at maps at once then splits per-base coverage into separate files</li>
+<li><code>--nfconfig</code> users can provide their own Nextflow config file</li>
+<li><code>fastani</code> users can provide their own reference now</li>
+<li><code>bactopia versions</code> will print versions for tools used by Bactopia</li>
+<li><code>bactopia citations</code> will print citations for tools and datasets used by Bactopia</li>
+<li><code>bactopia search</code> can filter based on total bases, mean read length, and missing FASTQs</li>
+<li>blast queries results are only JSON format for easy parsing later</li>
+<li>added <code>--compliant</code> option for Prokka annotation</li>
+</ul>
+<h3 id="fixed_29"><code>Fixed</code><a class="headerlink" href="#fixed_29" title="Permanent link">&para;</a></h3>
+<ul>
+<li>build-containers.sh not working with Bactopia Tools</li>
+<li>Bactopia Tools container tools missing environment.yml</li>
+<li>Typo in <code>fastani</code> usage</li>
+<li>Samples with multiple QC errors counted for each error</li>
+<li>Incorrect ISMapper version</li>
+<li>typo in <code>summary</code> SLURM profile</li>
+<li><code>gtdb</code> Singularity container not mounting path to GTDB database</li>
+<li><code>roary</code> missing <code>rename</code> in containers</li>
+<li><code>blast_query</code> results overwriting one another</li>
+<li><code>build-containers.sh</code> now creates a "latest" tag</li>
+<li><code>bactopia tool roary</code> outputs results based on the given prefix</li>
+<li>renamed <code>--addgenes</code> to <code>--nogenes</code></li>
+<li>updated ASA³P citation</li>
+<li>Typos in Bactopia Tools docs</li>
+<li>Link in README.md</li>
+</ul>
+<h2 id="v130-bactopiabactopia-leaping-boots-20200219">v1.3.0 bactopia/bactopia "Leaping Boots" - 2020/02/19<a class="headerlink" href="#v130-bactopiabactopia-leaping-boots-20200219" title="Permanent link">&para;</a></h2>
+<h3 id="added_28"><code>Added</code><a class="headerlink" href="#added_28" title="Permanent link">&para;</a></h3>
+<ul>
+<li>bactopia tools (BT) framework<ul>
+<li>docs for each tool</li>
+<li>subcommand to execute tools <code>bactopia tools</code></li>
+<li><code>fastani</code> - pairwise average nucleotide identity</li>
+<li><code>gtdb</code> - assigning objective taxonomic classifications</li>
+<li><code>phyloflash</code> - 16s assembly, alignment and tree</li>
+<li><code>roary</code> - pan-genome and core genome tree</li>
+<li><code>summary</code> - summary of results</li>
+</ul>
+</li>
+<li><code>--include</code> and <code>--exclude</code> to modify which samples used in BT analysis</li>
+<li><code>update-version.sh</code> improvements</li>
+<li>can now set how Nextflow publishes outputs (copy, symlink, etc...) via <code>--publish_mode</code></li>
+<li>Warning if output directory already exists and require <code>--force</code> to overwrite</li>
+<li>option (<code>--rfam</code>) to turn on ncRNA annotation in Prokka</li>
+<li>reduced "README.md" contents, instead point to documentation</li>
+<li>Updated acknowledgements and bibtex for citations</li>
+</ul>
+<h3 id="fixed_30"><code>Fixed</code><a class="headerlink" href="#fixed_30" title="Permanent link">&para;</a></h3>
+<ul>
+<li>nextflow.config version out of sync</li>
+<li><code>--available_datasets</code> accessing not existent variable</li>
+<li><code>--available_datasets</code> is tested before requiring inputs</li>
+<li>Make use of tbl2asn-forever</li>
+<li>adjusted how Bactopia is executed, <code>nextflow run</code> no longer pulls from github</li>
+</ul>
+<h2 id="v124-bactopiabactopia-rabbit-charm-20191220">v1.2.4 bactopia/bactopia "Rabbit Charm" - 2019/12/20<a class="headerlink" href="#v124-bactopiabactopia-rabbit-charm-20191220" title="Permanent link">&para;</a></h2>
+<h3 id="added_29"><code>Added</code><a class="headerlink" href="#added_29" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--conda_help</code> to be used for conda build test</li>
+<li><code>--skip_fastq_check</code> to skip check that input FASTQs meet minimum requirements</li>
+<li>Undocumented parameters to the usage</li>
+</ul>
+<h3 id="fixed_31"><code>Fixed</code><a class="headerlink" href="#fixed_31" title="Permanent link">&para;</a></h3>
+<ul>
+<li>snippy not working with samtools 1.10</li>
+<li>NXF_HOME variable is exported to the conda env location</li>
+<li>speed of checking if conda environments are built</li>
+</ul>
+<h2 id="v123-bactopiabactopia-tropical-punches-1-20191219">v1.2.3 bactopia/bactopia "Tropical Punches +1" - 2019/12/19<a class="headerlink" href="#v123-bactopiabactopia-tropical-punches-1-20191219" title="Permanent link">&para;</a></h2>
+<h3 id="added_30"><code>Added</code><a class="headerlink" href="#added_30" title="Permanent link">&para;</a></h3>
+<ul>
+<li>select-references selects latest assembly accession version (BioPython/Entrez)</li>
+<li>select-references skips assemblies that have been excluded from RefSeq</li>
+<li>test to for paired-end related errors (e.g. different read counts)</li>
+<li><code>--min_genome_size</code> and <code>--max_genome_size</code> parameter for estimated genome sizes<ul>
+<li>Check is also made after assembly</li>
+</ul>
+</li>
+<li><code>update-version.sh</code> improvements</li>
+<li>Better genome size estimates using Mash for high and low coverage sequences</li>
+<li>Script to update conda environments</li>
+<li>added <code>--conda_help</code> to be used for conda build test</li>
+</ul>
+<h3 id="fixed_32"><code>Fixed</code><a class="headerlink" href="#fixed_32" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--random_tie_break</code> always true</li>
+<li>not using latest assembly accession for ncbi-genome-download</li>
+<li>usage of assemblies that have been excluded from RefSeq</li>
+<li>allowing PE reads with different read counts to be processed (hint... they fail pretty quickly)</li>
+<li>failure to stop analysis of sample with low read counts</li>
+<li>coverage reported as 'inf'</li>
+<li>references to cgmlst in the setup datasets</li>
+<li>non-explicit patterns in publishDir</li>
+<li>low coverage/read errors after QC were not put in root dir</li>
+<li>snippy not working with samtools 1.10</li>
+</ul>
+<h2 id="v122-bactopiabactopia-tropical-punches-20191022">v1.2.2 bactopia/bactopia "Tropical Punches" - 2019/10/22<a class="headerlink" href="#v122-bactopiabactopia-tropical-punches-20191022" title="Permanent link">&para;</a></h2>
+<h3 id="added_31"><code>Added</code><a class="headerlink" href="#added_31" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Size of "work" directory to the execution summary</li>
+<li>User controlled overwrites of existing output files</li>
+<li>Check for unknown parameters at runtime</li>
+<li>FASTQ downloads from SRA (via fastq-dl and fasterq-dump)</li>
+<li>Documentation updates</li>
+<li>Script for building containers</li>
+</ul>
+<h3 id="fixed_33"><code>Fixed</code><a class="headerlink" href="#fixed_33" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia</code> command now explicitly states which tag to use for Nextflow run</li>
+<li>Version info not updated in Dockerfile and Singularity</li>
+<li>Duplicated QC'd FASTQs</li>
+<li>nextflow: docker "Memory limited without swap" error</li>
+</ul>
+<h3 id="removed_5"><code>Removed</code><a class="headerlink" href="#removed_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>cgmlst support in <code>bactopia datasets</code></li>
+<li>setup.py left over from pre-conda config</li>
+</ul>
+<h2 id="v121-bactopiabactopia-fruit-punches-20191017">v1.2.1 bactopia/bactopia "Fruit Punches" - 2019/10/17<a class="headerlink" href="#v121-bactopiabactopia-fruit-punches-20191017" title="Permanent link">&para;</a></h2>
+<h3 id="added_32"><code>Added</code><a class="headerlink" href="#added_32" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>bactopia build</code> to build Conda environments</li>
+<li>Version info pulled from nextflow.config</li>
+<li>Set default values resource allocations</li>
+<li>Documentation on new changes</li>
+<li>Automatic building of Conda environments, if none exist</li>
+<li><code>--nfdir</code> to determine where bactopia is being run from</li>
+</ul>
+<h3 id="fixed_34"><code>Fixed</code><a class="headerlink" href="#fixed_34" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Never ending typos</li>
+<li><code>--datasets</code> now, not <code>--dataset</code> &lt;-(Typo)</li>
+<li>path for outputting Nextflow reports</li>
+<li>Typo in antimicrobial_resistance.sh (task.cpus not cpus)</li>
+<li><code>--species</code> is now consistent between <code>bactopia</code> and <code>bactopia datasets</code></li>
+<li>Bug when checking if specific species dataset exists, but no species datasets exist</li>
+<li>Cleaned up version update script</li>
+<li>Cleaned up usage</li>
+</ul>
+<h3 id="removed_6"><code>Removed</code><a class="headerlink" href="#removed_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--max_cpus</code> ability to limit total cores used, access to config is being deprecated in Nextflow</li>
+<li><code>--max_cpus</code> since it is redudant to <code>--cpus</code> now</li>
+</ul>
+<h2 id="v120-bactopiabactopia-beestinger-20191016">v1.2.0 bactopia/bactopia "Beestinger" - 2019/10/16<a class="headerlink" href="#v120-bactopiabactopia-beestinger-20191016" title="Permanent link">&para;</a></h2>
+<h3 id="added_33"><code>Added</code><a class="headerlink" href="#added_33" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--compress</code> to compress certain outputs, default uncompressed</li>
+<li>Species name check in <code>bactopia datasets</code></li>
+<li>Use requests package instead of urllib3</li>
+<li>Added <code>bactopia search</code> to query ENA for list of Illumina accessions</li>
+<li>Documentation<ul>
+<li>Feedback edits</li>
+<li>Output overview</li>
+<li>Additional program acknowledgements</li>
+<li>bibtex of citations</li>
+<li>missing parameters to usage</li>
+<li>info for <code>--genome_size</code> parameter</li>
+<li><code>bactopia search</code> usage</li>
+<li>Workflow overview</li>
+</ul>
+</li>
+<li>blastdbcmd compatible seqid to assembly fasta<ul>
+<li>allows search for entries with sample name</li>
+</ul>
+</li>
+<li>Mask low coverage regions in consensus (subs only) fasta</li>
+<li>Added --dry_run to build conda envs one at a time (prevent parallel issues)</li>
+<li>Added Singularity recipes</li>
+<li>Added SLURM config</li>
+</ul>
+<h3 id="fixed_35"><code>Fixed</code><a class="headerlink" href="#fixed_35" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Never ending typos</li>
+<li><code>bactopia datasets</code> lowercase species names not found in MLST schemas</li>
+<li><code>bactopia version</code> no longer calls nextflow</li>
+<li>SEQUENCE_TYPE channel groups FASTQ and assembly</li>
+<li>MINMER_QUERY channel groups FASTQ and signature</li>
+<li>Ariba MLST always running with <code>--noclean</code></li>
+<li>Bugs related <code>--compress</code></li>
+<li>Reduced size of per-base coverage outputs</li>
+<li>Removed <code>-parse_seqids</code> from makeblastdb command, caused blast queries to fail</li>
+<li>genomeCoverageBed failing on empty BAM files</li>
+</ul>
+<h3 id="removed_7"><code>Removed</code><a class="headerlink" href="#removed_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>--clean_cache</code> function</li>
+</ul>
+<h2 id="v110-bactopiabactopia-wooden-sword-1-20190919">v1.1.0 bactopia/bactopia "Wooden Sword +1" - 2019/09/19<a class="headerlink" href="#v110-bactopiabactopia-wooden-sword-1-20190919" title="Permanent link">&para;</a></h2>
+<h3 id="added_34"><code>Added</code><a class="headerlink" href="#added_34" title="Permanent link">&para;</a></h3>
+<ul>
+<li>NCBI's amrfinder</li>
+<li>Dockerfile for main bactopia install</li>
+<li>Completed documentation!</li>
+</ul>
+<h3 id="fixed_36"><code>Fixed</code><a class="headerlink" href="#fixed_36" title="Permanent link">&para;</a></h3>
+<ul>
+<li>insertion_sequences inputs are not now grouped into single channel</li>
+<li>Unintended FASTQ duplication via poor publishDir pattern</li>
+</ul>
+<h2 id="v101-bactopiabactopia-wooden-sword-20190912">v1.0.1 bactopia/bactopia "Wooden Sword" - 2019/09/12<a class="headerlink" href="#v101-bactopiabactopia-wooden-sword-20190912" title="Permanent link">&para;</a></h2>
+<h3 id="added_35"><code>Added</code><a class="headerlink" href="#added_35" title="Permanent link">&para;</a></h3>
+<ul>
+<li>README.md documentation</li>
+</ul>
+<h3 id="fixed_37"><code>Fixed</code><a class="headerlink" href="#fixed_37" title="Permanent link">&para;</a></h3>
+<ul>
+<li>call_variants_auto bug fixed</li>
+<li>documentation</li>
+<li>version numbers</li>
+</ul>
+<h2 id="v100-bactopiabactopia-wooden-sword-20190904">v1.0.0 bactopia/bactopia "Wooden Sword" - 2019/09/04<a class="headerlink" href="#v100-bactopiabactopia-wooden-sword-20190904" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Initial release of bactopia/bactopia</li>
+</ul>
+
+<!-- Last update of source file -->
+
+  
+
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../acknowledgements/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Acknowledgements" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Acknowledgements
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../bactopia-tools/" class="md-footer__link md-footer__link--next" aria-label="Next: Introduction" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Introduction
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2019-2021 Robert A. Petit III. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/bactopia/bactopia" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://gitter.im/bactopia/Lobby" target="_blank" rel="noopener" title="gitter.im" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M66.4 322.5H16V0h50.4v322.5zM166.9 76.1h-50.4V512h50.4V76.1zm100.6 0h-50.4V512h50.4V76.1zM368 76h-50.4v247H368V76z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/r/bactopia/bactopia" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/rpetit3" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.720157f5.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.0d3e07ec.min.js"></script>
+      
+        <script src="../custom/jquery.min.js"></script>
+      
+        <script src="../custom/jquery.magnific-popup.min.js"></script>
+      
+        <script src="../custom/extra.js"></script>
+      
+    
+  </body>
+</html>
