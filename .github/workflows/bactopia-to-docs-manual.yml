@@ -25,14 +25,30 @@ jobs:
           auto-activate-base: false
 
       - name: Setup Docs Environment
+        env:
+          MKDOCS_INSIDERS: ${{ secrets.MKDOCS_INSIDERS }}
         run: |
+          # Conda dependencies
           conda install -c conda-forge -c bioconda nextflow jinja2 pyyaml 'python>3.6'
-        
-      - name: Convert Bactopia to Docs
-        run: |
+          # MkDocs dependencies
+          pip install \
+            "cairosvg>=2.5" \
+            "mkdocs-git-committers-plugin-2<1" \
+            "mkdocs-git-revision-date-localized-plugin>=1.0" \
+            "mkdocs-minify-plugin>=0.3" \
+            "mkdocs-rss-plugin>=1.1" \
+            "mkdocs-redirects>=1.0" \
+            "pillow<10"
+          # MkDocs Insiders
+          pip install \
+            git+https://${MKDOCS_INSIDERS}@github.com/squidfunk/mkdocs-material-insiders.git
+          mkdocs --version
+          # Convert Bactopia to Docs
           nextflow config -flat $GITHUB_WORKSPACE/bactopia/main.nf > $GITHUB_WORKSPACE/bactopia/nextflow_config.txt
           python3 $GITHUB_WORKSPACE/bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
           rm -rf $GITHUB_WORKSPACE/bactopia
+          # Deploy docs
+          mkdocs gh-deploy --force --config-file mkdocs.insiders.yml
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7

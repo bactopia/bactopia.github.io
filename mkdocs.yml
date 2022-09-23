@@ -24,6 +24,8 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
+  favicon: docs/assets/favicon.ico
+  logo: docs/assets/bactopia-small-logo.png
   font:
     text: 'Ubuntu'
     code: 'Ubuntu Mono'
@@ -44,6 +46,8 @@ extra:
       link: https://hub.docker.com/r/bactopia/bactopia
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/rpetit3
+  version:
+    provider: mike
 
 extra_css:
   - custom/magnific-popup.css
@@ -157,3 +161,5 @@ nav:
       - 'ssuissero': 'bactopia-tools/ssuissero.md'
       - 'staphopiasccmec': 'bactopia-tools/staphopiasccmec.md'
       - 'tbprofiler': 'bactopia-tools/tbprofiler.md'
+  - 'Blog':
+    - blog/index.md 
