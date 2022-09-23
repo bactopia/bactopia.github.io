@@ -46,6 +46,7 @@ jobs:
           # Convert Bactopia to Docs
           nextflow config -flat $GITHUB_WORKSPACE/bactopia/main.nf > $GITHUB_WORKSPACE/bactopia/nextflow_config.txt
           python3 $GITHUB_WORKSPACE/bin/bactopia-to-md.py $GITHUB_WORKSPACE/bactopia $GITHUB_WORKSPACE
+          cp -f $GITHUB_WORKSPACE/bactopia/CHANGELOG.md $GITHUB_WORKSPACE/docs/changelog.md
           rm -rf $GITHUB_WORKSPACE/bactopia
           # Deploy docs
           mkdocs gh-deploy --force --config-file mkdocs.insiders.yml
