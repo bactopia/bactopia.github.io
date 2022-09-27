@@ -1,3 +1,8 @@
+---
+title: Bactopia - Installation
+description: |
+    Learn how Bactopia install and get started using Bactopia for your genomic analyses.
+---
 # Installation
 Bactopia has a **a lot** of tools built into its workflow. As you can imagine, all these tools lead to numerous dependencies, and navigating dependencies can often turn into a very frustrating process. With this in mind, from the onset Bactopia was developed to only include programs that are installable using [Conda](https://conda.io/en/latest/).
 

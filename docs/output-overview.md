@@ -1,3 +1,8 @@
+---
+title: Bactopia - Ouput Overview
+description: |
+    A detailed description of all outputs produced by the main Bactopia pipeline
+---
 # Overview of Bactopia Output
 After a successful run, Bactopia will have produced numerous output files. Just how many output files depends on the input datasets used (e.g. none, general datasets, species specific datasets, user populated datasets).
 

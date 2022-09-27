@@ -1,4 +1,6 @@
 ---
+title: meta.docs.meta.title
+description: meta.docs.meta.description
 tags:
 {%- for tag in meta.tags | sort %}
    - {{ tag -}}
@@ -32,7 +34,7 @@ file descriptions below were modified from a tools description.
 {{ meta.docs.output.tree }}
 ```
 
-{% if  meta.docs.output.add_note == True -%}
+{% if meta.docs.output.add_note == True -%}
 !!! info "Directory structure might be different"
 
     `{{ meta.name }}` is available as a standalone Bactopia Tool, as well as from

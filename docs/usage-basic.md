@@ -1,3 +1,8 @@
+---
+title: Bactopia - Basic Usage
+description: |
+    An overview ofBactopia parameters you might need to adjust to meet your needs.
+---
 # Basic Usage For Bactopia
 Bactopia is a wrapper around many different tools. Each of these tools may (or may not) have there own configurable parameters for you to tweak. In order to facilitate getting started with Bactopia, this section has been limited to discussion of only a few parameters. However, if you are interested in the full list of configurable parameters in Bactopia, please check out the [Complete Usage](usage-complete.md) section.
 

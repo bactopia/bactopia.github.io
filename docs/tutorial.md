@@ -1,3 +1,9 @@
+---
+title: Bactopia - Tutorial
+description: |
+    A turotial to get started using Bactopia. This tutorial using publicly available
+    sequencing and shows the many ways of running Bactopia.
+---
 # Tutorial
 
 You should now have a directory named `datasets` that has all the available datasets to be used by Bactopia. For this tutorial, we will attempt to replicate the [Staphopia](https://staphopia.emory.edu) analysis pipeline with Bactopia.

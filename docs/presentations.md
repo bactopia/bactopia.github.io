@@ -1,3 +1,8 @@
+---
+title: Bactopia - Presentation
+description: |
+    A selection of talks and posters centered around Bactopia.
+---
 # Presentations
 Below are links to talks, posters, and blog posts associated with Bactopia.
 

@@ -1,3 +1,8 @@
+---
+title: Bactopia - Troubleshooting
+description: |
+    Common issues and solutions users might run into while using Bactopia.
+---
 # Troubleshooting Bactopia
 It was bound to happen, an error has occurred or a bug has shown itself. Now let's see if we can fix it!
 

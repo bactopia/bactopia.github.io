@@ -1,3 +1,8 @@
+---
+title: Bactopia - Complete Usage
+description: |
+    A complete list and description of each and every parameter you can change in Bactopia.
+---
 # Runtime Parameters
 
 Bactopia includes numerous (180+) configurable parameters. Now that doesn't mean you need to go in there and start changing them, but there will be times when you might have to. By exposing all these parameters, you can easily change them to fit your needs. In the following sections, these parameters are grouped by which Nextflow process they are applicable to. The description and default values for these parameters were taken from the program to which they apply.

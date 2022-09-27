@@ -1,3 +1,8 @@
+---
+title: Bactopia - Workflow Overview
+description: |
+    An overview of each step in Bactopia with a description of the tools used in each step.
+---
 # Workflow Overview
 Bactopia is an extensive workflow integrating numerous steps in bacterial genome analysis. Through out the workflow there are steps that are *always enabled* and *dataset enabled*. Each of the steps depicted in the image below are described in this section. 
 

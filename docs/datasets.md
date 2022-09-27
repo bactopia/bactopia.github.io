@@ -1,3 +1,9 @@
+---
+title: Bactopia - Datasets
+description: |
+    An overview of the Bactopia datasets command and how you can easily
+    supplement your analyses with publicly available datasets.
+---
 # Build Datasets
 Bactopia can make use of many existing public datasets, as well as private datasets. The process of downloading, building, and (or) configuring these datasets for Bactopia has been automated.
 
