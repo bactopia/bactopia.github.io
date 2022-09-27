@@ -1,6 +1,6 @@
 ---
 title: Bactopia - Datasets
-description: |
+description: >
     An overview of the Bactopia datasets command and how you can easily
     supplement your analyses with publicly available datasets.
 ---

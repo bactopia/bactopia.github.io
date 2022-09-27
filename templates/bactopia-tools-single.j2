@@ -1,6 +1,6 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: {{ meta.docs.meta.title }}
+description: {{ meta.docs.meta.description }}
 tags:
 {%- for tag in meta.tags | sort %}
    - {{ tag -}}

@@ -1,6 +1,6 @@
 ---
 title: Bactopia - Presentation
-description: |
+description: >
     A selection of talks and posters centered around Bactopia.
 ---
 # Presentations
