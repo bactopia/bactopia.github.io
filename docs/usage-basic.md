@@ -1,6 +1,6 @@
 ---
 title: Bactopia - Basic Usage
-description: >
+description: >-
     An overview ofBactopia parameters you might need to adjust to meet your needs.
 ---
 # Basic Usage For Bactopia

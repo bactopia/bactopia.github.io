@@ -1,6 +1,6 @@
 ---
 title: Bactopia - Installation
-description: >
+description: >-
     Learn how Bactopia install and get started using Bactopia for your genomic analyses.
 ---
 # Installation

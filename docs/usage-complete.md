@@ -1,6 +1,6 @@
 ---
 title: Bactopia - Complete Usage
-description: >
+description: >-
     A complete list and description of each and every parameter you can change in Bactopia.
 ---
 # Runtime Parameters

@@ -1,6 +1,6 @@
 ---
 title: Bactopia - Ouput Overview
-description: >
+description: >-
     A detailed description of all outputs produced by the main Bactopia pipeline
 ---
 # Overview of Bactopia Output

@@ -1,6 +1,6 @@
 ---
 title: Bactopia - Tutorial
-description: >
+description: >-
     A turotial to get started using Bactopia. This tutorial using publicly available
     sequencing and shows the many ways of running Bactopia.
 ---

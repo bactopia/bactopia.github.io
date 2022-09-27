@@ -1,6 +1,6 @@
 ---
 title: Bactopia - Quick Start
-description: >
+description: >-
     Get started using Bactopia in a few commands, no asking questions and no looking back!
 ---
 # Quick Start
