@@ -1,3 +1,9 @@
+---
+title: Bactopia - Acknowledgements
+description: | 
+    A full list of the 140 datasets and software packages used by
+    Bactopia, along with links and citaions.
+---
 # Acknowledgements
 
 Bactopia is truly a case of *"standing upon the shoulders of giants"*. Bactopia

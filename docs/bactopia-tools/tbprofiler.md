@@ -1,4 +1,6 @@
 ---
+title: meta.docs.meta.title
+description: meta.docs.meta.description
 tags:
    - Mycobacterium tuberculosis
    - resistance
@@ -8,7 +10,7 @@ tags:
 
 
 # Bactopia Tool - `tbprofiler`
-The `tbprofiler` module uses [TBProfiler](https://github.com/jodyphelan/TBProfiler) for 
+The `tbprofiler` module uses [TBProfiler](https://github.com/jodyphelan/TBProfiler) 
 for profiling reads to determine resistance and _Mycobacterium tuberculosis_ strain type.
 
 

@@ -1,4 +1,6 @@
 ---
+title: meta.docs.meta.title
+description: meta.docs.meta.description
 tags:
 ---
 
@@ -6,7 +8,7 @@ tags:
 
 # Bactopia Tool - `shigatyper`
 The `shigatyper` module uses [ShigaTyyper](https://github.com/CFSAN-Biostatistics/shigatyper) to rapidly determine 
-Shigella serotype using Illumina (single or paired-end) or Oxford Nanopore reads taxonomic.
+Shigella serotype using Illumina (single or paired-end) or Oxford Nanopore reads.
 
 
 ## Example Usage

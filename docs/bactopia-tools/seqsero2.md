@@ -1,4 +1,6 @@
 ---
+title: meta.docs.meta.title
+description: meta.docs.meta.description
 tags:
    - fasta
    - fastq
@@ -10,7 +12,7 @@ tags:
 
 # Bactopia Tool - `seqsero2`
 The `seqsero2` module uses [SeqSero2](https://github.com/denglab/SeqSero2) for Salmonella
-serotype prediction from reads and assemblies .
+serotype prediction from reads and assemblies.
 
 
 ## Example Usage

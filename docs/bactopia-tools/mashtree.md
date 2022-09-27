@@ -1,4 +1,6 @@
 ---
+title: meta.docs.meta.title
+description: meta.docs.meta.description
 tags:
    - fasta
    - mash
@@ -9,7 +11,7 @@ tags:
 
 # Bactopia Tool - `mashtree`
 The `mashtree` module uses [Mashtree](https://github.com/lskatz/mashtree) to create a tree of your samples
-using [Mash](https://github.com/marbl/Mash) distance. 
+using [Mash](https://github.com/marbl/Mash) distances. 
 
 You can also use `--species` or `-accessions` to see how your samples compare to completed genomes. If used, 
 [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) will download available completed 

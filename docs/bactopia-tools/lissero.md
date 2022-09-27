@@ -1,4 +1,6 @@
 ---
+title: meta.docs.meta.title
+description: meta.docs.meta.description
 tags:
    - fasta
    - Listeria monocytogenes

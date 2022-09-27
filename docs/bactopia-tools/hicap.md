@@ -1,4 +1,6 @@
 ---
+title: meta.docs.meta.title
+description: meta.docs.meta.description
 tags:
    - capsule
    - Haemophilus influenzae
@@ -8,7 +10,7 @@ tags:
 
 
 # Bactopia Tool - `hicap`
-The `hicap` module uses [hicap](https://github.com/scwatts/hicap) allong wih an assembly for
+The `hicap` module uses [hicap](https://github.com/scwatts/hicap) along wih an assembly for
 the _in silico_ typing of the _Haemophilus influenzae_ cap locus.
 
 
