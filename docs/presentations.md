@@ -1,5 +1,5 @@
 ---
-title: Bactopia - Presentation
+title: Presentations
 description: >-
     A selection of talks and posters centered around Bactopia.
 ---

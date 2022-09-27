@@ -1,5 +1,5 @@
 ---
-title: Bactopia - Workflow Overview
+title: Workflow Overview
 description: >-
     An overview of each step in Bactopia with a description of the tools used in each step.
 ---

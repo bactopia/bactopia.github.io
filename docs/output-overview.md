@@ -1,5 +1,5 @@
 ---
-title: Bactopia - Ouput Overview
+title: Ouput Overview
 description: >-
     A detailed description of all outputs produced by the main Bactopia pipeline
 ---

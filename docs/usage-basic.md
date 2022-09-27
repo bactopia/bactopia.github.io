@@ -1,5 +1,5 @@
 ---
-title: Bactopia - Basic Usage
+title: Basic Usage
 description: >-
     An overview ofBactopia parameters you might need to adjust to meet your needs.
 ---

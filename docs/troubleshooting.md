@@ -1,5 +1,5 @@
 ---
-title: Bactopia - Troubleshooting
+title: Troubleshooting
 description: >-
     Common issues and solutions users might run into while using Bactopia.
 ---

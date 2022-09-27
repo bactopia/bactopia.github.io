@@ -1,5 +1,5 @@
 ---
-title: Bactopia - Tutorial
+title: Tutorial
 description: >-
     A tutorial to get started with Bactopia using publicly available
     genomes.

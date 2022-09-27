@@ -1,5 +1,5 @@
 ---
-title: Bactopia - Complete Usage
+title: Complete Usage
 description: >-
     A complete list and description of each and every parameter you can change in Bactopia.
 ---
