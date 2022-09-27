@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - ectyper
+title: ectyper
 description: A Bactopia Tool which uses ECTyper to conduct _in silico_ prediction of serotype for _Escherichia coli_ genomes.
 ---
 # Bactopia Tool - `ectyper`

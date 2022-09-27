@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - lissero
+title: lissero
 description: A Bactopia Tool which uses LisSero for _in silico_ serotype prediction for _Listeria monocytogenes_ assemblies.
 ---
 # Bactopia Tool - `lissero`

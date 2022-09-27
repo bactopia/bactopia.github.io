@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - pangenome
+title: pangenome
 description: A Bactopia Tool which creates a pangenome, then a core-genome phylogeny with multiple different tools.
 ---
 # Bactopia Tool - `pangenome`

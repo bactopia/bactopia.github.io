@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - ariba
+title: ariba
 description: A Bactopia Tool which uses ARIBA to rapidly identify genes in a database by creating local assemblies.
 ---
 # Bactopia Tool - `ariba`

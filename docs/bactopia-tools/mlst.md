@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - mlst
+title: mlst
 description: A Bactopia Tool which uses mlst scan assemblies and determine the sequence type based on PubMLST schemas.
 ---
 # Bactopia Tool - `mlst`

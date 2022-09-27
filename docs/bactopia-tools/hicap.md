@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - hicap
+title: hicap
 description: A Bactopia Tool which uses hicap along wih an assembly for the _in silico_ typing of the _Haemophilus influenzae_ cap locus.
 ---
 # Bactopia Tool - `hicap`

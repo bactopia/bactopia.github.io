@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - mcroni
+title: mcroni
 description: A Bactopia Tool which uses mcroni to identify _mcr-1_ genes in  assemblies.
 ---
 # Bactopia Tool - `mcroni`

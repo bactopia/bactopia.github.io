@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - gamma
+title: gamma
 description: A Bactopia Tool which uses GAMMA to identify, classify, and annotate translated gene matches from assemblies.
 ---
 # Bactopia Tool - `gamma`

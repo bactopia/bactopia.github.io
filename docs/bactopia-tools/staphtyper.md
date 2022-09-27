@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - staphtyper
+title: staphtyper
 description: A Bactopia Tool which includes multiple tools that are specific for typing certain features of _Staphylococcus aureus_.
 ---
 # Bactopia Tool - `staphtyper`

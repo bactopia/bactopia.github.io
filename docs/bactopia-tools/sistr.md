@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - sistr
+title: sistr
 description: A Bactopia Tool which uses Salmonella In Silico Typing Resource, or SISTR, for serovar prediction of Salmonella assemblies.
 ---
 # Bactopia Tool - `sistr`

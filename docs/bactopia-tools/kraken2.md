@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - kraken2
+title: kraken2
 description: A Bactopia Tool which uses Kraken2 to assign taxonomic classifications to your sequence reads.
 ---
 # Bactopia Tool - `kraken`

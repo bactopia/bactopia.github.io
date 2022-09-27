@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - busco
+title: busco
 description: A Bactopia Tool which uses BUSCO, or Benchmarking Universal Single-Copy Orthologs, to assess the completeness of your assembly.
 ---
 # Bactopia Tool - `busco`

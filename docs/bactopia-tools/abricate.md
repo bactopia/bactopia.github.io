@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - abricate
+title: abricate
 description: A Bactopia Tool which uses Abricate to screen assemblies for antimicrobial  resistance and virulence genes
 ---
 # Bactopia Tool - `abricate`

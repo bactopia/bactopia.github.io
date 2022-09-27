@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - meningotype
+title: meningotype
 description: A Bactopia Tool which uses meningotype for _in silico_ typing of _Neisseria meningitidis_ genomes.
 ---
 # Bactopia Tool - `meningotype`

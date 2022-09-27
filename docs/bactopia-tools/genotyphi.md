@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - genotyphi
+title: genotyphi
 description: A Bactopia Tool which uses GenoTyphi to genotype Salmonella Typhi from the outputs of Mykrobe.
 ---
 # Bactopia Tool - `genotyphi`

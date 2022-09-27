@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - mashdist
+title: mashdist
 description: A Bactopia Tool which uses Mash to determine the Mash distance from a given reference genome(s).
 ---
 # Bactopia Tool - `mashdist`

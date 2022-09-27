@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - ismapper
+title: ismapper
 description: A Bactopia Tool which uses ISMapper to search for insertion sites in your samples.
 ---
 # Bactopia Tool - `ismapper`

@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - staphopiasccmec
+title: staphopiasccmec
 description: A Bactopia Tool which uses staphopia-sccmec to assign SCCmec types to _Staphylococcus aureus_ assemblies.
 ---
 # Bactopia Tool - `staphopiasccmec`

@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - merlin
+title: merlin
 description: A Bactopia Tool which for the automatic selection and executions of  species-specific tools.
 ---
 # Bactopia Tool - `merlin`

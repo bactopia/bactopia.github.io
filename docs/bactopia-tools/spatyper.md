@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - spatyper
+title: spatyper
 description: A Bactopia Tool which uses spaTyper to assign _spa_ types to _Staphylococcus aureus_ assemblies.
 ---
 # Bactopia Tool - `spatyper`

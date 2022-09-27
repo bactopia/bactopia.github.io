@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - snippy
+title: snippy
 description: A Bactopia Tool which uses Snippy to call SNPs and InDels against a reference and create a core-SNP phylogeny using IQ-Tree and Gubbins.
 ---
 # Bactopia Tool - `snippy`

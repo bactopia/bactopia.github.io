@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - mashtree
+title: mashtree
 description: A Bactopia Tool which uses Mashtree to create a tree of your samples using Mash distances.
 ---
 # Bactopia Tool - `mashtree`

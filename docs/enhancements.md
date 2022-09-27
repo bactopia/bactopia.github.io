@@ -1,5 +1,5 @@
 ---
-title: Bactopia - Enhancements to OSS
+title: Enhancements to OSS
 description: >-
     Learn how Bactopia design principles have led to more than 150
     contributions to the bioinformatics community.

@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - ssuissero
+title: ssuissero
 description: A Bactopia Tool which uses SsuisSero to predict the serotype of _Streptococcus suis_ assemblies.
 ---
 # Bactopia Tool - `ssuissero`

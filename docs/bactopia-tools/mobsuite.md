@@ -1,5 +1,5 @@
 ---
-title: Bactopia Tools - mobsuite
+title: mobsuite
 description: A Bactopia Tool which uses MOB-suite to reconstruct and annotate plasmids in draft assemblies.
 ---
 # Bactopia Tool - `mobsuite`
