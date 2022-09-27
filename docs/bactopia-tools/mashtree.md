@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - mashtree
+description: A Bactopia Tool which uses Mashtree to create a tree of your samples
+using Mash distances.
+
 tags:
    - fasta
    - mash

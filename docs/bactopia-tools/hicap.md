@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - hicap
+description: A Bactopia Tool which uses hicap along wih an assembly for the _in silico_ typing of
+the _Haemophilus influenzae_ cap locus.
+
 tags:
    - capsule
    - Haemophilus influenzae

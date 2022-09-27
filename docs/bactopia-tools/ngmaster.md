@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - ngmaster
+description: A Bactopia Tool which uses ngmaster for _in silico_ multi-antigen sequence
+typing for _Neisseria gonorrhoeae_ (NG-MAST).
+
 tags:
    - fasta
    - Neisseria gonorrhoeae

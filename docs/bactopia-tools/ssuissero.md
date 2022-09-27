@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - ssuissero
+description: A Bactopia Tool which uses SsuisSero to predict the serotype of
+_Streptococcus suis_ assemblies.
+
 tags:
 ---
 

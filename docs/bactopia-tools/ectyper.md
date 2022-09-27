@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - ectyper
+description: A Bactopia Tool which uses ECTyper to conduct _in silico_ prediction
+of serotype for _Escherichia coli_ genomes.
+
 tags:
    - Escherichia coli
    - fasta

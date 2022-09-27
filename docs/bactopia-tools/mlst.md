@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - mlst
+description: A Bactopia Tool which uses mlst scan assemblies and determine the sequence type based
+on PubMLST schemas.
+
 tags:
 ---
 

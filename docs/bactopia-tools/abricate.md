@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - abricate
+description: A Bactopia Tool which uses Abricate to screen assemblies for antimicrobial 
+resistance and virulence genes
+
 tags:
 ---
 

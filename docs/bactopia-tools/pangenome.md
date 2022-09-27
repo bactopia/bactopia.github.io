@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - pangenome
+description: A Bactopia Tool which creates a pangenome, then a core-genome phylogeny
+with multiple different tools.
+
 tags:
 ---
 

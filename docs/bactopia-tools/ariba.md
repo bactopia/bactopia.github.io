@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - ariba
+description: A Bactopia Tool which uses ARIBA to rapidly identify genes in
+a database by creating local assemblies.
+
 tags:
 ---
 

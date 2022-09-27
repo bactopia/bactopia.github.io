@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - tbprofiler
+description: A Bactopia Tool which uses TBProfiler for profiling reads to determine resistance
+and _Mycobacterium tuberculosis_ strain type.
+
 tags:
    - Mycobacterium tuberculosis
    - resistance

@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - mcroni
+description: A Bactopia Tool which uses mcroni to identify _mcr-1_ genes in 
+assemblies.
+
 tags:
 ---
 

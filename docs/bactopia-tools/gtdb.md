@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - gtdb
+description: A Bactopia Tool which uses GTDB-Tk's classify workflow to assign taxonomic classifications
+to your set of samples.
+
 tags:
 ---
 

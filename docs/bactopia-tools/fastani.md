@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - fastani
+description: A Bactopia Tool which uses FastANI to calculate the average nucleotide identity
+(ANI) between your samples.
+
 tags:
    - ani
    - fastani

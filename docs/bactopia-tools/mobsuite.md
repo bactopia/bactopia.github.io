@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - mobsuite
+description: A Bactopia Tool which uses MOB-suite to reconstruct and annotate plasmids in
+draft assemblies.
+
 tags:
 ---
 

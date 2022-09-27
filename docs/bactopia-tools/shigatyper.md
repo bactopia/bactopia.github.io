@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - shigatyper
+description: A Bactopia Tool which uses ShigaTyyper to rapidly determine Shigella serotype using
+Illumina or Oxford Nanopore reads.
+
 tags:
 ---
 

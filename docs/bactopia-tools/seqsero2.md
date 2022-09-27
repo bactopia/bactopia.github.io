@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - seqsero2
+description: A Bactopia Tool which uses SeqSero2 for Salmonella serotype prediction
+from reads and assemblies.
+
 tags:
    - fasta
    - fastq

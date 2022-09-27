@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - emmtyper
+description: A Bactopia Tool which uses emmtyper for emm-typing of _Streptococcus pyogenes_
+using a de novo or complete assembly.
+
 tags:
    - fasta
    - Streptococcus pyogenes

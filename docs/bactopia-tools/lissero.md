@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - lissero
+description: A Bactopia Tool which uses LisSero for _in silico_ serotype prediction
+for _Listeria monocytogenes_ assemblies.
+
 tags:
    - fasta
    - Listeria monocytogenes

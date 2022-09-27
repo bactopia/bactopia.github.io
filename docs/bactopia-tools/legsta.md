@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - legsta
+description: A Bactopia Tool which uses legsta for _in silico_ _Legionella pneumophila_
+Sequence Based Typing (SBT).
+
 tags:
 ---
 

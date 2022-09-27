@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - gamma
+description: A Bactopia Tool which uses GAMMA to identify, classify, and annotate translated
+gene matches from assemblies.
+
 tags:
    - antimicrobial resistance
    - fasta

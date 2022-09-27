@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - merlin
+description: A Bactopia Tool which for the automatic selection and executions of 
+species-specific tools.
+
 tags:
 ---
 

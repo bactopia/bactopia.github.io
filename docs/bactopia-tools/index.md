@@ -1,8 +1,8 @@
 ---
 title: Bactopia Tools
-description: |
-    More than 44 additional workflows to allow you easily dive
-    firther into your Bactopia results.
+description: >
+    More than 44 additional workflows to allow you easily
+    dive further into your Bactopia results.
 ---
 # Overview
 After you've run your samples through Bactopia, you are probably going to want to

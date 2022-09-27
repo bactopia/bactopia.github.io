@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - hpsuissero
+description: A Bactopia Tool which uses HpsuisSero to predict the serotype of _Haemophilus parasuis_
+assemblies.
+
 tags:
 ---
 

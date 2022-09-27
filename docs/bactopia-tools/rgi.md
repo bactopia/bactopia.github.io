@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - rgi
+description: A Bactopia Tool which uses Resistance Gene Identifier (RGI) to identify antibiotic
+resistance genes in assemblies.
+
 tags:
 ---
 

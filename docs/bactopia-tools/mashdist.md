@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - mashdist
+description: A Bactopia Tool which uses Mash to determine the Mash distance from
+a given reference genome(s).
+
 tags:
 ---
 

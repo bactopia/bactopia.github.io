@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - mykrobe
+description: A Bactopia Tool which uses Mykrobe to predict antimicrobial resistance for _Mycobacterium tuberculosis_,
+_Staphylococcus aureus_, _Shigella sonnei_, and _Salmonella typhi_.
+
 tags:
 ---
 

@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - eggnog
+description: A Bactopia Tool which uses eggNOG-mapper to assign functional
+annotation to protein sequences.
+
 tags:
    - annotation
    - fasta

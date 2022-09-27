@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - kleborate
+description: A Bactopia Tool which uses Kleborate to screen genome assemblies of _Klebsiella pneumoniae_
+and the _Klebsiella pneumoniae_ species complex (KpSC).
+
 tags:
    - enterics
    - fasta

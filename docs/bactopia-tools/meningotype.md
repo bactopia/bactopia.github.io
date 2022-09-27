@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - meningotype
+description: A Bactopia Tool which uses meningotype for _in silico_ typing of
+_Neisseria meningitidis_ genomes.
+
 tags:
    - fasta
    - Neisseria meningitidis

@@ -1,6 +1,7 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools -
+description: A Bactopia Tool which uses
+
 tags:
    - fasta
    - plasmid

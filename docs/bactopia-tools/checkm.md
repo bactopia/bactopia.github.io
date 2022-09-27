@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - checkm
+description: A Bactopia Tool which uses CheckM to assess the quality of microbial
+genomes recovered from isolates.
+
 tags:
 ---
 

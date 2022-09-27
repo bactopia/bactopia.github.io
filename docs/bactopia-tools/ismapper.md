@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - ismapper
+description: A Bactopia Tool which uses ISMapper to search for insertion sites in
+your samples.
+
 tags:
    - fastq
    - insertion sequences

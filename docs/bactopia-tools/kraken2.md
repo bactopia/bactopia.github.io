@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - kraken2
+description: A Bactopia Tool which uses Kraken2 to assign taxonomic classifications
+to your sequence reads.
+
 tags:
 ---
 

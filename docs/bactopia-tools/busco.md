@@ -1,6 +1,8 @@
 ---
-title: meta.docs.meta.title
-description: meta.docs.meta.description
+title: Bactopia Tools - busco
+description: A Bactopia Tool which uses BUSCO, or Benchmarking Universal Single-Copy Orthologs,
+to assess the completeness of your assembly.
+
 tags:
 ---
 
