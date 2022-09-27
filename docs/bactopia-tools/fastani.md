@@ -1,16 +1,7 @@
 ---
 title: Bactopia Tools - fastani
-description: A Bactopia Tool which uses FastANI to calculate the average nucleotide identity
-(ANI) between your samples.
-
-tags:
-   - ani
-   - fastani
-   - simularity
----
-
-
-
+description: A Bactopia Tool which uses FastANI to calculate the average nucleotide identity (ANI) between your samples.
+----
 # Bactopia Tool - `fastani`
 The `fastani` module uses [FastANI](https://github.com/ParBLiSS/FastANI) to calculate the average 
 nucleotide identity (ANI) between your samples.

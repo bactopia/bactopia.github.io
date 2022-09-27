@@ -1,13 +1,7 @@
 ---
 title: Bactopia Tools - busco
-description: A Bactopia Tool which uses BUSCO, or Benchmarking Universal Single-Copy Orthologs,
-to assess the completeness of your assembly.
-
-tags:
----
-
-
-
+description: A Bactopia Tool which uses BUSCO, or Benchmarking Universal Single-Copy Orthologs, to assess the completeness of your assembly.
+----
 # Bactopia Tool - `busco`
 The `busco` module uses [BUSCO](https://gitlab.com/ezlab/busco) (_or Benchmarking Universal Single-Copy Orthologs_) 
 to assess the completeness of your assembly.

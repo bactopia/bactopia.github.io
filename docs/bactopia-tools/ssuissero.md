@@ -1,13 +1,7 @@
 ---
 title: Bactopia Tools - ssuissero
-description: A Bactopia Tool which uses SsuisSero to predict the serotype of
-_Streptococcus suis_ assemblies.
-
-tags:
----
-
-
-
+description: A Bactopia Tool which uses SsuisSero to predict the serotype of _Streptococcus suis_ assemblies.
+----
 # Bactopia Tool - `ssuissero`
 The `ssuissero` module uses [SsuisSero](https://github.com/jimmyliu1326/SsuisSero) to predict
 the serotype of _Streptococcus suis_ assemblies.

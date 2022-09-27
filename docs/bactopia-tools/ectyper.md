@@ -1,16 +1,7 @@
 ---
 title: Bactopia Tools - ectyper
-description: A Bactopia Tool which uses ECTyper to conduct _in silico_ prediction
-of serotype for _Escherichia coli_ genomes.
-
-tags:
-   - Escherichia coli
-   - fasta
-   - serotype
----
-
-
-
+description: A Bactopia Tool which uses ECTyper to conduct _in silico_ prediction of serotype for _Escherichia coli_ genomes.
+----
 # Bactopia Tool - `ectyper`
 The `ectyper` module used [ECTyper](https://github.com/phac-nml/ecoli_serotyping) to conduct
 _in silico_ prediction of serotype for _Escherichia coli_ genomes. It uses the genome assemblies

@@ -1,16 +1,7 @@
 ---
 title: Bactopia Tools - spatyper
-description: A Bactopia Tool which uses spaTyper to assign _spa_ types to
-_Staphylococcus aureus_ assemblies.
-
-tags:
-   - fasta
-   - serotype
-   - Staphylococcus aureus
----
-
-
-
+description: A Bactopia Tool which uses spaTyper to assign _spa_ types to _Staphylococcus aureus_ assemblies.
+----
 # Bactopia Tool - `spatyper`
 The `spatyper` module uses [spaTyper](https://github.com/HCGB-IGTP/spaTyper) to assign _spa_ types to _Staphylococcus aureus_ assemblies.
 

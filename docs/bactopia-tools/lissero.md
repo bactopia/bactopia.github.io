@@ -1,16 +1,7 @@
 ---
 title: Bactopia Tools - lissero
-description: A Bactopia Tool which uses LisSero for _in silico_ serotype prediction
-for _Listeria monocytogenes_ assemblies.
-
-tags:
-   - fasta
-   - Listeria monocytogenes
-   - serotype
----
-
-
-
+description: A Bactopia Tool which uses LisSero for _in silico_ serotype prediction for _Listeria monocytogenes_ assemblies.
+----
 # Bactopia Tool - `lissero`
 The `lissero` module uses [LisSero](https://github.com/MDU-PHL/LisSero) for 
 _in silico_ serotype prediction for _Listeria monocytogenes_ assemblies.

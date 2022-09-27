@@ -1,16 +1,7 @@
 ---
 title: Bactopia Tools - argvate
-description: A Bactopia Tool which uses AgrVATE to rapidly identify the _agr_ locus
-type in _Staphylococcus aureus_ assemblies.
-
-tags:
-   - fasta
-   - Staphylococcus aureus
-   - virulence
----
-
-
-
+description: A Bactopia Tool which uses AgrVATE to rapidly identify the _agr_ locus type in _Staphylococcus aureus_ assemblies.
+----
 # Bactopia Tool - `agrvate`
 The `agrvate` module uses [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE) 
 to rapidly identify the _agr_ locus type in _Staphylococcus aureus_ assemblies.

@@ -1,16 +1,7 @@
 ---
 title: Bactopia Tools - meningotype
-description: A Bactopia Tool which uses meningotype for _in silico_ typing of
-_Neisseria meningitidis_ genomes.
-
-tags:
-   - fasta
-   - Neisseria meningitidis
-   - serotype
----
-
-
-
+description: A Bactopia Tool which uses meningotype for _in silico_ typing of _Neisseria meningitidis_ genomes.
+----
 # Bactopia Tool - `meningotype`
 The `meningotype` module uses [meningotype](https://github.com/MDU-PHL/meningotype) 
 for _in silico_ typing of _Neisseria meningitidis_ genomes. It uses the contigs from 

@@ -1,13 +1,7 @@
 ---
 title: Bactopia Tools - abricate
-description: A Bactopia Tool which uses Abricate to screen assemblies for antimicrobial 
-resistance and virulence genes
-
-tags:
----
-
-
-
+description: A Bactopia Tool which uses Abricate to screen assemblies for antimicrobial  resistance and virulence genes
+----
 # Bactopia Tool - `abricate`
 The `abricate` module uses [Abricate](https://github.com/tseemann/abricate) to screen assemblies
 for antimicrobial resistance and virulence genes.

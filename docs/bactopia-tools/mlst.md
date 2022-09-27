@@ -1,13 +1,7 @@
 ---
 title: Bactopia Tools - mlst
-description: A Bactopia Tool which uses mlst scan assemblies and determine the sequence type based
-on PubMLST schemas.
-
-tags:
----
-
-
-
+description: A Bactopia Tool which uses mlst scan assemblies and determine the sequence type based on PubMLST schemas.
+----
 # Bactopia Tool - `mlst`
 The `mlst` module uses [mlst](https://github.com/tseemann/mlst) scan assemblies and determine the sequence type.
 It makes use of [PubMLST](https://pubmlst.org/) schemes and by default automatically scans each schema. To specify

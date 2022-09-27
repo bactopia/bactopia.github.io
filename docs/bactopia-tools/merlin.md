@@ -1,13 +1,7 @@
 ---
 title: Bactopia Tools - merlin
-description: A Bactopia Tool which for the automatic selection and executions of 
-species-specific tools.
-
-tags:
----
-
-
-
+description: A Bactopia Tool which for the automatic selection and executions of  species-specific tools.
+----
 # Bactopia Tool - `merlin`
 _MinmER assisted species-specific bactopia tool seLectIoN_, or Merlin, uses distances based
 on the RefSeq sketch downloaded by `bactopia datasets` to automatically run species-specific tools.

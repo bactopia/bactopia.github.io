@@ -1,17 +1,7 @@
 ---
 title: Bactopia Tools - staphopiasccmec
-description: A Bactopia Tool which uses staphopia-sccmec to assign SCCmec types
-to _Staphylococcus aureus_ assemblies.
-
-tags:
-   - amr
-   - fasta
-   - sccmec
-   - Staphylococcus aureus
----
-
-
-
+description: A Bactopia Tool which uses staphopia-sccmec to assign SCCmec types to _Staphylococcus aureus_ assemblies.
+----
 # Bactopia Tool - `staphopiasccmec`
 The `staphopiasccmec` module uses [staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec) to assign SCCmec types to _Staphylococcus aureus_ assemblies.
 

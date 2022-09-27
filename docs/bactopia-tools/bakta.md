@@ -1,16 +1,7 @@
 ---
 title: Bactopia Tools - bakta
-description: A Bactopia Tool which uses Bakta to rapidly provide extensive annotations (tRNA, tmRNA,
-rRNA, ncRNA, CRISPR, CDS, pseudogenes, and sORFs) in a standardized fashion.
-
-tags:
-   - annotation
-   - fasta
-   - prokaryote
----
-
-
-
+description: A Bactopia Tool which uses Bakta to rapidly provide extensive annotations (tRNA, tmRNA, rRNA, ncRNA, CRISPR, CDS, pseudogenes, and sORFs) in a standardized fashion.
+----
 # Bactopia Tool - `bakta`
 The `bakta` module uses [Bakta](https://github.com/oschwengers/bakta) to rapidly annotate bacterial 
 genomes and plasmids in a standardized fashion. Bakta makes use of a large database ([40+ GB](https://doi.org/10.5281/zenodo.4247252))
