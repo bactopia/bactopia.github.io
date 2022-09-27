@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools
 description: >-
-    More than 44 additional workflows to allow you easily
+    More than 44 additional workflows to allow you to easily
     dive further into your Bactopia results.
 ---
 # Overview
