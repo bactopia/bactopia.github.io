@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - eggnog
 description: A Bactopia Tool which uses eggNOG-mapper to assign functional annotation to protein sequences.
-----
+---
 # Bactopia Tool - `eggnog`
 The `eggnog` module uses [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper) to assign 
 functional annotation to protein sequences. eggNOG-mapper uses orthologous groups and phylogenies

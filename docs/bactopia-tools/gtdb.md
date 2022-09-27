@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - gtdb
 description: A Bactopia Tool which uses GTDB-Tk's classify workflow to assign taxonomic classifications to your set of samples.
-----
+---
 # Bactopia Tool - `gtdb`
 The `gtdb` tool uses [GTDB-Tk's](https://github.com/Ecogenomics/GTDBTk) classify 
 workflow to assign taxonomic classifications to your set of samples. This is 

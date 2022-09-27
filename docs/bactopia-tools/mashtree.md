@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - mashtree
 description: A Bactopia Tool which uses Mashtree to create a tree of your samples using Mash distances.
-----
+---
 # Bactopia Tool - `mashtree`
 The `mashtree` module uses [Mashtree](https://github.com/lskatz/mashtree) to create a tree of your samples
 using [Mash](https://github.com/marbl/Mash) distances. 

@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - genotyphi
 description: A Bactopia Tool which uses GenoTyphi to genotype Salmonella Typhi from the outputs of Mykrobe.
-----
+---
 # Bactopia Tool - `genotyphi`
 The `genotyphi` module uses [GenoTyphi](https://github.com/katholt/genotyphi) to genotype Salmonella Typhi
 from the outputs of [Mykrobe](https://github.com/Mykrobe-tools/mykrobe).

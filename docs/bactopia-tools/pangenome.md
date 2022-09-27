@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - pangenome
 description: A Bactopia Tool which creates a pangenome, then a core-genome phylogeny with multiple different tools.
-----
+---
 # Bactopia Tool - `pangenome`
 The `pangenome` subworkflow allows you to create a pan-genome with [PIRATE](https://github.com/SionBayliss/PIRATE),
 [Panaroo](https://github.com/gtonkinhill/panaroo), or [Roary](https://github.com/sanger-pathogens/Roary)) of your samples.

@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - emmtyper
 description: A Bactopia Tool which uses emmtyper for emm-typing of _Streptococcus pyogenes_ using a de novo or complete assembly.
-----
+---
 # Bactopia Tool - `emmtyper`
 The `emmtyper` module uses [emmtyper](https://github.com/MDU-PHL/emmtyper) for 
 emm-typing of _Streptococcus pyogenes_ using a de novo or complete assembly.

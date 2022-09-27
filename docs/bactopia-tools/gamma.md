@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - gamma
 description: A Bactopia Tool which uses GAMMA to identify, classify, and annotate translated gene matches from assemblies.
-----
+---
 # Bactopia Tool - `gamma`
 The `gamma` module uses [GAMMA](https://github.com/rastanton/GAMMA) to identify, classify, and annotate 
 translated gene matches from assemblies.

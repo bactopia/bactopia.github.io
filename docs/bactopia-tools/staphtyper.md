@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - staphtyper
 description: A Bactopia Tool which includes multiple tools that are specific for typing certain features of _Staphylococcus aureus_.
-----
+---
 # Bactopia Tool - `staphtyper`
 The `staphtyper` subworkflow includes multiple tools that are specific for typing certain features
 of *Staphylococcus aureus*. Currently `staphtyper` includes

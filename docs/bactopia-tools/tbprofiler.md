@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - tbprofiler
 description: A Bactopia Tool which uses TBProfiler for profiling reads to determine resistance and _Mycobacterium tuberculosis_ strain type.
-----
+---
 # Bactopia Tool - `tbprofiler`
 The `tbprofiler` module uses [TBProfiler](https://github.com/jodyphelan/TBProfiler) 
 for profiling reads to determine resistance and _Mycobacterium tuberculosis_ strain type.

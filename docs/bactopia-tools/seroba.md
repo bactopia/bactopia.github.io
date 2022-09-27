@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - seroba
 description: A Bactopia Tool which uses Seroba to predict the serotype of _Streptococcus pneumoniae_ samples with Illumina paired-end reads.
-----
+---
 # Bactopia Tool - `seroba`
 The `seroba` module uses [Seroba](https://github.com/sanger-pathogens/seroba) to predict the 
 serotype of _Streptococcus pneumoniae_ samples with Illumina paired-end reads.

@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - ngmaster
 description: A Bactopia Tool which uses ngmaster for _in silico_ multi-antigen sequence typing for _Neisseria gonorrhoeae_ (NG-MAST).
-----
+---
 # Bactopia Tool - `ngmaster`
 The `ngmaster` module uses [ngmaster](https://github.com/MDU-PHL/ngmaster) for 
 _in silico_ multi-antigen sequence typing for _Neisseria gonorrhoeae_ (NG-MAST).

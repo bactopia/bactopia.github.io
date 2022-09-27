@@ -2,7 +2,7 @@
 title: Bactopia Tools -
 description: A Bactopia Tool which uses
 
-----
+---
 # Bactopia Tool - `plasmidfinder`
 The `ectyper` module used [ECTyper](https://github.com/phac-nml/ecoli_serotyping) to conduct
 _in silico_ prediction of serotype for _Escherichia coli_ genomes. It uses the genome assemblies

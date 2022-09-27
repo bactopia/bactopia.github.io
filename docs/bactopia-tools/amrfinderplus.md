@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - amrfinderplus
 description: A Bactopia Tool which uses AMRFinder+ to screen assemblies and proteins for antimicrobial resistance and virulence genes.
-----
+---
 # Bactopia Tool - `amrfinderplus`
 The `amrfinderplus` module uses [AMRFinder+](https://github.com/ncbi/amr) to screen assemblies and proteins
 for antimicrobial resistance and virulence genes.

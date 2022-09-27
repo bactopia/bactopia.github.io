@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - ariba
 description: A Bactopia Tool which uses ARIBA to rapidly identify genes in a database by creating local assemblies.
-----
+---
 # Bactopia Tool - `ariba`
 The `ariba` module uses [ARIBA](https://github.com/sanger-pathogens/ariba) 
 to rapidly identify genes in a database by creating local assemblies.

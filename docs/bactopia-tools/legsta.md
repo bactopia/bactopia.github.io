@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - legsta
 description: A Bactopia Tool which uses legsta for _in silico_ _Legionella pneumophila_ Sequence Based Typing (SBT).
-----
+---
 # Bactopia Tool - `legsta`
 The `legsta` module uses [legsta](https://github.com/tseemann/legsta) for 
 _in silico_ _Legionella pneumophila_ Sequence Based Typing (SBT).

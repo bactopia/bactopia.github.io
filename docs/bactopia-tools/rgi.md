@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - rgi
 description: A Bactopia Tool which uses Resistance Gene Identifier (RGI) to identify antibiotic resistance genes in assemblies.
-----
+---
 # Bactopia Tool - `rgi`
 The `rgi` module uses [Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi) to identify antibiotic
 resistance genes in assemblies.

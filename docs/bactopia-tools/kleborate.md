@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - kleborate
 description: A Bactopia Tool which uses Kleborate to screen genome assemblies of _Klebsiella pneumoniae_ and the _Klebsiella pneumoniae_ species complex (KpSC).
-----
+---
 # Bactopia Tool - `kleborate`
 The `kleborate` module uses [Kleborate](https://github.com/katholt/Kleborate) to screen genome assemblies of 
 _Klebsiella pneumoniae_ and the _Klebsiella pneumoniae_ species complex (KpSC). Kleborate predicts:

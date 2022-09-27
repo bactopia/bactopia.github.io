@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - ismapper
 description: A Bactopia Tool which uses ISMapper to search for insertion sites in your samples.
-----
+---
 # Bactopia Tool - `ismapper`
 The `ismapper` module uses [ISMapper](https://github.com/jhawkey/IS_mapper) to search for 
 insertion sites in your samples.

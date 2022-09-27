@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - seqsero2
 description: A Bactopia Tool which uses SeqSero2 for Salmonella serotype prediction from reads and assemblies.
-----
+---
 # Bactopia Tool - `seqsero2`
 The `seqsero2` module uses [SeqSero2](https://github.com/denglab/SeqSero2) for Salmonella
 serotype prediction from reads and assemblies.

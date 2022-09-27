@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - mashdist
 description: A Bactopia Tool which uses Mash to determine the Mash distance from a given reference genome(s).
-----
+---
 # Bactopia Tool - `mashdist`
 The `mashdist` module uses [Mash](https://github.com/marbl/Mash) to determine the Mash
 distance from a given reference genome(s).

@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - kraken2
 description: A Bactopia Tool which uses Kraken2 to assign taxonomic classifications to your sequence reads.
-----
+---
 # Bactopia Tool - `kraken`
 The `kraken2` module uses [Kraken2](https://github.com/DerrickWood/kraken2) to assign taxonomic 
 classifications to your sequence reads.

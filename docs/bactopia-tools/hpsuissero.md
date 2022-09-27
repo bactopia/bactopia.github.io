@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - hpsuissero
 description: A Bactopia Tool which uses HpsuisSero to predict the serotype of _Haemophilus parasuis_ assemblies.
-----
+---
 # Bactopia Tool - `hpsuissero`
 The `hpsuissero` module uses [HpsuisSero](https://github.com/jimmyliu1326/HpsuisSero) to predict
 the serotype of _Haemophilus parasuis_ assemblies.

@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - hicap
 description: A Bactopia Tool which uses hicap along wih an assembly for the _in silico_ typing of the _Haemophilus influenzae_ cap locus.
-----
+---
 # Bactopia Tool - `hicap`
 The `hicap` module uses [hicap](https://github.com/scwatts/hicap) along wih an assembly for
 the _in silico_ typing of the _Haemophilus influenzae_ cap locus.

@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools - mcroni
 description: A Bactopia Tool which uses mcroni to identify _mcr-1_ genes in  assemblies.
-----
+---
 # Bactopia Tool - `mcroni`
 The `mcroni` module uses [mcroni](https://github.com/liampshaw/mcroni) to identify _mcr-1_ genes in 
 assemblies. If _mcr-1_ is found, the variations will be reported and available in an output FASTA file.
