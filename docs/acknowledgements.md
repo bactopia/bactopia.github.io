@@ -2,7 +2,7 @@
 title: Acknowledgements
 description: >- 
     A full list of the 140 datasets and software packages used by
-    Bactopia, along with links and citaions.
+    Bactopia, along with links and citations.
 ---
 # Acknowledgements
 
