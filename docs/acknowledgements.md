@@ -317,7 +317,7 @@ Fast and frugal disk based k-mer counter
 Deorowicz S, Kokot M, Grabowski Sz, Debudaj-Grabysz A [KMC 2: Fast and resource-frugal k-mer counting](https://doi.org/10.1093/bioinformatics/btv022) _Bioinformatics_ 31(10):1569–1576 (2015)
   
 50. __[Kraken2](https://github.com/DerrickWood/kraken2)__  
-  
+The second version of the Kraken taxonomic sequence classification system  
 Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
   
 51. __[legsta](https://github.com/tseemann/legsta)__  
