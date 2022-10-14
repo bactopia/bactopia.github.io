@@ -40,6 +40,14 @@ tools:
       description: "Add biological annotations to variants in a given VCF file"
 
 conda_submissions:
+    - title: "Added EToKi to Bioconda"
+      date: 2022-09-22
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/37069"
+      pr_name: "bioconda/bioconda-recipes#37069"
+      tool: "EToKi"
+      tool_url: "https://github.com/zheminzhou/EToKi"
+      description: "all methods related to Enterobase"
+
     - title: "Added pHierCC to Bioconda"
       date: 2022-09-22
       pr_url: "https://github.com/bioconda/bioconda-recipes/pull/37070"
@@ -511,6 +519,22 @@ conda_updates:
       tool_url: "https://github.com/WGS-TB/MentaLiST"
       
 nfcore_modules:
+    - title: "fix a few tests after restructure"
+      date: 2022-10-11
+      pr_url: "https://github.com/nf-core/modules/pull/2252"
+      pr_name: "nf-core/modules#2234"
+      new_module: false
+      tool: "nf-core/modules"
+      tool_url: "https://github.com/nf-core/modules"
+
+    - title: "add biohansel module"
+      date: 2022-10-11
+      pr_url: "https://github.com/nf-core/modules/pull/2234"
+      pr_name: "nf-core/modules#2234"
+      new_module: true
+      tool: "Biohansel"
+      tool_url: "https://github.com/phac-nml/biohansel"
+
     - title: "add pbptyper module"
       date: 2022-09-02
       pr_url: "https://github.com/nf-core/modules/pull/2005"
@@ -984,6 +1008,20 @@ nfcore_modules:
       tool_url: "https://github.com/tseemann/prokka"
 
 other:
+    - title: "let tempfile determine where to put temp files"
+      date: 2022-09-27
+      pr_url: "https://github.com/lskatz/EToKi/pull/2"
+      pr_name: "lskatz/EToKi#2"
+      tool: "EToKi"
+      tool_url: "https://github.com/lskatz/EToKi"
+      
+    - title: "Allow multiple path parameters on the configure step"
+      date: 2022-09-27
+      pr_url: "https://github.com/lskatz/EToKi/pull/1"
+      pr_name: "lskatz/EToKi#1"
+      tool: "EToKi"
+      tool_url: "https://github.com/lskatz/EToKi"
+
     - title: "let tempfile determine temp dir location"
       date: 2022-06-14
       pr_url: "https://github.com/sanger-pathogens/seroba/pull/68"
