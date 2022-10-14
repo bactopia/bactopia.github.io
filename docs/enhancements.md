@@ -22,7 +22,7 @@ few design requirements:
 !!! tip "Bactopia has provided 155+ contributions to the bioinformatics community"
     - [x] 10 stand-alone tools, each available from Bioconda
     - [x] 29 new Conda recipes, 35 
-    updated recipes, and [1,500+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
+    updated recipes, and [1,750+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
     - [x] 61 contributions to nf-core/modules
     - [x] 20 contributions to other tools
     
@@ -103,7 +103,7 @@ to rapidly begin using these tools for their own analyses, and include:
 
 !!! note "Every recipe gets a Docker and Singularity container"
     Sometimes overlooked, its important to reinterate, every recipe added to Bioconda has a 
-    Docker container created [Biocontainers](https://biocontainers.pro/), and a Singularity
+    Docker container created by [Biocontainers](https://biocontainers.pro/), and a Singularity
     container created by the [Galaxy Project](https://galaxyproject.org/). These containers 
     allow for version controlled reproducible analyses.
 
