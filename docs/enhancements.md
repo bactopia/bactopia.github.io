@@ -1,7 +1,7 @@
 ---
 title: Enhancements to OSS
 description: >-
-    Learn how Bactopia design principles have led to more than 150
+    Learn how Bactopia design principles have led to more than 155
     contributions to the bioinformatics community.
 ---
 # Enhancements to Open Source Software
@@ -19,12 +19,12 @@ few design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 150+ contributions to the bioinformatics community"
+!!! tip "Bactopia has provided 155+ contributions to the bioinformatics community"
     - [x] 10 stand-alone tools, each available from Bioconda
-    - [x] 28 new Conda recipes, 35 
+    - [x] 29 new Conda recipes, 35 
     updated recipes, and [1,500+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
-    - [x] 59 contributions to nf-core/modules
-    - [x] 18 contributions to other tools
+    - [x] 61 contributions to nf-core/modules
+    - [x] 20 contributions to other tools
     
     These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
 
@@ -58,12 +58,12 @@ that doesn't end with `conda install! For every recipe added to Bioconda, a Dock
 [Galaxy Project](https://galaxyproject.org/). At the end of the day, a single recipe makes a huge contribution
 to the community.
 
-Bactopia has led to  28 new recipes, 35 updated recipes, and 
+Bactopia has led to  29 new recipes, 35 updated recipes, and 
 [more than 1,000 pull requests have been reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
 
 ### New Recipes
 
-Bactopia has led to the addition of 28 new recipes to
+Bactopia has led to the addition of 29 new recipes to
 [Bioconda](https://bioconda.github.io/) and [conda-forge](https://conda-forge.org/). These new recipes allow users
 to rapidly begin using these tools for their own analyses, and include:
 
@@ -74,6 +74,7 @@ to rapidly begin using these tools for their own analyses, and include:
 | [bactopia](https://github.com/bactopia/bactopia) | A flexible pipeline for complete analysis of bacterial genomes | [bioconda/bioconda-recipes#17434](https://github.com/bioconda/bioconda-recipes/pull/17434) |
 | [Dragonflye](https://github.com/rpetit3/dragonflye) | Assemble bacterial isolate genomes from Nanopore reads | [bioconda/bioconda-recipes#29696](https://github.com/bioconda/bioconda-recipes/pull/29696) |
 | [ena-dl](https://github.com/rpetit3/ena-dl) | Download FASTQ files from ENA | [bioconda/bioconda-recipes#17354](https://github.com/bioconda/bioconda-recipes/pull/17354) |
+| [EToKi](https://github.com/zheminzhou/EToKi) | all methods related to Enterobase | [bioconda/bioconda-recipes#37069](https://github.com/bioconda/bioconda-recipes/pull/37069) |
 | [executor](https://github.com/xolox/python-executor) | programmer friendly Python subprocess wrapper | [conda-forge/staged-recipes#9457](https://github.com/conda-forge/staged-recipes/pull/9457) |
 | [fastq-dl](https://github.com/rpetit3/fastq-dl) | Download FASTQ files from SRA or ENA repositories. | [bioconda/bioconda-recipes#18252](https://github.com/bioconda/bioconda-recipes/pull/18252) |
 | [fastq-scan](https://github.com/rpetit3/fastq-scan) | Output FASTQ summary statistics in JSON format | [bioconda/bioconda-recipes#11415](https://github.com/bioconda/bioconda-recipes/pull/11415) |
@@ -159,11 +160,13 @@ own Nextflow DSL2 pipelines. To facilitate this, A requirement was made that eac
 [Bactopia Tool](https://bactopia.github.io/bactopia-tools/), separate workflows, would require that a corresponding 
 module be available from nf-core/modules, and if its not available it would be added.
 
-By adopting this practice, there have been 59 contributions to nf-core/modules in the 
+By adopting this practice, there have been 61 contributions to nf-core/modules in the 
 form of new modules, module updates, and testing adjustments.
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [nf-core/modules](https://github.com/nf-core/modules) | fix a few tests after restructure | [nf-core/modules#2234](https://github.com/nf-core/modules/pull/2252) |
+| [Biohansel](https://github.com/phac-nml/biohansel) | add biohansel module | [nf-core/modules#2234](https://github.com/nf-core/modules/pull/2234) |
 | [pbptyper](https://github.com/rpetit3/pbptyper) | add pbptyper module | [nf-core/modules#2005](https://github.com/nf-core/modules/pull/2005) |
 | [pasty](https://github.com/rpetit3/pasty) | add module for pasty | [nf-core/modules#2003](https://github.com/nf-core/modules/pull/2003) |
 | [snippy-core](https://github.com/tseemann/snippy) | add snippy/core module | [nf-core/modules#1855](https://github.com/nf-core/modules/pull/1855) |
@@ -227,10 +230,12 @@ form of new modules, module updates, and testing adjustments.
 
 ## Other Contributions
 
-In addition to Bioconda and nf-core/modules, Bactopia has made 18 contributions to other tools including:
+In addition to Bioconda and nf-core/modules, Bactopia has made 20 contributions to other tools including:
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [EToKi](https://github.com/lskatz/EToKi) | let tempfile determine where to put temp files | [lskatz/EToKi#2](https://github.com/lskatz/EToKi/pull/2) |
+| [EToKi](https://github.com/lskatz/EToKi) | Allow multiple path parameters on the configure step | [lskatz/EToKi#1](https://github.com/lskatz/EToKi/pull/1) |
 | [Seroba](https://github.com/sanger-pathogens/seroba) | let tempfile determine temp dir location | [sanger-pathogens/seroba#68](https://github.com/sanger-pathogens/seroba/pull/68) |
 | [pymummer](https://github.com/sanger-pathogens/pymummer) | allow the user to specify temp dir or use the system default | [sanger-pathogens/pymummer#36](https://github.com/sanger-pathogens/pymummer/pull/36) |
 | [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper) | Fix install process | [CFSAN-Biostatistics/shigatyper#10](https://github.com/CFSAN-Biostatistics/shigatyper/pull/10) |
