@@ -8,8 +8,13 @@ Below are links to talks, posters, and blog posts associated with Bactopia.
 
 ## Talks
 
+- _Designing mechanisms into Bactopia to support its users and contribute back to the community (October 2022)_  
+A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Nextflow Summit 2022](https://summit.nextflow.io/). This is a brief talk on how Bactopia was designed to reduce the maintenance burden while contributing back to the community.  
+Video: [YouTube]([https://www.youtube.com/watch?v=egjgcmeJ0wQ](https://t.co/XBeXLIRJ8S))  
+Slides: [PDF](/data/resources/2022-nextflow-summit.pdf)  
+
 - _Bactopia & it's usage of nf-core components (July 2022)_  
-A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [nf-core Bytesize sries]([https://twitter.com/AfriBioinfoNet/status/1514593623710519299?s=20&t=ntqNaWDlqXt-M946vRtF3g](https://nf-co.re/events/2022/bytesize-bactopia)). This is a brief talk on how Bactopia has modified and applied some nf-core components.  
+A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [nf-core Bytesize sries](https://nf-co.re/events/2022/bytesize-bactopia). This is a brief talk on how Bactopia has modified and applied some nf-core components.  
 Video: [YouTube](https://www.youtube.com/watch?v=egjgcmeJ0wQ)  
 Slides: [PDF](/data/resources/2022-nf-core-bytesize-bactopia.pdf)  
 
@@ -42,6 +47,14 @@ The talk presented by [Dr. Timothy Read](https://twitter.com/tdread_emory) at NI
 Slides: [Web](https://bit.ly/3lQpZKo), [PDF](/data/resources/2020-niaid-bactopia-staphopia.pdf)  
 
 ## Posters
+
+- _Using Bactopia for highly scalable, portable and customizable bacterial genome analyses_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [ASM Conference on Rapid Applied Microbial Next-Generation Sequencing and Bioinformatic Pipelines (ASMNGS)](https://asm.org/Events/ASM-NGS/Home) conference outlining how Bactopia was designed to reduce the maintenance burden while contributing back to the community.  
+Slides: [Web](https://bit.ly/3QCgrkB), [PDF](/data/resources/2022-asmngs-poster.pdf) 
+
+- _Using Bactopia for highly scalable, portable and customizable bacterial genome analyses_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [11th International Conference on Emerging Infectious Diseases (ICEID)](https://www.iceid.org/) outlining how you can use Bactopia in your bacterial genome analyses.  
+Slides: [PDF](/data/resources/2022-iceid-poster-final.pdf) 
 
 - _Using Bactopia for highly scalable, portable and customizable bacterial genome analyses_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) in-person conference outlining how you can use Bactopia in your bacterial genome analyses.  
