@@ -217,6 +217,9 @@ If you use Bactopia and `ngmaster` in your analysis, please cite the following.
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+    Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+  
 - [ngmaster](https://github.com/MDU-PHL/ngmaster)  
     Kwong J, Gonçalves da Silva A, Schultz M, Seeman T [ngmaster - _In silico_ multi-antigen sequence typing for _Neisseria gonorrhoeae_ (NG-MAST)](https://github.com/MDU-PHL/ngmaster) (GitHub)
   

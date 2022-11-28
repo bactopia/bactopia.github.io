@@ -1,35 +1,33 @@
 ---
-title: sistr
-description: A Bactopia Tool which uses Salmonella In Silico Typing Resource, or SISTR, for serovar prediction of Salmonella assemblies.
+title: shigeifinder
+description: A Bactopia Tool which uses ShigEiFinder to conduct _in silico_ prediction of serotype for Shigella and EIEC genomes.
 ---
-# Bactopia Tool - `sistr`
-The `sistr` module uses [Salmonella In Silico Typing Resource](https://github.com/phac-nml/sistr_cmd),
-or SISTR, for serovar prediction of Salmonella assemblies.
+# Bactopia Tool - `shigeifinder`
+The `shigeifinder` module used [ShigEiFinder](https://github.com/LanLab/ShigEiFinder) to conduct
+_in silico_ prediction of serotype for Shigella and EIED. It uses the genome assemblies
+tp provide basic species identification and the predicted serotype (e.g. O174:H21).
 
 
 ## Example Usage
 ```
-bactopia --wf sistr \
+bactopia --wf shigeifinder \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `sistr` tool. Where possible the 
+Below is the default output structure for the `shigeifinder` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
-sistr/
+shigeifinder/
 ├── <SAMPLE_NAME>
-│   ├── <SAMPLE_NAME>-allele.fasta.gz
-│   ├── <SAMPLE_NAME>-allele.json.gz
-│   ├── <SAMPLE_NAME>-cgmlst.csv
-│   ├── <SAMPLE_NAME>.tsv
-│   └── logs
-│       └── sistr
-│           ├── nf-sistr.{begin,err,log,out,run,sh,trace}
-│           └── versions.yml
+│   ├── logs
+│   │   └── shigeifinder
+│   │       ├── nf-shigeifinder.{begin,err,log,out,run,sh,trace}
+│   │       └── versions.yml
+│   └── <SAMPLE_NAME>.tsv
 ├── logs
 │   ├── csvtk_concat
 │   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
@@ -38,21 +36,21 @@ sistr/
 │       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
 │       └── versions.yml
 ├── nf-reports
-│   ├── sistr-dag.dot
-│   ├── sistr-report.html
-│   ├── sistr-timeline.html
-│   └── sistr-trace.txt
-├── sistr.tsv
-├── software_versions.yml
-└── software_versions_mqc.yml
+│   ├── shigeifinder-dag.dot
+│   ├── shigeifinder-report.html
+│   ├── shigeifinder-timeline.html
+│   └── shigeifinder-trace.txt
+├── shigeifinder.tsv
+├── software_versions_mqc.yml
+└── software_versions.yml
 
 ```
 
 !!! info "Directory structure might be different"
 
-    `sistr` is available as a standalone Bactopia Tool, as well as from
+    `shigeifinder` is available as a standalone Bactopia Tool, as well as from
     the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
-    from Bactopia, the `sistr` directory structure might be different, but the
+    from Bactopia, the `shigeifinder` directory structure might be different, but the
     output descriptions below still apply.
 
 
@@ -66,20 +64,17 @@ Below are results that are in the base directory.
 
 | Filename    | Description |
 |-------------|-------------|
-| sistr.tsv  | A merged TSV file with `SISTR` results from all samples |
+| shigeifinder.tsv | A merged TSV file with `shigeifinder` results from all samples |
 
 
-#### SISTR
+#### shigeifinder
 
-Below is a description of the _per-sample_ results from [SISTR](https://github.com/phac-nml/sistr_cmd).
+Below is a description of the _per-sample_ results from [ShigEiFinder](https://github.com/LanLab/ShigEiFinder).
 
 
-| Filename                 | Description |
-|--------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;-allele.fasta.gz  | A FASTA file of the cgMLST allele search results  |
-| &lt;SAMPLE_NAME&gt;-allele.json.gz  | JSON formated cgMLST allele search results, see [SISTR - cgMLST search results](https://github.com/phac-nml/sistr_cmd#cgmlst-allele-search-results) for more details |
-| &lt;SAMPLE_NAME&gt;-cgmlst.csv  | A comma-delimited summary of the cgMLST allele search results |
-| &lt;SAMPLE_NAME&gt;.tsv  | A tab-delimited file with `SISTR` results, see [SISTR - Primary results](https://github.com/phac-nml/sistr_cmd#primary-results-output--o-sistr-results) for more details |
+| Extension    | Description |
+|--------------|-------------|
+| .tsv         | A tab-delimited file with the predicted Shigella or EIEC serotype |
 
 
 
@@ -112,10 +107,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| sistr-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| sistr-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| sistr-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| sistr-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| shigeifinder-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| shigeifinder-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| shigeifinder-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| shigeifinder-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -146,12 +141,11 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### SISTR Parameters
+### ShigEiFinder Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--full_cgmlst` |  Use the full set of cgMLST alleles which can include highly similar alleles | False |
 
 
 ### Optional Parameters
@@ -217,7 +211,7 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `sistr` in your analysis, please cite the following.
+If you use Bactopia and `shigeifinder` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
@@ -226,6 +220,6 @@ If you use Bactopia and `sistr` in your analysis, please cite the following.
 - [csvtk](https://bioinf.shenwei.me/csvtk/)  
     Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
   
-- [SISTR](https://github.com/phac-nml/sistr_cmd)  
-    Yoshida CE, Kruczkiewicz P, Laing CR, Lingohr EJ, Gannon VPJ, Nash JHE, Taboada EN [The Salmonella In Silico Typing Resource (SISTR): An Open Web-Accessible Tool for Rapidly Typing and Subtyping Draft Salmonella Genome Assemblies.](https://doi.org/10.1371/journal.pone.0147101) _PloS One_, 11(1), e0147101. (2016)
+- [ShigEiFinder](https://github.com/LanLab/ShigEiFinder)  
+    Zhang X, Payne M, Nguyen T, Kaur S, Lan R [Cluster-specific gene markers enhance Shigella and enteroinvasive Escherichia coli in silico serotyping.](https://doi.org/10.1099/mgen.0.000704) Microbial Genomics, 7(12). (2021)
   

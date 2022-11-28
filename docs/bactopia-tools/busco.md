@@ -246,3 +246,6 @@ If you use Bactopia and `busco` in your analysis, please cite the following.
 - [BUSCO](https://gitlab.com/ezlab/busco)  
     Manni M, Berkeley MR, Seppey M, Simão FA, Zdobnov EM [BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes.](https://doi.org/10.1093/molbev/msab199) _Molecular Biology and Evolution_ 38(10), 4647–4654. (2021)
   
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+    Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+  

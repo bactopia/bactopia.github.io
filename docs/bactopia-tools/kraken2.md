@@ -128,7 +128,7 @@ Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--kraken2_db` | The path to a Kraken2 formatted database |  |
+| `--kraken2_db` | The a single tarball or path to a Kraken2 formatted database |  |
 | `--quick_mode` | Quick operation (use first hit or hits) | False |
 | `--confidence` | Confidence score threshold between 0 and 1 | 0.0 |
 | `--minimum_base_quality` | Minimum base quality used in classification | 0 |

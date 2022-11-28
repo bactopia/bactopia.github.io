@@ -206,6 +206,9 @@ If you use Bactopia and `mcroni` in your analysis, please cite the following.
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+    Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+  
 - [mcroni](https://github.com/liampshaw/mcroni)  
     Shaw L [mcroni: Scripts for finding and processing promoter variants upstream of mcr-1](https://github.com/liampshaw/mcroni) (GitHub)
   

@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools
 description: >-
-    More than 44 additional workflows to allow you to easily
+    More than 47 additional workflows to allow you to easily
     dive further into your Bactopia results.
 ---
 # Overview
@@ -16,7 +16,7 @@ you valuable time by allowing you to make further use of the
 [many output files](output-overview/) to extend your analyses.
 
 ### Available Bactopia Tools
-There are currently 44 Bactopia Tools that you can make use of.
+There are currently 47 Bactopia Tools that you can make use of.
 Below are a list of available Bactopia Tools, grouped as __Subworkflows__ and __Modules__. 
 
 #### Subworkflows (8)
@@ -35,7 +35,7 @@ tools to create an complete pipeline.
     | [staphtyper](/bactopia-tools/staphtyper/) | Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes |
     
 
-#### Modules  (36)
+#### Modules  (39)
 Modules are workflows consisting of only one tool.
 
 | Module | Description |
@@ -65,12 +65,15 @@ Modules are workflows consisting of only one tool.
     | [mobsuite](/bactopia-tools/mobsuite/) | Reconstruct and annotate plasmids in bacterial assemblies |
     | [mykrobe](/bactopia-tools/mykrobe/) | Antimicrobial resistance detection for specific species |
     | [ngmaster](/bactopia-tools/ngmaster/) | Multi-antigen sequence typing for _Neisseria gonorrhoeae_ |
+    | [pasty](/bactopia-tools/pasty/) | in silico serogrouping of Pseudomonas aeruginosa isolates |
+    | [pbptyper](/bactopia-tools/pbptyper/) | Penicillin Binding Protein (PBP) typer for Streptococcus pneumoniae |
     | [plasmidfinder](/bactopia-tools/plasmidfinder/) | Plasmid identification from assemblies |
     | [prokka](/bactopia-tools/prokka/) | Whole genome annotation of small genomes (bacterial, archeal, viral) |
     | [rgi](/bactopia-tools/rgi/) | Predict antibiotic resistance from assemblies |
     | [seqsero2](/bactopia-tools/seqsero2/) | Salmonella serotype prediction from reads or assemblies |
     | [seroba](/bactopia-tools/seroba/) | Serotyping of Streptococcus pneumoniae from sequence reads |
     | [shigatyper](/bactopia-tools/shigatyper/) | Shigella serotype from Illumina or Oxford Nanopore reads |
+    | [shigeifinder](/bactopia-tools/shigeifinder/) | Shigella and EIEC serotyping from assemblies |
     | [sistr](/bactopia-tools/sistr/) | Serovar prediction of Salmonella assemblies |
     | [spatyper](/bactopia-tools/spatyper/) | Computational method for finding spa types in _Staphylococcus aureus_ |
     | [ssuissero](/bactopia-tools/ssuissero/) | Serotype prediction of _Streptococcus suis_ assemblies |

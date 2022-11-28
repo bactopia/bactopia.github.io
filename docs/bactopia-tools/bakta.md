@@ -139,14 +139,6 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### Bakta Download Parameters
-
-
-| Parameter | Description | Default |
-|---|---|---|
-| `--bakta_db` | Path to the Bakta database |  |
-| `--download_bakta` | Download the Bakta database to the path given by --bakta_db | False |
-
 ### Bakta Parameters
 
 

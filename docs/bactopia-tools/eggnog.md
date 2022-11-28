@@ -134,8 +134,9 @@ Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--eggnog` | Path to existing or destination for eggNOG databases |  |
+| `--eggnog` | Tarball or path to eggNOG databases |  |
 | `--download_eggnog` | Required if downloading latest eggNOG database, will overwrite existing databases. | False |
+| `--eggnog_save_as_tarball` | Save the eggNOG database as a single tarball |  |
 | `--skip_diamond` | Do not install the diamond database | False |
 | `--install_mmseq` | Install the MMseqs2 database | False |
 | `--install_pfam` | Install the Pfam database, required for de novo annotation or realignment | False |

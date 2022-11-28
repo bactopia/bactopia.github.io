@@ -224,3 +224,6 @@ If you use Bactopia and `agrvate` in your analysis, please cite the following.
 - [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)  
     Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
   
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+    Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+  

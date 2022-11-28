@@ -10,16 +10,17 @@ Currently Merlin knows 16 spells for which cover the following:
 
 | Genus/Species | Tools |
 |---------------|-------|
-| Escherichia   | [ECTyper](/bactopia-tools/ectyper/)  |
+| Escherichia / Shigella   | [ECTyper](/bactopia-tools/ectyper/), [ShigaTyper](/bactopia-tools/shigtyper/), [ShigEiFinder](/bactopia-tools/shigeityper/)  |
 | Haemophilus   | [hicap](/bactopia-tools/hicap/), [HpsuisSero](/bactopia-tools/ssuissero/) |
 | Klebsiella | [Kleborate](/bactopia-tools/kleborate/) |
 | Legionella | [legsta](/bactopia-tools/legsta/) |
 | Listeria | [LisSero](/bactopia-tools/lissero/) |
 | Mycobacterium | [TBProfiler](/bactopia-tools/tbprofiler/) |
 | Neisseria | [meningotype](/bactopia-tools/meningotype/), [ngmaster](/bactopia-tools/ngmaster/) |
+| Pseudomonas | [pasty](/bactopia-tools/pasty/) |
 | Salmonella | [SeqSero2](/bactopia-tools/seqsero2/), [SISTR](/bactopia-tools/sistr/) |
 | Staphylococcus | [AgrVATE](/bactopia-tools/agrvate/), [spaTyper](/bactopia-tools/spatyper/), [staphopia-sccmec](/bactopia-tools/staphopiasccmec/) |
-| Streptococcus | [emmtyper](/bactopia-tools/emmtyper/), [SsuisSero](/bactopia-tools/ssuissero/) |
+| Streptococcus | [emmtyper](/bactopia-tools/emmtyper/), [pbptyper](/bactopia-tools/pbptyper/), [SsuisSero](/bactopia-tools/ssuissero/) |
 
 Merlin is avialable as an independent Bactopia Tool, or in the Bactopia with the `--ask_merlin` parameter. Even better,
 if you want to force Merlin to execute all species-specific tools (no matter the distance), you can use `--full_merlin`.
@@ -479,6 +480,17 @@ Use these parameters to specify which samples to include or exclude.
 | Parameter | Description | Default |
 |---|---|---|
 
+### GenoTyphi Parameters
+
+
+| Parameter | Description | Default |
+|---|---|---|
+| `--kmer` | K-mer length | 21 |
+| `--min_depth` | Minimum depth | 1 |
+| `--model` | Genotype model used. | kmer_count |
+| `--report_all_calls` | Report all calls | False |
+| `--mykrobe_opts` | Extra Mykrobe options in quotes |  |
+
 ### Kleborate Parameters
 
 
@@ -526,6 +538,23 @@ You can use these parameters to fine-tune your meningotype analysis
 |---|---|---|
 | `--csv` | output comma-separated format (CSV) rather than tab-separated | False |
 
+### pasty Parameters
+
+
+| Parameter | Description | Default |
+|---|---|---|
+| `--pasty_min_pident` | Minimum percent identity to count a hit | 95 |
+| `--pasty_min_coverage` | Minimum percent coverage to count a hit | 95 |
+
+### pbptyper Parameters
+
+
+| Parameter | Description | Default |
+|---|---|---|
+| `--pbptyper_min_pident` | Minimum percent identity to count a hit | 95 |
+| `--pbptyper_min_coverage` | Minimum percent coverage to count a hit | 95 |
+| `--pbptyper_min_ani` | Minimum S. pneumoniae ANI to predict PBP Type | 95 |
+
 ### SeqSero2 Parameters
 
 
@@ -534,6 +563,18 @@ You can use these parameters to fine-tune your meningotype analysis
 | `--run_mode` | Workflow to run. 'a' allele mode, or 'k' k-mer mode | k |
 | `--input_type` | Input format to analyze. 'assembly' or 'fastq' | assembly |
 | `--bwa_mode` | Algorithms for bwa mapping for allele mode | mem |
+
+### ShigaTyper Parameters
+
+
+| Parameter | Description | Default |
+|---|---|---|
+
+### ShigEiFinder Parameters
+
+
+| Parameter | Description | Default |
+|---|---|---|
 
 ### SISTR Parameters
 
@@ -654,10 +695,16 @@ If you use Bactopia and `merlin` in your analysis, please cite the following.
 - [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)  
     Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
   
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+    Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+  
 - [ECTyper](https://github.com/phac-nml/ecoli_serotyping)  
     Laing C, Bessonov K, Sung S, La Rose C [ECTyper - In silico prediction of _Escherichia coli_ serotype](https://github.com/phac-nml/ecoli_serotyping) (GitHub)  
 - [emmtyper](https://github.com/MDU-PHL/emmtyper)  
     Tan A, Seemann T, Lacey D, Davies M, Mcintyre L, Frost H, Williamson D, Gonçalves da Silva A [emmtyper - emm Automatic Isolate Labeller](https://github.com/MDU-PHL/emmtyper) (GitHub)
+  
+- [GenoTyphi](https://github.com/katholt/genotyphi)  
+    Wong VK, Baker S, Connor TR, Pickard D, Page AJ, Dave J, Murphy N, Holliman R, Sefton A, Millar M, Dyson ZA, Dougan G, Holt KE, & International Typhoid Consortium. [An extended genotyping framework for Salmonella enterica serovar Typhi, the cause of human typhoid](https://doi.org/10.1038/ncomms12827) _Nature Communications_ 7, 12827. (2016)
   
 - [hicap](https://github.com/scwatts/hicap)  
     Watts SC, Holt KE [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) _Journal of Clinical Microbiology_ JCM.00190-19 (2019)
@@ -680,11 +727,26 @@ If you use Bactopia and `merlin` in your analysis, please cite the following.
 - [meningotype](https://github.com/MDU-PHL/meningotype)  
     Kwong JC, Gonçalves da Silva A, Stinear TP, Howden BP, & Seemann T [meningotype: in silico typing for _Neisseria meningitidis_.](https://github.com/MDU-PHL/meningotype) (GitHub)
   
+- [Mykrobe](https://github.com/Mykrobe-tools/mykrobe)  
+    Hunt M, Bradley P, Lapierre SG, Heys S, Thomsit M, Hall MB, Malone KM, Wintringer P, Walker TM, Cirillo DM, Comas I, Farhat MR, Fowler P, Gardy J, Ismail N, Kohl TA, Mathys V, Merker M, Niemann S, Omar SV, Sintchenko V, Smith G, Supply P, Tahseen S, Wilcox M, Arandjelovic I, Peto TEA, Crook, DW, Iqbal Z [Antibiotic resistance prediction for Mycobacterium tuberculosis from genome sequence data with Mykrobe](https://doi.org/10.12688/wellcomeopenres.15603.1) _Wellcome Open Research_ 4, 191. (2019)
+  
 - [ngmaster](https://github.com/MDU-PHL/ngmaster)  
     Kwong J, Gonçalves da Silva A, Schultz M, Seeman T [ngmaster - _In silico_ multi-antigen sequence typing for _Neisseria gonorrhoeae_ (NG-MAST)](https://github.com/MDU-PHL/ngmaster) (GitHub)
   
+- [pasty](https://github.com/rpetit3/pasty)  
+    Petit III RA [pasty: in silico serogrouping of _Pseudomonas aeruginosa_ isolates](https://github.com/rpetit3/pasty) (GitHub)
+  
+- [pbptyper](https://github.com/rpetit3/pbptyper)  
+    Petit III RA [pbptyper: In silico Penicillin Binding Protein (PBP) typer for _Streptococcus pneumoniae_ assemblies](https://github.com/rpetit3/pbptyper) (GitHub)
+  
 - [SeqSero2](https://github.com/denglab/SeqSero2)  
     Zhang S, Den-Bakker HC, Li S, Dinsmore BA, Lane C, Lauer AC, Fields PI, Deng X. [SeqSero2: rapid and improved Salmonella serotype determination using whole genome sequencing data.](https://doi.org/10.1128/AEM.01746-19) _Appl Environ Microbiology_ 85(23):e01746-19 (2019)
+  
+- [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper)  
+    Wu Y, Lau HK, Lee T, Lau DK, Payne J [In Silico Serotyping Based on Whole-Genome Sequencing Improves the Accuracy of Shigella Identification.](https://doi.org/10.1128/AEM.00165-19) *Applied and Environmental Microbiology*, 85(7). (2019)
+  
+- [ShigEiFinder](https://github.com/LanLab/ShigEiFinder)  
+    Zhang X, Payne M, Nguyen T, Kaur S, Lan R [Cluster-specific gene markers enhance Shigella and enteroinvasive Escherichia coli in silico serotyping.](https://doi.org/10.1099/mgen.0.000704) Microbial Genomics, 7(12). (2021)
   
 - [SISTR](https://github.com/phac-nml/sistr_cmd)  
     Yoshida CE, Kruczkiewicz P, Laing CR, Lingohr EJ, Gannon VPJ, Nash JHE, Taboada EN [The Salmonella In Silico Typing Resource (SISTR): An Open Web-Accessible Tool for Rapidly Typing and Subtyping Draft Salmonella Genome Assemblies.](https://doi.org/10.1371/journal.pone.0147101) _PloS One_, 11(1), e0147101. (2016)

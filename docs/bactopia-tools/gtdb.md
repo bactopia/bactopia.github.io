@@ -164,8 +164,9 @@ Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--gtdb` | Location of a GTDB database. If a database is not found, you must use '--download_gtdb' |  |
+| `--gtdb` | Tarball or path of a GTDB database. If a database is not found, you must use '--download_gtdb' |  |
 | `--download_gtdb` | Download the latest GTDB database, even it exists | False |
+| `--gtdb_save_as_tarball` | Download the latest GTDB database, and save it in a single tarball | False |
 | `--skip_check` | Do not check the installation of GTDB database | False |
 
 ### GTDB Classify Parameters

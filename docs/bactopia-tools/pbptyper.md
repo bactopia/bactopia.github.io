@@ -1,58 +1,51 @@
 ---
-title: sistr
-description: A Bactopia Tool which uses Salmonella In Silico Typing Resource, or SISTR, for serovar prediction of Salmonella assemblies.
+title: pbptyper
+description: A Bactopia Tool which uses pbptyper for typing the Penicillin Binding Protein (PBP) of _Streptococcus pneumoniae_ assemblies.
 ---
-# Bactopia Tool - `sistr`
-The `sistr` module uses [Salmonella In Silico Typing Resource](https://github.com/phac-nml/sistr_cmd),
-or SISTR, for serovar prediction of Salmonella assemblies.
+# Bactopia Tool - `pbptyper`
+The `pbptyper` module uses [pbptyper](https://github.com/rpetit3/pbptyper) for typing
+the Penicillin Binding Protein (PBP) of _Streptococcus pneumoniae_ assemblies.
 
 
 ## Example Usage
 ```
-bactopia --wf sistr \
+bactopia --wf pbptyper \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `sistr` tool. Where possible the 
+Below is the default output structure for the `pbptyper` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
-sistr/
+pbptyper/
 ├── <SAMPLE_NAME>
-│   ├── <SAMPLE_NAME>-allele.fasta.gz
-│   ├── <SAMPLE_NAME>-allele.json.gz
-│   ├── <SAMPLE_NAME>-cgmlst.csv
+│   ├── <SAMPLE_NAME>-{1A,2B,2X}.tblastn.tsv
 │   ├── <SAMPLE_NAME>.tsv
 │   └── logs
-│       └── sistr
-│           ├── nf-sistr.{begin,err,log,out,run,sh,trace}
+│       └── pbptyper
+│           ├── nf-pbptyper.{begin,err,log,out,run,sh,trace}
 │           └── versions.yml
 ├── logs
-│   ├── csvtk_concat
-│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
-│   │   └── versions.yml
-│   └── custom_dumpsoftwareversions
-│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│   └── csvtk_concat
+│       ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
 │       └── versions.yml
 ├── nf-reports
-│   ├── sistr-dag.dot
-│   ├── sistr-report.html
-│   ├── sistr-timeline.html
-│   └── sistr-trace.txt
-├── sistr.tsv
-├── software_versions.yml
-└── software_versions_mqc.yml
+│   ├── pbptyper-dag.dot
+│   ├── pbptyper-report.html
+│   ├── pbptyper-timeline.html
+│   └── pbptyper-trace.txt
+└── pbptyper.tsv
 
 ```
 
 !!! info "Directory structure might be different"
 
-    `sistr` is available as a standalone Bactopia Tool, as well as from
+    `pbptyper` is available as a standalone Bactopia Tool, as well as from
     the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
-    from Bactopia, the `sistr` directory structure might be different, but the
+    from Bactopia, the `pbptyper` directory structure might be different, but the
     output descriptions below still apply.
 
 
@@ -66,20 +59,18 @@ Below are results that are in the base directory.
 
 | Filename    | Description |
 |-------------|-------------|
-| sistr.tsv  | A merged TSV file with `SISTR` results from all samples |
+| pbptyper.tsv | A merged TSV file with `pbptyper` results from all samples |
 
 
-#### SISTR
+#### pbptyper
 
-Below is a description of the _per-sample_ results from [SISTR](https://github.com/phac-nml/sistr_cmd).
+Below is a description of the _per-sample_ results from [pbptyper](https://github.com/rpetit3/pbptyper).
 
 
-| Filename                 | Description |
-|--------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;-allele.fasta.gz  | A FASTA file of the cgMLST allele search results  |
-| &lt;SAMPLE_NAME&gt;-allele.json.gz  | JSON formated cgMLST allele search results, see [SISTR - cgMLST search results](https://github.com/phac-nml/sistr_cmd#cgmlst-allele-search-results) for more details |
-| &lt;SAMPLE_NAME&gt;-cgmlst.csv  | A comma-delimited summary of the cgMLST allele search results |
-| &lt;SAMPLE_NAME&gt;.tsv  | A tab-delimited file with `SISTR` results, see [SISTR - Primary results](https://github.com/phac-nml/sistr_cmd#primary-results-output--o-sistr-results) for more details |
+| Extension    | Description |
+|--------------|-------------|
+| .tblastn.tsv | A tab-delimited file of all blast hits |
+| .tsv         | A tab-delimited file with the predicted PBP type |
 
 
 
@@ -112,10 +103,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| sistr-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| sistr-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| sistr-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| sistr-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| pbptyper-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| pbptyper-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| pbptyper-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| pbptyper-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -146,12 +137,14 @@ Use these parameters to specify which samples to include or exclude.
 | `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
 
 
-### SISTR Parameters
+### pbptyper Parameters
 
 
 | Parameter | Description | Default |
 |---|---|---|
-| `--full_cgmlst` |  Use the full set of cgMLST alleles which can include highly similar alleles | False |
+| `--pbptyper_min_pident` | Minimum percent identity to count a hit | 95 |
+| `--pbptyper_min_coverage` | Minimum percent coverage to count a hit | 95 |
+| `--pbptyper_min_ani` | Minimum S. pneumoniae ANI to predict PBP Type | 95 |
 
 
 ### Optional Parameters
@@ -217,7 +210,7 @@ Uncommonly used parameters that might be useful.
 | `--version` | Display version text. |  |
 
 ## Citations
-If you use Bactopia and `sistr` in your analysis, please cite the following.
+If you use Bactopia and `pbptyper` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
@@ -226,6 +219,6 @@ If you use Bactopia and `sistr` in your analysis, please cite the following.
 - [csvtk](https://bioinf.shenwei.me/csvtk/)  
     Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
   
-- [SISTR](https://github.com/phac-nml/sistr_cmd)  
-    Yoshida CE, Kruczkiewicz P, Laing CR, Lingohr EJ, Gannon VPJ, Nash JHE, Taboada EN [The Salmonella In Silico Typing Resource (SISTR): An Open Web-Accessible Tool for Rapidly Typing and Subtyping Draft Salmonella Genome Assemblies.](https://doi.org/10.1371/journal.pone.0147101) _PloS One_, 11(1), e0147101. (2016)
+- [pbptyper](https://github.com/rpetit3/pbptyper)  
+    Petit III RA [pbptyper: In silico Penicillin Binding Protein (PBP) typer for _Streptococcus pneumoniae_ assemblies](https://github.com/rpetit3/pbptyper) (GitHub)
   
