@@ -27,7 +27,7 @@ tools to create an complete pipeline.
 |-------------|-------------|
 {% for tool in tools | sort -%}
     {% if tools[tool].is_subworkflow == True -%}
-| [{{ tools[tool].name }}](bactopia-tools/{{ tools[tool].name }}/) | {{ tools[tool].description }} |
+| [{{ tools[tool].name }}]({{ tools[tool].name }}/) | {{ tools[tool].description }} |
     {% endif -%}  
 {% endfor %}
 
@@ -38,7 +38,7 @@ Modules are workflows consisting of only one tool.
 |-------------|-------------|
 {% for tool in tools | sort -%}
     {% if tools[tool].is_module == True -%}
-| [{{ tools[tool].name }}](bactopia-tools/{{ tools[tool].name }}/) | {{ tools[tool].description }} |
+| [{{ tools[tool].name }}]({{ tools[tool].name }}/) | {{ tools[tool].description }} |
     {% endif -%}  
 {% endfor %}
 
