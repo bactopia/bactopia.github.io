@@ -25,14 +25,14 @@ tools to create an complete pipeline.
 
 | Subworkflow | Description |
 |-------------|-------------|
-| [ariba](/bactopia-tools/ariba/) | Gene identification through local assemblies |
-    | [bakta](/bactopia-tools/bakta/) | Rapid annotation of bacterial genomes and plasmids |
-    | [eggnog](/bactopia-tools/eggnog/) | Functional annotation of proteins using orthologous groups and phylogenies |
-    | [gtdb](/bactopia-tools/gtdb/) | Identify marker genes and assign taxonomic classifications |
-    | [merlin](/bactopia-tools/merlin/) | MinmER assisted species-specific bactopia tool seLectIoN |
-    | [pangenome](/bactopia-tools/pangenome/) | Pangenome analysis with optional core-genome phylogeny |
-    | [snippy](/bactopia-tools/snippy/) | Rapid variant calling from Illumina sequence reads with optional core-SNP phylogeny |
-    | [staphtyper](/bactopia-tools/staphtyper/) | Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes |
+| [ariba](bactopia-tools/ariba/) | Gene identification through local assemblies |
+    | [bakta](bactopia-tools/bakta/) | Rapid annotation of bacterial genomes and plasmids |
+    | [eggnog](bactopia-tools/eggnog/) | Functional annotation of proteins using orthologous groups and phylogenies |
+    | [gtdb](bactopia-tools/gtdb/) | Identify marker genes and assign taxonomic classifications |
+    | [merlin](bactopia-tools/merlin/) | MinmER assisted species-specific bactopia tool seLectIoN |
+    | [pangenome](bactopia-tools/pangenome/) | Pangenome analysis with optional core-genome phylogeny |
+    | [snippy](bactopia-tools/snippy/) | Rapid variant calling from Illumina sequence reads with optional core-SNP phylogeny |
+    | [staphtyper](bactopia-tools/staphtyper/) | Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes |
     
 
 #### Modules  (39)
@@ -40,45 +40,45 @@ Modules are workflows consisting of only one tool.
 
 | Module | Description |
 |-------------|-------------|
-| [abricate](/bactopia-tools/abricate/) | Mass screening of contigs for antimicrobial and virulence genes |
-    | [agrvate](/bactopia-tools/agrvate/) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants. |
-    | [amrfinderplus](/bactopia-tools/amrfinderplus/) | Identify antimicrobial resistance in genes or proteins |
-    | [busco](/bactopia-tools/busco/) | Assembly completeness based on evolutionarily informed expectations |
-    | [checkm](/bactopia-tools/checkm/) | Assess the assembly quality of your samples |
-    | [ectyper](/bactopia-tools/ectyper/) | In-silico prediction of _Escherichia coli_ serotype |
-    | [emmtyper](/bactopia-tools/emmtyper/) | emm-typing of _Streptococcus pyogenes_ assemblies |
-    | [fastani](/bactopia-tools/fastani/) | fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
-    | [gamma](/bactopia-tools/gamma/) | Identification, classification, and annotation of translated gene matches |
-    | [genotyphi](/bactopia-tools/genotyphi/) | Salmonella Typhi genotyping with Mykrobe outputs |
-    | [hicap](/bactopia-tools/hicap/) | Identify cap locus serotype and structure in your _Haemophilus influenzae_ assemblies |
-    | [hpsuissero](/bactopia-tools/hpsuissero/) | Serotype prediction of _Haemophilus parasuis_ assemblies |
-    | [ismapper](/bactopia-tools/ismapper/) | Identify insertion sites positions in bacterial genomes |
-    | [kleborate](/bactopia-tools/kleborate/) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
-    | [kraken](/bactopia-tools/kraken/) | Taxonomic classifications of sequence reads |
-    | [legsta](/bactopia-tools/legsta/) | Typing of Legionella pneumophila assemblies |
-    | [lissero](/bactopia-tools/lissero/) | Serogroup typing prediction for _Listeria monocytogenes_ |
-    | [mashdist](/bactopia-tools/mashdist/) | Calculate Mash distances between sequences |
-    | [mashtree](/bactopia-tools/mashtree/) | Quickly create a tree using Mash distances |
-    | [mcroni](/bactopia-tools/mcroni/) | Sequence variation in mcr-1 genes (mobilized colistin resistance) |
-    | [meningotype](/bactopia-tools/meningotype/) | Serotyping of Neisseria meningitidis |
-    | [mlst](/bactopia-tools/mlst/) | Automatic MLST calling from assembled contigs |
-    | [mobsuite](/bactopia-tools/mobsuite/) | Reconstruct and annotate plasmids in bacterial assemblies |
-    | [mykrobe](/bactopia-tools/mykrobe/) | Antimicrobial resistance detection for specific species |
-    | [ngmaster](/bactopia-tools/ngmaster/) | Multi-antigen sequence typing for _Neisseria gonorrhoeae_ |
-    | [pasty](/bactopia-tools/pasty/) | in silico serogrouping of Pseudomonas aeruginosa isolates |
-    | [pbptyper](/bactopia-tools/pbptyper/) | Penicillin Binding Protein (PBP) typer for Streptococcus pneumoniae |
-    | [plasmidfinder](/bactopia-tools/plasmidfinder/) | Plasmid identification from assemblies |
-    | [prokka](/bactopia-tools/prokka/) | Whole genome annotation of small genomes (bacterial, archeal, viral) |
-    | [rgi](/bactopia-tools/rgi/) | Predict antibiotic resistance from assemblies |
-    | [seqsero2](/bactopia-tools/seqsero2/) | Salmonella serotype prediction from reads or assemblies |
-    | [seroba](/bactopia-tools/seroba/) | Serotyping of Streptococcus pneumoniae from sequence reads |
-    | [shigatyper](/bactopia-tools/shigatyper/) | Shigella serotype from Illumina or Oxford Nanopore reads |
-    | [shigeifinder](/bactopia-tools/shigeifinder/) | Shigella and EIEC serotyping from assemblies |
-    | [sistr](/bactopia-tools/sistr/) | Serovar prediction of Salmonella assemblies |
-    | [spatyper](/bactopia-tools/spatyper/) | Computational method for finding spa types in _Staphylococcus aureus_ |
-    | [ssuissero](/bactopia-tools/ssuissero/) | Serotype prediction of _Streptococcus suis_ assemblies |
-    | [staphopiasccmec](/bactopia-tools/staphopiasccmec/) | Primer based SCCmec typing of _Staphylococcus aureus_ genomes |
-    | [tbprofiler](/bactopia-tools/tbprofiler/) | Detect resistance and lineages of _Mycobacterium tuberculosis_ genomes |
+| [abricate](bactopia-tools/abricate/) | Mass screening of contigs for antimicrobial and virulence genes |
+    | [agrvate](bactopia-tools/agrvate/) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants. |
+    | [amrfinderplus](bactopia-tools/amrfinderplus/) | Identify antimicrobial resistance in genes or proteins |
+    | [busco](bactopia-tools/busco/) | Assembly completeness based on evolutionarily informed expectations |
+    | [checkm](bactopia-tools/checkm/) | Assess the assembly quality of your samples |
+    | [ectyper](bactopia-tools/ectyper/) | In-silico prediction of _Escherichia coli_ serotype |
+    | [emmtyper](bactopia-tools/emmtyper/) | emm-typing of _Streptococcus pyogenes_ assemblies |
+    | [fastani](bactopia-tools/fastani/) | fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
+    | [gamma](bactopia-tools/gamma/) | Identification, classification, and annotation of translated gene matches |
+    | [genotyphi](bactopia-tools/genotyphi/) | Salmonella Typhi genotyping with Mykrobe outputs |
+    | [hicap](bactopia-tools/hicap/) | Identify cap locus serotype and structure in your _Haemophilus influenzae_ assemblies |
+    | [hpsuissero](bactopia-tools/hpsuissero/) | Serotype prediction of _Haemophilus parasuis_ assemblies |
+    | [ismapper](bactopia-tools/ismapper/) | Identify insertion sites positions in bacterial genomes |
+    | [kleborate](bactopia-tools/kleborate/) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
+    | [kraken](bactopia-tools/kraken/) | Taxonomic classifications of sequence reads |
+    | [legsta](bactopia-tools/legsta/) | Typing of Legionella pneumophila assemblies |
+    | [lissero](bactopia-tools/lissero/) | Serogroup typing prediction for _Listeria monocytogenes_ |
+    | [mashdist](bactopia-tools/mashdist/) | Calculate Mash distances between sequences |
+    | [mashtree](bactopia-tools/mashtree/) | Quickly create a tree using Mash distances |
+    | [mcroni](bactopia-tools/mcroni/) | Sequence variation in mcr-1 genes (mobilized colistin resistance) |
+    | [meningotype](bactopia-tools/meningotype/) | Serotyping of Neisseria meningitidis |
+    | [mlst](bactopia-tools/mlst/) | Automatic MLST calling from assembled contigs |
+    | [mobsuite](bactopia-tools/mobsuite/) | Reconstruct and annotate plasmids in bacterial assemblies |
+    | [mykrobe](bactopia-tools/mykrobe/) | Antimicrobial resistance detection for specific species |
+    | [ngmaster](bactopia-tools/ngmaster/) | Multi-antigen sequence typing for _Neisseria gonorrhoeae_ |
+    | [pasty](bactopia-tools/pasty/) | in silico serogrouping of Pseudomonas aeruginosa isolates |
+    | [pbptyper](bactopia-tools/pbptyper/) | Penicillin Binding Protein (PBP) typer for Streptococcus pneumoniae |
+    | [plasmidfinder](bactopia-tools/plasmidfinder/) | Plasmid identification from assemblies |
+    | [prokka](bactopia-tools/prokka/) | Whole genome annotation of small genomes (bacterial, archeal, viral) |
+    | [rgi](bactopia-tools/rgi/) | Predict antibiotic resistance from assemblies |
+    | [seqsero2](bactopia-tools/seqsero2/) | Salmonella serotype prediction from reads or assemblies |
+    | [seroba](bactopia-tools/seroba/) | Serotyping of Streptococcus pneumoniae from sequence reads |
+    | [shigatyper](bactopia-tools/shigatyper/) | Shigella serotype from Illumina or Oxford Nanopore reads |
+    | [shigeifinder](bactopia-tools/shigeifinder/) | Shigella and EIEC serotyping from assemblies |
+    | [sistr](bactopia-tools/sistr/) | Serovar prediction of Salmonella assemblies |
+    | [spatyper](bactopia-tools/spatyper/) | Computational method for finding spa types in _Staphylococcus aureus_ |
+    | [ssuissero](bactopia-tools/ssuissero/) | Serotype prediction of _Streptococcus suis_ assemblies |
+    | [staphopiasccmec](bactopia-tools/staphopiasccmec/) | Primer based SCCmec typing of _Staphylococcus aureus_ genomes |
+    | [tbprofiler](bactopia-tools/tbprofiler/) | Detect resistance and lineages of _Mycobacterium tuberculosis_ genomes |
     
 
 ### Common Inputs

@@ -1,7 +1,7 @@
 ---
 title: Enhancements to OSS
 description: >-
-    Learn how Bactopia design principles have led to more than 155
+    Learn how Bactopia design principles have led to more than 156
     contributions to the bioinformatics community.
 ---
 # Enhancements to Open Source Software
@@ -19,11 +19,11 @@ few design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 155+ contributions to the bioinformatics community"
+!!! tip "Bactopia has provided 156+ contributions to the bioinformatics community"
     - [x] 10 stand-alone tools, each available from Bioconda
     - [x] 29 new Conda recipes, 35 
     updated recipes, and [1,750+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
-    - [x] 61 contributions to nf-core/modules
+    - [x] 62 contributions to nf-core/modules
     - [x] 20 contributions to other tools
     
     These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
@@ -160,11 +160,12 @@ own Nextflow DSL2 pipelines. To facilitate this, A requirement was made that eac
 [Bactopia Tool](https://bactopia.github.io/bactopia-tools/), separate workflows, would require that a corresponding 
 module be available from nf-core/modules, and if its not available it would be added.
 
-By adopting this practice, there have been 61 contributions to nf-core/modules in the 
+By adopting this practice, there have been 62 contributions to nf-core/modules in the 
 form of new modules, module updates, and testing adjustments.
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [ShigEiFinder](https://github.com/LanLab/ShigEiFinder) | add shigeifinder module | [nf-core/modules#2523](https://github.com/nf-core/modules/pull/2523) |
 | [nf-core/modules](https://github.com/nf-core/modules) | fix a few tests after restructure | [nf-core/modules#2234](https://github.com/nf-core/modules/pull/2252) |
 | [Biohansel](https://github.com/phac-nml/biohansel) | add biohansel module | [nf-core/modules#2234](https://github.com/nf-core/modules/pull/2234) |
 | [pbptyper](https://github.com/rpetit3/pbptyper) | add pbptyper module | [nf-core/modules#2005](https://github.com/nf-core/modules/pull/2005) |
