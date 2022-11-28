@@ -2418,7 +2418,7 @@
 <!-- Markdown content -->
 <h1 id="workflow-overview">Workflow Overview<a class="headerlink" href="#workflow-overview" title="Permanent link">&para;</a></h1>
 <p>Bactopia is an extensive workflow integrating numerous steps in bacterial genome analysis. Through out the workflow there are steps that are <em>always enabled</em> and <em>dataset enabled</em>. Each of the steps depicted in the image below are described in this section. </p>
-<p>A list of software <strong>directly</strong> used in each step is also listed. Please check out the <a href="/acknowledgements/">Acknowledgements</a> section to get the full list of software as well how to download and cite said software.</p>
+<p>A list of software <strong>directly</strong> used in each step is also listed. Please check out the <a href="acknowledgements/">Acknowledgements</a> section to get the full list of software as well how to download and cite said software.</p>
 <p><a class="zoom" href="/assets/bactopia-workflow.png">
 <img alt="Bactopia Workflow" src="/assets/bactopia-workflow.png" />
 </a></p>
@@ -2486,7 +2486,7 @@
 </tbody>
 </table>
 <h4 id="genome-size">Genome Size<a class="headerlink" href="#genome-size" title="Permanent link">&para;</a></h4>
-<p>The genome size is by various programs in the Bactopia workflow. By default, if no genome size is given one is estimated using Mash. Otherwise, a specific genome size can be specified or completely disabled using the <code>--genome_size</code> parameter. See <a href="/usage-basic/#-genome_size">Genome Size Parameter</a> to learn more about specifying the genome size. </p>
+<p>The genome size is by various programs in the Bactopia workflow. By default, if no genome size is given one is estimated using Mash. Otherwise, a specific genome size can be specified or completely disabled using the <code>--genome_size</code> parameter. See <a href="usage-basic/#-genome_size">Genome Size Parameter</a> to learn more about specifying the genome size. </p>
 <table>
 <thead>
 <tr>
@@ -2622,7 +2622,7 @@
 </tbody>
 </table>
 <h4 id="genome-annotation">Genome Annotation<a class="headerlink" href="#genome-annotation" title="Permanent link">&para;</a></h4>
-<p>Genes are predicted and annotated from the assembled genome using <a href="https://github.com/tseemann/prokka">Prokka</a>. If available, a <a href="/datasets/#species-specific">clustered RefSeq protein set</a> is used for the first pass of annotation.</p>
+<p>Genes are predicted and annotated from the assembled genome using <a href="https://github.com/tseemann/prokka">Prokka</a>. If available, a <a href="datasets/#species-specific">clustered RefSeq protein set</a> is used for the first pass of annotation.</p>
 <table>
 <thead>
 <tr>
@@ -2638,7 +2638,7 @@
 </tbody>
 </table>
 <h4 id="antimicrobial-resistance">Antimicrobial Resistance<a class="headerlink" href="#antimicrobial-resistance" title="Permanent link">&para;</a></h4>
-<p>Searches for antimicrobial resistance genes and assosiated point mutations in the annotated gene and protein sequences. If datasets are available, <a href="/workflow-overview/#local-assembly">local assemblies</a> can also be used to predict antibiotic resistance.</p>
+<p>Searches for antimicrobial resistance genes and assosiated point mutations in the annotated gene and protein sequences. If datasets are available, <a href="workflow-overview/#local-assembly">local assemblies</a> can also be used to predict antibiotic resistance.</p>
 <table>
 <thead>
 <tr>
@@ -2654,9 +2654,9 @@
 </tbody>
 </table>
 <h2 id="dataset-enabled-steps">Dataset Enabled Steps<a class="headerlink" href="#dataset-enabled-steps" title="Permanent link">&para;</a></h2>
-<p>The remaining <em>Dataset Enabled Steps</em> require supplemental datasets to be available to be executed. There are many datasets available that Bactopia can take advantage of. To learn more about setting up these datasets, check out <a href="/datasets/#build-datasets">Build Datasets</a>. These datasets can be broken into two groups, <em>Public Datasets</em> and <em>User Datasets</em>.</p>
+<p>The remaining <em>Dataset Enabled Steps</em> require supplemental datasets to be available to be executed. There are many datasets available that Bactopia can take advantage of. To learn more about setting up these datasets, check out <a href="datasets/#build-datasets">Build Datasets</a>. These datasets can be broken into two groups, <em>Public Datasets</em> and <em>User Datasets</em>.</p>
 <h3 id="public-datasets">Public Datasets<a class="headerlink" href="#public-datasets" title="Permanent link">&para;</a></h3>
-<p><a href="/datasets/#general">Publicly available datasets</a> can be used for further analysis.</p>
+<p><a href="datasets/#general">Publicly available datasets</a> can be used for further analysis.</p>
 <h4 id="call-variants-auto">Call Variants (Auto)<a class="headerlink" href="#call-variants-auto" title="Permanent link">&para;</a></h4>
 <p>Variants are predicted using <a href="https://github.com/tseemann/snippy">Snippy</a>. The QC'd FASTQs are aligned to the nearest (based on Mash distance) RefSeq completed genome. By default, only the nearest genome is selected, but multiple genomes can be selected (<code>--max_references</code>) or this feature can be completely disabled (<code>disable_auto_variants</code>).</p>
 <table>
@@ -2686,7 +2686,7 @@
 </tbody>
 </table>
 <h4 id="minmer-query">Minmer Query<a class="headerlink" href="#minmer-query" title="Permanent link">&para;</a></h4>
-<p>Screens QC'd FASTQs and signatures against available <a href="/acknowledgements/#minmer-datasets">Minmer Datasets</a>.</p>
+<p>Screens QC'd FASTQs and signatures against available <a href="acknowledgements/#minmer-datasets">Minmer Datasets</a>.</p>
 <table>
 <thead>
 <tr>
@@ -2726,7 +2726,7 @@
 </tbody>
 </table>
 <h3 id="user-datasets">User Datasets<a class="headerlink" href="#user-datasets" title="Permanent link">&para;</a></h3>
-<p>Another option is for users to <a href="/datasets/#user-populated-folders">provide their own data</a> to include in the analysis.</p>
+<p>Another option is for users to <a href="datasets/#user-populated-folders">provide their own data</a> to include in the analysis.</p>
 <h4 id="blast-alignment">BLAST Alignment<a class="headerlink" href="#blast-alignment" title="Permanent link">&para;</a></h4>
 <p>Each gene, protein, or primer sequence provided by the user is aligned against the assembled genome.</p>
 <table>
@@ -2744,7 +2744,7 @@
 </tbody>
 </table>
 <h4 id="call-variants-user">Call Variants (User)<a class="headerlink" href="#call-variants-user" title="Permanent link">&para;</a></h4>
-<p>Uses the same procedure as <a href="/workflow-overview/#call-variants-auto">Call Variants (Auto)</a>, except variants are called against each reference provided by the user.</p>
+<p>Uses the same procedure as <a href="workflow-overview/#call-variants-auto">Call Variants (Auto)</a>, except variants are called against each reference provided by the user.</p>
 <table>
 <thead>
 <tr>

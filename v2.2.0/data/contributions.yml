@@ -519,6 +519,14 @@ conda_updates:
       tool_url: "https://github.com/WGS-TB/MentaLiST"
       
 nfcore_modules:
+    - title: "add shigeifinder module"
+      date: 2022-09-02
+      pr_url: "https://github.com/nf-core/modules/pull/2523"
+      pr_name: "nf-core/modules#2523"
+      new_module: true
+      tool: "ShigEiFinder"
+      tool_url: "https://github.com/LanLab/ShigEiFinder"
+
     - title: "fix a few tests after restructure"
       date: 2022-10-11
       pr_url: "https://github.com/nf-core/modules/pull/2252"

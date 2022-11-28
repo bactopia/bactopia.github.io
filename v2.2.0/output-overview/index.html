@@ -2359,7 +2359,7 @@
 <p>If a developer described their software's outputs, their description was used with a link back to the software's documentation (major thanks for taking the time to do that!). In some cases there may have been slight formatting modifications made. In any case, if descriptions are not original credit will be properly given to the source.</p>
 </div>
 <h3 id="annotation"><code>annotation</code><a class="headerlink" href="#annotation" title="Permanent link">&para;</a></h3>
-<p>The <code>annotation</code> directory will contain the outputs from <a href="https://github.com/tseemann/prokka">Prokka</a> annotation. These outputs include FASTA (proteins and genes), GFF3, GenBank, and many more. By default the included Prokka databases are used for annotation. However, if a <a href="/datasets/#species-specific">Species Specific Dataset</a> was a created the RefSeq clustered proteins are used first for annotation.</p>
+<p>The <code>annotation</code> directory will contain the outputs from <a href="https://github.com/tseemann/prokka">Prokka</a> annotation. These outputs include FASTA (proteins and genes), GFF3, GenBank, and many more. By default the included Prokka databases are used for annotation. However, if a <a href="datasets/#species-specific">Species Specific Dataset</a> was a created the RefSeq clustered proteins are used first for annotation.</p>
 <p>File descriptions were directly taken from <a href="https://github.com/tseemann/prokka#output-files">Prokka's Output Files</a> section and slight modifications were made to the order of rows.</p>
 <div class="highlight"><pre><span></span><code>${SAMPLE_NAME}/
 └── annotation
@@ -2460,7 +2460,7 @@
 </tbody>
 </table>
 <h3 id="ariba"><code>ariba</code><a class="headerlink" href="#ariba" title="Permanent link">&para;</a></h3>
-<p>The <code>ariba</code> directory will contain the results of any <a href="https://github.com/sanger-pathogens/ariba/">Ariba</a> analysis (excluding MLST). Only the <a href="/datasets/#general">Ariba databases</a> created during the dataset setup are used for analysis. For each Ariba database (e.g. <code>card</code> or <code>vfdb</code>), a separate folder with the name of the database is included in the <code>ariba</code> folder.</p>
+<p>The <code>ariba</code> directory will contain the results of any <a href="https://github.com/sanger-pathogens/ariba/">Ariba</a> analysis (excluding MLST). Only the <a href="datasets/#general">Ariba databases</a> created during the dataset setup are used for analysis. For each Ariba database (e.g. <code>card</code> or <code>vfdb</code>), a separate folder with the name of the database is included in the <code>ariba</code> folder.</p>
 <p>The file descriptions below were modified from Ariba's wiki entries for <a href="https://github.com/sanger-pathogens/ariba/wiki/Task:-run"><code>run</code></a> and <a href="https://github.com/sanger-pathogens/ariba/wiki/Task:-summary"><code>summary</code></a>.</p>
 <div class="highlight"><pre><span></span><code>${SAMPLE_NAME}/
 └── ariba
@@ -2754,7 +2754,7 @@
 </table>
 <h3 id="blast"><code>blast</code><a class="headerlink" href="#blast" title="Permanent link">&para;</a></h3>
 <p>The <code>blast</code> directory contains the <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> results and a BLAST database of the sample assembly.</p>
-<p>Each of the <a href="/datasets/#blast">User Populated BLAST Sequences</a> (gene, primer, or protein) is BLASTed against the sample assembly. Also if <a href="/datasets/#general">setup</a>, annotated genes are BLASTed against the <a href="https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/">PLSDB</a> BLAST database.</p>
+<p>Each of the <a href="datasets/#blast">User Populated BLAST Sequences</a> (gene, primer, or protein) is BLASTed against the sample assembly. Also if <a href="datasets/#general">setup</a>, annotated genes are BLASTed against the <a href="https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/">PLSDB</a> BLAST database.</p>
 <p>By default, results are returned in tabular format.</p>
 <div class="highlight"><pre><span></span><code>${SAMPLE_NAME}/
 └── blast
@@ -2802,7 +2802,7 @@
 </table>
 <h3 id="genome-size"><code>genome-size</code><a class="headerlink" href="#genome-size" title="Permanent link">&para;</a></h3>
 <p>For every sample <code>${SAMPLE_NAME}-genome-size.txt</code> file is created. This file contains the genome size that was used for analysis. Genome size is used throughout Bactopia for various tasks including error correction, subsampling, and assembly.</p>
-<p>By default, the genome size is estimated with Mash, but users have the option to provide their own value or completely disable genome size related features. Learn more about changing the genome size at <a href="/usage-basic/#-genome_size">Basic Usage - Genome Size</a></p>
+<p>By default, the genome size is estimated with Mash, but users have the option to provide their own value or completely disable genome size related features. Learn more about changing the genome size at <a href="usage-basic/#-genome_size">Basic Usage - Genome Size</a></p>
 <h3 id="kmers"><code>kmers</code><a class="headerlink" href="#kmers" title="Permanent link">&para;</a></h3>
 <p>The <code>kmers</code> directory contains <a href="https://github.com/mcveanlab/mccortex">McCortex</a> 31-mer counts of the cleaned up FASTQ sequences. </p>
 <div class="highlight"><pre><span></span><code>${SAMPLE_NAME}/
@@ -2890,7 +2890,7 @@ nextflow 20.07.1
 </code></pre></div></p>
 <p>All the <code>.versions</code> files will follow this format. The first line is always <code># Timestamp</code> followed by the output of <code>date</code>. Then each line beginning with <code>#</code> will represent a new program and its version. </p>
 <h3 id="mapping"><code>mapping</code><a class="headerlink" href="#mapping" title="Permanent link">&para;</a></h3>
-<p>The <code>mapping-sequences</code> directory contains <a href="https://github.com/lh3/bwa/">BWA</a> (bwa-mem) mapping results for each of the <a href="/datasets/#mapping">User Populated Mapping Sequences</a>. </p>
+<p>The <code>mapping-sequences</code> directory contains <a href="https://github.com/lh3/bwa/">BWA</a> (bwa-mem) mapping results for each of the <a href="datasets/#mapping">User Populated Mapping Sequences</a>. </p>
 <div class="highlight"><pre><span></span><code>${SAMPLE_NAME}/
 └── mapping
     └── ${MAPPING_INPUT}
@@ -2916,7 +2916,7 @@ nextflow 20.07.1
 </tbody>
 </table>
 <h3 id="minmers"><code>minmers</code><a class="headerlink" href="#minmers" title="Permanent link">&para;</a></h3>
-<p>The <code>minmers</code> directory contains <a href="https://github.com/marbl/Mash">Mash</a> and <a href="https://github.com/dib-lab/sourmash">Sourmash</a> sketches of the cleaned FASTQs. If setup, it also contains the results of queries against <a href="/datasets/#general">RefSeq, GenBank and PLSDB</a></p>
+<p>The <code>minmers</code> directory contains <a href="https://github.com/marbl/Mash">Mash</a> and <a href="https://github.com/dib-lab/sourmash">Sourmash</a> sketches of the cleaned FASTQs. If setup, it also contains the results of queries against <a href="datasets/#general">RefSeq, GenBank and PLSDB</a></p>
 <div class="highlight"><pre><span></span><code>${SAMPLE_NAME}/
 └── minmers
     ├── ${SAMPLE_NAME}-genbank-k21.txt
@@ -2959,7 +2959,7 @@ nextflow 20.07.1
 </tbody>
 </table>
 <h3 id="mlst"><code>mlst</code><a class="headerlink" href="#mlst" title="Permanent link">&para;</a></h3>
-<p>If a <a href="/datasets/#species-specific">Species Specific Dataset</a> has been set up, the <code>mlst</code> directory will contain <a href="https://github.com/sanger-pathogens/ariba">Ariba</a> and <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> results for a <a href="https://pubmlst.org/">PubMLST.org</a> schema. For most organisms there is only one MLST schema available, and it will be labeled as <code>default</code>. In cases where a organism has multiple schemas available they will be named following pubMLST's naming.</p>
+<p>If a <a href="datasets/#species-specific">Species Specific Dataset</a> has been set up, the <code>mlst</code> directory will contain <a href="https://github.com/sanger-pathogens/ariba">Ariba</a> and <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a> results for a <a href="https://pubmlst.org/">PubMLST.org</a> schema. For most organisms there is only one MLST schema available, and it will be labeled as <code>default</code>. In cases where a organism has multiple schemas available they will be named following pubMLST's naming.</p>
 <div class="highlight"><pre><span></span><code>${SAMPLE_NAME}/
 └── mlst
     └── ${SCHEMA}
@@ -3079,8 +3079,8 @@ nextflow 20.07.1
 </table>
 <h3 id="variants"><code>variants</code><a class="headerlink" href="#variants" title="Permanent link">&para;</a></h3>
 <p>The <code>variants</code> directory contains the results of <a href="https://github.com/tseemann/snippy">Snippy</a> variant calls against one or more reference genomes. There are two subdirectories <code>auto</code> and <code>user</code>. </p>
-<p>The <code>auto</code> directory includes variants calls against automatically selected reference genome(s) based on nearest Mash distance to RefSeq completed genomes. This process only happens if a <a href="/datasets/#species-specific">Species Specific Dataset</a> was a created. By default, only a single reference genome (nearest) is selected. This feature can be disabled (<code>--disable_auto_variants</code>) or the number of genomes changed (<code>--max_references INT</code>).</p>
-<p>The <code>user</code> directory contains variant calls against for each of the <a href="/datasets/#reference-genomes">User Populated Reference Genomes</a>.</p>
+<p>The <code>auto</code> directory includes variants calls against automatically selected reference genome(s) based on nearest Mash distance to RefSeq completed genomes. This process only happens if a <a href="datasets/#species-specific">Species Specific Dataset</a> was a created. By default, only a single reference genome (nearest) is selected. This feature can be disabled (<code>--disable_auto_variants</code>) or the number of genomes changed (<code>--max_references INT</code>).</p>
+<p>The <code>user</code> directory contains variant calls against for each of the <a href="datasets/#reference-genomes">User Populated Reference Genomes</a>.</p>
 <p>The following description of files was directly taken from <a href="https://github.com/tseemann/snippy#output-files">Snippy's Output Files</a> section. Slight modifications were made to the order of rows.</p>
 <div class="highlight"><pre><span></span><code>${SAMPLE_NAME}/
 └── variants
