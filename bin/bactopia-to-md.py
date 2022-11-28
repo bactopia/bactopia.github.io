@@ -78,7 +78,7 @@ def get_modules(module_path):
             module_name = module_name.split('local/bactopia/')[1]
         else:
             # nf-core module
-            module_name = module_name.split('/nf-core/modules/')[1].replace('/', '_').replace('_run', '')
+            module_name = module_name.split('/nf-core/')[1].replace('/', '_').replace('_run', '')
         if module_name in MODULES_RENAME:
             module_name = MODULES_RENAME[module_name]
         print(f"{module_name} - {params_json}")
