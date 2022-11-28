@@ -370,7 +370,7 @@ The `-qs` parameter is short for *queue size*. As described above for `--max_cpu
 
 
 ## `--genome_size`
-Throughout the Bactopia workflow a genome size is used for various tasks. By default, a genome size is estimated using Mash. However, users can provide their own value for genome size, use values based on [Species Specific Datasets](/datasets/#species-specific), or completely disable it.
+Throughout the Bactopia workflow a genome size is used for various tasks. By default, a genome size is estimated using Mash. However, users can provide their own value for genome size, use values based on [Species Specific Datasets](datasets/#species-specific), or completely disable it.
 
 | Value | Result |
 |-------|--------|

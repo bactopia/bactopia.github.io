@@ -6,7 +6,7 @@ description: >-
 # Workflow Overview
 Bactopia is an extensive workflow integrating numerous steps in bacterial genome analysis. Through out the workflow there are steps that are *always enabled* and *dataset enabled*. Each of the steps depicted in the image below are described in this section. 
 
-A list of software **directly** used in each step is also listed. Please check out the [Acknowledgements](/acknowledgements/) section to get the full list of software as well how to download and cite said software.
+A list of software **directly** used in each step is also listed. Please check out the [Acknowledgements](acknowledgements/) section to get the full list of software as well how to download and cite said software.
 
 <a class="zoom" href="/assets/bactopia-workflow.png">
 ![Bactopia Workflow](/assets/bactopia-workflow.png)
@@ -43,7 +43,7 @@ Produces summary statistics (read lengths, quality scores, etc...) based on the 
 | [fastq-scan](https://github.com/rpetit3/fastq-scan) | Generates original FASTQ summary statistics in JSON format |
 
 #### Genome Size
-The genome size is by various programs in the Bactopia workflow. By default, if no genome size is given one is estimated using Mash. Otherwise, a specific genome size can be specified or completely disabled using the `--genome_size` parameter. See [Genome Size Parameter](/usage-basic/#-genome_size) to learn more about specifying the genome size. 
+The genome size is by various programs in the Bactopia workflow. By default, if no genome size is given one is estimated using Mash. Otherwise, a specific genome size can be specified or completely disabled using the `--genome_size` parameter. See [Genome Size Parameter](usage-basic/#-genome_size) to learn more about specifying the genome size. 
 
 | Software | Usage |
 |----------|:--------------|
@@ -99,24 +99,24 @@ After assembly, the *de novo* assembly is assessed for its biological (e.g. cont
 
 
 #### Genome Annotation
-Genes are predicted and annotated from the assembled genome using [Prokka](https://github.com/tseemann/prokka). If available, a [clustered RefSeq protein set](/datasets/#species-specific) is used for the first pass of annotation.
+Genes are predicted and annotated from the assembled genome using [Prokka](https://github.com/tseemann/prokka). If available, a [clustered RefSeq protein set](datasets/#species-specific) is used for the first pass of annotation.
 
 | Software | Usage   |
 |----------|:--------------|
 | [Prokka](https://github.com/tseemann/prokka)   | Predicts and annotates assembled genomes |
 
 #### Antimicrobial Resistance
-Searches for antimicrobial resistance genes and assosiated point mutations in the annotated gene and protein sequences. If datasets are available, [local assemblies](/workflow-overview/#local-assembly) can also be used to predict antibiotic resistance.
+Searches for antimicrobial resistance genes and assosiated point mutations in the annotated gene and protein sequences. If datasets are available, [local assemblies](workflow-overview/#local-assembly) can also be used to predict antibiotic resistance.
 
 | Software | Usage   |
 |----------|:--------------|
 | [AMRFinderPlus](https://github.com/ncbi/amr) | Predicts antimicrobial resistance based on genes and point mutations |
 
 ## Dataset Enabled Steps
-The remaining *Dataset Enabled Steps* require supplemental datasets to be available to be executed. There are many datasets available that Bactopia can take advantage of. To learn more about setting up these datasets, check out [Build Datasets](/datasets/#build-datasets). These datasets can be broken into two groups, *Public Datasets* and *User Datasets*.
+The remaining *Dataset Enabled Steps* require supplemental datasets to be available to be executed. There are many datasets available that Bactopia can take advantage of. To learn more about setting up these datasets, check out [Build Datasets](datasets/#build-datasets). These datasets can be broken into two groups, *Public Datasets* and *User Datasets*.
 
 ### Public Datasets
-[Publicly available datasets](/datasets/#general) can be used for further analysis.
+[Publicly available datasets](datasets/#general) can be used for further analysis.
 
 #### Call Variants (Auto)
 Variants are predicted using [Snippy](https://github.com/tseemann/snippy). The QC'd FASTQs are aligned to the nearest (based on Mash distance) RefSeq completed genome. By default, only the nearest genome is selected, but multiple genomes can be selected (`--max_references`) or this feature can be completely disabled (`disable_auto_variants`).
@@ -129,7 +129,7 @@ Variants are predicted using [Snippy](https://github.com/tseemann/snippy). The Q
 | [vcf-annotator](https://github.com/rpetit3/vcf-annotator) | Adds annotations from reference GenBank to the final VCF |
 
 #### Minmer Query
-Screens QC'd FASTQs and signatures against available [Minmer Datasets](/acknowledgements/#minmer-datasets).
+Screens QC'd FASTQs and signatures against available [Minmer Datasets](acknowledgements/#minmer-datasets).
 
 | Software | Usage   |
 |----------|:--------------|
@@ -145,7 +145,7 @@ Uses a [PubMLST.org](https://pubmlst.org/) MLST schema to determine the sequence
 | [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)   | Aligns MLST loci against the assembled genome |
 
 ### User Datasets
-Another option is for users to [provide their own data](/datasets/#user-populated-folders) to include in the analysis.
+Another option is for users to [provide their own data](datasets/#user-populated-folders) to include in the analysis.
 
 #### BLAST Alignment
 Each gene, protein, or primer sequence provided by the user is aligned against the assembled genome.
@@ -155,7 +155,7 @@ Each gene, protein, or primer sequence provided by the user is aligned against t
 | [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)   | Aligns reference sequences against the assembled genome |
 
 #### Call Variants (User)
-Uses the same procedure as [Call Variants (Auto)](/workflow-overview/#call-variants-auto), except variants are called against each reference provided by the user.
+Uses the same procedure as [Call Variants (Auto)](workflow-overview/#call-variants-auto), except variants are called against each reference provided by the user.
 
 | Software | Usage   |
 |----------|:--------------|

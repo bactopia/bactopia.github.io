@@ -25,7 +25,7 @@ This create a folder `./datasets` and will build the following datasets:
 - [GenBank Sourmash Signatures](https://sourmash.readthedocs.io/en/latest/datasets.html?highlight=--track-abundance#genbank-lca-dataset)
 - [PLSDB Mash Sketch & BLAST](https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/)
 
-More information about these datasets is available at [Build Datasets](/datasets/).
+More information about these datasets is available at [Build Datasets](datasets/).
 
 ## Run Bactopia!
 On the first launch of Bactopia it will install the Conda environments, so expect some delays in doing so!

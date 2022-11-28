@@ -131,7 +131,7 @@ Now we are going to have Bactopia download and process 5 samples from ENA. To do
 bactopia search PRJNA480016 --limit 5
 ```
 
-This will produce three files: `ena-accessions.txt`, `ena-results.txt` and `ena-summary.txt`. To learn more about these files see [Generating Accession List](/usage-basic/#generating-accession-list).
+This will produce three files: `ena-accessions.txt`, `ena-results.txt` and `ena-summary.txt`. To learn more about these files see [Generating Accession List](usage-basic/#generating-accession-list).
 
 For this tutorial, `ena-accessions.txt` is the file we need. It contains five Experiment accessions, a single one per line. Just like this:
 ```
@@ -230,7 +230,7 @@ If you made it this far, you're almost done!
 #### Multiple Samples (FOFN)
 Here we go! The final way you can process samples in Bactopia!
 
-Bactopia allows you to give a text file describing the input samples. This file of file names (FOFN), contains sample names and location to associated FASTQs. The Bactopia FOFN format is described in detail at [Basic Usage -> Multiple Samples](/usage-basic/#multiple-samples).
+Bactopia allows you to give a text file describing the input samples. This file of file names (FOFN), contains sample names and location to associated FASTQs. The Bactopia FOFN format is described in detail at [Basic Usage -> Multiple Samples](usage-basic/#multiple-samples).
 
 First we'll need to prepare a FOFN describing the FASTQ files in our `fastqs` folder. We can use `bactopia prepare` to do so:
 
@@ -238,7 +238,7 @@ First we'll need to prepare a FOFN describing the FASTQ files in our `fastqs` fo
 bactopia prepare fastqs/ > fastqs.txt
 ```
 
-This command will try to create a FOFN for you. For this turorial, the FASTQ names are pretty straight forward and should produce a correct FOFN (or at least it should! ... hopefully!). If that wasn't the case for you, there are ways to [tweak `bactopia prepare`](/usage-basic/#generating-a-fofn).
+This command will try to create a FOFN for you. For this turorial, the FASTQ names are pretty straight forward and should produce a correct FOFN (or at least it should! ... hopefully!). If that wasn't the case for you, there are ways to [tweak `bactopia prepare`](usage-basic/#generating-a-fofn).
 
 Now we can use the `--fastqs` parameters to process samples in the FOFN.
 

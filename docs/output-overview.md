@@ -37,7 +37,7 @@ There are instances where additional files (e.g. `--keep_all_files` and `--ariba
     If a developer described their software's outputs, their description was used with a link back to the software's documentation (major thanks for taking the time to do that!). In some cases there may have been slight formatting modifications made. In any case, if descriptions are not original credit will be properly given to the source.
 
 ### `annotation`
-The `annotation` directory will contain the outputs from [Prokka](https://github.com/tseemann/prokka) annotation. These outputs include FASTA (proteins and genes), GFF3, GenBank, and many more. By default the included Prokka databases are used for annotation. However, if a [Species Specific Dataset](/datasets/#species-specific) was a created the RefSeq clustered proteins are used first for annotation.
+The `annotation` directory will contain the outputs from [Prokka](https://github.com/tseemann/prokka) annotation. These outputs include FASTA (proteins and genes), GFF3, GenBank, and many more. By default the included Prokka databases are used for annotation. However, if a [Species Specific Dataset](datasets/#species-specific) was a created the RefSeq clustered proteins are used first for annotation.
 
 File descriptions were directly taken from [Prokka's Output Files](https://github.com/tseemann/prokka#output-files) section and slight modifications were made to the order of rows.
 
@@ -89,7 +89,7 @@ ${SAMPLE_NAME}/
 | -protein-report.txt | Results of using protein sequences as an input |
 
 ### `ariba`
-The `ariba` directory will contain the results of any [Ariba](https://github.com/sanger-pathogens/ariba/) analysis (excluding MLST). Only the [Ariba databases](/datasets/#general) created during the dataset setup are used for analysis. For each Ariba database (e.g. `card` or `vfdb`), a separate folder with the name of the database is included in the `ariba` folder.
+The `ariba` directory will contain the results of any [Ariba](https://github.com/sanger-pathogens/ariba/) analysis (excluding MLST). Only the [Ariba databases](datasets/#general) created during the dataset setup are used for analysis. For each Ariba database (e.g. `card` or `vfdb`), a separate folder with the name of the database is included in the `ariba` folder.
 
 The file descriptions below were modified from Ariba's wiki entries for [`run`](https://github.com/sanger-pathogens/ariba/wiki/Task:-run) and [`summary`](https://github.com/sanger-pathogens/ariba/wiki/Task:-summary).
 
@@ -243,7 +243,7 @@ _QUAST Outputs_
 ### `blast`
 The `blast` directory contains the [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) results and a BLAST database of the sample assembly.
 
-Each of the [User Populated BLAST Sequences](/datasets/#blast) (gene, primer, or protein) is BLASTed against the sample assembly. Also if [setup](/datasets/#general), annotated genes are BLASTed against the [PLSDB](https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/) BLAST database.
+Each of the [User Populated BLAST Sequences](datasets/#blast) (gene, primer, or protein) is BLASTed against the sample assembly. Also if [setup](datasets/#general), annotated genes are BLASTed against the [PLSDB](https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/) BLAST database.
 
 By default, results are returned in tabular format.
 
@@ -274,7 +274,7 @@ ${SAMPLE_NAME}/
 ### `genome-size`
 For every sample `${SAMPLE_NAME}-genome-size.txt` file is created. This file contains the genome size that was used for analysis. Genome size is used throughout Bactopia for various tasks including error correction, subsampling, and assembly.
 
-By default, the genome size is estimated with Mash, but users have the option to provide their own value or completely disable genome size related features. Learn more about changing the genome size at [Basic Usage - Genome Size](/usage-basic/#-genome_size)
+By default, the genome size is estimated with Mash, but users have the option to provide their own value or completely disable genome size related features. Learn more about changing the genome size at [Basic Usage - Genome Size](usage-basic/#-genome_size)
 
 ### `kmers`
 The `kmers` directory contains [McCortex](https://github.com/mcveanlab/mccortex) 31-mer counts of the cleaned up FASTQ sequences. 
@@ -333,7 +333,7 @@ All the `.versions` files will follow this format. The first line is always `# T
 
 
 ### `mapping`
-The `mapping-sequences` directory contains [BWA](https://github.com/lh3/bwa/) (bwa-mem) mapping results for each of the [User Populated Mapping Sequences](/datasets/#mapping). 
+The `mapping-sequences` directory contains [BWA](https://github.com/lh3/bwa/) (bwa-mem) mapping results for each of the [User Populated Mapping Sequences](datasets/#mapping). 
 
 ```
 ${SAMPLE_NAME}/
@@ -349,7 +349,7 @@ ${SAMPLE_NAME}/
 | .coverage.txt | The per-base coverage of the mapping results |
 
 ### `minmers`
-The `minmers` directory contains [Mash](https://github.com/marbl/Mash) and [Sourmash](https://github.com/dib-lab/sourmash) sketches of the cleaned FASTQs. If setup, it also contains the results of queries against [RefSeq, GenBank and PLSDB](/datasets/#general)
+The `minmers` directory contains [Mash](https://github.com/marbl/Mash) and [Sourmash](https://github.com/dib-lab/sourmash) sketches of the cleaned FASTQs. If setup, it also contains the results of queries against [RefSeq, GenBank and PLSDB](datasets/#general)
 
 ```
 ${SAMPLE_NAME}/
@@ -374,7 +374,7 @@ ${SAMPLE_NAME}/
 
 
 ### `mlst`
-If a [Species Specific Dataset](/datasets/#species-specific) has been set up, the `mlst` directory will contain [Ariba](https://github.com/sanger-pathogens/ariba) and [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) results for a [PubMLST.org](https://pubmlst.org/) schema. For most organisms there is only one MLST schema available, and it will be labeled as `default`. In cases where a organism has multiple schemas available they will be named following pubMLST's naming.
+If a [Species Specific Dataset](datasets/#species-specific) has been set up, the `mlst` directory will contain [Ariba](https://github.com/sanger-pathogens/ariba) and [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi) results for a [PubMLST.org](https://pubmlst.org/) schema. For most organisms there is only one MLST schema available, and it will be labeled as `default`. In cases where a organism has multiple schemas available they will be named following pubMLST's naming.
 
 ```
 ${SAMPLE_NAME}/
@@ -437,9 +437,9 @@ ${SAMPLE_NAME}/
 ### `variants`
 The `variants` directory contains the results of [Snippy](https://github.com/tseemann/snippy) variant calls against one or more reference genomes. There are two subdirectories `auto` and `user`. 
 
-The `auto` directory includes variants calls against automatically selected reference genome(s) based on nearest Mash distance to RefSeq completed genomes. This process only happens if a [Species Specific Dataset](/datasets/#species-specific) was a created. By default, only a single reference genome (nearest) is selected. This feature can be disabled (`--disable_auto_variants`) or the number of genomes changed (`--max_references INT`).
+The `auto` directory includes variants calls against automatically selected reference genome(s) based on nearest Mash distance to RefSeq completed genomes. This process only happens if a [Species Specific Dataset](datasets/#species-specific) was a created. By default, only a single reference genome (nearest) is selected. This feature can be disabled (`--disable_auto_variants`) or the number of genomes changed (`--max_references INT`).
 
-The `user` directory contains variant calls against for each of the [User Populated Reference Genomes](/datasets/#reference-genomes).
+The `user` directory contains variant calls against for each of the [User Populated Reference Genomes](datasets/#reference-genomes).
 
 The following description of files was directly taken from [Snippy's Output Files](https://github.com/tseemann/snippy#output-files) section. Slight modifications were made to the order of rows.
 
