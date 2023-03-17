@@ -15,8 +15,6 @@ Bactopia and used the Bactopia Tools to seamlessly expand their analyses. For th
 [Bactopia Workshop](https://github.com/bactopia/bactopia-workshop).  
 Slides: [PDF](data/resources/2023-bactopia-edlb-workshop.pdf)  
 
-__
-
 ## Talks
 
 - _Designing mechanisms into Bactopia to support its users and contribute back to the community (October 2022)_  
