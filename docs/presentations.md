@@ -6,6 +6,17 @@ description: >-
 # Presentations
 Below are links to talks, posters, and blog posts associated with Bactopia.
 
+## Workshops
+
+- _Workshop for using Bactopia (March 2023)_  
+A workshop conducted with the [CDC Enteric Diseases Laboratory Branch (EDLB)](https://www.cdc.gov/ncezid/dfwed/edlb/index.html), introducing
+Bactopia and Bactopia Tools. This workshop provided a background on the many moving parts of Bactopia. Participants analyzed genomes with
+Bactopia and used the Bactopia Tools to seamlessly expand their analyses. For this workshop we followed the steps provided by
+[Bactopia Workshop](https://github.com/bactopia/bactopia-workshop).  
+Slides: [PDF](data/resources/2023-bactopia-edlb-workshop.pdf)  
+
+__
+
 ## Talks
 
 - _Designing mechanisms into Bactopia to support its users and contribute back to the community (October 2022)_  
