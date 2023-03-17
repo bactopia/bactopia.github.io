@@ -13,7 +13,7 @@ A workshop conducted with the [CDC Enteric Diseases Laboratory Branch (EDLB)](ht
 Bactopia and Bactopia Tools. This workshop provided a background on the many moving parts of Bactopia. Participants analyzed genomes with
 Bactopia and used the Bactopia Tools to seamlessly expand their analyses. For this workshop we followed the steps provided by
 [Bactopia Workshop](https://github.com/bactopia/bactopia-workshop).  
-Slides: [PDF](data/resources/2023-bactopia-edlb-workshop.pdf)  
+Slides: [PDF](/data/resources/2023-bactopia-edlb-workshop.pdf)  
 
 ## Talks
 
