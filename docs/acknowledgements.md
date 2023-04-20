@@ -20,6 +20,10 @@ Really, thank you very much!
     If you have used Bactopia in your work, please be sure to cite any datasets
     or software you may have used.
 
+## Funding
+
+Support for this project came (in part) from an Emory Public Health Bioinformatics Fellowship funded by the CDC Emerging Infections Program (U50CK000485) PPHF/ACA: Enhancing Epidemiology and Laboratory Capacity."
+
 ## Influences
 
 ### nf-core
