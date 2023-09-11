@@ -1,7 +1,6 @@
 # bactopia.github.io
 Bactopia Documentation
 
-
 ## Local Install
 
 ```{bash}
