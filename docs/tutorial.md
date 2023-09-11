@@ -62,8 +62,10 @@ which will allow you to quickly test Bactopia.
 To run the test, simply run the following command:
 
 ```{bash}
-bactopia -profile test
+bactopia -profile test,standard
 ```
+
+In the above example `standard` is a profile that makes use of Conda environments.
 
 ??? info "Example commands to use Docker or Singularity"
     If you are using Docker, you would run the following command:
