@@ -1,0 +1,4070 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A Bactopia Tool which uses Abricate to screen assemblies for antimicrobial  resistance and virulence genes">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/v3.0.0/bactopia-tools/abricate/">
+      
+      
+        <link rel="prev" href="../staphtyper/">
+      
+      
+        <link rel="next" href="../abritamr/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.2.8+insiders-4.40.4">
+    
+    
+      
+        <title>abricate - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.c4d31a9e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.da3f46a0.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../custom/magnific-popup.css">
+    
+      <link rel="stylesheet" href="../../custom/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-QH76FN9N78"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-QH76FN9N78",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-QH76FN9N78",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="abricate - Bactopia" />
+<meta property="og:description" content="A Bactopia Tool which uses Abricate to screen assemblies for antimicrobial  resistance and virulence genes" />
+<meta property="og:image" content="https://bactopia.github.io/v3.0.0/assets/images/social/bactopia-tools/abricate.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://bactopia.github.io/v3.0.0/bactopia-tools/abricate/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter.title" content="abricate - Bactopia" />
+<meta property="twitter:description" content="A Bactopia Tool which uses Abricate to screen assemblies for antimicrobial  resistance and virulence genes" />
+<meta property="twitter:image" content="https://bactopia.github.io/v3.0.0/assets/images/social/bactopia-tools/abricate.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bactopia-tool-abricate" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bactopia" class="md-header__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bactopia
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              abricate
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Bactopia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Bactopia Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../impact-and-outreach/" class="md-tabs__link">
+          
+  
+  Impact & Outreach
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bactopia" class="md-nav__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Bactopia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bactopia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../beginners-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Beginner's Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workflow Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/gather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Gather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/qc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    QC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/assembler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_4" >
+        
+          <label class="md-nav__link" for="__nav_1_6_4" id="__nav_1_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotator
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Annotator
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/annotator/prokka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Prokka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/annotator/bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Bakta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/sketcher/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Sketcher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/sequence-typing/mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Typing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/antimicrobial-resistance/amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Antimicrobial Resistance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Merlin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../full-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Bactopia Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bactopia Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Subworkflows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subworkflows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ariba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ariba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    bakta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eggnog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    eggnog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gtdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    gtdb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mashtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mashtree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    merlin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pangenome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pangenome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scrubber/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    scrubber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snippy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    snippy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staphtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    staphtyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    abricate
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    abricate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merged-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merged Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abricate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Abricate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit Trail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audit Trail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nextflow Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#program-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Program Versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Required Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Filtering Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abricate-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Abricate Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Optional Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-job-request-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Max Job Request Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Nextflow Configuration Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-profile-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Nextflow Profile Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helpful-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Helpful Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abritamr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    abritamr
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agrvate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    agrvate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    amrfinderplus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blastn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blastp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blastx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bracken/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    bracken
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../btyper3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    btyper3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busco/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    busco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    checkm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ectyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ectyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emmtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    emmtyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastani/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    fastani
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gamma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    gamma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genotyphi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    genotyphi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hicap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    hicap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hpsuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    hpsuissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ismapper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ismapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kleborate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    kleborate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kraken2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    kraken2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legsta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    legsta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    lissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mashdist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mashdist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcroni/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mcroni
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meningotype/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    meningotype
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../midas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    midas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mlst
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobsuite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mobsuite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mykrobe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mykrobe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ngmaster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ngmaster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pasty/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pasty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbptyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pbptyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phispy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    phispy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plasmidfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    plasmidfinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pneumocat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pneumocat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    quast
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    rgi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seqsero2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    seqsero2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seroba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    seroba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shigatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    shigatyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shigeifinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    shigeifinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sistr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    sistr
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    spatyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ssuissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staphopiasccmec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    staphopiasccmec
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stecfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    stecfinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tblastn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tblastn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tblastx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tblastx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tbprofiler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tbprofiler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Impact & Outreach
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Impact & Outreach
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Impact 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledgements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/citations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Citations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/enhancements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Enhancements to OSS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merged-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Merged Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abricate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Abricate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit Trail
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audit Trail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nextflow Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#program-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Program Versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Required Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Filtering Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abricate-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Abricate Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Optional Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-job-request-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Max Job Request Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Nextflow Configuration Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-profile-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Nextflow Profile Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helpful-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+         Helpful Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+<!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Actions -->
+
+
+  <!-- Edit button -->
+  
+    <a
+        href="https://github.com/bactopia/bactopia.github.io/edit/master/docs/bactopia-tools/abricate.md"
+        title="Edit on GitHub"
+        class="md-content__button md-icon"
+    >
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+
+  <!-- View button -->
+  
+
+
+<h1 id="bactopia-tool-abricate">Bactopia Tool - <code>abricate</code><a class="headerlink" href="#bactopia-tool-abricate" title="Permanent link">&para;</a></h1>
+<p>The <code>abricate</code> module uses <a href="https://github.com/tseemann/abricate">Abricate</a> to screen assemblies
+for antimicrobial resistance and virulence genes.</p>
+<h2 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>bactopia --wf abricate \
+  --bactopia /path/to/your/bactopia/results \ 
+  --include includes.txt  
+</code></pre></div>
+<h2 id="output-overview">Output Overview<a class="headerlink" href="#output-overview" title="Permanent link">&para;</a></h2>
+<p>Below is the default output structure for the <code>abricate</code> tool. Where possible the 
+file descriptions below were modified from a tools description.</p>
+<div class="highlight"><pre><span></span><code>&lt;BACTOPIA_DIR&gt;
+├── &lt;SAMPLE_NAME&gt;
+│   └── tools
+│       └── abricate
+│           ├── &lt;SAMPLE_NAME&gt;.txt
+│           └── logs
+│               ├── nf-abricate.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── abricate-&lt;TIMESTAMP&gt;
+        ├── merged-results
+        │   ├── abricate.tsv
+        │   └── logs
+        │       └── abricate-concat
+        │           ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── abricate-dag.dot
+            ├── abricate-report.html
+            ├── abricate-timeline.html
+            └── abricate-trace.txt
+</code></pre></div>
+<h3 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h3>
+<h4 id="merged-results">Merged Results<a class="headerlink" href="#merged-results" title="Permanent link">&para;</a></h4>
+<p>Below are results that are concatenated into a single file.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abricate.tsv</td>
+<td>A merged TSV file with <code>Abricate</code> results from all samples</td>
+</tr>
+</tbody>
+</table>
+<h4 id="abricate">Abricate<a class="headerlink" href="#abricate" title="Permanent link">&para;</a></h4>
+<p>Below is a description of the <em>per-sample</em> results from <a href="https://github.com/tseemann/abricate">Abricate</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;SAMPLE_NAME&gt;.txt</td>
+<td>A tab-delimited report of hits, for full details please see <a href="https://github.com/tseemann/abricate#output">Abricate - Output</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="audit-trail">Audit Trail<a class="headerlink" href="#audit-trail" title="Permanent link">&para;</a></h3>
+<p>Below are files that can assist you in understanding which parameters and program versions were used.</p>
+<h4 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h4>
+<p>Each process that is executed will have a folder named <code>logs</code>. In this folder are helpful
+files for you to review if the need ever arises.</p>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.begin</td>
+<td>An empty file used to designate the process started</td>
+</tr>
+<tr>
+<td>.err</td>
+<td>Contains STDERR outputs from the process</td>
+</tr>
+<tr>
+<td>.log</td>
+<td>Contains both STDERR and STDOUT outputs from the process</td>
+</tr>
+<tr>
+<td>.out</td>
+<td>Contains STDOUT outputs from the process</td>
+</tr>
+<tr>
+<td>.run</td>
+<td>The script Nextflow uses to stage/unstage files and queue processes based on given profile</td>
+</tr>
+<tr>
+<td>.sh</td>
+<td>The script executed by bash for the process</td>
+</tr>
+<tr>
+<td>.trace</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#trace-report">Trace</a> report for the process</td>
+</tr>
+<tr>
+<td>versions.yml</td>
+<td>A YAML formatted file with program versions</td>
+</tr>
+</tbody>
+</table>
+<h4 id="nextflow-reports">Nextflow Reports<a class="headerlink" href="#nextflow-reports" title="Permanent link">&para;</a></h4>
+<p>These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abricate-dag.dot</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation">DAG visualisation</a></td>
+</tr>
+<tr>
+<td>abricate-report.html</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#execution-report">Execution Report</a></td>
+</tr>
+<tr>
+<td>abricate-timeline.html</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">Timeline Report</a></td>
+</tr>
+<tr>
+<td>abricate-trace.txt</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#trace-report">Trace</a> report</td>
+</tr>
+</tbody>
+</table>
+<h4 id="program-versions">Program Versions<a class="headerlink" href="#program-versions" title="Permanent link">&para;</a></h4>
+<p>At the end of each run, each of the <code>versions.yml</code> files are merged into the files below.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>software_versions.yml</td>
+<td>A complete list of programs and versions used by each process</td>
+</tr>
+<tr>
+<td>software_versions_mqc.yml</td>
+<td>A complete list of programs and versions formatted for <a href="https://multiqc.info/">MultiQC</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<h3 id="required-parameters"><i class="fa-xl fas fa-terminal"></i> Required Parameters<a class="headerlink" href="#required-parameters" title="Permanent link">&para;</a></h3>
+<p>Define where the pipeline should find input data and save output data.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-bacterium"></i><code>--bactopia</code></td>
+<td>The path to bactopia results to use as inputs <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="filtering-parameters"><i class="fa-xl fa-solid fa-filter"></i> Filtering Parameters<a class="headerlink" href="#filtering-parameters" title="Permanent link">&para;</a></h3>
+<p>Use these parameters to specify which samples to include or exclude.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg far fa-square-plus"></i><code>--include</code></td>
+<td>A text file containing sample names (one per line) to include from the analysis <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg far fa-square-minus"></i><code>--exclude</code></td>
+<td>A text file containing sample names (one per line) to exclude from the analysis <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="abricate-parameters"><i class="fa-xl fas fa-exclamation-circle"></i> Abricate Parameters<a class="headerlink" href="#abricate-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--abricate_db</code></td>
+<td>Database to use <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>ncbi</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--minid</code></td>
+<td>Minimum DNA percent identity <br/><strong>Type:</strong> <code>integer</code>, <strong>Default:</strong> <code>80</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--mincov</code></td>
+<td>Minimum DNA percent coverage <br/><strong>Type:</strong> <code>integer</code>, <strong>Default:</strong> <code>80</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="optional-parameters"><i class="fa-xl fa-solid fa-gears"></i> Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link">&para;</a></h3>
+<p>These optional parameters can be useful in certain settings.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-folder"></i><code>--outdir</code></td>
+<td>Base directory to write results to <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>./</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-folder"></i><code>--run_name</code></td>
+<td>Name of the directory to hold results <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>bactopia</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--skip_compression</code></td>
+<td>Ouput files will not be compressed <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-folder"></i><code>--datasets</code></td>
+<td>The path to cache datasets to <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-trash-restore"></i><code>--keep_all_files</code></td>
+<td>Keeps all analysis files created <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="max-job-request-parameters"><i class="fa-xl fa-solid fa-arrow-up-right-dots"></i> Max Job Request Parameters<a class="headerlink" href="#max-job-request-parameters" title="Permanent link">&para;</a></h3>
+<p>Set the top limit for requested resources for any single job.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-redo"></i><code>--max_retry</code></td>
+<td>Maximum times to retry a process before allowing it to fail. <br/><strong>Type:</strong> <code>integer</code>, <strong>Default:</strong> <code>3</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-microchip"></i><code>--max_cpus</code></td>
+<td>Maximum number of CPUs that can be requested for any single job. <br/><strong>Type:</strong> <code>integer</code>, <strong>Default:</strong> <code>4</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-memory"></i><code>--max_memory</code></td>
+<td>Maximum amount of memory (in GB) that can be requested for any single job. <br/><strong>Type:</strong> <code>integer</code>, <strong>Default:</strong> <code>32</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg far fa-clock"></i><code>--max_time</code></td>
+<td>Maximum amount of time (in minutes) that can be requested for any single job. <br/><strong>Type:</strong> <code>integer</code>, <strong>Default:</strong> <code>120</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-angle-double-up"></i><code>--max_downloads</code></td>
+<td>Maximum number of samples to download at a time <br/><strong>Type:</strong> <code>integer</code>, <strong>Default:</strong> <code>3</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="nextflow-configuration-parameters"><i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration Parameters<a class="headerlink" href="#nextflow-configuration-parameters" title="Permanent link">&para;</a></h3>
+<p>Parameters to fine-tune your Nextflow setup.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-cog"></i><code>--nfconfig</code></td>
+<td>A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-copy"></i><code>--publish_dir_mode</code></td>
+<td>Method used to save pipeline results to output directory. <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>copy</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-cogs"></i><code>--infodir</code></td>
+<td>Directory to keep pipeline Nextflow logs and reports. <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>${params.outdir}/pipeline_info</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-recycle"></i><code>--force</code></td>
+<td>Nextflow will overwrite existing output files. <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-trash-alt"></i><code>--cleanup_workdir</code></td>
+<td>After Bactopia is successfully executed, the <code>work</code> directory will be deleted. <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="nextflow-profile-parameters"><i class="fa-xl fa-regular fa-address-card"></i> Nextflow Profile Parameters<a class="headerlink" href="#nextflow-profile-parameters" title="Permanent link">&para;</a></h3>
+<p>Parameters to fine-tune your Nextflow setup.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-folder"></i><code>--condadir</code></td>
+<td>Directory to Nextflow should use for Conda environments <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-box"></i><code>--registry</code></td>
+<td>Docker registry to pull containers from. <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>dockerhub</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-folder"></i><code>--datasets_cache</code></td>
+<td>Directory where downloaded datasets should be stored. <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>&lt;BACTOPIA_DIR&gt;/data/datasets</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-folder"></i><code>--singularity_cache</code></td>
+<td>Directory where remote Singularity images are stored. <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-toolbox"></i><code>--singularity_pull_docker_container</code></td>
+<td>Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-recycle"></i><code>--force_rebuild</code></td>
+<td>Force overwrite of existing pre-built environments. <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-clipboard-list"></i><code>--queue</code></td>
+<td>Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>general,high-memory</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-clipboard-list"></i><code>--cluster_opts</code></td>
+<td>Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-toggle-off"></i><code>--disable_scratch</code></td>
+<td>All intermediate files created on worker nodes of will be transferred to the head node. <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="helpful-parameters"><i class="fa-xl fa-solid fa-reply-all"></i> Helpful Parameters<a class="headerlink" href="#helpful-parameters" title="Permanent link">&para;</a></h3>
+<p>Uncommonly used parameters that might be useful.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-palette"></i><code>--monochrome_logs</code></td>
+<td>Do not use coloured log outputs. <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-remove-format"></i><code>--nfdir</code></td>
+<td>Print directory Nextflow has pulled Bactopia to <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg far fa-clock"></i><code>--sleep_time</code></td>
+<td>The amount of time (seconds) Nextflow will wait after setting up datasets before execution. <br/><strong>Type:</strong> <code>integer</code>, <strong>Default:</strong> <code>5</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-tasks"></i><code>--validate_params</code></td>
+<td>Boolean whether to validate parameters against the schema at runtime <br/><strong>Type:</strong> <code>boolean</code>, <strong>Default:</strong> <code>True</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-question-circle"></i><code>--help</code></td>
+<td>Display help text. <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-bacteria"></i><code>--wf</code></td>
+<td>Specify which workflow or Bactopia Tool to execute <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>bactopia</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-list"></i><code>--list_wfs</code></td>
+<td>List the available workflows and Bactopia Tools to use with '--wf' <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg far fa-eye"></i><code>--show_hidden_params</code></td>
+<td>Show all params when using <code>--help</code> <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-question-circle"></i><code>--help_all</code></td>
+<td>An alias for --help --show_hidden_params <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-info"></i><code>--version</code></td>
+<td>Display version text. <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="citations">Citations<a class="headerlink" href="#citations" title="Permanent link">&para;</a></h2>
+<p>If you use Bactopia and <code>abricate</code> in your analysis, please cite the following.</p>
+<ul>
+<li>
+<p><a href="https://bactopia.github.io/">Bactopia</a><br />
+    Petit III RA, Read TD <a href="https://doi.org/10.1128/mSystems.00190-20">Bactopia - a flexible pipeline for complete analysis of bacterial genomes.</a> <em>mSystems</em> 5 (2020)</p>
+</li>
+<li>
+<p><a href="https://github.com/tseemann/abricate">Abricate</a><br />
+    Seemann T <a href="https://github.com/tseemann/abricate">Abricate: mass screening of contigs for antimicrobial and virulence genes</a> (GitHub)</p>
+</li>
+<li>
+<p><a href="http://en.mediterranee-infection.com/article.php?laref=283%26titre=arg-annot">ARG-ANNOT</a><br />
+    Gupta SK, Padmanabhan BR, Diene SM, Lopez-Rojas R, Kempf M, Landraud L, Rolain J-M <a href="https://doi.org/10.1128/aac.01310-13">ARG-ANNOT, a new bioinformatic tool to discover antibiotic resistance genes in bacterial genomes.</a> <em>Antimicrob. Agents Chemother</em> 58, 212–220 (2014)</p>
+</li>
+<li>
+<p><a href="https://card.mcmaster.ca/">CARD</a><br />
+    Alcock BP, Raphenya AR, Lau TTY, Tsang KK, Bouchard M, Edalatmand A, Huynh W, Nguyen A-L V, Cheng AA, Liu S, Min SY, Miroshnichenko A, Tran H-K, Werfalli RE, Nasir JA, Oloni M, Speicher DJ, Florescu A, Singh B, Faltyn M, Hernandez-Koutoucheva A, Sharma AN, Bordeleau E, Pawlowski AC, Zubyk HL, Dooley D, Griffiths E, Maguire F, Winsor GL, Beiko RG, Brinkman FSL, Hsiao WWL, Domselaar GV, McArthur AG <a href="https://doi.org/10.1093/nar/gkz935">CARD 2020: antibiotic resistome surveillance with the comprehensive antibiotic resistance database.</a> <em>Nucleic acids research</em> 48.D1, D517-D525 (2020)</p>
+</li>
+<li>
+<p><a href="https://bioinf.shenwei.me/csvtk/">csvtk</a><br />
+    Shen, W <a href="https://github.com/shenwei356/csvtk/">csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.</a> (GitHub)</p>
+</li>
+<li>
+<p><a href="https://dx.doi.org/10.1099%2Fmgen.0.000064">EcOH</a><br />
+    Ingle DJ, Valcanis M, Kuzevski A, Tauschek M, Inouye M, Stinear T, Levine MM, Robins-Browne RM, Holt KE <a href="https://doi.org/10.1099/mgen.0.000064">In silico serotyping of E. coli from short read data identifies limited novel O-loci but extensive diversity of O:H serotype combinations within and between pathogenic lineages.</a> <em>Microbial Genomics</em>, 2(7), e000064. (2016)</p>
+</li>
+<li>
+<p><a href="https://megares.meglab.org/">MEGARes 2.0</a><br />
+    Doster E, Lakin SM, Dean CJ, Wolfe C, Young JG, Boucher C, Belk KE, Noyes NR, Morley PS <a href="https://doi.org/10.1093/nar/gkz1010">MEGARes 2.0: a database for classification of antimicrobial drug, biocide and metal resistance determinants in metagenomic sequence data.</a> <em>Nucleic Acids Research</em>, 48(D1), D561–D569. (2020)</p>
+</li>
+<li>
+<p><a href="https://www.ncbi.nlm.nih.gov/bioproject/?term=PRJNA313047">NCBI Reference Gene Catalog</a><br />
+    Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W <a href="https://doi.org/10.1128/AAC.00483-19">Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates</a>. <em>Antimicrob. Agents Chemother.</em> (2019)</p>
+</li>
+<li>
+<p><a href="https://bitbucket.org/genomicepidemiology/plasmidfinder">PlasmidFinder</a><br />
+    Carattoli A, Zankari E, García-Fernández A, Voldby Larsen M, Lund O, Villa L, Møller Aarestrup F, Hasman H <a href="https://doi.org/10.1128/AAC.02412-14">In silico detection and typing of plasmids using PlasmidFinder and plasmid multilocus sequence typing.</a> <em>Antimicrobial Agents and Chemotherapy</em> 58(7), 3895–3903. (2014)</p>
+</li>
+<li>
+<p><a href="https://cge.cbs.dtu.dk//services/ResFinder/">ResFinder</a><br />
+    Zankari E, Hasman H, Cosentino S, Vestergaard M, Rasmussen S, Lund O, Aarestrup FM, Larsen MV <a href="https://doi.org/10.1093/jac/dks261">Identification of acquired antimicrobial resistance genes.</a> <em>J. Antimicrob. Chemother.</em> 67, 2640–2644 (2012)</p>
+</li>
+<li>
+<p><a href="http://www.mgc.ac.cn/VFs/">VFDB</a><br />
+    Chen L, Zheng D, Liu B, Yang J, Jin Q <a href="https://doi.org/10.1093/nar/gkv1239">VFDB 2016: hierarchical and refined dataset for big data analysis--10 years on.</a> <em>Nucleic Acids Res.</em> 44, D694–7 (2016)</p>
+</li>
+</ul>
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../staphtyper/" class="md-footer__link md-footer__link--prev" aria-label="Previous: staphtyper" rel="prev">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                staphtyper
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../abritamr/" class="md-footer__link md-footer__link--next" aria-label="Next: abritamr" rel="next">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                abritamr
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2019-2023 Robert A. Petit III. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/bactopia/bactopia" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://gitter.im/bactopia/Lobby" target="_blank" rel="noopener" title="gitter.im" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M66.4 322.5H16V0h50.4v322.5zM166.9 76.1h-50.4V512h50.4V76.1zm100.6 0h-50.4V512h50.4V76.1zM368 76h-50.4v247H368V76z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/r/bactopia/bactopia" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/rpetit3" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.action.edit", "navigation.footer", "navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top"], "search": "../../assets/javascripts/workers/search.f2da59ea.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7e51e09.min.js"></script>
+      
+        <script src="../../custom/fontawesome.js"></script>
+      
+        <script src="../../custom/jquery.min.js"></script>
+      
+        <script src="../../custom/jquery.magnific-popup.min.js"></script>
+      
+        <script src="../../custom/extra.js"></script>
+      
+    
+  </body>
+</html>
