@@ -2,7 +2,7 @@
 site_name: Bactopia
 site_author: Robert A. Petit III
 site_description: An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
-copyright: "Copyright © 2019-2021 Robert A. Petit III. All rights reserved."
+copyright: "Copyright © 2019-2023 Robert A. Petit III. All rights reserved."
 
 site_url: https://bactopia.github.io/
 repo_url: https://github.com/bactopia/bactopia
@@ -12,26 +12,38 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    - scheme: slate
-      primary: red
-      accent: red
-      toggle:
-        icon: material/toggle-switch
+        icon: material/brightness-auto
         name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
   favicon: assets/favicon.ico
   logo: assets/bactopia-small-logo.png
   font:
     text: 'Ubuntu'
     code: 'Ubuntu Mono'
   features:
+    - content.action.edit
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.prefetch
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.tracking
+    - navigation.top
 
 extra:
   analytics:
@@ -52,6 +64,7 @@ extra_css:
   - custom/extra.css
 
 extra_javascript:
+  - custom/fontawesome.js
   - custom/jquery.min.js
   - custom/jquery.magnific-popup.min.js
   - custom/extra.js
@@ -100,16 +113,21 @@ nav:
     - 'Introduction': 'index.md'
     - 'Quick Start': 'quick-start.md'
     - 'Installation': 'installation.md'
+    - "Beginner's Guide": 'beginners-guide.md'
     - 'Tutorial': 'tutorial.md'
-    - 'Build Datasets': 'datasets.md'
-    - 'Basic Usage': 'usage-basic.md'
-    - 'Workflow Overview': 'workflow-overview.md'
-    - 'Output Overview': 'output-overview.md'
-    - 'Complete Usage': 'usage-complete.md'
-    - 'Troubleshooting': 'troubleshooting.md'
-    - 'Presentations': 'presentations.md'
-    - 'Enhancements to OSS': 'enhancements.md'
-    - 'Acknowledgements': 'acknowledgements.md'
+    - 'Workflow Steps':
+        - 'Gather': 'bactopia/gather.md'
+        - 'QC': 'bactopia/qc.md'
+        - 'Assembler': 'bactopia/assembler.md'
+        - 'Annotator':
+            - 'Prokka': 'bactopia/annotator/prokka.md'
+            - 'Bakta': 'bactopia/annotator/bakta.md'
+        - 'Sketcher': 'bactopia/sketcher.md'
+        - 'Sequence Typing': 'bactopia/sequence-typing/mlst.md'
+        - 'Antimicrobial Resistance': 'bactopia/antimicrobial-resistance/amrfinderplus.md'
+        - 'Merlin': 'bactopia/merlin.md'
+    - 'Full Guide': 'full-guide.md'
+#    - 'Troubleshooting': 'troubleshooting.md'
     - 'Changelog': 'changelog.md'
   - 'Bactopia Tools':
     - 'Introduction': 'bactopia-tools/index.md'
@@ -118,14 +136,22 @@ nav:
       - 'bakta': 'bactopia-tools/bakta.md'
       - 'eggnog': 'bactopia-tools/eggnog.md'
       - 'gtdb': 'bactopia-tools/gtdb.md'
+      - 'mashtree': 'bactopia-tools/mashtree.md'
       - 'merlin': 'bactopia-tools/merlin.md'
       - 'pangenome': 'bactopia-tools/pangenome.md'
+      - 'scrubber': 'bactopia-tools/scrubber.md'
       - 'snippy': 'bactopia-tools/snippy.md'
       - 'staphtyper': 'bactopia-tools/staphtyper.md'
     - 'Modules':
       - 'abricate': 'bactopia-tools/abricate.md'
+      - 'abritamr': 'bactopia-tools/abritamr.md'
       - 'agrvate': 'bactopia-tools/agrvate.md'
       - 'amrfinderplus': 'bactopia-tools/amrfinderplus.md'
+      - 'blastn': 'bactopia-tools/blastn.md'
+      - 'blastp': 'bactopia-tools/blastp.md'
+      - 'blastx': 'bactopia-tools/blastx.md'
+      - 'bracken': 'bactopia-tools/bracken.md'
+      - 'btyper3': 'bactopia-tools/btyper3.md'
       - 'busco': 'bactopia-tools/busco.md'
       - 'checkm': 'bactopia-tools/checkm.md'
       - 'ectyper': 'bactopia-tools/ectyper.md'
@@ -141,17 +167,19 @@ nav:
       - 'legsta': 'bactopia-tools/legsta.md'
       - 'lissero': 'bactopia-tools/lissero.md'
       - 'mashdist': 'bactopia-tools/mashdist.md'
-      - 'mashtree': 'bactopia-tools/mashtree.md'
       - 'mcroni': 'bactopia-tools/mcroni.md'
       - 'meningotype': 'bactopia-tools/meningotype.md'
+      - 'midas': 'bactopia-tools/midas.md'
       - 'mlst': 'bactopia-tools/mlst.md'
       - 'mobsuite': 'bactopia-tools/mobsuite.md'
       - 'mykrobe': 'bactopia-tools/mykrobe.md'
       - 'ngmaster': 'bactopia-tools/ngmaster.md'
       - 'pasty': 'bactopia-tools/pasty.md'
       - 'pbptyper': 'bactopia-tools/pbptyper.md'
+      - 'phispy': 'bactopia-tools/phispy.md'
       - 'plasmidfinder': 'bactopia-tools/plasmidfinder.md'
-      - 'prokka': 'bactopia-tools/prokka.md'
+      - 'pneumocat': 'bactopia-tools/pneumocat.md'
+      - 'quast': 'bactopia-tools/quast.md'
       - 'rgi': 'bactopia-tools/rgi.md'
       - 'seqsero2': 'bactopia-tools/seqsero2.md'
       - 'seroba': 'bactopia-tools/seroba.md'
@@ -161,4 +189,21 @@ nav:
       - 'spatyper': 'bactopia-tools/spatyper.md'
       - 'ssuissero': 'bactopia-tools/ssuissero.md'
       - 'staphopiasccmec': 'bactopia-tools/staphopiasccmec.md'
+      - 'stecfinder': 'bactopia-tools/stecfinder.md'
+      - 'tblastn': 'bactopia-tools/tblastn.md'
+      - 'tblastx': 'bactopia-tools/tblastx.md'
       - 'tbprofiler': 'bactopia-tools/tbprofiler.md'
+#  - 'More Workflows':
+#    - 'Introduction': 'workflows/index.md'
+#    - 'Clean-Yer-Reads': 'workflows/clean-yer-reads.md'
+#    - 'Staphopia': 'workflows/staphopia.md'
+#    - 'Teton': 'workflows/teton.md'
+#  - 'Tutorials': 'tutorial.md'
+  - 'Impact & Outreach':
+    - 'Impact ': 'impact-and-outreach/index.md'
+    - 'Acknowledgements': 'impact-and-outreach/acknowledgements.md'
+    - 'Citations': 'impact-and-outreach/citations.md'
+    - 'Enhancements to OSS': 'impact-and-outreach/enhancements.md'
+    - 'Presentations': 'impact-and-outreach/presentations.md'
+#  - Blog:
+#    - blog/index.md

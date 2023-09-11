@@ -1,15 +1,16 @@
 ---
 title: Acknowledgements
 description: >- 
-    A full list of the {{ total }} datasets and software packages used by
-    Bactopia, along with links and citations.
+    A comprehensive list of datasets and software packages utilized in Bactopia, 
+    complete with links and citations.
 ---
 # Acknowledgements
 
 Bactopia is truly a case of *"standing upon the shoulders of giants"*. Bactopia
-currently includes more than {{ total }} datasets and software packages. Nearly 
-every component uses, from the workflow, datasets, software packages, even the 
-framework for this site, was created by others and made freely available to the public.
+currently integrates more than {{ total }} datasets and software packages. Nearly
+every component utilized in Bactopia, from the workflow to the datasets to the
+software packages and even the framework of this site, was created by others
+and made freely accessible to the public.
 
 I would like to personally extend my many thanks and gratitude to the authors
 of these software packages and public datasets. If you've made it this far, I 
@@ -23,33 +24,53 @@ Really, thank you very much!
 ## Funding
 
 Support for this project came (in part) from an Emory Public Health Bioinformatics Fellowship
-funded by the CDC Emerging Infections Program (U50CK000485) PPHF/ACA: Enhancing Epidemiology
-and Laboratory Capacity.
+funded by the [CDC Emerging Infections Program (U50CK000485) PPHF/ACA: Enhancing Epidemiology and Laboratory Capacity](https://dph.georgia.gov/EIP),
+the [Wyoming Public Health Division](https://health.wyo.gov/publichealth/), and
+the [Center for Applied Pathogen Epidemiology and Outbreak Control (CAPE)](https://www.linkedin.com/company/center-for-applied-pathogen-epidemiology-and-outbreak-control/).
+
+<a href="https://dph.georgia.gov/EIP">
+![Georgia Emerging Infections Program](../assets/gaeip-banner.png){ width="22%" }
+</a>
+<a href="https://health.wyo.gov/publichealth/">
+![Wyoming Public Health Division](../assets//wyphd-banner.jpg){ width="44%" }
+</a>
+<a href="https://www.linkedin.com/company/center-for-applied-pathogen-epidemiology-and-outbreak-control/">
+![Center for Applied 
+Pathogen Epidemiology and Outbreak Control](../assets/cape-banner.png){ width="29%" }
+</a>
 
 ## Influences
 
 ### nf-core
-[nf-core](https://nf-co.re/) is group of great individuals volunteering 
-their time to create a set of curated Nextflow analysis pipelines. The [nf-core Team](https://nf-co.re/about)
-is putting together some amazing practices that I think really strengthen the 
-Nextflow community as a whole!
+[nf-core](https://nf-co.re/) is a great group of individuals volunteering their time to
+create a set of curated Nextflow analysis pipelines. The [nf-core Team](https://nf-co.re/about)
+has put together some amazing practices that I think really strengthen the Nextflow
+community as a whole!
 
-Since the beginning I have always had the idea of Bactopia one day being 
-apart of nf-core. Unfortunately, I think Bactopia is a much to big at this point to fit the nf-core mold, but that's OK! 
-There are still many nf-core practices I've been able to adapt into Bactopia.
+I'm often asked: _Will Bactopia ever be apart of nf-core?_
+
+The answer is: _No, but..._
+
+Bactopia, was adapted from Staphopia which pre-dates the beginnings of nf-core. As both nf-core
+and Bactopia grew, it bacame clear adding Bactopia to nf-core was going to be a difficult
+task. The last opporunity to do so was probably when Bactopia was converted to DSL2, but
+Bactopia Tools would not likely ever fit into the nf-core mold. 
+
+_However_, where possible, I have tried to implement nf-core practices into Bactopia.
+Some examples include:
 
 1. Arguement parsing based on nf-core library
 2. All Bactopia Tools are adapted from nf-core/modules
 3. Testing implemented to follow nf-core/modules
 
-By implementing these practices, Bactopia I believe is much better pipeline to use. For this I'm very 
-grateful to the nf-core community! Thank you!
+By implementing these practices, Bactopia I believe is much better pipeline to use. For
+this I'm very grateful to the nf-core community! Thank you!
 
 {{ citations.influences.nfcore.cite }}
 
 ## Public Datasets
 Below is a list of {{ total_datasets }} public datasets that could have potentially 
-been included during the *[Build Datasets](datasets.md)* step.
+been used through Bactopia or Bactopia Tools.
 
 ### Ariba Reference Datasets
 These datasets are available using Ariba's `getref` function. You can learn 
@@ -87,3 +108,9 @@ have been included.
 {{ citations.tools[tool].description }}  
 {{ citations.tools[tool].cite }}  
 {% endfor %}
+
+## Bactopia Citation
+
+If you use Bactopia in your analysis, please cite the following.
+
+Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)

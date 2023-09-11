@@ -20,30 +20,29 @@ Below is the default output structure for the `seqsero2` tool. Where possible th
 file descriptions below were modified from a tools description.
 
 ```{bash}
-seqsero2/
+<BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
-│   ├── <SAMPLE_NAME>_log.txt
-│   ├── <SAMPLE_NAME>_result.tsv
-│   ├── <SAMPLE_NAME>_result.txt
-│   └── logs
+│   └── tools
 │       └── seqsero2
-│           ├── nf-seqsero2.{begin,err,log,out,run,sh,trace}
-│           └── versions.yml
-├── logs
-│   ├── csvtk_concat
-│   │   ├── nf-csvtk_concat.{begin,err,log,out,run,sh,trace}
-│   │   └── versions.yml
-│   └── custom_dumpsoftwareversions
-│       ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
-│       └── versions.yml
-├── nf-reports
-│   ├── seqsero2-dag.dot
-│   ├── seqsero2-report.html
-│   ├── seqsero2-timeline.html
-│   └── seqsero2-trace.txt
-├── seqsero2.tsv
-├── software_versions.yml
-└── software_versions_mqc.yml
+│           ├── <SAMPLE_NAME>_log.txt
+│           ├── <SAMPLE_NAME>_result.tsv
+│           ├── <SAMPLE_NAME>_result.txt
+│           └── logs
+│               ├── nf-seqsero2.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── seqsero2-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── seqsero2-concat
+        │   │       ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── seqsero2.tsv
+        └── nf-reports
+            ├── seqsero2-dag.dot
+            ├── seqsero2-report.html
+            ├── seqsero2-timeline.html
+            └── seqsero2-trace.txt
 
 ```
 
@@ -58,14 +57,14 @@ seqsero2/
 
 ### Results
 
-#### Top Level
+#### Merged Results
 
-Below are results that are in the base directory.
+Below are results that are concatenated into a single file.
 
 
-| Filename    | Description |
-|-------------|-------------|
-| seqsero2.tsv  | A merged TSV file with `seqsero2` results from all samples |
+| Filename                      | Description |
+|-------------------------------|-------------|
+| seqsero2.tsv | A merged TSV file with `SeqSero2` results from all samples |
 
 
 #### SeqSero2
@@ -73,10 +72,10 @@ Below are results that are in the base directory.
 Below is a description of the _per-sample_ results from [SeqSero2](https://github.com/denglab/SeqSero2).
 
 
-| Filename                 | Description |
-|--------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;.tsv  | A tab-delimited file with `SeqSero2` results |
-| &lt;SAMPLE_NAME&gt;.txt  | A text file with key-value pairs of `SeqSero2` results |
+| Filename                      | Description |
+|-------------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;_result.tsv | A tab-delimited file with `SeqSero2` results |
+| &lt;SAMPLE_NAME&gt;_result.txt | A text file with key-value pairs of `SeqSero2` results |
 
 
 
@@ -88,19 +87,19 @@ Below are files that can assist you in understanding which parameters and progra
 
 #### Logs 
 
-Each process that is executed will have a `logs` folder containing helpful files for you to review
-if the need ever arises.
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
 
-| Filename                      | Description |
-|-------------------------------|-------------|
-| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
-| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
-| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
-| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
-| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
-| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
-| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
-| versions.yml                  | A YAML formatted file with program versions |
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
 
 #### Nextflow Reports
 
@@ -127,93 +126,95 @@ At the end of each run, each of the `versions.yml` files are merged into the fil
 ## Parameters
 
 
-### Required Parameters
+### <i class="fa-xl fas fa-terminal"></i> Required Parameters
 Define where the pipeline should find input data and save output data.
 
-| Parameter | Description | Default |
-|---|---|---|
-| `--bactopia` | The path to bactopia results to use as inputs |  |
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-bacterium"></i>` --bactopia` | The path to bactopia results to use as inputs <br/>**Type:** `string` |
 
-### Filtering Parameters
+### <i class="fa-xl fa-solid fa-filter"></i> Filtering Parameters
 Use these parameters to specify which samples to include or exclude.
 
-| Parameter | Description | Default |
-|---|---|---|
-| `--include` | A text file containing sample names (one per line) to include from the analysis |  |
-| `--exclude` | A text file containing sample names (one per line) to exclude from the analysis |  |
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg far fa-square-plus"></i>` --include` | A text file containing sample names (one per line) to include from the analysis <br/>**Type:** `string` |
+| <i class="fa-lg far fa-square-minus"></i>` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
 
 
-### SeqSero2 Parameters
+### <i class="fa-xl fas fa-exclamation-circle"></i> SeqSero2 Parameters
 
 
-| Parameter | Description | Default |
-|---|---|---|
-| `--run_mode` | Workflow to run. 'a' allele mode, or 'k' k-mer mode | k |
-| `--input_type` | Input format to analyze. 'assembly' or 'fastq' | assembly |
-| `--bwa_mode` | Algorithms for bwa mapping for allele mode | mem |
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --run_mode` | Workflow to run. 'a' allele mode, or 'k' k-mer mode <br/>**Type:** `string`, **Default:** `k` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --input_type` | Input format to analyze. 'assembly' or 'fastq' <br/>**Type:** `string`, **Default:** `assembly` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --bwa_mode` | Algorithms for bwa mapping for allele mode <br/>**Type:** `string`, **Default:** `mem` |
 
 
-### Optional Parameters
+### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
 These optional parameters can be useful in certain settings.
 
-| Parameter | Description | Default |
-|---|---|---|
-| `--outdir` | Base directory to write results to | ./ |
-| `--run_name` | Name of the directory to hold results | bactopia |
-| `--skip_compression` | Ouput files will not be compressed | False |
-| `--keep_all_files` | Keeps all analysis files created | False |
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-folder"></i>` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `./` |
+| <i class="fa-lg fas fa-folder"></i>` --run_name` | Name of the directory to hold results <br/>**Type:** `string`, **Default:** `bactopia` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-folder"></i>` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-trash-restore"></i>` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
 
-### Max Job Request Parameters
+### <i class="fa-xl fa-solid fa-arrow-up-right-dots"></i> Max Job Request Parameters
 Set the top limit for requested resources for any single job.
 
-| Parameter | Description | Default |
-|---|---|---|
-| `--max_retry` | Maximum times to retry a process before allowing it to fail. | 3 |
-| `--max_cpus` | Maximum number of CPUs that can be requested for any single job. | 4 |
-| `--max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. | 32 |
-| `--max_time` | Maximum amount of time (in minutes) that can be requested for any single job. | 120 |
-| `--max_downloads` | Maximum number of samples to download at a time | 3 |
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-redo"></i>` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
+| <i class="fa-lg fas fa-microchip"></i>` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
+| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `32` |
+| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time (in minutes) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `120` |
+| <i class="fa-lg fas fa-angle-double-up"></i>` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
 
-### Nextflow Configuration Parameters
+### <i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration Parameters
 Parameters to fine-tune your Nextflow setup.
 
-| Parameter | Description | Default |
-|---|---|---|
-| `--nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |  |
-| `--publish_dir_mode` | Method used to save pipeline results to output directory. | copy |
-| `--infodir` | Directory to keep pipeline Nextflow logs and reports. | ${params.outdir}/pipeline_info |
-| `--force` | Nextflow will overwrite existing output files. | False |
-| `--cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. | False |
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-cog"></i>` --nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-copy"></i>` --publish_dir_mode` | Method used to save pipeline results to output directory. <br/>**Type:** `string`, **Default:** `copy` |
+| <i class="fa-lg fas fa-cogs"></i>` --infodir` | Directory to keep pipeline Nextflow logs and reports. <br/>**Type:** `string`, **Default:** `${params.outdir}/pipeline_info` |
+| <i class="fa-lg fas fa-recycle"></i>` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-trash-alt"></i>` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
 
-### Nextflow Profile Parameters
+### <i class="fa-xl fa-regular fa-address-card"></i> Nextflow Profile Parameters
 Parameters to fine-tune your Nextflow setup.
 
-| Parameter | Description | Default |
-|---|---|---|
-| `--condadir` | Directory to Nextflow should use for Conda environments |  |
-| `--registry` | Docker registry to pull containers from. | dockerhub |
-| `--singularity_cache` | Directory where remote Singularity images are stored. |  |
-| `--singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |  |
-| `--force_rebuild` | Force overwrite of existing pre-built environments. | False |
-| `--queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) | general,high-memory |
-| `--cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |  |
-| `--disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. | False |
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-folder"></i>` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-box"></i>` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
+| <i class="fa-lg fas fa-folder"></i>` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
+| <i class="fa-lg fas fa-folder"></i>` --singularity_cache` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-toolbox"></i>` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-recycle"></i>` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-clipboard-list"></i>` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
+| <i class="fa-lg fas fa-clipboard-list"></i>` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-toggle-off"></i>` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
 
-### Helpful Parameters
+### <i class="fa-xl fa-solid fa-reply-all"></i> Helpful Parameters
 Uncommonly used parameters that might be useful.
 
-| Parameter | Description | Default |
-|---|---|---|
-| `--monochrome_logs` | Do not use coloured log outputs. |  |
-| `--nfdir` | Print directory Nextflow has pulled Bactopia to |  |
-| `--sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. | 5 |
-| `--validate_params` | Boolean whether to validate parameters against the schema at runtime | True |
-| `--help` | Display help text. |  |
-| `--wf` | Specify which workflow or Bactopia Tool to execute | bactopia |
-| `--list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' |  |
-| `--show_hidden_params` | Show all params when using `--help` |  |
-| `--help_all` | An alias for --help --show_hidden_params |  |
-| `--version` | Display version text. |  |
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-palette"></i>` --monochrome_logs` | Do not use coloured log outputs. <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-remove-format"></i>` --nfdir` | Print directory Nextflow has pulled Bactopia to <br/>**Type:** `boolean` |
+| <i class="fa-lg far fa-clock"></i>` --sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. <br/>**Type:** `integer`, **Default:** `5` |
+| <i class="fa-lg fas fa-tasks"></i>` --validate_params` | Boolean whether to validate parameters against the schema at runtime <br/>**Type:** `boolean`, **Default:** `True` |
+| <i class="fa-lg fas fa-question-circle"></i>` --help` | Display help text. <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-bacteria"></i>` --wf` | Specify which workflow or Bactopia Tool to execute <br/>**Type:** `string`, **Default:** `bactopia` |
+| <i class="fa-lg fas fa-list"></i>` --list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' <br/>**Type:** `boolean` |
+| <i class="fa-lg far fa-eye"></i>` --show_hidden_params` | Show all params when using `--help` <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-question-circle"></i>` --help_all` | An alias for --help --show_hidden_params <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
 If you use Bactopia and `seqsero2` in your analysis, please cite the following.

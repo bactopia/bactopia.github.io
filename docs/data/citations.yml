@@ -1,0 +1,337 @@
+citations:
+  - authors: Vanderwoude J, Azimi S, Read TD, Read TD, Diggle SP. 
+    title: Evolutionary Drivers of Antimicrobial Resistance Diversity of _Pseudomonas aeruginosa_ in Cystic Fibrosis Lung Infection
+    url: https://doi.org/10.1101/2023.06.14.544983
+    journal: bioRxiv
+    date: 2023-08-23
+
+  - authors: Machado RAR, Bhat AH, Castaneda-Alvarez C, Askary TH, Půža V, Pagès S, Abolafia J.
+    title: Xenorhabdus aichiensis sp. nov., Xenorhabdus anantnagensis sp. nov., and Xenorhabdus yunnanensis sp. nov., Isolated from Steinernema Entomopathogenic Nematodes.
+    url: https://doi.org/10.1007/s00284-023-03373-2
+    journal: Curr Microbiol
+    date: 2023-07-26
+
+  - authors: Ortega-Sanz I, Barbero-Aparicio JA, Canepa-Oneto A, Rovira J, Melero B.
+    title: "CamPype: an open-source workflow for automated bacterial whole-genome sequencing analysis focused on Campylobacter."
+    url: https://doi.org/10.1186/s12859-023-05414-w
+    journal: BMC Bioinformatics
+    date: 2023-07-20
+
+  - authors: Elek CKA, Brown TL, Le Viet T, Evans R, Baker DJ, Telatin A, Tiwari SK, Al-Khanaq H, Thilliez G, Kingsley RA, Hall LJ, Webber MA, Adriaenssens EM.
+    title: "A hybrid and poly-polish workflow for the complete and accurate assembly of phage genomes: a case study of ten przondoviruses."
+    url: https://doi.org/10.1099/mgen.0.001065
+    journal: Microb Genom
+    date: 2023-07-19
+
+  - authors: Libuit KG, Doughty EL, Otieno JR, Ambrosio F, Kapsak CJ, Smith EA, Wright SM, Scribner MR, Petit III RA, Mendes CI, Huergo M, Legacki G, Loreth C, Park DJ, Sevinsky JR.
+    title: Accelerating bioinformatics implementation in public health.
+    url: https://doi.org/10.1099/mgen.0.001051
+    journal: Microb Genom
+    date: 2023-07-19
+
+  - authors: Hojaisa S, Jha AN
+    title: Databases and Tools for Microbial Genome and Human Microbiome Studies
+    url: https://doi.org/10.1007/978-981-99-2816-3_3
+    journal: Industrial Microbiology and Biotechnology
+    date: 2023-07-09
+
+  - authors: Raghuram V, Gunoskey JJ, Hofstetter KS, Jacko NF, Shumaker MJ, Hu YJ, Read TD, David MZ.
+    title: Comparison of genomic diversity between single and pooled _Staphylococcus aureus_ colonies isolated from human colonisation cultures.
+    url: https://doi.org/10.1101/2023.06.14.544959
+    journal: bioRxiv
+    date: 2023-06-14
+
+  - authors: Tokuda M, Yuki M, Ohkuma M, Kimbara K, Suzuki H, Shintani M.
+    title: Transconjugant range of PromA plasmids in microbial communities is predicted by sequence similarity with the bacterial host chromosome.
+    url: https://doi.org/10.1099/mgen.0.001043
+    journal: Microb Genom
+    date: 2023-06-14
+
+  - authors: Marquis B, Pillonel T, Carrara A, Bertelli C
+    title: "zDB: bacterial comparative genomics made easy"
+    url: https://doi.org/10.1101/2023.05.31.543076
+    journal: bioRxiv
+    date: 2023-05-31
+
+  - authors: Machado RAR, Bhat AH, Castaneda-Alvarez C, Půža V, San-Blas E
+    title: _Photorhabdus aballayi_ sp. nov. and _Photorhabdus luminescens subsp. venezuelensis_ subsp. nov., isolated from _Heterorhabditis amazonensis_ entomopathogenic nematodes.
+    url: https://doi.org/10.1099/ijsem.0.005872
+    journal: International Journal of Systematic and Evolutionary Microbiology
+    date: 2023-05-12
+
+  - authors: Pitcher NJ, Feder A, Bolden N, Zirbes CF, Pamatmat AJ, Boyken L, Hill JJ, Thurman AL, Reeb VC, Porterfield HS, Moustafa AM, Planet PJ, Fischer AJ.
+    title: Parallel Evolution of Linezolid Resistant _Staphylococcus aureus_ in Patients with Cystic Fibrosis.
+    url: https://doi.org/10.1101/2023.05.02.539145
+    journal: bioRxiv
+    date: 2023-05-02
+
+  - authors: Machado RAR, Bhat AH, Fallet P, Turlings TCJ, Kajuga J, Yan X, Toepfer S
+    title: _Xenorhabdus bovienii subsp. africana_ subsp. nov., isolated from _Steinernema africanum_ entomopathogenic nematodes.
+    url: https://doi.org/10.1099/ijsem.0.005795
+    journal: International Journal of Systematic and Evolutionary Microbiology
+    date: 2023-04-27
+
+  - authors: Martín-Rodríguez AJ, Thorell K, Joffré E, Jensie-Markopoulos S, Moore ERB, Sjöling Å
+    title: _Shewanella septentrionalis_ sp. nov. and _Shewanella holmiensis_ sp. nov., isolated from Baltic Sea water and sediments
+    url: https://doi.org/10.1099/ijsem.0.005767
+    journal: Microbiology Society
+    date: 2023-04-21
+
+  - authors: Khezri A, Avershina E, Ahmad R.
+    title: Clinical Diagnostics of Bacterial Infections and Their Resistance to Antibiotics-Current State and Whole Genome Sequencing Implementation Perspectives.
+    url: https://doi.org/10.3390/antibiotics12040781
+    journal: Antibiotics
+    date: 2023-04-19
+
+  - authors: Chomkatekaew C, Thaipadungpanit J, Hearn P, Soeng S, Pol S, Neou L, Hopkins J, Turner P, Batty EM.
+    title: Detection of maternal transmission of resistant Gram-negative bacteria in a Cambodian hospital setting.
+    url: https://doi.org/10.3389/fmicb.2023.1158056
+    journal: Front Microbiol
+    date: 2023-04-14
+
+  - author: Kumar R, Yadav G, Kuddus M, Ashraf GM, Singh R.
+    title: "Unlocking the microbial studies through computational approaches: how far have we reached?"
+    url: https://doi.org/10.1007/s11356-023-26220-0
+    journal: Environ Sci Pollut Res Int
+    date: 2023-04-01
+
+  - authors: Gompelman M, Wezendonk GTJ, Wouters Y, Beurskens-Meijerink J, Fragkos KC, Rahman FZ, Coolen JPM, van Weerdenburg IJM, Wertheim HFL, Kievit W, Akkermans RP, Serlie MJ, Bleeker-Rovers CP, Wanten GJA
+    title: "Randomized clinical trial: Long-term Staphylococcus aureus decolonization in patients on home parenteral nutrition."
+    url: https://doi.org/10.1016/j.clnu.2023.03.010
+    journal: Clinical Nutrition
+    date: 2023-03-17
+
+  - authors: Legall NA
+    title: Computational Techniques for Unravelling the Genome Variations of _Mycobacterium bovis_ Across Organizational Scales
+    url: https://esploro.libs.uga.edu/esploro/outputs/9949558727702959
+    journal: Dissertation
+    date: 2023-03-01
+
+  - authors: Machado RAR, Loulou A, Bhat AH, Mastore M, Terrettaz C, Brivio MF, Kallel S
+    title: _Acinetobacter nematophilus_ sp. nov., _Alcaligenes nematophilus_ sp. nov., _Enterobacter nematophilus_ sp. nov., and _Kaistia nematophila_ sp. nov., Isolated from Soil-Borne Nematodes and Proposal for the Elevation of _Alcaligenes faecalis subsp. faecalis_, _Alcaligenes faecalis subsp. parafaecalis_, and _Alcaligenes faecalis subsp. phenolicus_ to the Species Level
+    url: https://doi.org/10.3390/taxonomy3010012
+    journal: Taxonomy
+    date: 2023-02-24
+
+  - authors: Beauchemin ET, Hunter C, Maurice CF.
+    title: Actively replicating gut bacteria identified by 5-ethynyl-2'-deoxyuridine (EdU) click chemistry and cell sorting.
+    url: https://doi.org/10.1080/19490976.2023.2180317
+    journal: Gut Microbes
+    date: 2023-02-23
+
+  - authors: Morita D, Arai H, Isobe J, Maenishi E, Kumagai T, Maruyama F, Kuroda T.
+    title: Whole-Genome and Plasmid Comparative Analysis of _Campylobacter jejuni_ from Human Patients in Toyama, Japan, from 2015 to 2019.
+    url: https://doi.org/10.1128/spectrum.02659-22
+    journal: Microbiol Spectr
+    date: 2023-02-14
+
+  - authors: Loulou A, Mastore M, Caramella S, Bhat AH, Brivio MF, Machado RAR, Kallel S.
+    title: Entomopathogenic potential of bacteria associated with soil-borne nematodes and insect immune responses to their infection.
+    url: https://doi.org/10.1371/journal.pone.0280675
+    journal: PLoS One
+    date: 2023-01-23
+
+  - authors: Jain R, Bhardwaj P, Guleria S, Pandey A, Kumar S
+    title: Polyamine metabolizing rhizobacteria _Pseudomonas sp. GBPI_506_ modulates hormone signaling to enhance lateral roots and nicotine biosynthesis in Nicotiana benthamiana. 
+    url: https://doi.org/10.1016/j.plaphy.2023.01.010
+    journal: Plant Physiology and Biochemistry
+    date: 2023-01-09
+
+  - authors: Cornet L, Durieu B, Baert F, D'hooge E, Colignon D, Meunier L, Lupo V, Cleenwerck I, Daniel HM, Rigouts L, Sirjacobs D, Declerck S, Vandamme P, Wilmotte A, Baurain D, Becker P.
+    title: "The GEN-ERA toolbox: unified and reproducible workflows for research in microbial genomics."
+    url: https://doi.org/10.1093/gigascience/giad022
+    journal: Gigascience
+    date: 2022-12-28
+
+  - authors: Talbot BM, Jacko NF, Petit RA, Pegues DA, Shumaker MJ, Read TD, David MZ.
+    title: Unsuspected Clonal Spread of Methicillin-Resistant _Staphylococcus aureus_ Causing Bloodstream Infections in Hospitalized Adults Detected Using Whole Genome Sequencing.
+    url: https://doi.org/10.1093/cid/ciac339
+    journal: Clin Infect Dis
+    date: 2022-12-19
+
+  - authors: Chitale P, Lemenze AD, Fogarty EC, Shah A, Grady C, Odom-Mabey AR, Johnson WE, Yang JH, Eren AM, Brosch R, Kumar P, Alland D
+    title: A comprehensive update to the _Mycobacterium tuberculosis_ H37Rv reference genome.
+    url: https://doi.org/10.1038/s41467-022-34853-x
+    journal: Nat Commun
+    date: 2022-12-07
+
+  - authors: Cavallo I, Sivori F, Truglio M, De Maio F, Lucantoni F, Cardinali G, Pontone M, Bernardi T, Sanguinetti M, Capitanio B, Cristaudo A, Ascenzioni F, Morrone A, Pimpinelli F, Di Domenico EG.
+    title: Skin dysbiosis and _Cutibacterium acnes_ biofilm in inflammatory acne lesions of adolescents.
+    url: https://doi.org/10.1038/s41598-022-25436-3
+    journal: Sci Rep
+    date: 2022-12-06
+
+  - authors: Atxaerandio-Landa A, Arrieta-Gisasola A, Laorden L, Bikandi J, Garaizar J, Martinez-Malaxetxebarria I, Martinez-Ballesteros I.
+    title: A Practical Bioinformatics Workflow for Routine Analysis of Bacterial WGS Data.
+    url: https://doi.org/10.3390/microorganisms10122364
+    journal: Microorganisms
+    date: 2022-11-29
+
+  - authors: Bhardwaj P, Jain R, Kumar S.
+    title: Draft Genome Sequence of Endophytic _Sphingomonas faeni_ Strain ALB2, Isolated from the Leaf of a Cold-Desert Medicinal Plant.
+    url: https://doi.org/10.1128/mra.00687-22
+    journal: Microbiol Resour Announc
+    date: 2022-11-17
+
+  - authors: Wang D, Fletcher GC, On SLW, Palmer JS, Gagic D, Flint SH 
+    title: Biofilm formation, sodium hypochlorite susceptibility and genetic diversity of Vibrio parahaemolyticus.
+    url: https://doi.org/10.1016/j.ijfoodmicro.2022.110011
+    journal: International Journal of Food Microbiology
+    date: 2022-11-03
+
+  - authors: Taylor M, Janasky L, Vega N 
+    title: Convergent structure with divergent adaptations in combinatorial microbiome communities.
+    url: https://doi.org/10.1093/femsec/fiac115
+    journal: FEMS Microbiology Ecology
+    date: 2022-10-27
+
+  - authors: Sanders JG, Yan W, Mjungu D, Lonsdorf EV, Hart JA, Sanz CM, Morgan DB, Peeters M, Hahn BH, Moeller AH.
+    title: A low-cost genomics workflow enables isolate screening and strain-level analyses within microbiomes.
+    url: https://doi.org/10.1186/s13059-022-02777-w
+    journal: Genome Biol
+    date: 2022-10-12
+
+  - authors: Babiker A, Bower C, Lutgring JD, Petit III RA, Howard-Anderson J, Ansari U, McAllister G, Adamczyk M, Breaker E, Satola SW, Jacob JT, Woodworth MH.
+    title: Clinical and Genomic Epidemiology of _mcr-9_-Carrying Carbapenem-Resistant _Enterobacterales_ Isolates in Metropolitan Atlanta, 2012 to 2017.
+    url: https://doi.org/10.1128/spectrum.02522-21
+    journal: Microbiol Spectr
+    date: 2022-08-31
+
+  - authors: Wang C, Xia Y, Liu Y, Kang C, Lu N, Tian D, Lu H, Han F, Xu J, Yomo, T
+    title: "CleanSeq: A Pipeline for Contamination Detection, Cleanup, and Mutation Verifications from Microbial Genome Sequencing Data."
+    url: https://doi.org/10.3390/app12126209
+    journal: "NATO Advanced Science Institutes Series E: Applied Sciences"
+    date: 2022-06-18
+
+  - authors: Duré FM, Silveira MC, Rocha-de-Souza CM, Leão RS, de Oliveira Santos IC, Albano RM, Marques EA, D'Alincourt Carvalho-Assef AP, da Silva FAB.
+    title: "CABGen: A Web Application for the Bioinformatic Analysis of Bacterial Genomes."
+    url: https://doi.org/10.3389/fmicb.2022.893474
+    journal: Front Microbiol
+    date: 2022-05-27
+
+  - authors: Sivertsen A, Dyrhovden R, Tellevik MG, Bruvold TS, Nybakken E, Skutlaberg DH, Skarstein I, Kommedal Ø.
+    title: _Escherichia marmotae_-a Human Pathogen Easily Misidentified as _Escherichia coli_.
+    url: https://doi.org/10.1128/spectrum.02035-21
+    journal: Microbiol Spectr
+    date: 2022-04-27
+
+  - authors: Li X, Zhu L, Wang X, Li J, Tang B.
+    title: Evaluation of IR Biotyper for _Lactiplantibacillus plantarum_ Typing and Its Application Potential in Probiotic Preliminary Screening.
+    url: https://doi.org/10.3389/fmicb.2022.823120
+    journal: Front Microbiol
+    date: 2022-03-24
+
+  - authors: Raghuram V, Alexander AM, Loo HQ, Petit III RA, Goldberg JB, Read TD.
+    title: Species-Wide Phylogenomics of the _Staphylococcus aureus_ _Agr_ Operon Revealed Convergent Evolution of Frameshift Mutations.
+    url: https://doi.org/10.1128/spectrum.01334-21
+    journal: Microbiol Spectr
+    date: 2022-01-19
+
+  - authors: Goldman SL, Sanders JG, Yan W, Denice A, Cornwall M, Ivey KN, Taylor EN, Gunderson AR, Sheehan MJ, Mjungu D, Lonsdorf EV, Pusey AE, Hahn BH, Moeller AH.
+    title: Culture-enriched community profiling improves resolution of the vertebrate gut microbiota.
+    url: https://doi.org/10.1111/1755-0998.13456
+    journal: Mol Ecol Resour
+    date: 2022-01-01
+
+  - authours: Pennone V, Cobo-Díaz JF, Prieto M, Alvarez-Ordóñez A
+    title: Application of genomics and metagenomics to improve food safety based on an enhanced characterisation of antimicrobial resistance.
+    url: https://doi.org/10.1016/j.cofs.2021.12.002
+    journal: Current Opinion in Food Science
+    date: 2021-12-17
+
+  - authors: Conrads G, Klomp T, Deng D, Wenzler JS, Braun A, Abdelbary MMH.
+    title: "The Antimicrobial Susceptibility of _Porphyromonas gingivalis_: Genetic Repertoire, Global Phenotype, and Review of the Literature."
+    url: https://doi.org/10.3390/antibiotics10121438
+    journal: Antibiotics
+    date: 2021-11-24
+
+  - authors: Machado RAR, Bhat AH, Abolafia J, Muller A, Bruno P, Fallet P, Arce CCM, Turlings TCJ, Bernal JS, Kajuga J, Waweru B, Toepfer S.
+    title: Multi-locus phylogenetic analyses uncover species boundaries and reveal the occurrence of two new entomopathogenic nematode species, _Heterorhabditis ruandica_ n. sp. and _Heterorhabditis zacatecana_ n. sp.
+    url: https://doi.org/10.21307/jofnem-2021-089
+    journal: J Nematol
+    date: 2021-11-11
+
+  - authors: Bell KL, Petit III RA, Cutler A, Dobbs EK, Macpherson JM, Read TD, Burgess KS, Brosi BJ.
+    title: Comparing whole-genome shotgun sequencing and DNA metabarcoding approaches for species identification and quantification of pollen species mixtures.
+    url: https://doi.org/10.1002/ece3.8281
+    journal: Ecol Evol
+    date: 2021-11-04
+
+  - authors: Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A.
+    title: "Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification."
+    url: https://doi.org/10.1099/mgen.0.000685
+    journal: Microb Genom
+    date: 2021-11-01
+
+  - authours: Goldman SL, Sanders JG, Yan W, Denice A, Cornwall M, Ivey KN, Taylor EN, Gunderson AR, Sheehan MJ, Mjungu D, Lonsdorf EV, Pusey AE, Hahn BH, Moeller AH
+    title: Culture-enriched community profiling improves resolution of the vertebrate gut microbiota.
+    url: https://doi.org/10.1111/1755-0998.13456
+    journal: Molecular Ecology Resources
+    date: 2021-06-26
+
+  - authors: Murigneux V, Roberts LW, Forde BM, Phan MD, Nhu NTK, Irwin AD, Harris PNA, Paterson DL, Schembri MA, Whiley DM, Beatson SA.
+    title: "MicroPIPE: validating an end- to-end workflow for high-quality complete bacterial genome construction."
+    url: https://doi.org/10.1186/s12864-021-07767-z
+    journal: BMC Genomics
+    date: 2021-06-25
+  
+  - authors: Sserwadda I, Mboowa G.
+    title: "rMAP: the Rapid Microbial Analysis Pipeline for ESKAPE bacterial group whole-genome sequence data."
+    url: https://doi.org/10.1099/mgen.0.000583
+    journal: Microb Genom
+    date: 2021-06-23
+
+  - authors: Pavlovikj N, Gomes-Neto JC, Deogun JS, Benson AK.
+    title: "ProkEvo: an automated, reproducible, and scalable framework for high-throughput bacterial population genomics analyses."
+    url: https://doi.org/10.7717/peerj.11376
+    journal: PeerJ
+    date: 2021-05-21
+
+  - authors: Beggs GA
+    title: Biochemical and structural mechanisms of multidrug efflux pump transcription regulators, Neisseria gonorrhoeae MtrR and Escherichia coli MprA
+    url: https://hdl.handle.net/10161/22987
+    journal: Dissertation
+    date: 2021-05-19
+
+  - authors: Almeida MO, Viana MVC, Cerqueira JC, Aburjaile FF, Junior AAZ, Azevedo V, Carvalho RDO
+    title: Novel insights in bacterial vaginosis etiology through genomic approaches
+    url: https://doi.org/10.1590/0001-3765202120200945
+    journal: Anais Da Academia Brasileira de Ciencias
+    date: 2021-05-08
+
+  - authors: Korzhenkov AA
+    title: "ZGA: a flexible pipeline for read processing, de novo assembly and annotation of prokaryotic genomes"
+    url: https://doi.org/10.1101/2021.04.27.441618
+    journal: bioRxiv
+    date: 2021-04-28
+
+  - authors: Deneke C, Brendebach H, Uelze L, Borowiak M, Malorny B, Tausch SH.
+    title: Species-Specific Quality Control, Assembly and Contamination Detection in Microbial Isolate Sequences with AQUAMIS.
+    url: https://doi.org/10.3390/genes12050644
+    journal: Genes
+    date: 2021-04-26
+    
+  - authors: Beggs GA, Ayala JC, Kavanaugh LG, Read TD, Hooks GM, Schumacher MA, Shafer WM, Brennan RG.
+    title: Structures of _Neisseria gonorrhoeae_ MtrR-operator complexes reveal molecular mechanisms of DNA recognition and antibiotic resistance-conferring clinical mutations.
+    url: https://doi.org/10.1093/nar/gkab213
+    journal: Nucleic Acids Res
+    date: 2021-04-19
+
+  - authors: Oliveira de Almeida M, Carvalho R, Figueira Aburjaile F, Malcher Miranda F, Canário Cerqueira J, Brenig B, Ghosh P, Ramos R, Kato RB, de Castro Soares S, Silva A, Azevedo V, Canário Viana MV.
+    title: Characterization of the first vaginal _Lactobacillus crispatus_ genomes isolated in Brazil.
+    url: https://doi.org/10.7717/peerj.11079
+    journal: PeerJ
+    date: 2021-03-10
+
+  - authors: Zhou X, Xuan D, Hu S, Du J, Pu J, Jin D, Zhao F, Yin F, Cui X, Huang Y, Wang G, Wu Q, Lu G, Niu L
+    title: _Pelistega ratti_ sp. nov. from _Rattus norvegicus_ of Hainan island
+    url: https://doi.org/10.1099/ijsem.0.004733
+    journal: International Journal of Systematic and Evolutionary Microbiology
+    date: 2021-03-10
+
+  - authors: Su M
+    title: Evolution of _Staphylococcus aureus_ phenotypes
+    url: https://etd.library.emory.edu/concern/etds/7m01bm754?locale=en
+    journal: Dissertation
+    date: 2020-06-23
+

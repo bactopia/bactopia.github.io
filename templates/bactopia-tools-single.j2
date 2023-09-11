@@ -41,7 +41,17 @@ file descriptions below were modified from a tools description.
 
 {{ result.description }}
 
-{{ result.table }}
+{% if result.is_extensions == True -%}
+| Extension                     | Description |
+|-------------------------------|-------------|
+{% else -%}
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% endif -%}
+
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
 
 {% endfor %}
 
@@ -52,19 +62,19 @@ Below are files that can assist you in understanding which parameters and progra
 
 #### Logs 
 
-Each process that is executed will have a `logs` folder containing helpful files for you to review
-if the need ever arises.
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
 
-| Filename                      | Description |
-|-------------------------------|-------------|
-| nf-&lt;PROCESS_NAME&gt;.begin | An empty file used to designate the process started |
-| nf-&lt;PROCESS_NAME&gt;.err   | Contains STDERR outputs from the process |
-| nf-&lt;PROCESS_NAME&gt;.log   | Contains both STDERR and STDOUT outputs from the process |
-| nf-&lt;PROCESS_NAME&gt;.out   | Contains STDOUT outputs from the process |
-| nf-&lt;PROCESS_NAME&gt;.run   | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
-| nf-&lt;PROCESS_NAME&gt;.sh    | The script executed by bash for the process  |
-| nf-&lt;PROCESS_NAME&gt;.trace | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
-| versions.yml                  | A YAML formatted file with program versions |
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
 
 #### Nextflow Reports
 

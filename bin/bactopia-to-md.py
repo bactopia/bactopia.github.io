@@ -5,22 +5,44 @@ Convert the various `meta.yml` and `params.json` files into Markdown format
 import json
 import yaml
 from pathlib import Path
-WORKFLOWS = 'params.available_workflows.bactopia'
+WORKFLOWS = {
+    'bactopia': {
+        'modules': ['gather', 'qc', 'assembler', 'prokka', 'bakta', 'sketcher', 'amrfinderplus', 'mlst', 'merlin'],
+        'template': 'bactopia/bactopia-full.j2'
+    }
+}
 SUBWORKFLOWS = 'params.available_workflows.bactopiatools.subworkflows'
 MODULES = 'params.available_workflows.bactopiatools.modules'
 MODULES_RENAME = {
     'abricate_run': 'abricate',
     'amrfinderplus_run': 'amrfinderplus',
-    'ariba_run': 'ariba', 
-    'bakta_run': 'bakta', 
+    'ariba_run': 'ariba',
+    'bakta_run': 'bakta',
+    'blast_blastn': 'blastn',
+    'blast_tblastn': 'tblastn',
+    'blast_blastp': 'blastp',
+    'blast_blastx': 'blastx',
+    'blast_tblastx': 'tblastx',
     'checkm_lineagewf': 'checkm',
     'genotyphi_parse': 'genotyphi',
+    'midas_species': 'midas',
     'mobsuite_recon': 'mobsuite',
     'mykrobe_predict': 'mykrobe',
     'rgi_main': 'rgi',
     'snippy_run': 'snippy'
 }
-IGNORE_LIST = ["LIST_OF_MODULES", "plasmidid"]
+IGNORE_LIST = [
+    # Bactopia modules
+    "LIST_OF_MODULES",
+    "plasmidid"
+]
+
+WORKFLOW_RENAME = {
+    'mlst': 'sequence-typing/mlst',
+    'amrfinderplus': 'antimicrobial-resistance/amrfinderplus',
+    'prokka': 'annotator/prokka',
+    'bakta': 'annotator/bakta',
+}
 
 def get_citations(citation_path):
     """ """
@@ -33,15 +55,21 @@ def get_citations(citation_path):
                 module_citations[ref] = vals
     return [citations, module_citations]
 
+def get_bactopia_citations(docs_path):
+    citations = {}
+    with open(f'{docs_path}/docs/data/citations.yml', "rt") as citations_fh:
+        citations = yaml.safe_load(citations_fh)
+    return citations
+
 def get_enhancements(docs_path):
     enhancements = {}
-    with open(f'{docs_path}/docs/data/contributions.yml', "rt") as citations_fh:
-        enhancements = yaml.safe_load(citations_fh)
+    with open(f'{docs_path}/docs/data/contributions.yml', "rt") as enhancements_fh:
+        enhancements = yaml.safe_load(enhancements_fh)
     return enhancements
 
 def get_generic_params(generic_path):
     generic = {}
-    for params_json in Path(generic_path).glob('*.json'):
+    for params_json in sorted(Path(generic_path).glob('*.json')):
         print(params_json)
         with open(params_json, "rt") as params_fh:
             generic[str(params_json.stem)] = json.load(params_fh)
@@ -52,7 +80,7 @@ def get_subworkflows(subworkflow_path, is_subworkflow, is_module):
     subworkflows = {}
     total_modules = 0
     total_subworkflows = 0
-    for meta_yml in Path(subworkflow_path).rglob('*meta.yml'):
+    for meta_yml in sorted(Path(subworkflow_path).rglob('*meta.yml')):
         subworkflow_name = str(meta_yml).replace('/meta.yml', '').split('local/')[1]
         with open(meta_yml, "rt") as meta_fh:
             subworkflows[subworkflow_name] = yaml.safe_load(meta_fh)
@@ -72,7 +100,7 @@ def get_subworkflows(subworkflow_path, is_subworkflow, is_module):
 def get_modules(module_path):
     """ Find all modules in modules path. """
     modules = {}
-    for params_json in Path(module_path).rglob('*params.json'):
+    for params_json in sorted(Path(module_path).rglob('*params.json')):
         module_name = str(params_json).replace('/params.json', '')
         if 'local' in module_name:
             module_name = module_name.split('local/bactopia/')[1]
@@ -102,19 +130,23 @@ def read_nextflow_config(nf_config):
 def nf_to_list(param):
     return param.replace("'","").replace('[', '').replace(' ', "").replace(']', '').split(',')
 
-def format_params(params):
+def format_params(params, exclude=[]):
     params_md = []
     for group in params["definitions"].keys():
-        # params_md.append(f"\n### {params['definitions'][group]['fa_icon']} {params['definitions'][group]['title']}")
-        params_md.append(f"\n### {params['definitions'][group]['title']}")
-        params_md.append(f"{params['definitions'][group]['description']}\n")
-        params_md.append(f'| Parameter | Description | Default |')
-        params_md.append(f'|---|---|---|')
-        for parameter in params["definitions"][group]["properties"].keys():
-            param = params["definitions"][group]["properties"][parameter]
-            default_val = param["default"] if "default" in param else ""
-            # params_md.append(f'| {param["fa_icon"]} `--{parameter}` | {param["description"]} | {default_val} |')
-            params_md.append(f'| `--{parameter}` | {param["description"]} | {default_val} |')
+        if group not in exclude:
+            if len(params["definitions"][group]["properties"].keys()):
+                params_md.append(f'\n### <i class="fa-xl {params["definitions"][group]["fa_icon"]}"></i> {params["definitions"][group]["title"]}')
+                params_md.append(f"{params['definitions'][group]['description']}\n")
+                params_md.append(f'| Parameter | Description |')
+                params_md.append(f'|:---|---|')
+                for parameter in params["definitions"][group]["properties"].keys():
+                    param = params["definitions"][group]["properties"][parameter]
+                    default_val = param["default"] if "default" in param else ""
+                    default_val = f', **Default:** `{default_val}`' if default_val else ""
+                    params_md.append(
+                        f'| <i class="fa-lg {param["fa_icon"]}"></i>` --{parameter}` |'
+                        f' {param["description"].rstrip()} <br/>**Type:** `{param["type"]}`{default_val} |'
+                    )
     return params_md
 
 if __name__ == '__main__':
@@ -165,7 +197,7 @@ if __name__ == '__main__':
         md_fh.write(output)
 
     # Build each Bactopia Tool Page
-    for name, vals in subworkflows.items():
+    for name, vals in sorted(subworkflows.items()):
         if name not in IGNORE_LIST:
             is_bactopia_tool = True if name in nf_config[SUBWORKFLOWS] or name in nf_config[MODULES] else False
             if is_bactopia_tool:
@@ -183,6 +215,7 @@ if __name__ == '__main__':
                     'generic': '\n'.join(format_params(generic["generic"]))
                 }
                 if "docs" in vals:
+                    print(f"working on {name} - {module}")
                     template = env.get_template('bactopia-tools-single.j2')
                     output = template.render(
                         meta=vals,
@@ -199,7 +232,7 @@ if __name__ == '__main__':
         total=len(citations["datasets_ariba"])+len(citations["datasets_generic"])+len(citations["datasets_minmer"])+len(citations["tools"]),
         total_datasets=len(citations["datasets_ariba"])+len(citations["datasets_generic"])+len(citations["datasets_minmer"])
     )
-    with open(f'{args.docs_repo}/docs/acknowledgements.md', 'wt') as md_fh:
+    with open(f'{args.docs_repo}/docs/impact-and-outreach/acknowledgements.md', 'wt') as md_fh:
         md_fh.write(output)
 
     # Build enhancements Page
@@ -212,7 +245,7 @@ if __name__ == '__main__':
         tools=enhancements["tools"],
         other=enhancements["other"]
     )
-    with open(f'{args.docs_repo}/docs/enhancements.md', 'wt') as md_fh:
+    with open(f'{args.docs_repo}/docs/impact-and-outreach/enhancements.md', 'wt') as md_fh:
         md_fh.write(output)
 
     # Build mkdocs.yml Page
@@ -221,4 +254,68 @@ if __name__ == '__main__':
     with open(f'{args.docs_repo}/mkdocs.yml', 'wt') as md_fh:
         md_fh.write(output)
 
-    print(enhancements["conda_submissions"][0])
+    # Build beginner's guide
+    print(f"Working on Beginners Guide")
+    template = env.get_template('bactopia/bactopia-beginners.j2')
+    params = {
+        'bactopia': '\n'.join(format_params(generic["bactopia"], exclude=['dataset_parameters'])),
+        'module':  '\n'.join(module_params),
+        'generic': '\n'.join(format_params(generic["generic"]))
+    }
+    output = template.render(
+        params=params
+    )
+    with open(f'{args.docs_repo}/docs/beginners-guide.md', 'wt') as md_fh:
+        md_fh.write(output)
+
+    # Build workflow pages
+    for workflow, wf_vals in WORKFLOWS.items():
+        print(f"Working on {workflow}")
+        template = env.get_template(wf_vals['template'])
+        params = {
+            'bactopia': '\n'.join(format_params(generic["bactopia"])),
+            'generic': '\n'.join(format_params(generic["generic"]))
+        }
+        vals = {}
+        for subworkflow in wf_vals['modules']:
+            print(f"Working on {subworkflow}")
+            vals[subworkflow] = subworkflows[subworkflow]
+
+            module_params = []
+            for module in vals[subworkflow]['modules']:
+                module_name = module
+                if module_name not in IGNORE_LIST:
+                    if module_name in MODULES_RENAME:
+                        module_name = MODULES_RENAME[module_name]
+                    print(f"working on {subworkflow} - {module}")
+                    module_params += format_params(modules[module_name])
+            
+            params[subworkflow] = '\n'.join(module_params)
+            template2 = env.get_template('bactopia/bactopia-steps.j2')
+            output = template2.render(
+                meta=vals[subworkflow],
+                params={'module': params[subworkflow]},
+                citations=module_citations
+            )
+
+            with open(f'{args.docs_repo}/docs/bactopia/{WORKFLOW_RENAME[subworkflow] if subworkflow in WORKFLOW_RENAME else subworkflow}.md', 'wt') as md_fh:
+                md_fh.write(output)
+
+        output = template.render(
+            meta=vals,
+            params=params,
+            citations=module_citations
+        )
+        with open(f'{args.docs_repo}/docs/full-guide.md', 'wt') as md_fh:
+            md_fh.write(output)
+
+    # Build citations page
+    print(f"Working on Citations")
+    bactopia_citations = get_bactopia_citations(args.docs_repo)
+    template = env.get_template('citations.j2')
+    output = template.render(
+        citations=bactopia_citations,
+        total=len(bactopia_citations['citations'])
+    )
+    with open(f'{args.docs_repo}/docs/impact-and-outreach/citations.md', 'wt') as md_fh:
+            md_fh.write(output)

@@ -1,0 +1,348 @@
+---
+title: Full Guide
+description: >-
+    An full guide for using Bactopia. Including a detailed description of each step in the pipeline.
+---
+
+Bactopia is a complete pipeline for the analysis of bacterial genomes, which includes
+more than 150 bioinformatics tools. In this section, each step of the pipeline will
+be described in detail. This includes the input data, output data, and the parameters
+for each step.
+
+<a class="zoom" href="assets/bactopia-workflow.png">
+![Bactopia Workflow](/assets/bactopia-workflow.png)
+</a>
+
+Looking at the workflow overview below, it might not look like much is happening, but I can
+assure you that a lot is going on. The workflow is broken down into 8 steps, which are:
+
+1. **Gather** - Collect all the data in one place
+2. **QC** - Quality control of the data
+3. **Assembler** - Assemble the reads into contigs
+4. **Annotator** - Annotate the contigs
+5. **Sketcher** - Create a sketch of the contigs, and query databases
+6. **Sequence Typing** - Determine the sequence type of the contigs
+7. **Antibiotic Resistance** - Determine the antibiotic resistance of the contigs and proteins
+8. **Merlin** - Automatically run species-specific tools based on distance
+
+This guide is meant to be extensive, so it will be very detailed. If you are looking for
+a guide to get started quickly, please check out the [Beginner's Guide](beginners-guide.md).
+
+Otherwise, let's get started!
+
+## Step 1 - Gather
+
+{{ meta.gather.docs.introduction }}
+
+### Outputs
+{% for result in meta.gather.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% if 'include_error_note' in result %}
+!!! info "Poor samples are excluded to prevent downstream failures"
+    Samples that fail any of the QC checks will be excluded from further analysis.
+    Those samples will generate a `*-error.txt` file with the error message. Excluding
+    these samples prevents downstream failures that cause the whole workflow to fail.
+{% endif %}
+
+{% if 'note' in result %}
+{{ result.note | replace("<", "&lt;") | replace(">", "&gt;") }}
+{% endif %}
+
+{% endfor %}
+
+### Parameters
+
+{{ params.bactopia | replace("###", "####") | replace("Required Parameters", "Required") | replace("Dataset Parameters", "Dataset")}}
+
+### Citations
+If you use Bactopia and `gather` results in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.gather.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+## Step 2 - QC
+
+{{ meta.qc.docs.introduction }}
+
+### Outputs
+
+{% for result in meta.qc.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% if 'include_error_note' in result %}
+!!! info "Poor samples are excluded to prevent downstream failures"
+    Samples that fail any of the QC checks will be excluded from further analysis.
+    Those samples will generate a `*-error.txt` file with the error message. Excluding
+    these samples prevents downstream failures that cause the whole workflow to fail.
+{% endif %}
+
+{% if 'note' in result %}
+{{ result.note | replace("<", "&lt;") | replace(">", "&gt;") }}
+{% endif %}
+
+{% endfor %}
+
+{{ params.qc | replace("QC Reads Parameters", "Parameters")}}
+
+### Citations
+If you use Bactopia and `qc` results in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.qc.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+## Step 3 - Assembler
+
+{{ meta.assembler.docs.introduction }}
+
+### Outputs
+
+{% for result in meta.assembler.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% if 'include_error_note' in result %}
+!!! info "Poor samples are excluded to prevent downstream failures"
+    Samples that fail any of the QC checks will be excluded from further analysis.
+    Those samples will generate a `*-error.txt` file with the error message. Excluding
+    these samples prevents downstream failures that cause the whole workflow to fail.
+{% endif %}
+
+{% if 'note' in result %}
+{{ result.note | replace("<", "&lt;") | replace(">", "&gt;") }}
+{% endif %}
+
+{% endfor %}
+
+{{ params.assembler | replace("Assemble Genome Parameters", "Parameters")}}
+
+### Citations
+If you use Bactopia and `assembler` results in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.assembler.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+## Step 4 - Annotator
+
+### Outputs
+
+{% for result in meta.prokka.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% endfor %}
+
+{% for result in meta.bakta.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% endfor %}
+
+### Parameters
+
+{{ params.prokka | replace("###", "####") | replace("Prokka Parameters", "Prokka")}}
+{{ params.bakta | replace("###", "####") | replace("Bakta Download Parameters", "Bakta Download") | replace("Bakta Parameters", "Bakta")}}
+
+### Citations
+If you use Bactopia and `annotator` results in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.prokka.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+{% for ref in meta.bakta.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+## Step 5 - Sketcher
+
+{{ meta.sketcher.docs.introduction }}
+
+### Outputs
+
+{% for result in meta.sketcher.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% endfor %}
+
+{{ params.sketcher | replace("Minmer Sketch Parameters", "Parameters")}}
+
+### Citations
+If you use Bactopia and `sketcher` results in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.sketcher.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+## Step 6 - Sequence Typing
+
+### Outputs
+
+{% for result in meta.mlst.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% endfor %}
+
+{{ params.mlst | replace("MLST Parameters", "Parameters")}}
+
+### Citations
+If you use Bactopia and `sequence typing` results in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.mlst.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+## Step 7 - Antibiotic Resistance
+
+### Outputs
+
+{% for result in meta.amrfinderplus.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% endfor %}
+
+{{ params.amrfinderplus | replace("AMRFinder+ Parameters", "Parameters")}}
+
+### Citations
+If you use Bactopia and `antibiotic resistance` results in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.amrfinderplus.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+## Step 8 - Merlin
+
+### Outputs
+
+{% for result in meta.merlin.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% endfor %}
+
+###
+{{ params.merlin | replace("###", "####") | replace("Parameters", "")}}
+
+### Citations
+If you use Bactopia and `merlin` results in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.merlin.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}
+
+## Additional Parameters
+
+{{ params.generic | replace("Parameters", "")}}

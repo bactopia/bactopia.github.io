@@ -1,12 +1,73 @@
 ---
-title: Basic Usage
+title: Beginner's Guide
 description: >-
-    An overview ofBactopia parameters you might need to adjust to meet your needs.
+    A beginner's guide to getting started using Bactopia to process your bacterial genomes.
 ---
-# Basic Usage For Bactopia
-Bactopia is a wrapper around many different tools. Each of these tools may (or may not) have there own configurable parameters for you to tweak. In order to facilitate getting started with Bactopia, this section has been limited to discussion of only a few parameters. However, if you are interested in the full list of configurable parameters in Bactopia, please check out the [Complete Usage](usage-complete.md) section.
 
-## Usage
+Bactopia is a complete pipeline for the analysis of bacterial genomes, which includes
+more than 150 bioinformatics tools. In this section, we will discuss the most essential
+parameters users will need to make use of to get started with Bactopia. We are going
+to focus on the parameters associated with processing input samples.
+
+Looking at the workflow overview below, we are really going to focus on the first step,
+the _Gather_ step. The overview also provides a few examples of the accepted inputs,
+including:
+
+- Local Illumina and/or Nanopore Reads
+- Local Assemblies
+- ENA/SRA Experiment Accessions
+- NCBI Assembly Accessions
+
+Along with these accepted inputs, we'll also take a look at some helpful parameters. If you
+are interested in learning more about the full set of parameters available in Bactopia,
+please check out the [Full Guide](full-guide.md) section.
+
+<a class="zoom" href="/assets/bactopia-workflow.png">
+![Bactopia Workflow](/assets/bactopia-workflow.png)
+</a>
+
+## Bactopia Inputs
+
+Below is a table of input parameters for you to provide either local or remote samples
+to be processed by Bactopia. These are the most essential parameters you will need to
+get started using Bactopia. We will start here, with a brief description of each parameter,
+then we will go into more detail about each.
+
+
+### <i class="fa-xl fas fa-terminal"></i> Required Parameters
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-file-alt"></i>` --samples` | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
+ <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-archive"></i>` --R1` | First set of compressed (gzip) paired-end FASTQ reads (requires --R2 and --sample) <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-archive"></i>` --R2` | Second set of compressed (gzip) paired-end FASTQ reads (requires --R1 and --sample) <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-archive"></i>` --SE` | Compressed (gzip) single-end FASTQ reads  (requires --sample) <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-level-up"></i>` --ont` | Treat `--SE` or `--accession` as long reads for analysis. (requires --sample if using --SE) <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-level-up"></i>` --hybrid` | Treat `--SE` as long reads for hybrid assembly.  (requires --R1, --R2, --SE and --sample) <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-level-up"></i>` --short_polish` | Treat `--SE` as long reads for long-read assembly and short read polishing.  (requires --R1, --R2, --SE and --sample) <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-file"></i>` --sample` | Sample name to use for the input sequences
+ <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-alt"></i>` --accessions` | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-font"></i>` --accession` | Sample name to use for the input sequences
+ <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-archive"></i>` --assembly` | A assembled genome in compressed FASTA format. (requires --sample) <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-level-up"></i>` --check_samples` | Validate the input FOFN provided by --samples <br/>**Type:** `boolean` |
+
+### <i class="fa-xl fas fa-exclamation-circle"></i> Dataset Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-bacterium"></i>` --species` | Name of species for species-specific dataset to use <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-print"></i>` --ask_merlin` | Ask Merlin to execute species specific Bactopia tools based on Mash distances <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-angle-double-down"></i>` --coverage` | Reduce samples to a given coverage, requires a genome size <br/>**Type:** `integer`, **Default:** `100` |
+| <i class="fa-lg fas fa-arrows-alt-h"></i>` --genome_size` | Expected genome size (bp) for all samples, required for read error correction and read subsampling <br/>**Type:** `string`, **Default:** `0` |
+| <i class="fa-lg fas fa-print"></i>` --use_bakta` | Use Bakta for annotation, instead of Prokka <br/>**Type:** `boolean` |
+
+
+
 ```
 ---------------------------------------------
    _                _              _

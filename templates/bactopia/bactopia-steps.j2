@@ -1,0 +1,92 @@
+---
+title: {{ meta.docs.meta.title }}
+description: {{ meta.docs.meta.description }}
+---
+
+{{ meta.docs.introduction }}
+
+## Output Overview
+
+Below is the default output structure for the `{{ meta.name }}` step in Bactopia. Where
+possible the file descriptions below were modified from a tools description.
+
+```{bash}
+{{ meta.docs.output.tree }}
+```
+
+{% if meta.docs.output.add_note == True -%}
+!!! info "Directory structure might be different"
+
+    Depending on the options used at runtime, the `{{ meta.name }}` directory structure might
+    be different, but the output descriptions below still apply.
+
+{% endif %}
+
+### Results
+
+{% for result in meta.docs.output.folders -%}
+
+#### {{ result.name }}
+
+{{ result.description }}
+
+{% if result.is_extensions == True -%}
+| Extension                     | Description |
+|-------------------------------|-------------|
+{% else -%}
+| Filename                      | Description |
+|-------------------------------|-------------|
+{% endif -%}
+
+{% for row in result.table -%}
+| {{ row.id | replace("<", "&lt;") | replace(">", "&gt;") }} | {{ row.description }} |
+{% endfor %}
+
+{% if 'include_error_note' in result %}
+!!! info "Poor samples are excluded to prevent downstream failures"
+    Samples that fail any of the QC checks will be excluded from further analysis.
+    Those samples will generate a `*-error.txt` file with the error message. Excluding
+    these samples prevents downstream failures that cause the whole workflow to fail.
+{% endif %}
+
+{% if 'note' in result %}
+{{ result.note | replace("<", "&lt;") | replace(">", "&gt;") }}
+{% endif %}
+
+{% endfor %}
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions
+were used.
+
+#### Logs 
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+## Parameters
+
+{{ params.module | replace("Parameters", "")}}
+
+## Citations
+If you use Bactopia and `{{ meta.name }}` in your analysis, please cite the following.
+
+- [{{ citations.bactopia.name }}]({{ citations.bactopia.link }})  
+    {{ citations.bactopia.cite }}  
+
+{% for ref in meta.docs.citations | sort -%}
+- [{{ citations[ref].name }}]({{ citations[ref].link }})  
+    {{ citations[ref].cite }}  
+{% endfor %}

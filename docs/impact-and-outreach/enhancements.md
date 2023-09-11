@@ -1,38 +1,39 @@
 ---
 title: Enhancements to OSS
 description: >-
-    Learn how Bactopia design principles have led to more than 156
-    contributions to the bioinformatics community.
+    Discover the design principles behind Bactopia's numerous contributions to the
+    bioinformatics community
 ---
-# Enhancements to Open Source Software
+# Enhancements to Open-Source Software
 
-Maintaining open source software is a difficult challenge. It's often a time-consuming and 
-completely voluntary process with little to no recognition. The field of bioinformatics is 
-not immune to this. Many of the tools we use on a daily basis are maintained by 
-individuals with little to no support. Bactopia, is no different.
+Sustaining open source software is a difficult challenge that often demands substantial time
+and effort, usually without the benefit of recognition or support. The field of bioinformatics
+is no exception, as it heavily depends on tools maintained by individuals with little to no 
+support. Bactopia is no different.
 
-Being fully aware of these challenges, when I first started developing Bactopia, I wanted there to be 
-mechanisms to contribute back to the community. To acheive this, I implemented a 
-few design requirements:
+Recognizing these challenges, I designed Bactopia with an explicit goal of giving back to the
+community. To fulfill this aim, I incorporated several key design requirements:
 
 1. Tools must open source and free to use.
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 156+ contributions to the bioinformatics community"
-    - [x] 10 stand-alone tools, each available from Bioconda
-    - [x] 29 new Conda recipes, 35 
-    updated recipes, and [1,750+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
-    - [x] 62 contributions to nf-core/modules
-    - [x] 20 contributions to other tools
+!!! tip "Bactopia has provided 176+ contributions to the bioinformatics community"
+    - [x] 11 stand-alone tools, each available from Bioconda
+    - [x] 30 new Conda recipes, 41 
+    updated recipes, and [2,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
+    - [x] 68 contributions to nf-core/modules
+    - [x] 26 contributions to other tools
     
     These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
 
 ## Stand-Alone Tools
 
-Occasionally tools are developed for specific tasks in Bactopia. For example, [Dragonflye](https://github.com/rpetit3/dragonflye)
-was developed to add Nanopore support to Bactopia. When these tools were developed, they are developed to be stand-alone. Below are 
-10 tools, originally built for Bactopia that you can make use of outside of Bactopia.
+Sometimes, tools are developed to enhance Bactopia capabilities, such as
+[Dragonflye](https://github.com/rpetit3/dragonflye), which was developed to add Nanopore
+support. These tools are designed to function as stand-alone tools. Below
+are 11 such tools, originally built for Bactopia, that you can also use
+independent of Bactopia.
 
 | Tool | Description |
 |------|-------------|
@@ -40,6 +41,7 @@ was developed to add Nanopore support to Bactopia. When these tools were develop
 | [dragonflye](https://github.com/rpetit3/dragonflye) | Assemble bacterial isolate genomes from Nanopore reads |
 | [fastq-dl](https://github.com/rpetit3/fastq-dl) | Download FASTQ files from SRA or ENA repositories. |
 | [fastq-scan](https://github.com/rpetit3/fastq-scan) | Output FASTQ summary statistics in JSON format |
+| [GOBLIN](https://github.com/rpetit3/goblin) | Generate trusted prOteins to supplement BacteriaL annotatIoN |
 | [pasty](https://github.com/rpetit3/pasty) | A tool for in silico serogrouping of Pseudomonas aeruginosa isolates |
 | [pbptyper](https://github.com/rpetit3/pbptyper) | In silico Penicillin Binding Protein typer for Streptococcus pneumoniae |
 | [pmga](https://github.com/rpetit3/pmga) | A fork of PMGA for all Neisseria species and Haemophilus influenzae |
@@ -51,21 +53,23 @@ was developed to add Nanopore support to Bactopia. When these tools were develop
 
 ## Bioconda Contributions
 
-Bactopia requires tools be installable with Conda to make installation easier for users. An unintended
-side-effect of this has been a larger involvement with the Bioconda community. Bioconda is an amazing resource 
-that doesn't end with `conda install! For every recipe added to Bioconda, a Docker container is created by 
-[Biocontainers](https://biocontainers.pro/), as well as a Singularity image is created by the 
-[Galaxy Project](https://galaxyproject.org/). At the end of the day, a single recipe makes a huge contribution
-to the community.
+Bactopia requires tools be installable with Conda to simplify the installation process for
+users. This requirement led to an unintended, but welcomed, deeper involvement involvement
+with the Bioconda community. Bioconda is more than `conda install`, it is a valuable resource
+that makes bioinformatics tools more accessible to the community. Every time a tool is added
+to Bioconda, a Docker container is created by [Biocontainers](https://biocontainers.pro/),
+as well as a Singularity image is created by the [Galaxy Project](https://galaxyproject.org/).
+In essence, a single recipe contributes significantly to the broader community.
 
-Bactopia has led to  29 new recipes, 35 updated recipes, and 
-[more than 1,000 pull requests have been reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
+Bactopia has led to  30 new recipes, 41
+updated recipes, and [more than 2,000 pull requests have been reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
 
 ### New Recipes
 
-Bactopia has led to the addition of 29 new recipes to
-[Bioconda](https://bioconda.github.io/) and [conda-forge](https://conda-forge.org/). These new recipes allow users
-to rapidly begin using these tools for their own analyses, and include:
+Bactopia has led to the addition of 30 new recipes to
+[Bioconda](https://bioconda.github.io/) and [conda-forge](https://conda-forge.org/).
+These new recipes allow users to rapidly begin using these tools for their own analyses,
+and include:
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
@@ -79,6 +83,7 @@ to rapidly begin using these tools for their own analyses, and include:
 | [fastq-dl](https://github.com/rpetit3/fastq-dl) | Download FASTQ files from SRA or ENA repositories. | [bioconda/bioconda-recipes#18252](https://github.com/bioconda/bioconda-recipes/pull/18252) |
 | [fastq-scan](https://github.com/rpetit3/fastq-scan) | Output FASTQ summary statistics in JSON format | [bioconda/bioconda-recipes#11415](https://github.com/bioconda/bioconda-recipes/pull/11415) |
 | [GenoTyphi](https://github.com/katholt/genotyphi) | assign genotypes to *Salmonella* Typhi genomes | [bioconda/bioconda-recipes#25674](https://github.com/bioconda/bioconda-recipes/pull/25674) |
+| [GOBLIN](https://github.com/rpetit3/goblin) | Generate trusted prOteins to supplement BacteriaL annotatIoN | [bioconda/bioconda-recipes#38922](https://github.com/bioconda/bioconda-recipes/pull/38922) |
 | [illumina-cleanup](https://github.com/rpetit3/illumina-cleanup) | A simple pipeline for pre-processing Illumina FASTQ files | [bioconda/bioconda-recipes#11481](https://github.com/bioconda/bioconda-recipes/pull/11481) |
 | [ISMapper](https://github.com/jhawkey/IS_mapper) | insertion sequence mapping software | [bioconda/bioconda-recipes#14180](https://github.com/bioconda/bioconda-recipes/pull/14180) |
 | [mashpit](https://github.com/tongzhouxu/mashpit) | Sketch-based surveillance platform | [bioconda/bioconda-recipes#35199](https://github.com/bioconda/bioconda-recipes/pull/35199) |
@@ -109,12 +114,19 @@ to rapidly begin using these tools for their own analyses, and include:
 
 ### Enhancements and Fixes
 
-A common issue with Bioconda recipes, is the tool works great in a Conda environment
-when containerized it fails for various reasons. When these issues occur with a tool used by Bactopia an effort is
-made to improve or fix the Bioconda recipe. Below is a list fixes and improvements to some Bioconda recipes:
+A common issue with Bioconda recipes, is the tool works great in a Conda environment when
+containerized it fails for various reasons. When these issues occur with a tool used by
+Bactopia an effort is made to improve or fix the Bioconda recipe. Below is a list fixes
+and improvements to some Bioconda recipes:
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) | Patch ncbi-genome-download recipe | [bioconda/bioconda-recipes#41640](https://github.com/bioconda/bioconda-recipes/pull/41640) |
+| [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk) | Update GTDB-tk recipe | [bioconda/bioconda-recipes#40333](https://github.com/bioconda/bioconda-recipes/pull/40333) |
+| [mlst](https://github.com/tseemann/mlst) | update midas pinnings to match docs | [bioconda/bioconda-recipes#38826](https://github.com/bioconda/bioconda-recipes/pull/38826) |
+| [MIDAS](https://github.com/snayfach/MIDAS) | update midas pinnings to match docs | [bioconda/bioconda-recipes#38566](https://github.com/bioconda/bioconda-recipes/pull/38566) |
+| [smoove](https://github.com/brentp/smoove) | rebuild smoove container | [bioconda/bioconda-recipes#37394](https://github.com/bioconda/bioconda-recipes/pull/37394) |
+| [fasta3](https://github.com/wrpearson/fasta36) | update fasta3 to latest version | [bioconda/bioconda-recipes#37306](https://github.com/bioconda/bioconda-recipes/pull/37306) |
 | [pggb](https://github.com/pangenome/pggb) | Update pinnings in pggb | [bioconda/bioconda-recipes#35734](https://github.com/bioconda/bioconda-recipes/pull/35734) |
 | [Nullarbor](https://github.com/tseemann/nullarbor) | Rebuild nullarbor container | [bioconda/bioconda-recipes#35687](https://github.com/bioconda/bioconda-recipes/pull/35687) |
 | [GenoTyphi](https://github.com/katholt/genotyphi) | Update genotyphi recipe for mykrobe based analysis | [bioconda/bioconda-recipes#35388](https://github.com/bioconda/bioconda-recipes/pull/35388) |
@@ -154,17 +166,24 @@ made to improve or fix the Bioconda recipe. Below is a list fixes and improvemen
 
 ## nf-core/modules Contributions
 
-When Bactopia was converted to Nextflow DSL2, it allowed the opportunity to adopt modules from 
-[nf-core/modules](https://github.com/nf-core/modules). These modules allow users to easily include them in their
-own Nextflow DSL2 pipelines. To facilitate this, A requirement was made that each
-[Bactopia Tool](https://bactopia.github.io/bactopia-tools/), separate workflows, would require that a corresponding 
-module be available from nf-core/modules, and if its not available it would be added.
+When Bactopia transitioned to Nextflow DSL2, it opened the door to adopting modules
+from [nf-core/modules](https://github.com/nf-core/modules). These modules enable users to
+seamlessly integrate them in their own Nextflow DSL2 pipelines. To support this integration,
+I decided to require each [Bactopia Tool](https://bactopia.github.io/bactopia-tools/), must
+have a corresponding module be available from nf-core/modules. If such a module is not already
+available, it will be added.
 
-By adopting this practice, there have been 62 contributions to nf-core/modules in the 
-form of new modules, module updates, and testing adjustments.
+By adopting this practice, there have been 68 contributions to
+nf-core/modules in the form of new modules, module updates, and testing adjustments.
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [BTyper3](https://github.com/lmc297/BTyper3) | add module for btyper3 | [nf-core/modules#3817](https://github.com/nf-core/modules/pull/3817) |
+| [abriTAMR](https://github.com/MDU-PHL/abritamr) | add module for abritamr_run | [nf-core/modules#3725](https://github.com/nf-core/modules/pull/3725) |
+| [PneumoCaT](https://github.com/ukhsa-collaboration/PneumoCaT) | add module for pneumocat | [nf-core/modules#3592](https://github.com/nf-core/modules/pull/3592) |
+| [STECFinder](https://github.com/LanLab/STECFinder) | add module for stecfinder | [nf-core/modules#2702](https://github.com/nf-core/modules/pull/2702) |
+| [MIDAS](https://github.com/snayfach/MIDAS) | add module for midas/run | [nf-core/modules#2696](https://github.com/nf-core/modules/pull/2696) |
+| [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber) | add modules for sra-human-scrubber | [nf-core/modules#2694](https://github.com/nf-core/modules/pull/2694) |
 | [ShigEiFinder](https://github.com/LanLab/ShigEiFinder) | add shigeifinder module | [nf-core/modules#2523](https://github.com/nf-core/modules/pull/2523) |
 | [nf-core/modules](https://github.com/nf-core/modules) | fix a few tests after restructure | [nf-core/modules#2234](https://github.com/nf-core/modules/pull/2252) |
 | [Biohansel](https://github.com/phac-nml/biohansel) | add biohansel module | [nf-core/modules#2234](https://github.com/nf-core/modules/pull/2234) |
@@ -231,10 +250,16 @@ form of new modules, module updates, and testing adjustments.
 
 ## Other Contributions
 
-In addition to Bioconda and nf-core/modules, Bactopia has made 20 contributions to other tools including:
+In addition to Bioconda and nf-core/modules, Bactopia has made 26 contributions to other tools including:
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [MOB-suite](https://github.com/phac-nml/mob-suite) | fix hostrange() missing 1 required positional argument: 'database_directory' | [phac-nml/mob-suite#149](https://github.com/phac-nml/mob-suite/pull/149) |
+| [bioconda-utils](https://github.com/bioconda/bioconda-utils) | chore: update change visibility action | [bioconda/bioconda-utils#873](https://github.com/bioconda/bioconda-utils/pull/873) |
+| [Prokka](https://github.com/tseemann/prokka) | Convert Travis CI to Github Actions | [tseemann/prokka#662](https://github.com/tseemann/prokka/pull/662) |
+| [bioconda-utils](https://github.com/bioconda/bioconda-utils) | chore: add CI to changevisibility of private containers | [bioconda/bioconda-utils#835](https://github.com/bioconda/bioconda-utils/pull/835) |
+| [bioconda-containers](https://github.com/bioconda/bioconda-containers) | Patch - small fix on merge command and quay toggle visibility | [bioconda/bioconda-containers#54](https://github.com/bioconda/bioconda-containers/pull/54) |
+| [Shigatyper](https://github.com/CFSAN-Biostatistics/shigatyper) | Incorporate patches from Bioconda | [CFSAN-Biostatistics/shigatyper#14](https://github.com/CFSAN-Biostatistics/shigatyper/pull/14) |
 | [EToKi](https://github.com/lskatz/EToKi) | let tempfile determine where to put temp files | [lskatz/EToKi#2](https://github.com/lskatz/EToKi/pull/2) |
 | [EToKi](https://github.com/lskatz/EToKi) | Allow multiple path parameters on the configure step | [lskatz/EToKi#1](https://github.com/lskatz/EToKi/pull/1) |
 | [Seroba](https://github.com/sanger-pathogens/seroba) | let tempfile determine temp dir location | [sanger-pathogens/seroba#68](https://github.com/sanger-pathogens/seroba/pull/68) |

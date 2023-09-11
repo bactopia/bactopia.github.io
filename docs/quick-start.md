@@ -4,55 +4,36 @@ description: >-
     Get started using Bactopia in a few commands, no asking questions and no looking back!
 ---
 # Quick Start
-Here we go! No time to waste, let's get the ball rolling! Why are you still reading this?!? Go! Go! Go!
 
-## Installation
-```
-conda create -y -n bactopia -c conda-forge -c bioconda bactopia
+## Installation via Conda
+
+This is as quick as it gets. The following commands will install Bactopia and run a test dataset.
+
+```{bash}
+# Install Bactopia using Mamba
+mamba create -y -n bactopia -c conda-forge -c bioconda bactopia
+
+# Test Bactopia
+# First launch will set up environments (e.g. Conda, Docker, or Singularity)
 conda activate bactopia
+bactopia -profile test
 ```
 
-## Build Dataset
-```
-bactopia datasets
-```
+!!! note "Use `-profile` to change environment"
+    The default profile for Bactopia is Conda. If you would like to test using Docker or
+    Singularity, you can use the `-profile` option. For example, to use Docker you would use
+    `-profile test,docker`, and `-profile test,singularity` for Singularity.
 
-This create a folder `./datasets` and will build the following datasets:
+## Run from GitHub Repository
 
-- [CARD](https://card.mcmaster.ca/)
-- [VFDB](http://www.mgc.ac.cn/VFs/)
-- [RefSeq Mash Sketch](https://mash.readthedocs.io/en/latest/data.html)
-- [GenBank Sourmash Signatures](https://sourmash.readthedocs.io/en/latest/datasets.html?highlight=--track-abundance#genbank-lca-dataset)
-- [PLSDB Mash Sketch & BLAST](https://ccb-microbe.cs.uni-saarland.de/plsdb/plasmids/download/)
+Alternatively, if you already have Nextflow installed, and you don't want to use
+Conda to install Bactopia, you can run Bactopia directly from the GitHub repository.
 
-More information about these datasets is available at [Build Datasets](datasets/).
-
-## Run Bactopia!
-On the first launch of Bactopia it will install the Conda environments, so expect some delays in doing so!
-
-### Single Sample
-#### Paired-End
-```
-bactopia --R1 SEQS_R1.fastq.gz \
-         --R2 SEQS_R2.fastq.gz \
-         --sample SAMPLE_NAME \
-         --datasets datasets/ \
-         --outdir OUTDIR
+```{bash}
+nextflow run bactopia/bactopia -profile test
 ```
 
-In the command above, be sure to replace *SEQS_R1.fastq.gz* and *SEQS_R2.fastq.gz* with the name of your FASTQ files. You will also want to replace *SAMPLE_NAME* with your sample's name and *OUTDIR* with a directory name you would like to use for results.
-
-#### Single-End
-```
-bactopia --SE SEQS.fastq.gz --sample SAMPLE_NAME --datasets datasets/ --outdir OUTDIR
-```
-
-In the command above, be sure to replace *SEQS.fastq.gz* with the name of your FASTQ file. You will also want to replace *SAMPLE_NAME* with your sample's name and *OUTDIR* with a directory name you would like to use for results.
-
-### Multiple Samples
-```
-bactopia prepare directory-of-fastqs/ > fastqs.txt
-bactopia --samples fastqs.txt --datasets datasets --outdir OUTDIR
-```
-
-In the command above, be sure to replace *OUTDIR* with a directory name you would like to use for results.
+!!! info "Missing out on helper commands"
+    The Conda install of Bactopia comes with a few helper commands that are not available
+    when running directly with Nextflow. These include commands to help prepare sample sheets,
+    search public databases, pre-build environments, among other helper tools.

@@ -15,6 +15,10 @@ tools:
       tool_url: "https://github.com/rpetit3/fastq-scan"
       description: "Output FASTQ summary statistics in JSON format"
 
+    - tool: "GOBLIN"
+      tool_url: "https://github.com/rpetit3/goblin"
+      description: "Generate trusted prOteins to supplement BacteriaL annotatIoN"
+
     - tool: "pasty"
       tool_url: "https://github.com/rpetit3/pasty"
       description: "A tool for in silico serogrouping of Pseudomonas aeruginosa isolates"
@@ -40,6 +44,14 @@ tools:
       description: "Add biological annotations to variants in a given VCF file"
 
 conda_submissions:
+    - title: "add recipe for goblin"
+      date: 2023-01-19
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/38922"
+      pr_name: "bioconda/bioconda-recipes#38922"
+      tool: "GOBLIN"
+      tool_url: "https://github.com/rpetit3/goblin"
+      description: "Generate trusted prOteins to supplement BacteriaL annotatIoN"
+
     - title: "Added EToKi to Bioconda"
       date: 2022-09-22
       pr_url: "https://github.com/bioconda/bioconda-recipes/pull/37069"
@@ -273,6 +285,48 @@ conda_submissions:
       description: "Output FASTQ summary statistics in JSON format"
 
 conda_updates:
+    - title: "Patch ncbi-genome-download recipe"
+      date: 2023-06-22
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/41640"
+      pr_name: "bioconda/bioconda-recipes#41640"
+      tool: "ncbi-genome-download"
+      tool_url: "https://github.com/kblin/ncbi-genome-download"
+
+    - title: "Update GTDB-tk recipe"
+      date: 2023-04-08
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/40333"
+      pr_name: "bioconda/bioconda-recipes#40333"
+      tool: "GTDB-Tk"
+      tool_url: "https://github.com/Ecogenomics/GTDBTk"
+
+    - title: "update midas pinnings to match docs"
+      date: 2023-01-13
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/38826"
+      pr_name: "bioconda/bioconda-recipes#38826"
+      tool: "mlst"
+      tool_url: "https://github.com/tseemann/mlst"
+
+    - title: "update midas pinnings to match docs"
+      date: 2022-12-27
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/38566"
+      pr_name: "bioconda/bioconda-recipes#38566"
+      tool: "MIDAS"
+      tool_url: "https://github.com/snayfach/MIDAS"
+
+    - title: "rebuild smoove container"
+      date: 2022-10-11
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/37394"
+      pr_name: "bioconda/bioconda-recipes#37394"
+      tool: "smoove"
+      tool_url: "https://github.com/brentp/smoove"
+
+    - title: "update fasta3 to latest version"
+      date: 2022-10-06
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/37306"
+      pr_name: "bioconda/bioconda-recipes#37306"
+      tool: "fasta3"
+      tool_url: "https://github.com/wrpearson/fasta36"
+
     - title: "Update pinnings in pggb"
       date: 2022-07-13
       pr_url: "https://github.com/bioconda/bioconda-recipes/pull/35734"
@@ -519,8 +573,56 @@ conda_updates:
       tool_url: "https://github.com/WGS-TB/MentaLiST"
       
 nfcore_modules:
+    - title: "add module for btyper3"
+      date: 2023-09-06
+      pr_url: "https://github.com/nf-core/modules/pull/3817"
+      pr_name: "nf-core/modules#3817"
+      new_module: true
+      tool: "BTyper3"
+      tool_url: "https://github.com/lmc297/BTyper3"
+
+    - title: "add module for abritamr_run"
+      date: 2023-08-10
+      pr_url: "https://github.com/nf-core/modules/pull/3725"
+      pr_name: "nf-core/modules#3725"
+      new_module: true
+      tool: "abriTAMR"
+      tool_url: "https://github.com/MDU-PHL/abritamr"
+
+    - title: "add module for pneumocat"
+      date: 2023-07-03
+      pr_url: "https://github.com/nf-core/modules/pull/3592"
+      pr_name: "nf-core/modules#3592"
+      new_module: true
+      tool: "PneumoCaT"
+      tool_url: "https://github.com/ukhsa-collaboration/PneumoCaT"
+
+    - title: "add module for stecfinder"
+      date: 2022-12-28
+      pr_url: "https://github.com/nf-core/modules/pull/2702"
+      pr_name: "nf-core/modules#2702"
+      new_module: true
+      tool: "STECFinder"
+      tool_url: "https://github.com/LanLab/STECFinder"
+
+    - title: "add module for midas/run"
+      date: 2022-12-23
+      pr_url: "https://github.com/nf-core/modules/pull/2696"
+      pr_name: "nf-core/modules#2696"
+      new_module: true
+      tool: "MIDAS"
+      tool_url: "https://github.com/snayfach/MIDAS"
+
+    - title: "add modules for sra-human-scrubber"
+      date: 2022-12-23
+      pr_url: "https://github.com/nf-core/modules/pull/2694"
+      pr_name: "nf-core/modules#2694"
+      new_module: true
+      tool: "SRA Human Scrubber"
+      tool_url: "https://github.com/ncbi/sra-human-scrubber"
+
     - title: "add shigeifinder module"
-      date: 2022-09-02
+      date: 2022-11-19
       pr_url: "https://github.com/nf-core/modules/pull/2523"
       pr_name: "nf-core/modules#2523"
       new_module: true
@@ -1016,6 +1118,48 @@ nfcore_modules:
       tool_url: "https://github.com/tseemann/prokka"
 
 other:
+    - title: "fix hostrange() missing 1 required positional argument: 'database_directory'"
+      date: 2023-08-11
+      pr_url: "https://github.com/phac-nml/mob-suite/pull/149"
+      pr_name: "phac-nml/mob-suite#149"
+      tool: "MOB-suite"
+      tool_url: "https://github.com/phac-nml/mob-suite"
+
+    - title: "chore: update change visibility action"
+      date: 2023-05-03
+      pr_url: "https://github.com/bioconda/bioconda-utils/pull/873"
+      pr_name: "bioconda/bioconda-utils#873"
+      tool: "bioconda-utils"
+      tool_url: "https://github.com/bioconda/bioconda-utils"
+
+    - title: "Convert Travis CI to Github Actions"
+      date: 2023-05-02
+      pr_url: "https://github.com/tseemann/prokka/pull/662"
+      pr_name: "tseemann/prokka#662"
+      tool: "Prokka"
+      tool_url: "https://github.com/tseemann/prokka"
+
+    - title: "chore: add CI to changevisibility of private containers"
+      date: 2023-01-25
+      pr_url: "https://github.com/bioconda/bioconda-utils/pull/835"
+      pr_name: "bioconda/bioconda-utils#835"
+      tool: "bioconda-utils"
+      tool_url: "https://github.com/bioconda/bioconda-utils"
+
+    - title: "Patch - small fix on merge command and quay toggle visibility"
+      date: 2023-01-25
+      pr_url: "https://github.com/bioconda/bioconda-containers/pull/54"
+      pr_name: "bioconda/bioconda-containers#54"
+      tool: "bioconda-containers"
+      tool_url: "https://github.com/bioconda/bioconda-containers"
+
+    - title: "Incorporate patches from Bioconda"
+      date: 2022-11-06
+      pr_url: "https://github.com/CFSAN-Biostatistics/shigatyper/pull/14"
+      pr_name: "CFSAN-Biostatistics/shigatyper#14"
+      tool: "Shigatyper"
+      tool_url: "https://github.com/CFSAN-Biostatistics/shigatyper"
+
     - title: "let tempfile determine where to put temp files"
       date: 2022-09-27
       pr_url: "https://github.com/lskatz/EToKi/pull/2"

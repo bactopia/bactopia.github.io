@@ -2,7 +2,7 @@
 site_name: Bactopia
 site_author: Robert A. Petit III
 site_description: An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
-copyright: "Copyright © 2019-2021 Robert A. Petit III. All rights reserved."
+copyright: "Copyright © 2019-2023 Robert A. Petit III. All rights reserved."
 
 site_url: https://bactopia.github.io/
 repo_url: https://github.com/bactopia/bactopia
@@ -12,26 +12,38 @@ theme:
   name: material
   custom_dir: overrides
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    - scheme: slate
-      primary: red
-      accent: red
-      toggle:
-        icon: material/toggle-switch
+        icon: material/brightness-auto
         name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
   favicon: assets/favicon.ico
   logo: assets/bactopia-small-logo.png
   font:
     text: 'Ubuntu'
     code: 'Ubuntu Mono'
   features:
+    - content.action.edit
+    - navigation.footer
+    - navigation.instant
+    - navigation.instant.prefetch
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.tracking
+    - navigation.top
 
 extra:
   analytics:
@@ -52,6 +64,7 @@ extra_css:
   - custom/extra.css
 
 extra_javascript:
+  - custom/fontawesome.js
   - custom/jquery.min.js
   - custom/jquery.magnific-popup.min.js
   - custom/extra.js
@@ -100,16 +113,21 @@ nav:
     - 'Introduction': 'index.md'
     - 'Quick Start': 'quick-start.md'
     - 'Installation': 'installation.md'
+    - "Beginner's Guide": 'beginners-guide.md'
     - 'Tutorial': 'tutorial.md'
-    - 'Build Datasets': 'datasets.md'
-    - 'Basic Usage': 'usage-basic.md'
-    - 'Workflow Overview': 'workflow-overview.md'
-    - 'Output Overview': 'output-overview.md'
-    - 'Complete Usage': 'usage-complete.md'
-    - 'Troubleshooting': 'troubleshooting.md'
-    - 'Presentations': 'presentations.md'
-    - 'Enhancements to OSS': 'enhancements.md'
-    - 'Acknowledgements': 'acknowledgements.md'
+    - 'Workflow Steps':
+        - 'Gather': 'bactopia/gather.md'
+        - 'QC': 'bactopia/qc.md'
+        - 'Assembler': 'bactopia/assembler.md'
+        - 'Annotator':
+            - 'Prokka': 'bactopia/annotator/prokka.md'
+            - 'Bakta': 'bactopia/annotator/bakta.md'
+        - 'Sketcher': 'bactopia/sketcher.md'
+        - 'Sequence Typing': 'bactopia/sequence-typing/mlst.md'
+        - 'Antimicrobial Resistance': 'bactopia/antimicrobial-resistance/amrfinderplus.md'
+        - 'Merlin': 'bactopia/merlin.md'
+    - 'Full Guide': 'full-guide.md'
+#    - 'Troubleshooting': 'troubleshooting.md'
     - 'Changelog': 'changelog.md'
   - 'Bactopia Tools':
     - 'Introduction': 'bactopia-tools/index.md'
@@ -125,3 +143,17 @@ nav:
       - '{{ tool }}': 'bactopia-tools/{{ tool }}.md'
     {%- endif -%}  
 {% endfor %}
+#  - 'More Workflows':
+#    - 'Introduction': 'workflows/index.md'
+#    - 'Clean-Yer-Reads': 'workflows/clean-yer-reads.md'
+#    - 'Staphopia': 'workflows/staphopia.md'
+#    - 'Teton': 'workflows/teton.md'
+#  - 'Tutorials': 'tutorial.md'
+  - 'Impact & Outreach':
+    - 'Impact ': 'impact-and-outreach/index.md'
+    - 'Acknowledgements': 'impact-and-outreach/acknowledgements.md'
+    - 'Citations': 'impact-and-outreach/citations.md'
+    - 'Enhancements to OSS': 'impact-and-outreach/enhancements.md'
+    - 'Presentations': 'impact-and-outreach/presentations.md'
+#  - Blog:
+#    - blog/index.md
