@@ -16,7 +16,7 @@ mamba create -y -n bactopia -c conda-forge -c bioconda bactopia
 # Test Bactopia
 # First launch will set up environments (e.g. Conda, Docker, or Singularity)
 conda activate bactopia
-bactopia -profile test
+bactopia -profile test,standard
 ```
 
 !!! note "Use `-profile` to change environment"
@@ -30,7 +30,7 @@ Alternatively, if you already have Nextflow installed, and you don't want to use
 Conda to install Bactopia, you can run Bactopia directly from the GitHub repository.
 
 ```{bash}
-nextflow run bactopia/bactopia -profile test
+nextflow run bactopia/bactopia -profile test,standard
 ```
 
 !!! info "Missing out on helper commands"
