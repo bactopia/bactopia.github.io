@@ -3033,7 +3033,7 @@ mamba create -y -n bactopia -c conda-forge -c bioconda bactopia
 # Test Bactopia
 # First launch will set up environments (e.g. Conda, Docker, or Singularity)
 conda activate bactopia
-bactopia -profile test
+bactopia -profile test,standard
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Use <code>-profile</code> to change environment</p>
@@ -3044,7 +3044,7 @@ Singularity, you can use the <code>-profile</code> option. For example, to use D
 <h2 id="run-from-github-repository">Run from GitHub Repository<a class="headerlink" href="#run-from-github-repository" title="Permanent link">&para;</a></h2>
 <p>Alternatively, if you already have Nextflow installed, and you don't want to use
 Conda to install Bactopia, you can run Bactopia directly from the GitHub repository.</p>
-<div class="highlight"><pre><span></span><code>nextflow run bactopia/bactopia -profile test
+<div class="highlight"><pre><span></span><code>nextflow run bactopia/bactopia -profile test,standard
 </code></pre></div>
 <div class="admonition info">
 <p class="admonition-title">Missing out on helper commands</p>
