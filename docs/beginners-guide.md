@@ -23,8 +23,8 @@ Towards the end of this guide, we'll also take a look at some helpful parameters
 are interested in learning more about the full set of parameters available in Bactopia,
 please check out the [Full Guide](full-guide.md) section.
 
-<a class="zoom" href="/assets/bactopia-workflow.png">
-![Bactopia Workflow](/assets/bactopia-workflow.png)
+<a class="zoom" href="assets/bactopia-workflow.png">
+![Bactopia Workflow](assets/bactopia-workflow.png)
 </a>
 
 ## Gathering Inputs

@@ -14,7 +14,7 @@ Bactopia Tools are a set of pre-defined workflows such as pan-genome contruction
 serotyping, and phylogenies. A main benefit of using Bactopia Tools, is they make
 use of the predictable output structure of Bactopia to automate analyses. This saves
 you valuable time by allowing you to make further use of the 
-[many output files](../full-guide/md) to extend your analyses.
+[many output files](../full-guide.md) to extend your analyses.
 
 ### Available Bactopia Tools
 There are currently 60 Bactopia Tools that you can make use of.
@@ -64,7 +64,7 @@ Modules are workflows consisting of only one tool.
     | [hpsuissero](hpsuissero.md) | Serotype prediction of _Haemophilus parasuis_ assemblies |
     | [ismapper](ismapper.md) | Identify insertion sites positions in bacterial genomes |
     | [kleborate](kleborate.md) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
-    | [kraken](kraken.md) | Taxonomic classifications of sequence reads |
+    | [kraken2](kraken2.md) | Taxonomic classifications of sequence reads |
     | [legsta](legsta.md) | Typing of Legionella pneumophila assemblies |
     | [lissero](lissero.md) | Serogroup typing prediction for _Listeria monocytogenes_ |
     | [mashdist](mashdist.md) | Calculate Mash distances between sequences |

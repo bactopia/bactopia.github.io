@@ -2,21 +2,21 @@
 title: kraken2
 description: A Bactopia Tool which uses Kraken2 to assign taxonomic classifications to your sequence reads.
 ---
-# Bactopia Tool - `kraken`
+# Bactopia Tool - `kraken2`
 The `kraken2` module uses [Kraken2](https://github.com/DerrickWood/kraken2) to assign taxonomic 
 classifications to your sequence reads.
 
 
 ## Example Usage
 ```
-bactopia --wf kraken \
+bactopia --wf kraken2 \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `kraken` tool. Where possible the 
+Below is the default output structure for the `kraken2` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
@@ -86,10 +86,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| kraken-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| kraken-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| kraken-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| kraken-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| kraken2-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| kraken2-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| kraken2-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| kraken2-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -202,7 +202,7 @@ Uncommonly used parameters that might be useful.
 | <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
-If you use Bactopia and `kraken` in your analysis, please cite the following.
+If you use Bactopia and `kraken2` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)

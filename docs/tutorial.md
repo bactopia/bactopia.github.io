@@ -401,7 +401,7 @@ SRA/ENA above, with a few slight modifications. To process a single sample you c
 
 !!! tip "Learn more from the Beginner's Guide"
     To learn more about these parameters, check out the
-    [Beginner's Guide -> Single Sample](beginners/#single-sample) section. Each of these
+    [Beginner's Guide -> Single Sample](beginners-guide.md#single-sample) section. Each of these
     parameters are described in detail.
 
 #### Paired-End
@@ -544,7 +544,7 @@ FOFN we need to process multiple samples.
 
 !!! tip "Learn more from the Beginner's Guide"
     To learn more about these parameters, check out the
-    [Beginner's Guide -> Local Samples](beginners/#local-samples) section. Each of these
+    [Beginner's Guide -> Local Samples](beginners-guide.md#local-samples) section. Each of these
     parameters are described in detail.
 
 Let's recycle some more FASTQ files. Before we proceed lets move some more FASTQs into our

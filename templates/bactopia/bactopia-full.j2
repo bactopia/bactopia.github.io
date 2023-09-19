@@ -10,7 +10,7 @@ be described in detail. This includes the input data, output data, and the param
 for each step.
 
 <a class="zoom" href="assets/bactopia-workflow.png">
-![Bactopia Workflow](/assets/bactopia-workflow.png)
+![Bactopia Workflow](assets/bactopia-workflow.png)
 </a>
 
 Looking at the workflow overview below, it might not look like much is happening, but I can

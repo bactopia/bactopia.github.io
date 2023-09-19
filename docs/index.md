@@ -55,15 +55,14 @@ Bactopia only uses software packages available from [Bioconda](https://bioconda.
 and [Conda-Forge](https://conda-forge.org/) to make installation as simple as possible for
 *all* users.
 
-To highlight the use of [Bactopia Datasets](datasets.md), [Bactopia](workflow-overview.md),
-and [Bactopia Tools](bactopia-tools/index.md), we performed an analysis of 1,664 public
-*Lactobacillus* genomes, focusing on *Lactobacillus crispatus*, a species that is a common
-part of the human vaginal microbiome. The results from this analysis are published in mSystems
-under the title:
+To highlight the use of [Bactopia](full-guide.md) and [Bactopia Tools](bactopia-tools/index.md),
+we performed an analysis of 1,664 public *Lactobacillus* genomes, focusing on *Lactobacillus crispatus*,
+a species that is a common part of the human vaginal microbiome. The results from this analysis
+are published in mSystems under the title:
 *[Bactopia: a flexible pipeline for complete analysis of bacterial genomes](https://doi.org/10.1128/mSystems.00190-20)*
 
-<a class="zoom" href="/assets/bactopia-workflow.png">
-![Bactopia Workflow](/assets/bactopia-workflow.png)
+<a class="zoom" href="assets/bactopia-workflow.png">
+![Bactopia Workflow](assets/bactopia-workflow.png)
 </a>
 
 ## Documentation Overview
