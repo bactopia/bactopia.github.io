@@ -2,497 +2,497 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://bactopia.github.io/v3.0.0/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/beginners-guide/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/changelog/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/full-guide/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/installation/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/quick-start/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/tutorial/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/assembler/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/gather/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/merlin/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/qc/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/sketcher/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/annotator/bakta/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/annotator/prokka/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/antimicrobial-resistance/amrfinderplus/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia/sequence-typing/mlst/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/abricate/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/abritamr/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/agrvate/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/amrfinderplus/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/ariba/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/bakta/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/blastn/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/blastp/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/blastx/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/bracken/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/btyper3/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/busco/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/checkm/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/clonalframeml/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/ectyper/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/eggnog/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/emmtyper/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/fastani/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/gamma/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/genotyphi/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/gtdb/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/hicap/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/hpsuissero/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/iqtree/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/ismapper/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/kleborate/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/kraken2/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/legsta/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/lissero/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/mashdist/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/mashtree/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/mcroni/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/meningotype/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/merlin/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/midas/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/mlst/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/mobsuite/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/mykrobe/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/ncbigenomedownload/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/ngmaster/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/pangenome/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/pasty/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/pbptyper/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/phispy/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/phyloflash/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/pirate/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/plasmidfinder/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/pneumocat/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/prokka/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/quast/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/rgi/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/roary/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/scoary/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/scrubber/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/seqsero2/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/seroba/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/shigatyper/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/shigeifinder/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/sistr/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/snippy/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/spatyper/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/ssuissero/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/staphopiasccmec/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/staphtyper/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/stecfinder/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/summary/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/tblastn/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/tblastx/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/tbprofiler/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/teton/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/bactopia-tools/whatsgnu/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/blog/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/data/resources/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/impact-and-outreach/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/impact-and-outreach/acknowledgements/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/impact-and-outreach/citations/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/impact-and-outreach/enhancements/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/impact-and-outreach/presentations/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/workflows/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/workflows/clean-yer-reads/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/workflows/staphopia/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://bactopia.github.io/v3.0.0/workflows/teton/</loc>
-         <lastmod>2023-09-11</lastmod>
+         <lastmod>2023-09-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
