@@ -45,56 +45,56 @@ Modules are workflows consisting of only one tool.
 | Module | Description |
 |-------------|-------------|
 | [abricate](abricate.md) | Mass screening of contigs for antimicrobial and virulence genes |
-    | [abritamr](abritamr.md) | A NATA accredited tool for reporting the presence of antimicrobial resistance genes |
-    | [agrvate](agrvate.md) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants. |
-    | [amrfinderplus](amrfinderplus.md) | Identify antimicrobial resistance in genes or proteins |
-    | [blastn](blastn.md) | Search against nucleotide BLAST databases using nucleotide queries |
-    | [blastp](blastp.md) | Search against protein BLAST databases using protein queries |
-    | [blastx](blastx.md) | Search against protein BLAST databases using translated nucleotide queries |
-    | [bracken](bracken.md) | Estimate taxonomic abundance of samples from Kraken2 results |
-    | [btyper3](btyper3.md) | Taxonomic classification of Bacillus cereus group isolates |
-    | [busco](busco.md) | Assembly completeness based on evolutionarily informed expectations |
-    | [checkm](checkm.md) | Assess the assembly quality of your samples |
-    | [ectyper](ectyper.md) | In-silico prediction of _Escherichia coli_ serotype |
-    | [emmtyper](emmtyper.md) | emm-typing of _Streptococcus pyogenes_ assemblies |
-    | [fastani](fastani.md) | fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
-    | [gamma](gamma.md) | Identification, classification, and annotation of translated gene matches |
-    | [genotyphi](genotyphi.md) | Salmonella Typhi genotyping with Mykrobe outputs |
-    | [hicap](hicap.md) | Identify cap locus serotype and structure in your _Haemophilus influenzae_ assemblies |
-    | [hpsuissero](hpsuissero.md) | Serotype prediction of _Haemophilus parasuis_ assemblies |
-    | [ismapper](ismapper.md) | Identify insertion sites positions in bacterial genomes |
-    | [kleborate](kleborate.md) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
-    | [kraken2](kraken2.md) | Taxonomic classifications of sequence reads |
-    | [legsta](legsta.md) | Typing of Legionella pneumophila assemblies |
-    | [lissero](lissero.md) | Serogroup typing prediction for _Listeria monocytogenes_ |
-    | [mashdist](mashdist.md) | Calculate Mash distances between sequences |
-    | [mcroni](mcroni.md) | Sequence variation in mcr-1 genes (mobilized colistin resistance) |
-    | [meningotype](meningotype.md) | Serotyping of Neisseria meningitidis |
-    | [midas](midas.md) | Estimate species abundances from FASTQ files |
-    | [mlst](mlst.md) | Automatic MLST calling from assembled contigs |
-    | [mobsuite](mobsuite.md) | Reconstruct and annotate plasmids in bacterial assemblies |
-    | [mykrobe](mykrobe.md) | Antimicrobial resistance detection for specific species |
-    | [ngmaster](ngmaster.md) | Multi-antigen sequence typing for _Neisseria gonorrhoeae_ |
-    | [pasty](pasty.md) | in silico serogrouping of Pseudomonas aeruginosa isolates |
-    | [pbptyper](pbptyper.md) | Penicillin Binding Protein (PBP) typer for Streptococcus pneumoniae |
-    | [phispy](phispy.md) | Predict prophages in bacterial genomes |
-    | [plasmidfinder](plasmidfinder.md) | Plasmid identification from assemblies |
-    | [pneumocat](pneumocat.md) | Assign capsular type to Streptococcus pneumoniae from sequence reads |
-    | [quast](quast.md) | A module for assessing the quality of assembled contigs |
-    | [rgi](rgi.md) | Predict antibiotic resistance from assemblies |
-    | [seqsero2](seqsero2.md) | Salmonella serotype prediction from reads or assemblies |
-    | [seroba](seroba.md) | Serotyping of Streptococcus pneumoniae from sequence reads |
-    | [shigatyper](shigatyper.md) | Shigella serotype from Illumina or Oxford Nanopore reads |
-    | [shigeifinder](shigeifinder.md) | Shigella and EIEC serotyping from assemblies |
-    | [sistr](sistr.md) | Serovar prediction of Salmonella assemblies |
-    | [spatyper](spatyper.md) | Computational method for finding spa types in _Staphylococcus aureus_ |
-    | [ssuissero](ssuissero.md) | Serotype prediction of _Streptococcus suis_ assemblies |
-    | [staphopiasccmec](staphopiasccmec.md) | Primer based SCCmec typing of _Staphylococcus aureus_ genomes |
-    | [stecfinder](stecfinder.md) | Serotype of Shigatoxin producing E. coli using Illumina reads or assemblies |
-    | [tblastn](tblastn.md) | Search against translated nucleotide BLAST databases using protein queries |
-    | [tblastx](tblastx.md) | Search against translated nucleotide databases using a translated nucleotide query |
-    | [tbprofiler](tbprofiler.md) | Detect resistance and lineages of _Mycobacterium tuberculosis_ genomes |
-    
+        | [abritamr](abritamr.md) | A NATA accredited tool for reporting the presence of antimicrobial resistance genes |
+        | [agrvate](agrvate.md) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants. |
+        | [amrfinderplus](amrfinderplus.md) | Identify antimicrobial resistance in genes or proteins |
+        | [blastn](blastn.md) | Search against nucleotide BLAST databases using nucleotide queries |
+        | [blastp](blastp.md) | Search against protein BLAST databases using protein queries |
+        | [blastx](blastx.md) | Search against protein BLAST databases using translated nucleotide queries |
+        | [bracken](bracken.md) | Estimate taxonomic abundance of samples from Kraken2 results |
+        | [btyper3](btyper3.md) | Taxonomic classification of Bacillus cereus group isolates |
+        | [busco](busco.md) | Assembly completeness based on evolutionarily informed expectations |
+        | [checkm](checkm.md) | Assess the assembly quality of your samples |
+        | [ectyper](ectyper.md) | In-silico prediction of _Escherichia coli_ serotype |
+        | [emmtyper](emmtyper.md) | emm-typing of _Streptococcus pyogenes_ assemblies |
+        | [fastani](fastani.md) | fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
+        | [gamma](gamma.md) | Identification, classification, and annotation of translated gene matches |
+        | [genotyphi](genotyphi.md) | Salmonella Typhi genotyping with Mykrobe outputs |
+        | [hicap](hicap.md) | Identify cap locus serotype and structure in your _Haemophilus influenzae_ assemblies |
+        | [hpsuissero](hpsuissero.md) | Serotype prediction of _Haemophilus parasuis_ assemblies |
+        | [ismapper](ismapper.md) | Identify insertion sites positions in bacterial genomes |
+        | [kleborate](kleborate.md) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
+        | [kraken2](kraken2.md) | Taxonomic classifications of sequence reads |
+        | [legsta](legsta.md) | Typing of Legionella pneumophila assemblies |
+        | [lissero](lissero.md) | Serogroup typing prediction for _Listeria monocytogenes_ |
+        | [mashdist](mashdist.md) | Calculate Mash distances between sequences |
+        | [mcroni](mcroni.md) | Sequence variation in mcr-1 genes (mobilized colistin resistance) |
+        | [meningotype](meningotype.md) | Serotyping of Neisseria meningitidis |
+        | [midas](midas.md) | Estimate species abundances from FASTQ files |
+        | [mlst](mlst.md) | Automatic MLST calling from assembled contigs |
+        | [mobsuite](mobsuite.md) | Reconstruct and annotate plasmids in bacterial assemblies |
+        | [mykrobe](mykrobe.md) | Antimicrobial resistance detection for specific species |
+        | [ngmaster](ngmaster.md) | Multi-antigen sequence typing for _Neisseria gonorrhoeae_ |
+        | [pasty](pasty.md) | in silico serogrouping of Pseudomonas aeruginosa isolates |
+        | [pbptyper](pbptyper.md) | Penicillin Binding Protein (PBP) typer for Streptococcus pneumoniae |
+        | [phispy](phispy.md) | Predict prophages in bacterial genomes |
+        | [plasmidfinder](plasmidfinder.md) | Plasmid identification from assemblies |
+        | [pneumocat](pneumocat.md) | Assign capsular type to Streptococcus pneumoniae from sequence reads |
+        | [quast](quast.md) | A module for assessing the quality of assembled contigs |
+        | [rgi](rgi.md) | Predict antibiotic resistance from assemblies |
+        | [seqsero2](seqsero2.md) | Salmonella serotype prediction from reads or assemblies |
+        | [seroba](seroba.md) | Serotyping of Streptococcus pneumoniae from sequence reads |
+        | [shigatyper](shigatyper.md) | Shigella serotype from Illumina or Oxford Nanopore reads |
+        | [shigeifinder](shigeifinder.md) | Shigella and EIEC serotyping from assemblies |
+        | [sistr](sistr.md) | Serovar prediction of Salmonella assemblies |
+        | [spatyper](spatyper.md) | Computational method for finding spa types in _Staphylococcus aureus_ |
+        | [ssuissero](ssuissero.md) | Serotype prediction of _Streptococcus suis_ assemblies |
+        | [staphopiasccmec](staphopiasccmec.md) | Primer based SCCmec typing of _Staphylococcus aureus_ genomes |
+        | [stecfinder](stecfinder.md) | Serotype of Shigatoxin producing E. coli using Illumina reads or assemblies |
+        | [tblastn](tblastn.md) | Search against translated nucleotide BLAST databases using protein queries |
+        | [tblastx](tblastx.md) | Search against translated nucleotide databases using a translated nucleotide query |
+        | [tbprofiler](tbprofiler.md) | Detect resistance and lineages of _Mycobacterium tuberculosis_ genomes |
+        
 
 ### Common Inputs
 

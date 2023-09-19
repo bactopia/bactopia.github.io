@@ -40,7 +40,11 @@ Modules are workflows consisting of only one tool.
 |-------------|-------------|
 {% for tool in tools | sort -%}
     {% if tools[tool].is_module == True -%}
+        {% if tools[tool].name == "kraken" -%}
+| [kraken2](kraken2.md) | {{ tools[tool].description }} |
+    {% else -%}
 | [{{ tools[tool].name }}]({{ tools[tool].name }}.md) | {{ tools[tool].description }} |
+        {% endif -%}  
     {% endif -%}  
 {% endfor %}
 
