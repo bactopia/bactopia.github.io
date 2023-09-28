@@ -1,6 +1,6 @@
 
 Since its launch in 2019, Bactopia has seen significant academic usage, being cited in at
-least 56 scholarly publications. We are excited to see Bactopia being used
+least 57 scholarly publications. We are excited to see Bactopia being used
 by the community and hope that it continues to be a valuable tool for researchers.
 
 !!! info "Total citations might be out of date"
@@ -8,6 +8,8 @@ by the community and hope that it continues to be a valuable tool for researcher
     of citations, please visit
     [Google Scholar](https://scholar.google.com/scholar?cites=11269093140070503615) or 
     [PubMed](https://pubmed.ncbi.nlm.nih.gov/?linkname=pubmed_pubmed_citedin&from_uid=32753501)
+
+57: Almeida FMd, Campos TAd, Pappas Jr GJ. [Scalable and versatile container-based pipelines for de novo genome assembly and bacterial annotation.](https://doi.org/10.12688/f1000research.139488.1) _F1000 Research_ (2023).
 
 56: Vanderwoude J, Azimi S, Read TD, Read TD, Diggle SP. [Evolutionary Drivers of Antimicrobial Resistance Diversity of _Pseudomonas aeruginosa_ in Cystic Fibrosis Lung Infection](https://doi.org/10.1101/2023.06.14.544983) _bioRxiv_ (2023).
 
