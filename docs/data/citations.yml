@@ -1,4 +1,10 @@
 citations:
+  - authors: Almeida FMd, Campos TAd, Pappas Jr GJ.
+    title: Scalable and versatile container-based pipelines for de novo genome assembly and bacterial annotation.
+    url: https://doi.org/10.12688/f1000research.139488.1
+    journal: F1000 Research
+    date: 2023-09-25
+
   - authors: Vanderwoude J, Azimi S, Read TD, Read TD, Diggle SP. 
     title: Evolutionary Drivers of Antimicrobial Resistance Diversity of _Pseudomonas aeruginosa_ in Cystic Fibrosis Lung Infection
     url: https://doi.org/10.1101/2023.06.14.544983
