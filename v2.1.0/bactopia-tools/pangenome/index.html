@@ -1,0 +1,4083 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/bactopia-tools/pangenome/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3+insiders-4.23.5">
+    
+    
+      
+        <title>pangenome - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fb3608a7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../custom/magnific-popup.css">
+    
+      <link rel="stylesheet" href="../../custom/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-104199698-2","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");ga("send","event","feedback","click",t,e),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){ga("send","pageview",e.pathname)})});var e=document.createElement("script");e.async=!0,e.src="https://www.google-analytics.com/analytics.js",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="pangenome - Bactopia" >
+      
+        <meta  property="og:description"  content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes." >
+      
+        <meta  property="og:image"  content="https://bactopia.github.io/assets/images/social/bactopia-tools/pangenome.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://bactopia.github.io/bactopia-tools/pangenome/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="pangenome - Bactopia" >
+      
+        <meta  name="twitter:description"  content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes." >
+      
+        <meta  name="twitter:image"  content="https://bactopia.github.io/assets/images/social/bactopia-tools/pangenome.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bactopia-tool-pangenome" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+    <div data-md-color-scheme="default" data-md-component="outdated">
+        <aside class="md-banner md-banner--warning">
+          <div class="md-banner__inner md-grid md-typeset">
+            You're not viewing the latest version.
+            <a href="https://bactopia.github.io/"> 
+              <strong>Click here to go to latest.</strong>
+            </a>
+          </div>
+          <script>
+            var el = document.querySelector("[data-md-component=outdated]")
+            var outdated = __md_get("__outdated", sessionStorage)
+            if (outdated === true && el)
+              el.hidden = false
+          </script>
+        </aside>
+    </div>
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bactopia" class="md-header__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bactopia
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              pangenome
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+    
+  
+  Bactopia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+
+  
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link md-tabs__link--active">
+          
+  
+    
+  
+  Bactopia Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bactopia" class="md-nav__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+        
+        
+          <label class="md-nav__link" for="__nav_1">
+            
+  
+  <span class="md-ellipsis">
+    Bactopia
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Bactopia" data-md-level="1">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Bactopia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Datasets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workflow-overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../output-overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Output Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../usage-complete/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complete Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../enhancements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enhancements to OSS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acknowledgements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        
+        
+          <label class="md-nav__link" for="__nav_2">
+            
+  
+  <span class="md-ellipsis">
+    Bactopia Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Bactopia Tools" data-md-level="1">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Bactopia Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+        
+        
+          <label class="md-nav__link" for="__nav_2_2">
+            
+  
+  <span class="md-ellipsis">
+    Subworkflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Subworkflows" data-md-level="2">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Subworkflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ariba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ariba
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bakta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eggnog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eggnog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gtdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gtdb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    merlin
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    pangenome
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    pangenome
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#top-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Top Level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clonalframeml" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClonalFrameML
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iq-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      IQ-TREE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pirate" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIRATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#panaroo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Panaroo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audit Trail
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audit Trail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow Reports
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#program-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Program Versions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clonalframeml-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClonalFrameML Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iq-tree-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      IQ-TREE Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncbi-genome-download-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      NCBI Genome Download Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pirate-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIRATE Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prokka-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prokka Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#panaroo-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Panaroo Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roary-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roary Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scoary-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scoary Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snp-dists-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      SNP-Dists Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-job-request-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Max Job Request Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow Configuration Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-profile-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow Profile Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helpful-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helpful Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snippy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snippy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staphtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    staphtyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+        
+        
+          <label class="md-nav__link" for="__nav_2_3">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Modules" data-md-level="2">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abricate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    abricate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agrvate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    agrvate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    amrfinderplus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busco/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    busco
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ectyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ectyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emmtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    emmtyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastani/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fastani
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gamma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gamma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genotyphi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    genotyphi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hicap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hicap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hpsuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hpsuissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ismapper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ismapper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kleborate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kleborate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kraken2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kraken2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legsta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    legsta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mashdist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mashdist
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mashtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mashtree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcroni/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mcroni
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meningotype/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    meningotype
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlst
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobsuite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mobsuite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mykrobe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mykrobe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ngmaster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ngmaster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plasmidfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    plasmidfinder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prokka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prokka
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rgi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seqsero2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seqsero2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seroba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seroba
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shigatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shigatyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sistr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sistr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spatyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ssuissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staphopiasccmec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    staphopiasccmec
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tbprofiler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tbprofiler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        
+        
+          <label class="md-nav__link" for="__nav_3">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Blog" data-md-level="1">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bactopia Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#top-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Top Level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clonalframeml" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClonalFrameML
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iq-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      IQ-TREE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pirate" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIRATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#panaroo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Panaroo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-trail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audit Trail
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Audit Trail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow Reports
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#program-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Program Versions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filtering-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filtering Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clonalframeml-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClonalFrameML Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iq-tree-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      IQ-TREE Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncbi-genome-download-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      NCBI Genome Download Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pirate-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      PIRATE Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prokka-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prokka Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#panaroo-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Panaroo Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roary-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Roary Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scoary-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scoary Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snp-dists-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      SNP-Dists Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optional Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-job-request-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Max Job Request Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-configuration-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow Configuration Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nextflow-profile-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nextflow Profile Parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helpful-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helpful Parameters
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Citations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+<!-- Edit button -->
+
+  <a
+    href="https://github.com/bactopia/bactopia.github.io/edit/master/docs/bactopia-tools/pangenome.md"
+    title="Edit this page"
+    class="md-content__button md-icon"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it
+  doesn't, the page title (or respectively site name) is used
+  as the main headline.
+-->
+
+
+<!-- Markdown content -->
+<h1 id="bactopia-tool-pangenome">Bactopia Tool - <code>pangenome</code><a class="headerlink" href="#bactopia-tool-pangenome" title="Permanent link">&para;</a></h1>
+<p>The <code>pangenome</code> subworkflow allows you to create a pan-genome with <a href="https://github.com/SionBayliss/PIRATE">PIRATE</a>,
+<a href="https://github.com/gtonkinhill/panaroo">Panaroo</a>, or <a href="https://github.com/sanger-pathogens/Roary">Roary</a>) of your samples.</p>
+<p>You can further supplement your pan-genome by including completed genomes. This is possible using the <code>--species</code> 
+or <code>--accessions</code> parameters. If used, <a href="https://github.com/kblin/ncbi-genome-download">ncbi-genome-download</a> will 
+download available completed genomes available from RefSeq. Any downloaded genomes will be annotated with 
+<a href="https://github.com/tseemann/prokka">Prokka</a> to create compatible GFF3 files.</p>
+<p>A phylogeny, based on the core-genome alignment, will be created by <a href="https://github.com/Cibiv/IQ-TREE">IQ-Tree</a>. Optionally
+a recombination-masked core-genome alignment can be created with <a href="https://github.com/xavierdidelot/ClonalFrameML">ClonalFrameML</a>
+and <a href="https://github.com/kwongj/maskrc-svg">maskrc-svg</a>.</p>
+<p>Finally, the core genome pair-wise SNP distance for each sample is also calculated with 
+<a href="https://github.com/tseemann/snp-dists">snp-dists</a> and additional pan-genome wide association studies can be conducted 
+using <a href="https://github.com/AdmiralenOla/Scoary">Scoary</a>.</p>
+<h2 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>bactopia --wf pangenome \
+  --bactopia /path/to/your/bactopia/results \ 
+  --include includes.txt  
+</code></pre></div>
+<h2 id="output-overview">Output Overview<a class="headerlink" href="#output-overview" title="Permanent link">&para;</a></h2>
+<p>Below is the default output structure for the <code>pangenome</code> tool. Where possible the 
+file descriptions below were modified from a tools description.</p>
+<div class="highlight"><pre><span></span><code>pangenome/
+├── clonalframeml
+│   ├── core-genome.ML_sequence.fasta
+│   ├── core-genome.em.txt
+│   ├── core-genome.emsim.txt
+│   ├── core-genome.importation_status.txt
+│   ├── core-genome.labelled_tree.newick
+│   └── core-genome.position_cross_reference.txt
+├── {iqtree,iqtree-fast}
+│   ├── core-genome.alninfo
+│   ├── {core-genome,start-tree}.bionj
+│   ├── {core-genome,start-tree}.ckp.gz
+│   ├── core-genome.contree
+│   ├── {core-genome,start-tree}.mldist
+│   ├── {core-genome,start-tree}.model.gz
+│   ├── core-genome.splits.nex
+│   ├── {core-genome,start-tree}.treefile
+│   └── core-genome.ufboot
+├── logs
+│   ├── clonalframeml
+│   │   ├── nf-clonalframeml.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   ├── custom_dumpsoftwareversions
+│   │   ├── nf-custom_dumpsoftwareversions.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   ├── {iqtree,iqtree-fast}
+│   │   ├── core-genome.log
+│   │   ├── nf-iqtree.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   ├── pirate
+│   │   ├── nf-pirate.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   ├── roary
+│   │   ├── nf-roary.{begin,err,log,out,run,sh,trace}
+│   │   └── versions.yml
+│   └── snpdists
+│       ├── nf-snpdists.{begin,err,log,out,run,sh,trace}
+│       └── versions.yml
+├── nf-reports
+│   ├── pangenome-dag.dot
+│   ├── pangenome-report.html
+│   ├── pangenome-timeline.html
+│   └── pangenome-trace.txt
+├── panaroo
+│   ├── aligned_gene_sequences
+│   ├── combined_DNA_CDS.fasta.gz
+│   ├── combined_protein_CDS.fasta.gz
+│   ├── combined_protein_cdhit_out.txt
+│   ├── combined_protein_cdhit_out.txt.clstr
+│   ├── core_alignment_header.embl
+│   ├── core_gene_alignment.aln
+│   ├── final_graph.gml
+│   ├── gene_data.csv
+│   ├── gene_presence_absence.Rtab
+│   ├── gene_presence_absence.csv
+│   ├── gene_presence_absence_roary.csv
+│   ├── pan_genome_reference.fa
+│   ├── pre_filt_graph.gml
+│   ├── struct_presence_absence.Rtab
+│   └── summary_statistics.txt
+├── pirate
+│   ├── PIRATE.gene_families.ordered.tsv
+│   ├── PIRATE.gene_families.tsv
+│   ├── PIRATE.genomes_per_allele.tsv
+│   ├── PIRATE.pangenome_summary.txt
+│   ├── PIRATE.unique_alleles.tsv
+│   ├── binary_presence_absence.fasta.gz
+│   ├── binary_presence_absence.nwk
+│   ├── cluster_alleles.tab
+│   ├── co-ords
+│   │   └── &lt;SAMPLE_NAME&gt;.co-ords.tab
+│   ├── core_alignment.fasta.gz
+│   ├── core_alignment.gff
+│   ├── feature_sequences
+│   │   └── &lt;GENE_FAMILY&gt;.{aa|nucleotide|.fasta
+│   ├── gene_presence_absence.csv
+│   ├── genome2loci.tab
+│   ├── genome_list.txt
+│   ├── loci_list.tab
+│   ├── loci_paralog_categories.tab
+│   ├── modified_gffs
+│   │   └── &lt;SAMPLE_NAME&gt;.gff
+│   ├── pan_sequences.fasta.gz
+│   ├── pangenome.connected_blocks.tsv
+│   ├── pangenome.edges
+│   ├── pangenome.gfa
+│   ├── pangenome.order.tsv
+│   ├── pangenome.reversed.tsv
+│   ├── pangenome.syntenic_blocks.tsv
+│   ├── pangenome.temp
+│   ├── pangenome_alignment.fasta.gz
+│   ├── pangenome_alignment.gff
+│   ├── pangenome_iterations
+│   │   ├── pan_sequences.{50|60|70|80|90|95|98}.reclustered.reinflated
+│   │   ├── pan_sequences.blast.output
+│   │   ├── pan_sequences.cdhit_clusters
+│   │   ├── pan_sequences.core_clusters.tab
+│   │   ├── pan_sequences.mcl_log.txt
+│   │   └── pan_sequences.representative.fasta
+│   ├── paralog_clusters.tab
+│   ├── representative_sequences.faa
+│   └── representative_sequences.ffn
+├── roary
+│   ├── accessory.header.embl
+│   ├── accessory.tab
+│   ├── accessory_binary_genes.fa.gz
+│   ├── accessory_binary_genes.fa.newick
+│   ├── accessory_graph.dot
+│   ├── blast_identity_frequency.Rtab
+│   ├── clustered_proteins
+│   ├── core_accessory.header.embl
+│   ├── core_accessory.tab
+│   ├── core_accessory_graph.dot
+│   ├── core_alignment_header.embl
+│   ├── gene_presence_absence.Rtab
+│   ├── gene_presence_absence.csv
+│   ├── number_of_conserved_genes.Rtab
+│   ├── number_of_genes_in_pan_genome.Rtab
+│   ├── number_of_new_genes.Rtab
+│   ├── number_of_unique_genes.Rtab
+│   ├── pan_genome_reference.fa.gz
+│   └── summary_statistics.txt
+├── core-genome.aln.gz
+├── core-genome.distance.tsv
+├── core-genome.iqtree
+├── core-genome.masked.aln.gz
+├── software_versions.yml
+└── software_versions_mqc.yml
+</code></pre></div>
+<h3 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h3>
+<h4 id="top-level">Top Level<a class="headerlink" href="#top-level" title="Permanent link">&para;</a></h4>
+<p>Below are results that are in the base directory.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core-genome.aln.gz</td>
+<td>A multiple sequence alignment FASTA of the core genome</td>
+</tr>
+<tr>
+<td>core-genome.distance.tsv</td>
+<td>Core genome Pair-wise SNP distance for each sample</td>
+</tr>
+<tr>
+<td>core-genome.iqtree</td>
+<td>Full result of the IQ-TREE core genome phylogeny</td>
+</tr>
+<tr>
+<td>core-genome.masked.aln.gz</td>
+<td>A core-genome alignment with the recomination masked</td>
+</tr>
+</tbody>
+</table>
+<h4 id="clonalframeml">ClonalFrameML<a class="headerlink" href="#clonalframeml" title="Permanent link">&para;</a></h4>
+<p>Below is a description of the <a href="https://github.com/xavierdidelot/ClonalFrameML">ClonalFrameML</a> results. For more details about
+ClonalFrameML outputs see <a href="https://github.com/xavierdidelot/clonalframeml/wiki#output">ClonalFrameML - Outputs</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core-genome.ML_sequence.fasta</td>
+<td>The sequence reconstructed by maximum likelihood for all internal nodes of the phylogeny, as well as for all missing data in the input sequences</td>
+</tr>
+<tr>
+<td>core-genome.em.txt</td>
+<td>The point estimates for R/theta, nu, delta and the branch lengths</td>
+</tr>
+<tr>
+<td>core-genome.emsim.txt</td>
+<td>The bootstrapped values for the three parameters R/theta, nu and delta</td>
+</tr>
+<tr>
+<td>core-genome.importation_status.txt</td>
+<td>The list of reconstructed recombination events</td>
+</tr>
+<tr>
+<td>core-genome.labelled_tree.newick</td>
+<td>The output tree with all nodes labelled so that they can be referred to in other files</td>
+</tr>
+<tr>
+<td>core-genome.position_cross_reference.txt</td>
+<td>A vector of comma-separated values indicating for each location in the input sequence file the corresponding position in the sequences in the output <em>ML_sequence.fasta</em> file</td>
+</tr>
+</tbody>
+</table>
+<h4 id="iq-tree">IQ-TREE<a class="headerlink" href="#iq-tree" title="Permanent link">&para;</a></h4>
+<p>Below is a description of the <a href="http://www.iqtree.org/">IQ-TREE</a> results. If ClonalFrameML is executed, a fast tree
+is created and given the prefix <code>start-tree</code>, the final tree has the prefix <code>core-genome</code>. For more details about
+IQ-TREE outputs see <a href="https://github.com/Cibiv/IQ-TREE/wiki/Web-Server-Tutorial#analysis-results">IQ-TREE - Outputs</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core-genome.alninfo</td>
+<td>Alignment site statistics</td>
+</tr>
+<tr>
+<td>{core-genome,start-tree}.bionj</td>
+<td>A neighbor joining tree produced by BIONJ</td>
+</tr>
+<tr>
+<td>{core-genome,start-tree}.ckp.gz</td>
+<td>IQ-TREE writes a checkpoint file</td>
+</tr>
+<tr>
+<td>core-genome.contree</td>
+<td>Consensus tree with assigned branch supports where branch lengths are optimized on the original alignment; printed if Ultrafast Bootstrap is selected</td>
+</tr>
+<tr>
+<td>{core-genome,start-tree}.mldist</td>
+<td>Contains the likelihood distances</td>
+</tr>
+<tr>
+<td>{core-genome,start-tree}.model.gz</td>
+<td>Information about all models tested</td>
+</tr>
+<tr>
+<td>core-genome.splits.nex</td>
+<td>Support values in percentage for all splits (bipartitions), computed as the occurence frequencies in the bootstrap trees</td>
+</tr>
+<tr>
+<td>{core-genome,start-tree}.treefile</td>
+<td>Maximum likelihood tree in NEWICK format, can be visualized with treeviewer programs</td>
+</tr>
+<tr>
+<td>core-genome.ufboot</td>
+<td>Trees created during the bootstrap steps</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pirate">PIRATE<a class="headerlink" href="#pirate" title="Permanent link">&para;</a></h4>
+<p>Below is a description of the <a href="https://github.com/SionBayliss/PIRATE">PIRATE</a> results. For more details about
+PIRATE outputs see <a href="https://github.com/SionBayliss/PIRATE#output-files">PIRATE - Output files</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Available by default</p>
+<p>By default PIRATE is used to create the pan-genome. If <code>--use_panaroo</code> or <code>--use_roary</code> are given, <code>pirate</code> outputs will
+not be available only Panaroo or Roary outputs.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PIRATE.gene_families.ordered.tsv</td>
+<td>Tabular summary of all gene families ordered on syntenic regions in the pangenome graph</td>
+</tr>
+<tr>
+<td>PIRATE.gene_families.tsv</td>
+<td>Tabular summary of all gene families</td>
+</tr>
+<tr>
+<td>PIRATE.genomes_per_allele.tsv</td>
+<td>A list of genomes associated with each allele</td>
+</tr>
+<tr>
+<td>PIRATE.pangenome_summary.txt</td>
+<td>Short summary of the number and frequency of genes in the pangenome</td>
+</tr>
+<tr>
+<td>PIRATE.unique_alleles.tsv</td>
+<td>Tabular summary of all unique alleles of each gene family</td>
+</tr>
+<tr>
+<td>binary_presence_absence.{fasta.gz,nwk}</td>
+<td>A tree (.nwk) generated by fasttree from binary gene_family presence-absence data and the fasta file used to create it</td>
+</tr>
+<tr>
+<td>cluster_alleles.tab</td>
+<td>List of alleles in paralogous clusters</td>
+</tr>
+<tr>
+<td>co-ords/${SAMPLE_NAME}.co-ords.tab</td>
+<td>Gene feature co-ordinates for each sample</td>
+</tr>
+<tr>
+<td>core_alignment.fasta.gz</td>
+<td>Gene-by-gene nucleotide alignments of the core genome created using MAFFT</td>
+</tr>
+<tr>
+<td>core_alignment.gff</td>
+<td>Annotation containing the position of the gene family within the core genome alignment</td>
+</tr>
+<tr>
+<td>feature_sequences/${GENE_FAMILY}.{aa|nucleotide}.fasta</td>
+<td>Amino acid and nucleotide sequences for each gene family</td>
+</tr>
+<tr>
+<td>gene_presence_absence.csv</td>
+<td>Lists each gene and which samples it is present in</td>
+</tr>
+<tr>
+<td>genome2loci.tab</td>
+<td>List of loci for each genome</td>
+</tr>
+<tr>
+<td>genome_list.txt</td>
+<td>List of genomes in the analysis</td>
+</tr>
+<tr>
+<td>loci_list.tab</td>
+<td>List of loci and their associated genomes</td>
+</tr>
+<tr>
+<td>loci_paralog_categories.tab</td>
+<td>Concatenation of classified paralogs</td>
+</tr>
+<tr>
+<td>modified_gffs/${SAMPLE_NAME}.gff</td>
+<td>GFF3 files which have been standardised for PIRATE</td>
+</tr>
+<tr>
+<td>pan_sequences.fasta.gz</td>
+<td>All representative sequences in the pangenome</td>
+</tr>
+<tr>
+<td>pangenome.connected_blocks.tsv</td>
+<td>List of connected blocks in the pangenome graph</td>
+</tr>
+<tr>
+<td>pangenome.edges</td>
+<td>List of classified edges in the pangenome graph</td>
+</tr>
+<tr>
+<td>pangenome.gfa</td>
+<td>GFA network file representing all unique connections between gene families</td>
+</tr>
+<tr>
+<td>pangenome.order.tsv</td>
+<td>Sorted list gene_families file on pangenome graph</td>
+</tr>
+<tr>
+<td>pangenome.reversed.tsv</td>
+<td>List of reversed blocks in the pangenome graph</td>
+</tr>
+<tr>
+<td>pangenome.syntenic_blocks.tsv</td>
+<td>List of syntenic blocks in the pangenome graph</td>
+</tr>
+<tr>
+<td>pangenome_alignment.fasta.gz</td>
+<td>Gene-by-gene nucleotide alignments of the full pangenome created using MAFFT</td>
+</tr>
+<tr>
+<td>pangenome_alignment.gff</td>
+<td>Annotation containing the position of the gene family within the pangenome alignment</td>
+</tr>
+<tr>
+<td>pangenome_iterations/pan_sequences.{50|60|70|80|90|95|98}.reclustered.reinflated</td>
+<td>List of clusters for each reinflation threshold</td>
+</tr>
+<tr>
+<td>pangenome_iterations/pan_sequences.blast.output</td>
+<td>BLAST output of sequences against representatives and self hits.</td>
+</tr>
+<tr>
+<td>pangenome_iterations/pan_sequences.cdhit_clusters</td>
+<td>A list of CDHIT representative clusters</td>
+</tr>
+<tr>
+<td>pangenome_iterations/pan_sequences.core_clusters.tab</td>
+<td>A list of core clusters.</td>
+</tr>
+<tr>
+<td>pangenome_iterations/pan_sequences.mcl_log.txt</td>
+<td>A log file from <code>mcxdeblast</code> and <code>mcl</code></td>
+</tr>
+<tr>
+<td>pangenome_iterations/pan_sequences.representative.fasta</td>
+<td>FASTA file with sequences for each representative cluster</td>
+</tr>
+<tr>
+<td>paralog_clusters.tab</td>
+<td>List of paralogous clusters</td>
+</tr>
+<tr>
+<td>representative_sequences.faa</td>
+<td>Representative protein sequences for each gene family</td>
+</tr>
+<tr>
+<td>representative_sequences.ffn</td>
+<td>Representative gene sequences for each gene family</td>
+</tr>
+</tbody>
+</table>
+<h4 id="panaroo">Panaroo<a class="headerlink" href="#panaroo" title="Permanent link">&para;</a></h4>
+<p>Below is a description of the <a href="https://github.com/gtonkinhill/panaroo">Panaroo</a> results. For more details about
+Panaroo outputs see <a href="https://gtonkinhill.github.io/panaroo/#/gettingstarted/output">Panaroo Documentation</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Only available when <code>--use_panaroo</code> is given</p>
+<p>By default PIRATE is used to create the pan-genome, unless <code>--use_panaroo</code> is given.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aligned_gene_sequences</td>
+<td>A directory of per-gene alignments</td>
+</tr>
+<tr>
+<td>combined_DNA_CDS.fasta.gz</td>
+<td>All nucleotide sequence for the annotated genes</td>
+</tr>
+<tr>
+<td>combined_protein_CDS.fasta.gz</td>
+<td>All protein sequence for the annotated proeteins</td>
+</tr>
+<tr>
+<td>combined_protein_cdhit_out.txt</td>
+<td>Log output from CD-HIT</td>
+</tr>
+<tr>
+<td>combined_protein_cdhit_out.txt.clstr</td>
+<td>Cluster information from CD-HIT</td>
+</tr>
+<tr>
+<td>core_alignment_header.embl</td>
+<td>The core/pan-genome alignment in EMBL format</td>
+</tr>
+<tr>
+<td>core_gene_alignment.aln.gz</td>
+<td>The core/pan-genome alignment in FASTA format</td>
+</tr>
+<tr>
+<td>final_graph.gml</td>
+<td>The final pan-genome graph generated by Panaroo</td>
+</tr>
+<tr>
+<td>gene_data.csv</td>
+<td>CSV linking each gene sequnece and annotation to the internal representations</td>
+</tr>
+<tr>
+<td>gene_presence_absence.Rtab</td>
+<td>A binary tab seperated version of the `gene_presence_absence.csv``</td>
+</tr>
+<tr>
+<td>gene_presence_absence.csv</td>
+<td>Lists each gene and which samples it is present in</td>
+</tr>
+<tr>
+<td>gene_presence_absence_roary.csv</td>
+<td>Lists each gene and which samples it is present in in the same format as Roary</td>
+</tr>
+<tr>
+<td>pan_genome_reference.fa.gz</td>
+<td>FASTA file which contains a single representative nucleotide sequence from each of the clusters in the pan genome (core and accessory)</td>
+</tr>
+<tr>
+<td>pre_filt_graph.gml</td>
+<td>An intermeadiate pan-genome graph generated by Panaroo</td>
+</tr>
+<tr>
+<td>struct_presence_absence.Rtab</td>
+<td>A csv file which lists the presence and abscence of different genomic rearrangement events</td>
+</tr>
+<tr>
+<td>summary_statistics.txt</td>
+<td>Number of genes in the core and accessory</td>
+</tr>
+</tbody>
+</table>
+<h4 id="roary">Roary<a class="headerlink" href="#roary" title="Permanent link">&para;</a></h4>
+<p>Below is a description of the <a href="https://github.com/sanger-pathogens/Roary/">Roary</a> results. For more details about
+Roary outputs see <a href="http://sanger-pathogens.github.io/Roary/">Roary Documentation</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Only available when <code>--use_roary</code> is given</p>
+<p>By default PIRATE is used to create the pan-genome, unless <code>--use_roary</code> is given.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accessory.header.embl</td>
+<td>Tab/EMBL formatted file of accessory genes</td>
+</tr>
+<tr>
+<td>accessory.tab</td>
+<td>Tab/EMBL formatted file of accessory genes</td>
+</tr>
+<tr>
+<td>accessory_binary_genes.fa</td>
+<td>A FASTA file with binary presence and absence of accessory genes</td>
+</tr>
+<tr>
+<td>accessory_binary_genes.fa.newick</td>
+<td>A tree created using the binary presence and absence of accessory genes</td>
+</tr>
+<tr>
+<td>accessory_graph.dot</td>
+<td>A graph in DOT format of how genes are linked together at the contig level in the accessory genome</td>
+</tr>
+<tr>
+<td>blast_identity_frequency.Rtab</td>
+<td>Blast results for percentage idenity graph</td>
+</tr>
+<tr>
+<td>clustered_proteins</td>
+<td>Groups file where each line lists the sequences in a cluster</td>
+</tr>
+<tr>
+<td>core_accessory.header.embl</td>
+<td>Tab/EMBL formatted file of core genes</td>
+</tr>
+<tr>
+<td>core_accessory.tab</td>
+<td>Tab/EMBL formatted file of core genes</td>
+</tr>
+<tr>
+<td>core_accessory_graph.dot</td>
+<td>A graph in DOT format of how genes are linked together at the contig level in the pan genome</td>
+</tr>
+<tr>
+<td>core_alignment_header.embl</td>
+<td>Tab/EMBL formatted file of core genome alignment</td>
+</tr>
+<tr>
+<td>gene_presence_absence.csv</td>
+<td>Lists each gene and which samples it is present in</td>
+</tr>
+<tr>
+<td>gene_presence_absence.Rtab</td>
+<td>Tab delimited binary matrix with the presence and absence of each gene in each sample</td>
+</tr>
+<tr>
+<td>number_of_conserved_genes.Rtab</td>
+<td>Graphs on how the pan genome varies as genomes are added (in random orders)</td>
+</tr>
+<tr>
+<td>number_of_genes_in_pan_genome.Rtab</td>
+<td>Graphs on how the pan genome varies as genomes are added (in random orders)</td>
+</tr>
+<tr>
+<td>number_of_new_genes.Rtab</td>
+<td>Graphs on how the pan genome varies as genomes are added (in random orders)</td>
+</tr>
+<tr>
+<td>number_of_unique_genes.Rtab</td>
+<td>Graphs on how the pan genome varies as genomes are added (in random orders)</td>
+</tr>
+<tr>
+<td>pan_genome_reference.fa.gz</td>
+<td>FASTA file which contains a single representative nucleotide sequence from each of the clusters in the pan genome (core and accessory)</td>
+</tr>
+<tr>
+<td>summary_statistics.txt</td>
+<td>Number of genes in the core and accessory</td>
+</tr>
+</tbody>
+</table>
+<h3 id="audit-trail">Audit Trail<a class="headerlink" href="#audit-trail" title="Permanent link">&para;</a></h3>
+<p>Below are files that can assist you in understanding which parameters and program versions were used.</p>
+<h4 id="logs">Logs<a class="headerlink" href="#logs" title="Permanent link">&para;</a></h4>
+<p>Each process that is executed will have a <code>logs</code> folder containing helpful files for you to review
+if the need ever arises.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nf-&lt;PROCESS_NAME&gt;.begin</td>
+<td>An empty file used to designate the process started</td>
+</tr>
+<tr>
+<td>nf-&lt;PROCESS_NAME&gt;.err</td>
+<td>Contains STDERR outputs from the process</td>
+</tr>
+<tr>
+<td>nf-&lt;PROCESS_NAME&gt;.log</td>
+<td>Contains both STDERR and STDOUT outputs from the process</td>
+</tr>
+<tr>
+<td>nf-&lt;PROCESS_NAME&gt;.out</td>
+<td>Contains STDOUT outputs from the process</td>
+</tr>
+<tr>
+<td>nf-&lt;PROCESS_NAME&gt;.run</td>
+<td>The script Nextflow uses to stage/unstage files and queue processes based on given profile</td>
+</tr>
+<tr>
+<td>nf-&lt;PROCESS_NAME&gt;.sh</td>
+<td>The script executed by bash for the process</td>
+</tr>
+<tr>
+<td>nf-&lt;PROCESS_NAME&gt;.trace</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#trace-report">Trace</a> report for the process</td>
+</tr>
+<tr>
+<td>versions.yml</td>
+<td>A YAML formatted file with program versions</td>
+</tr>
+</tbody>
+</table>
+<h4 id="nextflow-reports">Nextflow Reports<a class="headerlink" href="#nextflow-reports" title="Permanent link">&para;</a></h4>
+<p>These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pangenome-dag.dot</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation">DAG visualisation</a></td>
+</tr>
+<tr>
+<td>pangenome-report.html</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#execution-report">Execution Report</a></td>
+</tr>
+<tr>
+<td>pangenome-timeline.html</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">Timeline Report</a></td>
+</tr>
+<tr>
+<td>pangenome-trace.txt</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#trace-report">Trace</a> report</td>
+</tr>
+</tbody>
+</table>
+<h4 id="program-versions">Program Versions<a class="headerlink" href="#program-versions" title="Permanent link">&para;</a></h4>
+<p>At the end of each run, each of the <code>versions.yml</code> files are merged into the files below.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>software_versions.yml</td>
+<td>A complete list of programs and versions used by each process</td>
+</tr>
+<tr>
+<td>software_versions_mqc.yml</td>
+<td>A complete list of programs and versions formatted for <a href="https://multiqc.info/">MultiQC</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h2>
+<h3 id="required-parameters">Required Parameters<a class="headerlink" href="#required-parameters" title="Permanent link">&para;</a></h3>
+<p>Define where the pipeline should find input data and save output data.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--bactopia</code></td>
+<td>The path to bactopia results to use as inputs</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="filtering-parameters">Filtering Parameters<a class="headerlink" href="#filtering-parameters" title="Permanent link">&para;</a></h3>
+<p>Use these parameters to specify which samples to include or exclude.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--include</code></td>
+<td>A text file containing sample names (one per line) to include from the analysis</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--exclude</code></td>
+<td>A text file containing sample names (one per line) to exclude from the analysis</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="clonalframeml-parameters">ClonalFrameML Parameters<a class="headerlink" href="#clonalframeml-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--emsim</code></td>
+<td>Number of simulations to estimate uncertainty in the EM results</td>
+<td>100</td>
+</tr>
+<tr>
+<td><code>--clonal_opts</code></td>
+<td>Extra ClonalFrameML options in quotes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--skip_recombination</code></td>
+<td>Skip ClonalFrameML execution in subworkflows</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="iq-tree-parameters">IQ-TREE Parameters<a class="headerlink" href="#iq-tree-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--iqtree_model</code></td>
+<td>Substitution model name</td>
+<td>HKY</td>
+</tr>
+<tr>
+<td><code>--bb</code></td>
+<td>Ultrafast bootstrap replicates</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><code>--alrt</code></td>
+<td>SH-like approximate likelihood ratio test replicates</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><code>--asr</code></td>
+<td>Ancestral state reconstruction by empirical Bayes</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--iqtree_opts</code></td>
+<td>Extra IQ-TREE options in quotes.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--skip_phylogeny</code></td>
+<td>Skip IQ-TREE execution in subworkflows</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ncbi-genome-download-parameters">NCBI Genome Download Parameters<a class="headerlink" href="#ncbi-genome-download-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--species</code></td>
+<td>Name of the species to download assemblies</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--accession</code></td>
+<td>An NCBI Assembly accession to be downloaded</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--accessions</code></td>
+<td>An file of NCBI Assembly accessions (one per line) to be downloaded</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--format</code></td>
+<td>Comma separated list of formats to download</td>
+<td>fasta</td>
+</tr>
+<tr>
+<td><code>--section</code></td>
+<td>NCBI section to download</td>
+<td>refseq</td>
+</tr>
+<tr>
+<td><code>--assembly_level</code></td>
+<td>Comma separated list of assembly levels to download</td>
+<td>complete</td>
+</tr>
+<tr>
+<td><code>--kingdom</code></td>
+<td>Comma separated list of formats to download</td>
+<td>bacteria</td>
+</tr>
+<tr>
+<td><code>--limit</code></td>
+<td>Limit the number of assemblies to download</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="pirate-parameters">PIRATE Parameters<a class="headerlink" href="#pirate-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--steps</code></td>
+<td>Percent identity thresholds to use for pangenome construction</td>
+<td>50,60,70,80,90,95,98</td>
+</tr>
+<tr>
+<td><code>--features</code></td>
+<td>Comma-delimited features to use for pangenome construction</td>
+<td>CDS</td>
+</tr>
+<tr>
+<td><code>--para_off</code></td>
+<td>Switch off paralog identification</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--z</code></td>
+<td>Retain all PIRATE intermediate files</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--pan_opt</code></td>
+<td>Additional arguments to pass to pangenome contruction.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="prokka-parameters">Prokka Parameters<a class="headerlink" href="#prokka-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--proteins</code></td>
+<td>FASTA file of trusted proteins to first annotate from</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--prodigal_tf</code></td>
+<td>Training file to use for Prodigal</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--compliant</code></td>
+<td>Force Genbank/ENA/DDJB compliance</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--centre</code></td>
+<td>Sequencing centre ID</td>
+<td>Bactopia</td>
+</tr>
+<tr>
+<td><code>--prokka_coverage</code></td>
+<td>Minimum coverage on query protein</td>
+<td>80</td>
+</tr>
+<tr>
+<td><code>--prokka_evalue</code></td>
+<td>Similarity e-value cut-off</td>
+<td>1e-09</td>
+</tr>
+<tr>
+<td><code>--prokka_opts</code></td>
+<td>Extra Prokka options in quotes.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="panaroo-parameters">Panaroo Parameters<a class="headerlink" href="#panaroo-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--use_panaroo</code></td>
+<td>Use Panaroo instead of PIRATE in the 'pangenome' subworkflow</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--panaroo_mode</code></td>
+<td>The stringency mode at which to run panaroo</td>
+<td>strict</td>
+</tr>
+<tr>
+<td><code>--panaroo_alignment</code></td>
+<td>Output alignments of core genes or all genes</td>
+<td>core</td>
+</tr>
+<tr>
+<td><code>--panaroo_aligner</code></td>
+<td>Aligner to use for core/pan genome alignment</td>
+<td>mafft</td>
+</tr>
+<tr>
+<td><code>--panaroo_core_threshold</code></td>
+<td>Core-genome sample threshold</td>
+<td>0.95</td>
+</tr>
+<tr>
+<td><code>--panaroo_threshold</code></td>
+<td>Sequence identity threshold</td>
+<td>0.98</td>
+</tr>
+<tr>
+<td><code>--panaroo_family_threshold</code></td>
+<td>Protein family sequence identity threshold</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td><code>--len_dif_percent</code></td>
+<td>Length difference cutoff</td>
+<td>0.98</td>
+</tr>
+<tr>
+<td><code>--merge_paralogs</code></td>
+<td>Do not split paralogs</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--panaroo_opts</code></td>
+<td>Additional options to pass to panaroo</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="roary-parameters">Roary Parameters<a class="headerlink" href="#roary-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--use_prank</code></td>
+<td>Use PRANK instead of MAFFT for core gene</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--use_roary</code></td>
+<td>Use Roary instead of PIRATE in the 'pangenome' subworkflow</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--i</code></td>
+<td>Minimum percentage identity for blastp</td>
+<td>95</td>
+</tr>
+<tr>
+<td><code>--cd</code></td>
+<td>Percentage of isolates a gene must be in to be core</td>
+<td>99</td>
+</tr>
+<tr>
+<td><code>--g</code></td>
+<td>Maximum number of clusters</td>
+<td>50000</td>
+</tr>
+<tr>
+<td><code>--s</code></td>
+<td>Do not split paralogs</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--ap</code></td>
+<td>Allow paralogs in core alignment</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--iv</code></td>
+<td>MCL inflation value</td>
+<td>1.5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scoary-parameters">Scoary Parameters<a class="headerlink" href="#scoary-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--traits</code></td>
+<td>Input trait table (CSV) to test for associations</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--p_value_cutoff</code></td>
+<td>For statistical tests, genes with higher p-values will not be reported</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td><code>--correction</code></td>
+<td>Apply the indicated filtration measure.</td>
+<td>I</td>
+</tr>
+<tr>
+<td><code>--permute</code></td>
+<td>Perform N number of permutations of the significant results post-analysis</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>--start_col</code></td>
+<td>On which column in the gene presence/absence file do individual strain info start</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<h3 id="snp-dists-parameters">SNP-Dists Parameters<a class="headerlink" href="#snp-dists-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--a</code></td>
+<td>Count all differences not just [AGTC]</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--b</code></td>
+<td>Keep top left corner cell</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--csv</code></td>
+<td>Output CSV instead of TSV</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--k</code></td>
+<td>Keep case, don't uppercase all letters</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link">&para;</a></h3>
+<p>These optional parameters can be useful in certain settings.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--outdir</code></td>
+<td>Base directory to write results to</td>
+<td>./</td>
+</tr>
+<tr>
+<td><code>--run_name</code></td>
+<td>Name of the directory to hold results</td>
+<td>bactopia</td>
+</tr>
+<tr>
+<td><code>--skip_compression</code></td>
+<td>Ouput files will not be compressed</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--keep_all_files</code></td>
+<td>Keeps all analysis files created</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="max-job-request-parameters">Max Job Request Parameters<a class="headerlink" href="#max-job-request-parameters" title="Permanent link">&para;</a></h3>
+<p>Set the top limit for requested resources for any single job.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--max_retry</code></td>
+<td>Maximum times to retry a process before allowing it to fail.</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>--max_cpus</code></td>
+<td>Maximum number of CPUs that can be requested for any single job.</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>--max_memory</code></td>
+<td>Maximum amount of memory (in GB) that can be requested for any single job.</td>
+<td>32</td>
+</tr>
+<tr>
+<td><code>--max_time</code></td>
+<td>Maximum amount of time (in minutes) that can be requested for any single job.</td>
+<td>120</td>
+</tr>
+<tr>
+<td><code>--max_downloads</code></td>
+<td>Maximum number of samples to download at a time</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nextflow-configuration-parameters">Nextflow Configuration Parameters<a class="headerlink" href="#nextflow-configuration-parameters" title="Permanent link">&para;</a></h3>
+<p>Parameters to fine-tune your Nextflow setup.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--nfconfig</code></td>
+<td>A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--publish_dir_mode</code></td>
+<td>Method used to save pipeline results to output directory.</td>
+<td>copy</td>
+</tr>
+<tr>
+<td><code>--infodir</code></td>
+<td>Directory to keep pipeline Nextflow logs and reports.</td>
+<td>${params.outdir}/pipeline_info</td>
+</tr>
+<tr>
+<td><code>--force</code></td>
+<td>Nextflow will overwrite existing output files.</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--cleanup_workdir</code></td>
+<td>After Bactopia is successfully executed, the <code>work</code> directory will be deleted.</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nextflow-profile-parameters">Nextflow Profile Parameters<a class="headerlink" href="#nextflow-profile-parameters" title="Permanent link">&para;</a></h3>
+<p>Parameters to fine-tune your Nextflow setup.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--condadir</code></td>
+<td>Directory to Nextflow should use for Conda environments</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--registry</code></td>
+<td>Docker registry to pull containers from.</td>
+<td>dockerhub</td>
+</tr>
+<tr>
+<td><code>--singularity_cache</code></td>
+<td>Directory where remote Singularity images are stored.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--singularity_pull_docker_container</code></td>
+<td>Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--force_rebuild</code></td>
+<td>Force overwrite of existing pre-built environments.</td>
+<td>False</td>
+</tr>
+<tr>
+<td><code>--queue</code></td>
+<td>Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM)</td>
+<td>general,high-memory</td>
+</tr>
+<tr>
+<td><code>--cluster_opts</code></td>
+<td>Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name'</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--disable_scratch</code></td>
+<td>All intermediate files created on worker nodes of will be transferred to the head node.</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h3 id="helpful-parameters">Helpful Parameters<a class="headerlink" href="#helpful-parameters" title="Permanent link">&para;</a></h3>
+<p>Uncommonly used parameters that might be useful.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--monochrome_logs</code></td>
+<td>Do not use coloured log outputs.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--nfdir</code></td>
+<td>Print directory Nextflow has pulled Bactopia to</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--sleep_time</code></td>
+<td>The amount of time (seconds) Nextflow will wait after setting up datasets before execution.</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>--validate_params</code></td>
+<td>Boolean whether to validate parameters against the schema at runtime</td>
+<td>True</td>
+</tr>
+<tr>
+<td><code>--help</code></td>
+<td>Display help text.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--wf</code></td>
+<td>Specify which workflow or Bactopia Tool to execute</td>
+<td>bactopia</td>
+</tr>
+<tr>
+<td><code>--list_wfs</code></td>
+<td>List the available workflows and Bactopia Tools to use with '--wf'</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--show_hidden_params</code></td>
+<td>Show all params when using <code>--help</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>--help_all</code></td>
+<td>An alias for --help --show_hidden_params</td>
+<td></td>
+</tr>
+<tr>
+<td><code>--version</code></td>
+<td>Display version text.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="citations">Citations<a class="headerlink" href="#citations" title="Permanent link">&para;</a></h2>
+<p>If you use Bactopia and <code>pangenome</code> in your analysis, please cite the following.</p>
+<ul>
+<li>
+<p><a href="https://bactopia.github.io/">Bactopia</a><br />
+    Petit III RA, Read TD <a href="https://doi.org/10.1128/mSystems.00190-20">Bactopia - a flexible pipeline for complete analysis of bacterial genomes.</a> <em>mSystems</em> 5 (2020)</p>
+</li>
+<li>
+<p><a href="https://github.com/xavierdidelot/ClonalFrameML">ClonalFramML</a><br />
+    Didelot X, Wilson DJ <a href="https://doi.org/10.1371/journal.pcbi.1004041">ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.</a> <em>PLoS Comput Biol</em> 11(2) e1004041 (2015)</p>
+</li>
+<li>
+<p><a href="https://github.com/Cibiv/IQ-TREE">IQ-TREE</a><br />
+    Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ <a href="https://doi.org/10.1093/molbev/msu300">IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.</a> <em>Mol. Biol. Evol.</em> 32:268-274 (2015)</p>
+</li>
+<li>
+<p><a href="https://github.com/Cibiv/IQ-TREE">ModelFinder</a><br />
+    Kalyaanamoorthy S, Minh BQ, Wong TKF, von Haeseler A, Jermiin LS <a href="https://doi.org/10.1038/nmeth.4285">ModelFinder - Fast model selection for accurate phylogenetic estimates.</a> <em>Nat. Methods</em> 14:587-589 (2017)</p>
+</li>
+<li>
+<p><a href="https://github.com/Cibiv/IQ-TREE">UFBoot2</a><br />
+    Hoang DT, Chernomor O, von Haeseler A, Minh BQ, Vinh LS <a href="https://doi.org/10.1093/molbev/msx281">UFBoot2: Improving the ultrafast bootstrap approximation.</a> <em>Mol. Biol. Evol.</em> 35:518–522 (2018)</p>
+</li>
+<li>
+<p><a href="https://github.com/kblin/ncbi-genome-download">ncbi-genome-download</a><br />
+    Blin K <a href="https://github.com/kblin/ncbi-genome-download">ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers</a> (GitHub)</p>
+</li>
+<li>
+<p><a href="https://github.com/gtonkinhill/panaroo">Panaroo</a><br />
+    Tonkin-Hill G, MacAlasdair N, Ruis C, Weimann A, Horesh G, Lees JA, Gladstone RA, Lo S, Beaudoin C, Floto RA, Frost SDW, Corander J, Bentley SD, Parkhill J <a href="https://doi.org/10.1186/s13059-020-02090-4">Producing polished prokaryotic pangenomes with the Panaroo pipeline.</a> <em>Genome Biology</em> 21(1), 180. (2020)</p>
+</li>
+<li>
+<p><a href="http://github.com/SionBayliss/PIRATE">PIRATE</a><br />
+    Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ <a href="https://doi.org/10.1093/gigascience/giz119">PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.</a> <em>Gigascience</em> 8 (2019)</p>
+</li>
+<li>
+<p><a href="https://github.com/tseemann/prokka">Prokka</a><br />
+    Seemann T <a href="http://dx.doi.org/10.1093/bioinformatics/btu153">Prokka: rapid prokaryotic genome annotation</a> <em>Bioinformatics</em> 30, 2068–2069 (2014)</p>
+</li>
+<li>
+<p><a href="https://github.com/sanger-pathogens/Roary">Roary</a><br />
+    Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J <a href="https://doi.org/10.1093/bioinformatics/btv421">Roary: rapid large-scale prokaryote pan genome analysis.</a> <em>Bioinformatics</em> 31, 3691–3693 (2015)</p>
+</li>
+<li>
+<p><a href="https://github.com/AdmiralenOla/Scoary">Scoary</a><br />
+    Brynildsrud O, Bohlin J, Scheffer L, Eldholm V <a href="https://doi.org/10.1186/s13059-016-1108-8">Rapid scoring of genes in microbial pan-genome-wide association studies with Scoary.</a> <em>Genome Biol.</em> 17:238 (2016)</p>
+</li>
+<li>
+<p><a href="https://github.com/tseemann/snp-dists">snp-dists</a><br />
+    Seemann T <a href="https://github.com/tseemann/snp-dists">snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.</a> (GitHub)</p>
+</li>
+</ul>
+
+<!-- Last update of source file -->
+
+  
+
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../merlin/" class="md-footer__link md-footer__link--prev" aria-label="Previous: merlin" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              merlin
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../snippy/" class="md-footer__link md-footer__link--next" aria-label="Next: snippy" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              snippy
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2019-2021 Robert A. Petit III. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/bactopia/bactopia" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://gitter.im/bactopia/Lobby" target="_blank" rel="noopener" title="gitter.im" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M66.4 322.5H16V0h50.4v322.5zM166.9 76.1h-50.4V512h50.4V76.1zm100.6 0h-50.4V512h50.4V76.1zM368 76h-50.4v247H368V76z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/r/bactopia/bactopia" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/rpetit3" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../../assets/javascripts/workers/search.720157f5.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.0d3e07ec.min.js"></script>
+      
+        <script src="../../custom/jquery.min.js"></script>
+      
+        <script src="../../custom/jquery.magnific-popup.min.js"></script>
+      
+        <script src="../../custom/extra.js"></script>
+      
+    
+  </body>
+</html>

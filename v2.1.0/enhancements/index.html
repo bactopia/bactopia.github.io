@@ -1,0 +1,3050 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/enhancements/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.5.3+insiders-4.23.5">
+    
+    
+      
+        <title>Enhancements to OSS - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fb3608a7.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CUbuntu+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../custom/magnific-popup.css">
+    
+      <link rel="stylesheet" href="../custom/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-104199698-2","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");ga("send","event","feedback","click",t,e),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){ga("send","pageview",e.pathname)})});var e=document.createElement("script");e.async=!0,e.src="https://www.google-analytics.com/analytics.js",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Enhancements to OSS - Bactopia" >
+      
+        <meta  property="og:description"  content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes." >
+      
+        <meta  property="og:image"  content="https://bactopia.github.io/assets/images/social/enhancements.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://bactopia.github.io/enhancements/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Enhancements to OSS - Bactopia" >
+      
+        <meta  name="twitter:description"  content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes." >
+      
+        <meta  name="twitter:image"  content="https://bactopia.github.io/assets/images/social/enhancements.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#enhancements-to-open-source-software" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+    <div data-md-color-scheme="default" data-md-component="outdated">
+        <aside class="md-banner md-banner--warning">
+          <div class="md-banner__inner md-grid md-typeset">
+            You're not viewing the latest version.
+            <a href="https://bactopia.github.io/"> 
+              <strong>Click here to go to latest.</strong>
+            </a>
+          </div>
+          <script>
+            var el = document.querySelector("[data-md-component=outdated]")
+            var outdated = __md_get("__outdated", sessionStorage)
+            if (outdated === true && el)
+              el.hidden = false
+          </script>
+        </aside>
+    </div>
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bactopia" class="md-header__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bactopia
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Enhancements to OSS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+
+  
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link md-tabs__link--active">
+          
+  
+    
+  
+  Bactopia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../bactopia-tools/" class="md-tabs__link">
+          
+  
+    
+  
+  Bactopia Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+
+
+
+
+  
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bactopia" class="md-nav__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+        
+        
+          <label class="md-nav__link" for="__nav_1">
+            
+  
+  <span class="md-ellipsis">
+    Bactopia
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Bactopia" data-md-level="1">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Bactopia
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Build Datasets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage-basic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workflow-overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Workflow Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../output-overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Output Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage-complete/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complete Usage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Enhancements to OSS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Enhancements to OSS
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stand-alone-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stand-Alone Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bioconda-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bioconda Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bioconda Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Recipes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhancements-and-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhancements and Fixes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nf-coremodules-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      nf-core/modules Contributions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Contributions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Acknowledgements
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        
+        
+          <label class="md-nav__link" for="__nav_2">
+            
+  
+  <span class="md-ellipsis">
+    Bactopia Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Bactopia Tools" data-md-level="1">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Bactopia Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        
+        
+          <label class="md-nav__link" for="__nav_2_2">
+            
+  
+  <span class="md-ellipsis">
+    Subworkflows
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Subworkflows" data-md-level="2">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Subworkflows
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ariba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ariba
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    bakta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/eggnog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    eggnog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/gtdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gtdb
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    merlin
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/pangenome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pangenome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/snippy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    snippy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/staphtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    staphtyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+        
+        
+          <label class="md-nav__link" for="__nav_2_3">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Modules" data-md-level="2">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/abricate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    abricate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/agrvate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    agrvate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    amrfinderplus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/busco/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    busco
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/checkm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    checkm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ectyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ectyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/emmtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    emmtyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/fastani/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    fastani
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/gamma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    gamma
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/genotyphi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    genotyphi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/hicap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hicap
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/hpsuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    hpsuissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ismapper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ismapper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/kleborate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kleborate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/kraken2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    kraken2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/legsta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    legsta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/lissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mashdist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mashdist
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mashtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mashtree
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mcroni/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mcroni
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/meningotype/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    meningotype
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mlst
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mobsuite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mobsuite
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mykrobe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mykrobe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ngmaster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ngmaster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/plasmidfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    plasmidfinder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/prokka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    prokka
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/rgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rgi
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/seqsero2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seqsero2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/seroba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    seroba
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/shigatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    shigatyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/sistr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    sistr
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/spatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    spatyper
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ssuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ssuissero
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/staphopiasccmec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    staphopiasccmec
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/tbprofiler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    tbprofiler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        
+        
+          <label class="md-nav__link" for="__nav_3">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" aria-label="Blog" data-md-level="1">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bactopia Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stand-alone-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stand-Alone Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bioconda-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bioconda Contributions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bioconda Contributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Recipes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enhancements-and-fixes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enhancements and Fixes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nf-coremodules-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      nf-core/modules Contributions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Contributions
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+
+<!-- Edit button -->
+
+  <a
+    href="https://github.com/bactopia/bactopia.github.io/edit/master/docs/enhancements.md"
+    title="Edit this page"
+    class="md-content__button md-icon"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<!--
+  Hack: check whether the content contains a h1 headline. If it
+  doesn't, the page title (or respectively site name) is used
+  as the main headline.
+-->
+
+
+<!-- Markdown content -->
+<h1 id="enhancements-to-open-source-software">Enhancements to Open Source Software<a class="headerlink" href="#enhancements-to-open-source-software" title="Permanent link">&para;</a></h1>
+<p>Maintaining open source software is a difficult challenge. It's often a time-consuming and 
+completely voluntary process with little to no recognition. The field of bioinformatics is 
+not immune to this. Many of the tools we use on a daily basis are maintained by 
+individuals with little to no support. Bactopia, is no different.</p>
+<p>Being fully aware of these challenges, when I first started developing Bactopia, I wanted there to be 
+mechanisms to contribute back to the community. To acheive this, I implemented a 
+few design requirements:</p>
+<ol>
+<li>Tools must open source and free to use.</li>
+<li>Tools must be available from conda</li>
+<li>Bactopia Tools must be available on <a href="https://github.com/nf-core/modules">nf-core/modules</a></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Bactopia has provided 150+ contributions to the bioinformatics community</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 10 stand-alone tools, each available from Bioconda</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 28 new Conda recipes, 35 
+updated recipes, and <a href="https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed">1,500+ Bioconda pull requests reviewed</a>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 59 contributions to nf-core/modules</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 18 contributions to other tools</li>
+</ul>
+<p>These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.</p>
+</div>
+<h2 id="stand-alone-tools">Stand-Alone Tools<a class="headerlink" href="#stand-alone-tools" title="Permanent link">&para;</a></h2>
+<p>Occasionally tools are developed for specific tasks in Bactopia. For example, <a href="https://github.com/rpetit3/dragonflye">Dragonflye</a>
+was developed to add Nanopore support to Bactopia. When these tools were developed, they are developed to be stand-alone. Below are 
+10 tools, originally built for Bactopia that you can make use of outside of Bactopia.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rpetit3/assembly-scan">assembly-scan</a></td>
+<td>Generate basic stats for an assembly</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/dragonflye">dragonflye</a></td>
+<td>Assemble bacterial isolate genomes from Nanopore reads</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-dl">fastq-dl</a></td>
+<td>Download FASTQ files from SRA or ENA repositories.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-scan">fastq-scan</a></td>
+<td>Output FASTQ summary statistics in JSON format</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/pasty">pasty</a></td>
+<td>A tool for in silico serogrouping of Pseudomonas aeruginosa isolates</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/pbptyper">pbptyper</a></td>
+<td>In silico Penicillin Binding Protein typer for Streptococcus pneumoniae</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/pmga">pmga</a></td>
+<td>A fork of PMGA for all Neisseria species and Haemophilus influenzae</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/shovill">shovill-se</a></td>
+<td>A fork of Shovill that includes support for single end reads</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/vcf-annotator">staphopia-sccmec</a></td>
+<td>A standalone version of Staphopia’s SCCmec typing method</td>
+</tr>
+<tr>
+<td><a href="https://github.com/staphopia/staphopia-sccmec">vcf-annotator</a></td>
+<td>Add biological annotations to variants in a given VCF file</td>
+</tr>
+</tbody>
+</table>
+<h2 id="bioconda-contributions">Bioconda Contributions<a class="headerlink" href="#bioconda-contributions" title="Permanent link">&para;</a></h2>
+<p>Bactopia requires tools be installable with Conda to make installation easier for users. An unintended
+side-effect of this has been a larger involvement with the Bioconda community. Bioconda is an amazing resource 
+that doesn't end with `conda install! For every recipe added to Bioconda, a Docker container is created by 
+<a href="https://biocontainers.pro/">Biocontainers</a>, as well as a Singularity image is created by the 
+<a href="https://galaxyproject.org/">Galaxy Project</a>. At the end of the day, a single recipe makes a huge contribution
+to the community.</p>
+<p>Bactopia has led to  28 new recipes, 35 updated recipes, and 
+<a href="https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed">more than 1,000 pull requests have been reviewed</a>.</p>
+<h3 id="new-recipes">New Recipes<a class="headerlink" href="#new-recipes" title="Permanent link">&para;</a></h3>
+<p>Bactopia has led to the addition of 28 new recipes to
+<a href="https://bioconda.github.io/">Bioconda</a> and <a href="https://conda-forge.org/">conda-forge</a>. These new recipes allow users
+to rapidly begin using these tools for their own analyses, and include:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+<th>Pull Request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.ibm.com/aspera/connect/">Aspera Connect</a></td>
+<td>high-performance transfer client</td>
+<td><a href="https://anaconda.org/rpetit3/aspera-connect">anaconda/rpetit3</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/assembly-scan">assembly-scan</a></td>
+<td>Generate basic stats for an assembly</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/11425">bioconda/bioconda-recipes#11425</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/bactopia/bactopia">bactopia</a></td>
+<td>A flexible pipeline for complete analysis of bacterial genomes</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/17434">bioconda/bioconda-recipes#17434</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/dragonflye">Dragonflye</a></td>
+<td>Assemble bacterial isolate genomes from Nanopore reads</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/29696">bioconda/bioconda-recipes#29696</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/ena-dl">ena-dl</a></td>
+<td>Download FASTQ files from ENA</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/17354">bioconda/bioconda-recipes#17354</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/xolox/python-executor">executor</a></td>
+<td>programmer friendly Python subprocess wrapper</td>
+<td><a href="https://github.com/conda-forge/staged-recipes/pull/9457">conda-forge/staged-recipes#9457</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-dl">fastq-dl</a></td>
+<td>Download FASTQ files from SRA or ENA repositories.</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/18252">bioconda/bioconda-recipes#18252</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-scan">fastq-scan</a></td>
+<td>Output FASTQ summary statistics in JSON format</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/11415">bioconda/bioconda-recipes#11415</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/katholt/genotyphi">GenoTyphi</a></td>
+<td>assign genotypes to <em>Salmonella</em> Typhi genomes</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/25674">bioconda/bioconda-recipes#25674</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/illumina-cleanup">illumina-cleanup</a></td>
+<td>A simple pipeline for pre-processing Illumina FASTQ files</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/11481">bioconda/bioconda-recipes#11481</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jhawkey/IS_mapper">ISMapper</a></td>
+<td>insertion sequence mapping software</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/14180">bioconda/bioconda-recipes#14180</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tongzhouxu/mashpit">mashpit</a></td>
+<td>Sketch-based surveillance platform</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35199">bioconda/bioconda-recipes#35199</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Nextomics/NextPolish">NextPolish</a></td>
+<td>Fast and accurately polish the genome generated by long reads</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/36582">bioconda/bioconda-recipes#36582</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/moold/ParallelTask">ParallelTask</a></td>
+<td>A simple and lightweight parallel task engine</td>
+<td><a href="https://github.com/conda-forge/staged-recipes/pull/19616">conda-forge/staged-recipes#19616</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/moold/ParallelTask">ParallelTask</a></td>
+<td>A simple and lightweight parallel task engine</td>
+<td><a href="https://github.com/conda-forge/staged-recipes/pull/19616">conda-forge/staged-recipes#19616</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/pasty">pasty</a></td>
+<td>A tool for in silico serogrouping of Pseudomonas aeruginosa isolates</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35930">bioconda/bioconda-recipes#35930</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/pbptyper">pbptyper</a></td>
+<td>In silico Penicillin Binding Protein typer for Streptococcus pneumoniae</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/36222">bioconda/bioconda-recipes#36222</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zheminzhou/pHierCC">pHierCC</a></td>
+<td>Hierarchical clustering of cgMLST</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/37070">bioconda/bioconda-recipes#37070</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/CDCgov/BMGAP">pmga</a></td>
+<td>Command-line version of PMGA (PubMLST Genome Annotator)</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/32801">bioconda/bioconda-recipes/#32801</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/xolox/python-property-manager">property-manager</a></td>
+<td>useful property variants for Python programming</td>
+<td><a href="https://github.com/conda-forge/staged-recipes/pull/9442">conda-forge/staged-recipes#9442</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/aldertzomer/RFPlasmid">RFPlasmid</a></td>
+<td>predicting plasmid contigs from assemblies</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/25849">bioconda/bioconda-recipes#25849</a></td>
+</tr>
+<tr>
+<td><a href="https://bitbucket.org/genomicepidemiology/serotypefinder/src/master/">SerotypeFinder</a></td>
+<td>Identifies the serotype in total or partial sequenced isolates of E. coli</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/29718">bioconda/bioconda-recipes#29718</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/shovill">shovill-se</a></td>
+<td>A fork of Shovill that includes support for single end reads</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/26040">bioconda/bioconda-recipes#26040</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/HCGB-IGTP/spaTyper">spaTyper</a></td>
+<td>computational method for finding <em>spa</em> types</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/26044">bioconda/bioconda-recipes#26044</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ncbi/sra-human-scrubber">sra-human-scrubber</a></td>
+<td>Identify and remove human reads from FASTQ files</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/29926">bioconda/bioconda-recipes#29926</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/staphopia/staphopia-sccmec">staphopia-sccmec</a></td>
+<td>A standalone version of Staphopia's SCCmec typing method</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/28214">bioconda/bioconda-recipes#28214</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/tbl2asn-forever">tbl2asn-forever</a></td>
+<td>use tbl2asn forever by pretending that it's still 2019</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/20073">bioconda/bioconda-recipes#20073</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/assembly-scan">vcf-annotator</a></td>
+<td>Add biological annotations to variants in a given VCF file</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/13417">bioconda/bioconda-recipes#13417</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Every recipe gets a Docker and Singularity container</p>
+<p>Sometimes overlooked, its important to reinterate, every recipe added to Bioconda has a 
+Docker container created <a href="https://biocontainers.pro/">Biocontainers</a>, and a Singularity
+container created by the <a href="https://galaxyproject.org/">Galaxy Project</a>. These containers 
+allow for version controlled reproducible analyses.</p>
+</div>
+<h3 id="enhancements-and-fixes">Enhancements and Fixes<a class="headerlink" href="#enhancements-and-fixes" title="Permanent link">&para;</a></h3>
+<p>A common issue with Bioconda recipes, is the tool works great in a Conda environment
+when containerized it fails for various reasons. When these issues occur with a tool used by Bactopia an effort is
+made to improve or fix the Bioconda recipe. Below is a list fixes and improvements to some Bioconda recipes:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+<th>Pull Request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/pangenome/pggb">pggb</a></td>
+<td>Update pinnings in pggb</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35734">bioconda/bioconda-recipes#35734</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/nullarbor">Nullarbor</a></td>
+<td>Rebuild nullarbor container</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35687">bioconda/bioconda-recipes#35687</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/katholt/genotyphi">GenoTyphi</a></td>
+<td>Update genotyphi recipe for mykrobe based analysis</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35388">bioconda/bioconda-recipes#35388</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/seroba">Seroba</a></td>
+<td>Add database to Seroba recipe</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35378">bioconda/bioconda-recipes#35378</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>Update ariba dependencies for latest pymummer</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35383">bioconda/bioconda-recipes#35383</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/pymummer">pymummer</a></td>
+<td>patch pymummer recipe to use system/user TMP</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35379">bioconda/bioconda-recipes#35379</a></td>
+</tr>
+<tr>
+<td><a href="https://bitbucket.org/genomicepidemiology/plasmidfinder">PlasmidFinder</a></td>
+<td>Update PlasmidFinder for better container support</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35314">bioconda/bioconda-recipes#35314</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Ecogenomics/GTDBTk">GTDB-Tk</a></td>
+<td>Allow GTDB-Tk database download with container</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35174">bioconda/bioconda-recipes#35174</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/CFSAN-Biostatistics/shigatyper">ShigaTyper</a></td>
+<td>update shigatyper recipe for better container support</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/35161">bioconda/bioconda-recipes#35161</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ParBLiSS/FastANI">FastANI</a></td>
+<td>Remove fastani from build fail list</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/33556">bioconda/bioconda-recipes#33556</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ParBLiSS/FastANI">FastANI</a></td>
+<td>update FastANI recipe</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/33433">bioconda/bioconda-recipes#33433</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/prokka">Prokka</a></td>
+<td>Update Prokka bioperl pinning</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/33411">bioconda/bioconda-recipes#33411</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jimmyliu1326/SsuisSero">SsuisSero</a></td>
+<td>update SsuisSero dependency</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/33268">bioconda/bioconda-recipes#33268</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/arpcard/rgi">RGI</a></td>
+<td>Improve RGI docker container</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/33249">bioconda/bioconda-recipes#33249</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/legsta">legsta</a></td>
+<td>Improve dockerbuild for Legsta</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/33246">bioconda/bioconda-recipes#33246</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-scan">fastq-scan</a></td>
+<td>Update fastq-scan recipe to include jq</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/32650">bioconda/bioconda-recipes#32650</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>Patch ariba recipe with minor bug fixes</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/32258">bioconda/bioconda-recipes#32258</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/SionBayliss/PIRATE">PIRATE</a></td>
+<td>Update PIRATE recipe to include post-analysis scripts</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/31629">bioconda/bioconda-recipes#31629</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/MDU-PHL/ngmaster">ngmaster</a></td>
+<td>rebuild ngmaster to get docker container</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/31376">bioconda/bioconda-recipes#31376</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/VishnuRaghuram94/AgrVATE">AgrVATE</a></td>
+<td>add missing dependency for agrvate</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/31035">bioconda/bioconda-recipes#31035</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/HCGB-IGTP/spaTyper">spaTyper</a></td>
+<td>Patch spatyper for entrypoint support</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/30824">bioconda/bioconda-recipes#30824</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/HCGB-IGTP/spaTyper">spaTyper</a></td>
+<td>Patch spatyper for better container support</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/30622">bioconda/bioconda-recipes#30622</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/katholt/Kleborate">Kleborate</a></td>
+<td>Update kleborate recipe to build DB</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/30582">bioconda/bioconda-recipes#30582</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/brentp/cyvcf2">cyvcf2</a></td>
+<td>Loosen htslib version requirement for cyvcf2</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/30044">bioconda/bioconda-recipes#30044</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/katholt/Kleborate">Kleborate</a></td>
+<td>Patch Kleborate's method for discovering Kaptive</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/29623">bioconda/bioconda-recipes#29623</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/HCGB-IGTP/spaTyper">spaTyper</a></td>
+<td>update spatyper - drop blake_sha256 requirement</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/27321">bioconda/bioconda-recipes#27321</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jhawkey/IS_mapper/">ISMapper</a></td>
+<td>ISMapper - Fix BioPython pinning</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/26599">bioconda/bioconda-recipes#26599</a></td>
+</tr>
+<tr>
+<td><a href="https://ecogenomics.github.io/CheckM/">CheckM</a></td>
+<td>checkm-genome - fix broken pinning by older pysam version</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/25856">bioconda/bioconda-recipes#25856</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jhawkey/IS_mapper/">ISMapper</a></td>
+<td>Update ISMapper - Pin BioPython version</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/24314">bioconda/bioconda-recipes#24314</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>Patches for third party links used by Ariba</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/24010">bioconda/bioconda-recipes#24010</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/seroba">Seroba</a></td>
+<td>Add pysam pinning for Seroba</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/17568">bioconda/bioconda-recipes#17568</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>Update pysam pinning for Ariba</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/17448">bioconda/bioconda-recipes#17448</a></td>
+</tr>
+<tr>
+<td><a href="https://www.ncbi.nlm.nih.gov/genbank/tbl2asn2">tbl2asn</a></td>
+<td>Previous version of tbl2asn has expired, updated to 25.7</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/16131">bioconda/bioconda-recipes#16131</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jhawkey/IS_mapper/">ISMapper</a></td>
+<td>Rebuild ismapper for GCC7 migration</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/14276">bioconda/bioconda-recipes#14276</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/WGS-TB/MentaLiST">MentaLiST</a></td>
+<td>MentaLiST v0.2.4 patch for Julia</td>
+<td><a href="https://github.com/bioconda/bioconda-recipes/pull/13137">bioconda/bioconda-recipes#13137</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="nf-coremodules-contributions">nf-core/modules Contributions<a class="headerlink" href="#nf-coremodules-contributions" title="Permanent link">&para;</a></h2>
+<p>When Bactopia was converted to Nextflow DSL2, it allowed the opportunity to adopt modules from 
+<a href="https://github.com/nf-core/modules">nf-core/modules</a>. These modules allow users to easily include them in their
+own Nextflow DSL2 pipelines. To facilitate this, A requirement was made that each
+<a href="https://bactopia.github.io/bactopia-tools/">Bactopia Tool</a>, separate workflows, would require that a corresponding 
+module be available from nf-core/modules, and if its not available it would be added.</p>
+<p>By adopting this practice, there have been 59 contributions to nf-core/modules in the 
+form of new modules, module updates, and testing adjustments.</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+<th>Pull Request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/rpetit3/pbptyper">pbptyper</a></td>
+<td>add pbptyper module</td>
+<td><a href="https://github.com/nf-core/modules/pull/2005">nf-core/modules#2005</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/pasty">pasty</a></td>
+<td>add module for pasty</td>
+<td><a href="https://github.com/nf-core/modules/pull/2003">nf-core/modules#2003</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/snippy">snippy-core</a></td>
+<td>add snippy/core module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1855">nf-core/modules#1855</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Mykrobe-tools/mykrobe">Mykrobe</a></td>
+<td>add module for mykrobe/predict</td>
+<td><a href="https://github.com/nf-core/modules/pull/1818">nf-core/modules#1818</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/katholt/genotyphi">GenoTyphi</a></td>
+<td>add module for genotyphi/parse</td>
+<td><a href="https://github.com/nf-core/modules/pull/1818">nf-core/modules#1818</a></td>
+</tr>
+<tr>
+<td><a href="https://sanger-pathogens.github.io/seroba/">Seroba</a></td>
+<td>add module for seroba</td>
+<td><a href="https://github.com/nf-core/modules/pull/1816">nf-core/modules#1816</a></td>
+</tr>
+<tr>
+<td><a href="https://bitbucket.org/genomicepidemiology/plasmidfinder">PlasmidFinder</a></td>
+<td>add plasmidfinder module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1773">nf-core/modules#1773</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/liampshaw/mcroni">mcroni</a></td>
+<td>add mcroni module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1750">nf-core/modules#1750</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>add ariba module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1731">nf-core/modules#1731</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/snippy">snippy</a></td>
+<td>add snippy module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1643">nf-core/modules#1643</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/CFSAN-Biostatistics/shigatyper">ShigaTyper</a></td>
+<td>add shigatyper module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1548">nf-core/modules#1548</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/gtonkinhill/panaroo">panaroo</a></td>
+<td>add module for panaroo, fix pirate tests</td>
+<td><a href="https://github.com/nf-core/modules/pull/1444">nf-core/modules#1444</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/dragonflye">Dragonflye</a></td>
+<td>Update dragonflye to latest version</td>
+<td><a href="https://github.com/nf-core/modules/pull/1442">nf-core/modules#1442</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/oschwengers/bakta">Bakta</a></td>
+<td>update bakta to latest version (v1.4.0)</td>
+<td><a href="https://github.com/nf-core/modules/pull/1428">nf-core/modules#1428</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/Roary">Roary</a></td>
+<td>Update test.yml for Roary module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1419">nf-core/modules#1419</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jimmyliu1326/HpsuisSero">HpsuisSero</a></td>
+<td>add hpsuisero module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1331">nf-core/modules#1331</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jimmyliu1326/SsuisSero">SsuisSero</a></td>
+<td>add ssuisero module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1329">nf-core/modules#1329</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/phac-nml/sistr_cmd">SISTR</a></td>
+<td>add sistr module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1322">nf-core/modules#1322</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/arpcard/rgi">RGI</a></td>
+<td>add rgi module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1321">nf-core/modules#1321</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/legsta">legsta</a></td>
+<td>add legsta module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1319">nf-core/modules#1319</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ncbi/amr">AMRFinder+</a></td>
+<td>add amrfindplus module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1284">nf-core/modules#1284</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/abricate">abricate</a></td>
+<td>add abricate module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1280">nf-core/modules#1280</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/phac-nml/mob-suite">mobsuite/recon</a></td>
+<td>add mobsuite/recon module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1270">nf-core/modules#1270</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/marbl/Mash">mash/dist</a></td>
+<td>add mash/dist module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1193">nf-core/modules#1193</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/katholt/Kleborate">Kleborate</a></td>
+<td>Fix kleborate inputs</td>
+<td><a href="https://github.com/nf-core/modules/pull/1172">nf-core/modules#1172</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/nf-core/modules">nf-core/modules</a></td>
+<td>fix test data path for ClonalFrameML,roary,pirate</td>
+<td><a href="https://github.com/nf-core/modules/pull/1085">nf-core/modules#1085</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/oschwengers/bakta">Bakta</a></td>
+<td>add bakta module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1085">nf-core/modules#1085</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/nf-core/modules">nf-core/modules</a></td>
+<td>use underscores in anchors and references</td>
+<td><a href="https://github.com/nf-core/modules/pull/1080">nf-core/modules#1080</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/AdmiralenOla/Scoary">Scoary</a></td>
+<td>add scoary module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1034">nf-core/modules#1034</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/MDU-PHL/emmtyper">emmtyper</a></td>
+<td>add emmtyper module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1028">nf-core/modules#1028</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/MDU-PHL/LisSero">LisSero</a></td>
+<td>add lissero module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1026">nf-core/modules#1026</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/MDU-PHL/ngmaster">ngmaster</a></td>
+<td>add ngmaster module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1024">nf-core/modules#1024</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/MDU-PHL/meningotype">meningotype</a></td>
+<td>add meningotype module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1022">nf-core/modules#1022</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/denglab/SeqSero2">SeqSero2</a></td>
+<td>add seqsero2 module</td>
+<td><a href="https://github.com/nf-core/modules/pull/1016">nf-core/modules#1016</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kblin/ncbi-genome-download">ncbi-genome-download</a></td>
+<td>add ncbi-genome-download module</td>
+<td><a href="https://github.com/nf-core/modules/pull/980">nf-core/modules#980</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/xavierdidelot/ClonalFrameML">ClonalFrameML</a></td>
+<td>add clonalframeml module</td>
+<td><a href="https://github.com/nf-core/modules/pull/974">nf-core/modules#974</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/VishnuRaghuram94/AgrVATE">AgrVATE</a></td>
+<td>Update agrvate version</td>
+<td><a href="https://github.com/nf-core/modules/pull/970">nf-core/modules#970</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/phac-nml/ecoli_serotyping">ECTyper</a></td>
+<td>add ectyper module</td>
+<td><a href="https://github.com/nf-core/modules/pull/948">nf-core/modules#948</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jodyphelan/TBProfiler">TBProfiler</a></td>
+<td>add tbprofiler module</td>
+<td><a href="https://github.com/nf-core/modules/pull/947">nf-core/modules#947</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/HCGB-IGTP/spaTyper">spaTyper</a></td>
+<td>Update spatyper module (cleanup debug)</td>
+<td><a href="https://github.com/nf-core/modules/pull/938">nf-core/modules#938</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scwatts/hicap">hicap</a></td>
+<td>[fix] hicap module allow optional outputs</td>
+<td><a href="https://github.com/nf-core/modules/pull/937">nf-core/modules#937</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/fastq-scan">fastq-scan</a></td>
+<td>add fastq-scan module</td>
+<td><a href="https://github.com/nf-core/modules/pull/935">nf-core/modules#935</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/shenwei356/csvtk">csvtk</a></td>
+<td>patch output extension in csvtk/concat</td>
+<td><a href="https://github.com/nf-core/modules/pull/797">nf-core/modules#797</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/shenwei356/csvtk">csvtk</a></td>
+<td>add csvtk/concat module</td>
+<td><a href="https://github.com/nf-core/modules/pull/785">nf-core/modules#785</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/HCGB-IGTP/spaTyper">spaTyper</a></td>
+<td>add spatyper module</td>
+<td><a href="https://github.com/nf-core/modules/pull/784">nf-core/modules#784</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/SionBayliss/PIRATE">PIRATE</a></td>
+<td>add pirate module</td>
+<td><a href="https://github.com/nf-core/modules/pull/777">nf-core/modules#777</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/Roary">Roary</a></td>
+<td>add roary module</td>
+<td><a href="https://github.com/nf-core/modules/pull/776">nf-core/modules#776</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jhawkey/IS_mapper/">ISMapper</a></td>
+<td>add ismapper module</td>
+<td><a href="https://github.com/nf-core/modules/pull/773">nf-core/modules#773</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/scwatts/hicap">hicap</a></td>
+<td>add hicap module</td>
+<td><a href="https://github.com/nf-core/modules/pull/772">nf-core/modules#772</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/lskatz/mashtree">mashtree</a></td>
+<td>add mashtree module</td>
+<td><a href="https://github.com/nf-core/modules/pull/767">nf-core/modules#767</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/nf-core/modules">nf-core/modules</a></td>
+<td>update tests for 12 modules for new config</td>
+<td><a href="https://github.com/nf-core/modules/pull/758">nf-core/modules#758</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/VishnuRaghuram94/AgrVATE">AgrVATE</a></td>
+<td>Update agrvate to v1.0.1</td>
+<td><a href="https://github.com/nf-core/modules/pull/728">nf-core/modules#728</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/staphopia/staphopia-sccmec">staphopia-sccmec</a></td>
+<td>add staphopia-sccmec module</td>
+<td><a href="https://github.com/nf-core/modules/pull/702">nf-core/modules#702</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rpetit3/dragonflye">Dragonflye</a></td>
+<td>add module for dragonflye</td>
+<td><a href="https://github.com/nf-core/modules/pull/633">nf-core/modules#633</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/nf-core/modules">nf-core/modules</a></td>
+<td>update tests for 21 modules for new config</td>
+<td><a href="https://github.com/nf-core/modules/pull/384">nf-core/modules#384</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/prokka">Prokka</a></td>
+<td>Update Prokka modules - add process label</td>
+<td><a href="https://github.com/nf-core/modules/pull/350">nf-core/modules#350</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/nf-core/modules">nf-core/modules</a></td>
+<td>README - Fix link describing process labels</td>
+<td><a href="https://github.com/nf-core/modules/pull/349">nf-core/modules#349</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/shovill">Shovill</a></td>
+<td>Update shovill module</td>
+<td><a href="https://github.com/nf-core/modules/pull/337">nf-core/modules#337</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/prokka">Prokka</a></td>
+<td>add prokka module</td>
+<td><a href="https://github.com/nf-core/modules/pull/298">nf-core/modules#298</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="other-contributions">Other Contributions<a class="headerlink" href="#other-contributions" title="Permanent link">&para;</a></h2>
+<p>In addition to Bioconda and nf-core/modules, Bactopia has made 18 contributions to other tools including:</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+<th>Pull Request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/seroba">Seroba</a></td>
+<td>let tempfile determine temp dir location</td>
+<td><a href="https://github.com/sanger-pathogens/seroba/pull/68">sanger-pathogens/seroba#68</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/pymummer">pymummer</a></td>
+<td>allow the user to specify temp dir or use the system default</td>
+<td><a href="https://github.com/sanger-pathogens/pymummer/pull/36">sanger-pathogens/pymummer#36</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/CFSAN-Biostatistics/shigatyper">ShigaTyper</a></td>
+<td>Fix install process</td>
+<td><a href="https://github.com/CFSAN-Biostatistics/shigatyper/pull/10">CFSAN-Biostatistics/shigatyper#10</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/legsta">legsta</a></td>
+<td>use grep -q to play nice with bioconda docker build</td>
+<td><a href="https://github.com/tseemann/legsta/pull/17">tseemann/legsta#17</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/CFSAN-Biostatistics/shigatyper">ShigaTyper</a></td>
+<td>Add single-end and ONT support, add GitHub Actions, update readme</td>
+<td><a href="https://github.com/CFSAN-Biostatistics/shigatyper/pull/9">CFSAN-Biostatistics/shigatyper#9</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>Ignore comments column and drop Bio.Alphabet</td>
+<td><a href="https://github.com/sanger-pathogens/ariba/pull/319">sanger-pathogens/ariba#319</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/BioContainers/multi-package-containers">BioContainers</a></td>
+<td>Add ClonalFrameML and maskrc-svg multipackage</td>
+<td><a href="https://github.com/BioContainers/multi-package-containers/pull/1923">BioContainers/multi-package-containers#1923"</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/katholt/Kleborate">Kleborate</a></td>
+<td>Add --kaptive_path to specify path to kaptive data</td>
+<td><a href="https://github.com/katholt/Kleborate/pull/59">katholt/Kleborate#59</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>fix SPAdes version capture</td>
+<td><a href="https://github.com/sanger-pathogens/ariba/pull/315">sanger-pathogens/ariba#315</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/VishnuRaghuram94/AgrVATE">AgrVATE</a></td>
+<td>Fix for dots in sample names</td>
+<td><a href="https://github.com/VishnuRaghuram94/AgrVATE/pull/9">VishnuRaghuram94/AgrVATE#9</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/SionBayliss/PIRATE">PIRATE</a></td>
+<td>Add minimum feature length option</td>
+<td><a href="https://github.com/SionBayliss/PIRATE/pull/53">SionBayliss/PIRATE#53</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>Fix for changes in PubMLST url</td>
+<td><a href="https://github.com/sanger-pathogens/ariba/pull/305">sanger-pathogens/ariba#305</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sanger-pathogens/ariba">Ariba</a></td>
+<td>Solution 1: for fixing CARD download</td>
+<td><a href="https://github.com/sanger-pathogens/ariba/pull/302">sanger-pathogens/ariba#302</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/BenLangmead/bowtie2">bowtie2</a></td>
+<td>Rename VERSION to BOWTIE2_VERSION</td>
+<td><a href="https://github.com/BenLangmead/bowtie2/pull/302">BenLangmead/bowtie2#302</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/HRGV/phyloFlash">phyloFlash</a></td>
+<td>Improved single end support</td>
+<td><a href="https://github.com/HRGV/phyloFlash/pull/102">HRGV/phyloFlash#102</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jhawkey/IS_mapper">ISMapper</a></td>
+<td>set min_range and max_range args to be a float</td>
+<td><a href="https://github.com/jhawkey/IS_mapper/pull/38">jhawkey/IS_mapper#38</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/kwongj/maskrc-svg">maskrc-svg</a></td>
+<td>Add requirements.txt for python modules</td>
+<td><a href="https://github.com/kwongj/maskrc-svg/pull/2">kwongj/maskrc-svg#2</a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tseemann/shovill">Shovill</a></td>
+<td>Added shovill-se for processing single-end reads</td>
+<td><a href="https://github.com/tseemann/shovill/pull/105">tseemann/shovill#105</a></td>
+</tr>
+</tbody>
+</table>
+
+<!-- Last update of source file -->
+
+  
+
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../presentations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Presentations" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Presentations
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../acknowledgements/" class="md-footer__link md-footer__link--next" aria-label="Next: Acknowledgements" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Acknowledgements
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2019-2021 Robert A. Petit III. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/bactopia/bactopia" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://gitter.im/bactopia/Lobby" target="_blank" rel="noopener" title="gitter.im" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M66.4 322.5H16V0h50.4v322.5zM166.9 76.1h-50.4V512h50.4V76.1zm100.6 0h-50.4V512h50.4V76.1zM368 76h-50.4v247H368V76z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://hub.docker.com/r/bactopia/bactopia" target="_blank" rel="noopener" title="hub.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/rpetit3" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky"], "search": "../assets/javascripts/workers/search.720157f5.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.0d3e07ec.min.js"></script>
+      
+        <script src="../custom/jquery.min.js"></script>
+      
+        <script src="../custom/jquery.magnific-popup.min.js"></script>
+      
+        <script src="../custom/extra.js"></script>
+      
+    
+  </body>
+</html>
