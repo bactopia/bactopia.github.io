@@ -1,6 +1,6 @@
 
 Since its launch in 2019, Bactopia has seen significant academic usage, being cited in at
-least 57 scholarly publications. We are excited to see Bactopia being used
+least 58 scholarly publications. We are excited to see Bactopia being used
 by the community and hope that it continues to be a valuable tool for researchers.
 
 !!! info "Total citations might be out of date"
@@ -8,6 +8,8 @@ by the community and hope that it continues to be a valuable tool for researcher
     of citations, please visit
     [Google Scholar](https://scholar.google.com/scholar?cites=11269093140070503615) or 
     [PubMed](https://pubmed.ncbi.nlm.nih.gov/?linkname=pubmed_pubmed_citedin&from_uid=32753501)
+
+58: Babiker HA, Al-Jardani A, Al-Azri S, Petit III RA, Saad E, Al-Mahrouqi S, Mohamed RAH, Al-Hamidhi S, Balkhair AA, Al Kharusi N, Al Balushi L, Al Zadjali S, Pérez-Pardal L, Beja-Pereira A, Babiker A. [Mycobacterium tuberculosis epidemiology in Oman: whole-genome sequencing uncovers transmission pathways](https://doi.org/10.1128/spectrum.02420-23) _Microbiology Spectrum_ (2023).
 
 57: Almeida FMd, Campos TAd, Pappas Jr GJ. [Scalable and versatile container-based pipelines for de novo genome assembly and bacterial annotation.](https://doi.org/10.12688/f1000research.139488.1) _F1000 Research_ (2023).
 
