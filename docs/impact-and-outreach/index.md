@@ -1,5 +1,5 @@
 ---
-title: Imapct and Outreach
+title: Impact and Outreach
 description: >-
     Discover how Bactopia is making an impact and giving back to the community.
 ---
