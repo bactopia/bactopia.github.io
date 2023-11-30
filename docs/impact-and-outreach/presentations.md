@@ -21,6 +21,10 @@ Slides: [PDF](https://datasets.bactopia.com/media/2023-bactopia-edlb-workshop.pd
 
 ## Talks
 
+- _Bactopia v3 - Enhancements for public health genomic surveillance (December 2023)_  
+A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Nextflow Summit - Boston 2023](https://summit.nextflow.io/boston/). This talk highlighted how Bactopia was rebuilt in version 3 to better support on-going genomic surveillance of bacterial pathogens.  
+Slides: [PDF}(https://datasets.bactopia.com/2023-bactopiav3-nf-summit-boston.pdf)]
+
 - _Designing mechanisms into Bactopia to support its users and contribute back to the community (October 2022)_  
 A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Nextflow Summit 2022](https://summit.nextflow.io/). This is a brief talk on how Bactopia was designed to reduce the maintenance burden while contributing back to the community.  
 Video: [YouTube](https://youtu.be/I0z1z7EKv2M)  
