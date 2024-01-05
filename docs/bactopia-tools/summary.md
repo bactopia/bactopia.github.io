@@ -12,7 +12,7 @@ is the default cutoffs for each rank.
 | Gold | 100x | Q30 | 95bp | 100 |
 | Silver | 50x | Q20 | 75bp | 200 |
 | Bronze | 20x | Q12 | 49bp | 500 |
-| Fail | <20x | <@12 | <49bp | >500 |
+| Fail | <20x | <Q12 | <49bp | >500 |
 
 Samples that fail to meet all the cutoffs for at least a *Bronze* rank are added
 to a *exclude* file. This turns out to be a useful feature beacuse all other 
