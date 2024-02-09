@@ -4,7 +4,7 @@ description: A Bactopia Tool which uses
 
 ---
 # Bactopia Tool - `plasmidfinder`
-The `plasmidfinder` module identifies plasmids in total or partial sequenced isolates of bacteria..
+The `plasmidfinder` module identifies plasmids in total or partial sequenced isolates of bacteria.
 
 
 ## Example Usage
