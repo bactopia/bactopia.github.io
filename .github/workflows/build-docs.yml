@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash -l {0}
+        shell: bash -x -l {0}
     steps:
       - name: Checkout main
         uses: actions/checkout@v2
@@ -62,7 +62,7 @@ jobs:
           git config user.email actions@github.com
           LATEST_RELEASE=$(curl -sL https://api.github.com/repos/bactopia/bactopia/releases/latest | jq -r ".tag_name")
           echo ${LATEST_RELEASE}
-          mike deploy --config-file mkdocs.insiders.yml --update-aliases ${LATEST_RELEASE} latest
+          mike deploy --push --update-aliases ${LATEST_RELEASE} latest
           mike set-default --push latest
 
       - name: Commit changes
