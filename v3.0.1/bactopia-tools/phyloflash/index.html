@@ -1,0 +1,4107 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/v3.0.1/bactopia-tools/phyloflash/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14+insiders-4.53.2">
+    
+    
+      
+        <title>Bactopia Tools - phyloflash - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.003a5498.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../../assets/external/fonts.googleapis.com/css.2196aa76.css">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../custom/magnific-popup.css">
+    
+      <link rel="stylesheet" href="../../custom/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-QH76FN9N78"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-QH76FN9N78",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-QH76FN9N78",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>var consent;"undefined"==typeof __md_analytics||(consent=__md_get("__consent"))&&consent.analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bactopia-tools-phyloflash" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <!-- Add announcement here, including arbitrary HTML -->
+  🎉 Please take a minutes to complete the <a href="https://forms.gle/BA2BDHRQvZtpVcD38" target="_blank" rel="noopener">2024 Bactopia Usage Survey</a> 🎉
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bactopia" class="md-header__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bactopia
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bactopia Tools - phyloflash
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Bactopia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Bactopia Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../impact-and-outreach/" class="md-tabs__link">
+          
+  
+  Impact & Outreach
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bactopia" class="md-nav__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Bactopia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bactopia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../beginners-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Beginner's Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workflow Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/gather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Gather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/qc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    QC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/assembler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6_4" id="__nav_1_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotator
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Annotator
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/annotator/prokka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Prokka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/annotator/bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Bakta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/sketcher/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Sketcher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/sequence-typing/mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Typing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/antimicrobial-resistance/amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Antimicrobial Resistance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bactopia/merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Merlin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../full-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Bactopia Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bactopia Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Subworkflows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subworkflows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ariba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ariba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    bakta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eggnog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    eggnog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gtdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    gtdb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mashtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mashtree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    merlin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pangenome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pangenome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scrubber/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    scrubber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snippy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    snippy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staphtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    staphtyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tbprofiler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tbprofiler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abricate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    abricate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../abritamr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    abritamr
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agrvate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    agrvate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    amrfinderplus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blastn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blastp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blastx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bracken/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    bracken
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../btyper3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    btyper3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../busco/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    busco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    checkm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ectyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ectyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../emmtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    emmtyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastani/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    fastani
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gamma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    gamma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../genotyphi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    genotyphi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hicap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    hicap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hpsuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    hpsuissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ismapper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ismapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kleborate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    kleborate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kraken2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    kraken2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../legsta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    legsta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    lissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mashdist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mashdist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mcroni/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mcroni
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meningotype/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    meningotype
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../midas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    midas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mlst
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobsuite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mobsuite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mykrobe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mykrobe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ngmaster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ngmaster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pasty/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pasty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pbptyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pbptyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phispy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    phispy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plasmidfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    plasmidfinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pneumocat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pneumocat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    quast
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    rgi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seqsero2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    seqsero2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seroba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    seroba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shigatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    shigatyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shigeifinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    shigeifinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sistr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    sistr
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    spatyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ssuissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staphopiasccmec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    staphopiasccmec
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stecfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    stecfinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tblastn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tblastn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tblastx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tblastx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Impact & Outreach
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Impact & Outreach
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Impact 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledgements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/citations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Citations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/enhancements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Enhancements to OSS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../impact-and-outreach/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Bactopia Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/community/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output Overview
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Output Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#directory-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directory Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bactopia-info" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bactopia-info
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iqtree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iqtree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        samples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conda-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conda Environment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Actions -->
+
+
+  <!-- Edit button -->
+  
+    <a href="https://github.com/bactopia/bactopia.github.io/edit/master/docs/bactopia-tools/phyloflash.md" title="Edit on GitHub" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+
+  <!-- View button -->
+  
+
+
+<h1 id="bactopia-tools-phyloflash">Bactopia Tools - <em>phyloflash</em><a class="headerlink" href="#bactopia-tools-phyloflash" title="Permanent link">&para;</a></h1>
+<p>The <code>phyloflash</code> tool uses <a href="https://github.com/HRGV/phyloFlash">phyloFlash</a> to 
+resconstruct 16S rRNA genes from your input samples. Optionally these reconstructed
+genes can then be aligned to one another with <a href="https://mafft.cbrc.jp/alignment/software/">MAFFT</a> 
+and a phylogenetic representation created using <a href="http://www.iqtree.org/">IQ-TREE</a></p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
+<p>The following command will reconstruct the 16S rRNA gene for each sample except those listed in the <em>exclude</em> file.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bactopia tools phyloflash \
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    --bactopia ~/bactopia-tutorial/bactopia \
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    --phyloflash ~/bactopia-tutorial/bactopia-datasets/16s/138 \
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    --exclude ~/bactopia-tutorial/bactopia-tools/summary/bactopia-exclude.txt
+</span></code></pre></div></p>
+<h2 id="output-overview">Output Overview<a class="headerlink" href="#output-overview" title="Permanent link">&para;</a></h2>
+<p>Below is the default output structure for the  <code>phyloflash</code> tool. Where possible the 
+file descriptions below were modified from a tools description.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bactopia-tools/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>└── phyloflash/
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    └── ${PREFIX}
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        ├── alignment
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        │   ├── phyloflash-alignment.fasta
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        │   └── phyloflash-matches.txt
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        ├── bactopia-info
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        │   ├── phyloflash-report.html
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        │   ├── phyloflash-timeline.html
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        │   └── phyloflash-trace.txt
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>        ├── iqtree
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        │   ├── 16s.alninfo
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        │   ├── 16s.bionj
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        │   ├── 16s.ckp.gz
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        │   ├── 16s.iqtree
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        │   ├── 16s.log
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>        │   ├── 16s.mldist
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        │   ├── 16s.model.gz
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        │   ├── 16s.treefile
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>        │   └── 16s.uniqueseq.phy
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        ├── phyloflash.iqtree
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        ├── phyloflash-summary.txt
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        └── samples
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>            └── ${SAMPLE_NAME}
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>                ├── ${SAMPLE_NAME}.all.dbhits.NR97.fa
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>                ├── ${SAMPLE_NAME}.all.final.fasta
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>                ├── ${SAMPLE_NAME}.all.final.phyloFlash.dbhits.fa
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>                ├── ${SAMPLE_NAME}.all.final.phyloFlash.notmatched.fa
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>                ├── ${SAMPLE_NAME}.all.vsearch.csv
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>                ├── ${SAMPLE_NAME}.assemratio.csv
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>                ├── ${SAMPLE_NAME}.assemratio.csv.svg
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>                ├── ${SAMPLE_NAME}.bbmap.out
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>                ├── ${SAMPLE_NAME}.bbmap.sam
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>                ├── ${SAMPLE_NAME}.hitstats
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>                ├── ${SAMPLE_NAME}.idhistogram
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>                ├── ${SAMPLE_NAME}.idhistogram.svg
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>                ├── ${SAMPLE_NAME}.inserthistogram
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>                ├── ${SAMPLE_NAME}.inserthistogram.svg
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>                ├── ${SAMPLE_NAME}.mapratio.csv
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>                ├── ${SAMPLE_NAME}.mapratio.csv.svg
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>                ├── ${SAMPLE_NAME}.phyloFlash
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>                ├── ${SAMPLE_NAME}.phyloFlash.extractedSSUclassifications.csv
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>                ├── ${SAMPLE_NAME}.phyloFlash.html
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>                ├── ${SAMPLE_NAME}.phyloFlash.json
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>                ├── ${SAMPLE_NAME}.phyloFlash.NTUabundance.csv
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>                ├── ${SAMPLE_NAME}.phyloFlash.NTUabundance.csv.svg
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>                ├── ${SAMPLE_NAME}.phyloFlash.NTUfull_abundance.csv
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>                ├── ${SAMPLE_NAME}.phyloFlash.report.csv
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>                ├── ${SAMPLE_NAME}.phyloFlash.unassembled.NTUabundance.csv
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>                ├── ${SAMPLE_NAME}.remap_spades.bbmap.out
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>                ├── ${SAMPLE_NAME}.spades.out
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>                ├── ${SAMPLE_NAME}.spades_rRNAs.final.fasta
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>                ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.1.fq
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>                ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.2.fq
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>                ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU.sam
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>                ├── ${SAMPLE_NAME}.${SAMPLE_NAME}_R1.fastq.gz.SSU_spades.sam
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>                ├── ${SAMPLE_NAME}.SSU.collection.alignment.fasta
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>                ├── ${SAMPLE_NAME}.SSU.collection.fasta
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>                ├── ${SAMPLE_NAME}.SSU.collection.fasta.tree
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>                ├── ${SAMPLE_NAME}.SSU.collection.fasta.tree.svg
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>                ├── ${SAMPLE_NAME}.toalign.fasta
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>                └── ${SAMPLE_NAME}-unprocessed.txt
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phyloflash.iqtree</td>
+<td>Full result of the run, this is the main report file (a copy of <em>iqtree/16s.iqtree</em>)</td>
+</tr>
+<tr>
+<td>phyloflash-summary.txt</td>
+<td>The aggregated phyloFlash results of all samples</td>
+</tr>
+</tbody>
+</table>
+<h3 id="directory-description">Directory Description<a class="headerlink" href="#directory-description" title="Permanent link">&para;</a></h3>
+<h4 id="alignment">alignment<a class="headerlink" href="#alignment" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phyloflash-alignment.fasta</td>
+<td>The multiple sequence alignment produced by MAFFT.</td>
+</tr>
+<tr>
+<td>phyloflash-matches.txt</td>
+<td>A list of reconstructed 16S genes and their match</td>
+</tr>
+</tbody>
+</table>
+<h4 id="bactopia-info">bactopia-info<a class="headerlink" href="#bactopia-info" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phyloflash-report.html</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#execution-report">Execution Report</a></td>
+</tr>
+<tr>
+<td>phyloflash-timeline.html</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">Timeline Report</a></td>
+</tr>
+<tr>
+<td>phyloflash-trace.txt</td>
+<td>The Nextflow <a href="https://www.nextflow.io/docs/latest/tracing.html#trace-report">Trace</a> report</td>
+</tr>
+</tbody>
+</table>
+<h4 id="iqtree">iqtree<a class="headerlink" href="#iqtree" title="Permanent link">&para;</a></h4>
+<p>Where possible descriptions were taken from 
+IQ-TREE's <a href="https://github.com/Cibiv/IQ-TREE/wiki/Command-Reference">Command Reference</a>
+page, <a href="https://github.com/Cibiv/IQ-TREE/wiki/Web-Server-Tutorial">Web Server Tutorial</a> page, 
+and the <a href="http://www.iqtree.org/doc/Tutorial">Tutorial</a> page.</p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16s.alninfo</td>
+<td>Alignment site statistics</td>
+</tr>
+<tr>
+<td>16s.bionj</td>
+<td>A neighbor joining tree produced by BIONJ</td>
+</tr>
+<tr>
+<td>16s.ckp.gz</td>
+<td>IQ-TREE writes a checkpoint file</td>
+</tr>
+<tr>
+<td>16s.contree</td>
+<td>Consensus tree with assigned branch supports where branch lengths are optimized on the original alignment; printed if Ultrafast Bootstrap is selected</td>
+</tr>
+<tr>
+<td>16s.iqtree</td>
+<td>Full result of the run, this is the main report file</td>
+</tr>
+<tr>
+<td>16s.log</td>
+<td>Run log</td>
+</tr>
+<tr>
+<td>16s.mldist</td>
+<td>Contains the likelihood distances</td>
+</tr>
+<tr>
+<td>16s.model.gz</td>
+<td>Information about all models tested</td>
+</tr>
+<tr>
+<td>16s.splits.nex</td>
+<td>Support values in percentage for all splits (bipartitions), computed as the occurence frequencies in the bootstrap trees</td>
+</tr>
+<tr>
+<td>16s.treefile</td>
+<td>Maximum likelihood tree in NEWICK format, can be visualized with treeviewer programs</td>
+</tr>
+<tr>
+<td>16s.ufboot</td>
+<td>Trees created during the bootstrap steps</td>
+</tr>
+<tr>
+<td>16s.uniqueseq.phy</td>
+<td>Unique sequences indentified by IQ-TREE</td>
+</tr>
+</tbody>
+</table>
+<h4 id="samples">samples<a class="headerlink" href="#samples" title="Permanent link">&para;</a></h4>
+<p>Where possible descriptions were taken from phyloFlash's <a href="https://hrgv.github.io/phyloFlash/output.html">Output Summary</a> 
+and the phyloFlash source <a href="https://github.com/HRGV/phyloFlash/blob/master/PhyloFlash.pm">PhyloFlash.pm</a></p>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>${SAMPLE_NAME}.all.dbhits.NR97.fa</td>
+<td>Reference sequences from database with hits from the supplied reads, clustered at 97% identity</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.all.final.fasta</td>
+<td>All assembled and reconstructed sequences from SPAdes in a single file</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.all.final.phyloFlash.dbhits.fa</td>
+<td>FASTA file of all sequences in database with hits to reconstructed sequences</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.all.final.phyloFlash.notmatched.fa</td>
+<td>FASTA file of full-length sequences without any database hits</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.all.vsearch.csv</td>
+<td>CSV file of Vsearch output</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.assemratio.csv</td>
+<td>CSV file of ratio assembled to unassembled</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.assemratio.csv.svg</td>
+<td>A SVG image of the above ratios</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.bbmap.out</td>
+<td>The bbmap log</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.bbmap.sam</td>
+<td>The alignment of reads against 16S genes</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.hitstats</td>
+<td>A SVG image of the above ratios</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.idhistogram</td>
+<td>Histogram of the % identity of reads vs. reference database sequences, in tab-separated format</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.idhistogram.svg</td>
+<td>A SVG image of the histogram above</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.inserthistogram</td>
+<td>Histogram of detected insert sizes in tab-separated format, if paired-end reads were input</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.inserthistogram.svg</td>
+<td>A SVG image of the above histogram</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.mapratio.csv</td>
+<td>Ratios of mapped vs unmapped to report</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.mapratio.csv.svg</td>
+<td>A SVG image of the above ratio</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash</td>
+<td>Plain text file version of the HTML report</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash.extractedSSUclassifications.csv</td>
+<td>Taxonomic classification of full-length sequences, in CSV format</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash.html</td>
+<td>phyloFlash report file in HTML format, with a report on the taxonomic composition of SSU rRNA reads, quality metrics for the library, and affiliation of the reconstructed/assembled full-length sequences</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash.json</td>
+<td>JSON version of <em>${SAMPLE_NAME}.phyloFlash</em></td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash.NTUabundance.csv</td>
+<td>The list of uniqe higher level taxa (e.g. orders for bacteria) in the order of their appearance</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash.NTUabundance.csv.svg</td>
+<td>A SVG image depicting the NTU abundances</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash.NTUfull_abundance.csv</td>
+<td>NTU abundances (untruncated) from initial mapping, in CSV format</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash.report.csv</td>
+<td>phyloFlash report in CSV format</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.phyloFlash.unassembled.NTUabundance.csv</td>
+<td>Taxonomic composition of unassembled SSU reads in CSV format</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.remap_spades.bbmap.out</td>
+<td>SAM file of re-mapping extracted reads to SPAdes full-length sequences</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.spades.out</td>
+<td>The SPAdes log</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.spades_rRNAs.final.fasta</td>
+<td>Assembled OTUs from SPAdes with phyloFlash simplified headers</td>
+</tr>
+<tr>
+<td><span SAMPLE_NAME="SAMPLE_NAME" class="arithmatex">\({SAMPLE_NAME}.\)</span>_R1.fastq.gz.SSU.1.fq</td>
+<td>The filtered SSU reads and their paired read, forward read file</td>
+</tr>
+<tr>
+<td><span SAMPLE_NAME="SAMPLE_NAME" class="arithmatex">\({SAMPLE_NAME}.\)</span>_R1.fastq.gz.SSU.2.fq</td>
+<td>The filtered SSU reads and their paired read, reverse read file</td>
+</tr>
+<tr>
+<td><span SAMPLE_NAME="SAMPLE_NAME" class="arithmatex">\({SAMPLE_NAME}.\)</span>_R1.fastq.gz.SSU.sam</td>
+<td>SAM file of initial read mapping to SSU rRNA database</td>
+</tr>
+<tr>
+<td><span SAMPLE_NAME="SAMPLE_NAME" class="arithmatex">\({SAMPLE_NAME}.\)</span>_R1.fastq.gz.SSU_spades.sam</td>
+<td>SAM file of re-mapping extracted reads to SPAdes full-length sequences</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.SSU.collection.alignment.fasta</td>
+<td>An aligned multifasta of all the predicted OTUs and the references</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.SSU.collection.fasta</td>
+<td>A multifasta of all the predicted OTUs and the references</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.SSU.collection.fasta.tree</td>
+<td>An NJ tree of the MAFFT alignment of all the predicted OTUs and the references</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.SSU.collection.fasta.tree.svg</td>
+<td>An SVG image of the tree above</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}.toalign.fasta</td>
+<td>Sequences from the sample that were used in the MAFFT alignment</td>
+</tr>
+<tr>
+<td>${SAMPLE_NAME}-unprocessed.txt</td>
+<td>Text file with reason for not processing sample</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Required Parameters:
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    --bactopia STR          Directory containing Bactopia analysis results for all samples.
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    --phyloflash STR        Directory containing a pre-built phyloFlash database.
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Optional Parameters:
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    --include STR           A text file containing sample names to include in the
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>                                analysis. The expected format is a single sample per line.
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    --exclude STR           A text file containing sample names to exclude from the
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>                                analysis. The expected format is a single sample per line.
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    --prefix DIR            Prefix to use for final output files
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>                                Default: phyloflash
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    --outdir DIR            Directory to write results to
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>                                Default: ./
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    --max_time INT          The maximum number of minutes a job should run before being halted.
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>                                Default: 1440 minutes
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    --max_memory INT        The maximum amount of memory (Gb) allowed to a single process.
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>                                Default: 32 Gb
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    --cpus INT              Number of processors made available to a single
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>                                process.
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>                                Default: 4
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>phyloFlash Related Parameters:
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>    --download_phyloflash   Download the latest phyloFlash database, even it exists.
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>    --yes                   You acknowledge SILVAs license.
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    --taxlevel INT          Level in the taxonomy string to summarize read counts per taxon.
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>                                Numeric and 1-based (i.e. &quot;1&quot; corresponds to &quot;Domain&quot;).
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>                                Default: 6
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>    --phyloflash_opts STR   Extra phyloFlash options in quotes.
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>                                Default: &#39;&#39;
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>    --allow_multiple_16s    Include samples with multiple reconstructed 16S genes. Due to
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>                                high sequence similarity in true multi-copy 16S genes, it
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>                                is unlikely each copy will be reconstructed, instead only
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>                                one. In order to get more than one reconstructed 16S gene
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>                                there must be a significant difference in the sequence
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>                                identity. As a consequence, any samples that have multiple
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>                                16S genes reconstructed contain multiple different species
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>                                within their sequencing.
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>                                Default: Exclude samples with multiple 16S genes
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>MAFFT Related Parameters:
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>    --align_all             Include reconstructed 16S genes as well as the corresponding
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>                                reference 16S genes in the alignment.
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>    --mafft_opts STR        MAFFT options to include (in quotes).
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>                                Default: &#39;&#39;
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>IQ-TREE Related Parameters:
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>    --skip_phylogeny        Skip the creation a core-genome based phylogeny
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>    --m STR                 Substitution model name
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>                                Default: MFP
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>    --bb INT                Ultrafast bootstrap replicates
+</span><span id="__span-2-66"><a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>                                Default: 1000
+</span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>
+</span><span id="__span-2-68"><a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>    --alrt INT              SH-like approximate likelihood ratio test replicates
+</span><span id="__span-2-69"><a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>                                Default: 1000
+</span><span id="__span-2-70"><a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>
+</span><span id="__span-2-71"><a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>    --asr                   Ancestral state reconstruction by empirical Bayes
+</span><span id="__span-2-72"><a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>                                Default: false
+</span><span id="__span-2-73"><a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>
+</span><span id="__span-2-74"><a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>    --iqtree_opts STR       Extra IQ-TREE options in quotes.
+</span><span id="__span-2-75"><a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>                                Default: &#39;&#39;
+</span><span id="__span-2-76"><a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>
+</span><span id="__span-2-77"><a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>Nextflow Related Parameters:
+</span><span id="__span-2-78"><a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>    --condadir DIR          Directory to Nextflow should use for Conda environments
+</span><span id="__span-2-79"><a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>                                Default: Bactopia&#39;s Nextflow directory
+</span><span id="__span-2-80"><a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>
+</span><span id="__span-2-81"><a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>    --publish_mode          Set Nextflow&#39;s method for publishing output files. Allowed methods are:
+</span><span id="__span-2-82"><a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>                                &#39;copy&#39; (default)    Copies the output files into the published directory.
+</span><span id="__span-2-83"><a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>
+</span><span id="__span-2-84"><a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>                                &#39;copyNoFollow&#39; Copies the output files into the published directory
+</span><span id="__span-2-85"><a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>                                               without following symlinks ie. copies the links themselves.
+</span><span id="__span-2-86"><a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>
+</span><span id="__span-2-87"><a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>                                &#39;link&#39;    Creates a hard link in the published directory for each
+</span><span id="__span-2-88"><a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>                                          process output file.
+</span><span id="__span-2-89"><a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>
+</span><span id="__span-2-90"><a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>                                &#39;rellink&#39; Creates a relative symbolic link in the published directory
+</span><span id="__span-2-91"><a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>                                          for each process output file.
+</span><span id="__span-2-92"><a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>
+</span><span id="__span-2-93"><a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>                                &#39;symlink&#39; Creates an absolute symbolic link in the published directory
+</span><span id="__span-2-94"><a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>                                          for each process output file.
+</span><span id="__span-2-95"><a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a>
+</span><span id="__span-2-96"><a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>                                Default: copy
+</span><span id="__span-2-97"><a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a>
+</span><span id="__span-2-98"><a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a>    --force                 Nextflow will overwrite existing output files.
+</span><span id="__span-2-99"><a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a>                                Default: false
+</span><span id="__span-2-100"><a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>
+</span><span id="__span-2-101"><a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a>    --conatainerPath        Path to Singularity containers to be used by the &#39;slurm&#39;
+</span><span id="__span-2-102"><a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a>                                profile.
+</span><span id="__span-2-103"><a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a>                                Default: /opt/bactopia/singularity
+</span><span id="__span-2-104"><a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a>
+</span><span id="__span-2-105"><a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a>    --sleep_time            After reading datases, the amount of time (seconds) Nextflow
+</span><span id="__span-2-106"><a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a>                                will wait before execution.
+</span><span id="__span-2-107"><a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a>                                Default: 5 seconds
+</span><span id="__span-2-108"><a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a>Useful Parameters:
+</span><span id="__span-2-109"><a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a>    --version               Print workflow version information
+</span><span id="__span-2-110"><a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a>    --help                  Show this message and exit
+</span></code></pre></div>
+<h2 id="conda-environment">Conda Environment<a class="headerlink" href="#conda-environment" title="Permanent link">&para;</a></h2>
+<p>Below is the command that was used to create the Conda environment.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda create -y -n bactopia-phyloflash -c conda-forge -c bioconda \
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    phyloflash \
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    mafft \
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    iqtree \
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    pigz
+</span></code></pre></div></p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong><a href="https://github.com/tseemann/barrnap">Barrnap</a></strong><br />
+<em>Seemann, T. <a href="https://github.com/tseemann/barrnap">Barrnap: Bacterial ribosomal RNA predictor</a>.</em>  </p>
+</li>
+<li>
+<p><strong><a href="https://jgi.doe.gov/data-and-tools/bbtools/">BBTools</a></strong><br />
+<em>Bushnell, B. <a href="http://sourceforge.net/projects/bbmap/">BBMap short read aligner, and other bioinformatic tools.</a></em>  </p>
+</li>
+<li>
+<p><strong><a href="https://github.com/arq5x/bedtools2">Bedtools</a></strong><br />
+<em>Quinlan, A. R. &amp; Hall, I. M. <a href="http://dx.doi.org/10.1093/bioinformatics/btq033">BEDTools: a flexible suite of utilities for 
+comparing genomic features</a>. 
+Bioinformatics 26, 841–842 (2010).</em>  </p>
+</li>
+<li>
+<p><strong><a href="https://github.com/Cibiv/IQ-TREE">IQ-TREE</a></strong><br />
+<em>L.-T. Nguyen, H.A. Schmidt, A. von Haeseler, B.Q. Minh (2015) 
+<a href="https://doi.org/10.1093/molbev/msu300">IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.</a>
+ Mol. Biol. Evol., 32:268-274.</em><br />
+<em>S. Kalyaanamoorthy, B.Q. Minh, T.K.F. Wong, A. von Haeseler, L.S. Jermiin (2017) 
+<a href="https://doi.org/10.1038/nmeth.4285">ModelFinder: Fast model selection for accurate phylogenetic estimates.</a> 
+Nat. Methods, 14:587-589.</em><br />
+<em>D.T. Hoang, O. Chernomor, A. von Haeseler, B.Q. Minh, L.S. Vinh (2018) <a href="https://doi.org/10.1093/molbev/msx281">
+UFBoot2: Improving the ultrafast bootstrap approximation.</a>
+ Mol. Biol. Evol., 35:518–522.</em>  </p>
+</li>
+<li>
+<p><strong><a href="https://mafft.cbrc.jp/alignment/software/">MAFFT</a></strong><br />
+<em>Katoh, K. &amp; Standley, D. M. 
+<a href="https://doi.org/10.1093/molbev/mst010">MAFFT multiple sequence alignment software version 7: improvements in performance and usability.</a> 
+Mol. Biol. Evol. 30, 772–780 (2013)</em>  </p>
+</li>
+<li>
+<p><strong><a href="http://hmmer.org/">nhmmer</a></strong><br />
+<em>Wheeler, T. J. &amp; Eddy, S. R. 
+<a href="https://doi.org/10.1093/bioinformatics/btt403">nhmmer: DNA homology search with profile HMMs.</a>
+ Bioinformatics 29, 2487–2489 (2013)</em>  </p>
+</li>
+<li>
+<p><strong><a href="https://github.com/HRGV/phyloFlash">phyloFlash</a></strong><br />
+<em>H. R. Gruber-Vodicka, B.KB. Seah, E. Pruesse. 
+<a href="https://doi.org/10.1101/521922">phyloFlash — Rapid SSU rRNA profiling and targeted assembly from metagenomes.</a> 
+bioRxiv 521922</em>  </p>
+</li>
+<li>
+<p><strong><a href="https://www.arb-silva.de/">SILVA rRNA Database</a></strong><br />
+<em>Quast, C. et al. 
+<a href="https://doi.org/10.1093/nar/gks1219">The SILVA ribosomal RNA gene database project: improved data processing and web-based tools.</a> 
+Nucleic Acids Res. 41, D590–6 (2013)</em></p>
+</li>
+<li>
+<p><strong><a href="https://github.com/ablab/spades">SPAdes</a></strong><br />
+<em>Bankevich, A., et al. 
+<a href="https://doi.org/10.1089/cmb.2012.0021">SPAdes: a new genome assembly algorithm and its applications to single-cell sequencing.</a> 
+Journal of computational biology 19.5 (2012): 455-477.</em>  </p>
+</li>
+<li>
+<p><strong><a href="https://github.com/torognes/vsearch">VSEARCH</a></strong><br />
+<em>Rognes, T., Flouri, T., Nichols, B., Quince, C. &amp; Mahé, F. 
+<a href="https://doi.org/10.7717/peerj.2584">VSEARCH: a versatile open source tool for metagenomics.</a>
+ PeerJ 4, e2584 (2016)</em>  </p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2019-2024 Robert A. Petit III. All rights reserved. <a href="#__consent">Change Cookie Settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/bactopia/bactopia" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/rpetit3" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie Consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.code.copy", "navigation.footer", "navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top"], "search": "../../assets/javascripts/workers/search.1e90e0fb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a255a381.min.js"></script>
+      
+        <script src="../../custom/fontawesome.js"></script>
+      
+        <script src="../../custom/jquery.min.js"></script>
+      
+        <script src="../../custom/jquery.magnific-popup.min.js"></script>
+      
+        <script src="../../custom/extra.js"></script>
+      
+    
+  </body>
+</html>
