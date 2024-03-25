@@ -4,3 +4,10 @@
   <!-- Add announcement here, including arbitrary HTML -->
   🎉 Please take a minutes to complete the <a href="https://forms.gle/BA2BDHRQvZtpVcD38" target="_blank">2024 Bactopia Usage Survey</a> 🎉
 {% endblock %}
+
+{% block outdated %}
+  You're not viewing the latest version.
+  <a href="{{ '../' ~ base_url }}"> 
+    <strong>Click here to go to latest.</strong>
+  </a>
+{% endblock %}
