@@ -285,6 +285,41 @@ conda_submissions:
       description: "Output FASTQ summary statistics in JSON format"
 
 conda_updates:
+    - title: "fix amrfinderplus pinning in abritamr"
+      date: 2024-03-23
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/46714"
+      pr_name: "bioconda/bioconda-recipes#46714"
+      tool: "abriTAMR"
+      tool_url: "https://github.com/MDU-PHL/abritamr"
+
+    - title: "adjust python pinning in gubbins"
+      date: 2024-03-23
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/46713"
+      pr_name: "bioconda/bioconda-recipes#46713"
+      tool: "Gubbins"
+      tool_url: "https://github.com/nickjcroucher/gubbins"
+
+    - title: "fix issue with sistr container"
+      date: 2024-03-23
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/46712"
+      pr_name: "bioconda/bioconda-recipes#46712"
+      tool: "SISTR"
+      tool_url: "https://github.com/phac-nml/sistr_cmd"
+
+    - title: "Update rgi pinning for pyrodigal"
+      date: 2024-03-21
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/46669"
+      pr_name: "bioconda/bioconda-recipes#46669"
+      tool: "RGI"
+      tool_url: "https://github.com/arpcard/rgi"
+
+    - title: "pin tabix version in snippy"
+      date: 2024-03-14
+      pr_url: "https://github.com/bioconda/bioconda-recipes/pull/46458"
+      pr_name: "bioconda/bioconda-recipes#46458"
+      tool: "Snippy"
+      tool_url: "https://github.com/tseemann/snippy"
+
     - title: "Patch ncbi-genome-download recipe"
       date: 2023-06-22
       pr_url: "https://github.com/bioconda/bioconda-recipes/pull/41640"

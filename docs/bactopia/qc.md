@@ -173,13 +173,13 @@ files for you to review if the need ever arises.
 | Parameter | Description |
 |:---|---|
 | <i class="fa-lg fas fa-fast-forward"></i>` --use_bbmap` | Illumina reads will be QC'd using BBMap <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --use_porechop` | Use Porechop to remove adapters from ONT reads <br/>**Type:** `boolean`, **Default:** `turned off` |
+| <i class="fa-lg fas fa-fast-forward"></i>` --use_porechop` | Use Porechop to remove adapters from ONT reads <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-fast-forward"></i>` --skip_qc` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-fast-forward"></i>` --skip_qc_plots` | QC Plot creation by FastQC or Nanoplot will be skipped <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-fast-forward"></i>` --skip_error_correction` | FLASH error correction of reads will be skipped. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-file-alt"></i>` --adapters` | A FASTA file containing adapters to remove <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-alt"></i>` --adapters` | A FASTA file containing adapters to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_ADAPTERS` |
 | <i class="fa-lg fas fa-hashtag"></i>` --adapter_k` | Kmer length used for finding adapters. <br/>**Type:** `integer`, **Default:** `23` |
-| <i class="fa-lg fas fa-file-alt"></i>` --phix` | phiX174 reference genome to remove <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-alt"></i>` --phix` | phiX174 reference genome to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_PHIX` |
 | <i class="fa-lg fas fa-hashtag"></i>` --phix_k` | Kmer length used for finding phiX174. <br/>**Type:** `integer`, **Default:** `31` |
 | <i class="fa-lg fas fa-boxes"></i>` --ktrim` | Trim reads to remove bases matching reference kmers <br/>**Type:** `string`, **Default:** `r` |
 | <i class="fa-lg fas fa-angle-double-down"></i>` --mink` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. <br/>**Type:** `integer`, **Default:** `11` |
@@ -198,10 +198,10 @@ files for you to review if the need ever arises.
 | <i class="fa-lg fas fa-hashtag"></i>` --sampleseed` | Set to a positive number to use as the random number generator seed for sampling <br/>**Type:** `integer`, **Default:** `42` |
 | <i class="fa-lg fas fa-angle-double-down"></i>` --ont_minlength` | ONT Reads shorter than this will be discarded <br/>**Type:** `integer`, **Default:** `1000` |
 | <i class="fa-lg fas fa-angle-double-down"></i>` --ont_minqual` | Minimum average read quality filter of ONT reads <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --porechop_opts` | Extra Porechop options in quotes <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --nanoplot_opts` | Extra NanoPlot options in quotes <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --bbduk_opts` | Extra BBDuk options in quotes <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --fastp_opts` | Extra fastp options in quotes <br/>**Type:** `integer` |
+| <i class="fa-lg fas fa-italic"></i>` --porechop_opts` | Extra Porechop options in quotes <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-italic"></i>` --nanoplot_opts` | Extra NanoPlot options in quotes <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-italic"></i>` --bbduk_opts` | Extra BBDuk options in quotes <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-italic"></i>` --fastp_opts` | Extra fastp options in quotes <br/>**Type:** `string` |
 
 ## Citations
 If you use Bactopia and `qc` in your analysis, please cite the following.

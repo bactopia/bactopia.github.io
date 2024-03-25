@@ -20,7 +20,7 @@ you valuable time by allowing you to make further use of the
 There are currently 60 Bactopia Tools that you can make use of.
 Below are a list of available Bactopia Tools, grouped as __Subworkflows__ and __Modules__. 
 
-#### Subworkflows (10)
+#### Subworkflows (11)
 
 Subworkflows string together tools to create an complete pipeline.  
 
@@ -36,9 +36,10 @@ Subworkflows string together tools to create an complete pipeline.
     | [scrubber](scrubber.md) | Scrub human reads from FASTQ files |
     | [snippy](snippy.md) | Rapid variant calling from Illumina sequence reads with optional core-SNP phylogeny |
     | [staphtyper](staphtyper.md) | Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes |
+    | [tbprofiler](tbprofiler.md) | Detect resistance and lineages of _Mycobacterium tuberculosis_ genomes |
     
 
-#### Modules  (50)
+#### Modules  (49)
 
 Modules are workflows consisting of only one tool.
 
@@ -65,7 +66,7 @@ Modules are workflows consisting of only one tool.
         | [ismapper](ismapper.md) | Identify insertion sites positions in bacterial genomes |
         | [kleborate](kleborate.md) | Screening Klebsiella genome assemblies for MLST, sub-species, and other related genes of interest |
         | [kraken2](kraken2.md) | Taxonomic classifications of sequence reads |
-    | [legsta](legsta.md) | Typing of Legionella pneumophila assemblies |
+        | [legsta](legsta.md) | Typing of Legionella pneumophila assemblies |
         | [lissero](lissero.md) | Serogroup typing prediction for _Listeria monocytogenes_ |
         | [mashdist](mashdist.md) | Calculate Mash distances between sequences |
         | [mcroni](mcroni.md) | Sequence variation in mcr-1 genes (mobilized colistin resistance) |
@@ -93,7 +94,6 @@ Modules are workflows consisting of only one tool.
         | [stecfinder](stecfinder.md) | Serotype of Shigatoxin producing E. coli using Illumina reads or assemblies |
         | [tblastn](tblastn.md) | Search against translated nucleotide BLAST databases using protein queries |
         | [tblastx](tblastx.md) | Search against translated nucleotide databases using a translated nucleotide query |
-        | [tbprofiler](tbprofiler.md) | Detect resistance and lineages of _Mycobacterium tuberculosis_ genomes |
         
 
 ### Common Inputs

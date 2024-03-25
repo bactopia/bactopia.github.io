@@ -18,9 +18,9 @@ community. To fulfill this aim, I incorporated several key design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided 176+ contributions to the bioinformatics community"
+!!! tip "Bactopia has provided 181+ contributions to the bioinformatics community"
     - [x] 11 stand-alone tools, each available from Bioconda
-    - [x] 30 new Conda recipes, 41 
+    - [x] 30 new Conda recipes, 46 
     updated recipes, and [2,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
     - [x] 68 contributions to nf-core/modules
     - [x] 26 contributions to other tools
@@ -61,7 +61,7 @@ to Bioconda, a Docker container is created by [Biocontainers](https://biocontain
 as well as a Singularity image is created by the [Galaxy Project](https://galaxyproject.org/).
 In essence, a single recipe contributes significantly to the broader community.
 
-Bactopia has led to  30 new recipes, 41
+Bactopia has led to  30 new recipes, 46
 updated recipes, and [more than 2,000 pull requests have been reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
 
 ### New Recipes
@@ -121,6 +121,11 @@ and improvements to some Bioconda recipes:
 
 | Tool | Description | Pull Request  |
 |------|-------------|---------------|
+| [abriTAMR](https://github.com/MDU-PHL/abritamr) | fix amrfinderplus pinning in abritamr | [bioconda/bioconda-recipes#46714](https://github.com/bioconda/bioconda-recipes/pull/46714) |
+| [Gubbins](https://github.com/nickjcroucher/gubbins) | adjust python pinning in gubbins | [bioconda/bioconda-recipes#46713](https://github.com/bioconda/bioconda-recipes/pull/46713) |
+| [SISTR](https://github.com/phac-nml/sistr_cmd) | fix issue with sistr container | [bioconda/bioconda-recipes#46712](https://github.com/bioconda/bioconda-recipes/pull/46712) |
+| [RGI](https://github.com/arpcard/rgi) | Update rgi pinning for pyrodigal | [bioconda/bioconda-recipes#46669](https://github.com/bioconda/bioconda-recipes/pull/46669) |
+| [Snippy](https://github.com/tseemann/snippy) | pin tabix version in snippy | [bioconda/bioconda-recipes#46458](https://github.com/bioconda/bioconda-recipes/pull/46458) |
 | [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) | Patch ncbi-genome-download recipe | [bioconda/bioconda-recipes#41640](https://github.com/bioconda/bioconda-recipes/pull/41640) |
 | [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk) | Update GTDB-tk recipe | [bioconda/bioconda-recipes#40333](https://github.com/bioconda/bioconda-recipes/pull/40333) |
 | [mlst](https://github.com/tseemann/mlst) | update midas pinnings to match docs | [bioconda/bioconda-recipes#38826](https://github.com/bioconda/bioconda-recipes/pull/38826) |

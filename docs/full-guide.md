@@ -302,13 +302,13 @@ excluding these samples, complete pipeline failures are prevented.
 | Parameter | Description |
 |:---|---|
 | <i class="fa-lg fas fa-fast-forward"></i>` --use_bbmap` | Illumina reads will be QC'd using BBMap <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --use_porechop` | Use Porechop to remove adapters from ONT reads <br/>**Type:** `boolean`, **Default:** `turned off` |
+| <i class="fa-lg fas fa-fast-forward"></i>` --use_porechop` | Use Porechop to remove adapters from ONT reads <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-fast-forward"></i>` --skip_qc` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-fast-forward"></i>` --skip_qc_plots` | QC Plot creation by FastQC or Nanoplot will be skipped <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-fast-forward"></i>` --skip_error_correction` | FLASH error correction of reads will be skipped. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-file-alt"></i>` --adapters` | A FASTA file containing adapters to remove <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-alt"></i>` --adapters` | A FASTA file containing adapters to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_ADAPTERS` |
 | <i class="fa-lg fas fa-hashtag"></i>` --adapter_k` | Kmer length used for finding adapters. <br/>**Type:** `integer`, **Default:** `23` |
-| <i class="fa-lg fas fa-file-alt"></i>` --phix` | phiX174 reference genome to remove <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-alt"></i>` --phix` | phiX174 reference genome to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_PHIX` |
 | <i class="fa-lg fas fa-hashtag"></i>` --phix_k` | Kmer length used for finding phiX174. <br/>**Type:** `integer`, **Default:** `31` |
 | <i class="fa-lg fas fa-boxes"></i>` --ktrim` | Trim reads to remove bases matching reference kmers <br/>**Type:** `string`, **Default:** `r` |
 | <i class="fa-lg fas fa-angle-double-down"></i>` --mink` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. <br/>**Type:** `integer`, **Default:** `11` |
@@ -327,10 +327,10 @@ excluding these samples, complete pipeline failures are prevented.
 | <i class="fa-lg fas fa-hashtag"></i>` --sampleseed` | Set to a positive number to use as the random number generator seed for sampling <br/>**Type:** `integer`, **Default:** `42` |
 | <i class="fa-lg fas fa-angle-double-down"></i>` --ont_minlength` | ONT Reads shorter than this will be discarded <br/>**Type:** `integer`, **Default:** `1000` |
 | <i class="fa-lg fas fa-angle-double-down"></i>` --ont_minqual` | Minimum average read quality filter of ONT reads <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --porechop_opts` | Extra Porechop options in quotes <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --nanoplot_opts` | Extra NanoPlot options in quotes <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --bbduk_opts` | Extra BBDuk options in quotes <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --fastp_opts` | Extra fastp options in quotes <br/>**Type:** `integer` |
+| <i class="fa-lg fas fa-italic"></i>` --porechop_opts` | Extra Porechop options in quotes <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-italic"></i>` --nanoplot_opts` | Extra NanoPlot options in quotes <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-italic"></i>` --bbduk_opts` | Extra BBDuk options in quotes <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-italic"></i>` --fastp_opts` | Extra fastp options in quotes <br/>**Type:** `string` |
 
 ### Citations
 If you use Bactopia and `qc` results in your analysis, please cite the following.
@@ -1399,20 +1399,6 @@ You can use these parameters to fine-tune your meningotype analysis
 |:---|---|
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hamming` | Report the results as hamming distances <br/>**Type:** `boolean` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> TBProfiler 
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --call_whole_genome` | Call whole genome <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mapper` | Mapping tool to use. If you are using nanopore data it will default to minimap2 <br/>**Type:** `string`, **Default:** `bwa` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --caller` | Variant calling tool to use <br/>**Type:** `string`, **Default:** `freebayes` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --calling_params` | Extra variant caller options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --suspect` | Use the suspect suite of tools to add ML predictions <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_flagstat` | Don't collect flagstats <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_delly` | Don't run delly <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --tbprofiler_opts` | Extra options in quotes for TBProfiler <br/>**Type:** `string` |
-
 ### Citations
 If you use Bactopia and `merlin` results in your analysis, please cite the following.
 
@@ -1501,8 +1487,7 @@ These optional parameters can be useful in certain settings.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-folder"></i>` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `./` |
-| <i class="fa-lg fas fa-folder"></i>` --run_name` | Name of the directory to hold results <br/>**Type:** `string`, **Default:** `bactopia` |
+| <i class="fa-lg fas fa-folder"></i>` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `bactopia` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-folder"></i>` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-trash-restore"></i>` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
@@ -1529,6 +1514,18 @@ Set the top limit for requested resources for any single job.
 | <i class="fa-lg fas fa-recycle"></i>` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-trash-alt"></i>` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
 
+### <i class="fa-xl fas fa-university"></i> Institutional config options
+ used to describe centralized config profiles. These should not be edited.
+
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_version` | Git commit id for Institutional configs. <br/>**Type:** `string`, **Default:** `master` |
+| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_base` | Base directory for Institutional configs. <br/>**Type:** `string`, **Default:** `https://raw.githubusercontent.com/nf-core/configs/master` |
+| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_name` | Institutional config name. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_description` | Institutional config description. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_contact` | Institutional config contact information. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_url` | Institutional config URL link. <br/>**Type:** `string` |
+
 ### <i class="fa-xl fa-regular fa-address-card"></i> Nextflow Profile 
  to fine-tune your Nextflow setup.
 
@@ -1537,11 +1534,12 @@ Set the top limit for requested resources for any single job.
 | <i class="fa-lg fas fa-folder"></i>` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-box"></i>` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
 | <i class="fa-lg fas fa-folder"></i>` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
-| <i class="fa-lg fas fa-folder"></i>` --singularity_cache` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-folder"></i>` --singularity_cache_dir` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-toolbox"></i>` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-recycle"></i>` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-clipboard-list"></i>` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
 | <i class="fa-lg fas fa-clipboard-list"></i>` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-clipboard-list"></i>` --container_opts` | Additional options to pass to Apptainer, Docker, or Singularityu. (e.g. Singularity: '-D `pwd`' <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-toggle-off"></i>` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
 
 ### <i class="fa-xl fa-solid fa-reply-all"></i> Helpful 

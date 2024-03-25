@@ -2,7 +2,8 @@
 site_name: Bactopia
 site_author: Robert A. Petit III
 site_description: An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
-copyright: "Copyright © 2019-2023 Robert A. Petit III. All rights reserved."
+copyright: >
+  Copyright © 2019-2024 Robert A. Petit III. All rights reserved. <a href="#__consent">Change Cookie Settings</a>
 
 site_url: https://bactopia.github.io/
 repo_url: https://github.com/bactopia/bactopia
@@ -36,7 +37,9 @@ theme:
     text: 'Ubuntu'
     code: 'Ubuntu Mono'
   features:
+    - announce.dismiss
     - content.action.edit
+    - content.code.copy
     - navigation.footer
     - navigation.instant
     - navigation.instant.prefetch
@@ -45,6 +48,16 @@ theme:
     - navigation.tracking
     - navigation.top
 
+plugins:
+  - blog:
+      archive: false
+      post_date_format: medium
+      post_url_date_format: yyyy
+      post_excerpt: optional
+  - privacy
+  - search:
+      lang: en
+
 extra:
   analytics:
     provider: google
@@ -52,14 +65,17 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/bactopia/bactopia
-    - icon: fontawesome/brands/gitter
-      link: https://gitter.im/bactopia/Lobby
-    - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/r/bactopia/bactopia
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/rpetit3
   version:
     provider: mike
+  consent:
+    title: Cookie Consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
 
 extra_css:
   - custom/magnific-popup.css
@@ -88,9 +104,12 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.highlight
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.magiclink:
@@ -157,5 +176,5 @@ nav:
     - 'Citations': 'impact-and-outreach/citations.md'
     - 'Enhancements to OSS': 'impact-and-outreach/enhancements.md'
     - 'Presentations': 'impact-and-outreach/presentations.md'
-#  - Blog:
-#    - blog/index.md
+  - Blog:
+    - blog/index.md

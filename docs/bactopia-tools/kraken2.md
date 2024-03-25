@@ -2,21 +2,21 @@
 title: kraken2
 description: A Bactopia Tool which uses Kraken2 to assign taxonomic classifications to your sequence reads.
 ---
-# Bactopia Tool - `kraken`
+# Bactopia Tool - `kraken2`
 The `kraken2` module uses [Kraken2](https://github.com/DerrickWood/kraken2) to assign taxonomic 
 classifications to your sequence reads.
 
 
 ## Example Usage
 ```
-bactopia --wf kraken \
+bactopia --wf kraken2 \
   --bactopia /path/to/your/bactopia/results \ 
   --include includes.txt  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `kraken` tool. Where possible the 
+Below is the default output structure for the `kraken2` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
@@ -86,10 +86,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| kraken-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| kraken-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| kraken-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| kraken-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| kraken2-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| kraken2-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| kraken2-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| kraken2-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -135,6 +135,7 @@ Use these parameters to specify which samples to include or exclude.
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --use_names` | Print scientific names instead of just taxids <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --memory_mapping` | Avoid loading database into RAM <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --minimum_hit_groups` | Minimum number of hit groups needed to make a call <br/>**Type:** `integer`, **Default:** `2` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --remove_filtered_reads` | Discard the classified and unclassified FASTQs produced by Kraken2 <br/>**Type:** `boolean` |
 
 
 ### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
@@ -142,8 +143,7 @@ These optional parameters can be useful in certain settings.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-folder"></i>` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `./` |
-| <i class="fa-lg fas fa-folder"></i>` --run_name` | Name of the directory to hold results <br/>**Type:** `string`, **Default:** `bactopia` |
+| <i class="fa-lg fas fa-folder"></i>` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `bactopia` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-folder"></i>` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-trash-restore"></i>` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
@@ -170,6 +170,18 @@ Parameters to fine-tune your Nextflow setup.
 | <i class="fa-lg fas fa-recycle"></i>` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-trash-alt"></i>` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
 
+### <i class="fa-xl fas fa-university"></i> Institutional config options
+Parameters used to describe centralized config profiles. These should not be edited.
+
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_version` | Git commit id for Institutional configs. <br/>**Type:** `string`, **Default:** `master` |
+| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_base` | Base directory for Institutional configs. <br/>**Type:** `string`, **Default:** `https://raw.githubusercontent.com/nf-core/configs/master` |
+| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_name` | Institutional config name. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_description` | Institutional config description. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_contact` | Institutional config contact information. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_url` | Institutional config URL link. <br/>**Type:** `string` |
+
 ### <i class="fa-xl fa-regular fa-address-card"></i> Nextflow Profile Parameters
 Parameters to fine-tune your Nextflow setup.
 
@@ -178,11 +190,12 @@ Parameters to fine-tune your Nextflow setup.
 | <i class="fa-lg fas fa-folder"></i>` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-box"></i>` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
 | <i class="fa-lg fas fa-folder"></i>` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
-| <i class="fa-lg fas fa-folder"></i>` --singularity_cache` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-folder"></i>` --singularity_cache_dir` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-toolbox"></i>` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-recycle"></i>` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-clipboard-list"></i>` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
 | <i class="fa-lg fas fa-clipboard-list"></i>` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-clipboard-list"></i>` --container_opts` | Additional options to pass to Apptainer, Docker, or Singularityu. (e.g. Singularity: '-D `pwd`' <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-toggle-off"></i>` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
 
 ### <i class="fa-xl fa-solid fa-reply-all"></i> Helpful Parameters
@@ -202,7 +215,7 @@ Uncommonly used parameters that might be useful.
 | <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
-If you use Bactopia and `kraken` in your analysis, please cite the following.
+If you use Bactopia and `kraken2` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
