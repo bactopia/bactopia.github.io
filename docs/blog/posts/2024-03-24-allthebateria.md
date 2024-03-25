@@ -10,6 +10,7 @@ pin: true
 links:
   - installation.md
 slug: bactopia-allthebacteria-tutorial
+description: Learn how to use Bactopia to analyze nearly 2,000,000 bacterial assemblies from the AllTheBacteria project.
 ---
 
 # Using Bactopia with AllTheBacteria Assemblies
