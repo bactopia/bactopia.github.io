@@ -111,9 +111,22 @@
       
     </div>
     
-      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
-        
-      </div>
+    <div data-md-color-scheme="default" data-md-component="outdated">
+      <aside class="md-banner md-banner--warning">
+        <div class="md-banner__inner md-grid md-typeset">
+          You're not viewing the latest version.
+          <a href="https://bactopia.github.io/"> 
+            <strong>Click here to go to latest.</strong>
+          </a>
+        </div>
+        <script>
+          var el = document.querySelector("[data-md-component=outdated]")
+          var outdated = __md_get("__outdated", sessionStorage)
+          if (outdated === true && el)
+            el.hidden = false
+        </script>
+      </aside>
+    </div>
     
     
       
