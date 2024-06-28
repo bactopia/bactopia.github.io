@@ -68,7 +68,7 @@ Bactopia on. We will look at the following inputs:
 
 ### Illumina and/or Nanopore Reads
 
-Let's start with the most common inputs, plain old FASTQ files for a _single sample_. Bactopia
+Let's start with the most common inputs, plain on FASTQ files for a _single sample_. Bactopia
 accepts both Illumina (pair-end or single-end) and Nanopore reads, and can even process them
 together for a hybrid assembly.
 
@@ -218,7 +218,7 @@ file will be processed by Bactopia just like your normal local FASTQs.
 !!! question "Why only Experiment accessions?"
     In the grand scheme of accession hierarchies, Experiment accessions are really the only
     unique ones. For example, a multiple Run accessions can be associated with a single
-    Experiment accession. Or, multiple Experiment accessions can be associated with a single
+    Experiment accession. Or, multiple Exeriment accessions can be associated with a single
     BioSample accession. So, by using Experiment accessions, you can be confident you are
     getting only the sequences associated with that "_unique_" Experiment.
 
@@ -247,7 +247,7 @@ to go fetch the associated assembly and process it just like a local assembly.
     ```
 
 !!! question "Do I need to provide the assembly version? (e.g. GCF_000000000.1)"
-    Over time I've found the assembly version to be unstable. For example, sometimes
+    Overtime I've found the assembly version to be unstable. For example, sometimes
     an assembly might be corrected, and the previous version is not made available
     any longer. So, to avoid any issues, Bactopia will always use the latest version
     of a given NCBI Assembly accession.
@@ -623,7 +623,7 @@ With this, Nextflow will use Docker to run all the processes in Bactopia (even t
 Bactopia is installed with Conda!).
 
 !!! tip "Always prefer containers over Conda"
-    While I will be the first to admit that I love Conda, it is not perfect. Over time tools
+    While I will be the first to admit that I love Conda, it is not perfect. Overtime tools
     can become broken or incompatible due to dependencies. Containers are a great way
     to avoid these issues. If you are using Bactopia, and have Docker or Singularity
     available I would recommend using them over Conda.
