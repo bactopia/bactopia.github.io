@@ -57,6 +57,10 @@ plugins:
   - privacy
   - search:
       lang: en
+  - social:
+      enabled: true
+      cache: true
+      cards: true
 
 extra:
   analytics:
