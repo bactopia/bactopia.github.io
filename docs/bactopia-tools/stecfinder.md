@@ -12,8 +12,7 @@ as well as the O-antigen and H-antigens.
 ## Example Usage
 ```
 bactopia --wf stecfinder \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

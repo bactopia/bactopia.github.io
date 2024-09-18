@@ -10,8 +10,7 @@ _in silico_ multi-antigen sequence typing for _Neisseria gonorrhoeae_ (NG-MAST).
 ## Example Usage
 ```
 bactopia --wf ngmaster \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

@@ -10,8 +10,7 @@ assemblies. If _mcr-1_ is found, the variations will be reported and available i
 ## Example Usage
 ```
 bactopia --wf mcroni \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

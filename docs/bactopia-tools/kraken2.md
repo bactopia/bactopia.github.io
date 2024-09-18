@@ -10,8 +10,7 @@ classifications to your sequence reads.
 ## Example Usage
 ```
 bactopia --wf kraken2 \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

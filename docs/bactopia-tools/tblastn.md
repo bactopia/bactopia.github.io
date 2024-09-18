@@ -11,8 +11,7 @@ to query protein sequences against translated nucleotide databases (contigs) for
 ## Example Usage
 ```
 bactopia --wf tblastn \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

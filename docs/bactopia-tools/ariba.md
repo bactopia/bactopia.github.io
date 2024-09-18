@@ -10,8 +10,7 @@ to rapidly identify genes in a database by creating local assemblies.
 ## Example Usage
 ```
 bactopia --wf ariba \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

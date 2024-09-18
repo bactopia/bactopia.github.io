@@ -10,8 +10,7 @@ resistance genes in assemblies.
 ## Example Usage
 ```
 bactopia --wf rgi \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

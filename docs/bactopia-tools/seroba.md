@@ -10,8 +10,7 @@ serotype of _Streptococcus pneumoniae_ samples with Illumina paired-end reads.
 ## Example Usage
 ```
 bactopia --wf seroba \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

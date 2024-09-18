@@ -11,8 +11,7 @@ to provide extensive annotations including: tRNA, tmRNA, rRNA, ncRNA, CRISPR, CD
 ## Example Usage
 ```
 bactopia --wf bakta \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

@@ -8,8 +8,7 @@ The `staphopiasccmec` module uses [staphopia-sccmec](https://github.com/staphopi
 ## Example Usage
 ```
 bactopia --wf staphopiasccmec \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

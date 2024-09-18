@@ -30,8 +30,7 @@ Then all the spells will be unleashed!
 ## Example Usage
 ```
 bactopia --wf merlin \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

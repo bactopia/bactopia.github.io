@@ -10,8 +10,7 @@ Shigella serotype using Illumina (single or paired-end) or Oxford Nanopore reads
 ## Example Usage
 ```
 bactopia --wf shigatyper \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

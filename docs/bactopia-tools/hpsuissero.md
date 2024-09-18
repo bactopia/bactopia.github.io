@@ -10,8 +10,7 @@ the serotype of _Haemophilus parasuis_ assemblies.
 ## Example Usage
 ```
 bactopia --wf hpsuissero \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

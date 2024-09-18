@@ -17,8 +17,7 @@ Finally, the pair-wise SNP distance for each sample is also calculated with
 ## Example Usage
 ```
 bactopia --wf snippy \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

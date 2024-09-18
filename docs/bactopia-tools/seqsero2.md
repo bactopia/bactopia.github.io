@@ -10,8 +10,7 @@ serotype prediction from reads and assemblies.
 ## Example Usage
 ```
 bactopia --wf seqsero2 \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

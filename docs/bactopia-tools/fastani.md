@@ -15,8 +15,7 @@ or a species name (`--species`) for which to download all RefSeq genomes.
 ## Example Usage
 ```
 bactopia --wf fastani \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

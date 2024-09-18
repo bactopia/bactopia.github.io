@@ -11,8 +11,7 @@ a specific scheme to scan, you can provide it with `--scheme`.
 ## Example Usage
 ```
 bactopia --wf mlst \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

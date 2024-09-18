@@ -8,8 +8,7 @@ The `spatyper` module uses [spaTyper](https://github.com/HCGB-IGTP/spaTyper) to 
 ## Example Usage
 ```
 bactopia --wf spatyper \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

@@ -11,8 +11,7 @@ to query nucleotide sequences against nucleotide databases (contigs or genes) fo
 ## Example Usage
 ```
 bactopia --wf blastn \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

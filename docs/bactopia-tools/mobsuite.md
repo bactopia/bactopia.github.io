@@ -8,8 +8,7 @@ The `mobsuite` module uses [MOB-suite](https://github.com/phac-nml/mob-suite) to
 ## Example Usage
 ```
 bactopia --wf mobsuite \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

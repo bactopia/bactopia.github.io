@@ -10,8 +10,7 @@ from the outputs of [Mykrobe](https://github.com/Mykrobe-tools/mykrobe).
 ## Example Usage
 ```
 bactopia --wf genotyphi \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

@@ -10,8 +10,7 @@ to identify and remove any potential human reads.
 ## Example Usage
 ```
 bactopia --wf scrubber \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

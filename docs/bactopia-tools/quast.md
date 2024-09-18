@@ -12,8 +12,7 @@ can be evaluated.
 ## Example Usage
 ```
 bactopia --wf quast \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

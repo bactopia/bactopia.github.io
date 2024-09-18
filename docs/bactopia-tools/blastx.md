@@ -11,8 +11,7 @@ to query translated nucleotide sequences against protein databases for each samp
 ## Example Usage
 ```
 bactopia --wf blastx \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

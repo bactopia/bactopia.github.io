@@ -10,8 +10,7 @@ to rapidly identify the _agr_ locus type in _Staphylococcus aureus_ assemblies.
 ## Example Usage
 ```
 bactopia --wf agrvate \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

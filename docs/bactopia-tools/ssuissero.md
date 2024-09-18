@@ -10,8 +10,7 @@ the serotype of _Streptococcus suis_ assemblies.
 ## Example Usage
 ```
 bactopia --wf ssuissero \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

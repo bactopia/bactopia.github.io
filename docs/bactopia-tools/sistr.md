@@ -10,8 +10,7 @@ or SISTR, for serovar prediction of Salmonella assemblies.
 ## Example Usage
 ```
 bactopia --wf sistr \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

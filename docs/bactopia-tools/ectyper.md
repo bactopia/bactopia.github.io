@@ -11,8 +11,7 @@ tp provide basic species identification and the predicted _E. coli_ serotype (e.
 ## Example Usage
 ```
 bactopia --wf ectyper \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

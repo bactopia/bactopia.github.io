@@ -10,8 +10,7 @@ distance from a given reference genome(s).
 ## Example Usage
 ```
 bactopia --wf mashdist \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

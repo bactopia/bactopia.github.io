@@ -16,8 +16,7 @@ _Klebsiella pneumoniae_ and the _Klebsiella pneumoniae_ species complex (KpSC). 
 ## Example Usage
 ```
 bactopia --wf kleborate \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

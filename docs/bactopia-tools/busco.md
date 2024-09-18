@@ -10,8 +10,7 @@ to assess the completeness of your assembly.
 ## Example Usage
 ```
 bactopia --wf busco \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

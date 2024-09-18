@@ -13,8 +13,7 @@ reporting presence of reportable AMR genes in Victoria Australia.
 ## Example Usage
 ```
 bactopia --wf abritamr \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

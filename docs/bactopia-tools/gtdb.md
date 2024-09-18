@@ -13,8 +13,7 @@ the taxonomy of your samples.
 ## Example Usage
 ```
 bactopia --wf gtdb \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

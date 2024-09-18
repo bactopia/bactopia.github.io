@@ -10,8 +10,7 @@ for profiling reads to determine resistance and _Mycobacterium tuberculosis_ str
 ## Example Usage
 ```
 bactopia --wf tbprofiler \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

@@ -10,8 +10,7 @@ The `plasmidfinder` module identifies plasmids in total or partial sequenced iso
 ## Example Usage
 ```
 bactopia --wf plasmidfinder \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

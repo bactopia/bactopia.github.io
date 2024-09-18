@@ -10,8 +10,7 @@ antimicrobial resistance for _Mycobacterium tuberculosis_, _Staphylococcus aureu
 ## Example Usage
 ```
 bactopia --wf mykrobe \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

@@ -10,8 +10,7 @@ genomes recovered from isolates, single cells, and metagenomes.
 ## Example Usage
 ```
 bactopia --wf checkm \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

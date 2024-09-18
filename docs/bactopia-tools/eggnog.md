@@ -11,8 +11,7 @@ from the eggNOG database to more precisely functionally annotate than traditiona
 ## Example Usage
 ```
 bactopia --wf eggnog \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

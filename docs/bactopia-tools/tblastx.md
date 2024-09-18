@@ -11,8 +11,7 @@ to query translated nucleotide sequences against translated nucleotide databases
 ## Example Usage
 ```
 bactopia --wf tblastx \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

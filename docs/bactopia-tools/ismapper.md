@@ -10,8 +10,7 @@ insertion sites in your samples.
 ## Example Usage
 ```
 bactopia --wf ismapper \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

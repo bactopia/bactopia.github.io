@@ -10,8 +10,7 @@ serogrouping of _Pseudomonas aeruginosa_ isolates.
 ## Example Usage
 ```
 bactopia --wf pasty \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

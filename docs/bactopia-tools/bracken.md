@@ -12,8 +12,7 @@ automatically and generate [Krona](https://github.com/marbl/Krona) charts for bo
 ## Example Usage
 ```
 bactopia --wf bracken \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

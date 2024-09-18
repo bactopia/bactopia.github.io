@@ -10,8 +10,7 @@ the Penicillin Binding Protein (PBP) of _Streptococcus pneumoniae_ assemblies.
 ## Example Usage
 ```
 bactopia --wf pbptyper \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

@@ -10,8 +10,7 @@ emm-typing of _Streptococcus pyogenes_ using a de novo or complete assembly.
 ## Example Usage
 ```
 bactopia --wf emmtyper \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

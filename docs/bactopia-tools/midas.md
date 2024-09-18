@@ -12,8 +12,7 @@ more than 30,000 reference genomes to estimate abundances.
 ## Example Usage
 ```
 bactopia --wf midas \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

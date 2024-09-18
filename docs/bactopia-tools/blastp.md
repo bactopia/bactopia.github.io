@@ -11,8 +11,7 @@ to query protein sequences against protein databases for each sample.
 ## Example Usage
 ```
 bactopia --wf blastp \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

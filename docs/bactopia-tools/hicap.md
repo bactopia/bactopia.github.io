@@ -10,8 +10,7 @@ the _in silico_ typing of the _Haemophilus influenzae_ cap locus.
 ## Example Usage
 ```
 bactopia --wf hicap \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

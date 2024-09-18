@@ -10,8 +10,7 @@ _in silico_ serotype prediction for _Listeria monocytogenes_ assemblies.
 ## Example Usage
 ```
 bactopia --wf lissero \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

@@ -10,8 +10,7 @@ translated gene matches from assemblies.
 ## Example Usage
 ```
 bactopia --wf gamma \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

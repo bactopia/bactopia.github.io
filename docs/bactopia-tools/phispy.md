@@ -11,8 +11,7 @@ from bacterial and archaeal genomes.
 ## Example Usage
 ```
 bactopia --wf phispy \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

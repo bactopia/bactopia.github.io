@@ -11,8 +11,7 @@ tp provide basic species identification and the predicted serotype (e.g. O174:H2
 ## Example Usage
 ```
 bactopia --wf shigeifinder \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

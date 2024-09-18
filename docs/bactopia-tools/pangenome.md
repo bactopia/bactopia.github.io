@@ -23,8 +23,7 @@ using [Scoary](https://github.com/AdmiralenOla/Scoary).
 ## Example Usage
 ```
 bactopia --wf pangenome \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview

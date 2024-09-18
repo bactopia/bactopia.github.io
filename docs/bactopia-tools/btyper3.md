@@ -11,8 +11,7 @@ Bacillus cereus group isolates from genome assemblies.
 ## Example Usage
 ```
 bactopia --wf btyper3 \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt  
+  --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview
