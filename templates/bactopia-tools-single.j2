@@ -8,8 +8,7 @@ description: {{ meta.docs.meta.description }}
 ## Example Usage
 ```
 bactopia --wf {{ meta.name }} \
-  --bactopia /path/to/your/bactopia/results \ 
-  --include includes.txt {% if 'example' in meta %} \
+  --bactopia /path/to/your/bactopia/results {% if 'example' in meta %} \
   meta.example
   {% endif %} 
 ```
