@@ -628,6 +628,13 @@ Use these parameters to specify which samples to include or exclude.
 |:---|---|
 | <i class="fa-lg fa-solid fa-toggle-on"></i>` --typing_only` | agr typing only. Skips agr operon extraction and frameshift detection <br/>**Type:** `boolean` |
 
+### <i class="fa-xl fas fa-exclamation-circle"></i> ClermonTyping Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-file-alt"></i>` --clermon_threshold` | Do not use contigs under this size <br/>**Type:** `number` |
+
 ### <i class="fa-xl fas fa-exclamation-circle"></i> ECTyper Parameters
 
 
@@ -769,6 +776,20 @@ You can use these parameters to fine-tune your meningotype analysis
 | Parameter | Description |
 |:---|---|
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hamming` | Report the results as hamming distances <br/>**Type:** `boolean` |
+
+### <i class="fa-xl fas fa-exclamation-circle"></i> TBProfiler Profile Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --call_whole_genome` | Call whole genome <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mapper` | Mapping tool to use. If you are using nanopore data it will default to minimap2 <br/>**Type:** `string`, **Default:** `bwa` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --caller` | Variant calling tool to use <br/>**Type:** `string`, **Default:** `freebayes` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --calling_params` | Extra variant caller options in quotes <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --suspect` | Use the suspect suite of tools to add ML predictions <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_flagstat` | Don't collect flagstats <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_delly` | Don't run delly <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-italic"></i>` --tbprofiler_opts` | Extra options in quotes for TBProfiler <br/>**Type:** `string` |
 
 
 ### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters

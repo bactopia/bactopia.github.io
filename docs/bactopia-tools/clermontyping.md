@@ -1,71 +1,85 @@
 ---
-title: tbprofiler
-description: A Bactopia Tool which uses TBProfiler for profiling reads to determine resistance and _Mycobacterium tuberculosis_ strain type.
+title: clermontyping
+description: A Bactopia Tool which uses ClermonTyping to conduct _in silico_ phylotyping of _Escherichia_ genomes.
 ---
-# Bactopia Tool - `tbprofiler`
-The `tbprofiler` module uses [TBProfiler](https://github.com/jodyphelan/TBProfiler) 
-for profiling reads to determine resistance and _Mycobacterium tuberculosis_ strain type.
+# Bactopia Tool - `clermontyping`
+The `clermontyping` module used [ClermonTyping](https://github.com/happykhan/ClermonTyping)
+to conduct _in silico_ prediction of phylotype for _Escherichia_ genomes. It uses the
+genome assemblies to be assign them to _E. albertii_, _E. fergusonii_, _Escherichia_
+clades I–V, _E. coli sensu stricto_ as well as to the main _E. coli_ phylogroups
 
 
 ## Example Usage
 ```
-bactopia --wf tbprofiler \
+bactopia --wf clermontyping \
   --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `tbprofiler` tool. Where possible the 
+Below is the default output structure for the `clermontyping` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── tools
-│       └── tbprofiler
-│           ├── bam
-│           │   └── <SAMPLE_NAME>.bam
-│           ├── logs
-│           │   ├── nf-tbprofiler.{begin,err,log,out,run,sh,trace}
-│           │   └── versions.yml
-│           ├── <SAMPLE_NAME>.results.csv
-│           ├── <SAMPLE_NAME>.results.json
-│           ├── <SAMPLE_NAME>.results.txt
-│           └── vcf
-│               └── <SAMPLE_NAME>.targets.csq.vcf.gz
+│       └── clermontyping
+│           ├── <SAMPLE_NAME>.blast.xml
+│           ├── <SAMPLE_NAME>.html
+│           ├── <SAMPLE_NAME>.mash.tsv
+│           ├── <SAMPLE_NAME>.phylogroups.txt
+│           └── logs
+│               ├── nf-clermontyping.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
 └── bactopia-runs
-    └── tbprofiler-<TIMESTAMP>
+    └── clermontyping
+        ├── merged-results
+        │   ├── clermontyping.tsv
+        │   └── logs
+        │       └── clermontyping-concat
+        │           ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
         └── nf-reports
-            ├── tbprofiler-dag.dot
-            ├── tbprofiler-report.html
-            ├── tbprofiler-timeline.html
-            └── tbprofiler-trace.txt
+            ├── clermontyping-dag.dot
+            ├── clermontyping-report.html
+            ├── clermontyping-timeline.html
+            └── clermontyping-trace.txt
 
 ```
 
 !!! info "Directory structure might be different"
 
-    `tbprofiler` is available as a standalone Bactopia Tool, as well as from
+    `clermontyping` is available as a standalone Bactopia Tool, as well as from
     the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
-    from Bactopia, the `tbprofiler` directory structure might be different, but the
+    from Bactopia, the `clermontyping` directory structure might be different, but the
     output descriptions below still apply.
 
 
 
 ### Results
 
-#### TBProfiler
+#### Merged Results
 
-Below is a description of the _per-sample_ results from [TBProfiler](https://github.com/jodyphelan/TBProfiler).
+Below are results that are concatenated into a single file.
 
 
 | Filename                      | Description |
 |-------------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;.results.csv | A CSV formated `TBProfiler` result file of resistance and strain type |
-| &lt;SAMPLE_NAME&gt;.results.json | A JSON formated `TBProfiler` result file of resistance and strain type |
-| &lt;SAMPLE_NAME&gt;.results.txt | A text file with `TBProfiler` results |
-| &lt;SAMPLE_NAME&gt;.bam | BAM file with alignment details |
-| &lt;SAMPLE_NAME&gt;.targets.csq.vcf.gz | VCF with variant info again reference genomes |
+| clermontyping.csv | A merged TSV file with `ClermonTyping` results from all samples |
+
+
+#### ClermonTyping
+
+Below is a description of the _per-sample_ results from [ClermonTyping](https://github.com/happykhan/ClermonTyping).
+
+
+| Extension                     | Description |
+|-------------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.blast.xml | A BLAST XML file with the results of the ClermonTyping analysis |
+| &lt;SAMPLE_NAME&gt;.html | A HTML file with the results of the ClermonTyping analysis |
+| &lt;SAMPLE_NAME&gt;.mash.tsv | A TSV file with the Mash distances |
+| &lt;SAMPLE_NAME&gt;.phylogroups.txt | A TSV file with the final phylogroup assignments |
 
 
 
@@ -98,10 +112,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| tbprofiler-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| tbprofiler-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| tbprofiler-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| tbprofiler-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| clermontyping-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| clermontyping-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| clermontyping-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| clermontyping-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -132,19 +146,12 @@ Use these parameters to specify which samples to include or exclude.
 | <i class="fa-lg far fa-square-minus"></i>` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> TBProfiler Profile Parameters
+### <i class="fa-xl fas fa-exclamation-circle"></i> ClermonTyping Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --call_whole_genome` | Call whole genome <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mapper` | Mapping tool to use. If you are using nanopore data it will default to minimap2 <br/>**Type:** `string`, **Default:** `bwa` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --caller` | Variant calling tool to use <br/>**Type:** `string`, **Default:** `freebayes` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --calling_params` | Extra variant caller options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --suspect` | Use the suspect suite of tools to add ML predictions <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_flagstat` | Don't collect flagstats <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_delly` | Don't run delly <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --tbprofiler_opts` | Extra options in quotes for TBProfiler <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-file-alt"></i>` --clermon_threshold` | Do not use contigs under this size <br/>**Type:** `number` |
 
 
 ### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
@@ -224,12 +231,15 @@ Uncommonly used parameters that might be useful.
 | <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
-If you use Bactopia and `tbprofiler` in your analysis, please cite the following.
+If you use Bactopia and `clermontyping` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
   
 
-- [TBProfiler](https://github.com/jodyphelan/TBProfiler)  
-    Phelan JE, O’Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O’Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+- [ClermontTyping](https://github.com/happykhan/ClermonTyping)  
+    Beghain J, Bridier-Nahmias A, Le Nagard H, Denamur E, Clermont O. [ClermonTyping: an easy-to-use and accurate in silico method for Escherichia genus strain phylotyping.](https://doi.org/10.1099/mgen.0.000192) Microbial Genomics, 4(7), e000192. (2018)
+  
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+    Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
   
