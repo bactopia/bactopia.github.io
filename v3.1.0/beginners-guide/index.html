@@ -1,0 +1,5170 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A beginner's guide to getting started using Bactopia to process your bacterial genomes.">
+      
+      
+        <meta name="author" content="Robert A. Petit III">
+      
+      
+        <link rel="canonical" href="https://bactopia.github.io/v3.1.0/beginners-guide/">
+      
+      
+        <link rel="prev" href="../installation/">
+      
+      
+        <link rel="next" href="../tutorial/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.31+insiders-4.53.12">
+    
+    
+      
+        <title>Beginner's Guide - Bactopia</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.dad623df.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../assets/external/fonts.googleapis.com/css.2196aa76.css">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Ubuntu Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../custom/magnific-popup.css">
+    
+      <link rel="stylesheet" href="../custom/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-QH76FN9N78"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-QH76FN9N78",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-QH76FN9N78",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>var consent;"undefined"==typeof __md_analytics||(consent=__md_get("__consent"))&&consent.analytics&&__md_analytics()</script>
+  
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Beginner's Guide - Bactopia" />
+<meta property="og:description" content="A beginner's guide to getting started using Bactopia to process your bacterial genomes." />
+<meta property="og:image" content="https://bactopia.github.io/v3.1.0/assets/images/social/beginners-guide.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://bactopia.github.io/v3.1.0/beginners-guide/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Beginner's Guide - Bactopia" />
+<meta property="twitter:description" content="A beginner's guide to getting started using Bactopia to process your bacterial genomes." />
+<meta property="twitter:image" content="https://bactopia.github.io/v3.1.0/assets/images/social/beginners-guide.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gathering-inputs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Don't show this again">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  <!-- Add announcement here, including arbitrary HTML -->
+  🎉 Please take a minutes to complete the <a href="https://forms.gle/BA2BDHRQvZtpVcD38" target="_blank" rel="noopener">2024 Bactopia Usage Survey</a> 🎉
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+  You're not viewing the latest version.
+  <a href="../.."> 
+    <strong>Click here to go to latest.</strong>
+  </a>
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bactopia" class="md-header__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bactopia
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Beginner's Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href=".." class="md-tabs__link">
+          
+  
+  Bactopia
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../bactopia-tools/" class="md-tabs__link">
+          
+  
+  Bactopia Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../impact-and-outreach/" class="md-tabs__link">
+          
+  
+  Impact & Outreach
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../blog/" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bactopia" class="md-nav__button md-logo" aria-label="Bactopia" data-md-component="logo">
+      
+  <img src="../assets/bactopia-small-logo.png" alt="logo">
+
+    </a>
+    Bactopia
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bactopia/bactopia" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Bactopia
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bactopia
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-start/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    
+  
+    Beginner's Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Beginner's Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gathering-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gathering Inputs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gathering Inputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Sample
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Single Sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#illumina-andor-nanopore-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Illumina and/or Nanopore Reads
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Illumina and/or Nanopore Reads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paired-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paired-End
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-End
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nanopore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nanopore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hybrid Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-assembly-short-read-polishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hybrid Assembly (Short-read Polishing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enasra-accession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ENA/SRA Accession
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncbi-assembly-accession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NCBI Assembly Accession
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Samples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Samples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bactopia-prepare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bactopia prepare
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bactopia-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bactopia search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-helpful-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Helpful Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Helpful Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -resume
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-max_cpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --max_cpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-qs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -qs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-genome_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --genome_size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-nfconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --nfconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-cleanup_workdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --cleanup_workdir
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6" id="__nav_1_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workflow Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/gather/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Gather
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/qc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    QC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/assembler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Assembler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_6_4" id="__nav_1_6_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotator
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_1_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Annotator
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/annotator/prokka/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Prokka
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/annotator/bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Bakta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/sketcher/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Sketcher
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/sequence-typing/mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Typing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/antimicrobial-resistance/amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Antimicrobial Resistance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia/merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Merlin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../full-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Full Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Bactopia Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bactopia Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Subworkflows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subworkflows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ariba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ariba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/bakta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    bakta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/eggnog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    eggnog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/gtdb/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    gtdb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mashtree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mashtree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/merlin/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    merlin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/pangenome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pangenome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/scrubber/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    scrubber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/snippy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    snippy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/staphtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    staphtyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/tbprofiler/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tbprofiler
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/abricate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    abricate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/abritamr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    abritamr
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/agrvate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    agrvate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/amrfinderplus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    amrfinderplus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/blastn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/blastp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/blastx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    blastx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/bracken/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    bracken
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/btyper3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    btyper3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/busco/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    busco
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/checkm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    checkm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/clermontyping.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    clermontyping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/defensefinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    defensefinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ectyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ectyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/emmtyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    emmtyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/fastani/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    fastani
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/gamma/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    gamma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/genotyphi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    genotyphi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/hicap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    hicap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/hpsuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    hpsuissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ismapper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ismapper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/kleborate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    kleborate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/kraken2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    kraken2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/legsta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    legsta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/lissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    lissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mashdist/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mashdist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mcroni/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mcroni
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/meningotype/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    meningotype
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/midas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    midas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mlst/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mlst
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mobsuite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mobsuite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/mykrobe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    mykrobe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ngmaster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ngmaster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/pasty/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pasty
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/pbptyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pbptyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/phispy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    phispy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/plasmidfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    plasmidfinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/pneumocat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    pneumocat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/quast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    quast
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/rgi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    rgi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/sccmec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    sccmec
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/seqsero2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    seqsero2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/seroba/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    seroba
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/shigapass/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    shigapass
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/shigatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    shigatyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/shigeifinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    shigeifinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/sistr/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    sistr
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/spatyper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    spatyper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/ssuissero/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    ssuissero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/staphopiasccmec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    staphopiasccmec
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/stecfinder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    stecfinder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/tblastn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tblastn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bactopia-tools/tblastx/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    tblastx
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Impact & Outreach
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Impact & Outreach
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../impact-and-outreach/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Impact 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../impact-and-outreach/acknowledgements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Acknowledgements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../impact-and-outreach/citations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Citations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../impact-and-outreach/enhancements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Enhancements to OSS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../impact-and-outreach/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Bactopia Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/category/community/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/category/tutorial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    
+  
+    Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gathering-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gathering Inputs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gathering Inputs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#input-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-sample" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single Sample
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Single Sample">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#illumina-andor-nanopore-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Illumina and/or Nanopore Reads
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Illumina and/or Nanopore Reads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paired-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paired-End
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single-End
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nanopore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nanopore
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hybrid Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-assembly-short-read-polishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hybrid Assembly (Short-read Polishing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enasra-accession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ENA/SRA Accession
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ncbi-assembly-accession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NCBI Assembly Accession
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Samples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Samples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Local Samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bactopia-prepare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bactopia prepare
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accessions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bactopia-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bactopia search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-helpful-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Helpful Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Helpful Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-resume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -resume
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-max_cpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --max_cpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-qs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -qs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-genome_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --genome_size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-nfconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --nfconfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-cleanup_workdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --cleanup_workdir
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+<!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Actions -->
+
+
+  <!-- Edit button -->
+  
+    <a href="https://github.com/bactopia/bactopia.github.io/edit/master/docs/beginners-guide.md" title="Edit on GitHub" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+
+  <!-- View button -->
+  
+
+
+  <h1>Beginner's Guide</h1>
+
+<p>Bactopia is a complete pipeline for the analysis of bacterial genomes, which includes
+more than 150 bioinformatics tools. In this section, we will discuss the most essential
+parameters users will need to make use of to get started with Bactopia. We are going
+to focus on the parameters associated with processing input samples.</p>
+<p>Looking at the workflow overview below, we are really going to focus on the first step,
+the <em>Gather</em> step. This step gets all the data in one place, whether its local FASTQs, 
+FASTQs from SRA or ENA, or assemblies from NCBI Assembly. The following guide will provide
+few examples of each of these accepted inputs, including:</p>
+<ul>
+<li>Local Illumina and/or Nanopore Reads</li>
+<li>Local Assemblies</li>
+<li>ENA/SRA Experiment Accessions</li>
+<li>NCBI Assembly Accessions</li>
+</ul>
+<p>Towards the end of this guide, we'll also take a look at some helpful parameters. If you
+are interested in learning more about the full set of parameters available in Bactopia,
+please check out the <a href="../full-guide/">Full Guide</a> section.</p>
+<p><a class="zoom" href="assets/bactopia-workflow.png">
+<img alt="Bactopia Workflow" src="../assets/bactopia-workflow.png" />
+</a></p>
+<h2 id="gathering-inputs">Gathering Inputs<a class="headerlink" href="#gathering-inputs" title="Permanent link">&para;</a></h2>
+<p>Below is a table of essential parameters you will need to get started using
+Bactopia. This does not mean you need to use them all at once, but it will be useful
+to familiarize yourself with them. We will start here, with a brief description of each
+parameter, then we will go into more detail about each with example use cases.</p>
+<h3 id="input-parameters"><i class="fa-xl fas fa-terminal"></i> Input Parameters<a class="headerlink" href="#input-parameters" title="Permanent link">&para;</a></h3>
+<p>The following parameters are how you will provide either local or remote samples to be processed by Bactopia.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-file-alt"></i><code>--samples</code></td>
+<td>A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-file-archive"></i><code>--r1</code></td>
+<td>First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-file-archive"></i><code>--r2</code></td>
+<td>Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-file-archive"></i><code>--se</code></td>
+<td>Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-level-up"></i><code>--ont</code></td>
+<td>Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-level-up"></i><code>--hybrid</code></td>
+<td>Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-level-up"></i><code>--short_polish</code></td>
+<td>Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-file"></i><code>--sample</code></td>
+<td>Sample name to use for the input sequences <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-file-alt"></i><code>--accessions</code></td>
+<td>A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-font"></i><code>--accession</code></td>
+<td>Sample name to use for the input sequences <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-file-archive"></i><code>--assembly</code></td>
+<td>A assembled genome in compressed FASTA format. (requires --sample) <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-level-up"></i><code>--check_samples</code></td>
+<td>Validate the input FOFN provided by --samples <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+</tbody>
+</table>
+<p>Now let's take a look at each parameter in more detail with a few example use-cases.</p>
+<h2 id="single-sample">Single Sample<a class="headerlink" href="#single-sample" title="Permanent link">&para;</a></h2>
+<p>It's no secret that Bactopia accepts many different types of inputs from a single entry point
+(e.g. you don't need a separate pipeline for each input type). For now we are going to look
+at local inputs. In other words, inputs that are already on the machine you will be running
+Bactopia on. We will look at the following inputs:</p>
+<ul>
+<li>Local Illumina and/or Nanopore Reads</li>
+<li>Local Assemblies</li>
+<li>Processing Multiple Samples</li>
+</ul>
+<h3 id="illumina-andor-nanopore-reads">Illumina and/or Nanopore Reads<a class="headerlink" href="#illumina-andor-nanopore-reads" title="Permanent link">&para;</a></h3>
+<p>Let's start with the most common inputs, plain on FASTQ files for a <em>single sample</em>. Bactopia
+accepts both Illumina (pair-end or single-end) and Nanopore reads, and can even process them
+together for a hybrid assembly.</p>
+<p>Again, here we are focussing on processing a single sample at a time. To do this, you have to
+provide a combination of the sample name (<code>--sample</code>) and the input type:</p>
+<table>
+<thead>
+<tr>
+<th>Input Type</th>
+<th>Required Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Illumina Paired-End</td>
+<td><code>--r1</code> and <code>--r2</code></td>
+</tr>
+<tr>
+<td>Illumina Single-End</td>
+<td><code>--se</code></td>
+</tr>
+<tr>
+<td>Oxford Nanopore</td>
+<td><code>--ont</code></td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td><code>--r1</code>, <code>--r2</code>, <code>--ont</code>, and <code>--hybrid</code></td>
+</tr>
+<tr>
+<td>Hybrid (Short-read Polishing)</td>
+<td><code>--r1</code>, <code>--r2</code>, <code>--ont</code>, and <code>--short_polish</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title"><code>--sample</code> is always required for single-sample processing</p>
+<p>When processing a single sample, you will always have to provide <code>--sample</code>, no matter
+input type. This parameter is used to name the output files and directories. </p>
+</div>
+<h5 id="paired-end">Paired-End<a class="headerlink" href="#paired-end" title="Permanent link">&para;</a></h5>
+<p>In this example, Bactopia will process the sample as paired-end Illumina reads. The
+<code>--r1</code> and <code>--r2</code> parameters are used to specify the location of the first and second
+pair of reads. In addition, the value of <code>--sample</code> will be used as the prefix
+(e.g. <code>my-sample.fna.gz</code>) for saving results.</p>
+<div class="admonition info">
+<p class="admonition-title">Use --r1, --r2 for Paired-End Illumina Reads</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bactopia \
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   --sample my-sample \
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   --r1 /path/to/my-sample_R1.fastq.gz \
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   --r2 /path/to/my-sample_R2.fastq.gz
+</span></code></pre></div>
+</div>
+<h5 id="single-end">Single-End<a class="headerlink" href="#single-end" title="Permanent link">&para;</a></h5>
+<p>In this example, Bactopia will process the sample as single-end Illumina reads. The
+<code>--se</code> parameter is used to specify the location of the single-end reads. Again, the
+value of <code>--sample</code> will be used as the prefix for saving results.</p>
+<div class="admonition info">
+<p class="admonition-title">Use --se for Single-End Illumina Reads</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>bactopia \
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>   --sample my-sample \
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>   --se /path/to/my-sample.fastq.gz
+</span></code></pre></div>
+</div>
+<h5 id="nanopore">Nanopore<a class="headerlink" href="#nanopore" title="Permanent link">&para;</a></h5>
+<p>Let's change pace a little, to process Nanopore reads you will need <code>--ont</code> to specify
+the location of the Nanopore reads as well as <code>--sample</code> for naming outputs. </p>
+<div class="admonition info">
+<p class="admonition-title">Use --ont for Oxford Nanopore Reads</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>bactopia \
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   --sample my-sample \
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   --ont /path/to/my-sample.fastq.gz
+</span></code></pre></div>
+</div>
+<h5 id="hybrid-assembly">Hybrid Assembly<a class="headerlink" href="#hybrid-assembly" title="Permanent link">&para;</a></h5>
+<p>Now we are starting to get into the fun stuff! Let's say you have both paired-end Illumina
+reads and Nanopore reads for a sample. You can use Bactopia to create a hybrid assembly
+using both sets of reads. To do this you will pass the reads using <code>--r1</code>, <code>--r2</code> (for 
+Illumina reads), and <code>--ont</code> (for Nanopore reads). Alongside these, you will also provide
+the <code>--hybrid</code> parameter will tell Bactopia to create a hybrid assembly by using 
+<a href="https://github.com/rrwick/Unicycler">Unicycler</a> which assembles the short-reads first
+then bridges the gaps with the long-reads.</p>
+<div class="admonition info">
+<p class="admonition-title">Use --r1, --r2, --ont, and --hybrid for hybrid assembly</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bactopia \
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>   --sample my-sample \
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>   --r1 /path/to/my-sample_R1.fastq.gz \
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>   --r2 /path/to/my-sample_R2.fastq.gz \
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>   --ont /path/to/my-sample.fastq.gz \
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>   --hybrid
+</span></code></pre></div>
+</div>
+<h5 id="hybrid-assembly-short-read-polishing">Hybrid Assembly (Short-read Polishing)<a class="headerlink" href="#hybrid-assembly-short-read-polishing" title="Permanent link">&para;</a></h5>
+<p>Very similar to <code>--hybrid</code>, you will pass the reads using <code>--r1</code>, <code>--r2</code> (for Illumina reads), 
+and <code>--ont</code> (for Nanopore reads). Instead this time you will use <code>--short_polish</code> which will
+tell Bactopia to create a hybrid assembly using <a href="https://github.com/rpetit3/dragonflye">Dragonflye</a>
+to assemble the long-reads first then polish with the short-reads.</p>
+<div class="admonition info">
+<p class="admonition-title">Use --r1, --r2, --ont, and --short_polish for hybrid assembly with short-read polishing</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>bactopia \
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>   --sample my-sample \
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>   --r1 /path/to/my-sample_R1.fastq.gz \
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>   --r2 /path/to/my-sample_R2.fastq.gz \
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>   --ont /path/to/my-sample.fastq.gz \
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>   --short_polish
+</span></code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Prefer <code>--short_polish</code> over <code>--hybrid</code> with recent ONT sequencing</p>
+<p>Using <a href="https://github.com/rrwick/Unicycler">Unicycler</a> (<code>--hybrid</code>) to create a hybrid
+assembly works great when you have low-coverage noisy long-reads. However, if you are
+using recent ONT sequencing, you likely have high-coverage and using the <code>--short_polish</code>
+method is going to yeild better results (<em>and be faster!</em>) than <code>--hybrid</code>.</p>
+</div>
+<p>Well! These are all the ways you can process your local Illumina and/or Nanopore reads. Now,
+onto assemblies!</p>
+<h3 id="assembly">Assembly<a class="headerlink" href="#assembly" title="Permanent link">&para;</a></h3>
+<p>Let's imagine, for what ever reason, you don't have access to the raw reads for a sample,
+only the assembly. It happens, but Bactopia has you covered! You can use the <code>--assembly</code>
+parameter to tell Bactopia to use the assembly for downstream analyses.</p>
+<p>Now when you provide an assembly a few things happen.</p>
+<ol>
+<li>Assemblies will have 2x250bp Illumina reads simulated without insertions or deletions in
+   the sequence and a minimum PHRED score of Q33.</li>
+<li>By default, the input assembly will be used for all downstream analyses (e.g. annotation)
+   which use an assembly. Otherwise, if the <code>--reassemble</code> parameter is given, then an
+   assembly will be created from the simulated reads.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Use --assembly for an assembled FASTA</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bactopia \
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   --sample my-sample \
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>   --assembly /path/to/my-sample.fna.gz
+</span></code></pre></div>
+</div>
+<h3 id="enasra-accession">ENA/SRA Accession<a class="headerlink" href="#enasra-accession" title="Permanent link">&para;</a></h3>
+<p>Bactopia's predecessor, <a href="https://staphopia.github.io/">Staphopia</a>, relied heavily on the
+ability to access publicly available FASTQs from the 
+<a href="https://www.ebi.ac.uk/ena">European Nucleotide Archive</a> (ENA) and the
+<a href="https://www.ncbi.nlm.nih.gov/sra">Sequence Read Archive</a> (SRA). It was important this ability
+to rapidly access millions of samples was maintained in Bactopia.</p>
+<p>So, if you find yourself wanting to include publicly available samples in your analysis,
+Bactopia has that built in for you! You can give a provide an <em>Experiment</em> accession
+(<code>--accession</code>), and Bactopia will use <a href="https://github.com/rpetit3/fastq-dl">fastq-dl</a> to
+automatically download associated FASTQ files from either ENA or SRA. Then the downloaded FASTQ
+file will be processed by Bactopia just like your normal local FASTQs.</p>
+<div class="admonition info">
+<p class="admonition-title">Use --accession to process an Experiment accession</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>bactopia \
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>   --accession SRX000000
+</span></code></pre></div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Why only Experiment accessions?</p>
+<p>In the grand scheme of accession hierarchies, Experiment accessions are really the only
+unique ones. For example, a multiple Run accessions can be associated with a single
+Experiment accession. Or, multiple Exeriment accessions can be associated with a single
+BioSample accession. So, by using Experiment accessions, you can be confident you are
+getting only the sequences associated with that "<em>unique</em>" Experiment.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">I only have a <em>XYZ</em> accession, what now?</p>
+<p>That's not an issue at all! You can make use of <code>bactopia search</code> to quickly find
+any Experiment accessions associated with your accession. Please see the examples
+below for more information.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">What happens when an Experiment has multiple Runs?</p>
+<p>In cases where a single Experiment might have multiple Run accessions associated with
+it, the FASTQ files from each Run are merged into a single set of sequences.</p>
+</div>
+<h3 id="ncbi-assembly-accession">NCBI Assembly Accession<a class="headerlink" href="#ncbi-assembly-accession" title="Permanent link">&para;</a></h3>
+<p>If you can process assemblies, and seamlessly download FASTQs from ENA/SRA, it only makes
+sense that you could also process assemblies from NCBI Assembly! Similar to downloading
+FASTQs from ENA/SRA, you can provide an <em>NCBI Assembly</em> accession using <code>--accession</code>. These
+accessions are the ones that start with <code>GCF</code> or <code>GCA</code>. When provided an NCBI Assembly
+accession Bactopia will use <a href="https://github.com/kblin/ncbi-genome-download">ncbi-genome-download</a>
+to go fetch the associated assembly and process it just like a local assembly.</p>
+<div class="admonition info">
+<p class="admonition-title">Use --accession to process an NCBI Assembly accession</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>bactopia \
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>   --accession GCF_000000000
+</span></code></pre></div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Do I need to provide the assembly version? (e.g. GCF_000000000.1)</p>
+<p>Overtime I've found the assembly version to be unstable. For example, sometimes
+an assembly might be corrected, and the previous version is not made available
+any longer. So, to avoid any issues, Bactopia will always use the latest version
+of a given NCBI Assembly accession.</p>
+</div>
+<h2 id="multiple-samples">Multiple Samples<a class="headerlink" href="#multiple-samples" title="Permanent link">&para;</a></h2>
+<p>By this point you should have a good understanding of how to process a single sample, but
+you might be thinking: <em>"I have hundreds of samples, I don't want to run Bactopia hundreds
+of times. Can I just run them all at once?</em>" The answer is <strong>YES</strong>!</p>
+<p>Bactopia allows you to provide a <em>file of filenames</em> (FOFN) using <code>--samples</code> or a list
+of accessions using <code>--accessions</code>. Using either of these parameters, allows you to process
+a single or <a href="https://emergent.emory.edu/blog/posts/bactopia-aws-and-67000-genomes/">thousands of samples</a>
+in a single command. </p>
+<p>In this section, we will look at the how to process multiple samples using <code>--samples</code> and
+<code>--accessions</code>. We will also look Bactopia Helper commands to assist in generating the
+appropriate FOFN or accession list to process multiple samples.</p>
+<p>Here's a little table to help you decide which parameter to use:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Application</th>
+<th>Helper Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--samples</code></td>
+<td>Local Samples</td>
+<td><code>bactopia prepare</code></td>
+</tr>
+<tr>
+<td><code>--accessions</code></td>
+<td>ENA/SRA &amp; Assembly Accessions</td>
+<td><code>bactopia search</code></td>
+</tr>
+</tbody>
+</table>
+<p>Now, let's look into each of these in more detail.</p>
+<h3 id="local-samples">Local Samples<a class="headerlink" href="#local-samples" title="Permanent link">&para;</a></h3>
+<p>Above you learned how you could use parameters like <code>--r1</code> and <code>--r2</code> to process a single sample,
+but you have a lot of samples you just received sequences for. Now you plan to run Bactopia
+on each sample, so let's learn how to generate a FOFN, or samplesheet, you can pass to
+Bactopia to process all samples at once.</p>
+<p>First, I've thrown out <em>file of filenames</em> (FOFN) a few times now, but what is it? A FOFN,
+a file that contains a list of samples and their associated FASTQs/FASTAs. A file, of
+filenames.</p>
+<p>For Bactopia this FOFN is a <strong>tab-delimited</strong> table with five columns:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sample</td>
+<td>A unique prefix, or unique name, to be used for naming output files</td>
+</tr>
+<tr>
+<td>runtype</td>
+<td>Informs Bactopia what type of input the sample is (e.g. paired-end, single-end, nanopore, etc...)</td>
+</tr>
+<tr>
+<td>genome_size</td>
+<td>The expected genome size for the given sample</td>
+</tr>
+<tr>
+<td>species</td>
+<td>The expected taxonomic classification for the given sample</td>
+</tr>
+<tr>
+<td>r1</td>
+<td>If paired-end, the first pair of reads, else the single-end reads</td>
+</tr>
+<tr>
+<td>r2</td>
+<td>If paired-end, the second pair of reads</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>Either the assembly or long reads associated with a sample</td>
+</tr>
+</tbody>
+</table>
+<p>With this in mind, let's look at an example FOFN:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sample  runtype genome_size    species   r1      r2      extra
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>s01     paired-end  180000  Bacterial species  /fq/s01_R1_001.fastq.gz  /fq/s01_R2_001.fastq.gz
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>s02     paired-end  180000  Bacterial species  /fq/s02_R1_001.fastq.gz  /fq/s02_R2_001.fastq.gz
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>s03     single-end  180000  Bacterial species  /fq/s03_001.fastq.gz
+</span></code></pre></div>
+<p>With this FOFN, you can use <code>--samples</code> to process all three samples at once.</p>
+<div class="admonition info">
+<p class="admonition-title">Use --samples for Multiple Local Samples</p>
+<p>Using <code>--samples</code> can turn into a huge time saver for you, and it is always recommended
+to take this approach when possible.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>bactopia \
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    --samples my-samples.txt
+</span></code></pre></div></p>
+</div>
+<p>Now, you might be thinking, <em>"I don't want to create a FOFN by hand, that's a lot of work!"</em></p>
+<p>Well, lucky you! Bactopia has a built in helper command to help you generate a FOFN
+automatically. Let's take a look at <code>bactopia prepare</code>.</p>
+<h4 id="bactopia-prepare">bactopia prepare<a class="headerlink" href="#bactopia-prepare" title="Permanent link">&para;</a></h4>
+<p>While manually creating the necessary FOFN is possible, it's not recommended. It can be a
+bit tedious and error-prone, so please avoid manually creating your FOFN. Instead, use
+<code>bactopia prepare</code> to help accurately generate a FOFN for your samples.</p>
+<p>When Bactopia recieves a FOFN, the first thing Bactopia does is verify all input files are
+found and compressed using Gzip. If everything checks out, each sample will then be processed,
+otherwise a list of samples with errors will be output to STDERR. </p>
+<details class="tip">
+<summary>Use <code>--check_samples</code> to only validate the FOFN</summary>
+<p>If you would like to only validate your FOFN (and not run the full pipeline), you can use
+the <code>--check_samples</code> parameter. However, if you used <code>bactopia prepare</code> to generate your
+FOFN it <em>should be</em> valid.</p>
+</details>
+<p>Honestly, <code>bactopia prepare</code> is one of those tools that is best explained by example. So,
+let's take a look at a few examples.</p>
+<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h4>
+<p>Using <code>bactopia prepare</code> can be a bit tricky at first, but once you get the hang of it, you
+will find yourself using it all the time.</p>
+<div class="admonition tip">
+<p class="admonition-title">Use nice file names</p>
+<p><code>bactopia prepare</code> defaults to <code>&lt;SAMPLE_NAME&gt;_R1.fastq.gz</code> and <code>&lt;SAMPLE_NAME&gt;_R2.fastq.gz</code>
+for paired-end reads, and <code>&lt;SAMPLE_NAME&gt;.fastq.gz</code> for single-end reads. Using filenames
+that following this will help you avoid using regular expressions.</p>
+</div>
+<p><code>bactopia prepare</code> should be handle your set up to generate the appropriate, but you might
+have to work for it. Let's take a look at available parameters and a few examples.</p>
+<details class="abstract">
+<summary>Available <code>bactopia prepare</code> Parameters</summary>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--path</code></td>
+<td>The directory where your FASTQs/FASTAs are stored.</td>
+</tr>
+<tr>
+<td><code>--assembly_ext</code></td>
+<td>The extension of your FASTAs. <br/> <strong>Default: .fna.gz</strong></td>
+</tr>
+<tr>
+<td><code>--fastq_ext</code></td>
+<td>The extension of your FASTQs. <br/> <strong>Default: .fastq.gz</strong></td>
+</tr>
+<tr>
+<td><code>--fastq_separator</code></td>
+<td>The character to split the FASTQ name on. <br/> <strong>Default: _</strong></td>
+</tr>
+<tr>
+<td><code>--pe1_pattern</code></td>
+<td>The regular expression to match the first pair of paired-end reads. <br/> <strong>Default: ([Aa]|[Rr]1|1)</strong></td>
+</tr>
+<tr>
+<td><code>--pe2_pattern</code></td>
+<td>The regular expression to match the second pair of paired-end reads. <br/> <strong>Default: ([Bb]|[Rr]2|2)</strong></td>
+</tr>
+<tr>
+<td><code>--merge</code></td>
+<td>Flag samples with multiple read sets to be merged by Bactopia.</td>
+</tr>
+<tr>
+<td><code>--ont</code></td>
+<td>Flag single-end reads to be treated as Oxford Nanopore reads.</td>
+</tr>
+<tr>
+<td><code>--recursive</code></td>
+<td>Flag to recursively search directories for FASTQs/FASTAs.</td>
+</tr>
+<tr>
+<td><code>--prefix</code></td>
+<td>Replace the absolute path with a given string. <br/> <strong>Default: Use absolute path</strong></td>
+</tr>
+<tr>
+<td><code>--metadata</code></td>
+<td>Metadata per sample with genome size and species information.</td>
+</tr>
+<tr>
+<td><code>--genome-size</code></td>
+<td>Genome size to use for all samples.</td>
+</tr>
+<tr>
+<td><code>--species</code></td>
+<td>Species to use for all samples (If available, can be used to determine genome size).</td>
+</tr>
+<tr>
+<td><code>--taxid</code></td>
+<td>Use the genome size of the Taxon ID for all samples.</td>
+</tr>
+</tbody>
+</table>
+</details>
+<details class="example">
+<summary>Illumina Reads</summary>
+<p>Let's say you have a directory of paired-end Illumina reads. The files are named to match
+the default expectations: <code>&lt;SAMPLE_NAME&gt;_R1.fastq.gz</code>, <code>&lt;SAMPLE_NAME&gt;_R2.fastq.gz</code>, and 
+<code>&lt;SAMPLE_NAME&gt;.fastq.gz</code>. You can use <code>bactopia prepare</code> to generate a FOFN for you.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>bactopia prepare --path /path/to/fastqs
+</span></code></pre></div>
+<p>This will generate a FOFN that looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sample  runtype  genome_size species r1      r2      extra
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1.fastq.gz    /path/to/fastqs/s01_R2.fastq.gz
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1.fastq.gz    /path/to/fastqs/s02_R2.fastq.gz
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>s03     single-end 180000 unknown  /path/to/fastqs/s03.fastq.gz
+</span></code></pre></div>
+</details>
+<details class="example">
+<summary>Oxford Nanopore Reads</summary>
+<p>Let's say you have a directory of Oxford Nanopore reads. The files are named to match
+the default expectations: <code>&lt;SAMPLE_NAME&gt;.fastq.gz</code>. You can use <code>bactopia prepare</code> to
+generate a FOFN for you.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>bactopia prepare --path /path/to/fastqs --ont
+</span></code></pre></div>
+<p>By using <code>--ont</code>, any single-end reads that are found will be treated as ONT
+reads. Using this will generate a FOFN that looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sample  runtype  genome_size species r1      r2      extra
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>s03     ont  180000 unknown  /path/to/fastqs/s01.fastq.gz
+</span></code></pre></div>
+</details>
+<details class="example">
+<summary>Illumina Paired-End and Oxford Nanopore Reads</summary>
+<p>Let's say you have a directory of paired-end Illumina reads and Oxford Nanopore reads.
+Again, they are named to match the default expectations: <code>&lt;SAMPLE_NAME&gt;_R1.fastq.gz</code>,
+<code>&lt;SAMPLE_NAME&gt;_R2.fastq.gz</code>, and <code>&lt;SAMPLE_NAME&gt;.fastq.gz</code>. You can use <code>bactopia prepare</code>
+to generate a FOFN for you.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>bactopia prepare --path /path/to/fastqs --ont
+</span></code></pre></div>
+<p>Again, use <code>--ont</code> to tell <code>bactopia prepare</code> to treat any single-end reads as
+ONT reads. Using this will generate a FOFN that looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>sample  runtype  genome_size species r1      r2      extra
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1.fastq.gz    /path/to/fastqs/s01_R2.fastq.gz
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1.fastq.gz    /path/to/fastqs/s02_R2.fastq.gz
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>s03     ont  180000 unknown  /path/to/fastqs/s03.fastq.gz
+</span></code></pre></div>
+</details>
+<details class="example">
+<summary>Merging Multiple Illumina Runs</summary>
+<p>Let's say you have a directory of Illumina reads, but you have multiple runs
+for each sample and want Bactopia to merge the reads. Again, assuming they
+are named to match the default expectations: <code>&lt;SAMPLE_NAME&gt;_R1.fastq.gz</code>,
+<code>&lt;SAMPLE_NAME&gt;_R2.fastq.gz</code>, and <code>&lt;SAMPLE_NAME&gt;.fastq.gz</code>. You can use <code>bactopia prepare</code>
+to generate a FOFN for you.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>bactopia prepare --path /path/to/fastqs --merge
+</span></code></pre></div>
+<p>By using <code>--merge</code>, any samples with multiple runs will be merged into a single set
+of reads. Using this will generate a FOFN that looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sample  runtype  genome_size species r1      r2      extra
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>s01     merge-pe 180000 unknown  /run1/s01_R1.fastq.gz,/run2/s01_R1.fastq.gz  /run1/s01_R2.fastq.gz,/run2/s01_R2.fastq.gz
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>s02     merge-se 180000 unknown  /run1/s02.fastq.gz,/run2/s02.fastq.gz
+</span></code></pre></div>
+</details>
+<details class="example">
+<summary>Reads with '*_001.fastq.gz' names</summary>
+<p>Let's say you have a directory of Illumina reads, but they are named with
+<code>*_001.fastq.gz</code> instead of the default expectations: <code>&lt;SAMPLE_NAME&gt;_R1.fastq.gz</code>,
+<code>&lt;SAMPLE_NAME&gt;_R2.fastq.gz</code>, and <code>&lt;SAMPLE_NAME&gt;.fastq.gz</code>. You can use <code>bactopia prepare</code>
+but you will have to provide a few extra parameters to generate a FOFN for you.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>bactopia prepare --path /path/to/fastqs --fastq-ext &#39;_001.fastq.gz&#39;
+</span></code></pre></div>
+<p>Here you will need to use <code>--fastq-ext</code> to tell <code>bactopia prepare</code> to look for
+<code>*_001.fastq.gz</code> instead of the default <code>*.fastq.gz</code>. Using this will generate a
+FOFN that looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sample  runtype  genome_size species r1      r2      extra
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1_001.fastq.gz    /path/to/fastqs/s01_R2_002.fastq.gz
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1_001.fastq.gz    /path/to/fastqs/s02_R2_002.fastq.gz
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>s03     single-end 180000 unknown  /path/to/fastqs/s03_001.fastq.gz
+</span></code></pre></div>
+</details>
+<p>There are many possible combinations of parameters you can use with <code>bactopia prepare</code>,
+if you have one you are stuck on or would like to see an example of, please let me know
+by <a href="https://github.com/bactopia/bactopia/issues/new/choose">Submitting and Issue on GitHub</a>.</p>
+<h3 id="accessions">Accessions<a class="headerlink" href="#accessions" title="Permanent link">&para;</a></h3>
+<p>If you started from the top, and made it this far I commend you! Eitherway, above you
+learned you could use <code>--accession</code> to download FASTQs from ENA/SRA or assemblies from
+NCBI Assembly. Then you just learned you could use <code>--samples</code> to process as many samples
+as you want. So, it only makes sense that there would be a complement to <code>--samples</code> for
+processing multiple accessions at once! This parameter is <code>--accessions</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Use --accessions for Multiple Accessions</p>
+<p>Using <code>--accessions</code> can turn into a huge time saver for you, by allowing you to
+process as many publicly available genomes as you want.
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>bactopia \
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    --accessions my-accessions.txt
+</span></code></pre></div></p>
+</div>
+<p>Similarly, to <code>--samples</code>, there is a complementary helper command called <code>bactopia search</code>
+that will allow you to submit a query and generate a list of Experiment accessions to be
+processed by Bactopia (via <code>--accessions</code>).</p>
+<p>Let's take a look at <code>bactopia search</code> and how it can help you.</p>
+<h4 id="bactopia-search">bactopia search<a class="headerlink" href="#bactopia-search" title="Permanent link">&para;</a></h4>
+<p><code>bactopia search</code> has been made to help assist in generating a list of Experiment accessions
+to be procesed by Bactopia (via <code>--accessions</code>). You can provide a Taxon ID (e.g. 1280), a
+organism name (e.g. Staphylococcus aureus), a Study accession (e.g. PRJNA480016), a BioSample
+accession (e.g. SAMN01737350), or a Run accession (e.g. SRR578340). This value is then
+queried against ENA's <a href="https://www.ebi.ac.uk/ena/browse/search-rest">Data Warehouse API</a>),
+and a list of all Experiment accessions associated with the query is returned.</p>
+<p>Again, it's probably easier if we just look at a few examples.</p>
+<h4 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h4>
+<p>First we'll look at a single example in order to provide a description of the output files.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>bactopia search --query PRJNA480016 --limit 5
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>INFO  2023 00:root:INFO - Submitting query (type - bioproject_accession)         search.py:472
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>INFO  2023 00:root:INFO - Writing results to ./bactopia-metadata.txt             search.py:554
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>INFO  2023 00:root:INFO - Writing accessions to ./bactopia-accessions.txt        search.py:564
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>INFO  2023 00:root:INFO - Writing filtered accessions to ./bactopia-filtered.txt search.py:569
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>INFO  2023 00:root:INFO - Writing summary to ./bactopia-search.txt               search.py:575
+</span></code></pre></div>
+<p>In the above command we are searching for all Experiment accessions associated with the
+Study accession <code>PRJNA480016</code>. However, the <code>--limit</code> parameter is used to limit results
+to just 5 Experiment accessions. Then multiple files are produced:</p>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-metadata.txt</code></td>
+<td>A tab-delimted file of all results from the query</td>
+</tr>
+<tr>
+<td><code>-accessions.txt</code></td>
+<td>A list of Experiment accessions to be processed</td>
+</tr>
+<tr>
+<td><code>-filtered.txt</code></td>
+<td>A list of any Experiment accessions that were filtered out, otherwise an empty</td>
+</tr>
+<tr>
+<td><code>-search.txt</code></td>
+<td>A summary of the completed request</td>
+</tr>
+</tbody>
+</table>
+<details class="abstract">
+<summary>Example bactopia-metadata.txt</summary>
+<p>When completed a file called <code>bactopia-metadata.txt</code> is produced. This file contains
+multiple fields (sample_accession, tax_id, sample_alias, center_name, etc...) for
+each Experiment accession returned by the query.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>run_accession   project_name    submission_accession    library_selection       last_updated    sra_bytes       collected_by    isolate fastq_bytes     instrument_platform     sra_aspera      fastq_galaxy    country  sample_description      experiment_title        sra_galaxy      fastq_md5       sample_accession        secondary_study_accession       read_count      study_title     collection_date_end     sample_title     instrument_model        description     sra_md5 fastq_ftp       base_count      library_strategy        location        library_source  sra_ftp library_layout  location_start  status  lon     fastq_aspera     host_sex        sample_alias    collection_date_start   run_alias       collection_date experiment_alias        center_name     host    library_name    tag     first_created   lat     strain  experiment_accession     scientific_name tax_id  study_accession host_scientific_name    accession       secondary_sample_accession      location_end    first_public    study_alias     isolation_source
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>SRR7706353      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      595393300                       353569630;334112090     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/003/SRR7706353      ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz        USA     Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/003/SRR7706353        6cf7a954abc803c8be6515545b321e2d;f879b1fa058e80fa764beb8e333877ae        SAMN09847868    SRP158268       1493115 Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2023-01-07      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    4f7c2a8836ce2471fec07128f2c9b407        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz        897918508       WGS             GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/003/SRR7706353 PAIRED          public          fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz           JE2     2023-01-07       JE2_R1.fastq.gz 2017-07-01      JE2     SUB4273132      Homo sapiens    JE2     ena;pathogen;bacterium;datahub;priority 2018-08-18              JE2     SRX4563690      Staphylococcus aureus   1280     PRJNA480016     Homo sapiens    SRR7706353      SRS3680044              2018-08-18      PRJNA480016
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>SRR7706354      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      227970617       Emory Cystic Fibrosis Biospecimen Registry (CFBR)       replicate of CFBRSa66A  129917564;131945147     ILLUMINAfasp.sra.ebi.ac.uk:/vol1/srr/SRR770/004/SRR7706354       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz       USA: Atlanta, GA MRSA    Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/004/SRR7706354        371165d54adfd1300c7b02e79d8d4245;5517e629b8e8ad00dbd6ef9a5f8d073d        SAMN09847839    SRP158268       535939  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2018-01-02      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    323e7336212b256ba2509a14bd90790a        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz        322122209       WGS     33.749 N 84.388 W       GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/004/SRR7706354 PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz    male    CFBRSa66B       2018-01-02      CFBRSa66B_R2.fastq.gz   2012-07-16      CFBRSa66B       SUB4273132      Homo sapiens    CFBRSa66B       ena;pathogen;bacterium;datahub;priority 2018-08-18       33.749  CFBR-150        SRX4563689      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706354      SRS3680043      33.749 N 84.388 W       2018-08-18      PRJNA480016     sputum
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>SRR7706356      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      328642242       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               191742121;188439990     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/006/SRR7706356       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz       USA: Atlanta, GA MRSA    Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/006/SRR7706356        2b0c01434a7e677c6697ff49985de0f7;08c4f37d7fdbeac0133819ee3af6dd21        SAMN09847834    SRP158268       780838  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2017-09-02      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ec8397df7897777d1c332522c6227458        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz        469342822       WGS     33.749 N 84.388 W       GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/006/SRR7706356 PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz    male    CFBRSa25        2017-09-01      CFBRSa25_R2.fastq.gz    2012-03-26      CFBRSa25        SUB4273132      Homo sapiens    CFBRSa25        ena;pathogen;bacterium;datahub;priority 2018-08-18      33.749   CFBR-134        SRX4563687      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706356      SRS3680041      33.749 N 84.388 W       2018-08-18      PRJNA480016     sputum
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>SRR7706361      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      599269367       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               353160072;336993031     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/001/SRR7706361       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz       USA: Atlanta, GA Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/001/SRR7706361 45fa5f0ed629d81282f1429b42c18432;c9c1b6be39fceab54d20d41450776050       SAMN09847850    SRP158268       1496420 Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2018-04-04       Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    085cbb8f7b186d3f61bab022323f61ce ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz       899864766       WGS     33.749 N 84.388 GENOMIC  ftp.sra.ebi.ac.uk/vol1/srr/SRR770/001/SRR7706361        PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz    male    CFBRSa07        2018-04-03      CFBRSa07_R1.fastq.gz    2012-10-03      CFBRSa07        SUB4273132      Homo sapiens    CFBRSa07        ena;pathogen;bacterium;datahub;priority  2018-08-18      33.749  CFBR-238        SRX4563682      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706361      SRS3680035      33.749 N 84.388 W       2018-08-18       PRJNA480016     sputum
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>SRR7706362      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      241721284       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               139499004;138853939     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/002/SRR7706362       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz       USA: Atlanta, GA Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/002/SRR7706362 d6f7434e83969245df356e0c3aaa72e8;4bfa95c3a9db9d93b65b39530f5be0c7       SAMN09847844    SRP158268       572961  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2017-11-02       Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    189012bcc94d59002369ebc17ad303fa ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz       344400515       WGS     33.749 N 84.388 GENOMIC  ftp.sra.ebi.ac.uk/vol1/srr/SRR770/002/SRR7706362        PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz    male    CFBRSa06        2017-11-02      CFBRSa06_R1.fastq.gz    2012-05-16      CFBRSa06        SUB4273132      Homo sapiens    CFBRSa06        ena;pathogen;bacterium;datahub;priority  2018-08-18      33.749  CFBR-172        SRX4563681      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706362      SRS3680034      33.749 N 84.388 W       2018-08-18       PRJNA480016     sputum
+</span></code></pre></div>
+</details>
+<details class="abstract">
+<summary>Example bactopia-summary.txt</summary>
+<p>When completed a file called <code>bactopia-summary.txt</code> is produced, that will contain a
+basic summary of the query results.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Bactopia Summary Report
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>Total Samples: 1
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>Passed: 1
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>    Gold: 0
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>    Silver: 1
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>    Bronze: 0
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>Excluded: 0
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>    Failed Cutoff: 0
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>    QC Failure: 0
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>Reports:
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>    Full Report (txt): ./bactopia-report.tsv
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>    Exclusion: ./bactopia-exclude.tsv
+</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>    Summary: ./bactopia-summary.txt
+</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a>
+</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a>Rank Cutoffs:
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>    Gold:
+</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>        Coverage &gt;= 100x
+</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>        Quality &gt;= Q30
+</span><span id="__span-23-25"><a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>        Read Length &gt;= 95bp
+</span><span id="__span-23-26"><a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a>        Total Contigs &lt; 100
+</span><span id="__span-23-27"><a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a>    Silver:
+</span><span id="__span-23-28"><a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a>        Coverage &gt;= 50x
+</span><span id="__span-23-29"><a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a>        Quality &gt;= Q20
+</span><span id="__span-23-30"><a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a>        Read Length &gt;= 75bp
+</span><span id="__span-23-31"><a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>        Total Contigs &lt; 200
+</span><span id="__span-23-32"><a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a>    Bronze:
+</span><span id="__span-23-33"><a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a>        Coverage &gt;= 20x
+</span><span id="__span-23-34"><a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a>        Quality &gt;= Q12
+</span><span id="__span-23-35"><a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a>        Read Length &gt;= 49bp
+</span><span id="__span-23-36"><a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a>        Total Contigs &lt; 500
+</span><span id="__span-23-37"><a id="__codelineno-23-37" name="__codelineno-23-37" href="#__codelineno-23-37"></a>
+</span><span id="__span-23-38"><a id="__codelineno-23-38" name="__codelineno-23-38" href="#__codelineno-23-38"></a>Assembly Length Exclusions:
+</span><span id="__span-23-39"><a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a>    Minimum: None
+</span><span id="__span-23-40"><a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a>    Maximum: None
+</span></code></pre></div>
+</details>
+<p>From the output files, you will want to use the file with the <code>-accessions.txt</code> extension. In
+the above query the <code>-accessions.txt</code> file looked like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>SRX4563681      illumina        Staphylococcus aureus   2800000
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>SRX4563689      illumina        Staphylococcus aureus   2800000
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>SRX4563687      illumina        Staphylococcus aureus   2800000
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>SRX4563682      illumina        Staphylococcus aureus   2800000
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>SRX4563690      illumina        Staphylococcus aureus   2800000
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Use the file with the <code>-accessions.txt</code> extension with <code>--accessions</code></p>
+<p>The file with the <code>-accessions.txt</code> extension is the file you will use with <code>--accessions</code>
+to process the Experiment accessions with Bactopia.</p>
+</div>
+<h2 id="additional-helpful-parameters">Additional Helpful Parameters<a class="headerlink" href="#additional-helpful-parameters" title="Permanent link">&para;</a></h2>
+<h3 id="-profile"><code>-profile</code><a class="headerlink" href="#-profile" title="Permanent link">&para;</a></h3>
+<p>Bactopia makes use of <a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">Nextflow Config Profiles</a>
+to specify the executor to use. By default, Bactopia will use the <code>conda</code> profile. There
+are other built in profiles including: <code>docker</code>, <code>singularity</code>, <code>slurm</code>, etc... To use a
+specific profile, you can use the <code>-profile</code> parameter.</p>
+<p>For example if you want Nextflow to use Docker, you would use the following command:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>bactopia ... -profile docker
+</span></code></pre></div></p>
+<p>With this, Nextflow will use Docker to run all the processes in Bactopia (even though
+Bactopia is installed with Conda!).</p>
+<div class="admonition tip">
+<p class="admonition-title">Always prefer containers over Conda</p>
+<p>While I will be the first to admit that I love Conda, it is not perfect. Overtime tools
+can become broken or incompatible due to dependencies. Containers are a great way
+to avoid these issues. If you are using Bactopia, and have Docker or Singularity
+available I would recommend using them over Conda.</p>
+</div>
+<h3 id="-resume"><code>-resume</code><a class="headerlink" href="#-resume" title="Permanent link">&para;</a></h3>
+<p>Bactopia relies on <a href="https://www.nextflow.io/docs/latest/getstarted.html#modify-and-resume">Nextflow's Resume Feature</a>
+to resume runs. You can tell Bactopia to resume by adding <code>-resume</code> to your command line.
+When <code>-resume</code> is used, Nextflow will review the cache and determine if the previous run
+is resumable. If the previous run is not resumable, execution will start at the beginning.</p>
+<h3 id="-max_cpus"><code>--max_cpus</code><a class="headerlink" href="#-max_cpus" title="Permanent link">&para;</a></h3>
+<p>At execution, Nextflow creates a queue and the number of slots in the queue is determined
+by the total number of cores on the system. So if you have a 24-core system, that means
+Nextflow will have a queue with 24-slots available. This feature kind of makes <code>--max_cpus</code>
+a little misleading. Typically when you give <code>--max_cpus</code> you are saying <em>"use this amount
+of cpus"</em>. But that is not the case for Nextflow and Bactopia. When you use <code>--max_cpus</code>
+what you are actually saying is <em>"for any particular task, use this amount of slots"</em>.
+Commands within a task processors will use the amount specified by <code>--max_cpus</code>.</p>
+<details class="danger">
+<summary><code>--max_cpus</code> can have a significant effect on the efficiency of Bactopia</summary>
+<p>For example if you have a system with 24-cores.</p>
+<p>This command, <code>bactopia ... --max_cpus 24</code>, says <em>for any particular task, use 24 slots</em>.
+Nextflow will give tasks in Bactopia 24 slots out of 24 available (24-core machine). In
+other words the queue can one have one task running at once because each task occupies
+24 slots.</p>
+<p>On the other hand, <code>bactopia ... --max_cpus 4</code> says <em>for any particular task, use 4 slots</em>.
+Now, for Nextflow will give each task 4 slots out of 24 slots. Which means 6 tasks can be
+running at once. This can lead to much better efficiency because less jobs are stuck
+waiting in line. </p>
+<p>There are some tasks in Bactopia that will only ever use a single slot because they are
+single-core tasks. While others will always use the number of slots specified by
+<code>--max_cpus</code>.</p>
+<p>If the <code>--max_cpus</code> is too high, you will likely reduce the efficiency of Bactopia.</p>
+</details>
+<div class="admonition tip">
+<p class="admonition-title">When in doubt <code>--max_cpus 4</code> is a safe value.</p>
+<p>This is also the default value for Bactopia.</p>
+</div>
+<h3 id="-qs"><code>-qs</code><a class="headerlink" href="#-qs" title="Permanent link">&para;</a></h3>
+<p>The <code>-qs</code> parameter is short for <em>queue size</em>. As described above for <code>--max_cpus</code>, the
+default value for <code>-qs</code> is set to the total number of cores on the system. This parameter
+allows you to adjust the maximum number of cores Nextflow can use at any given moment.</p>
+<details class="tip">
+<summary><code>-qs</code> allows you to play nicely on shared resources</summary>
+<p>From the example above, if you have a system with 24-cores. The default queue size if
+24 slots.</p>
+<p><code>bactopia ... --max_cpus 4</code> says <em>for any particular task, use a maximum of 4 slots</em>.
+Nextflow will give each task 4 slots out of 24 slots. But there might be other people
+also using the server.</p>
+<p><code>bactopia ... --max_cpus 4 -qs 12</code> says <em>for any particular task, use a maximum of 4
+slots, but don't use more than 12 slots</em>. Nextflow will give each task 4 slots out of
+12 slots. Now instead of using all the cores on the server, the maximum that can be
+used in 12.</p>
+</details>
+<details class="tip">
+<summary><code>-qs</code> might need adjusting for job schedulers.</summary>
+<p>The default value for <code>-qs</code> is set to 100 when using a job scheduler (e.g. SLURM,
+AWS Batch). There may be times when you need adjust this to meet your needs. For
+example, if using AWS Batch you might want to increase the value to have more jobs
+processed at once (e.g. 100 vs 500).</p>
+</details>
+<h3 id="-genome_size"><code>--genome_size</code><a class="headerlink" href="#-genome_size" title="Permanent link">&para;</a></h3>
+<p>Throughout the Bactopia workflow a genome size is used for various tasks. By default, a
+genome size is set to 0, and things such as coverage reduction are skipped. However, if
+you provide an expected genome size, these steps will be enabled.</p>
+<details class="tip">
+<summary>Use <code>--genome_size</code> to improve results and speed</summary>
+<p>By providing a genome size, Bactopia will reduce the coverage to a maximum of 100x
+(default). In doing so, for samples with greater than 100x coverage, you will see
+a reduction in execution time as well is improved results. This is because, with
+excessive coverage some tools will produce poorer results while taking much longer.</p>
+</details>
+<h3 id="-nfconfig"><code>--nfconfig</code><a class="headerlink" href="#-nfconfig" title="Permanent link">&para;</a></h3>
+<p>A key feature of Nextflow is you can provide your own config files. What this boils down to
+you can easily set Bactopia to run on your environment. With <code>--nfconfig</code> you can tell
+Bactopia to import your config file. </p>
+<p><code>--nfconfig</code> has been set up so that it is the last config file to be loaded by Nextflow.
+This means that if your config file contains variables (e.g. params or profiles) already
+set they will be overwritten by your values.</p>
+<p><a href="https://www.nextflow.io/docs/latest/config.html">Nextflow goes into great details on how to create configuration files.</a>
+Please check the following links for adjustments you be interested in making.</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.nextflow.io/docs/latest/config.html#scope-env">env</a></td>
+<td>Set any environment variables that might be required</td>
+</tr>
+<tr>
+<td><a href="https://www.nextflow.io/docs/latest/config.html#scope-params">params</a></td>
+<td>Change the default values of command line arguments</td>
+</tr>
+<tr>
+<td><a href="https://www.nextflow.io/docs/latest/config.html#scope-process">process</a></td>
+<td>Adjust perprocess configurations such as containers, conda envs, or resource usage</td>
+</tr>
+<tr>
+<td><a href="https://www.nextflow.io/docs/latest/config.html#config-profiles">profile</a></td>
+<td>Create predefined profiles for your <a href="https://www.nextflow.io/docs/latest/operator.html#filtering-operators">Executor</a></td>
+</tr>
+</tbody>
+</table>
+<p>There are <a href="https://www.nextflow.io/docs/latest/config.html#config-scopes">many other scopes</a>
+that you might be interested in checking out.</p>
+<p>You are most like going to want to create a custom profile. By doing so you can specify it
+at runtime (<code>-profile myProfile</code>) and Nextflow will be excuted based on that profile. Often
+times your custom profile will include information on the executor (queues, allocations, paths, etc...).</p>
+<p>If you need help please <a href="https://github.com/bactopia/bactopia/issues/new/choose">reach out</a>!</p>
+<p><em>If you're using the standard profile (did not specify -profile 'xyz') this might not be necessary.</em></p>
+<h3 id="-cleanup_workdir"><code>--cleanup_workdir</code><a class="headerlink" href="#-cleanup_workdir" title="Permanent link">&para;</a></h3>
+<p>After you run Bactopia, you will notice a directory called <code>work</code>. This directory is where
+Nextflow runs all the processes and stores the intermediate files. After a process completes
+successfully, the appropriate results are pulled out and placed in the sample's result folder.
+The <code>work</code> directory can grow very large very quickly! Please keep this in mind when using
+Bactopia (<em>and other Nextflow pipelines</em>). To help prevent the build up of the <code>work</code>
+directory you can use <code>--cleanup_workdir</code> to automatically delete the <code>work</code> directory after
+a successful run.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../tutorial/" class="md-footer__link md-footer__link--next" aria-label="Next: Tutorial">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Tutorial
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2019-2024 Robert A. Petit III. All rights reserved. <a href="#__consent">Change Cookie Settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs Insiders
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/bactopia/bactopia" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/rpetit3" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+  
+    
+  
+
+
+  
+    
+  
+
+
+
+  
+
+
+<h4>Cookie Consent</h4>
+<p>We use cookies to recognize your repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for. With your consent, you're helping us to make our documentation better.</p>
+<input class="md-toggle" type="checkbox" id="__settings" >
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="analytics" checked>
+          <span class="task-list-indicator"></span>
+          Google Analytics
+        </label>
+      </li>
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+    
+      <label class="md-button" for="__settings">Manage settings</label>
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "content.action.edit", "content.code.copy", "navigation.footer", "navigation.instant", "navigation.instant.prefetch", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.top"], "search": "../assets/javascripts/workers/search.1e90e0fb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.4a1b0f67.min.js"></script>
+      
+        <script src="../custom/fontawesome.js"></script>
+      
+        <script src="../custom/jquery.min.js"></script>
+      
+        <script src="../custom/jquery.magnific-popup.min.js"></script>
+      
+        <script src="../custom/extra.js"></script>
+      
+    
+  </body>
+</html>
