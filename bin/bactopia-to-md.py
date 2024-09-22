@@ -122,9 +122,10 @@ def read_nextflow_config(nf_config):
     """   """
     config = {}
     with open(nf_config, 'rt') as nf_fh:
-        for line in nf_fh:
-            k,v = line.rstrip().split(' = ')
-            config[k] = nf_to_list(v) if v.startswith('[') else v
+        if "=" in line:
+            for line in nf_fh:
+                k,v = line.rstrip().split(' = ')
+                config[k] = nf_to_list(v) if v.startswith('[') else v
     return config
 
 def nf_to_list(param):
