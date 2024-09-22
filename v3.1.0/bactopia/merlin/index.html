@@ -1359,6 +1359,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#clermontyping_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClermonTyping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ectyper_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1517,6 +1528,17 @@
     <span class="md-ellipsis">
       
         staphopia-sccmec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tbprofiler-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TBProfiler Profile
       
     </span>
   </a>
@@ -2397,7 +2419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../bactopia-tools/clermontyping.md" class="md-nav__link">
+      <a href="../../bactopia-tools/clermontyping/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -4334,6 +4356,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#clermontyping_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ClermonTyping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ectyper_1" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4492,6 +4525,17 @@
     <span class="md-ellipsis">
       
         staphopia-sccmec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tbprofiler-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TBProfiler Profile
       
     </span>
   </a>
@@ -5535,6 +5579,21 @@ files for you to review if the need ever arises.</p>
 </tr>
 </tbody>
 </table>
+<h3 id="clermontyping_1"><i class="fa-xl fas fa-exclamation-circle"></i> ClermonTyping<a class="headerlink" href="#clermontyping_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-file-alt"></i><code>--clermon_threshold</code></td>
+<td>Do not use contigs under this size <br/><strong>Type:</strong> <code>number</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="ectyper_1"><i class="fa-xl fas fa-exclamation-circle"></i> ECTyper<a class="headerlink" href="#ectyper_1" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -5906,6 +5965,49 @@ files for you to review if the need ever arises.</p>
 <tr>
 <td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--hamming</code></td>
 <td>Report the results as hamming distances <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="tbprofiler-profile"><i class="fa-xl fas fa-exclamation-circle"></i> TBProfiler Profile<a class="headerlink" href="#tbprofiler-profile" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--call_whole_genome</code></td>
+<td>Call whole genome <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--mapper</code></td>
+<td>Mapping tool to use. If you are using nanopore data it will default to minimap2 <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>bwa</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--caller</code></td>
+<td>Variant calling tool to use <br/><strong>Type:</strong> <code>string</code>, <strong>Default:</strong> <code>freebayes</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--calling_params</code></td>
+<td>Extra variant caller options in quotes <br/><strong>Type:</strong> <code>string</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--suspect</code></td>
+<td>Use the suspect suite of tools to add ML predictions <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--no_flagstat</code></td>
+<td>Don't collect flagstats <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-expand-arrows-alt"></i><code>--no_delly</code></td>
+<td>Don't run delly <br/><strong>Type:</strong> <code>boolean</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><i class="fa-lg fas fa-italic"></i><code>--tbprofiler_opts</code></td>
+<td>Extra options in quotes for TBProfiler <br/><strong>Type:</strong> <code>string</code></td>
 </tr>
 </tbody>
 </table>
