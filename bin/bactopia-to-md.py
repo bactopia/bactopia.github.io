@@ -115,7 +115,7 @@ def get_modules(module_path):
                 modules[module_name] = json.load(params_fh)
         except Exception as e:
             IGNORE_LIST.append(module_name)
-            print(f"skipping {module_name} - {params_json}")
+            print(f"skipping {module_name} - {params_json} - {e}")
     return modules
 
 def read_nextflow_config(nf_config):
