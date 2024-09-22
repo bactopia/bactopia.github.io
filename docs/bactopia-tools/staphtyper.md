@@ -8,7 +8,7 @@ of *Staphylococcus aureus*. Currently `staphtyper` includes
 
 1. [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE) - *agr* locus type and *agr* operon variants.
 2. [spaTyper](https://github.com/HCGB-IGTP/spaTyper) - *spa* type
-3. [staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec) - SCCmec type
+3. [sccmec](https://github.com/rpetit3/sccmec) - SCCmec type
 
 This tool will evolve with *S. aureus* genomics, so you can expect it to add more typing methods
 (maybe even replace current methods) in the future. If a certain typing method for *S. aureus*
@@ -42,10 +42,10 @@ file descriptions below were modified from a tools description.
 │       │   └── logs
 │       │       ├── nf-spatyper.{begin,err,log,out,run,sh,trace}
 │       │       └── versions.yml
-│       └── staphopiasccmec
+│       └── sccmec
 │           ├── <SAMPLE_NAME>.tsv
 │           └── logs
-│               ├── nf-staphopiasccmec.{begin,err,log,out,run,sh,trace}
+│               ├── nf-sccmec.{begin,err,log,out,run,sh,trace}
 │               └── versions.yml
 └── bactopia-runs
     └── staphtyper-<TIMESTAMP>
@@ -58,11 +58,11 @@ file descriptions below were modified from a tools description.
         │   │   ├── spatyper-concat
         │   │   │   ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
         │   │   │   └── versions.yml
-        │   │   └── staphopiasccmec-concat
+        │   │   └── sccmec-concat
         │   │       ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
         │   │       └── versions.yml
         │   ├── spatyper.tsv
-        │   └── staphopiasccmec.tsv
+        │   └── sccmec.tsv
         └── nf-reports
             ├── staphtyper-dag.dot
             ├── staphtyper-report.html
@@ -91,7 +91,7 @@ Below are results that are concatenated into a single file.
 |-------------------------------|-------------|
 | agrvate.tsv | A merged TSV file with `AgrVATE` results from all samples |
 | spatyper.tsv | A merged TSV file with `spaTyper` results from all samples |
-| staphopiasccmec.tsv | A merged TSV file with `staphopia-sccmec` results from all samples |
+| sccmec.tsv | A merged TSV file with `sccmec` results from all samples |
 
 
 #### AgrVATE
@@ -116,14 +116,18 @@ Below is a description of the _per-sample_ results from [spaTyper](https://githu
 | &lt;SAMPLE_NAME&gt;.tsv | A tab-delimited file with `spaTyper` result |
 
 
-#### staphopia-sccmec
+#### sccmec
 
-Below is a description of the _per-sample_ results from [staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec).
+Below is a description of the _per-sample_ results from [sccmec](https://github.com/rpetit3/sccmec).
 
 
 | Filename                      | Description |
 |-------------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;.tsv | A tab-delimited file with `staphopia-sccmec` results |
+| .tsv | A tab-delimited file with the predicted type |
+| .targets.blastn.tsv | A tab-delimited file of all target-specific blast hits |
+| .targets.details.tsv | A tab-delimited file with details for each type based on targets |
+| .regions.blastn.tsv | A tab-delimited file of all full cassette blast hits |
+| .regions.details.tsv | A tab-delimited file with details for each type based on full cassettes |
 
 
 
@@ -206,12 +210,15 @@ Use these parameters to specify which samples to include or exclude.
 | <i class="fa-lg fas fa-file-archive"></i>` --repeat_order` | List spa types and order of repeats <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --do_enrich` | Do PCR product enrichment <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> staphopia-sccmec Parameters
+### <i class="fa-xl fas fa-exclamation-circle"></i> sccmec Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hamming` | Report the results as hamming distances <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --sccmec_min_targets_pident` | Minimum percent identity to count a target hit <br/>**Type:** `integer`, **Default:** `90` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --sccmec_min_targets_coverage` | Minimum percent coverage to count a target hit <br/>**Type:** `integer`, **Default:** `80` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --sccmec_min_regions_pident` | Minimum percent identity to count a region hit <br/>**Type:** `integer`, **Default:** `85` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --sccmec_min_regions_coverage` | Minimum percent coverage to count a region hit <br/>**Type:** `integer`, **Default:** `93` |
 
 
 ### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
@@ -231,8 +238,8 @@ Set the top limit for requested resources for any single job.
 |:---|---|
 | <i class="fa-lg fas fa-redo"></i>` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
 | <i class="fa-lg fas fa-microchip"></i>` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
-| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `32` |
-| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time (in minutes) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `120` |
+| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
+| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
 | <i class="fa-lg fas fa-angle-double-up"></i>` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
 
 ### <i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration Parameters
@@ -303,9 +310,9 @@ If you use Bactopia and `staphtyper` in your analysis, please cite the following
 - [csvtk](https://bioinf.shenwei.me/csvtk/)  
     Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
   
+- [sccmec](https://github.com/rpetit3/sccmec)  
+    Petit III RA, Read TD [sccmec: A tool for typing SCCmec cassettes in assemblies](https://github.com/rpetit3/sccmec) (GitHub)
+  
 - [spaTyper](https://github.com/HCGB-IGTP/spaTyper)  
     Sanchez-Herrero JF, and Sullivan M [spaTyper: Staphylococcal protein A (spa) characterization pipeline](http://doi.org/10.5281/zenodo.4063625). Zenodo. (2020)
-  
-- [staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec)  
-    Petit III RA, Read TD [_Staphylococcus aureus_ viewed from the perspective of 40,000+ genomes.](http://dx.doi.org/10.7717/peerj.5261) _PeerJ_ 6, e5261 (2018)
   

@@ -3,8 +3,12 @@ title: genotyphi
 description: A Bactopia Tool which uses GenoTyphi to genotype Salmonella Typhi from the outputs of Mykrobe.
 ---
 # Bactopia Tool - `genotyphi`
-The `genotyphi` module uses [GenoTyphi](https://github.com/katholt/genotyphi) to genotype Salmonella Typhi
-from the outputs of [Mykrobe](https://github.com/Mykrobe-tools/mykrobe).
+The `genotyphi` module uses [GenoTyphi](https://github.com/typhoidgenomics/genotyphi) to
+call Typhi lineages, AMR determines and plasmid markers in Salmonella Typhi samples.
+Samples are first processed by [Mykrobe](https://github.com/Mykrobe-tools/mykrobe) using `mykrobe predict`
+with `typhi` specified as the species. Then the Mykrobe results are then processed by the
+[parse_typhi_mykrobe.py](https://github.com/typhoidgenomics/genotyphi/blob/main/typhimykrobe/parse_typhi_mykrobe.py)
+script available from GenoTyphi.
 
 
 ## Example Usage
@@ -65,8 +69,8 @@ Below are results that are concatenated into a single file.
 
 #### GenoTyphi
 
-Below is a description of the _per-sample_ results from [GenoTyphi](https://github.com/katholt/genotyphi). A
-full description of the GenoTyphi output is available at [GenoTyphi - Output](https://github.com/katholt/genotyphi/blob/main/README.md#explanation-of-columns-in-the-output)
+Below is a description of the _per-sample_ results from [GenoTyphi](https://github.com/typhoidgenomics/genotyphi/). A
+full description of the GenoTyphi output is available at [GenoTyphi - Output](https://github.com/typhoidgenomics/genotyphi/tree/main?tab=readme-ov-file#explanation-of-columns-in-the-output)
 
 
 | Filename                      | Description |
@@ -181,8 +185,8 @@ Set the top limit for requested resources for any single job.
 |:---|---|
 | <i class="fa-lg fas fa-redo"></i>` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
 | <i class="fa-lg fas fa-microchip"></i>` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
-| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `32` |
-| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time (in minutes) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `120` |
+| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
+| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
 | <i class="fa-lg fas fa-angle-double-up"></i>` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
 
 ### <i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration Parameters

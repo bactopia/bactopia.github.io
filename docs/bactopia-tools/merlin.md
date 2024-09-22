@@ -241,6 +241,7 @@ Below are results that are concatenated into a single file.
 | Filename                      | Description |
 |-------------------------------|-------------|
 | agrvate.tsv | A merged TSV file with `AgrVATE` results from all samples |
+| clermontyping.csv | A merged TSV file with `ClermonTyping` results from all samples |
 | ectyper.tsv | A merged TSV file with `ECTyper` results from all samples |
 | emmtyper.tsv | A merged TSV file with `emmtyper` results from all samples |
 | genotyphi.tsv | A merged TSV file with `genotyphi` results from all samples |
@@ -255,6 +256,7 @@ Below are results that are concatenated into a single file.
 | pbptyper.tsv | A merged TSV file with `pbptyper` results from all samples |
 | seqsero2.tsv | A merged TSV file with `seqsero2` results from all samples |
 | seroba.tsv | A merged TSV file with `seroba` results from all samples |
+| shigapass.csv | A merged CSV file with `ShigaPass` results from all samples |
 | shigatyper.tsv | A merged TSV file with `ShigaTyper` results from all samples |
 | shigeifinder.tsv | A merged TSV file with `ShigEiFinder` results from all samples |
 | sistr.tsv | A merged TSV file with `SISTR` results from all samples |
@@ -274,6 +276,19 @@ Below is a description of the _per-sample_ results from [AgrVATE](https://github
 | -agr_gp.tab | A detailed report for _agr_ kmer matches |
 | -blastn_log.txt | Log files from programs called by `AgrVATE` |
 | -summary.tab | A final summary report for _agr_ typing |
+
+
+#### ClermonTyping
+
+Below is a description of the _per-sample_ results from [ClermonTyping](https://github.com/happykhan/ClermonTyping).
+
+
+| Extension                     | Description |
+|-------------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.blast.xml | A BLAST XML file with the results of the ClermonTyping analysis |
+| &lt;SAMPLE_NAME&gt;.html | A HTML file with the results of the ClermonTyping analysis |
+| &lt;SAMPLE_NAME&gt;.mash.tsv | A TSV file with the Mash distances |
+| &lt;SAMPLE_NAME&gt;.phylogroups.txt | A TSV file with the final phylogroup assignments |
 
 
 #### ECTyper
@@ -436,6 +451,16 @@ More details about the outputs are available from [Seroba - Output](https://sang
 |-------------------------------|-------------|
 | &lt;SAMPLE_NAME&gt;.tsv | A tab-delimited file with the predicted serotype |
 | detailed_serogroup_info.txt | Detailed information about the predicted results |
+
+
+#### ShigaPass
+
+Below is a description of the _per-sample_ results from [ShigaPass](https://github.com/imanyass/ShigaPass).
+
+
+| Extension                     | Description |
+|-------------------------------|-------------|
+| &lt;SAMPLE_NAME&gt;.csv | A CSV file with the predicted Shigella or EIEC serotype |
 
 
 #### ShigaTyper
@@ -661,14 +686,8 @@ Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_resistance` | Turn off resistance genes screening <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_kaptive` | Turn off Kaptive screening of K and O loci <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_identity` | Minimum alignment percent identity for main results <br/>**Type:** `number`, **Default:** `90.0` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --kleborate_min_coverage` | Minimum alignment percent coverage for main results <br/>**Type:** `number`, **Default:** `80.0` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_spurious_identity` | Minimum alignment percent identity for spurious results <br/>**Type:** `number`, **Default:** `80.0` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_spurious_coverage` | Minimum alignment percent coverage for spurious results <br/>**Type:** `number`, **Default:** `40.0` |
-| <i class="fa-lg fas fa-boxes"></i>` --min_kaptive_confidence` | Minimum Kaptive confidence to call K/O loci - confidence levels below this will be reported as unknown <br/>**Type:** `string`, **Default:** `Good` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --force_index` | Rebuild the BLAST index at the start of execution <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-boxes"></i>` --kleborate_preset` | Preset module to use for Kleborate <br/>**Type:** `string`, **Default:** `kpsc` |
+| <i class="fa-lg fas fa-italic"></i>` --kleborate_opts` | Extra options in quotes for Kleborate <br/>**Type:** `string` |
 
 ### <i class="fa-xl fas fa-exclamation-circle"></i> legsta Parameters
 
@@ -718,7 +737,6 @@ You can use these parameters to fine-tune your meningotype analysis
 |:---|---|
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pbptyper_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pbptyper_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pbptyper_min_ani` | Minimum S. pneumoniae ANI to predict PBP Type <br/>**Type:** `integer`, **Default:** `95` |
 
 ### <i class="fa-xl fas fa-exclamation-circle"></i> SeqSero2 Parameters
 
@@ -770,8 +788,8 @@ Set the top limit for requested resources for any single job.
 |:---|---|
 | <i class="fa-lg fas fa-redo"></i>` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
 | <i class="fa-lg fas fa-microchip"></i>` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
-| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `32` |
-| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time (in minutes) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `120` |
+| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
+| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
 | <i class="fa-lg fas fa-angle-double-up"></i>` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
 
 ### <i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration Parameters
@@ -839,6 +857,9 @@ If you use Bactopia and `merlin` in your analysis, please cite the following.
 - [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)  
     Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
   
+- [ClermontTyping](https://github.com/happykhan/ClermonTyping)  
+    Beghain J, Bridier-Nahmias A, Le Nagard H, Denamur E, Clermont O. [ClermonTyping: an easy-to-use and accurate in silico method for Escherichia genus strain phylotyping.](https://doi.org/10.1099/mgen.0.000192) Microbial Genomics, 4(7), e000192. (2018)
+  
 - [csvtk](https://bioinf.shenwei.me/csvtk/)  
     Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
   
@@ -885,6 +906,9 @@ If you use Bactopia and `merlin` in your analysis, please cite the following.
   
 - [SeqSero2](https://github.com/denglab/SeqSero2)  
     Zhang S, Den-Bakker HC, Li S, Dinsmore BA, Lane C, Lauer AC, Fields PI, Deng X. [SeqSero2: rapid and improved Salmonella serotype determination using whole genome sequencing data.](https://doi.org/10.1128/AEM.01746-19) _Appl Environ Microbiology_ 85(23):e01746-19 (2019)
+  
+- [shigapass](https://github.com/imanyass/ShigaPass)  
+    Yassine I, Hansen EE, Lefèvre S, Ruckly C, Carle I, Lejay-Collin M, Fabre L, Rafei R, Pardos de la Gandara M, Daboussi F, Shahin A, Weill FX [ShigaPass: an in silico tool predicting Shigella serotypes from whole-genome sequencing assemblies.](https://doi.org/10.1099%2Fmgen.0.000961) _Microb Genomics_ 9(3) (2023)
   
 - [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper)  
     Wu Y, Lau HK, Lee T, Lau DK, Payne J [In Silico Serotyping Based on Whole-Genome Sequencing Improves the Accuracy of Shigella Identification.](https://doi.org/10.1128/AEM.00165-19) *Applied and Environmental Microbiology*, 85(7). (2019)

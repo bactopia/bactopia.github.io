@@ -112,6 +112,7 @@ files for you to review if the need ever arises.
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --report_common` | Report proteins common to a taxonomy group <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --report_all_equal` | Report all equally-scoring BLAST and HMM matches <br/>**Type:** `boolean` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --amrfinder_opts` | Extra AMRFinder+ options in quotes. <br/>**Type:** `string` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --amrfinder_db` | A custom AMRFinder+ database to use, either a tarball or a folder <br/>**Type:** `string` |
 
 ## Citations
 If you use Bactopia and `amrfinderplus` in your analysis, please cite the following.

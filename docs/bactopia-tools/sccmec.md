@@ -1,49 +1,58 @@
 ---
-title: Bactopia Tools -
-description: A Bactopia Tool which uses
-
+title: sccmec
+description: A Bactopia Tool which uses sccmec for typing SCCmec cassettes in _Staphylococcus aureus_ assemblies.
 ---
-# Bactopia Tool - `plasmidfinder`
-The `plasmidfinder` module identifies plasmids in total or partial sequenced isolates of bacteria.
+# Bactopia Tool - `sccmec`
+The `sccmec` module uses [sccmec](https://github.com/rpetit3/sccmec) for typing
+SCCmec cassettes in _Staphylococcus aureus_ assemblies.
 
 
 ## Example Usage
 ```
-bactopia --wf plasmidfinder \
+bactopia --wf sccmec \
   --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `plasmidfinder` tool. Where possible the 
+Below is the default output structure for the `sccmec` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── tools
-│       └── plasmidfinder
-│           ├── <SAMPLE_NAME>-hit_in_genome_seq.fsa
-│           ├── <SAMPLE_NAME>-plasmid_seqs.fsa
-│           ├── <SAMPLE_NAME>.{json|tsv|txt}
+│       └── sccmec
+        │   ├── <SAMPLE_NAME>.targets.blastn.tsv
+        │   ├── <SAMPLE_NAME>.targets.details.tsv
+        │   ├── <SAMPLE_NAME>.regions.blastn.tsv
+        │   ├── <SAMPLE_NAME>.regions.details.tsv
+│           ├── <SAMPLE_NAME>.tsv
 │           └── logs
-│               ├── nf-plasmidfinder.{begin,err,log,out,run,sh,trace}
+│               ├── nf-sccmec.{begin,err,log,out,run,sh,trace}
 │               └── versions.yml
 └── bactopia-runs
-    └── plasmidfinder-<TIMESTAMP>
+    └── sccmec-<TIMESTAMP>
         ├── merged-results
         │   ├── logs
-        │   │   └── plasmidfinder-concat
+        │   │   └── sccmec-concat
         │   │       ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
         │   │       └── versions.yml
-        │   └── plasmidfinder.tsv
+        │   └── sccmec.tsv
         └── nf-reports
-            ├── plasmidfinder-dag.dot
-            ├── plasmidfinder-report.html
-            ├── plasmidfinder-timeline.html
-            └── plasmidfinder-trace.txt
+            ├── sccmec-dag.dot
+            ├── sccmec-report.html
+            ├── sccmec-timeline.html
+            └── sccmec-trace.txt
 
 ```
+
+!!! info "Directory structure might be different"
+
+    `sccmec` is available as a standalone Bactopia Tool, as well as from
+    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+    from Bactopia, the `sccmec` directory structure might be different, but the
+    output descriptions below still apply.
 
 
 
@@ -56,21 +65,21 @@ Below are results that are concatenated into a single file.
 
 | Filename                      | Description |
 |-------------------------------|-------------|
-| plasmidfinder.tsv | A merged TSV file with `PlasmidFinder` results from all samples |
+| sccmec.tsv | A merged TSV file with `sccmec` results from all samples |
 
 
-#### PlasmidFinder
+#### sccmec
 
-Below is a description of the _per-sample_ results from [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder/src/master/). 
+Below is a description of the _per-sample_ results from [sccmec](https://github.com/rpetit3/sccmec).
 
 
-| Filename                      | Description |
+| Extension                     | Description |
 |-------------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;.json | The results from analysis in JSON format |
-| &lt;SAMPLE_NAME&gt;.tsv | The results from analysis in TSV format |
-| &lt;SAMPLE_NAME&gt;.txt | A text file containing the result table and alignments |
-| &lt;SAMPLE_NAME&gt;-hit_in_genome_seq.fsa | A fasta file containing the best matching sequences from the query genome. |
-| &lt;SAMPLE_NAME&gt;-plasmid_seqs.fsa | A fasta file containing the best matching plasmid genes from the database. |
+| .tsv | A tab-delimited file with the predicted type |
+| .targets.blastn.tsv | A tab-delimited file of all target-specific blast hits |
+| .targets.details.tsv | A tab-delimited file with details for each type based on targets |
+| .regions.blastn.tsv | A tab-delimited file of all full cassette blast hits |
+| .regions.details.tsv | A tab-delimited file with details for each type based on full cassettes |
 
 
 
@@ -103,10 +112,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| plasmidfinder-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| plasmidfinder-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| plasmidfinder-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| plasmidfinder-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| sccmec-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| sccmec-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| sccmec-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| sccmec-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -137,13 +146,15 @@ Use these parameters to specify which samples to include or exclude.
 | <i class="fa-lg far fa-square-minus"></i>` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> PlasmidFinder Parameters
+### <i class="fa-xl fas fa-exclamation-circle"></i> sccmec Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --pf_mincov` | Minimum percent coverage to be considered a hit <br/>**Type:** `number`, **Default:** `0.6` |
-| <i class="fa-lg fas fa-hashtag"></i>` --pf_threshold` | Minimum threshold for identity <br/>**Type:** `number`, **Default:** `0.9` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --sccmec_min_targets_pident` | Minimum percent identity to count a target hit <br/>**Type:** `integer`, **Default:** `90` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --sccmec_min_targets_coverage` | Minimum percent coverage to count a target hit <br/>**Type:** `integer`, **Default:** `80` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --sccmec_min_regions_pident` | Minimum percent identity to count a region hit <br/>**Type:** `integer`, **Default:** `85` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --sccmec_min_regions_coverage` | Minimum percent coverage to count a region hit <br/>**Type:** `integer`, **Default:** `93` |
 
 
 ### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
@@ -223,7 +234,7 @@ Uncommonly used parameters that might be useful.
 | <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
-If you use Bactopia and `plasmidfinder` in your analysis, please cite the following.
+If you use Bactopia and `sccmec` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
@@ -232,6 +243,6 @@ If you use Bactopia and `plasmidfinder` in your analysis, please cite the follow
 - [csvtk](https://bioinf.shenwei.me/csvtk/)  
     Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
   
-- [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder)  
-    Carattoli A, Zankari E, García-Fernández A, Voldby Larsen M, Lund O, Villa L, Møller Aarestrup F, Hasman H [In silico detection and typing of plasmids using PlasmidFinder and plasmid multilocus sequence typing.](https://doi.org/10.1128/AAC.02412-14) _Antimicrobial Agents and Chemotherapy_ 58(7), 3895–3903. (2014)
+- [sccmec](https://github.com/rpetit3/sccmec)  
+    Petit III RA, Read TD [sccmec: A tool for typing SCCmec cassettes in assemblies](https://github.com/rpetit3/sccmec) (GitHub)
   

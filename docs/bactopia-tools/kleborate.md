@@ -29,7 +29,7 @@ file descriptions below were modified from a tools description.
 ├── <SAMPLE_NAME>
 │   └── tools
 │       └── kleborate
-│           ├── <SAMPLE_NAME>.results.txt
+│           ├── <SAMPLE_NAME>.txt
 │           └── logs
 │               ├── nf-kleborate.{begin,err,log,out,run,sh,trace}
 │               └── versions.yml
@@ -77,7 +77,7 @@ Below is a description of the _per-sample_ results from [Kleborate](https://gith
 
 | Filename                      | Description |
 |-------------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;.results.txt | A tab-delimited file with `Kleborate` result, see  [Kleborate - Example output](https://github.com/katholt/Kleborate/wiki/Tests-and-example-outputs#example-output) for more details. |
+| &lt;SAMPLE_NAME&gt;.txt | A tab-delimited file with `Kleborate` result, see  [Kleborate - Example output](https://github.com/katholt/Kleborate/wiki/Tests-and-example-outputs#example-output) for more details. |
 
 
 
@@ -149,14 +149,8 @@ Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_resistance` | Turn off resistance genes screening <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_kaptive` | Turn off Kaptive screening of K and O loci <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_identity` | Minimum alignment percent identity for main results <br/>**Type:** `number`, **Default:** `90.0` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --kleborate_min_coverage` | Minimum alignment percent coverage for main results <br/>**Type:** `number`, **Default:** `80.0` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_spurious_identity` | Minimum alignment percent identity for spurious results <br/>**Type:** `number`, **Default:** `80.0` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_spurious_coverage` | Minimum alignment percent coverage for spurious results <br/>**Type:** `number`, **Default:** `40.0` |
-| <i class="fa-lg fas fa-boxes"></i>` --min_kaptive_confidence` | Minimum Kaptive confidence to call K/O loci - confidence levels below this will be reported as unknown <br/>**Type:** `string`, **Default:** `Good` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --force_index` | Rebuild the BLAST index at the start of execution <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-boxes"></i>` --kleborate_preset` | Preset module to use for Kleborate <br/>**Type:** `string`, **Default:** `kpsc` |
+| <i class="fa-lg fas fa-italic"></i>` --kleborate_opts` | Extra options in quotes for Kleborate <br/>**Type:** `string` |
 
 
 ### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
@@ -176,8 +170,8 @@ Set the top limit for requested resources for any single job.
 |:---|---|
 | <i class="fa-lg fas fa-redo"></i>` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
 | <i class="fa-lg fas fa-microchip"></i>` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
-| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory (in GB) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `32` |
-| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time (in minutes) that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `120` |
+| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
+| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
 | <i class="fa-lg fas fa-angle-double-up"></i>` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
 
 ### <i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration Parameters

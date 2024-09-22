@@ -104,8 +104,9 @@ files for you to review if the need ever arises.
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --scheme` | Don't autodetect, force this scheme on all inputs <br/>**Type:** `string` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --minid` | Minimum DNA percent identity of full allelle to consider 'similar' <br/>**Type:** `integer`, **Default:** `95` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mincov` | Minimum DNA percent coverage to report partial allele at all <br/>**Type:** `integer`, **Default:** `10` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --minscore` | Minumum score out of 100 to match a scheme <br/>**Type:** `integer`, **Default:** `50` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --minscore` | Minimum score out of 100 to match a scheme <br/>**Type:** `integer`, **Default:** `50` |
 | <i class="fa-lg fas fa-expand-arrows-alt"></i>` --nopath` | Strip filename paths from FILE column <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mlst_db` | A custom MLST database to use, either a tarball or a directory <br/>**Type:** `string` |
 
 ## Citations
 If you use Bactopia and `mlst` in your analysis, please cite the following.

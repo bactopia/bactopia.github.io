@@ -1,7 +1,7 @@
 ---
 title: Bactopia Tools
 description: >-
-    More than 60 additional workflows to allow you to easily
+    More than 64 additional workflows to allow you to easily
     dive further into your Bactopia results.
 ---
 # Overview
@@ -17,7 +17,7 @@ you valuable time by allowing you to make further use of the
 [many output files](../full-guide.md) to extend your analyses.
 
 ### Available Bactopia Tools
-There are currently 60 Bactopia Tools that you can make use of.
+There are currently 64 Bactopia Tools that you can make use of.
 Below are a list of available Bactopia Tools, grouped as __Subworkflows__ and __Modules__. 
 
 #### Subworkflows (11)
@@ -39,7 +39,7 @@ Subworkflows string together tools to create an complete pipeline.
     | [tbprofiler](tbprofiler.md) | Detect resistance and lineages of _Mycobacterium tuberculosis_ genomes |
     
 
-#### Modules  (49)
+#### Modules  (53)
 
 Modules are workflows consisting of only one tool.
 
@@ -56,6 +56,8 @@ Modules are workflows consisting of only one tool.
         | [btyper3](btyper3.md) | Taxonomic classification of Bacillus cereus group isolates |
         | [busco](busco.md) | Assembly completeness based on evolutionarily informed expectations |
         | [checkm](checkm.md) | Assess the assembly quality of your samples |
+        | [clermontyping](clermontyping.md) | in silico phylotyping of Escherichia genus |
+        | [defensefinder](defensefinder.md) | Systematic search of all known anti-phage systems |
         | [ectyper](ectyper.md) | In-silico prediction of _Escherichia coli_ serotype |
         | [emmtyper](emmtyper.md) | emm-typing of _Streptococcus pyogenes_ assemblies |
         | [fastani](fastani.md) | fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
@@ -83,8 +85,10 @@ Modules are workflows consisting of only one tool.
         | [pneumocat](pneumocat.md) | Assign capsular type to Streptococcus pneumoniae from sequence reads |
         | [quast](quast.md) | A module for assessing the quality of assembled contigs |
         | [rgi](rgi.md) | Predict antibiotic resistance from assemblies |
+        | [sccmec](sccmec.md) | A tool for typing SCCmec cassettes in assemblies |
         | [seqsero2](seqsero2.md) | Salmonella serotype prediction from reads or assemblies |
         | [seroba](seroba.md) | Serotyping of Streptococcus pneumoniae from sequence reads |
+        | [shigapass](shigapass.md) | Predict Shigella serotypes and differentiate Shigella, EIEC and non-Shigella/EIEC |
         | [shigatyper](shigatyper.md) | Shigella serotype from Illumina or Oxford Nanopore reads |
         | [shigeifinder](shigeifinder.md) | Shigella and EIEC serotyping from assemblies |
         | [sistr](sistr.md) | Serovar prediction of Salmonella assemblies |

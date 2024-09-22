@@ -1,47 +1,49 @@
 ---
-title: Bactopia Tools -
-description: A Bactopia Tool which uses
+title: defensefinder
+description: A Bactopia Tool which uses defense-finder to rapidly identify all known anti-phage systems in a bacterial genome.
 
 ---
-# Bactopia Tool - `plasmidfinder`
-The `plasmidfinder` module identifies plasmids in total or partial sequenced isolates of bacteria.
+# Bactopia Tool - `defensefinder`
+The `defensefinder` module uses the [defense-finder](https://github.com/mdmparis/defense-finder)
+for the identification of all known anti-phage systems.
 
 
 ## Example Usage
 ```
-bactopia --wf plasmidfinder \
+bactopia --wf defensefinder \
   --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `plasmidfinder` tool. Where possible the 
+Below is the default output structure for the `defensefinder` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
-<BACTOPIA_DIR>
+<BACOTPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── tools
-│       └── plasmidfinder
-│           ├── <SAMPLE_NAME>-hit_in_genome_seq.fsa
-│           ├── <SAMPLE_NAME>-plasmid_seqs.fsa
-│           ├── <SAMPLE_NAME>.{json|tsv|txt}
+│       └── defensefinder
+│           ├── <SAMPLE_NAME>.fna.prt
+│           ├── <SAMPLE_NAME>.fna.prt.idx
+│           ├── <SAMPLE_NAME>.fna_defense_finder_{genes|hmmer|systems}.tsv
+│           ├── <SAMPLE_NAME>.macsydata.tar.gz
 │           └── logs
-│               ├── nf-plasmidfinder.{begin,err,log,out,run,sh,trace}
+│               ├── nf-defensefinder.{begin,err,log,out,run,sh,trace}
 │               └── versions.yml
 └── bactopia-runs
-    └── plasmidfinder-<TIMESTAMP>
+    └── defensefinder-<TIMESTAMP>
         ├── merged-results
-        │   ├── logs
-        │   │   └── plasmidfinder-concat
-        │   │       ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
-        │   │       └── versions.yml
-        │   └── plasmidfinder.tsv
+        │   ├── defensefinder-{genes|hmmer|systems}.tsv
+        │   └── logs
+        │       └── defensefinder-{genes|hmmer|systems}-concat
+        │           ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
         └── nf-reports
-            ├── plasmidfinder-dag.dot
-            ├── plasmidfinder-report.html
-            ├── plasmidfinder-timeline.html
-            └── plasmidfinder-trace.txt
+            ├── defensefinder-dag.dot
+            ├── defensefinder-report.html
+            ├── defensefinder-timeline.html
+            └── defensefinder-trace.txt
 
 ```
 
@@ -56,21 +58,24 @@ Below are results that are concatenated into a single file.
 
 | Filename                      | Description |
 |-------------------------------|-------------|
-| plasmidfinder.tsv | A merged TSV file with `PlasmidFinder` results from all samples |
+| defensefinder-genes.tsv | A merged TSV of all genes found in the system for all samples |
+| defensefinder-hmmer.tsv | A merged TSV of all HMM hits for all samples |
+| defensefinder-systems.tsv | A merged TSV of all information about systems found for all samples |
 
 
-#### PlasmidFinder
+#### defensefinder
 
-Below is a description of the _per-sample_ results from [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder/src/master/). 
+Below is a description of the _per-sample_ results from [defense-finder](https://github.com/mdmparis/defense-finder).
 
 
 | Filename                      | Description |
 |-------------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;.json | The results from analysis in JSON format |
-| &lt;SAMPLE_NAME&gt;.tsv | The results from analysis in TSV format |
-| &lt;SAMPLE_NAME&gt;.txt | A text file containing the result table and alignments |
-| &lt;SAMPLE_NAME&gt;-hit_in_genome_seq.fsa | A fasta file containing the best matching sequences from the query genome. |
-| &lt;SAMPLE_NAME&gt;-plasmid_seqs.fsa | A fasta file containing the best matching plasmid genes from the database. |
+| &lt;SAMPLE_NAME&gt;.fna.prt | A FASTA file containing all proteins found in the system for a single sample |
+| &lt;SAMPLE_NAME&gt;.fna.prt.idx | A index file for the proteins file |
+| &lt;SAMPLE_NAME&gt;.fna_defense_finder_genes.tsv | A tab-delimited file with each gene found in the system for a single sample |
+| &lt;SAMPLE_NAME&gt;.fna_defense_finder_hmmer.tsv | A tab-delimited file with each HMM hit for a single sample |
+| &lt;SAMPLE_NAME&gt;.fna_defense_finder_systems.tsv | A tab-delimited file with information about each system found for a single sample |
+| &lt;SAMPLE_NAME&gt;.macsydata.tar.gz | A raw MACSyFinder output file (requires --df_preserveraw) |
 
 
 
@@ -103,10 +108,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| plasmidfinder-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| plasmidfinder-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| plasmidfinder-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| plasmidfinder-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| defensefinder-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| defensefinder-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| defensefinder-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| defensefinder-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -137,13 +142,15 @@ Use these parameters to specify which samples to include or exclude.
 | <i class="fa-lg far fa-square-minus"></i>` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> PlasmidFinder Parameters
+### <i class="fa-xl fas fa-exclamation-circle"></i> defense-finder Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --pf_mincov` | Minimum percent coverage to be considered a hit <br/>**Type:** `number`, **Default:** `0.6` |
-| <i class="fa-lg fas fa-hashtag"></i>` --pf_threshold` | Minimum threshold for identity <br/>**Type:** `number`, **Default:** `0.9` |
+| <i class="fa-lg fas fa-file-alt"></i>` --df_coverage` | Minimal percentage of coverage for each profiles <br/>**Type:** `number`, **Default:** `0.4` |
+| <i class="fa-lg fas fa-italic"></i>` --df_dbtype` | The macsyfinder --db-type option <br/>**Type:** `string`, **Default:** `ordered_replicon` |
+| <i class="fa-lg fas fa-fast-forward"></i>` --df_preserveraw` | Preserve raw MacsyFinder outputs alongside Defense Finder results inside the output directory <br/>**Type:** `boolean` |
+| <i class="fa-lg fas fa-fast-forward"></i>` --df_nocutga` | Advanced! Run macsyfinder in no-cut-ga mode. The validity of the genes and systems found is not guaranteed! <br/>**Type:** `boolean` |
 
 
 ### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
@@ -223,7 +230,7 @@ Uncommonly used parameters that might be useful.
 | <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
-If you use Bactopia and `plasmidfinder` in your analysis, please cite the following.
+If you use Bactopia and `defensefinder` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
@@ -232,6 +239,6 @@ If you use Bactopia and `plasmidfinder` in your analysis, please cite the follow
 - [csvtk](https://bioinf.shenwei.me/csvtk/)  
     Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
   
-- [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder)  
-    Carattoli A, Zankari E, García-Fernández A, Voldby Larsen M, Lund O, Villa L, Møller Aarestrup F, Hasman H [In silico detection and typing of plasmids using PlasmidFinder and plasmid multilocus sequence typing.](https://doi.org/10.1128/AAC.02412-14) _Antimicrobial Agents and Chemotherapy_ 58(7), 3895–3903. (2014)
+- [DefenseFinder](https://github.com/mdmparis/defense-finder)  
+    Tesson F, Hervé A, Mordret E, Touchon M, d’Humières C, Cury J, Bernheim A [Systematic and quantitative view of the antiviral arsenal of prokaryotes.](https://doi.org/10.1038/s41467-022-30269-9) Nature Communications, 13(1), 2561. (2022)
   

@@ -1,49 +1,55 @@
 ---
-title: Bactopia Tools -
-description: A Bactopia Tool which uses
-
+title: shigapass
+description: A Bactopia Tool which uses ShigaPass to conduct _in silico_ prediction of serotype for Shigella and EIEC genomes.
 ---
-# Bactopia Tool - `plasmidfinder`
-The `plasmidfinder` module identifies plasmids in total or partial sequenced isolates of bacteria.
+# Bactopia Tool - `shigapass`
+The `shigapass` module uses [ShigaPass](https://github.com/imanyass/ShigaPass) for
+_in silico_ prediction of serotypes in _Shigella_ assemblies. It will also differentiate
+between _Shigella_, EIEC (Enteroinvasive _E. coli_) and non _Shigella_/EIEC.
 
 
 ## Example Usage
 ```
-bactopia --wf plasmidfinder \
+bactopia --wf shigapass \
   --bactopia /path/to/your/bactopia/results  
 ```
 
 ## Output Overview
 
-Below is the default output structure for the `plasmidfinder` tool. Where possible the 
+Below is the default output structure for the `shigapass` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
 ```{bash}
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── tools
-│       └── plasmidfinder
-│           ├── <SAMPLE_NAME>-hit_in_genome_seq.fsa
-│           ├── <SAMPLE_NAME>-plasmid_seqs.fsa
-│           ├── <SAMPLE_NAME>.{json|tsv|txt}
+│       └── shigapass
+│           ├── <SAMPLE_NAME>.csv
 │           └── logs
-│               ├── nf-plasmidfinder.{begin,err,log,out,run,sh,trace}
+│               ├── nf-shigapass.{begin,err,log,out,run,sh,trace}
 │               └── versions.yml
 └── bactopia-runs
-    └── plasmidfinder-<TIMESTAMP>
+    └── shigapass
         ├── merged-results
         │   ├── logs
-        │   │   └── plasmidfinder-concat
+        │   │   └── shigapass-concat
         │   │       ├── nf-merged-results.{begin,err,log,out,run,sh,trace}
         │   │       └── versions.yml
-        │   └── plasmidfinder.tsv
+        │   └── shigapass.csv
         └── nf-reports
-            ├── plasmidfinder-dag.dot
-            ├── plasmidfinder-report.html
-            ├── plasmidfinder-timeline.html
-            └── plasmidfinder-trace.txt
+            ├── shigapass-dag.dot
+            ├── shigapass-report.html
+            ├── shigapass-timeline.html
+            └── shigapass-trace.txt
 
 ```
+
+!!! info "Directory structure might be different"
+
+    `shigapass` is available as a standalone Bactopia Tool, as well as from
+    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+    from Bactopia, the `shigapass` directory structure might be different, but the
+    output descriptions below still apply.
 
 
 
@@ -56,21 +62,17 @@ Below are results that are concatenated into a single file.
 
 | Filename                      | Description |
 |-------------------------------|-------------|
-| plasmidfinder.tsv | A merged TSV file with `PlasmidFinder` results from all samples |
+| shigapass.csv | A merged CSV file with `ShigaPass` results from all samples |
 
 
-#### PlasmidFinder
+#### ShigaPass
 
-Below is a description of the _per-sample_ results from [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder/src/master/). 
+Below is a description of the _per-sample_ results from [ShigaPass](https://github.com/imanyass/ShigaPass).
 
 
-| Filename                      | Description |
+| Extension                     | Description |
 |-------------------------------|-------------|
-| &lt;SAMPLE_NAME&gt;.json | The results from analysis in JSON format |
-| &lt;SAMPLE_NAME&gt;.tsv | The results from analysis in TSV format |
-| &lt;SAMPLE_NAME&gt;.txt | A text file containing the result table and alignments |
-| &lt;SAMPLE_NAME&gt;-hit_in_genome_seq.fsa | A fasta file containing the best matching sequences from the query genome. |
-| &lt;SAMPLE_NAME&gt;-plasmid_seqs.fsa | A fasta file containing the best matching plasmid genes from the database. |
+| &lt;SAMPLE_NAME&gt;.csv | A CSV file with the predicted Shigella or EIEC serotype |
 
 
 
@@ -103,10 +105,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| plasmidfinder-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
-| plasmidfinder-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
-| plasmidfinder-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
-| plasmidfinder-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
+| shigapass-dag.dot | The Nextflow [DAG visualisation](https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation) |
+| shigapass-report.html | The Nextflow [Execution Report](https://www.nextflow.io/docs/latest/tracing.html#execution-report) |
+| shigapass-timeline.html | The Nextflow [Timeline Report](https://www.nextflow.io/docs/latest/tracing.html#timeline-report) |
+| shigapass-trace.txt | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report |
 
 
 #### Program Versions
@@ -137,13 +139,6 @@ Use these parameters to specify which samples to include or exclude.
 | <i class="fa-lg far fa-square-minus"></i>` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> PlasmidFinder Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --pf_mincov` | Minimum percent coverage to be considered a hit <br/>**Type:** `number`, **Default:** `0.6` |
-| <i class="fa-lg fas fa-hashtag"></i>` --pf_threshold` | Minimum threshold for identity <br/>**Type:** `number`, **Default:** `0.9` |
 
 
 ### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
@@ -223,7 +218,7 @@ Uncommonly used parameters that might be useful.
 | <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
-If you use Bactopia and `plasmidfinder` in your analysis, please cite the following.
+If you use Bactopia and `shigapass` in your analysis, please cite the following.
 
 - [Bactopia](https://bactopia.github.io/)  
     Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
@@ -232,6 +227,6 @@ If you use Bactopia and `plasmidfinder` in your analysis, please cite the follow
 - [csvtk](https://bioinf.shenwei.me/csvtk/)  
     Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
   
-- [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder)  
-    Carattoli A, Zankari E, García-Fernández A, Voldby Larsen M, Lund O, Villa L, Møller Aarestrup F, Hasman H [In silico detection and typing of plasmids using PlasmidFinder and plasmid multilocus sequence typing.](https://doi.org/10.1128/AAC.02412-14) _Antimicrobial Agents and Chemotherapy_ 58(7), 3895–3903. (2014)
+- [shigapass](https://github.com/imanyass/ShigaPass)  
+    Yassine I, Hansen EE, Lefèvre S, Ruckly C, Carle I, Lejay-Collin M, Fabre L, Rafei R, Pardos de la Gandara M, Daboussi F, Shahin A, Weill FX [ShigaPass: an in silico tool predicting Shigella serotypes from whole-genome sequencing assemblies.](https://doi.org/10.1099%2Fmgen.0.000961) _Microb Genomics_ 9(3) (2023)
   
