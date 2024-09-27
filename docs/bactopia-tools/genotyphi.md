@@ -4,7 +4,7 @@ description: A Bactopia Tool which uses GenoTyphi to genotype Salmonella Typhi f
 ---
 # Bactopia Tool - `genotyphi`
 The `genotyphi` module uses [GenoTyphi](https://github.com/typhoidgenomics/genotyphi) to
-call Typhi lineages, AMR determines and plasmid markers in Salmonella Typhi samples.
+call Typhi lineages, AMR determinants, and plasmid markers in Salmonella Typhi samples.
 Samples are first processed by [Mykrobe](https://github.com/Mykrobe-tools/mykrobe) using `mykrobe predict`
 with `typhi` specified as the species. Then the Mykrobe results are then processed by the
 [parse_typhi_mykrobe.py](https://github.com/typhoidgenomics/genotyphi/blob/main/typhimykrobe/parse_typhi_mykrobe.py)
