@@ -32,7 +32,7 @@ jobs:
           MKDOCS_INSIDERS: ${{ secrets.MKDOCS_INSIDERS }}
         run: |
           # Conda dependencies
-          conda install -c conda-forge -c bioconda nextflow jinja2 jq pyyaml 'python>3.6'
+          conda install -c conda-forge -c bioconda nextflow jinja2 jq pyyaml 'python=3.11'
           # MkDocs dependencies
           pip install \
             "cairosvg>=2.5" \
