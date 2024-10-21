@@ -21,6 +21,14 @@ Slides: [PDF](https://datasets.bactopia.com/media/2023-bactopia-edlb-workshop.pd
 
 ## Talks
 
+- _Bactopia - Enhancing and expanding the Bactopia framework (October 2024)_  
+A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [ASM Conference on Rapid Applied Microbial Next-Generation Sequencing and Bioinformatic Pipelines (ASMNGS)](https://asm.org/events/asm-ngs/home). This talk highlighted how Bactopia has evolved from an end-to-end pipeline to more of a framework to rapidly adapt to user needs.  
+Slides: [PDF](https://datasets.bactopia.com/media/2024-asmngs-bactopia.pdf)  
+
+- _Introduction to Bactopia for Bacterial Genome Analysis (June 2024)_  
+A talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the monthly Technical Outreach and Assistance for States Teams (TOAST). This talk introduced participants to Bactopia and how they can make use of it in their genomic analyses.  
+Slides: [PDF](https://datasets.bactopia.com/media/2024-bactopia-toast.pdf)  
+
 - _Bactopia v3 - Enhancements for public health genomic surveillance (December 2023)_  
 A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Nextflow Summit - Boston 2023](https://summit.nextflow.io/boston/). This talk highlighted how Bactopia was rebuilt in version 3 to better support on-going genomic surveillance of bacterial pathogens.  
 Slides: [PDF](https://datasets.bactopia.com/media/2023-bactopiav3-nf-summit-boston.pdf)  
@@ -64,6 +72,22 @@ The talk presented by [Dr. Timothy Read](https://twitter.com/tdread_emory) at NI
 Slides: [Web](https://bit.ly/3lQpZKo), [PDF](https://datasets.bactopia.com/media/2020-niaid-bactopia-staphopia.pdf)  
 
 ## Posters
+
+- _Expanding Bactopia as a framework for bacterial, fungal, and metagenomic analysis (September 2024)_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [AMD Days 2024](https://www.aphl.org/programs/infectious_disease/Pages/AMD-Days.aspx) conference outlining the latest changes in Bactopia, including new named workflows and AllTheBacteria support.  
+Slides: [PDF](https://datasets.bactopia.com/media/2024-amddays-bactopia.pdf) 
+
+- _Expanding Bactopia as a framework for bacterial, fungal, and metagenomic analysis (May 2024)_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) conference outlining the latest changes in Bactopia, including new named workflows and AllTheBacteria support.  
+Slides: [PDF](https://datasets.bactopia.com/media/2024-aphl-bactopia.pdf) 
+
+- _Expanding Bactopia as a framework for bacterial, fungal, and metagenomic analysis (May 2024)_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [APHL 2024](https://www.aphl.org/conferences/annualmeeting/Pages/default.aspx) conference outlining the latest changes in Bactopia, including new named workflows and AllTheBacteria support.  
+Slides: [PDF](https://datasets.bactopia.com/media/2024-aphl-bactopia.pdf)
+
+- _Bactopia v3 - Enhancements for on-going genomic surveillance of bacterial pathogens (June 2023)_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) conference highlighting the latest changes in Bactopia v3.  
+Slides: [PDF](https://datasets.bactopia.com/media/2023-sfaf-poster.pdf) 
 
 - _Supporting the bioinformatics community by supporting Bactopia users (October 2022)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [ASM Conference on Rapid Applied Microbial Next-Generation Sequencing and Bioinformatic Pipelines (ASMNGS)](https://asm.org/Events/ASM-NGS/Home) conference outlining how Bactopia was designed to reduce the maintenance burden while contributing back to the community.  
