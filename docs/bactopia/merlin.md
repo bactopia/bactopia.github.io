@@ -10,7 +10,7 @@ Currently Merlin knows 16 spells for which cover the following:
 
 | Genus/Species | Tools |
 |---------------|-------|
-| Escherichia / Shigella   | [ECTyper](../bactopia-tools/ectyper.md), [ShigaTyper](../bactopia-tools/shigatyper.md), [ShigEiFinder](../bactopia-tools/shigeifinder.md)  |
+| Escherichia / Shigella   | [ECTyper](../bactopia-tools/ectyper.md), [ShigaTyper](../bactopia-tools/shigatyper.md), [ShigEiFinder](../bactopia-tools/shigeifinder.md), [ShigaPass](../bactopia-tools/shigapass.md)  |
 | Haemophilus   | [hicap](../bactopia-tools/hicap.md), [HpsuisSero](../bactopia-tools/ssuissero.md) |
 | Klebsiella | [Kleborate](../bactopia-tools/kleborate.md) |
 | Legionella | [legsta](../bactopia-tools/legsta.md) |
