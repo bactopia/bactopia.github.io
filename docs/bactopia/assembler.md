@@ -11,7 +11,7 @@ Illumina and Oxford Nanopore reads. The tools used are:
 |------|-------------|
 | [Dragonflye](https://github.com/rpetit3/dragonflye) | Assembly of Oxford Nanopore reads, as well as hybrid assembly with short-read polishing |
 | [Shovill](https://github.com/tseemann/shovill) | Assembly of Illumina paired-end reads |
-| [Shovill-SE](https://github.com/rpetit/shovill) | Assembly of Illumina single-end reads |
+| [Shovill-SE](https://github.com/rpetit3/shovill) | Assembly of Illumina single-end reads |
 | [Unicycler](https://github.com/rrwick/Unicycler) | Hybrid assembly, using short-reads first then long-reads |
 
 Summary statistics for each assembly are generated using [assembly-scan](https://github.com/rpetit3/assembly-scan).
