@@ -1,0 +1,11 @@
+node_modules/
+build/
+.docusaurus/
+.cache-loader/
+*.log
+npm-debug.log*
+.env
+.env.*
+.DS_Store
+Thumbs.db
+.idea/

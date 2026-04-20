@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+  --ifm-color-primary: #009688;
+  --ifm-color-primary-dark: #00877a;
+  --ifm-color-primary-darker: #007f73;
+  --ifm-color-primary-darkest: #00695f;
+  --ifm-color-primary-light: #00a596;
+  --ifm-color-primary-lighter: #00ad9d;
+  --ifm-color-primary-lightest: #00c4b3;
+
+  --ifm-font-family-base: 'Ubuntu', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'Ubuntu Mono', SFMono-Regular, Menlo, Monaco,
+    Consolas, monospace;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #b39ddb;
+  --ifm-color-primary-dark: #9f84d0;
+  --ifm-color-primary-darker: #9577cb;
+  --ifm-color-primary-darkest: #7550be;
+  --ifm-color-primary-light: #c7b6e6;
+  --ifm-color-primary-lighter: #d1c3eb;
+  --ifm-color-primary-lightest: #e9e0f5;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
