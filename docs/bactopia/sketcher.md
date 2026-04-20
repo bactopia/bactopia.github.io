@@ -14,7 +14,7 @@ The `sketcher` module uses [Mash](https://github.com/marbl/Mash) and
 Below is the default output structure for the `sketcher` step in Bactopia. Where
 possible the file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── main
@@ -83,15 +83,15 @@ files for you to review if the need ever arises.
 ## Parameters
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Sketcher 
+### Sketcher 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-hashtag"></i>` --sketch_size` | Sketch size. Each sketch will have at most this many non-redundant min-hashes. <br/>**Type:** `integer`, **Default:** `10000` |
-| <i class="fa-lg fas fa-hashtag"></i>` --sourmash_scale` | Choose number of hashes as 1 in FRACTION of input k-mers <br/>**Type:** `integer`, **Default:** `10000` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_winner_take_all` | Disable winner-takes-all strategy for identity estimates <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-hashtag"></i>` --screen_i` | Minimum identity to report. <br/>**Type:** `number`, **Default:** `0.8` |
+| ` --sketch_size` | Sketch size. Each sketch will have at most this many non-redundant min-hashes. <br/>**Type:** `integer`, **Default:** `10000` |
+| ` --sourmash_scale` | Choose number of hashes as 1 in FRACTION of input k-mers <br/>**Type:** `integer`, **Default:** `10000` |
+| ` --no_winner_take_all` | Disable winner-takes-all strategy for identity estimates <br/>**Type:** `boolean` |
+| ` --screen_i` | Minimum identity to report. <br/>**Type:** `number`, **Default:** `0.8` |
 
 ## Citations
 If you use Bactopia and `sketcher` in your analysis, please cite the following.

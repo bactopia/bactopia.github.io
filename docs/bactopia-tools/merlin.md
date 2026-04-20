@@ -38,7 +38,7 @@ bactopia --wf merlin \
 Below is the default output structure for the `merlin` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── tools
@@ -222,12 +222,13 @@ file descriptions below were modified from a tools description.
 
 ```
 
-!!! info "Directory structure might be different"
+:::info[Directory structure might be different]
 
-    `merlin` is available as a standalone Bactopia Tool, as well as from
-    the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
-    from Bactopia, the `merlin` directory structure might be different, but the
-    output descriptions below still apply.
+`merlin` is available as a standalone Bactopia Tool, as well as from
+the main Bactopia workflow (e.g. through Staphopia or Merlin). If executed 
+from Bactopia, the `merlin` directory structure might be different, but the
+output descriptions below still apply.
+:::
 
 
 
@@ -589,284 +590,284 @@ At the end of each run, each of the `versions.yml` files are merged into the fil
 ## Parameters
 
 
-### <i class="fa-xl fas fa-terminal"></i> Required Parameters
+### Required Parameters
 Define where the pipeline should find input data and save output data.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-bacterium"></i>` --bactopia` | The path to bactopia results to use as inputs <br/>**Type:** `string` |
+| ` --bactopia` | The path to bactopia results to use as inputs <br/>**Type:** `string` |
 
-### <i class="fa-xl fa-solid fa-filter"></i> Filtering Parameters
+### Filtering Parameters
 Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg far fa-square-plus"></i>` --include` | A text file containing sample names (one per line) to include from the analysis <br/>**Type:** `string` |
-| <i class="fa-lg far fa-square-minus"></i>` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
+| ` --include` | A text file containing sample names (one per line) to include from the analysis <br/>**Type:** `string` |
+| ` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> mashdist Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_sketch` | The reference sequence as a Mash Sketch (.msh file) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_seed` | Seed to provide to the hash function <br/>**Type:** `integer`, **Default:** `42` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_table` |  Table output (fields will be blank if they do not meet the p-value threshold) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_m` | Minimum copies of each k-mer required to pass noise filter for reads <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_w` | Probability threshold for warning about low k-mer size. <br/>**Type:** `number`, **Default:** `0.01` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --max_p` | Maximum p-value to report. <br/>**Type:** `number`, **Default:** `1.0` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --max_dist` | Maximum distance to report. <br/>**Type:** `number`, **Default:** `1.0` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --merlin_dist` | Maximum distance to report when using Merlin . <br/>**Type:** `number`, **Default:** `0.1` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --full_merlin` | Go full Merlin and run all species-specific tools, no matter the Mash distance <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --use_fastqs` | Query with FASTQs instead of the assemblies <br/>**Type:** `boolean` |
-
-### <i class="fa-xl fa-solid fa-toolbox"></i> AgrVATE Parameters
+### mashdist Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fa-solid fa-toggle-on"></i>` --typing_only` | agr typing only. Skips agr operon extraction and frameshift detection <br/>**Type:** `boolean` |
+| ` --mash_sketch` | The reference sequence as a Mash Sketch (.msh file) <br/>**Type:** `string` |
+| ` --mash_seed` | Seed to provide to the hash function <br/>**Type:** `integer`, **Default:** `42` |
+| ` --mash_table` |  Table output (fields will be blank if they do not meet the p-value threshold) <br/>**Type:** `boolean` |
+| ` --mash_m` | Minimum copies of each k-mer required to pass noise filter for reads <br/>**Type:** `integer`, **Default:** `1` |
+| ` --mash_w` | Probability threshold for warning about low k-mer size. <br/>**Type:** `number`, **Default:** `0.01` |
+| ` --max_p` | Maximum p-value to report. <br/>**Type:** `number`, **Default:** `1.0` |
+| ` --max_dist` | Maximum distance to report. <br/>**Type:** `number`, **Default:** `1.0` |
+| ` --merlin_dist` | Maximum distance to report when using Merlin . <br/>**Type:** `number`, **Default:** `0.1` |
+| ` --full_merlin` | Go full Merlin and run all species-specific tools, no matter the Mash distance <br/>**Type:** `boolean` |
+| ` --use_fastqs` | Query with FASTQs instead of the assemblies <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> ClermonTyping Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --clermon_threshold` | Do not use contigs under this size <br/>**Type:** `number` |
-
-### <i class="fa-xl fas fa-exclamation-circle"></i> ECTyper Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --opid` | Percent identity required for an O antigen allele match <br/>**Type:** `integer`, **Default:** `90` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --opcov` | Minumum percent coverage required for an O antigen allele match <br/>**Type:** `integer`, **Default:** `90` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hpid` | Percent identity required for an H antigen allele match <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hpcov` | Minumum percent coverage required for an H antigen allele match <br/>**Type:** `integer`, **Default:** `50` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --verify` | Enable E. coli species verification <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --print_alleles` | Prints the allele sequences if enabled as the final column <br/>**Type:** `boolean` |
-
-### <i class="fa-xl fas fa-exclamation-circle"></i> emmtyper Parameters
+### AgrVATE Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --emmtyper_wf` | Workflow for emmtyper to use. <br/>**Type:** `string`, **Default:** `blast` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --cluster_distance` | Distance between cluster of matches to consider as different clusters <br/>**Type:** `integer`, **Default:** `500` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --percid` | Minimal percent identity of sequence <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --culling_limit` | Total hits to return in a position <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mismatch` | Threshold for number of mismatch to allow in BLAST hit <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --align_diff` | Threshold for difference between alignment length and subject length in BLAST <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --gap` | Threshold gap to allow in BLAST hit <br/>**Type:** `integer`, **Default:** `2` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_perfect` | Minimum size of perfect match at 3 primer end <br/>**Type:** `integer`, **Default:** `15` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_good` | Minimum size where there must be 2 matches for each mismatch <br/>**Type:** `integer`, **Default:** `15` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --max_size` | Maximum size of PCR product <br/>**Type:** `integer`, **Default:** `2000` |
+| ` --typing_only` | agr typing only. Skips agr operon extraction and frameshift detection <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> hicap Parameters
+### ClermonTyping Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-boxes"></i>` --database_dir` | Directory containing locus database <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-boxes"></i>` --model_fp` | Path to prodigal model <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --full_sequence` | Write the full input sequence out to the genbank file rather than just the region surrounding and including the locus <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hicap_debug` | hicap will print debug messages <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --gene_coverage` | Minimum percentage coverage to consider a single gene complete <br/>**Type:** `number`, **Default:** `0.8` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --gene_identity` | Minimum percentage identity to consider a single gene complete <br/>**Type:** `number`, **Default:** `0.7` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --broken_gene_length` | Minimum length to consider a broken gene <br/>**Type:** `integer`, **Default:** `60` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --broken_gene_identity` | Minimum percentage identity to consider a broken gene <br/>**Type:** `number`, **Default:** `0.8` |
+| ` --clermon_threshold` | Do not use contigs under this size <br/>**Type:** `number` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> GenoTyphi Parameters
+### ECTyper Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --kmer` | K-mer length <br/>**Type:** `integer`, **Default:** `21` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_depth` | Minimum depth <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --model` | Genotype model used. <br/>**Type:** `string`, **Default:** `kmer_count` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --report_all_calls` | Report all calls <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --mykrobe_opts` | Extra Mykrobe options in quotes <br/>**Type:** `string` |
+| ` --opid` | Percent identity required for an O antigen allele match <br/>**Type:** `integer`, **Default:** `90` |
+| ` --opcov` | Minumum percent coverage required for an O antigen allele match <br/>**Type:** `integer`, **Default:** `90` |
+| ` --hpid` | Percent identity required for an H antigen allele match <br/>**Type:** `integer`, **Default:** `95` |
+| ` --hpcov` | Minumum percent coverage required for an H antigen allele match <br/>**Type:** `integer`, **Default:** `50` |
+| ` --verify` | Enable E. coli species verification <br/>**Type:** `boolean` |
+| ` --print_alleles` | Prints the allele sequences if enabled as the final column <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Kleborate Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-boxes"></i>` --kleborate_preset` | Preset module to use for Kleborate <br/>**Type:** `string`, **Default:** `kpsc` |
-| <i class="fa-lg fas fa-italic"></i>` --kleborate_opts` | Extra options in quotes for Kleborate <br/>**Type:** `string` |
-
-### <i class="fa-xl fas fa-exclamation-circle"></i> legsta Parameters
+### emmtyper Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --noheader` | Don't print header row <br/>**Type:** `boolean` |
+| ` --emmtyper_wf` | Workflow for emmtyper to use. <br/>**Type:** `string`, **Default:** `blast` |
+| ` --cluster_distance` | Distance between cluster of matches to consider as different clusters <br/>**Type:** `integer`, **Default:** `500` |
+| ` --percid` | Minimal percent identity of sequence <br/>**Type:** `integer`, **Default:** `95` |
+| ` --culling_limit` | Total hits to return in a position <br/>**Type:** `integer`, **Default:** `5` |
+| ` --mismatch` | Threshold for number of mismatch to allow in BLAST hit <br/>**Type:** `integer`, **Default:** `5` |
+| ` --align_diff` | Threshold for difference between alignment length and subject length in BLAST <br/>**Type:** `integer`, **Default:** `5` |
+| ` --gap` | Threshold gap to allow in BLAST hit <br/>**Type:** `integer`, **Default:** `2` |
+| ` --min_perfect` | Minimum size of perfect match at 3 primer end <br/>**Type:** `integer`, **Default:** `15` |
+| ` --min_good` | Minimum size where there must be 2 matches for each mismatch <br/>**Type:** `integer`, **Default:** `15` |
+| ` --max_size` | Maximum size of PCR product <br/>**Type:** `integer`, **Default:** `2000` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> LisSero Parameters
+### hicap Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_id` | Minimum percent identity to accept a match <br/>**Type:** `number`, **Default:** `95.0` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_cov` | Minimum coverage of the gene to accept a match <br/>**Type:** `number`, **Default:** `95.0` |
+| ` --database_dir` | Directory containing locus database <br/>**Type:** `string` |
+| ` --model_fp` | Path to prodigal model <br/>**Type:** `string` |
+| ` --full_sequence` | Write the full input sequence out to the genbank file rather than just the region surrounding and including the locus <br/>**Type:** `boolean` |
+| ` --hicap_debug` | hicap will print debug messages <br/>**Type:** `boolean` |
+| ` --gene_coverage` | Minimum percentage coverage to consider a single gene complete <br/>**Type:** `number`, **Default:** `0.8` |
+| ` --gene_identity` | Minimum percentage identity to consider a single gene complete <br/>**Type:** `number`, **Default:** `0.7` |
+| ` --broken_gene_length` | Minimum length to consider a broken gene <br/>**Type:** `integer`, **Default:** `60` |
+| ` --broken_gene_identity` | Minimum percentage identity to consider a broken gene <br/>**Type:** `number`, **Default:** `0.8` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> meningotype Parameters
+### GenoTyphi Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| ` --kmer` | K-mer length <br/>**Type:** `integer`, **Default:** `21` |
+| ` --min_depth` | Minimum depth <br/>**Type:** `integer`, **Default:** `1` |
+| ` --model` | Genotype model used. <br/>**Type:** `string`, **Default:** `kmer_count` |
+| ` --report_all_calls` | Report all calls <br/>**Type:** `boolean` |
+| ` --mykrobe_opts` | Extra Mykrobe options in quotes <br/>**Type:** `string` |
+
+### Kleborate Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| ` --kleborate_preset` | Preset module to use for Kleborate <br/>**Type:** `string`, **Default:** `kpsc` |
+| ` --kleborate_opts` | Extra options in quotes for Kleborate <br/>**Type:** `string` |
+
+### legsta Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| ` --noheader` | Don't print header row <br/>**Type:** `boolean` |
+
+### LisSero Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| ` --min_id` | Minimum percent identity to accept a match <br/>**Type:** `number`, **Default:** `95.0` |
+| ` --min_cov` | Minimum coverage of the gene to accept a match <br/>**Type:** `number`, **Default:** `95.0` |
+
+### meningotype Parameters
 You can use these parameters to fine-tune your meningotype analysis
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --finetype` | perform porA and fetA fine typing <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --porB` | perform porB sequence typing (NEIS2020) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --bast` | perform Bexsero antigen sequence typing (BAST) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mlst` | perform MLST <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --all` | perform MLST, porA, fetA, porB, BAST typing <br/>**Type:** `boolean` |
+| ` --finetype` | perform porA and fetA fine typing <br/>**Type:** `boolean` |
+| ` --porB` | perform porB sequence typing (NEIS2020) <br/>**Type:** `boolean` |
+| ` --bast` | perform Bexsero antigen sequence typing (BAST) <br/>**Type:** `boolean` |
+| ` --mlst` | perform MLST <br/>**Type:** `boolean` |
+| ` --all` | perform MLST, porA, fetA, porB, BAST typing <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> ngmaster Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --csv` | output comma-separated format (CSV) rather than tab-separated <br/>**Type:** `boolean` |
-
-### <i class="fa-xl fas fa-exclamation-circle"></i> pasty Parameters
+### ngmaster Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pasty_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pasty_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
+| ` --csv` | output comma-separated format (CSV) rather than tab-separated <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> pbptyper Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pbptyper_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pbptyper_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
-
-### <i class="fa-xl fas fa-exclamation-circle"></i> SeqSero2 Parameters
+### pasty Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --run_mode` | Workflow to run. 'a' allele mode, or 'k' k-mer mode <br/>**Type:** `string`, **Default:** `k` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --input_type` | Input format to analyze. 'assembly' or 'fastq' <br/>**Type:** `string`, **Default:** `assembly` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --bwa_mode` | Algorithms for bwa mapping for allele mode <br/>**Type:** `string`, **Default:** `mem` |
+| ` --pasty_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
+| ` --pasty_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> SISTR Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --full_cgmlst` |  Use the full set of cgMLST alleles which can include highly similar alleles <br/>**Type:** `boolean` |
-
-### <i class="fa-xl fas fa-exclamation-circle"></i> spaTyper Parameters
+### pbptyper Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-archive"></i>` --repeats` | List of spa repeats <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --repeat_order` | List spa types and order of repeats <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --do_enrich` | Do PCR product enrichment <br/>**Type:** `boolean` |
+| ` --pbptyper_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
+| ` --pbptyper_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> staphopia-sccmec Parameters
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hamming` | Report the results as hamming distances <br/>**Type:** `boolean` |
-
-### <i class="fa-xl fas fa-exclamation-circle"></i> TBProfiler Profile Parameters
+### SeqSero2 Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --call_whole_genome` | Call whole genome <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mapper` | Mapping tool to use. If you are using nanopore data it will default to minimap2 <br/>**Type:** `string`, **Default:** `bwa` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --caller` | Variant calling tool to use <br/>**Type:** `string`, **Default:** `freebayes` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --calling_params` | Extra variant caller options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --suspect` | Use the suspect suite of tools to add ML predictions <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_flagstat` | Don't collect flagstats <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_delly` | Don't run delly <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --tbprofiler_opts` | Extra options in quotes for TBProfiler <br/>**Type:** `string` |
+| ` --run_mode` | Workflow to run. 'a' allele mode, or 'k' k-mer mode <br/>**Type:** `string`, **Default:** `k` |
+| ` --input_type` | Input format to analyze. 'assembly' or 'fastq' <br/>**Type:** `string`, **Default:** `assembly` |
+| ` --bwa_mode` | Algorithms for bwa mapping for allele mode <br/>**Type:** `string`, **Default:** `mem` |
+
+### SISTR Parameters
 
 
-### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
+| Parameter | Description |
+|:---|---|
+| ` --full_cgmlst` |  Use the full set of cgMLST alleles which can include highly similar alleles <br/>**Type:** `boolean` |
+
+### spaTyper Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| ` --repeats` | List of spa repeats <br/>**Type:** `string` |
+| ` --repeat_order` | List spa types and order of repeats <br/>**Type:** `string` |
+| ` --do_enrich` | Do PCR product enrichment <br/>**Type:** `boolean` |
+
+### staphopia-sccmec Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| ` --hamming` | Report the results as hamming distances <br/>**Type:** `boolean` |
+
+### TBProfiler Profile Parameters
+
+
+| Parameter | Description |
+|:---|---|
+| ` --call_whole_genome` | Call whole genome <br/>**Type:** `boolean` |
+| ` --mapper` | Mapping tool to use. If you are using nanopore data it will default to minimap2 <br/>**Type:** `string`, **Default:** `bwa` |
+| ` --caller` | Variant calling tool to use <br/>**Type:** `string`, **Default:** `freebayes` |
+| ` --calling_params` | Extra variant caller options in quotes <br/>**Type:** `string` |
+| ` --suspect` | Use the suspect suite of tools to add ML predictions <br/>**Type:** `boolean` |
+| ` --no_flagstat` | Don't collect flagstats <br/>**Type:** `boolean` |
+| ` --no_delly` | Don't run delly <br/>**Type:** `boolean` |
+| ` --tbprofiler_opts` | Extra options in quotes for TBProfiler <br/>**Type:** `string` |
+
+
+### Optional Parameters
 These optional parameters can be useful in certain settings.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-folder"></i>` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `bactopia` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-folder"></i>` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-trash-restore"></i>` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
+| ` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `bactopia` |
+| ` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
+| ` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
+| ` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fa-solid fa-arrow-up-right-dots"></i> Max Job Request Parameters
+### Max Job Request Parameters
 Set the top limit for requested resources for any single job.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-redo"></i>` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
-| <i class="fa-lg fas fa-microchip"></i>` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
-| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
-| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
-| <i class="fa-lg fas fa-angle-double-up"></i>` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
+| ` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
+| ` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
+| ` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
+| ` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
+| ` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
 
-### <i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration Parameters
+### Nextflow Configuration Parameters
 Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-cog"></i>` --nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-copy"></i>` --publish_dir_mode` | Method used to save pipeline results to output directory. <br/>**Type:** `string`, **Default:** `copy` |
-| <i class="fa-lg fas fa-cogs"></i>` --infodir` | Directory to keep pipeline Nextflow logs and reports. <br/>**Type:** `string`, **Default:** `${params.outdir}/pipeline_info` |
-| <i class="fa-lg fas fa-recycle"></i>` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-trash-alt"></i>` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
+| ` --nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. <br/>**Type:** `string` |
+| ` --publish_dir_mode` | Method used to save pipeline results to output directory. <br/>**Type:** `string`, **Default:** `copy` |
+| ` --infodir` | Directory to keep pipeline Nextflow logs and reports. <br/>**Type:** `string`, **Default:** `${params.outdir}/pipeline_info` |
+| ` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
+| ` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-university"></i> Institutional config options
+### Institutional config options
 Parameters used to describe centralized config profiles. These should not be edited.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_version` | Git commit id for Institutional configs. <br/>**Type:** `string`, **Default:** `master` |
-| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_base` | Base directory for Institutional configs. <br/>**Type:** `string`, **Default:** `https://raw.githubusercontent.com/nf-core/configs/master` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_name` | Institutional config name. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_description` | Institutional config description. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_contact` | Institutional config contact information. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_url` | Institutional config URL link. <br/>**Type:** `string` |
+| ` --custom_config_version` | Git commit id for Institutional configs. <br/>**Type:** `string`, **Default:** `master` |
+| ` --custom_config_base` | Base directory for Institutional configs. <br/>**Type:** `string`, **Default:** `https://raw.githubusercontent.com/nf-core/configs/master` |
+| ` --config_profile_name` | Institutional config name. <br/>**Type:** `string` |
+| ` --config_profile_description` | Institutional config description. <br/>**Type:** `string` |
+| ` --config_profile_contact` | Institutional config contact information. <br/>**Type:** `string` |
+| ` --config_profile_url` | Institutional config URL link. <br/>**Type:** `string` |
 
-### <i class="fa-xl fa-regular fa-address-card"></i> Nextflow Profile Parameters
+### Nextflow Profile Parameters
 Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-folder"></i>` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-box"></i>` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
-| <i class="fa-lg fas fa-folder"></i>` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
-| <i class="fa-lg fas fa-folder"></i>` --singularity_cache_dir` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-toolbox"></i>` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-recycle"></i>` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --container_opts` | Additional options to pass to Apptainer, Docker, or Singularityu. (e.g. Singularity: '-D `pwd`' <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-toggle-off"></i>` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
+| ` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
+| ` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
+| ` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
+| ` --singularity_cache_dir` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
+| ` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
+| ` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
+| ` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
+| ` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
+| ` --container_opts` | Additional options to pass to Apptainer, Docker, or Singularityu. (e.g. Singularity: '-D `pwd`' <br/>**Type:** `string` |
+| ` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fa-solid fa-reply-all"></i> Helpful Parameters
+### Helpful Parameters
 Uncommonly used parameters that might be useful.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-palette"></i>` --monochrome_logs` | Do not use coloured log outputs. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-remove-format"></i>` --nfdir` | Print directory Nextflow has pulled Bactopia to <br/>**Type:** `boolean` |
-| <i class="fa-lg far fa-clock"></i>` --sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-tasks"></i>` --validate_params` | Boolean whether to validate parameters against the schema at runtime <br/>**Type:** `boolean`, **Default:** `True` |
-| <i class="fa-lg fas fa-question-circle"></i>` --help` | Display help text. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-bacteria"></i>` --wf` | Specify which workflow or Bactopia Tool to execute <br/>**Type:** `string`, **Default:** `bactopia` |
-| <i class="fa-lg fas fa-list"></i>` --list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' <br/>**Type:** `boolean` |
-| <i class="fa-lg far fa-eye"></i>` --show_hidden_params` | Show all params when using `--help` <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-question-circle"></i>` --help_all` | An alias for --help --show_hidden_params <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
+| ` --monochrome_logs` | Do not use coloured log outputs. <br/>**Type:** `boolean` |
+| ` --nfdir` | Print directory Nextflow has pulled Bactopia to <br/>**Type:** `boolean` |
+| ` --sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. <br/>**Type:** `integer`, **Default:** `5` |
+| ` --validate_params` | Boolean whether to validate parameters against the schema at runtime <br/>**Type:** `boolean`, **Default:** `True` |
+| ` --help` | Display help text. <br/>**Type:** `boolean` |
+| ` --wf` | Specify which workflow or Bactopia Tool to execute <br/>**Type:** `string`, **Default:** `bactopia` |
+| ` --list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' <br/>**Type:** `boolean` |
+| ` --show_hidden_params` | Show all params when using `--help` <br/>**Type:** `boolean` |
+| ` --help_all` | An alias for --help --show_hidden_params <br/>**Type:** `boolean` |
+| ` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
 If you use Bactopia and `merlin` in your analysis, please cite the following.

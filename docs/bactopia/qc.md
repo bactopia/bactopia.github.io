@@ -28,7 +28,7 @@ basic QC checks from continuing downstream.
 Below is the default output structure for the `qc` step in Bactopia. Where
 possible the file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── main
@@ -102,42 +102,55 @@ excluding these samples, complete pipeline failures are prevented.
 
 
 
-!!! info "Poor samples are excluded to prevent downstream failures"
-    Samples that fail any of the QC checks will be excluded from further analysis.
-    Those samples will generate a `*-error.txt` file with the error message. Excluding
-    these samples prevents downstream failures that cause the whole workflow to fail.
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
 
 
 
-??? warning "Example Error: After QC, too few reads remain"
-    If after cleaning reads, a sample has less than the minimum required reads, the
-    sample will be excluded from further analysis. You can adjust this minimum read
-    count using the `--min_reads` parameter.
+<details>
+<summary>Example Error: After QC, too few reads remain</summary>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
-    minimum `Y` read count. Further analysis is discontinued._
+If after cleaning reads, a sample has less than the minimum required reads, the
+sample will be excluded from further analysis. You can adjust this minimum read
+count using the `--min_reads` parameter.
 
-??? warning "Example Error: After QC, too little sequence coverage remains"
-    If after cleaning reads, a sample has failed to meet the minimum sequence 
-    coverage required, the sample will be excluded from further analysis. You can
-    adjust this minimum read count using the `--min_coverage` parameter.
+__Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
+minimum `Y` read count. Further analysis is discontinued._
 
-    __Note:__ This check is only performed when a genome size is available.
+</details>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-coverage-error.txt__  
-    _After QC, &lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not
-    exceed the required minimum `Y` bp (`Z`x coverage). Further analysis is
-    discontinued._
+<details>
+<summary>Example Error: After QC, too little sequence coverage remains</summary>
 
-??? warning "Example Error: After QC, too little sequenced basepairs remain"
-    If after cleaning reads, a sample has failed to meet the minimum number of
-    sequenced basepairs, the sample will be excluded from further analysis. You can
-    adjust this minimum read count using the `--min_basepairs` parameter.
+If after cleaning reads, a sample has failed to meet the minimum sequence 
+coverage required, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_coverage` parameter.
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
-    required minimum `Y` bp. Further analysis is discontinued._
+__Note:__ This check is only performed when a genome size is available.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-coverage-error.txt__  
+_After QC, &lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not
+exceed the required minimum `Y` bp (`Z`x coverage). Further analysis is
+discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: After QC, too little sequenced basepairs remain</summary>
+
+If after cleaning reads, a sample has failed to meet the minimum number of
+sequenced basepairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_basepairs` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
+required minimum `Y` bp. Further analysis is discontinued._
+
+</details>
 
 
 
@@ -167,41 +180,41 @@ files for you to review if the need ever arises.
 ## Parameters
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> QC 
+### QC 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-fast-forward"></i>` --use_bbmap` | Illumina reads will be QC'd using BBMap <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --use_porechop` | Use Porechop to remove adapters from ONT reads <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_qc` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_qc_plots` | QC Plot creation by FastQC or Nanoplot will be skipped <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_error_correction` | FLASH error correction of reads will be skipped. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-file-alt"></i>` --adapters` | A FASTA file containing adapters to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_ADAPTERS` |
-| <i class="fa-lg fas fa-hashtag"></i>` --adapter_k` | Kmer length used for finding adapters. <br/>**Type:** `integer`, **Default:** `23` |
-| <i class="fa-lg fas fa-file-alt"></i>` --phix` | phiX174 reference genome to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_PHIX` |
-| <i class="fa-lg fas fa-hashtag"></i>` --phix_k` | Kmer length used for finding phiX174. <br/>**Type:** `integer`, **Default:** `31` |
-| <i class="fa-lg fas fa-boxes"></i>` --ktrim` | Trim reads to remove bases matching reference kmers <br/>**Type:** `string`, **Default:** `r` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --mink` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. <br/>**Type:** `integer`, **Default:** `11` |
-| <i class="fa-lg fas fa-hashtag"></i>` --hdist` | Maximum Hamming distance for ref kmers (subs only) <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-boxes"></i>` --tpe` | When kmer right-trimming, trim both reads to the minimum length of either <br/>**Type:** `string`, **Default:** `t` |
-| <i class="fa-lg fas fa-boxes"></i>` --tbo` | Trim adapters based on where paired reads overlap <br/>**Type:** `string`, **Default:** `t` |
-| <i class="fa-lg fas fa-boxes"></i>` --qtrim` | Trim read ends to remove bases with quality below trimq. <br/>**Type:** `string`, **Default:** `rl` |
-| <i class="fa-lg fas fa-hashtag"></i>` --trimq` | Regions with average quality BELOW this will be trimmed if qtrim is set to something other than f <br/>**Type:** `integer`, **Default:** `6` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --maq` | Reads with average quality (after trimming) below this will be discarded <br/>**Type:** `integer`, **Default:** `10` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --minlength` | Reads shorter than this after trimming will be discarded <br/>**Type:** `integer`, **Default:** `35` |
-| <i class="fa-lg fas fa-hashtag"></i>` --ftm` | If positive, right-trim length to be equal to zero, modulo this number <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-boxes"></i>` --tossjunk` | Discard reads with invalid characters as bases <br/>**Type:** `string`, **Default:** `t` |
-| <i class="fa-lg fas fa-boxes"></i>` --ain` | When detecting pair names, allow identical names <br/>**Type:** `string`, **Default:** `f` |
-| <i class="fa-lg fas fa-boxes"></i>` --qout` | PHRED offset to use for output FASTQs <br/>**Type:** `string`, **Default:** `33` |
-| <i class="fa-lg fas fa-hashtag"></i>` --maxcor` | Max number of corrections within a 20bp window <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-hashtag"></i>` --sampleseed` | Set to a positive number to use as the random number generator seed for sampling <br/>**Type:** `integer`, **Default:** `42` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --ont_minlength` | ONT Reads shorter than this will be discarded <br/>**Type:** `integer`, **Default:** `1000` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --ont_minqual` | Minimum average read quality filter of ONT reads <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --porechop_opts` | Extra Porechop options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --nanoplot_opts` | Extra NanoPlot options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --bbduk_opts` | Extra BBDuk options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --fastp_opts` | Extra fastp options in quotes <br/>**Type:** `string` |
+| ` --use_bbmap` | Illumina reads will be QC'd using BBMap <br/>**Type:** `boolean` |
+| ` --use_porechop` | Use Porechop to remove adapters from ONT reads <br/>**Type:** `boolean` |
+| ` --skip_qc` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. <br/>**Type:** `boolean` |
+| ` --skip_qc_plots` | QC Plot creation by FastQC or Nanoplot will be skipped <br/>**Type:** `boolean` |
+| ` --skip_error_correction` | FLASH error correction of reads will be skipped. <br/>**Type:** `boolean` |
+| ` --adapters` | A FASTA file containing adapters to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_ADAPTERS` |
+| ` --adapter_k` | Kmer length used for finding adapters. <br/>**Type:** `integer`, **Default:** `23` |
+| ` --phix` | phiX174 reference genome to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_PHIX` |
+| ` --phix_k` | Kmer length used for finding phiX174. <br/>**Type:** `integer`, **Default:** `31` |
+| ` --ktrim` | Trim reads to remove bases matching reference kmers <br/>**Type:** `string`, **Default:** `r` |
+| ` --mink` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. <br/>**Type:** `integer`, **Default:** `11` |
+| ` --hdist` | Maximum Hamming distance for ref kmers (subs only) <br/>**Type:** `integer`, **Default:** `1` |
+| ` --tpe` | When kmer right-trimming, trim both reads to the minimum length of either <br/>**Type:** `string`, **Default:** `t` |
+| ` --tbo` | Trim adapters based on where paired reads overlap <br/>**Type:** `string`, **Default:** `t` |
+| ` --qtrim` | Trim read ends to remove bases with quality below trimq. <br/>**Type:** `string`, **Default:** `rl` |
+| ` --trimq` | Regions with average quality BELOW this will be trimmed if qtrim is set to something other than f <br/>**Type:** `integer`, **Default:** `6` |
+| ` --maq` | Reads with average quality (after trimming) below this will be discarded <br/>**Type:** `integer`, **Default:** `10` |
+| ` --minlength` | Reads shorter than this after trimming will be discarded <br/>**Type:** `integer`, **Default:** `35` |
+| ` --ftm` | If positive, right-trim length to be equal to zero, modulo this number <br/>**Type:** `integer`, **Default:** `5` |
+| ` --tossjunk` | Discard reads with invalid characters as bases <br/>**Type:** `string`, **Default:** `t` |
+| ` --ain` | When detecting pair names, allow identical names <br/>**Type:** `string`, **Default:** `f` |
+| ` --qout` | PHRED offset to use for output FASTQs <br/>**Type:** `string`, **Default:** `33` |
+| ` --maxcor` | Max number of corrections within a 20bp window <br/>**Type:** `integer`, **Default:** `1` |
+| ` --sampleseed` | Set to a positive number to use as the random number generator seed for sampling <br/>**Type:** `integer`, **Default:** `42` |
+| ` --ont_minlength` | ONT Reads shorter than this will be discarded <br/>**Type:** `integer`, **Default:** `1000` |
+| ` --ont_minqual` | Minimum average read quality filter of ONT reads <br/>**Type:** `integer` |
+| ` --porechop_opts` | Extra Porechop options in quotes <br/>**Type:** `string` |
+| ` --nanoplot_opts` | Extra NanoPlot options in quotes <br/>**Type:** `string` |
+| ` --bbduk_opts` | Extra BBDuk options in quotes <br/>**Type:** `string` |
+| ` --fastp_opts` | Extra fastp options in quotes <br/>**Type:** `string` |
 
 ## Citations
 If you use Bactopia and `qc` in your analysis, please cite the following.

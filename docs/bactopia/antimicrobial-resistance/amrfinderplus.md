@@ -12,7 +12,7 @@ for antimicrobial resistance and virulence genes.
 Below is the default output structure for the `amrfinderplus` step in Bactopia. Where
 possible the file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── tools
@@ -99,20 +99,20 @@ files for you to review if the need ever arises.
 ## Parameters
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> AMRFinder+ 
+### AMRFinder+ 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --ident_min` | Minimum proportion of identical amino acids in alignment for hit (0..1) <br/>**Type:** `number`, **Default:** `-1` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --coverage_min` | Minimum coverage of the reference protein (0..1) <br/>**Type:** `number`, **Default:** `0.5` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --organism` | Taxonomy group to run additional screens against <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --translation_table` | NCBI genetic code for translated BLAST <br/>**Type:** `integer`, **Default:** `11` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --amrfinder_noplus` | Disable running AMRFinder+ with the --plus option <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --report_common` | Report proteins common to a taxonomy group <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --report_all_equal` | Report all equally-scoring BLAST and HMM matches <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --amrfinder_opts` | Extra AMRFinder+ options in quotes. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --amrfinder_db` | A custom AMRFinder+ database to use, either a tarball or a folder <br/>**Type:** `string` |
+| ` --ident_min` | Minimum proportion of identical amino acids in alignment for hit (0..1) <br/>**Type:** `number`, **Default:** `-1` |
+| ` --coverage_min` | Minimum coverage of the reference protein (0..1) <br/>**Type:** `number`, **Default:** `0.5` |
+| ` --organism` | Taxonomy group to run additional screens against <br/>**Type:** `string` |
+| ` --translation_table` | NCBI genetic code for translated BLAST <br/>**Type:** `integer`, **Default:** `11` |
+| ` --amrfinder_noplus` | Disable running AMRFinder+ with the --plus option <br/>**Type:** `boolean` |
+| ` --report_common` | Report proteins common to a taxonomy group <br/>**Type:** `boolean` |
+| ` --report_all_equal` | Report all equally-scoring BLAST and HMM matches <br/>**Type:** `boolean` |
+| ` --amrfinder_opts` | Extra AMRFinder+ options in quotes. <br/>**Type:** `string` |
+| ` --amrfinder_db` | A custom AMRFinder+ database to use, either a tarball or a folder <br/>**Type:** `string` |
 
 ## Citations
 If you use Bactopia and `amrfinderplus` in your analysis, please cite the following.

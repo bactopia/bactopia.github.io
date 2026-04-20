@@ -9,9 +9,7 @@ more than 150 bioinformatics tools. In this section, each step of the pipeline w
 be described in detail. This includes the input data, output data, and the parameters
 for each step.
 
-<a class="zoom" href="assets/bactopia-workflow.png">
 ![Bactopia Workflow](assets/bactopia-workflow.png)
-</a>
 
 Looking at the workflow overview below, it might not look like much is happening, but I can
 assure you that a lot is going on. The workflow is broken down into 8 steps, which are:
@@ -89,48 +87,65 @@ excluding these samples, complete pipeline failures are prevented.
 
 
 
-!!! info "Poor samples are excluded to prevent downstream failures"
-    Samples that fail any of the QC checks will be excluded from further analysis.
-    Those samples will generate a `*-error.txt` file with the error message. Excluding
-    these samples prevents downstream failures that cause the whole workflow to fail.
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
 
 
 
-??? warning "Example Error: Input FASTQ(s) failed Gzip checks"
-    If input FASTQ(s) fail to pass Gzip test, the sample will be excluded from
-    further analysis.
+<details>
+<summary>Example Error: Input FASTQ(s) failed Gzip checks</summary>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-gzip-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQs failed Gzip tests. Please check the input FASTQs. Further
-    analysis is discontinued._
+If input FASTQ(s) fail to pass Gzip test, the sample will be excluded from
+further analysis.
 
-??? warning "Example Error: Input FASTQs have disproportionate number of reads"
-    If input FASTQ(s) for a sample have disproportionately different number of reads
-    between the two pairs, the sample will be excluded from further analysis. You can
-    adjust this minimum read count using the `--min_proportion` parameter.
+__Example Text from &lt;SAMPLE_NAME&gt;-gzip-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQs failed Gzip tests. Please check the input FASTQs. Further
+analysis is discontinued._
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-basepair-proportion-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQs failed to meet the minimum shared basepairs (`X``). They
-    shared `Y` basepairs, with R1 having `A` bp and R2 having `B` bp. Further
-    analysis is discontinued._
+</details>
 
-??? warning "Example Error: Input FASTQ(s) has too few reads"
-    If input FASTQ(s) for a sample have less than the minimum required reads, the
-    sample will be excluded from further analysis. You can adjust this minimum read
-    count using the `--min_reads` parameter.
+<details>
+<summary>Example Error: Input FASTQs have disproportionate number of reads</summary>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
-    minimum `Y` read count. Further analysis is discontinued._
+If input FASTQ(s) for a sample have disproportionately different number of reads
+between the two pairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_proportion` parameter.
 
-??? warning "Example Error: Input FASTQ(s) has too little sequenced basepairs"
-    If input FASTQ(s) for a sample fails to meet the minimum number of sequenced
-    basepairs, the sample will be excluded from further analysis. You can
-    adjust this minimum read count using the `--min_basepairs` parameter.
+__Example Text from &lt;SAMPLE_NAME&gt;-low-basepair-proportion-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQs failed to meet the minimum shared basepairs (`X``). They
+shared `Y` basepairs, with R1 having `A` bp and R2 having `B` bp. Further
+analysis is discontinued._
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
-    required minimum `Y` bp. Further analysis is discontinued._
+</details>
+
+<details>
+<summary>Example Error: Input FASTQ(s) has too few reads</summary>
+
+If input FASTQ(s) for a sample have less than the minimum required reads, the
+sample will be excluded from further analysis. You can adjust this minimum read
+count using the `--min_reads` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
+minimum `Y` read count. Further analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Input FASTQ(s) has too little sequenced basepairs</summary>
+
+If input FASTQ(s) for a sample fails to meet the minimum number of sequenced
+basepairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_basepairs` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
+required minimum `Y` bp. Further analysis is discontinued._
+
+</details>
 
 
 
@@ -139,34 +154,34 @@ excluding these samples, complete pipeline failures are prevented.
 ### Parameters
 
 
-#### <i class="fa-xl fas fa-terminal"></i> Required
+#### Required
 The following parameters are how you will provide either local or remote samples to be processed by Bactopia.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --samples` | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --r1` | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --r2` | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --se` | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-level-up"></i>` --ont` | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-level-up"></i>` --hybrid` | Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-level-up"></i>` --short_polish` | Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-file"></i>` --sample` | Sample name to use for the input sequences <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --accessions` | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-font"></i>` --accession` | Sample name to use for the input sequences <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --assembly` | A assembled genome in compressed FASTA format. (requires --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-level-up"></i>` --check_samples` | Validate the input FOFN provided by --samples <br/>**Type:** `boolean` |
+| ` --samples` | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process <br/>**Type:** `string` |
+| ` --r1` | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) <br/>**Type:** `string` |
+| ` --r2` | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) <br/>**Type:** `string` |
+| ` --se` | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) <br/>**Type:** `string` |
+| ` --ont` | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) <br/>**Type:** `string` |
+| ` --hybrid` | Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) <br/>**Type:** `boolean` |
+| ` --short_polish` | Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) <br/>**Type:** `boolean` |
+| ` --sample` | Sample name to use for the input sequences <br/>**Type:** `string` |
+| ` --accessions` | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed <br/>**Type:** `string` |
+| ` --accession` | Sample name to use for the input sequences <br/>**Type:** `string` |
+| ` --assembly` | A assembled genome in compressed FASTA format. (requires --sample) <br/>**Type:** `string` |
+| ` --check_samples` | Validate the input FOFN provided by --samples <br/>**Type:** `boolean` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> Dataset
+#### Dataset
 Define where the pipeline should find input data and save output data.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-bacterium"></i>` --species` | Name of species for species-specific dataset to use <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-print"></i>` --ask_merlin` | Ask Merlin to execute species specific Bactopia tools based on Mash distances <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --coverage` | Reduce samples to a given coverage, requires a genome size <br/>**Type:** `integer`, **Default:** `100` |
-| <i class="fa-lg fas fa-arrows-alt-h"></i>` --genome_size` | Expected genome size (bp) for all samples, required for read error correction and read subsampling <br/>**Type:** `string`, **Default:** `0` |
-| <i class="fa-lg fas fa-print"></i>` --use_bakta` | Use Bakta for annotation, instead of Prokka <br/>**Type:** `boolean` |
+| ` --species` | Name of species for species-specific dataset to use <br/>**Type:** `string` |
+| ` --ask_merlin` | Ask Merlin to execute species specific Bactopia tools based on Mash distances <br/>**Type:** `boolean` |
+| ` --coverage` | Reduce samples to a given coverage, requires a genome size <br/>**Type:** `integer`, **Default:** `100` |
+| ` --genome_size` | Expected genome size (bp) for all samples, required for read error correction and read subsampling <br/>**Type:** `string`, **Default:** `0` |
+| ` --use_bakta` | Use Bakta for annotation, instead of Prokka <br/>**Type:** `boolean` |
 
 ### Citations
 If you use Bactopia and `gather` results in your analysis, please cite the following.
@@ -254,83 +269,96 @@ excluding these samples, complete pipeline failures are prevented.
 
 
 
-!!! info "Poor samples are excluded to prevent downstream failures"
-    Samples that fail any of the QC checks will be excluded from further analysis.
-    Those samples will generate a `*-error.txt` file with the error message. Excluding
-    these samples prevents downstream failures that cause the whole workflow to fail.
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
 
 
 
-??? warning "Example Error: After QC, too few reads remain"
-    If after cleaning reads, a sample has less than the minimum required reads, the
-    sample will be excluded from further analysis. You can adjust this minimum read
-    count using the `--min_reads` parameter.
+<details>
+<summary>Example Error: After QC, too few reads remain</summary>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
-    minimum `Y` read count. Further analysis is discontinued._
+If after cleaning reads, a sample has less than the minimum required reads, the
+sample will be excluded from further analysis. You can adjust this minimum read
+count using the `--min_reads` parameter.
 
-??? warning "Example Error: After QC, too little sequence coverage remains"
-    If after cleaning reads, a sample has failed to meet the minimum sequence 
-    coverage required, the sample will be excluded from further analysis. You can
-    adjust this minimum read count using the `--min_coverage` parameter.
+__Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
+minimum `Y` read count. Further analysis is discontinued._
 
-    __Note:__ This check is only performed when a genome size is available.
+</details>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-coverage-error.txt__  
-    _After QC, &lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not
-    exceed the required minimum `Y` bp (`Z`x coverage). Further analysis is
-    discontinued._
+<details>
+<summary>Example Error: After QC, too little sequence coverage remains</summary>
 
-??? warning "Example Error: After QC, too little sequenced basepairs remain"
-    If after cleaning reads, a sample has failed to meet the minimum number of
-    sequenced basepairs, the sample will be excluded from further analysis. You can
-    adjust this minimum read count using the `--min_basepairs` parameter.
+If after cleaning reads, a sample has failed to meet the minimum sequence 
+coverage required, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_coverage` parameter.
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
-    required minimum `Y` bp. Further analysis is discontinued._
+__Note:__ This check is only performed when a genome size is available.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-coverage-error.txt__  
+_After QC, &lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not
+exceed the required minimum `Y` bp (`Z`x coverage). Further analysis is
+discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: After QC, too little sequenced basepairs remain</summary>
+
+If after cleaning reads, a sample has failed to meet the minimum number of
+sequenced basepairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_basepairs` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
+required minimum `Y` bp. Further analysis is discontinued._
+
+</details>
 
 
 
 
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> QC Parameters
+### QC Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-fast-forward"></i>` --use_bbmap` | Illumina reads will be QC'd using BBMap <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --use_porechop` | Use Porechop to remove adapters from ONT reads <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_qc` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_qc_plots` | QC Plot creation by FastQC or Nanoplot will be skipped <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_error_correction` | FLASH error correction of reads will be skipped. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-file-alt"></i>` --adapters` | A FASTA file containing adapters to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_ADAPTERS` |
-| <i class="fa-lg fas fa-hashtag"></i>` --adapter_k` | Kmer length used for finding adapters. <br/>**Type:** `integer`, **Default:** `23` |
-| <i class="fa-lg fas fa-file-alt"></i>` --phix` | phiX174 reference genome to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_PHIX` |
-| <i class="fa-lg fas fa-hashtag"></i>` --phix_k` | Kmer length used for finding phiX174. <br/>**Type:** `integer`, **Default:** `31` |
-| <i class="fa-lg fas fa-boxes"></i>` --ktrim` | Trim reads to remove bases matching reference kmers <br/>**Type:** `string`, **Default:** `r` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --mink` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. <br/>**Type:** `integer`, **Default:** `11` |
-| <i class="fa-lg fas fa-hashtag"></i>` --hdist` | Maximum Hamming distance for ref kmers (subs only) <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-boxes"></i>` --tpe` | When kmer right-trimming, trim both reads to the minimum length of either <br/>**Type:** `string`, **Default:** `t` |
-| <i class="fa-lg fas fa-boxes"></i>` --tbo` | Trim adapters based on where paired reads overlap <br/>**Type:** `string`, **Default:** `t` |
-| <i class="fa-lg fas fa-boxes"></i>` --qtrim` | Trim read ends to remove bases with quality below trimq. <br/>**Type:** `string`, **Default:** `rl` |
-| <i class="fa-lg fas fa-hashtag"></i>` --trimq` | Regions with average quality BELOW this will be trimmed if qtrim is set to something other than f <br/>**Type:** `integer`, **Default:** `6` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --maq` | Reads with average quality (after trimming) below this will be discarded <br/>**Type:** `integer`, **Default:** `10` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --minlength` | Reads shorter than this after trimming will be discarded <br/>**Type:** `integer`, **Default:** `35` |
-| <i class="fa-lg fas fa-hashtag"></i>` --ftm` | If positive, right-trim length to be equal to zero, modulo this number <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-boxes"></i>` --tossjunk` | Discard reads with invalid characters as bases <br/>**Type:** `string`, **Default:** `t` |
-| <i class="fa-lg fas fa-boxes"></i>` --ain` | When detecting pair names, allow identical names <br/>**Type:** `string`, **Default:** `f` |
-| <i class="fa-lg fas fa-boxes"></i>` --qout` | PHRED offset to use for output FASTQs <br/>**Type:** `string`, **Default:** `33` |
-| <i class="fa-lg fas fa-hashtag"></i>` --maxcor` | Max number of corrections within a 20bp window <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-hashtag"></i>` --sampleseed` | Set to a positive number to use as the random number generator seed for sampling <br/>**Type:** `integer`, **Default:** `42` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --ont_minlength` | ONT Reads shorter than this will be discarded <br/>**Type:** `integer`, **Default:** `1000` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --ont_minqual` | Minimum average read quality filter of ONT reads <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-italic"></i>` --porechop_opts` | Extra Porechop options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --nanoplot_opts` | Extra NanoPlot options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --bbduk_opts` | Extra BBDuk options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --fastp_opts` | Extra fastp options in quotes <br/>**Type:** `string` |
+| ` --use_bbmap` | Illumina reads will be QC'd using BBMap <br/>**Type:** `boolean` |
+| ` --use_porechop` | Use Porechop to remove adapters from ONT reads <br/>**Type:** `boolean` |
+| ` --skip_qc` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. <br/>**Type:** `boolean` |
+| ` --skip_qc_plots` | QC Plot creation by FastQC or Nanoplot will be skipped <br/>**Type:** `boolean` |
+| ` --skip_error_correction` | FLASH error correction of reads will be skipped. <br/>**Type:** `boolean` |
+| ` --adapters` | A FASTA file containing adapters to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_ADAPTERS` |
+| ` --adapter_k` | Kmer length used for finding adapters. <br/>**Type:** `integer`, **Default:** `23` |
+| ` --phix` | phiX174 reference genome to remove <br/>**Type:** `string`, **Default:** `/home/robert_petit/bactopia/data/EMPTY_PHIX` |
+| ` --phix_k` | Kmer length used for finding phiX174. <br/>**Type:** `integer`, **Default:** `31` |
+| ` --ktrim` | Trim reads to remove bases matching reference kmers <br/>**Type:** `string`, **Default:** `r` |
+| ` --mink` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. <br/>**Type:** `integer`, **Default:** `11` |
+| ` --hdist` | Maximum Hamming distance for ref kmers (subs only) <br/>**Type:** `integer`, **Default:** `1` |
+| ` --tpe` | When kmer right-trimming, trim both reads to the minimum length of either <br/>**Type:** `string`, **Default:** `t` |
+| ` --tbo` | Trim adapters based on where paired reads overlap <br/>**Type:** `string`, **Default:** `t` |
+| ` --qtrim` | Trim read ends to remove bases with quality below trimq. <br/>**Type:** `string`, **Default:** `rl` |
+| ` --trimq` | Regions with average quality BELOW this will be trimmed if qtrim is set to something other than f <br/>**Type:** `integer`, **Default:** `6` |
+| ` --maq` | Reads with average quality (after trimming) below this will be discarded <br/>**Type:** `integer`, **Default:** `10` |
+| ` --minlength` | Reads shorter than this after trimming will be discarded <br/>**Type:** `integer`, **Default:** `35` |
+| ` --ftm` | If positive, right-trim length to be equal to zero, modulo this number <br/>**Type:** `integer`, **Default:** `5` |
+| ` --tossjunk` | Discard reads with invalid characters as bases <br/>**Type:** `string`, **Default:** `t` |
+| ` --ain` | When detecting pair names, allow identical names <br/>**Type:** `string`, **Default:** `f` |
+| ` --qout` | PHRED offset to use for output FASTQs <br/>**Type:** `string`, **Default:** `33` |
+| ` --maxcor` | Max number of corrections within a 20bp window <br/>**Type:** `integer`, **Default:** `1` |
+| ` --sampleseed` | Set to a positive number to use as the random number generator seed for sampling <br/>**Type:** `integer`, **Default:** `42` |
+| ` --ont_minlength` | ONT Reads shorter than this will be discarded <br/>**Type:** `integer`, **Default:** `1000` |
+| ` --ont_minqual` | Minimum average read quality filter of ONT reads <br/>**Type:** `integer` |
+| ` --porechop_opts` | Extra Porechop options in quotes <br/>**Type:** `string` |
+| ` --nanoplot_opts` | Extra NanoPlot options in quotes <br/>**Type:** `string` |
+| ` --bbduk_opts` | Extra BBDuk options in quotes <br/>**Type:** `string` |
+| ` --fastp_opts` | Extra fastp options in quotes <br/>**Type:** `string` |
 
 ### Citations
 If you use Bactopia and `qc` results in your analysis, please cite the following.
@@ -468,11 +496,12 @@ Below is a description of the _per-sample_ results for a hybrid assembly using
 Dragonflye, the long-reads are assembled first, then the short-reads are used
 to polish the assembly.
 
-!!! tip "Prefer `--short_polish` over `--hybrid` with recent ONT sequencing"
-    Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
-    assembly works great when you have low-coverage noisy long-reads. However, if you are
-    using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
-    method is going to yeild better results (_and be faster!_) than `--hybrid`.
+:::tip[Prefer `--short_polish` over `--hybrid` with recent ONT sequencing]
+Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
+assembly works great when you have low-coverage noisy long-reads. However, if you are
+using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
+method is going to yeild better results (_and be faster!_) than `--hybrid`.
+:::
 
 
 | Filename                      | Description |
@@ -501,70 +530,79 @@ excluding these samples, complete pipeline failures are prevented.
 
 
 
-!!! info "Poor samples are excluded to prevent downstream failures"
-    Samples that fail any of the QC checks will be excluded from further analysis.
-    Those samples will generate a `*-error.txt` file with the error message. Excluding
-    these samples prevents downstream failures that cause the whole workflow to fail.
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
 
 
 
-??? warning "Example Error: Assembled Successfully, but 0 Contigs"
-    If a sample assembles successfully, but 0 contigs are formed, the sample will be
-    excluded from further analysis.
+<details>
+<summary>Example Error: Assembled Successfully, but 0 Contigs</summary>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__  
-    _&lt;SAMPLE_NAME&gt; assembled successfully, but 0 contigs were formed. Please investigate
-    &lt;SAMPLE_NAME&gt; to determine a cause (e.g. metagenomic, contaminants, etc...) for this
-    outcome. Further assembly-based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+If a sample assembles successfully, but 0 contigs are formed, the sample will be
+excluded from further analysis.
 
-??? warning "Example Error: Assembled successfully, but poor assembly size"
-    If you sample assembles successfully, but the assembly size is less than the minimum
-    allowed genome size, the sample will be excluded from further analysis. You can
-    adjust this minimum size using the `--min_genome_size` parameter.
+__Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__  
+_&lt;SAMPLE_NAME&gt; assembled successfully, but 0 contigs were formed. Please investigate
+&lt;SAMPLE_NAME&gt; to determine a cause (e.g. metagenomic, contaminants, etc...) for this
+outcome. Further assembly-based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__  
-    _&lt;SAMPLE_NAME&gt; assembled size (000 bp) is less than the minimum allowed genome
-    size (000 bp). If this is unexpected, please investigate &lt;SAMPLE_NAME&gt; to
-    determine a cause (e.g. metagenomic, contaminants, etc...) for the poor assembly.
-    Otherwise, adjust the `--min_genome_size` parameter to fit your need. Further
-    assembly based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+</details>
+
+<details>
+<summary>Example Error: Assembled successfully, but poor assembly size</summary>
+
+If you sample assembles successfully, but the assembly size is less than the minimum
+allowed genome size, the sample will be excluded from further analysis. You can
+adjust this minimum size using the `--min_genome_size` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__  
+_&lt;SAMPLE_NAME&gt; assembled size (000 bp) is less than the minimum allowed genome
+size (000 bp). If this is unexpected, please investigate &lt;SAMPLE_NAME&gt; to
+determine a cause (e.g. metagenomic, contaminants, etc...) for the poor assembly.
+Otherwise, adjust the `--min_genome_size` parameter to fit your need. Further
+assembly based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+
+</details>
 
 
 
 
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Assembler Parameters
+### Assembler Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-boxes"></i>` --shovill_assembler` | Assembler to be used by Shovill <br/>**Type:** `string`, **Default:** `skesa` |
-| <i class="fa-lg fas fa-boxes"></i>` --dragonflye_assembler` | Assembler to be used by Dragonflye <br/>**Type:** `string`, **Default:** `flye` |
-| <i class="fa-lg fas fa-cut"></i>` --use_unicycler` | Use unicycler for paired end assembly <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_contig_len` | Minimum contig length <0=AUTO> <br/>**Type:** `integer`, **Default:** `500` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_contig_cov` | Minimum contig coverage <0=AUTO> <br/>**Type:** `integer`, **Default:** `2` |
-| <i class="fa-lg fas fa-italic"></i>` --contig_namefmt` | Format of contig FASTA IDs in 'printf' style <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --shovill_opts` | Extra assembler options in quotes for Shovill <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-hashtag"></i>` --shovill_kmers` | K-mers to use <blank=AUTO> <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --dragonflye_opts` | Extra assembler options in quotes for Dragonflye <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-cut"></i>` --trim` | Enable adaptor trimming <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_stitch` | Disable read stitching for paired-end reads <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_corr` | Disable post-assembly correction <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-boxes"></i>` --unicycler_mode` | Bridging mode used by Unicycler <br/>**Type:** `string`, **Default:** `normal` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_polish_size` | Contigs shorter than this value (bp) will not be polished using Pilon <br/>**Type:** `integer`, **Default:** `10000` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_component_size` | Graph dead ends smaller than this size (bp) will be removed from the final graph <br/>**Type:** `integer`, **Default:** `1000` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_dead_end_size` | Graph dead ends smaller than this size (bp) will be removed from the final graph <br/>**Type:** `integer`, **Default:** `1000` |
-| <i class="fa-lg fas fa-redo"></i>` --nanohq` | For Flye, use '--nano-hq' instead of --nano-raw <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-font"></i>` --medaka_model` | The model to use for Medaka polishing <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-hashtag"></i>` --medaka_rounds` | The number of Medaka polishing rounds to conduct <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-hashtag"></i>` --racon_rounds` | The number of Racon polishing rounds to conduct <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_polish` | Skip the assembly polishing step <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_miniasm` | Skip miniasm+Racon bridging <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_rotate` | Do not rotate completed replicons to start at a standard gene <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-redo"></i>` --reassemble` | If reads were simulated, they will be used to create a new assembly. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --polypolish_rounds` | Number of polishing rounds to conduct with Polypolish for short read polishing <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --pilon_rounds` | Number of polishing rounds to conduct with Pilon for short read polishing <br/>**Type:** `integer` |
+| ` --shovill_assembler` | Assembler to be used by Shovill <br/>**Type:** `string`, **Default:** `skesa` |
+| ` --dragonflye_assembler` | Assembler to be used by Dragonflye <br/>**Type:** `string`, **Default:** `flye` |
+| ` --use_unicycler` | Use unicycler for paired end assembly <br/>**Type:** `boolean` |
+| ` --min_contig_len` | Minimum contig length <0=AUTO> <br/>**Type:** `integer`, **Default:** `500` |
+| ` --min_contig_cov` | Minimum contig coverage <0=AUTO> <br/>**Type:** `integer`, **Default:** `2` |
+| ` --contig_namefmt` | Format of contig FASTA IDs in 'printf' style <br/>**Type:** `string` |
+| ` --shovill_opts` | Extra assembler options in quotes for Shovill <br/>**Type:** `string` |
+| ` --shovill_kmers` | K-mers to use <blank=AUTO> <br/>**Type:** `string` |
+| ` --dragonflye_opts` | Extra assembler options in quotes for Dragonflye <br/>**Type:** `string` |
+| ` --trim` | Enable adaptor trimming <br/>**Type:** `boolean` |
+| ` --no_stitch` | Disable read stitching for paired-end reads <br/>**Type:** `boolean` |
+| ` --no_corr` | Disable post-assembly correction <br/>**Type:** `boolean` |
+| ` --unicycler_mode` | Bridging mode used by Unicycler <br/>**Type:** `string`, **Default:** `normal` |
+| ` --min_polish_size` | Contigs shorter than this value (bp) will not be polished using Pilon <br/>**Type:** `integer`, **Default:** `10000` |
+| ` --min_component_size` | Graph dead ends smaller than this size (bp) will be removed from the final graph <br/>**Type:** `integer`, **Default:** `1000` |
+| ` --min_dead_end_size` | Graph dead ends smaller than this size (bp) will be removed from the final graph <br/>**Type:** `integer`, **Default:** `1000` |
+| ` --nanohq` | For Flye, use '--nano-hq' instead of --nano-raw <br/>**Type:** `boolean` |
+| ` --medaka_model` | The model to use for Medaka polishing <br/>**Type:** `string` |
+| ` --medaka_rounds` | The number of Medaka polishing rounds to conduct <br/>**Type:** `integer` |
+| ` --racon_rounds` | The number of Racon polishing rounds to conduct <br/>**Type:** `integer`, **Default:** `1` |
+| ` --no_polish` | Skip the assembly polishing step <br/>**Type:** `boolean` |
+| ` --no_miniasm` | Skip miniasm+Racon bridging <br/>**Type:** `boolean` |
+| ` --no_rotate` | Do not rotate completed replicons to start at a standard gene <br/>**Type:** `boolean` |
+| ` --reassemble` | If reads were simulated, they will be used to create a new assembly. <br/>**Type:** `boolean` |
+| ` --polypolish_rounds` | Number of polishing rounds to conduct with Polypolish for short read polishing <br/>**Type:** `integer`, **Default:** `1` |
+| ` --pilon_rounds` | Number of polishing rounds to conduct with Pilon for short read polishing <br/>**Type:** `integer` |
 
 ### Citations
 If you use Bactopia and `assembler` results in your analysis, please cite the following.
@@ -700,51 +738,51 @@ Below is a description of the _per-sample_ results from [Bakta](https://github.c
 ### Parameters
 
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> Prokka
+#### Prokka
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --proteins` | FASTA file of trusted proteins to first annotate from <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --prodigal_tf` | Training file to use for Prodigal <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-check"></i>` --compliant` | Force Genbank/ENA/DDJB compliance <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-school"></i>` --centre` | Sequencing centre ID <br/>**Type:** `string`, **Default:** `Bactopia` |
-| <i class="fa-lg fas fa-hashtag"></i>` --prokka_coverage` | Minimum coverage on query protein <br/>**Type:** `integer`, **Default:** `80` |
-| <i class="fa-lg fas fa-italic"></i>` --prokka_evalue` | Similarity e-value cut-off <br/>**Type:** `string`, **Default:** `1e-09` |
-| <i class="fa-lg fas fa-italic"></i>` --prokka_opts` | Extra Prokka options in quotes. <br/>**Type:** `string` |
+| ` --proteins` | FASTA file of trusted proteins to first annotate from <br/>**Type:** `string` |
+| ` --prodigal_tf` | Training file to use for Prodigal <br/>**Type:** `string` |
+| ` --compliant` | Force Genbank/ENA/DDJB compliance <br/>**Type:** `boolean` |
+| ` --centre` | Sequencing centre ID <br/>**Type:** `string`, **Default:** `Bactopia` |
+| ` --prokka_coverage` | Minimum coverage on query protein <br/>**Type:** `integer`, **Default:** `80` |
+| ` --prokka_evalue` | Similarity e-value cut-off <br/>**Type:** `string`, **Default:** `1e-09` |
+| ` --prokka_opts` | Extra Prokka options in quotes. <br/>**Type:** `string` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> Bakta Download
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --bakta_db` | Tarball or path to the Bakta database <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --bakta_db_type` | Which Bakta DB to download 'full' (~30GB) or 'light' (~2GB) <br/>**Type:** `string`, **Default:** `full` |
-| <i class="fa-lg fas fa-file-alt"></i>` --bakta_save_as_tarball` | Save the Bakta database as a tarball <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --download_bakta` | Download the Bakta database to the path given by --bakta_db <br/>**Type:** `boolean` |
-
-#### <i class="fa-xl fas fa-exclamation-circle"></i> Bakta
+#### Bakta Download
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --proteins` | FASTA file of trusted proteins to first annotate from <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --prodigal_tf` | Training file to use for Prodigal <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --replicons` | Replicon information table (tsv/csv) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-hashtag"></i>` --min_contig_length` | Minimum contig size to annotate <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-italic"></i>` --keep_contig_headers` | Keep original contig headers <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --compliant` | Force Genbank/ENA/DDJB compliance <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_trna` | Skip tRNA detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_tmrna` | Skip tmRNA detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_rrna` | Skip rRNA detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_ncrna` | Skip ncRNA detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_ncrna_region` | Skip ncRNA region detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_crispr` | Skip CRISPR array detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_cds` | Skip CDS detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_sorf` | Skip sORF detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_gap` | Skip gap detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_ori` | Skip oriC/oriT detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --bakta_opts` | Extra Backa options in quotes. Example: '--gram +' <br/>**Type:** `string` |
+| ` --bakta_db` | Tarball or path to the Bakta database <br/>**Type:** `string` |
+| ` --bakta_db_type` | Which Bakta DB to download 'full' (~30GB) or 'light' (~2GB) <br/>**Type:** `string`, **Default:** `full` |
+| ` --bakta_save_as_tarball` | Save the Bakta database as a tarball <br/>**Type:** `boolean` |
+| ` --download_bakta` | Download the Bakta database to the path given by --bakta_db <br/>**Type:** `boolean` |
+
+#### Bakta
+
+
+| Parameter | Description |
+|:---|---|
+| ` --proteins` | FASTA file of trusted proteins to first annotate from <br/>**Type:** `string` |
+| ` --prodigal_tf` | Training file to use for Prodigal <br/>**Type:** `string` |
+| ` --replicons` | Replicon information table (tsv/csv) <br/>**Type:** `string` |
+| ` --min_contig_length` | Minimum contig size to annotate <br/>**Type:** `integer`, **Default:** `1` |
+| ` --keep_contig_headers` | Keep original contig headers <br/>**Type:** `boolean` |
+| ` --compliant` | Force Genbank/ENA/DDJB compliance <br/>**Type:** `boolean` |
+| ` --skip_trna` | Skip tRNA detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_tmrna` | Skip tmRNA detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_rrna` | Skip rRNA detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_ncrna` | Skip ncRNA detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_ncrna_region` | Skip ncRNA region detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_crispr` | Skip CRISPR array detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_cds` | Skip CDS detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_sorf` | Skip sORF detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_gap` | Skip gap detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_ori` | Skip oriC/oriT detection & annotation <br/>**Type:** `boolean` |
+| ` --bakta_opts` | Extra Backa options in quotes. Example: '--gram +' <br/>**Type:** `string` |
 
 ### Citations
 If you use Bactopia and `annotator` results in your analysis, please cite the following.
@@ -788,15 +826,15 @@ Below is a description of the _per-sample_ results from the `sketcher` subworkfl
 
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Sketcher Parameters
+### Sketcher Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-hashtag"></i>` --sketch_size` | Sketch size. Each sketch will have at most this many non-redundant min-hashes. <br/>**Type:** `integer`, **Default:** `10000` |
-| <i class="fa-lg fas fa-hashtag"></i>` --sourmash_scale` | Choose number of hashes as 1 in FRACTION of input k-mers <br/>**Type:** `integer`, **Default:** `10000` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_winner_take_all` | Disable winner-takes-all strategy for identity estimates <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-hashtag"></i>` --screen_i` | Minimum identity to report. <br/>**Type:** `number`, **Default:** `0.8` |
+| ` --sketch_size` | Sketch size. Each sketch will have at most this many non-redundant min-hashes. <br/>**Type:** `integer`, **Default:** `10000` |
+| ` --sourmash_scale` | Choose number of hashes as 1 in FRACTION of input k-mers <br/>**Type:** `integer`, **Default:** `10000` |
+| ` --no_winner_take_all` | Disable winner-takes-all strategy for identity estimates <br/>**Type:** `boolean` |
+| ` --screen_i` | Minimum identity to report. <br/>**Type:** `number`, **Default:** `0.8` |
 
 ### Citations
 If you use Bactopia and `sketcher` results in your analysis, please cite the following.
@@ -849,17 +887,17 @@ Below is a description of the _per-sample_ results from [mlst](https://github.co
 
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Parameters
+### Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --scheme` | Don't autodetect, force this scheme on all inputs <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --minid` | Minimum DNA percent identity of full allelle to consider 'similar' <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mincov` | Minimum DNA percent coverage to report partial allele at all <br/>**Type:** `integer`, **Default:** `10` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --minscore` | Minimum score out of 100 to match a scheme <br/>**Type:** `integer`, **Default:** `50` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --nopath` | Strip filename paths from FILE column <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mlst_db` | A custom MLST database to use, either a tarball or a directory <br/>**Type:** `string` |
+| ` --scheme` | Don't autodetect, force this scheme on all inputs <br/>**Type:** `string` |
+| ` --minid` | Minimum DNA percent identity of full allelle to consider 'similar' <br/>**Type:** `integer`, **Default:** `95` |
+| ` --mincov` | Minimum DNA percent coverage to report partial allele at all <br/>**Type:** `integer`, **Default:** `10` |
+| ` --minscore` | Minimum score out of 100 to match a scheme <br/>**Type:** `integer`, **Default:** `50` |
+| ` --nopath` | Strip filename paths from FILE column <br/>**Type:** `boolean` |
+| ` --mlst_db` | A custom MLST database to use, either a tarball or a directory <br/>**Type:** `string` |
 
 ### Citations
 If you use Bactopia and `sequence typing` results in your analysis, please cite the following.
@@ -908,20 +946,20 @@ Below is a description of the _per-sample_ results from [AMRFinder+](https://git
 
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Parameters
+### Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --ident_min` | Minimum proportion of identical amino acids in alignment for hit (0..1) <br/>**Type:** `number`, **Default:** `-1` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --coverage_min` | Minimum coverage of the reference protein (0..1) <br/>**Type:** `number`, **Default:** `0.5` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --organism` | Taxonomy group to run additional screens against <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --translation_table` | NCBI genetic code for translated BLAST <br/>**Type:** `integer`, **Default:** `11` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --amrfinder_noplus` | Disable running AMRFinder+ with the --plus option <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --report_common` | Report proteins common to a taxonomy group <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --report_all_equal` | Report all equally-scoring BLAST and HMM matches <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --amrfinder_opts` | Extra AMRFinder+ options in quotes. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --amrfinder_db` | A custom AMRFinder+ database to use, either a tarball or a folder <br/>**Type:** `string` |
+| ` --ident_min` | Minimum proportion of identical amino acids in alignment for hit (0..1) <br/>**Type:** `number`, **Default:** `-1` |
+| ` --coverage_min` | Minimum coverage of the reference protein (0..1) <br/>**Type:** `number`, **Default:** `0.5` |
+| ` --organism` | Taxonomy group to run additional screens against <br/>**Type:** `string` |
+| ` --translation_table` | NCBI genetic code for translated BLAST <br/>**Type:** `integer`, **Default:** `11` |
+| ` --amrfinder_noplus` | Disable running AMRFinder+ with the --plus option <br/>**Type:** `boolean` |
+| ` --report_common` | Report proteins common to a taxonomy group <br/>**Type:** `boolean` |
+| ` --report_all_equal` | Report all equally-scoring BLAST and HMM matches <br/>**Type:** `boolean` |
+| ` --amrfinder_opts` | Extra AMRFinder+ options in quotes. <br/>**Type:** `string` |
+| ` --amrfinder_db` | A custom AMRFinder+ database to use, either a tarball or a folder <br/>**Type:** `string` |
 
 ### Citations
 If you use Bactopia and `antibiotic resistance` results in your analysis, please cite the following.
@@ -1254,191 +1292,191 @@ Below is a description of the _per-sample_ results from [TBProfiler](https://git
 
 ###
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> mashdist 
+#### mashdist 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_sketch` | The reference sequence as a Mash Sketch (.msh file) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_seed` | Seed to provide to the hash function <br/>**Type:** `integer`, **Default:** `42` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_table` |  Table output (fields will be blank if they do not meet the p-value threshold) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_m` | Minimum copies of each k-mer required to pass noise filter for reads <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mash_w` | Probability threshold for warning about low k-mer size. <br/>**Type:** `number`, **Default:** `0.01` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --max_p` | Maximum p-value to report. <br/>**Type:** `number`, **Default:** `1.0` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --max_dist` | Maximum distance to report. <br/>**Type:** `number`, **Default:** `1.0` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --merlin_dist` | Maximum distance to report when using Merlin . <br/>**Type:** `number`, **Default:** `0.1` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --full_merlin` | Go full Merlin and run all species-specific tools, no matter the Mash distance <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --use_fastqs` | Query with FASTQs instead of the assemblies <br/>**Type:** `boolean` |
+| ` --mash_sketch` | The reference sequence as a Mash Sketch (.msh file) <br/>**Type:** `string` |
+| ` --mash_seed` | Seed to provide to the hash function <br/>**Type:** `integer`, **Default:** `42` |
+| ` --mash_table` |  Table output (fields will be blank if they do not meet the p-value threshold) <br/>**Type:** `boolean` |
+| ` --mash_m` | Minimum copies of each k-mer required to pass noise filter for reads <br/>**Type:** `integer`, **Default:** `1` |
+| ` --mash_w` | Probability threshold for warning about low k-mer size. <br/>**Type:** `number`, **Default:** `0.01` |
+| ` --max_p` | Maximum p-value to report. <br/>**Type:** `number`, **Default:** `1.0` |
+| ` --max_dist` | Maximum distance to report. <br/>**Type:** `number`, **Default:** `1.0` |
+| ` --merlin_dist` | Maximum distance to report when using Merlin . <br/>**Type:** `number`, **Default:** `0.1` |
+| ` --full_merlin` | Go full Merlin and run all species-specific tools, no matter the Mash distance <br/>**Type:** `boolean` |
+| ` --use_fastqs` | Query with FASTQs instead of the assemblies <br/>**Type:** `boolean` |
 
-#### <i class="fa-xl fa-solid fa-toolbox"></i> AgrVATE 
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fa-solid fa-toggle-on"></i>` --typing_only` | agr typing only. Skips agr operon extraction and frameshift detection <br/>**Type:** `boolean` |
-
-#### <i class="fa-xl fas fa-exclamation-circle"></i> ClermonTyping 
+#### AgrVATE 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --clermon_threshold` | Do not use contigs under this size <br/>**Type:** `number` |
+| ` --typing_only` | agr typing only. Skips agr operon extraction and frameshift detection <br/>**Type:** `boolean` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> ECTyper 
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --opid` | Percent identity required for an O antigen allele match <br/>**Type:** `integer`, **Default:** `90` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --opcov` | Minumum percent coverage required for an O antigen allele match <br/>**Type:** `integer`, **Default:** `90` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hpid` | Percent identity required for an H antigen allele match <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hpcov` | Minumum percent coverage required for an H antigen allele match <br/>**Type:** `integer`, **Default:** `50` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --verify` | Enable E. coli species verification <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --print_alleles` | Prints the allele sequences if enabled as the final column <br/>**Type:** `boolean` |
-
-#### <i class="fa-xl fas fa-exclamation-circle"></i> emmtyper 
+#### ClermonTyping 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --emmtyper_wf` | Workflow for emmtyper to use. <br/>**Type:** `string`, **Default:** `blast` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --cluster_distance` | Distance between cluster of matches to consider as different clusters <br/>**Type:** `integer`, **Default:** `500` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --percid` | Minimal percent identity of sequence <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --culling_limit` | Total hits to return in a position <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mismatch` | Threshold for number of mismatch to allow in BLAST hit <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --align_diff` | Threshold for difference between alignment length and subject length in BLAST <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --gap` | Threshold gap to allow in BLAST hit <br/>**Type:** `integer`, **Default:** `2` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_perfect` | Minimum size of perfect match at 3 primer end <br/>**Type:** `integer`, **Default:** `15` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_good` | Minimum size where there must be 2 matches for each mismatch <br/>**Type:** `integer`, **Default:** `15` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --max_size` | Maximum size of PCR product <br/>**Type:** `integer`, **Default:** `2000` |
+| ` --clermon_threshold` | Do not use contigs under this size <br/>**Type:** `number` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> hicap 
+#### ECTyper 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-boxes"></i>` --database_dir` | Directory containing locus database <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-boxes"></i>` --model_fp` | Path to prodigal model <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --full_sequence` | Write the full input sequence out to the genbank file rather than just the region surrounding and including the locus <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hicap_debug` | hicap will print debug messages <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --gene_coverage` | Minimum percentage coverage to consider a single gene complete <br/>**Type:** `number`, **Default:** `0.8` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --gene_identity` | Minimum percentage identity to consider a single gene complete <br/>**Type:** `number`, **Default:** `0.7` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --broken_gene_length` | Minimum length to consider a broken gene <br/>**Type:** `integer`, **Default:** `60` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --broken_gene_identity` | Minimum percentage identity to consider a broken gene <br/>**Type:** `number`, **Default:** `0.8` |
+| ` --opid` | Percent identity required for an O antigen allele match <br/>**Type:** `integer`, **Default:** `90` |
+| ` --opcov` | Minumum percent coverage required for an O antigen allele match <br/>**Type:** `integer`, **Default:** `90` |
+| ` --hpid` | Percent identity required for an H antigen allele match <br/>**Type:** `integer`, **Default:** `95` |
+| ` --hpcov` | Minumum percent coverage required for an H antigen allele match <br/>**Type:** `integer`, **Default:** `50` |
+| ` --verify` | Enable E. coli species verification <br/>**Type:** `boolean` |
+| ` --print_alleles` | Prints the allele sequences if enabled as the final column <br/>**Type:** `boolean` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> GenoTyphi 
+#### emmtyper 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --kmer` | K-mer length <br/>**Type:** `integer`, **Default:** `21` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_depth` | Minimum depth <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --model` | Genotype model used. <br/>**Type:** `string`, **Default:** `kmer_count` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --report_all_calls` | Report all calls <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --mykrobe_opts` | Extra Mykrobe options in quotes <br/>**Type:** `string` |
+| ` --emmtyper_wf` | Workflow for emmtyper to use. <br/>**Type:** `string`, **Default:** `blast` |
+| ` --cluster_distance` | Distance between cluster of matches to consider as different clusters <br/>**Type:** `integer`, **Default:** `500` |
+| ` --percid` | Minimal percent identity of sequence <br/>**Type:** `integer`, **Default:** `95` |
+| ` --culling_limit` | Total hits to return in a position <br/>**Type:** `integer`, **Default:** `5` |
+| ` --mismatch` | Threshold for number of mismatch to allow in BLAST hit <br/>**Type:** `integer`, **Default:** `5` |
+| ` --align_diff` | Threshold for difference between alignment length and subject length in BLAST <br/>**Type:** `integer`, **Default:** `5` |
+| ` --gap` | Threshold gap to allow in BLAST hit <br/>**Type:** `integer`, **Default:** `2` |
+| ` --min_perfect` | Minimum size of perfect match at 3 primer end <br/>**Type:** `integer`, **Default:** `15` |
+| ` --min_good` | Minimum size where there must be 2 matches for each mismatch <br/>**Type:** `integer`, **Default:** `15` |
+| ` --max_size` | Maximum size of PCR product <br/>**Type:** `integer`, **Default:** `2000` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> Kleborate 
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-boxes"></i>` --kleborate_preset` | Preset module to use for Kleborate <br/>**Type:** `string`, **Default:** `kpsc` |
-| <i class="fa-lg fas fa-italic"></i>` --kleborate_opts` | Extra options in quotes for Kleborate <br/>**Type:** `string` |
-
-#### <i class="fa-xl fas fa-exclamation-circle"></i> legsta 
+#### hicap 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --noheader` | Don't print header row <br/>**Type:** `boolean` |
+| ` --database_dir` | Directory containing locus database <br/>**Type:** `string` |
+| ` --model_fp` | Path to prodigal model <br/>**Type:** `string` |
+| ` --full_sequence` | Write the full input sequence out to the genbank file rather than just the region surrounding and including the locus <br/>**Type:** `boolean` |
+| ` --hicap_debug` | hicap will print debug messages <br/>**Type:** `boolean` |
+| ` --gene_coverage` | Minimum percentage coverage to consider a single gene complete <br/>**Type:** `number`, **Default:** `0.8` |
+| ` --gene_identity` | Minimum percentage identity to consider a single gene complete <br/>**Type:** `number`, **Default:** `0.7` |
+| ` --broken_gene_length` | Minimum length to consider a broken gene <br/>**Type:** `integer`, **Default:** `60` |
+| ` --broken_gene_identity` | Minimum percentage identity to consider a broken gene <br/>**Type:** `number`, **Default:** `0.8` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> LisSero 
+#### GenoTyphi 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_id` | Minimum percent identity to accept a match <br/>**Type:** `number`, **Default:** `95.0` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --min_cov` | Minimum coverage of the gene to accept a match <br/>**Type:** `number`, **Default:** `95.0` |
+| ` --kmer` | K-mer length <br/>**Type:** `integer`, **Default:** `21` |
+| ` --min_depth` | Minimum depth <br/>**Type:** `integer`, **Default:** `1` |
+| ` --model` | Genotype model used. <br/>**Type:** `string`, **Default:** `kmer_count` |
+| ` --report_all_calls` | Report all calls <br/>**Type:** `boolean` |
+| ` --mykrobe_opts` | Extra Mykrobe options in quotes <br/>**Type:** `string` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> meningotype 
+#### Kleborate 
+
+
+| Parameter | Description |
+|:---|---|
+| ` --kleborate_preset` | Preset module to use for Kleborate <br/>**Type:** `string`, **Default:** `kpsc` |
+| ` --kleborate_opts` | Extra options in quotes for Kleborate <br/>**Type:** `string` |
+
+#### legsta 
+
+
+| Parameter | Description |
+|:---|---|
+| ` --noheader` | Don't print header row <br/>**Type:** `boolean` |
+
+#### LisSero 
+
+
+| Parameter | Description |
+|:---|---|
+| ` --min_id` | Minimum percent identity to accept a match <br/>**Type:** `number`, **Default:** `95.0` |
+| ` --min_cov` | Minimum coverage of the gene to accept a match <br/>**Type:** `number`, **Default:** `95.0` |
+
+#### meningotype 
 You can use these parameters to fine-tune your meningotype analysis
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --finetype` | perform porA and fetA fine typing <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --porB` | perform porB sequence typing (NEIS2020) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --bast` | perform Bexsero antigen sequence typing (BAST) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mlst` | perform MLST <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --all` | perform MLST, porA, fetA, porB, BAST typing <br/>**Type:** `boolean` |
+| ` --finetype` | perform porA and fetA fine typing <br/>**Type:** `boolean` |
+| ` --porB` | perform porB sequence typing (NEIS2020) <br/>**Type:** `boolean` |
+| ` --bast` | perform Bexsero antigen sequence typing (BAST) <br/>**Type:** `boolean` |
+| ` --mlst` | perform MLST <br/>**Type:** `boolean` |
+| ` --all` | perform MLST, porA, fetA, porB, BAST typing <br/>**Type:** `boolean` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> ngmaster 
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --csv` | output comma-separated format (CSV) rather than tab-separated <br/>**Type:** `boolean` |
-
-#### <i class="fa-xl fas fa-exclamation-circle"></i> pasty 
+#### ngmaster 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pasty_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pasty_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
+| ` --csv` | output comma-separated format (CSV) rather than tab-separated <br/>**Type:** `boolean` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> pbptyper 
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pbptyper_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --pbptyper_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
-
-#### <i class="fa-xl fas fa-exclamation-circle"></i> SeqSero2 
+#### pasty 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --run_mode` | Workflow to run. 'a' allele mode, or 'k' k-mer mode <br/>**Type:** `string`, **Default:** `k` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --input_type` | Input format to analyze. 'assembly' or 'fastq' <br/>**Type:** `string`, **Default:** `assembly` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --bwa_mode` | Algorithms for bwa mapping for allele mode <br/>**Type:** `string`, **Default:** `mem` |
+| ` --pasty_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
+| ` --pasty_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> SISTR 
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --full_cgmlst` |  Use the full set of cgMLST alleles which can include highly similar alleles <br/>**Type:** `boolean` |
-
-#### <i class="fa-xl fas fa-exclamation-circle"></i> spaTyper 
+#### pbptyper 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-archive"></i>` --repeats` | List of spa repeats <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --repeat_order` | List spa types and order of repeats <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --do_enrich` | Do PCR product enrichment <br/>**Type:** `boolean` |
+| ` --pbptyper_min_pident` | Minimum percent identity to count a hit <br/>**Type:** `integer`, **Default:** `95` |
+| ` --pbptyper_min_coverage` | Minimum percent coverage to count a hit <br/>**Type:** `integer`, **Default:** `95` |
 
-#### <i class="fa-xl fas fa-exclamation-circle"></i> staphopia-sccmec 
-
-
-| Parameter | Description |
-|:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --hamming` | Report the results as hamming distances <br/>**Type:** `boolean` |
-
-#### <i class="fa-xl fas fa-exclamation-circle"></i> TBProfiler Profile 
+#### SeqSero2 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --call_whole_genome` | Call whole genome <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --mapper` | Mapping tool to use. If you are using nanopore data it will default to minimap2 <br/>**Type:** `string`, **Default:** `bwa` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --caller` | Variant calling tool to use <br/>**Type:** `string`, **Default:** `freebayes` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --calling_params` | Extra variant caller options in quotes <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --suspect` | Use the suspect suite of tools to add ML predictions <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_flagstat` | Don't collect flagstats <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --no_delly` | Don't run delly <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --tbprofiler_opts` | Extra options in quotes for TBProfiler <br/>**Type:** `string` |
+| ` --run_mode` | Workflow to run. 'a' allele mode, or 'k' k-mer mode <br/>**Type:** `string`, **Default:** `k` |
+| ` --input_type` | Input format to analyze. 'assembly' or 'fastq' <br/>**Type:** `string`, **Default:** `assembly` |
+| ` --bwa_mode` | Algorithms for bwa mapping for allele mode <br/>**Type:** `string`, **Default:** `mem` |
+
+#### SISTR 
+
+
+| Parameter | Description |
+|:---|---|
+| ` --full_cgmlst` |  Use the full set of cgMLST alleles which can include highly similar alleles <br/>**Type:** `boolean` |
+
+#### spaTyper 
+
+
+| Parameter | Description |
+|:---|---|
+| ` --repeats` | List of spa repeats <br/>**Type:** `string` |
+| ` --repeat_order` | List spa types and order of repeats <br/>**Type:** `string` |
+| ` --do_enrich` | Do PCR product enrichment <br/>**Type:** `boolean` |
+
+#### staphopia-sccmec 
+
+
+| Parameter | Description |
+|:---|---|
+| ` --hamming` | Report the results as hamming distances <br/>**Type:** `boolean` |
+
+#### TBProfiler Profile 
+
+
+| Parameter | Description |
+|:---|---|
+| ` --call_whole_genome` | Call whole genome <br/>**Type:** `boolean` |
+| ` --mapper` | Mapping tool to use. If you are using nanopore data it will default to minimap2 <br/>**Type:** `string`, **Default:** `bwa` |
+| ` --caller` | Variant calling tool to use <br/>**Type:** `string`, **Default:** `freebayes` |
+| ` --calling_params` | Extra variant caller options in quotes <br/>**Type:** `string` |
+| ` --suspect` | Use the suspect suite of tools to add ML predictions <br/>**Type:** `boolean` |
+| ` --no_flagstat` | Don't collect flagstats <br/>**Type:** `boolean` |
+| ` --no_delly` | Don't run delly <br/>**Type:** `boolean` |
+| ` --tbprofiler_opts` | Extra options in quotes for TBProfiler <br/>**Type:** `string` |
 
 ### Citations
 If you use Bactopia and `merlin` results in your analysis, please cite the following.
@@ -1529,78 +1567,78 @@ If you use Bactopia and `merlin` results in your analysis, please cite the follo
 ## Additional Parameters
 
 
-### <i class="fa-xl fa-solid fa-gears"></i> Optional 
+### Optional 
 These optional parameters can be useful in certain settings.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-folder"></i>` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `bactopia` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-folder"></i>` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-trash-restore"></i>` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
+| ` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `bactopia` |
+| ` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
+| ` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
+| ` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fa-solid fa-arrow-up-right-dots"></i> Max Job Request 
+### Max Job Request 
 Set the top limit for requested resources for any single job.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-redo"></i>` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
-| <i class="fa-lg fas fa-microchip"></i>` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
-| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
-| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
-| <i class="fa-lg fas fa-angle-double-up"></i>` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
+| ` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
+| ` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
+| ` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
+| ` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
+| ` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
 
-### <i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration 
+### Nextflow Configuration 
  to fine-tune your Nextflow setup.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-cog"></i>` --nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-copy"></i>` --publish_dir_mode` | Method used to save pipeline results to output directory. <br/>**Type:** `string`, **Default:** `copy` |
-| <i class="fa-lg fas fa-cogs"></i>` --infodir` | Directory to keep pipeline Nextflow logs and reports. <br/>**Type:** `string`, **Default:** `${params.outdir}/pipeline_info` |
-| <i class="fa-lg fas fa-recycle"></i>` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-trash-alt"></i>` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
+| ` --nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. <br/>**Type:** `string` |
+| ` --publish_dir_mode` | Method used to save pipeline results to output directory. <br/>**Type:** `string`, **Default:** `copy` |
+| ` --infodir` | Directory to keep pipeline Nextflow logs and reports. <br/>**Type:** `string`, **Default:** `${params.outdir}/pipeline_info` |
+| ` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
+| ` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-university"></i> Institutional config options
+### Institutional config options
  used to describe centralized config profiles. These should not be edited.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_version` | Git commit id for Institutional configs. <br/>**Type:** `string`, **Default:** `master` |
-| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_base` | Base directory for Institutional configs. <br/>**Type:** `string`, **Default:** `https://raw.githubusercontent.com/nf-core/configs/master` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_name` | Institutional config name. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_description` | Institutional config description. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_contact` | Institutional config contact information. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_url` | Institutional config URL link. <br/>**Type:** `string` |
+| ` --custom_config_version` | Git commit id for Institutional configs. <br/>**Type:** `string`, **Default:** `master` |
+| ` --custom_config_base` | Base directory for Institutional configs. <br/>**Type:** `string`, **Default:** `https://raw.githubusercontent.com/nf-core/configs/master` |
+| ` --config_profile_name` | Institutional config name. <br/>**Type:** `string` |
+| ` --config_profile_description` | Institutional config description. <br/>**Type:** `string` |
+| ` --config_profile_contact` | Institutional config contact information. <br/>**Type:** `string` |
+| ` --config_profile_url` | Institutional config URL link. <br/>**Type:** `string` |
 
-### <i class="fa-xl fa-regular fa-address-card"></i> Nextflow Profile 
+### Nextflow Profile 
  to fine-tune your Nextflow setup.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-folder"></i>` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-box"></i>` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
-| <i class="fa-lg fas fa-folder"></i>` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
-| <i class="fa-lg fas fa-folder"></i>` --singularity_cache_dir` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-toolbox"></i>` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-recycle"></i>` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --container_opts` | Additional options to pass to Apptainer, Docker, or Singularityu. (e.g. Singularity: '-D `pwd`' <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-toggle-off"></i>` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
+| ` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
+| ` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
+| ` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
+| ` --singularity_cache_dir` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
+| ` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
+| ` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
+| ` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
+| ` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
+| ` --container_opts` | Additional options to pass to Apptainer, Docker, or Singularityu. (e.g. Singularity: '-D `pwd`' <br/>**Type:** `string` |
+| ` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fa-solid fa-reply-all"></i> Helpful 
+### Helpful 
 Uncommonly used parameters that might be useful.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-palette"></i>` --monochrome_logs` | Do not use coloured log outputs. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-remove-format"></i>` --nfdir` | Print directory Nextflow has pulled Bactopia to <br/>**Type:** `boolean` |
-| <i class="fa-lg far fa-clock"></i>` --sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-tasks"></i>` --validate_params` | Boolean whether to validate parameters against the schema at runtime <br/>**Type:** `boolean`, **Default:** `True` |
-| <i class="fa-lg fas fa-question-circle"></i>` --help` | Display help text. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-bacteria"></i>` --wf` | Specify which workflow or Bactopia Tool to execute <br/>**Type:** `string`, **Default:** `bactopia` |
-| <i class="fa-lg fas fa-list"></i>` --list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' <br/>**Type:** `boolean` |
-| <i class="fa-lg far fa-eye"></i>` --show_hidden_params` | Show all params when using `--help` <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-question-circle"></i>` --help_all` | An alias for --help --show_hidden_params <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
+| ` --monochrome_logs` | Do not use coloured log outputs. <br/>**Type:** `boolean` |
+| ` --nfdir` | Print directory Nextflow has pulled Bactopia to <br/>**Type:** `boolean` |
+| ` --sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. <br/>**Type:** `integer`, **Default:** `5` |
+| ` --validate_params` | Boolean whether to validate parameters against the schema at runtime <br/>**Type:** `boolean`, **Default:** `True` |
+| ` --help` | Display help text. <br/>**Type:** `boolean` |
+| ` --wf` | Specify which workflow or Bactopia Tool to execute <br/>**Type:** `string`, **Default:** `bactopia` |
+| ` --list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' <br/>**Type:** `boolean` |
+| ` --show_hidden_params` | Show all params when using `--help` <br/>**Type:** `boolean` |
+| ` --help_all` | An alias for --help --show_hidden_params <br/>**Type:** `boolean` |
+| ` --version` | Display version text. <br/>**Type:** `boolean` |

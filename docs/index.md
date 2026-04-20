@@ -1,41 +1,9 @@
 ![Bactopia Logo](assets/bactopia-logo.png)
 
-<div class="grid cards" markdown>
-
--   :material-clock-fast:{ .lg .middle } __Set up in minutes__
-
-    ---
-
-    Install `bactopia` from [Bioconda](https://bioconda.github.io/) and start processing
-    genomes in minutes
-
-    [:octicons-arrow-right-24: Installation](installation.md)
-
--   :material-bacteria:{ .lg .middle } __Effortless bacterial genomics__
-
-    ---
-
-    Streamlined pipeline for efficient and complete analysis of bacterial genomes
-
-    [:octicons-arrow-right-24: Beginner's Guide](beginners-guide.md)
-
--   :material-lightbulb-on:{ .lg .middle } __Seamlessly expand analyses__
-
-    ---
-
-    Rapidly extend studies with a variety of supplementary, ready-made, workflows
-
-    [:octicons-arrow-right-24: Bactopia Tools](bactopia-tools/index.md)
-
--   :material-star:{ .lg .middle } __Making an impact__
-
-    ---
-
-    A free and open-source tool that regularly contributes back to the community
-
-    [:octicons-arrow-right-24: Impact and Outreach](impact-and-outreach/index.md)
-
-</div>
+- **Set up in minutes** -- Install `bactopia` from [Bioconda](https://bioconda.github.io/) and start processing genomes in minutes. [Installation](installation.md)
+- **Effortless bacterial genomics** -- Streamlined pipeline for efficient and complete analysis of bacterial genomes. [Beginner's Guide](beginners-guide.md)
+- **Seamlessly expand analyses** -- Rapidly extend studies with a variety of supplementary, ready-made, workflows. [Bactopia Tools](bactopia-tools/index.md)
+- **Making an impact** -- A free and open-source tool that regularly contributes back to the community. [Impact and Outreach](impact-and-outreach/index.md)
 
 ## Overview
 
@@ -61,9 +29,7 @@ a species that is a common part of the human vaginal microbiome. The results fro
 are published in mSystems under the title:
 *[Bactopia: a flexible pipeline for complete analysis of bacterial genomes](https://doi.org/10.1128/mSystems.00190-20)*
 
-<a class="zoom" href="assets/bactopia-workflow.png">
 ![Bactopia Workflow](assets/bactopia-workflow.png)
-</a>
 
 ## Documentation Overview
 [Quick Start](quick-start.md)  
@@ -95,14 +61,13 @@ the [Wyoming Public Health Division](https://health.wyo.gov/publichealth/), and
 the [Center for Applied Pathogen Epidemiology and Outbreak Control (CAPE)](https://www.linkedin.com/company/center-for-applied-pathogen-epidemiology-and-outbreak-control/).
 
 <a href="https://dph.georgia.gov/EIP">
-![Georgia Emerging Infections Program](assets/gaeip-banner.png){ width="22%" }
+<img src="assets/gaeip-banner.png" alt="Georgia Emerging Infections Program" width="22%" />
 </a>
 <a href="https://health.wyo.gov/publichealth/">
-![Wyoming Public Health Division](assets/wyphd-banner.jpg){ width="44%" }
+<img src="assets/wyphd-banner.jpg" alt="Wyoming Public Health Division" width="44%" />
 </a>
 <a href="https://www.linkedin.com/company/center-for-applied-pathogen-epidemiology-and-outbreak-control/">
-![Center for Applied 
-Pathogen Epidemiology and Outbreak Control](assets/cape-banner.png){ width="29%" }
+<img src="assets/cape-banner.png" alt="Center for Applied  Pathogen Epidemiology and Outbreak Control" width="29%" />
 </a>
 
 ## Citing Bactopia

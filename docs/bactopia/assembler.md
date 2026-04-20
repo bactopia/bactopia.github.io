@@ -22,7 +22,7 @@ Summary statistics for each assembly are generated using [assembly-scan](https:/
 Below is the default output structure for the `assembler` step in Bactopia. Where
 possible the file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── main
@@ -55,10 +55,11 @@ possible the file descriptions below were modified from a tools description.
 
 ```
 
-!!! info "Directory structure might be different"
+:::info[Directory structure might be different]
 
-    Depending on the options used at runtime, the `assembler` directory structure might
-    be different, but the output descriptions below still apply.
+Depending on the options used at runtime, the `assembler` directory structure might
+be different, but the output descriptions below still apply.
+:::
 
 
 
@@ -144,11 +145,12 @@ Below is a description of the _per-sample_ results for a hybrid assembly using
 Dragonflye, the long-reads are assembled first, then the short-reads are used
 to polish the assembly.
 
-!!! tip "Prefer `--short_polish` over `--hybrid` with recent ONT sequencing"
-    Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
-    assembly works great when you have low-coverage noisy long-reads. However, if you are
-    using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
-    method is going to yeild better results (_and be faster!_) than `--hybrid`.
+:::tip[Prefer `--short_polish` over `--hybrid` with recent ONT sequencing]
+Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
+assembly works great when you have low-coverage noisy long-reads. However, if you are
+using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
+method is going to yeild better results (_and be faster!_) than `--hybrid`.
+:::
 
 
 | Filename                      | Description |
@@ -177,33 +179,42 @@ excluding these samples, complete pipeline failures are prevented.
 
 
 
-!!! info "Poor samples are excluded to prevent downstream failures"
-    Samples that fail any of the QC checks will be excluded from further analysis.
-    Those samples will generate a `*-error.txt` file with the error message. Excluding
-    these samples prevents downstream failures that cause the whole workflow to fail.
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
 
 
 
-??? warning "Example Error: Assembled Successfully, but 0 Contigs"
-    If a sample assembles successfully, but 0 contigs are formed, the sample will be
-    excluded from further analysis.
+<details>
+<summary>Example Error: Assembled Successfully, but 0 Contigs</summary>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__  
-    _&lt;SAMPLE_NAME&gt; assembled successfully, but 0 contigs were formed. Please investigate
-    &lt;SAMPLE_NAME&gt; to determine a cause (e.g. metagenomic, contaminants, etc...) for this
-    outcome. Further assembly-based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+If a sample assembles successfully, but 0 contigs are formed, the sample will be
+excluded from further analysis.
 
-??? warning "Example Error: Assembled successfully, but poor assembly size"
-    If you sample assembles successfully, but the assembly size is less than the minimum
-    allowed genome size, the sample will be excluded from further analysis. You can
-    adjust this minimum size using the `--min_genome_size` parameter.
+__Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__  
+_&lt;SAMPLE_NAME&gt; assembled successfully, but 0 contigs were formed. Please investigate
+&lt;SAMPLE_NAME&gt; to determine a cause (e.g. metagenomic, contaminants, etc...) for this
+outcome. Further assembly-based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__  
-    _&lt;SAMPLE_NAME&gt; assembled size (000 bp) is less than the minimum allowed genome
-    size (000 bp). If this is unexpected, please investigate &lt;SAMPLE_NAME&gt; to
-    determine a cause (e.g. metagenomic, contaminants, etc...) for the poor assembly.
-    Otherwise, adjust the `--min_genome_size` parameter to fit your need. Further
-    assembly based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+</details>
+
+<details>
+<summary>Example Error: Assembled successfully, but poor assembly size</summary>
+
+If you sample assembles successfully, but the assembly size is less than the minimum
+allowed genome size, the sample will be excluded from further analysis. You can
+adjust this minimum size using the `--min_genome_size` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__  
+_&lt;SAMPLE_NAME&gt; assembled size (000 bp) is less than the minimum allowed genome
+size (000 bp). If this is unexpected, please investigate &lt;SAMPLE_NAME&gt; to
+determine a cause (e.g. metagenomic, contaminants, etc...) for the poor assembly.
+Otherwise, adjust the `--min_genome_size` parameter to fit your need. Further
+assembly based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+
+</details>
 
 
 
@@ -233,37 +244,37 @@ files for you to review if the need ever arises.
 ## Parameters
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Assembler 
+### Assembler 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-boxes"></i>` --shovill_assembler` | Assembler to be used by Shovill <br/>**Type:** `string`, **Default:** `skesa` |
-| <i class="fa-lg fas fa-boxes"></i>` --dragonflye_assembler` | Assembler to be used by Dragonflye <br/>**Type:** `string`, **Default:** `flye` |
-| <i class="fa-lg fas fa-cut"></i>` --use_unicycler` | Use unicycler for paired end assembly <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_contig_len` | Minimum contig length <0=AUTO> <br/>**Type:** `integer`, **Default:** `500` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_contig_cov` | Minimum contig coverage <0=AUTO> <br/>**Type:** `integer`, **Default:** `2` |
-| <i class="fa-lg fas fa-italic"></i>` --contig_namefmt` | Format of contig FASTA IDs in 'printf' style <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --shovill_opts` | Extra assembler options in quotes for Shovill <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-hashtag"></i>` --shovill_kmers` | K-mers to use <blank=AUTO> <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-italic"></i>` --dragonflye_opts` | Extra assembler options in quotes for Dragonflye <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-cut"></i>` --trim` | Enable adaptor trimming <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_stitch` | Disable read stitching for paired-end reads <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_corr` | Disable post-assembly correction <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-boxes"></i>` --unicycler_mode` | Bridging mode used by Unicycler <br/>**Type:** `string`, **Default:** `normal` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_polish_size` | Contigs shorter than this value (bp) will not be polished using Pilon <br/>**Type:** `integer`, **Default:** `10000` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_component_size` | Graph dead ends smaller than this size (bp) will be removed from the final graph <br/>**Type:** `integer`, **Default:** `1000` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_dead_end_size` | Graph dead ends smaller than this size (bp) will be removed from the final graph <br/>**Type:** `integer`, **Default:** `1000` |
-| <i class="fa-lg fas fa-redo"></i>` --nanohq` | For Flye, use '--nano-hq' instead of --nano-raw <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-font"></i>` --medaka_model` | The model to use for Medaka polishing <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-hashtag"></i>` --medaka_rounds` | The number of Medaka polishing rounds to conduct <br/>**Type:** `integer` |
-| <i class="fa-lg fas fa-hashtag"></i>` --racon_rounds` | The number of Racon polishing rounds to conduct <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_polish` | Skip the assembly polishing step <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_miniasm` | Skip miniasm+Racon bridging <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_rotate` | Do not rotate completed replicons to start at a standard gene <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-redo"></i>` --reassemble` | If reads were simulated, they will be used to create a new assembly. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --polypolish_rounds` | Number of polishing rounds to conduct with Polypolish for short read polishing <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --pilon_rounds` | Number of polishing rounds to conduct with Pilon for short read polishing <br/>**Type:** `integer` |
+| ` --shovill_assembler` | Assembler to be used by Shovill <br/>**Type:** `string`, **Default:** `skesa` |
+| ` --dragonflye_assembler` | Assembler to be used by Dragonflye <br/>**Type:** `string`, **Default:** `flye` |
+| ` --use_unicycler` | Use unicycler for paired end assembly <br/>**Type:** `boolean` |
+| ` --min_contig_len` | Minimum contig length <0=AUTO> <br/>**Type:** `integer`, **Default:** `500` |
+| ` --min_contig_cov` | Minimum contig coverage <0=AUTO> <br/>**Type:** `integer`, **Default:** `2` |
+| ` --contig_namefmt` | Format of contig FASTA IDs in 'printf' style <br/>**Type:** `string` |
+| ` --shovill_opts` | Extra assembler options in quotes for Shovill <br/>**Type:** `string` |
+| ` --shovill_kmers` | K-mers to use <blank=AUTO> <br/>**Type:** `string` |
+| ` --dragonflye_opts` | Extra assembler options in quotes for Dragonflye <br/>**Type:** `string` |
+| ` --trim` | Enable adaptor trimming <br/>**Type:** `boolean` |
+| ` --no_stitch` | Disable read stitching for paired-end reads <br/>**Type:** `boolean` |
+| ` --no_corr` | Disable post-assembly correction <br/>**Type:** `boolean` |
+| ` --unicycler_mode` | Bridging mode used by Unicycler <br/>**Type:** `string`, **Default:** `normal` |
+| ` --min_polish_size` | Contigs shorter than this value (bp) will not be polished using Pilon <br/>**Type:** `integer`, **Default:** `10000` |
+| ` --min_component_size` | Graph dead ends smaller than this size (bp) will be removed from the final graph <br/>**Type:** `integer`, **Default:** `1000` |
+| ` --min_dead_end_size` | Graph dead ends smaller than this size (bp) will be removed from the final graph <br/>**Type:** `integer`, **Default:** `1000` |
+| ` --nanohq` | For Flye, use '--nano-hq' instead of --nano-raw <br/>**Type:** `boolean` |
+| ` --medaka_model` | The model to use for Medaka polishing <br/>**Type:** `string` |
+| ` --medaka_rounds` | The number of Medaka polishing rounds to conduct <br/>**Type:** `integer` |
+| ` --racon_rounds` | The number of Racon polishing rounds to conduct <br/>**Type:** `integer`, **Default:** `1` |
+| ` --no_polish` | Skip the assembly polishing step <br/>**Type:** `boolean` |
+| ` --no_miniasm` | Skip miniasm+Racon bridging <br/>**Type:** `boolean` |
+| ` --no_rotate` | Do not rotate completed replicons to start at a standard gene <br/>**Type:** `boolean` |
+| ` --reassemble` | If reads were simulated, they will be used to create a new assembly. <br/>**Type:** `boolean` |
+| ` --polypolish_rounds` | Number of polishing rounds to conduct with Polypolish for short read polishing <br/>**Type:** `integer`, **Default:** `1` |
+| ` --pilon_rounds` | Number of polishing rounds to conduct with Pilon for short read polishing <br/>**Type:** `integer` |
 
 ## Citations
 If you use Bactopia and `assembler` in your analysis, please cite the following.

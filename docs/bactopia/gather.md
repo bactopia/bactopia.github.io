@@ -21,7 +21,7 @@ This `gather` step also does basic QC checks to help prevent downstream failures
 Below is the default output structure for the `gather` step in Bactopia. Where
 possible the file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── main
@@ -98,48 +98,65 @@ excluding these samples, complete pipeline failures are prevented.
 
 
 
-!!! info "Poor samples are excluded to prevent downstream failures"
-    Samples that fail any of the QC checks will be excluded from further analysis.
-    Those samples will generate a `*-error.txt` file with the error message. Excluding
-    these samples prevents downstream failures that cause the whole workflow to fail.
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
 
 
 
-??? warning "Example Error: Input FASTQ(s) failed Gzip checks"
-    If input FASTQ(s) fail to pass Gzip test, the sample will be excluded from
-    further analysis.
+<details>
+<summary>Example Error: Input FASTQ(s) failed Gzip checks</summary>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-gzip-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQs failed Gzip tests. Please check the input FASTQs. Further
-    analysis is discontinued._
+If input FASTQ(s) fail to pass Gzip test, the sample will be excluded from
+further analysis.
 
-??? warning "Example Error: Input FASTQs have disproportionate number of reads"
-    If input FASTQ(s) for a sample have disproportionately different number of reads
-    between the two pairs, the sample will be excluded from further analysis. You can
-    adjust this minimum read count using the `--min_proportion` parameter.
+__Example Text from &lt;SAMPLE_NAME&gt;-gzip-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQs failed Gzip tests. Please check the input FASTQs. Further
+analysis is discontinued._
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-basepair-proportion-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQs failed to meet the minimum shared basepairs (`X``). They
-    shared `Y` basepairs, with R1 having `A` bp and R2 having `B` bp. Further
-    analysis is discontinued._
+</details>
 
-??? warning "Example Error: Input FASTQ(s) has too few reads"
-    If input FASTQ(s) for a sample have less than the minimum required reads, the
-    sample will be excluded from further analysis. You can adjust this minimum read
-    count using the `--min_reads` parameter.
+<details>
+<summary>Example Error: Input FASTQs have disproportionate number of reads</summary>
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
-    minimum `Y` read count. Further analysis is discontinued._
+If input FASTQ(s) for a sample have disproportionately different number of reads
+between the two pairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_proportion` parameter.
 
-??? warning "Example Error: Input FASTQ(s) has too little sequenced basepairs"
-    If input FASTQ(s) for a sample fails to meet the minimum number of sequenced
-    basepairs, the sample will be excluded from further analysis. You can
-    adjust this minimum read count using the `--min_basepairs` parameter.
+__Example Text from &lt;SAMPLE_NAME&gt;-low-basepair-proportion-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQs failed to meet the minimum shared basepairs (`X``). They
+shared `Y` basepairs, with R1 having `A` bp and R2 having `B` bp. Further
+analysis is discontinued._
 
-    __Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__  
-    _&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
-    required minimum `Y` bp. Further analysis is discontinued._
+</details>
+
+<details>
+<summary>Example Error: Input FASTQ(s) has too few reads</summary>
+
+If input FASTQ(s) for a sample have less than the minimum required reads, the
+sample will be excluded from further analysis. You can adjust this minimum read
+count using the `--min_reads` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
+minimum `Y` read count. Further analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Input FASTQ(s) has too little sequenced basepairs</summary>
+
+If input FASTQ(s) for a sample fails to meet the minimum number of sequenced
+basepairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_basepairs` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__  
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
+required minimum `Y` bp. Further analysis is discontinued._
+
+</details>
 
 
 
@@ -169,21 +186,21 @@ files for you to review if the need ever arises.
 ## Parameters
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Gather 
+### Gather 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_fastq_check` | Skip minimum requirement checks for input FASTQs <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_basepairs` | The minimum amount of basepairs required to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `2241820` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_reads` | The minimum amount of reads required to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `7472` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_coverage` | The minimum amount of coverage required to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `10` |
-| <i class="fa-lg fas fa-balance-scale-left"></i>` --min_proportion` | The minimum proportion of basepairs for paired-end reads to continue downstream analyses. <br/>**Type:** `number`, **Default:** `0.5` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --min_genome_size` | The minimum estimated genome size allowed for the input sequence to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `100000` |
-| <i class="fa-lg fas fa-angle-double-up"></i>` --max_genome_size` | The maximum estimated genome size allowed for the input sequence to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `18040666` |
-| <i class="fa-lg fas fa-redo"></i>` --attempts` | Maximum times to attempt downloads <br/>**Type:** `integer`, **Default:** `3` |
-| <i class="fa-lg fas fa-globe-europe"></i>` --use_ena` | Download FASTQs from ENA <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-save"></i>` --no_cache` | Skip caching the assembly summary file from ncbi-genome-download <br/>**Type:** `boolean` |
+| ` --skip_fastq_check` | Skip minimum requirement checks for input FASTQs <br/>**Type:** `boolean` |
+| ` --min_basepairs` | The minimum amount of basepairs required to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `2241820` |
+| ` --min_reads` | The minimum amount of reads required to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `7472` |
+| ` --min_coverage` | The minimum amount of coverage required to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `10` |
+| ` --min_proportion` | The minimum proportion of basepairs for paired-end reads to continue downstream analyses. <br/>**Type:** `number`, **Default:** `0.5` |
+| ` --min_genome_size` | The minimum estimated genome size allowed for the input sequence to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `100000` |
+| ` --max_genome_size` | The maximum estimated genome size allowed for the input sequence to continue downstream analyses. <br/>**Type:** `integer`, **Default:** `18040666` |
+| ` --attempts` | Maximum times to attempt downloads <br/>**Type:** `integer`, **Default:** `3` |
+| ` --use_ena` | Download FASTQs from ENA <br/>**Type:** `boolean` |
+| ` --no_cache` | Skip caching the assembly summary file from ncbi-genome-download <br/>**Type:** `boolean` |
 
 ## Citations
 If you use Bactopia and `gather` in your analysis, please cite the following.

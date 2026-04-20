@@ -18,7 +18,7 @@ bactopia --wf checkm \
 Below is the default output structure for the `checkm` tool. Where possible the 
 file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── tools
@@ -124,117 +124,117 @@ At the end of each run, each of the `versions.yml` files are merged into the fil
 ## Parameters
 
 
-### <i class="fa-xl fas fa-terminal"></i> Required Parameters
+### Required Parameters
 Define where the pipeline should find input data and save output data.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-bacterium"></i>` --bactopia` | The path to bactopia results to use as inputs <br/>**Type:** `string` |
+| ` --bactopia` | The path to bactopia results to use as inputs <br/>**Type:** `string` |
 
-### <i class="fa-xl fa-solid fa-filter"></i> Filtering Parameters
+### Filtering Parameters
 Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg far fa-square-plus"></i>` --include` | A text file containing sample names (one per line) to include from the analysis <br/>**Type:** `string` |
-| <i class="fa-lg far fa-square-minus"></i>` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
+| ` --include` | A text file containing sample names (one per line) to include from the analysis <br/>**Type:** `string` |
+| ` --exclude` | A text file containing sample names (one per line) to exclude from the analysis <br/>**Type:** `string` |
 
 
-### <i class="fa-xl fa-solid fa-toolbox"></i> CheckM Parameters
+### CheckM Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-angle-double-down"></i>` --checkm_unique` | Minimum number of unique phylogenetic markers required to use lineage-specific marker set. <br/>**Type:** `integer`, **Default:** `10` |
-| <i class="fa-lg fas fa-angle-double-up"></i>` --checkm_multi` | Maximum number of multi-copy phylogenetic markers before defaulting to domain-level marker set. <br/>**Type:** `integer`, **Default:** `10` |
-| <i class="fa-lg fas fa-hashtag"></i>` --aai_strain` | AAI threshold used to identify strain heterogeneity <br/>**Type:** `number`, **Default:** `0.9` |
-| <i class="fa-lg fas fa-hashtag"></i>` --checkm_length` | Percent overlap between target and query <br/>**Type:** `number`, **Default:** `0.7` |
-| <i class="fa-lg fas fa-tree"></i>` --full_tree` | Use the full tree (requires ~40GB of memory) for determining lineage of each bin. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_pseudogene_correction` | Skip identification and filtering of pseudogene <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-eye-slash"></i>` --ignore_thresholds` | Ignore model-specific score thresholds <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-hard-hat"></i>` --checkm_ali` | Generate HMMER alignment file for each bin <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-hard-hat"></i>` --checkm_nt` | Generate nucleotide gene sequences for each bin <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-hammer"></i>` --force_domain` | Use domain-level sets for all bins <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --no_refinement` | Do not perform lineage-specific marker set refinement <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-check"></i>` --individual_markers` | Treat marker as independent <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-fast-forward"></i>` --skip_adj_correction` | Do not exclude adjacent marker genes when estimating contamination <br/>**Type:** `boolean` |
+| ` --checkm_unique` | Minimum number of unique phylogenetic markers required to use lineage-specific marker set. <br/>**Type:** `integer`, **Default:** `10` |
+| ` --checkm_multi` | Maximum number of multi-copy phylogenetic markers before defaulting to domain-level marker set. <br/>**Type:** `integer`, **Default:** `10` |
+| ` --aai_strain` | AAI threshold used to identify strain heterogeneity <br/>**Type:** `number`, **Default:** `0.9` |
+| ` --checkm_length` | Percent overlap between target and query <br/>**Type:** `number`, **Default:** `0.7` |
+| ` --full_tree` | Use the full tree (requires ~40GB of memory) for determining lineage of each bin. <br/>**Type:** `boolean` |
+| ` --skip_pseudogene_correction` | Skip identification and filtering of pseudogene <br/>**Type:** `boolean` |
+| ` --ignore_thresholds` | Ignore model-specific score thresholds <br/>**Type:** `boolean` |
+| ` --checkm_ali` | Generate HMMER alignment file for each bin <br/>**Type:** `boolean` |
+| ` --checkm_nt` | Generate nucleotide gene sequences for each bin <br/>**Type:** `boolean` |
+| ` --force_domain` | Use domain-level sets for all bins <br/>**Type:** `boolean` |
+| ` --no_refinement` | Do not perform lineage-specific marker set refinement <br/>**Type:** `boolean` |
+| ` --individual_markers` | Treat marker as independent <br/>**Type:** `boolean` |
+| ` --skip_adj_correction` | Do not exclude adjacent marker genes when estimating contamination <br/>**Type:** `boolean` |
 
 
-### <i class="fa-xl fa-solid fa-gears"></i> Optional Parameters
+### Optional Parameters
 These optional parameters can be useful in certain settings.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-folder"></i>` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `bactopia` |
-| <i class="fa-lg fas fa-expand-arrows-alt"></i>` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-folder"></i>` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-trash-restore"></i>` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
+| ` --outdir` | Base directory to write results to <br/>**Type:** `string`, **Default:** `bactopia` |
+| ` --skip_compression` | Ouput files will not be compressed <br/>**Type:** `boolean` |
+| ` --datasets` | The path to cache datasets to <br/>**Type:** `string` |
+| ` --keep_all_files` | Keeps all analysis files created <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fa-solid fa-arrow-up-right-dots"></i> Max Job Request Parameters
+### Max Job Request Parameters
 Set the top limit for requested resources for any single job.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-redo"></i>` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
-| <i class="fa-lg fas fa-microchip"></i>` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
-| <i class="fa-lg fas fa-memory"></i>` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
-| <i class="fa-lg far fa-clock"></i>` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
-| <i class="fa-lg fas fa-angle-double-up"></i>` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
+| ` --max_retry` | Maximum times to retry a process before allowing it to fail. <br/>**Type:** `integer`, **Default:** `3` |
+| ` --max_cpus` | Maximum number of CPUs that can be requested for any single job. <br/>**Type:** `integer`, **Default:** `4` |
+| ` --max_memory` | Maximum amount of memory that can be requested for any single job. <br/>**Type:** `string`, **Default:** `128.GB` |
+| ` --max_time` | Maximum amount of time that can be requested for any single job. <br/>**Type:** `string`, **Default:** `240.h` |
+| ` --max_downloads` | Maximum number of samples to download at a time <br/>**Type:** `integer`, **Default:** `3` |
 
-### <i class="fa-xl fa-solid fa-screwdriver-wrench"></i> Nextflow Configuration Parameters
+### Nextflow Configuration Parameters
 Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-cog"></i>` --nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-copy"></i>` --publish_dir_mode` | Method used to save pipeline results to output directory. <br/>**Type:** `string`, **Default:** `copy` |
-| <i class="fa-lg fas fa-cogs"></i>` --infodir` | Directory to keep pipeline Nextflow logs and reports. <br/>**Type:** `string`, **Default:** `${params.outdir}/pipeline_info` |
-| <i class="fa-lg fas fa-recycle"></i>` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-trash-alt"></i>` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
+| ` --nfconfig` | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. <br/>**Type:** `string` |
+| ` --publish_dir_mode` | Method used to save pipeline results to output directory. <br/>**Type:** `string`, **Default:** `copy` |
+| ` --infodir` | Directory to keep pipeline Nextflow logs and reports. <br/>**Type:** `string`, **Default:** `${params.outdir}/pipeline_info` |
+| ` --force` | Nextflow will overwrite existing output files. <br/>**Type:** `boolean` |
+| ` --cleanup_workdir` | After Bactopia is successfully executed, the `work` directory will be deleted. <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-university"></i> Institutional config options
+### Institutional config options
 Parameters used to describe centralized config profiles. These should not be edited.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_version` | Git commit id for Institutional configs. <br/>**Type:** `string`, **Default:** `master` |
-| <i class="fa-lg fas fa-users-cog"></i>` --custom_config_base` | Base directory for Institutional configs. <br/>**Type:** `string`, **Default:** `https://raw.githubusercontent.com/nf-core/configs/master` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_name` | Institutional config name. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_description` | Institutional config description. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_contact` | Institutional config contact information. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-users-cog"></i>` --config_profile_url` | Institutional config URL link. <br/>**Type:** `string` |
+| ` --custom_config_version` | Git commit id for Institutional configs. <br/>**Type:** `string`, **Default:** `master` |
+| ` --custom_config_base` | Base directory for Institutional configs. <br/>**Type:** `string`, **Default:** `https://raw.githubusercontent.com/nf-core/configs/master` |
+| ` --config_profile_name` | Institutional config name. <br/>**Type:** `string` |
+| ` --config_profile_description` | Institutional config description. <br/>**Type:** `string` |
+| ` --config_profile_contact` | Institutional config contact information. <br/>**Type:** `string` |
+| ` --config_profile_url` | Institutional config URL link. <br/>**Type:** `string` |
 
-### <i class="fa-xl fa-regular fa-address-card"></i> Nextflow Profile Parameters
+### Nextflow Profile Parameters
 Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-folder"></i>` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-box"></i>` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
-| <i class="fa-lg fas fa-folder"></i>` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
-| <i class="fa-lg fas fa-folder"></i>` --singularity_cache_dir` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-toolbox"></i>` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-recycle"></i>` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-clipboard-list"></i>` --container_opts` | Additional options to pass to Apptainer, Docker, or Singularityu. (e.g. Singularity: '-D `pwd`' <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-toggle-off"></i>` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
+| ` --condadir` | Directory to Nextflow should use for Conda environments <br/>**Type:** `string` |
+| ` --registry` | Docker registry to pull containers from. <br/>**Type:** `string`, **Default:** `dockerhub` |
+| ` --datasets_cache` | Directory where downloaded datasets should be stored. <br/>**Type:** `string`, **Default:** `<BACTOPIA_DIR>/data/datasets` |
+| ` --singularity_cache_dir` | Directory where remote Singularity images are stored. <br/>**Type:** `string` |
+| ` --singularity_pull_docker_container` | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. <br/>**Type:** `boolean` |
+| ` --force_rebuild` | Force overwrite of existing pre-built environments. <br/>**Type:** `boolean` |
+| ` --queue` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) <br/>**Type:** `string`, **Default:** `general,high-memory` |
+| ` --cluster_opts` | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' <br/>**Type:** `string` |
+| ` --container_opts` | Additional options to pass to Apptainer, Docker, or Singularityu. (e.g. Singularity: '-D `pwd`' <br/>**Type:** `string` |
+| ` --disable_scratch` | All intermediate files created on worker nodes of will be transferred to the head node. <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fa-solid fa-reply-all"></i> Helpful Parameters
+### Helpful Parameters
 Uncommonly used parameters that might be useful.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-palette"></i>` --monochrome_logs` | Do not use coloured log outputs. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-remove-format"></i>` --nfdir` | Print directory Nextflow has pulled Bactopia to <br/>**Type:** `boolean` |
-| <i class="fa-lg far fa-clock"></i>` --sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. <br/>**Type:** `integer`, **Default:** `5` |
-| <i class="fa-lg fas fa-tasks"></i>` --validate_params` | Boolean whether to validate parameters against the schema at runtime <br/>**Type:** `boolean`, **Default:** `True` |
-| <i class="fa-lg fas fa-question-circle"></i>` --help` | Display help text. <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-bacteria"></i>` --wf` | Specify which workflow or Bactopia Tool to execute <br/>**Type:** `string`, **Default:** `bactopia` |
-| <i class="fa-lg fas fa-list"></i>` --list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' <br/>**Type:** `boolean` |
-| <i class="fa-lg far fa-eye"></i>` --show_hidden_params` | Show all params when using `--help` <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-question-circle"></i>` --help_all` | An alias for --help --show_hidden_params <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-info"></i>` --version` | Display version text. <br/>**Type:** `boolean` |
+| ` --monochrome_logs` | Do not use coloured log outputs. <br/>**Type:** `boolean` |
+| ` --nfdir` | Print directory Nextflow has pulled Bactopia to <br/>**Type:** `boolean` |
+| ` --sleep_time` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. <br/>**Type:** `integer`, **Default:** `5` |
+| ` --validate_params` | Boolean whether to validate parameters against the schema at runtime <br/>**Type:** `boolean`, **Default:** `True` |
+| ` --help` | Display help text. <br/>**Type:** `boolean` |
+| ` --wf` | Specify which workflow or Bactopia Tool to execute <br/>**Type:** `string`, **Default:** `bactopia` |
+| ` --list_wfs` | List the available workflows and Bactopia Tools to use with '--wf' <br/>**Type:** `boolean` |
+| ` --show_hidden_params` | Show all params when using `--help` <br/>**Type:** `boolean` |
+| ` --help_all` | An alias for --help --show_hidden_params <br/>**Type:** `boolean` |
+| ` --version` | Display version text. <br/>**Type:** `boolean` |
 
 ## Citations
 If you use Bactopia and `checkm` in your analysis, please cite the following.

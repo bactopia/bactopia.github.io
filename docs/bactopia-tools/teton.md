@@ -22,9 +22,7 @@ Along with these accepted inputs, we'll also take a look at some helpful paramet
 are interested in learning more about the full set of parameters available in Bactopia,
 please check out the [Full Guide](full-guide.md) section.
 
-<a class="zoom" href="/assets/bactopia-workflow.png">
-![Bactopia Workflow](/assets/bactopia-workflow.png)
-</a>
+![Bactopia Workflow](../assets/bactopia-workflow.png)
 
 ## Bactopia Inputs
 
@@ -34,37 +32,37 @@ get started using Bactopia. We will start here, with a brief description of each
 then we will go into more detail about each.
 
 
-### <i class="fa-xl fas fa-terminal"></i> Required Parameters
+### Required Parameters
 Define where the pipeline should find input data and save output data.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --samples` | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
+| ` --samples` | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
  <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --R1` | First set of compressed (gzip) paired-end FASTQ reads (requires --R2 and --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --R2` | Second set of compressed (gzip) paired-end FASTQ reads (requires --R1 and --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --SE` | Compressed (gzip) single-end FASTQ reads  (requires --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-level-up"></i>` --ont` | Treat `--SE` or `--accession` as long reads for analysis. (requires --sample if using --SE) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-level-up"></i>` --hybrid` | Treat `--SE` as long reads for hybrid assembly.  (requires --R1, --R2, --SE and --sample) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-level-up"></i>` --short_polish` | Treat `--SE` as long reads for long-read assembly and short read polishing.  (requires --R1, --R2, --SE and --sample) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-file"></i>` --sample` | Sample name to use for the input sequences
+| ` --R1` | First set of compressed (gzip) paired-end FASTQ reads (requires --R2 and --sample) <br/>**Type:** `string` |
+| ` --R2` | Second set of compressed (gzip) paired-end FASTQ reads (requires --R1 and --sample) <br/>**Type:** `string` |
+| ` --SE` | Compressed (gzip) single-end FASTQ reads  (requires --sample) <br/>**Type:** `string` |
+| ` --ont` | Treat `--SE` or `--accession` as long reads for analysis. (requires --sample if using --SE) <br/>**Type:** `boolean` |
+| ` --hybrid` | Treat `--SE` as long reads for hybrid assembly.  (requires --R1, --R2, --SE and --sample) <br/>**Type:** `boolean` |
+| ` --short_polish` | Treat `--SE` as long reads for long-read assembly and short read polishing.  (requires --R1, --R2, --SE and --sample) <br/>**Type:** `boolean` |
+| ` --sample` | Sample name to use for the input sequences
  <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --accessions` | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-font"></i>` --accession` | Sample name to use for the input sequences
+| ` --accessions` | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed <br/>**Type:** `string` |
+| ` --accession` | Sample name to use for the input sequences
  <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --assembly` | A assembled genome in compressed FASTA format. (requires --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-level-up"></i>` --check_samples` | Validate the input FOFN provided by --samples <br/>**Type:** `boolean` |
+| ` --assembly` | A assembled genome in compressed FASTA format. (requires --sample) <br/>**Type:** `string` |
+| ` --check_samples` | Validate the input FOFN provided by --samples <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Dataset Parameters
+### Dataset Parameters
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-bacterium"></i>` --species` | Name of species for species-specific dataset to use <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-print"></i>` --ask_merlin` | Ask Merlin to execute species specific Bactopia tools based on Mash distances <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-angle-double-down"></i>` --coverage` | Reduce samples to a given coverage, requires a genome size <br/>**Type:** `integer`, **Default:** `100` |
-| <i class="fa-lg fas fa-arrows-alt-h"></i>` --genome_size` | Expected genome size (bp) for all samples, required for read error correction and read subsampling <br/>**Type:** `string`, **Default:** `0` |
-| <i class="fa-lg fas fa-print"></i>` --use_bakta` | Use Bakta for annotation, instead of Prokka <br/>**Type:** `boolean` |
+| ` --species` | Name of species for species-specific dataset to use <br/>**Type:** `string` |
+| ` --ask_merlin` | Ask Merlin to execute species specific Bactopia tools based on Mash distances <br/>**Type:** `boolean` |
+| ` --coverage` | Reduce samples to a given coverage, requires a genome size <br/>**Type:** `integer`, **Default:** `100` |
+| ` --genome_size` | Expected genome size (bp) for all samples, required for read error correction and read subsampling <br/>**Type:** `string`, **Default:** `0` |
+| ` --use_bakta` | Use Bakta for annotation, instead of Prokka <br/>**Type:** `boolean` |
 
 
 
@@ -154,34 +152,39 @@ Which approach really depends on what you need to achieve! The following section
 When you only need to process a single sample at a time, Bactopia allows that! You only have to the sample name (`--sample`) and the whether the read set is paired-end (`--R1` and `--R2`), single-end (`--SE`), Illumina paired-end + long reads (`--hybrid`), or an assembly (`--assembly`).
 
 ##### Paired-End
-!!! info "Use --R1, --R2 for Paired-End FASTQs"
-    `bactopia --sample my-sample --R1 /path/to/my-sample_R1.fastq.gz --R2 /path/to/my-sample_R2.fastq.gz`
+:::info[Use --R1, --R2 for Paired-End FASTQs]
+`bactopia --sample my-sample --R1 /path/to/my-sample_R1.fastq.gz --R2 /path/to/my-sample_R2.fastq.gz`
+:::
 
 ##### Single-End
-!!! info "Use --SE for Single-End FASTQs"
-    `bactopia --sample my-sample --SE /path/to/my-sample.fastq.gz`
+:::info[Use --SE for Single-End FASTQs]
+`bactopia --sample my-sample --SE /path/to/my-sample.fastq.gz`
+:::
 
 ##### Nanopore
-!!! info "Use --SE and --ont for Oxford Nanopore FASTQs"
-    `bactopia --sample my-sample --SE /path/to/my-ont-sample.fastq.gz --ont`
+:::info[Use --SE and --ont for Oxford Nanopore FASTQs]
+`bactopia --sample my-sample --SE /path/to/my-ont-sample.fastq.gz --ont`
+:::
 
 ##### Hybrid Assembly
-!!! info "Use --R1, --R2, --SE, and --hybrid for Paired-End FASTQs with Long Reads"
-    At the assembly step, Unicycler will be used to create a hybrid assembly using the paired-end reads and the long reads.
-    ```
-    bactopia --sample my-sample 
-             --R1 /path/to/my-sample_R1.fastq.gz \
-             --R2 /path/to/my-sample_R2.fastq.gz \
-             --SE /path/to/my-ont-sample.fastq.gz \
-             --hybrid
-    ```
+:::info[Use --R1, --R2, --SE, and --hybrid for Paired-End FASTQs with Long Reads]
+At the assembly step, Unicycler will be used to create a hybrid assembly using the paired-end reads and the long reads.
+```
+bactopia --sample my-sample 
+         --R1 /path/to/my-sample_R1.fastq.gz \
+         --R2 /path/to/my-sample_R2.fastq.gz \
+         --SE /path/to/my-ont-sample.fastq.gz \
+         --hybrid
+```
+:::
 
 ##### Assembly
-!!! info "Use --assembly for an assembled FASTA"
-    Assemblies will have 2x250bp Illumina reads simulated without insertions or deletions in the sequence and a minimum PHRED score of Q33. By default, the input assembly will be used for all downstream analyses (e.g. annotation) which use an assembly. If the `--reassemble` parameter is given, then the a assembly will be created from the simulated reads.
-    ```
-    bactopia --sample my-sample --assembly /path/to/my-sample.fna.gz 
-    ```
+:::info[Use --assembly for an assembled FASTA]
+Assemblies will have 2x250bp Illumina reads simulated without insertions or deletions in the sequence and a minimum PHRED score of Q33. By default, the input assembly will be used for all downstream analyses (e.g. annotation) which use an assembly. If the `--reassemble` parameter is given, then the a assembly will be created from the simulated reads.
+```
+bactopia --sample my-sample --assembly /path/to/my-sample.fna.gz 
+```
+:::
 
 #### Multiple Samples
 For multiple samples, you must create a file with information about the inputs, a *file of filenames* (FOFN). This file specifies sample names and location of FASTQs/FASTAs to be processed. Using this information, paired-end, single-end, nanopore, hybrid or assembly information can be extracted as well as naming output files.
@@ -190,8 +193,9 @@ While this is an additional step for you, the user, it helps to avoid potential 
 
 Most importantly, by taking this approach, you can process hundreds of samples in a single command. There is also the added benefit of knowing which FASTQs were analysed and their location at a later time!
 
-!!! info "Use --samples for Multiple Samples"
-    `bactopia --samples my-samples.txt`
+:::info[Use --samples for Multiple Samples]
+`bactopia --samples my-samples.txt`
+:::
 
 
 ##### The FOFN Format
@@ -229,14 +233,16 @@ In the example above, four samples would be processed by Bactopia.
 4. `SA123456` would be processed as single-end reads
 5. `SA123456ONT` would be processed as Nanopore reads
 
-!!! info "Use `bactopia prepare` to generate the FOFN"
-    You can manually create the FOFN, but it is highly recommended to always use `bactopia prepare` to generate the FOFN. By using a FOFN generated from `bactopia prepare` you can be confident your FOFN will work with Bactopia.
+:::info[Use `bactopia prepare` to generate the FOFN]
+You can manually create the FOFN, but it is highly recommended to always use `bactopia prepare` to generate the FOFN. By using a FOFN generated from `bactopia prepare` you can be confident your FOFN will work with Bactopia.
+:::
 
 ##### Generating A FOFN
 `bactopia prepare` has been included to help aid (hopefully!) the process of creating a FOFN for your samples. This script will attempt to find FASTQ files in a given directory and output the expected FOFN format. It will also output any potential issues associated with the pattern matching.
 
-!!! error "Verify accuracy of FOFN"
-    This is currently an experimental function. There are likely bugs to be ironed out. Please be sure to give the resulting FOFN a quick look over.
+:::danger[Verify accuracy of FOFN]
+This is currently an experimental function. There are likely bugs to be ironed out. Please be sure to give the resulting FOFN a quick look over.
+:::
 
 ```
 usage: bactopia prepare [-h] [-f STR] [-a STR] [--fastq_separator STR] [--fastq_pattern STR] 
@@ -269,8 +275,9 @@ optional arguments:
 ```
 
 ###### Nanopore
-!!! info "Use `--long_reads` to tell Bactopia to process as Nanopore reads"
-    When `--long_reads` is used, any reads that are identified as single-end will be given a `runtype` of `ont`. This will tell Bactopia to process these reads as Nanopore reads.
+:::info[Use `--long_reads` to tell Bactopia to process as Nanopore reads]
+When `--long_reads` is used, any reads that are identified as single-end will be given a `runtype` of `ont`. This will tell Bactopia to process these reads as Nanopore reads.
+:::
 
 ##### Validating FOFN
 When a FOFN is given, the first thing Bactopia does is verify all FASTQ files are found. If everything checks out, each sample will then be processed, otherwise a list of samples with errors will be output to STDERR. 
@@ -322,16 +329,19 @@ There are a lot of publicly avilable sequences available from the [European Nucl
 
 After the download is completed, it will be processed through Bactopia.
 
-!!! info "Use --accession for a Single Experiment Accession"
-    SRA: `bactopia --accession SRX476958`  
-    ENA: `bactopia --accession SRX476958 --use_ena`
+:::info[Use --accession for a Single Experiment Accession]
+SRA: `bactopia --accession SRX476958`  
+ENA: `bactopia --accession SRX476958 --use_ena`
+:::
 
-!!! info "Use --accessions for Multiple Experiment Accessions"
-    SRA: `bactopia --accessions my-accessions.txt`  
-    ENA: `bactopia --accessions my-accessions.txt --use_ena`
+:::info[Use --accessions for Multiple Experiment Accessions]
+SRA: `bactopia --accessions my-accessions.txt`  
+ENA: `bactopia --accessions my-accessions.txt --use_ena`
+:::
 
-!!! info "What happens when an Experiment has multiple Runs?"
-    In cases where a single Experiment might have multiple Run accessions associated with it, the FASTQ files from each Run are merged into a single set of sequences.
+:::info[What happens when an Experiment has multiple Runs?]
+In cases where a single Experiment might have multiple Run accessions associated with it, the FASTQ files from each Run are merged into a single set of sequences.
+:::
 
 #### Generating Accession List
 `bactopia search` has been made to help assist in generating a list of Experiment accessions to be procesed by Bactopia (via `--accessions`). Users can provide a Taxon ID (e.g. 1280), a binary name (e.g. Staphylococcus aureus), a Study accession (e.g. PRJNA480016), a BioSample accession (e.g. SAMN01737350), or a Run accession (e.g. SRR578340). This value is then queried against ENA's [Data Warehouse API](https://www.ebi.ac.uk/ena/browse/search-rest)), and a list of all Experiment accessions associated with the query is returned.
@@ -381,8 +391,9 @@ When completed three files are produced:
    SRX4563688
    ```
 
-!!! info "Input for Bactopia"
-    This file can be used in conjunction with the `--accessions` parameter for Bactopia processing.
+:::info[Input for Bactopia]
+This file can be used in conjunction with the `--accessions` parameter for Bactopia processing.
+:::
 
 
 2. `ena-results.txt` - Contains the full results of the API query. This includes multiples fields (sample_accession, tax_id, sample_alias, center_name, etc...)
@@ -398,36 +409,41 @@ When completed three files are produced:
 ## `--cleanup_workdir`
 After you run Bactopia, you will notice a directory called `work`. This directory is where Nextflow runs all the processes and stores the intermediate files. After a process completes successfully, the appropriate results are pulled out and placed in the sample's result folder. The `work` directory can grow very large very quickly! Please keep this in mind when using Bactopia. To help prevent the build up of the `work` directory you can use `--cleanup_workdir` to delete intermediate files after a successful execution of Bactopia.
 
-!!! info "Bactopia and Bactopia Tools use separate `work` directories"
-    Inside the `work` directory there will be separate subfolders that correspond to a Bactopia run or a specific Bactopia Tool run. This allows you to more easily identify which are ok to delete. The `work` directory is always ok to delete after a successful run.
+:::info[Bactopia and Bactopia Tools use separate `work` directories]
+Inside the `work` directory there will be separate subfolders that correspond to a Bactopia run or a specific Bactopia Tool run. This allows you to more easily identify which are ok to delete. The `work` directory is always ok to delete after a successful run.
+:::
 
 ## `--max_cpus`
 At execution, Nextflow creates a queue and the number of slots in the queue is determined by the total number of cores on the system. So if you have a 24-core system, that means Nextflow will have a queue with 24-slots available. This feature kind of makes `--max_cpus` a little misleading. Typically when you give `--max_cpus` you are saying *"use this amount of cpus"*. But that is not the case for Nextflow and Bactopia. When you use `--max_cpus` what you are actually saying is *"for any particular task, use this amount of slots"*. Commands within a task processors will use the amount specified by `--max_cpus`.
 
-!!! error "`--max_cpus` can have a significant effect on the efficiency of Bactopia"
-    So for example if you have a system with 24-cores.
+:::danger[`--max_cpus` can have a significant effect on the efficiency of Bactopia]
+So for example if you have a system with 24-cores.
 
-    This command, `bactopia ... --max_cpus 24`, says *for any particular task, use 24 slots*. Nextflow will give tasks in Bactopia 24 slots out of 24 available (24-core machine). In other words the queue can one have one task running at once because each task occupies 24 slots.
+This command, `bactopia ... --max_cpus 24`, says *for any particular task, use 24 slots*. Nextflow will give tasks in Bactopia 24 slots out of 24 available (24-core machine). In other words the queue can one have one task running at once because each task occupies 24 slots.
 
-    On the other hand, `bactopia ... --max_cpus 4` says *for any particular task, use 4 slots*. Now, for Nextflow will give each task 4 slots out of 24 slots. Which means 6 tasks can be running at once. This can lead to much better efficiency because less jobs are stuck waiting in line. 
+On the other hand, `bactopia ... --max_cpus 4` says *for any particular task, use 4 slots*. Now, for Nextflow will give each task 4 slots out of 24 slots. Which means 6 tasks can be running at once. This can lead to much better efficiency because less jobs are stuck waiting in line. 
 
-    There are some tasks in Bactopia that will only ever use a single slot because they are single-core tasks. But for example the `annotation` step will always use the number of slots specified by `--max_cpus`. If the `--max_cpus` is too high, the `annotation` will get bogged down, which causes tasks dependent on `annotation` to also get bogged down.
+There are some tasks in Bactopia that will only ever use a single slot because they are single-core tasks. But for example the `annotation` step will always use the number of slots specified by `--max_cpus`. If the `--max_cpus` is too high, the `annotation` will get bogged down, which causes tasks dependent on `annotation` to also get bogged down.
+:::
 
-!!! info "When in doubt `--max_cpus 4` is a safe value."
-    This is also the default value for Bactopia.
+:::info[When in doubt `--max_cpus 4` is a safe value.]
+This is also the default value for Bactopia.
+:::
 
 ## `-qs`
 The `-qs` parameter is short for *queue size*. As described above for `--max_cpus`, the default value for `-qs` is set to the total number of cores on the system. This parameter allows you to adjust the maximum number of cores Nextflow can use at any given moment.
 
-!!! error "`-qs` allows you to play nicely on shared resources"
-    From the example above, if you have a system with 24-cores. The default queue size if 24 slots.
+:::danger[`-qs` allows you to play nicely on shared resources]
+From the example above, if you have a system with 24-cores. The default queue size if 24 slots.
 
-    `bactopia ... --max_cpus 4` says *for any particular task, use a maximum of 4 slots*. Nextflow will give each task 4 slots out of 24 slots. But there might be other people also using the server.
+`bactopia ... --max_cpus 4` says *for any particular task, use a maximum of 4 slots*. Nextflow will give each task 4 slots out of 24 slots. But there might be other people also using the server.
 
-    `bactopia ... --max_cpus 4 -qs 12` says *for any particular task, use a maximum of 4 slots, but don't use more than 12 slots*. Nextflow will give each task 4 slots out of 12 slots. Now instead of using all the cores on the server, the maximum that can be used in 12.
+`bactopia ... --max_cpus 4 -qs 12` says *for any particular task, use a maximum of 4 slots, but don't use more than 12 slots*. Nextflow will give each task 4 slots out of 12 slots. Now instead of using all the cores on the server, the maximum that can be used in 12.
+:::
 
-!!! info "`-qs` might need adjusting for job schedulers."
-    The default value for `-qs` is set to 100 when using a job scheduler (e.g. SLURM, AWS Batch). There may be times when you need adjust this to meet your needs. For example, if using AWS Batch you might want to increase the value to have more jobs processed at once (e.g. 100 vs 500).
+:::info[`-qs` might need adjusting for job schedulers.]
+The default value for `-qs` is set to 100 when using a job scheduler (e.g. SLURM, AWS Batch). There may be times when you need adjust this to meet your needs. For example, if using AWS Batch you might want to increase the value to have more jobs processed at once (e.g. 100 vs 500).
+:::
 
 
 ## `--genome_size`
@@ -443,8 +459,9 @@ Throughout the Bactopia workflow a genome size is used for various tasks. By def
 | mean |  Requires `--species`, the mean completed genome size for a species is used | 
 | max | Requires `--species`, the maximum completed genome size for a species is used | 
 
-!!! error "Mash may not be the most accurate estimate"
-    Mash is very convenient to quickly estimate a genome size, but it may not be the most accurate in all cases and will differ between samples. It is recommended that when possible a known genome size or one based off completed genomes should be used. 
+:::danger[Mash may not be the most accurate estimate]
+Mash is very convenient to quickly estimate a genome size, but it may not be the most accurate in all cases and will differ between samples. It is recommended that when possible a known genome size or one based off completed genomes should be used. 
+:::
 
 ## `--nfconfig`
 A key feature of Nextflow is you can provide your own config files. What this boils down to you can easily set Bactopia to run on your environment. With `--nfconfig` you can tell Bactopia to import your config file. 

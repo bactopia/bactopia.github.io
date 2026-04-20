@@ -12,7 +12,7 @@ genomes in a standardized fashion.
 Below is the default output structure for the `prokka` step in Bactopia. Where
 possible the file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── main
@@ -96,18 +96,18 @@ files for you to review if the need ever arises.
 ## Parameters
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Prokka 
+### Prokka 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --proteins` | FASTA file of trusted proteins to first annotate from <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --prodigal_tf` | Training file to use for Prodigal <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-check"></i>` --compliant` | Force Genbank/ENA/DDJB compliance <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-school"></i>` --centre` | Sequencing centre ID <br/>**Type:** `string`, **Default:** `Bactopia` |
-| <i class="fa-lg fas fa-hashtag"></i>` --prokka_coverage` | Minimum coverage on query protein <br/>**Type:** `integer`, **Default:** `80` |
-| <i class="fa-lg fas fa-italic"></i>` --prokka_evalue` | Similarity e-value cut-off <br/>**Type:** `string`, **Default:** `1e-09` |
-| <i class="fa-lg fas fa-italic"></i>` --prokka_opts` | Extra Prokka options in quotes. <br/>**Type:** `string` |
+| ` --proteins` | FASTA file of trusted proteins to first annotate from <br/>**Type:** `string` |
+| ` --prodigal_tf` | Training file to use for Prodigal <br/>**Type:** `string` |
+| ` --compliant` | Force Genbank/ENA/DDJB compliance <br/>**Type:** `boolean` |
+| ` --centre` | Sequencing centre ID <br/>**Type:** `string`, **Default:** `Bactopia` |
+| ` --prokka_coverage` | Minimum coverage on query protein <br/>**Type:** `integer`, **Default:** `80` |
+| ` --prokka_evalue` | Similarity e-value cut-off <br/>**Type:** `string`, **Default:** `1e-09` |
+| ` --prokka_opts` | Extra Prokka options in quotes. <br/>**Type:** `string` |
 
 ## Citations
 If you use Bactopia and `prokka` in your analysis, please cite the following.

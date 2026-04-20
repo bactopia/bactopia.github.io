@@ -25,14 +25,14 @@ Bactopia.
 Once you have Conda all set up, you are ready to create an environment for
 Bactopia. To do so, you can use the following command:
 
-```{bash}
+```bash
 mamba create -n bactopia -c conda-forge -c bioconda bactopia
 ```
 
 After a few minutes you will have a new conda environment suitably named *bactopia*.
 To activate this environment, you will can use the following command:
 
-```{bash}
+```bash
 conda activate bactopia
 ```
 
@@ -40,23 +40,26 @@ And voilà, you are all set to get started processing your data!
 
 ## Windows and OSX Support
 
-!!! warning "Windows is not supported, please use Windows Subsystem for Linux"
-    Bactopia will never support Windows natively due to dependencies. To use Bactopia on a
-    Windows machine, you will need to set up Windows Subsystem for Linux (WSL). This would
-    allow you to run Bactopia inside the Linux subsystem. I have limited resources to test
-    Bactopia in WSL, but if you give it a go and run into any issues please reach out!
+:::warning[Windows is not supported, please use Windows Subsystem for Linux]
+Bactopia will never support Windows natively due to dependencies. To use Bactopia on a
+Windows machine, you will need to set up Windows Subsystem for Linux (WSL). This would
+allow you to run Bactopia inside the Linux subsystem. I have limited resources to test
+Bactopia in WSL, but if you give it a go and run into any issues please reach out!
+:::
 
-!!! warning "OSX has limited support"
-    I have developed Bactopia primarily for Linux, but I recognize it is useable on Mac OSX.
-    Currently the support for OSX will be limited due to not having significant resources
-    available for testing OSX extensively. Please keep this in mind when using Bactopia on
-    OSX. I will still try to help out if you run into any issues!
+:::warning[OSX has limited support]
+I have developed Bactopia primarily for Linux, but I recognize it is useable on Mac OSX.
+Currently the support for OSX will be limited due to not having significant resources
+available for testing OSX extensively. Please keep this in mind when using Bactopia on
+OSX. I will still try to help out if you run into any issues!
+:::
 
-!!! danger "Apple silicon (ARM) is not supported"
-    Bactopia will not work on Apple silicon or other ARM processors. This is due to many of
-    the tools used by Bactopia not having an ARM compatible build. It is planned in Bioconda's
-    future, until then the best option is to use Docker to emulate linux/amd64 architecture.
-    This can be done by using the `-profile arm` option when running Bactopia.
+:::danger[Apple silicon (ARM) is not supported]
+Bactopia will not work on Apple silicon or other ARM processors. This is due to many of
+the tools used by Bactopia not having an ARM compatible build. It is planned in Bioconda's
+future, until then the best option is to use Docker to emulate linux/amd64 architecture.
+This can be done by using the `-profile arm` option when running Bactopia.
+:::
 
 ## Docker and Singularity
 
@@ -68,22 +71,24 @@ When using these profiles, Nextflow will use Docker or Singularity for each proc
 is executed. In other words, Nextflow will be using `docker run` or `singularity exec`
 without the need for you to do anything else.
 
-!!! tip "Always prefer containers over Conda"
-    While I will be the first to admit that I love Conda, it is not perfect. Overtime tools
-    can become broken or incompatible due to dependencies. Containers are a great way
-    to avoid these issues. If you are using Bactopia, and have Docker or Singularity
-    available I would recommend using them over Conda.
+:::tip[Always prefer containers over Conda]
+While I will be the first to admit that I love Conda, it is not perfect. Overtime tools
+can become broken or incompatible due to dependencies. Containers are a great way
+to avoid these issues. If you are using Bactopia, and have Docker or Singularity
+available I would recommend using them over Conda.
+:::
 
 ## Run from GitHub Repository
 
 Alternatively, if you already have Nextflow installed, and you don't want to use
 Conda to install Bactopia, you can run Bactopia directly from the GitHub repository.
 
-```{bash}
+```bash
 nextflow run bactopia/bactopia
 ```
 
-!!! info "Missing out on helper commands"
-    The Conda install of Bactopia comes with a few helper commands that are not available
-    when running directly with Nextflow. These include commands to help prepare sample sheets,
-    search public databases, pre-build environments, among other helper tools.
+:::info[Missing out on helper commands]
+The Conda install of Bactopia comes with a few helper commands that are not available
+when running directly with Nextflow. These include commands to help prepare sample sheets,
+search public databases, pre-build environments, among other helper tools.
+:::

@@ -13,7 +13,7 @@ to provide extensive annotations including: tRNA, tmRNA, rRNA, ncRNA, CRISPR, CD
 Below is the default output structure for the `bakta` step in Bactopia. Where
 possible the file descriptions below were modified from a tools description.
 
-```{bash}
+```bash
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── main
@@ -97,38 +97,38 @@ files for you to review if the need ever arises.
 ## Parameters
 
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Bakta Download 
+### Bakta Download 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --bakta_db` | Tarball or path to the Bakta database <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --bakta_db_type` | Which Bakta DB to download 'full' (~30GB) or 'light' (~2GB) <br/>**Type:** `string`, **Default:** `full` |
-| <i class="fa-lg fas fa-file-alt"></i>` --bakta_save_as_tarball` | Save the Bakta database as a tarball <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --download_bakta` | Download the Bakta database to the path given by --bakta_db <br/>**Type:** `boolean` |
+| ` --bakta_db` | Tarball or path to the Bakta database <br/>**Type:** `string` |
+| ` --bakta_db_type` | Which Bakta DB to download 'full' (~30GB) or 'light' (~2GB) <br/>**Type:** `string`, **Default:** `full` |
+| ` --bakta_save_as_tarball` | Save the Bakta database as a tarball <br/>**Type:** `boolean` |
+| ` --download_bakta` | Download the Bakta database to the path given by --bakta_db <br/>**Type:** `boolean` |
 
-### <i class="fa-xl fas fa-exclamation-circle"></i> Bakta 
+### Bakta 
 
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --proteins` | FASTA file of trusted proteins to first annotate from <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --prodigal_tf` | Training file to use for Prodigal <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --replicons` | Replicon information table (tsv/csv) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-hashtag"></i>` --min_contig_length` | Minimum contig size to annotate <br/>**Type:** `integer`, **Default:** `1` |
-| <i class="fa-lg fas fa-italic"></i>` --keep_contig_headers` | Keep original contig headers <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --compliant` | Force Genbank/ENA/DDJB compliance <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_trna` | Skip tRNA detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_tmrna` | Skip tmRNA detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_rrna` | Skip rRNA detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_ncrna` | Skip ncRNA detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_ncrna_region` | Skip ncRNA region detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_crispr` | Skip CRISPR array detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_cds` | Skip CDS detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_sorf` | Skip sORF detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_gap` | Skip gap detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --skip_ori` | Skip oriC/oriT detection & annotation <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-italic"></i>` --bakta_opts` | Extra Backa options in quotes. Example: '--gram +' <br/>**Type:** `string` |
+| ` --proteins` | FASTA file of trusted proteins to first annotate from <br/>**Type:** `string` |
+| ` --prodigal_tf` | Training file to use for Prodigal <br/>**Type:** `string` |
+| ` --replicons` | Replicon information table (tsv/csv) <br/>**Type:** `string` |
+| ` --min_contig_length` | Minimum contig size to annotate <br/>**Type:** `integer`, **Default:** `1` |
+| ` --keep_contig_headers` | Keep original contig headers <br/>**Type:** `boolean` |
+| ` --compliant` | Force Genbank/ENA/DDJB compliance <br/>**Type:** `boolean` |
+| ` --skip_trna` | Skip tRNA detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_tmrna` | Skip tmRNA detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_rrna` | Skip rRNA detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_ncrna` | Skip ncRNA detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_ncrna_region` | Skip ncRNA region detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_crispr` | Skip CRISPR array detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_cds` | Skip CDS detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_sorf` | Skip sORF detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_gap` | Skip gap detection & annotation <br/>**Type:** `boolean` |
+| ` --skip_ori` | Skip oriC/oriT detection & annotation <br/>**Type:** `boolean` |
+| ` --bakta_opts` | Extra Backa options in quotes. Example: '--gram +' <br/>**Type:** `string` |
 
 ## Citations
 If you use Bactopia and `bakta` in your analysis, please cite the following.

@@ -23,9 +23,7 @@ Towards the end of this guide, we'll also take a look at some helpful parameters
 are interested in learning more about the full set of parameters available in Bactopia,
 please check out the [Full Guide](full-guide.md) section.
 
-<a class="zoom" href="assets/bactopia-workflow.png">
 ![Bactopia Workflow](assets/bactopia-workflow.png)
-</a>
 
 ## Gathering Inputs
 
@@ -35,23 +33,23 @@ to familiarize yourself with them. We will start here, with a brief description 
 parameter, then we will go into more detail about each with example use cases.
 
 
-### <i class="fa-xl fas fa-terminal"></i> Input Parameters
+### Input Parameters
 The following parameters are how you will provide either local or remote samples to be processed by Bactopia.
 
 | Parameter | Description |
 |:---|---|
-| <i class="fa-lg fas fa-file-alt"></i>` --samples` | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --r1` | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --r2` | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --se` | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-level-up"></i>` --ont` | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-level-up"></i>` --hybrid` | Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-level-up"></i>` --short_polish` | Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) <br/>**Type:** `boolean` |
-| <i class="fa-lg fas fa-file"></i>` --sample` | Sample name to use for the input sequences <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-alt"></i>` --accessions` | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-font"></i>` --accession` | Sample name to use for the input sequences <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-file-archive"></i>` --assembly` | A assembled genome in compressed FASTA format. (requires --sample) <br/>**Type:** `string` |
-| <i class="fa-lg fas fa-level-up"></i>` --check_samples` | Validate the input FOFN provided by --samples <br/>**Type:** `boolean` |
+| ` --samples` | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process <br/>**Type:** `string` |
+| ` --r1` | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) <br/>**Type:** `string` |
+| ` --r2` | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) <br/>**Type:** `string` |
+| ` --se` | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) <br/>**Type:** `string` |
+| ` --ont` | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) <br/>**Type:** `string` |
+| ` --hybrid` | Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) <br/>**Type:** `boolean` |
+| ` --short_polish` | Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) <br/>**Type:** `boolean` |
+| ` --sample` | Sample name to use for the input sequences <br/>**Type:** `string` |
+| ` --accessions` | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed <br/>**Type:** `string` |
+| ` --accession` | Sample name to use for the input sequences <br/>**Type:** `string` |
+| ` --assembly` | A assembled genome in compressed FASTA format. (requires --sample) <br/>**Type:** `string` |
+| ` --check_samples` | Validate the input FOFN provided by --samples <br/>**Type:** `boolean` |
 
 Now let's take a look at each parameter in more detail with a few example use-cases.
 
@@ -83,9 +81,10 @@ provide a combination of the sample name (`--sample`) and the input type:
 | Hybrid                        | `--r1`, `--r2`, `--ont`, and `--hybrid`       |
 | Hybrid (Short-read Polishing) | `--r1`, `--r2`, `--ont`, and `--short_polish` |
 
-!!! tip "`--sample` is always required for single-sample processing"
-    When processing a single sample, you will always have to provide `--sample`, no matter
-    input type. This parameter is used to name the output files and directories. 
+:::tip[`--sample` is always required for single-sample processing]
+When processing a single sample, you will always have to provide `--sample`, no matter
+input type. This parameter is used to name the output files and directories. 
+:::
 
 ##### Paired-End
 
@@ -94,13 +93,14 @@ In this example, Bactopia will process the sample as paired-end Illumina reads. 
 pair of reads. In addition, the value of `--sample` will be used as the prefix
 (e.g. `my-sample.fna.gz`) for saving results.
 
-!!! info "Use --r1, --r2 for Paired-End Illumina Reads"
-    ```{bash}
-    bactopia \
-       --sample my-sample \
-       --r1 /path/to/my-sample_R1.fastq.gz \
-       --r2 /path/to/my-sample_R2.fastq.gz
-    ```
+:::info[Use --r1, --r2 for Paired-End Illumina Reads]
+```bash
+bactopia \
+   --sample my-sample \
+   --r1 /path/to/my-sample_R1.fastq.gz \
+   --r2 /path/to/my-sample_R2.fastq.gz
+```
+:::
 
 ##### Single-End
 
@@ -108,24 +108,26 @@ In this example, Bactopia will process the sample as single-end Illumina reads. 
 `--se` parameter is used to specify the location of the single-end reads. Again, the
 value of `--sample` will be used as the prefix for saving results.
 
-!!! info "Use --se for Single-End Illumina Reads"
-    ```{bash}
-    bactopia \
-       --sample my-sample \
-       --se /path/to/my-sample.fastq.gz
-    ```
+:::info[Use --se for Single-End Illumina Reads]
+```bash
+bactopia \
+   --sample my-sample \
+   --se /path/to/my-sample.fastq.gz
+```
+:::
 
 ##### Nanopore
 
 Let's change pace a little, to process Nanopore reads you will need `--ont` to specify
 the location of the Nanopore reads as well as `--sample` for naming outputs. 
 
-!!! info "Use --ont for Oxford Nanopore Reads"
-    ```{bash}
-    bactopia \
-       --sample my-sample \
-       --ont /path/to/my-sample.fastq.gz
-    ```
+:::info[Use --ont for Oxford Nanopore Reads]
+```bash
+bactopia \
+   --sample my-sample \
+   --ont /path/to/my-sample.fastq.gz
+```
+:::
 
 ##### Hybrid Assembly
 
@@ -137,15 +139,16 @@ the `--hybrid` parameter will tell Bactopia to create a hybrid assembly by using
 [Unicycler](https://github.com/rrwick/Unicycler) which assembles the short-reads first
 then bridges the gaps with the long-reads.
 
-!!! info "Use --r1, --r2, --ont, and --hybrid for hybrid assembly"
-    ```{bash}
-    bactopia \
-       --sample my-sample \
-       --r1 /path/to/my-sample_R1.fastq.gz \
-       --r2 /path/to/my-sample_R2.fastq.gz \
-       --ont /path/to/my-sample.fastq.gz \
-       --hybrid
-    ```
+:::info[Use --r1, --r2, --ont, and --hybrid for hybrid assembly]
+```bash
+bactopia \
+   --sample my-sample \
+   --r1 /path/to/my-sample_R1.fastq.gz \
+   --r2 /path/to/my-sample_R2.fastq.gz \
+   --ont /path/to/my-sample.fastq.gz \
+   --hybrid
+```
+:::
 
 ##### Hybrid Assembly (Short-read Polishing)
 
@@ -154,21 +157,23 @@ and `--ont` (for Nanopore reads). Instead this time you will use `--short_polish
 tell Bactopia to create a hybrid assembly using [Dragonflye](https://github.com/rpetit3/dragonflye)
 to assemble the long-reads first then polish with the short-reads.
 
-!!! info "Use --r1, --r2, --ont, and --short_polish for hybrid assembly with short-read polishing"
-    ```{bash}
-    bactopia \
-       --sample my-sample \
-       --r1 /path/to/my-sample_R1.fastq.gz \
-       --r2 /path/to/my-sample_R2.fastq.gz \
-       --ont /path/to/my-sample.fastq.gz \
-       --short_polish
-    ```
+:::info[Use --r1, --r2, --ont, and --short_polish for hybrid assembly with short-read polishing]
+```bash
+bactopia \
+   --sample my-sample \
+   --r1 /path/to/my-sample_R1.fastq.gz \
+   --r2 /path/to/my-sample_R2.fastq.gz \
+   --ont /path/to/my-sample.fastq.gz \
+   --short_polish
+```
+:::
 
-!!! tip "Prefer `--short_polish` over `--hybrid` with recent ONT sequencing"
-    Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
-    assembly works great when you have low-coverage noisy long-reads. However, if you are
-    using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
-    method is going to yeild better results (_and be faster!_) than `--hybrid`.
+:::tip[Prefer `--short_polish` over `--hybrid` with recent ONT sequencing]
+Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
+assembly works great when you have low-coverage noisy long-reads. However, if you are
+using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
+method is going to yeild better results (_and be faster!_) than `--hybrid`.
+:::
 
 
 Well! These are all the ways you can process your local Illumina and/or Nanopore reads. Now,
@@ -188,12 +193,13 @@ Now when you provide an assembly a few things happen.
    which use an assembly. Otherwise, if the `--reassemble` parameter is given, then an
    assembly will be created from the simulated reads.
 
-!!! info "Use --assembly for an assembled FASTA"
-    ```{bash}
-    bactopia \
-       --sample my-sample \
-       --assembly /path/to/my-sample.fna.gz
-    ```
+:::info[Use --assembly for an assembled FASTA]
+```bash
+bactopia \
+   --sample my-sample \
+   --assembly /path/to/my-sample.fna.gz
+```
+:::
 
 ### ENA/SRA Accession
 
@@ -209,27 +215,31 @@ Bactopia has that built in for you! You can give a provide an *Experiment* acces
 automatically download associated FASTQ files from either ENA or SRA. Then the downloaded FASTQ
 file will be processed by Bactopia just like your normal local FASTQs.
 
-!!! info "Use --accession to process an Experiment accession"
-    ```{bash}
-    bactopia \
-       --accession SRX000000
-    ```
+:::info[Use --accession to process an Experiment accession]
+```bash
+bactopia \
+   --accession SRX000000
+```
+:::
 
-!!! question "Why only Experiment accessions?"
-    In the grand scheme of accession hierarchies, Experiment accessions are really the only
-    unique ones. For example, a multiple Run accessions can be associated with a single
-    Experiment accession. Or, multiple Exeriment accessions can be associated with a single
-    BioSample accession. So, by using Experiment accessions, you can be confident you are
-    getting only the sequences associated with that "_unique_" Experiment.
+:::info[Why only Experiment accessions?]
+In the grand scheme of accession hierarchies, Experiment accessions are really the only
+unique ones. For example, a multiple Run accessions can be associated with a single
+Experiment accession. Or, multiple Exeriment accessions can be associated with a single
+BioSample accession. So, by using Experiment accessions, you can be confident you are
+getting only the sequences associated with that "_unique_" Experiment.
+:::
 
-!!! question "I only have a _XYZ_ accession, what now?"
-    That's not an issue at all! You can make use of `bactopia search` to quickly find
-    any Experiment accessions associated with your accession. Please see the examples
-    below for more information.
+:::info[I only have a _XYZ_ accession, what now?]
+That's not an issue at all! You can make use of `bactopia search` to quickly find
+any Experiment accessions associated with your accession. Please see the examples
+below for more information.
+:::
 
-!!! question "What happens when an Experiment has multiple Runs?"
-    In cases where a single Experiment might have multiple Run accessions associated with
-    it, the FASTQ files from each Run are merged into a single set of sequences.
+:::info[What happens when an Experiment has multiple Runs?]
+In cases where a single Experiment might have multiple Run accessions associated with
+it, the FASTQ files from each Run are merged into a single set of sequences.
+:::
 
 ### NCBI Assembly Accession
 
@@ -240,17 +250,19 @@ accessions are the ones that start with `GCF` or `GCA`. When provided an NCBI As
 accession Bactopia will use [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)
 to go fetch the associated assembly and process it just like a local assembly.
 
-!!! info "Use --accession to process an NCBI Assembly accession"
-    ```{bash}
-    bactopia \
-       --accession GCF_000000000
-    ```
+:::info[Use --accession to process an NCBI Assembly accession]
+```bash
+bactopia \
+   --accession GCF_000000000
+```
+:::
 
-!!! question "Do I need to provide the assembly version? (e.g. GCF_000000000.1)"
-    Overtime I've found the assembly version to be unstable. For example, sometimes
-    an assembly might be corrected, and the previous version is not made available
-    any longer. So, to avoid any issues, Bactopia will always use the latest version
-    of a given NCBI Assembly accession.
+:::info[Do I need to provide the assembly version? (e.g. GCF_000000000.1)]
+Overtime I've found the assembly version to be unstable. For example, sometimes
+an assembly might be corrected, and the previous version is not made available
+any longer. So, to avoid any issues, Bactopia will always use the latest version
+of a given NCBI Assembly accession.
+:::
 
 ## Multiple Samples
 
@@ -301,7 +313,7 @@ For Bactopia this FOFN is a **tab-delimited** table with five columns:
 
 With this in mind, let's look at an example FOFN:
 
-```{bash}
+```bash
 sample  runtype genome_size    species   r1      r2      extra
 s01     paired-end  180000  Bacterial species  /fq/s01_R1_001.fastq.gz  /fq/s01_R2_001.fastq.gz
 s02     paired-end  180000  Bacterial species  /fq/s02_R1_001.fastq.gz  /fq/s02_R2_001.fastq.gz
@@ -310,13 +322,14 @@ s03     single-end  180000  Bacterial species  /fq/s03_001.fastq.gz
 
 With this FOFN, you can use `--samples` to process all three samples at once.
 
-!!! info "Use --samples for Multiple Local Samples"
-    Using `--samples` can turn into a huge time saver for you, and it is always recommended
-    to take this approach when possible.
-    ```{bash}
-    bactopia \
-        --samples my-samples.txt
-    ```
+:::info[Use --samples for Multiple Local Samples]
+Using `--samples` can turn into a huge time saver for you, and it is always recommended
+to take this approach when possible.
+```bash
+bactopia \
+    --samples my-samples.txt
+```
+:::
 
 Now, you might be thinking, _"I don't want to create a FOFN by hand, that's a lot of work!"_
 
@@ -333,10 +346,14 @@ When Bactopia recieves a FOFN, the first thing Bactopia does is verify all input
 found and compressed using Gzip. If everything checks out, each sample will then be processed,
 otherwise a list of samples with errors will be output to STDERR. 
 
-??? tip "Use `--check_samples` to only validate the FOFN"
-    If you would like to only validate your FOFN (and not run the full pipeline), you can use
-    the `--check_samples` parameter. However, if you used `bactopia prepare` to generate your
-    FOFN it _should be_ valid.
+<details>
+<summary>Use `--check_samples` to only validate the FOFN</summary>
+
+If you would like to only validate your FOFN (and not run the full pipeline), you can use
+the `--check_samples` parameter. However, if you used `bactopia prepare` to generate your
+FOFN it _should be_ valid.
+
+</details>
 
 Honestly, `bactopia prepare` is one of those tools that is best explained by example. So,
 let's take a look at a few examples.
@@ -346,127 +363,152 @@ let's take a look at a few examples.
 Using `bactopia prepare` can be a bit tricky at first, but once you get the hang of it, you
 will find yourself using it all the time.
 
-!!! tip "Use nice file names"
-    `bactopia prepare` defaults to `<SAMPLE_NAME>_R1.fastq.gz` and `<SAMPLE_NAME>_R2.fastq.gz`
-    for paired-end reads, and `<SAMPLE_NAME>.fastq.gz` for single-end reads. Using filenames
-    that following this will help you avoid using regular expressions.
+:::tip[Use nice file names]
+`bactopia prepare` defaults to `<SAMPLE_NAME>_R1.fastq.gz` and `<SAMPLE_NAME>_R2.fastq.gz`
+for paired-end reads, and `<SAMPLE_NAME>.fastq.gz` for single-end reads. Using filenames
+that following this will help you avoid using regular expressions.
+:::
 
 `bactopia prepare` should be handle your set up to generate the appropriate, but you might
 have to work for it. Let's take a look at available parameters and a few examples.
 
-??? abstract "Available `bactopia prepare` Parameters"
-    | Parameter | Description |
-    |-----------|-------------|
-    | `--path` | The directory where your FASTQs/FASTAs are stored. |
-    | `--assembly_ext` | The extension of your FASTAs. <br/> __Default: .fna.gz__ |
-    | `--fastq_ext` | The extension of your FASTQs. <br/> __Default: .fastq.gz__ |
-    | `--fastq_separator` | The character to split the FASTQ name on. <br/> **Default: _** |
-    | `--pe1_pattern` | The regular expression to match the first pair of paired-end reads. <br/> **Default: ([Aa]\|[Rr]1\|1)** |
-    | `--pe2_pattern` | The regular expression to match the second pair of paired-end reads. <br/> **Default: ([Bb]\|[Rr]2\|2)** |
-    | `--merge` | Flag samples with multiple read sets to be merged by Bactopia. |
-    | `--ont` | Flag single-end reads to be treated as Oxford Nanopore reads. |
-    | `--recursive` | Flag to recursively search directories for FASTQs/FASTAs. |
-    | `--prefix` | Replace the absolute path with a given string. <br/> **Default: Use absolute path** |
-    | `--metadata` | Metadata per sample with genome size and species information. |
-    | `--genome-size` | Genome size to use for all samples. |
-    | `--species` | Species to use for all samples (If available, can be used to determine genome size). |
-    | `--taxid` | Use the genome size of the Taxon ID for all samples. |
+<details>
+<summary>Available `bactopia prepare` Parameters</summary>
 
-??? example "Illumina Reads"
-    Let's say you have a directory of paired-end Illumina reads. The files are named to match
-    the default expectations: `<SAMPLE_NAME>_R1.fastq.gz`, `<SAMPLE_NAME>_R2.fastq.gz`, and 
-    `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare` to generate a FOFN for you.
+| Parameter | Description |
+|-----------|-------------|
+| `--path` | The directory where your FASTQs/FASTAs are stored. |
+| `--assembly_ext` | The extension of your FASTAs. <br/> __Default: .fna.gz__ |
+| `--fastq_ext` | The extension of your FASTQs. <br/> __Default: .fastq.gz__ |
+| `--fastq_separator` | The character to split the FASTQ name on. <br/> **Default: _** |
+| `--pe1_pattern` | The regular expression to match the first pair of paired-end reads. <br/> **Default: ([Aa]\|[Rr]1\|1)** |
+| `--pe2_pattern` | The regular expression to match the second pair of paired-end reads. <br/> **Default: ([Bb]\|[Rr]2\|2)** |
+| `--merge` | Flag samples with multiple read sets to be merged by Bactopia. |
+| `--ont` | Flag single-end reads to be treated as Oxford Nanopore reads. |
+| `--recursive` | Flag to recursively search directories for FASTQs/FASTAs. |
+| `--prefix` | Replace the absolute path with a given string. <br/> **Default: Use absolute path** |
+| `--metadata` | Metadata per sample with genome size and species information. |
+| `--genome-size` | Genome size to use for all samples. |
+| `--species` | Species to use for all samples (If available, can be used to determine genome size). |
+| `--taxid` | Use the genome size of the Taxon ID for all samples. |
 
-    ```{bash}
-    bactopia prepare --path /path/to/fastqs
-    ```
+</details>
 
-    This will generate a FOFN that looks like this:
+<details>
+<summary>Illumina Reads</summary>
 
-    ```{bash}
-    sample  runtype  genome_size species r1      r2      extra
-    s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1.fastq.gz    /path/to/fastqs/s01_R2.fastq.gz
-    s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1.fastq.gz    /path/to/fastqs/s02_R2.fastq.gz
-    s03     single-end 180000 unknown  /path/to/fastqs/s03.fastq.gz
-    ```
+Let's say you have a directory of paired-end Illumina reads. The files are named to match
+the default expectations: `<SAMPLE_NAME>_R1.fastq.gz`, `<SAMPLE_NAME>_R2.fastq.gz`, and 
+`<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare` to generate a FOFN for you.
 
-??? example "Oxford Nanopore Reads"
-    Let's say you have a directory of Oxford Nanopore reads. The files are named to match
-    the default expectations: `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare` to
-    generate a FOFN for you.
+```bash
+bactopia prepare --path /path/to/fastqs
+```
 
-    ```{bash}
-    bactopia prepare --path /path/to/fastqs --ont
-    ```
+This will generate a FOFN that looks like this:
 
-    By using `--ont`, any single-end reads that are found will be treated as ONT
-    reads. Using this will generate a FOFN that looks like this:
+```bash
+sample  runtype  genome_size species r1      r2      extra
+s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1.fastq.gz    /path/to/fastqs/s01_R2.fastq.gz
+s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1.fastq.gz    /path/to/fastqs/s02_R2.fastq.gz
+s03     single-end 180000 unknown  /path/to/fastqs/s03.fastq.gz
+```
 
-    ```{bash}
-    sample  runtype  genome_size species r1      r2      extra
-    s03     ont  180000 unknown  /path/to/fastqs/s01.fastq.gz
-    ```
+</details>
 
-??? example "Illumina Paired-End and Oxford Nanopore Reads"
-    Let's say you have a directory of paired-end Illumina reads and Oxford Nanopore reads.
-    Again, they are named to match the default expectations: `<SAMPLE_NAME>_R1.fastq.gz`,
-    `<SAMPLE_NAME>_R2.fastq.gz`, and `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare`
-    to generate a FOFN for you.
+<details>
+<summary>Oxford Nanopore Reads</summary>
 
-    ```{bash}
-    bactopia prepare --path /path/to/fastqs --ont
-    ```
+Let's say you have a directory of Oxford Nanopore reads. The files are named to match
+the default expectations: `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare` to
+generate a FOFN for you.
 
-    Again, use `--ont` to tell `bactopia prepare` to treat any single-end reads as
-    ONT reads. Using this will generate a FOFN that looks like this:
+```bash
+bactopia prepare --path /path/to/fastqs --ont
+```
 
-    ```{bash}
-    sample  runtype  genome_size species r1      r2      extra
-    s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1.fastq.gz    /path/to/fastqs/s01_R2.fastq.gz
-    s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1.fastq.gz    /path/to/fastqs/s02_R2.fastq.gz
-    s03     ont  180000 unknown  /path/to/fastqs/s03.fastq.gz
-    ```
+By using `--ont`, any single-end reads that are found will be treated as ONT
+reads. Using this will generate a FOFN that looks like this:
 
-??? example "Merging Multiple Illumina Runs"
-    Let's say you have a directory of Illumina reads, but you have multiple runs
-    for each sample and want Bactopia to merge the reads. Again, assuming they
-    are named to match the default expectations: `<SAMPLE_NAME>_R1.fastq.gz`,
-    `<SAMPLE_NAME>_R2.fastq.gz`, and `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare`
-    to generate a FOFN for you.
+```bash
+sample  runtype  genome_size species r1      r2      extra
+s03     ont  180000 unknown  /path/to/fastqs/s01.fastq.gz
+```
 
-    ```{bash}
-    bactopia prepare --path /path/to/fastqs --merge
-    ```
+</details>
 
-    By using `--merge`, any samples with multiple runs will be merged into a single set
-    of reads. Using this will generate a FOFN that looks like this:
+<details>
+<summary>Illumina Paired-End and Oxford Nanopore Reads</summary>
 
-    ```{bash}
-    sample  runtype  genome_size species r1      r2      extra
-    s01     merge-pe 180000 unknown  /run1/s01_R1.fastq.gz,/run2/s01_R1.fastq.gz  /run1/s01_R2.fastq.gz,/run2/s01_R2.fastq.gz
-    s02     merge-se 180000 unknown  /run1/s02.fastq.gz,/run2/s02.fastq.gz
-    ```
+Let's say you have a directory of paired-end Illumina reads and Oxford Nanopore reads.
+Again, they are named to match the default expectations: `<SAMPLE_NAME>_R1.fastq.gz`,
+`<SAMPLE_NAME>_R2.fastq.gz`, and `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare`
+to generate a FOFN for you.
 
-??? example "Reads with '*_001.fastq.gz' names"
-    Let's say you have a directory of Illumina reads, but they are named with
-    `*_001.fastq.gz` instead of the default expectations: `<SAMPLE_NAME>_R1.fastq.gz`,
-    `<SAMPLE_NAME>_R2.fastq.gz`, and `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare`
-    but you will have to provide a few extra parameters to generate a FOFN for you.
+```bash
+bactopia prepare --path /path/to/fastqs --ont
+```
 
-    ```{bash}
-    bactopia prepare --path /path/to/fastqs --fastq-ext '_001.fastq.gz'
-    ```
+Again, use `--ont` to tell `bactopia prepare` to treat any single-end reads as
+ONT reads. Using this will generate a FOFN that looks like this:
 
-    Here you will need to use `--fastq-ext` to tell `bactopia prepare` to look for
-    `*_001.fastq.gz` instead of the default `*.fastq.gz`. Using this will generate a
-    FOFN that looks like this:
+```bash
+sample  runtype  genome_size species r1      r2      extra
+s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1.fastq.gz    /path/to/fastqs/s01_R2.fastq.gz
+s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1.fastq.gz    /path/to/fastqs/s02_R2.fastq.gz
+s03     ont  180000 unknown  /path/to/fastqs/s03.fastq.gz
+```
 
-    ```{bash}
-    sample  runtype  genome_size species r1      r2      extra
-    s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1_001.fastq.gz    /path/to/fastqs/s01_R2_002.fastq.gz
-    s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1_001.fastq.gz    /path/to/fastqs/s02_R2_002.fastq.gz
-    s03     single-end 180000 unknown  /path/to/fastqs/s03_001.fastq.gz
-    ```
+</details>
+
+<details>
+<summary>Merging Multiple Illumina Runs</summary>
+
+Let's say you have a directory of Illumina reads, but you have multiple runs
+for each sample and want Bactopia to merge the reads. Again, assuming they
+are named to match the default expectations: `<SAMPLE_NAME>_R1.fastq.gz`,
+`<SAMPLE_NAME>_R2.fastq.gz`, and `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare`
+to generate a FOFN for you.
+
+```bash
+bactopia prepare --path /path/to/fastqs --merge
+```
+
+By using `--merge`, any samples with multiple runs will be merged into a single set
+of reads. Using this will generate a FOFN that looks like this:
+
+```bash
+sample  runtype  genome_size species r1      r2      extra
+s01     merge-pe 180000 unknown  /run1/s01_R1.fastq.gz,/run2/s01_R1.fastq.gz  /run1/s01_R2.fastq.gz,/run2/s01_R2.fastq.gz
+s02     merge-se 180000 unknown  /run1/s02.fastq.gz,/run2/s02.fastq.gz
+```
+
+</details>
+
+<details>
+<summary>Reads with '*_001.fastq.gz' names</summary>
+
+Let's say you have a directory of Illumina reads, but they are named with
+`*_001.fastq.gz` instead of the default expectations: `<SAMPLE_NAME>_R1.fastq.gz`,
+`<SAMPLE_NAME>_R2.fastq.gz`, and `<SAMPLE_NAME>.fastq.gz`. You can use `bactopia prepare`
+but you will have to provide a few extra parameters to generate a FOFN for you.
+
+```bash
+bactopia prepare --path /path/to/fastqs --fastq-ext '_001.fastq.gz'
+```
+
+Here you will need to use `--fastq-ext` to tell `bactopia prepare` to look for
+`*_001.fastq.gz` instead of the default `*.fastq.gz`. Using this will generate a
+FOFN that looks like this:
+
+```bash
+sample  runtype  genome_size species r1      r2      extra
+s01     paired-end 180000 unknown  /path/to/fastqs/s01_R1_001.fastq.gz    /path/to/fastqs/s01_R2_002.fastq.gz
+s02     paired-end 180000 unknown  /path/to/fastqs/s02_R1_001.fastq.gz    /path/to/fastqs/s02_R2_002.fastq.gz
+s03     single-end 180000 unknown  /path/to/fastqs/s03_001.fastq.gz
+```
+
+</details>
 
 There are many possible combinations of parameters you can use with `bactopia prepare`,
 if you have one you are stuck on or would like to see an example of, please let me know
@@ -480,13 +522,14 @@ NCBI Assembly. Then you just learned you could use `--samples` to process as man
 as you want. So, it only makes sense that there would be a complement to `--samples` for
 processing multiple accessions at once! This parameter is `--accessions`.
 
-!!! info "Use --accessions for Multiple Accessions"
-    Using `--accessions` can turn into a huge time saver for you, by allowing you to
-    process as many publicly available genomes as you want.
-    ```{bash}
-    bactopia \
-        --accessions my-accessions.txt
-    ```
+:::info[Use --accessions for Multiple Accessions]
+Using `--accessions` can turn into a huge time saver for you, by allowing you to
+process as many publicly available genomes as you want.
+```bash
+bactopia \
+    --accessions my-accessions.txt
+```
+:::
 
 Similarly, to `--samples`, there is a complementary helper command called `bactopia search`
 that will allow you to submit a query and generate a list of Experiment accessions to be
@@ -509,7 +552,7 @@ Again, it's probably easier if we just look at a few examples.
 
 First we'll look at a single example in order to provide a description of the output files.
 
-```{bash}
+```bash
 bactopia search --query PRJNA480016 --limit 5
 INFO  2023 00:root:INFO - Submitting query (type - bioproject_accession)         search.py:472
 INFO  2023 00:root:INFO - Writing results to ./bactopia-metadata.txt             search.py:554
@@ -529,71 +572,79 @@ to just 5 Experiment accessions. Then multiple files are produced:
 | `-filtered.txt`   | A list of any Experiment accessions that were filtered out, otherwise an empty |
 | `-search.txt`     | A summary of the completed request                                             |
 
-??? abstract "Example bactopia-metadata.txt"
-    When completed a file called `bactopia-metadata.txt` is produced. This file contains
-    multiple fields (sample_accession, tax_id, sample_alias, center_name, etc...) for
-    each Experiment accession returned by the query.
+<details>
+<summary>Example bactopia-metadata.txt</summary>
 
-    ```{bash}
-    run_accession   project_name    submission_accession    library_selection       last_updated    sra_bytes       collected_by    isolate fastq_bytes     instrument_platform     sra_aspera      fastq_galaxy    country  sample_description      experiment_title        sra_galaxy      fastq_md5       sample_accession        secondary_study_accession       read_count      study_title     collection_date_end     sample_title     instrument_model        description     sra_md5 fastq_ftp       base_count      library_strategy        location        library_source  sra_ftp library_layout  location_start  status  lon     fastq_aspera     host_sex        sample_alias    collection_date_start   run_alias       collection_date experiment_alias        center_name     host    library_name    tag     first_created   lat     strain  experiment_accession     scientific_name tax_id  study_accession host_scientific_name    accession       secondary_sample_accession      location_end    first_public    study_alias     isolation_source
-    SRR7706353      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      595393300                       353569630;334112090     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/003/SRR7706353      ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz        USA     Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/003/SRR7706353        6cf7a954abc803c8be6515545b321e2d;f879b1fa058e80fa764beb8e333877ae        SAMN09847868    SRP158268       1493115 Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2023-01-07      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    4f7c2a8836ce2471fec07128f2c9b407        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz        897918508       WGS             GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/003/SRR7706353 PAIRED          public          fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz           JE2     2023-01-07       JE2_R1.fastq.gz 2017-07-01      JE2     SUB4273132      Homo sapiens    JE2     ena;pathogen;bacterium;datahub;priority 2018-08-18              JE2     SRX4563690      Staphylococcus aureus   1280     PRJNA480016     Homo sapiens    SRR7706353      SRS3680044              2018-08-18      PRJNA480016
-    SRR7706354      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      227970617       Emory Cystic Fibrosis Biospecimen Registry (CFBR)       replicate of CFBRSa66A  129917564;131945147     ILLUMINAfasp.sra.ebi.ac.uk:/vol1/srr/SRR770/004/SRR7706354       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz       USA: Atlanta, GA MRSA    Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/004/SRR7706354        371165d54adfd1300c7b02e79d8d4245;5517e629b8e8ad00dbd6ef9a5f8d073d        SAMN09847839    SRP158268       535939  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2018-01-02      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    323e7336212b256ba2509a14bd90790a        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz        322122209       WGS     33.749 N 84.388 W       GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/004/SRR7706354 PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz    male    CFBRSa66B       2018-01-02      CFBRSa66B_R2.fastq.gz   2012-07-16      CFBRSa66B       SUB4273132      Homo sapiens    CFBRSa66B       ena;pathogen;bacterium;datahub;priority 2018-08-18       33.749  CFBR-150        SRX4563689      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706354      SRS3680043      33.749 N 84.388 W       2018-08-18      PRJNA480016     sputum
-    SRR7706356      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      328642242       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               191742121;188439990     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/006/SRR7706356       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz       USA: Atlanta, GA MRSA    Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/006/SRR7706356        2b0c01434a7e677c6697ff49985de0f7;08c4f37d7fdbeac0133819ee3af6dd21        SAMN09847834    SRP158268       780838  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2017-09-02      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ec8397df7897777d1c332522c6227458        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz        469342822       WGS     33.749 N 84.388 W       GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/006/SRR7706356 PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz    male    CFBRSa25        2017-09-01      CFBRSa25_R2.fastq.gz    2012-03-26      CFBRSa25        SUB4273132      Homo sapiens    CFBRSa25        ena;pathogen;bacterium;datahub;priority 2018-08-18      33.749   CFBR-134        SRX4563687      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706356      SRS3680041      33.749 N 84.388 W       2018-08-18      PRJNA480016     sputum
-    SRR7706361      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      599269367       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               353160072;336993031     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/001/SRR7706361       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz       USA: Atlanta, GA Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/001/SRR7706361 45fa5f0ed629d81282f1429b42c18432;c9c1b6be39fceab54d20d41450776050       SAMN09847850    SRP158268       1496420 Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2018-04-04       Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    085cbb8f7b186d3f61bab022323f61ce ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz       899864766       WGS     33.749 N 84.388 GENOMIC  ftp.sra.ebi.ac.uk/vol1/srr/SRR770/001/SRR7706361        PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz    male    CFBRSa07        2018-04-03      CFBRSa07_R1.fastq.gz    2012-10-03      CFBRSa07        SUB4273132      Homo sapiens    CFBRSa07        ena;pathogen;bacterium;datahub;priority  2018-08-18      33.749  CFBR-238        SRX4563682      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706361      SRS3680035      33.749 N 84.388 W       2018-08-18       PRJNA480016     sputum
-    SRR7706362      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      241721284       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               139499004;138853939     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/002/SRR7706362       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz       USA: Atlanta, GA Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/002/SRR7706362 d6f7434e83969245df356e0c3aaa72e8;4bfa95c3a9db9d93b65b39530f5be0c7       SAMN09847844    SRP158268       572961  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2017-11-02       Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    189012bcc94d59002369ebc17ad303fa ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz       344400515       WGS     33.749 N 84.388 GENOMIC  ftp.sra.ebi.ac.uk/vol1/srr/SRR770/002/SRR7706362        PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz    male    CFBRSa06        2017-11-02      CFBRSa06_R1.fastq.gz    2012-05-16      CFBRSa06        SUB4273132      Homo sapiens    CFBRSa06        ena;pathogen;bacterium;datahub;priority  2018-08-18      33.749  CFBR-172        SRX4563681      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706362      SRS3680034      33.749 N 84.388 W       2018-08-18       PRJNA480016     sputum
-    ```
+When completed a file called `bactopia-metadata.txt` is produced. This file contains
+multiple fields (sample_accession, tax_id, sample_alias, center_name, etc...) for
+each Experiment accession returned by the query.
 
-??? abstract "Example bactopia-summary.txt"
-    When completed a file called `bactopia-summary.txt` is produced, that will contain a
-    basic summary of the query results.
+```bash
+run_accession   project_name    submission_accession    library_selection       last_updated    sra_bytes       collected_by    isolate fastq_bytes     instrument_platform     sra_aspera      fastq_galaxy    country  sample_description      experiment_title        sra_galaxy      fastq_md5       sample_accession        secondary_study_accession       read_count      study_title     collection_date_end     sample_title     instrument_model        description     sra_md5 fastq_ftp       base_count      library_strategy        location        library_source  sra_ftp library_layout  location_start  status  lon     fastq_aspera     host_sex        sample_alias    collection_date_start   run_alias       collection_date experiment_alias        center_name     host    library_name    tag     first_created   lat     strain  experiment_accession     scientific_name tax_id  study_accession host_scientific_name    accession       secondary_sample_accession      location_end    first_public    study_alias     isolation_source
+SRR7706353      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      595393300                       353569630;334112090     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/003/SRR7706353      ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz        USA     Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/003/SRR7706353        6cf7a954abc803c8be6515545b321e2d;f879b1fa058e80fa764beb8e333877ae        SAMN09847868    SRP158268       1493115 Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2023-01-07      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    4f7c2a8836ce2471fec07128f2c9b407        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz        897918508       WGS             GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/003/SRR7706353 PAIRED          public          fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/003/SRR7706353/SRR7706353_2.fastq.gz           JE2     2023-01-07       JE2_R1.fastq.gz 2017-07-01      JE2     SUB4273132      Homo sapiens    JE2     ena;pathogen;bacterium;datahub;priority 2018-08-18              JE2     SRX4563690      Staphylococcus aureus   1280     PRJNA480016     Homo sapiens    SRR7706353      SRS3680044              2018-08-18      PRJNA480016
+SRR7706354      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      227970617       Emory Cystic Fibrosis Biospecimen Registry (CFBR)       replicate of CFBRSa66A  129917564;131945147     ILLUMINAfasp.sra.ebi.ac.uk:/vol1/srr/SRR770/004/SRR7706354       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz       USA: Atlanta, GA MRSA    Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/004/SRR7706354        371165d54adfd1300c7b02e79d8d4245;5517e629b8e8ad00dbd6ef9a5f8d073d        SAMN09847839    SRP158268       535939  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2018-01-02      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    323e7336212b256ba2509a14bd90790a        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz        322122209       WGS     33.749 N 84.388 W       GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/004/SRR7706354 PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/004/SRR7706354/SRR7706354_2.fastq.gz    male    CFBRSa66B       2018-01-02      CFBRSa66B_R2.fastq.gz   2012-07-16      CFBRSa66B       SUB4273132      Homo sapiens    CFBRSa66B       ena;pathogen;bacterium;datahub;priority 2018-08-18       33.749  CFBR-150        SRX4563689      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706354      SRS3680043      33.749 N 84.388 W       2018-08-18      PRJNA480016     sputum
+SRR7706356      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      328642242       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               191742121;188439990     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/006/SRR7706356       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz       USA: Atlanta, GA MRSA    Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/006/SRR7706356        2b0c01434a7e677c6697ff49985de0f7;08c4f37d7fdbeac0133819ee3af6dd21        SAMN09847834    SRP158268       780838  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2017-09-02      Pathogen: clinical or host-associated sample from Staphylococcus aureus  Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ec8397df7897777d1c332522c6227458        ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz        469342822       WGS     33.749 N 84.388 W       GENOMIC ftp.sra.ebi.ac.uk/vol1/srr/SRR770/006/SRR7706356 PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/006/SRR7706356/SRR7706356_2.fastq.gz    male    CFBRSa25        2017-09-01      CFBRSa25_R2.fastq.gz    2012-03-26      CFBRSa25        SUB4273132      Homo sapiens    CFBRSa25        ena;pathogen;bacterium;datahub;priority 2018-08-18      33.749   CFBR-134        SRX4563687      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706356      SRS3680041      33.749 N 84.388 W       2018-08-18      PRJNA480016     sputum
+SRR7706361      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      599269367       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               353160072;336993031     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/001/SRR7706361       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz       USA: Atlanta, GA Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/001/SRR7706361 45fa5f0ed629d81282f1429b42c18432;c9c1b6be39fceab54d20d41450776050       SAMN09847850    SRP158268       1496420 Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2018-04-04       Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    085cbb8f7b186d3f61bab022323f61ce ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz       899864766       WGS     33.749 N 84.388 GENOMIC  ftp.sra.ebi.ac.uk/vol1/srr/SRR770/001/SRR7706361        PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/001/SRR7706361/SRR7706361_2.fastq.gz    male    CFBRSa07        2018-04-03      CFBRSa07_R1.fastq.gz    2012-10-03      CFBRSa07        SUB4273132      Homo sapiens    CFBRSa07        ena;pathogen;bacterium;datahub;priority  2018-08-18      33.749  CFBR-238        SRX4563682      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706361      SRS3680035      33.749 N 84.388 W       2018-08-18       PRJNA480016     sputum
+SRR7706362      Staphylococcus aureus   SRA760272       RANDOM  2018-08-18      241721284       Emory Cystic Fibrosis Biospecimen Registry (CFBR)               139499004;138853939     ILLUMINA        fasp.sra.ebi.ac.uk:/vol1/srr/SRR770/002/SRR7706362       ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz       USA: Atlanta, GA Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    ftp.sra.ebi.ac.uk/vol1/srr/SRR770/002/SRR7706362 d6f7434e83969245df356e0c3aaa72e8;4bfa95c3a9db9d93b65b39530f5be0c7       SAMN09847844    SRP158268       572961  Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates       2017-11-02       Pathogen: clinical or host-associated sample from Staphylococcus aureus Illumina MiSeq  Illumina MiSeq sequencing: Genome Sequence of Staphylococcus aureus Cystic Fibrosis Isolates    189012bcc94d59002369ebc17ad303fa ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz       344400515       WGS     33.749 N 84.388 GENOMIC  ftp.sra.ebi.ac.uk/vol1/srr/SRR770/002/SRR7706362        PAIRED  33.749 N 84.388 W       public  -84.388 fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_1.fastq.gz;fasp.sra.ebi.ac.uk:/vol1/fastq/SRR770/002/SRR7706362/SRR7706362_2.fastq.gz    male    CFBRSa06        2017-11-02      CFBRSa06_R1.fastq.gz    2012-05-16      CFBRSa06        SUB4273132      Homo sapiens    CFBRSa06        ena;pathogen;bacterium;datahub;priority  2018-08-18      33.749  CFBR-172        SRX4563681      Staphylococcus aureus   1280    PRJNA480016     Homo sapiens    SRR7706362      SRS3680034      33.749 N 84.388 W       2018-08-18       PRJNA480016     sputum
+```
 
-    ```{bash}
-    Bactopia Summary Report
+</details>
 
-    Total Samples: 1
+<details>
+<summary>Example bactopia-summary.txt</summary>
 
-    Passed: 1
-        Gold: 0
-        Silver: 1
-        Bronze: 0
+When completed a file called `bactopia-summary.txt` is produced, that will contain a
+basic summary of the query results.
 
-    Excluded: 0
-        Failed Cutoff: 0
+```bash
+Bactopia Summary Report
 
-        QC Failure: 0
+Total Samples: 1
+
+Passed: 1
+    Gold: 0
+    Silver: 1
+    Bronze: 0
+
+Excluded: 0
+    Failed Cutoff: 0
+
+    QC Failure: 0
 
 
-    Reports:
-        Full Report (txt): ./bactopia-report.tsv
-        Exclusion: ./bactopia-exclude.tsv
-        Summary: ./bactopia-summary.txt
+Reports:
+    Full Report (txt): ./bactopia-report.tsv
+    Exclusion: ./bactopia-exclude.tsv
+    Summary: ./bactopia-summary.txt
 
-    Rank Cutoffs:
-        Gold:
-            Coverage >= 100x
-            Quality >= Q30
-            Read Length >= 95bp
-            Total Contigs < 100
-        Silver:
-            Coverage >= 50x
-            Quality >= Q20
-            Read Length >= 75bp
-            Total Contigs < 200
-        Bronze:
-            Coverage >= 20x
-            Quality >= Q12
-            Read Length >= 49bp
-            Total Contigs < 500
+Rank Cutoffs:
+    Gold:
+        Coverage >= 100x
+        Quality >= Q30
+        Read Length >= 95bp
+        Total Contigs < 100
+    Silver:
+        Coverage >= 50x
+        Quality >= Q20
+        Read Length >= 75bp
+        Total Contigs < 200
+    Bronze:
+        Coverage >= 20x
+        Quality >= Q12
+        Read Length >= 49bp
+        Total Contigs < 500
 
-    Assembly Length Exclusions:
-        Minimum: None
-        Maximum: None
-    ```
+Assembly Length Exclusions:
+    Minimum: None
+    Maximum: None
+```
+
+</details>
 
 From the output files, you will want to use the file with the `-accessions.txt` extension. In
 the above query the `-accessions.txt` file looked like this:
 
-```{bash}
+```bash
 SRX4563681      illumina        Staphylococcus aureus   2800000
 SRX4563689      illumina        Staphylococcus aureus   2800000
 SRX4563687      illumina        Staphylococcus aureus   2800000
@@ -601,9 +652,10 @@ SRX4563682      illumina        Staphylococcus aureus   2800000
 SRX4563690      illumina        Staphylococcus aureus   2800000
 ```
 
-!!! info "Use the file with the `-accessions.txt` extension with `--accessions`"
-    The file with the `-accessions.txt` extension is the file you will use with `--accessions`
-    to process the Experiment accessions with Bactopia.
+:::info[Use the file with the `-accessions.txt` extension with `--accessions`]
+The file with the `-accessions.txt` extension is the file you will use with `--accessions`
+to process the Experiment accessions with Bactopia.
+:::
 
 ## Additional Helpful Parameters
 
@@ -615,18 +667,19 @@ are other built in profiles including: `docker`, `singularity`, `slurm`, etc... 
 specific profile, you can use the `-profile` parameter.
 
 For example if you want Nextflow to use Docker, you would use the following command:
-```{bash}
+```bash
 bactopia ... -profile docker
 ```
 
 With this, Nextflow will use Docker to run all the processes in Bactopia (even though
 Bactopia is installed with Conda!).
 
-!!! tip "Always prefer containers over Conda"
-    While I will be the first to admit that I love Conda, it is not perfect. Overtime tools
-    can become broken or incompatible due to dependencies. Containers are a great way
-    to avoid these issues. If you are using Bactopia, and have Docker or Singularity
-    available I would recommend using them over Conda.
+:::tip[Always prefer containers over Conda]
+While I will be the first to admit that I love Conda, it is not perfect. Overtime tools
+can become broken or incompatible due to dependencies. Containers are a great way
+to avoid these issues. If you are using Bactopia, and have Docker or Singularity
+available I would recommend using them over Conda.
+:::
 
 ### `-resume`
 
@@ -645,27 +698,32 @@ of cpus"*. But that is not the case for Nextflow and Bactopia. When you use `--m
 what you are actually saying is *"for any particular task, use this amount of slots"*.
 Commands within a task processors will use the amount specified by `--max_cpus`.
 
-??? danger "`--max_cpus` can have a significant effect on the efficiency of Bactopia"
-    For example if you have a system with 24-cores.
+<details>
+<summary>`--max_cpus` can have a significant effect on the efficiency of Bactopia</summary>
 
-    This command, `bactopia ... --max_cpus 24`, says *for any particular task, use 24 slots*.
-    Nextflow will give tasks in Bactopia 24 slots out of 24 available (24-core machine). In
-    other words the queue can one have one task running at once because each task occupies
-    24 slots.
+For example if you have a system with 24-cores.
 
-    On the other hand, `bactopia ... --max_cpus 4` says *for any particular task, use 4 slots*.
-    Now, for Nextflow will give each task 4 slots out of 24 slots. Which means 6 tasks can be
-    running at once. This can lead to much better efficiency because less jobs are stuck
-    waiting in line. 
+This command, `bactopia ... --max_cpus 24`, says *for any particular task, use 24 slots*.
+Nextflow will give tasks in Bactopia 24 slots out of 24 available (24-core machine). In
+other words the queue can one have one task running at once because each task occupies
+24 slots.
 
-    There are some tasks in Bactopia that will only ever use a single slot because they are
-    single-core tasks. While others will always use the number of slots specified by
-    `--max_cpus`.
-    
-    If the `--max_cpus` is too high, you will likely reduce the efficiency of Bactopia.
+On the other hand, `bactopia ... --max_cpus 4` says *for any particular task, use 4 slots*.
+Now, for Nextflow will give each task 4 slots out of 24 slots. Which means 6 tasks can be
+running at once. This can lead to much better efficiency because less jobs are stuck
+waiting in line. 
 
-!!! tip "When in doubt `--max_cpus 4` is a safe value."
-    This is also the default value for Bactopia.
+There are some tasks in Bactopia that will only ever use a single slot because they are
+single-core tasks. While others will always use the number of slots specified by
+`--max_cpus`.
+
+If the `--max_cpus` is too high, you will likely reduce the efficiency of Bactopia.
+
+</details>
+
+:::tip[When in doubt `--max_cpus 4` is a safe value.]
+This is also the default value for Bactopia.
+:::
 
 ### `-qs`
 
@@ -673,24 +731,32 @@ The `-qs` parameter is short for *queue size*. As described above for `--max_cpu
 default value for `-qs` is set to the total number of cores on the system. This parameter
 allows you to adjust the maximum number of cores Nextflow can use at any given moment.
 
-??? tip "`-qs` allows you to play nicely on shared resources"
-    From the example above, if you have a system with 24-cores. The default queue size if
-    24 slots.
+<details>
+<summary>`-qs` allows you to play nicely on shared resources</summary>
 
-    `bactopia ... --max_cpus 4` says *for any particular task, use a maximum of 4 slots*.
-    Nextflow will give each task 4 slots out of 24 slots. But there might be other people
-    also using the server.
+From the example above, if you have a system with 24-cores. The default queue size if
+24 slots.
 
-    `bactopia ... --max_cpus 4 -qs 12` says *for any particular task, use a maximum of 4
-    slots, but don't use more than 12 slots*. Nextflow will give each task 4 slots out of
-    12 slots. Now instead of using all the cores on the server, the maximum that can be
-    used in 12.
+`bactopia ... --max_cpus 4` says *for any particular task, use a maximum of 4 slots*.
+Nextflow will give each task 4 slots out of 24 slots. But there might be other people
+also using the server.
 
-??? tip "`-qs` might need adjusting for job schedulers."
-    The default value for `-qs` is set to 100 when using a job scheduler (e.g. SLURM,
-    AWS Batch). There may be times when you need adjust this to meet your needs. For
-    example, if using AWS Batch you might want to increase the value to have more jobs
-    processed at once (e.g. 100 vs 500).
+`bactopia ... --max_cpus 4 -qs 12` says *for any particular task, use a maximum of 4
+slots, but don't use more than 12 slots*. Nextflow will give each task 4 slots out of
+12 slots. Now instead of using all the cores on the server, the maximum that can be
+used in 12.
+
+</details>
+
+<details>
+<summary>`-qs` might need adjusting for job schedulers.</summary>
+
+The default value for `-qs` is set to 100 when using a job scheduler (e.g. SLURM,
+AWS Batch). There may be times when you need adjust this to meet your needs. For
+example, if using AWS Batch you might want to increase the value to have more jobs
+processed at once (e.g. 100 vs 500).
+
+</details>
 
 ### `--genome_size`
 
@@ -698,11 +764,15 @@ Throughout the Bactopia workflow a genome size is used for various tasks. By def
 genome size is set to 0, and things such as coverage reduction are skipped. However, if
 you provide an expected genome size, these steps will be enabled.
 
-??? tip "Use `--genome_size` to improve results and speed"
-    By providing a genome size, Bactopia will reduce the coverage to a maximum of 100x
-    (default). In doing so, for samples with greater than 100x coverage, you will see
-    a reduction in execution time as well is improved results. This is because, with
-    excessive coverage some tools will produce poorer results while taking much longer.
+<details>
+<summary>Use `--genome_size` to improve results and speed</summary>
+
+By providing a genome size, Bactopia will reduce the coverage to a maximum of 100x
+(default). In doing so, for samples with greater than 100x coverage, you will see
+a reduction in execution time as well is improved results. This is because, with
+excessive coverage some tools will produce poorer results while taking much longer.
+
+</details>
 
 ### `--nfconfig`
 A key feature of Nextflow is you can provide your own config files. What this boils down to
