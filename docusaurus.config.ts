@@ -37,12 +37,35 @@ const config: Config = {
     locales: ['en'],
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'cli',
+        path: 'cli',
+        routeBasePath: 'cli',
+        sidebarPath: './sidebars-cli.ts',
+        editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'impact',
+        path: 'impact',
+        routeBasePath: 'impact',
+        sidebarPath: './sidebars-impact.ts',
+        editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
       {
         docs: {
-          routeBasePath: '/',
+          routeBasePath: 'docs',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
           exclude: [
@@ -50,6 +73,7 @@ const config: Config = {
             'assets/**',
             'blog/**',
             'data/**',
+            'impact-and-outreach/**',
           ],
         },
         blog: false,
@@ -80,6 +104,20 @@ const config: Config = {
           label: 'Docs',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'cli',
+          docsPluginId: 'cli',
+          position: 'left',
+          label: 'CLI',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'impact',
+          docsPluginId: 'impact',
+          position: 'left',
+          label: 'Impact',
+        },
+        {
           href: 'https://github.com/bactopia/bactopia',
           label: 'GitHub',
           position: 'right',
@@ -94,11 +132,19 @@ const config: Config = {
           items: [
             {
               label: 'Quick Start',
-              to: '/quick-start',
+              to: '/docs/quick-start',
             },
             {
               label: 'Installation',
-              to: '/installation',
+              to: '/docs/installation',
+            },
+            {
+              label: 'CLI Reference',
+              to: '/cli/',
+            },
+            {
+              label: 'Impact & Outreach',
+              to: '/impact/',
             },
           ],
         },
