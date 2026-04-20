@@ -23,6 +23,7 @@ const config: Config = {
 
   markdown: {
     format: 'md',
+    mermaid: true,
     parseFrontMatter: async (params) => {
       const result = await params.defaultParseFrontMatter(params);
       if (result.frontMatter.tags === null || result.frontMatter.tags === undefined) {
@@ -37,7 +38,10 @@ const config: Config = {
     locales: ['en'],
   },
 
+  themes: ['@docusaurus/theme-mermaid'],
+
   plugins: [
+    'docusaurus-plugin-image-zoom',
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -182,6 +186,13 @@ const config: Config = {
       defaultMode: 'light',
       disableSwitch: false,
       respectPrefersColorScheme: true,
+    },
+    zoom: {
+      selector: '.markdown :not(em) > img',
+      background: {
+        light: 'rgba(255, 255, 255, 0.9)',
+        dark: 'rgba(50, 50, 50, 0.9)',
+      },
     },
   } satisfies Preset.ThemeConfig,
 };
