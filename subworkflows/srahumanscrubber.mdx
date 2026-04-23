@@ -1,0 +1,79 @@
+---
+title: srahumanscrubber
+description: "Remove human contamination from sequencing reads for SRA submission."
+tags:
+  - contamination
+  - human
+  - scrub
+  - sra
+  - sequencing
+  - fastq
+  - sample-scope
+---
+
+# srahumanscrubber
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+Remove human contamination from sequencing reads for SRA submission.
+
+This subworkflow uses the [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber) to identify
+and remove human reads from sequencing data. It first initializes a human reference database
+and then scrubs the input reads to ensure they meet SRA submission requirements.
+
+Uses explicit positional record fields for reads:
+- Input: record(meta, r1, r2, se, lr) where each read slot is Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `r1` | Illumina R1 reads (paired-end) |
+| `r2` | Illumina R2 reads (paired-end) |
+| `se` | Single-end Illumina reads |
+| `lr` | Long reads (ONT/PacBio) |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `special_meta` | Groovy Record with name for downstream aggregation |
+| `scrubbed` | Scrubbed FASTQ files with human reads removed |
+| `scrubbed_extra` | Placeholder files for pipeline compatibility |
+| `scrub_report` | Report of scrubbing statistics |
+
+#### `run_outputs`
+
+No run-scope outputs.
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [srahumanscrubber_initdb](/modules/srahumanscrubber_initdb) - Initialize human read removal database for SRA Human Scrubber.
+- [srahumanscrubber_scrub](/modules/srahumanscrubber_scrub) - Scrub human reads from FASTQ files.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber)  
+  Katz KS, Shutov O, Lapoint R, Kimelman M, Brister JR, and O'Sullivan C [STAT: a fast, scalable, MinHash-based k-mer tool to assess Sequence Read Archive next-generation sequence submissions.](https://doi.org/10.1186/s13059-021-02490-0) _Genome Biology_, 22(1), 270 (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/srahumanscrubber)

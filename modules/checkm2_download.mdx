@@ -1,0 +1,73 @@
+---
+title: checkm2_download
+description: "Download the pre-trained CheckM2 database."
+tags:
+  - checkm2
+  - download
+  - database
+  - diamond
+  - machine-learning
+  - sample-scope
+---
+
+# checkm2_download
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">aria2 v1.36.0</span> <span class="badge badge--info">sample scope</span>
+
+Download the pre-trained CheckM2 database.
+
+Fetches the required Diamond database used by [CheckM2](https://github.com/chklovski/CheckM2)
+for genome quality prediction. This database contains the machine learning model training data.
+
+:::note[Internet Required]
+This process requires an active internet connection to fetch the database.
+:::
+
+## Outputs
+
+```
+record (
+    db: Path,
+    json: Path,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path` | The CheckM2 Diamond database file (*.dmnd) |
+| `json` | `Path` | Metadata file describing the database contents |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+### CheckM2 Database Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--checkm2_db` | string |  | Path to a folder containing CheckM2 database (or where it should be downloaded to). |
+| `--download_checkm2` | boolean | `false` | Download the CheckM2 database to the path given by --checkm2_db |
+
+## Used By
+
+### Subworkflows
+
+- [checkm2](/subworkflows/checkm2) - Assess metagenome bin completeness using CheckM2.
+
+### Workflows
+
+- [checkm2](/workflows/bactopia-tools/checkm2) - Machine learning-based assessment of microbial genome assembly quality.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [CheckM2](https://github.com/chklovski/CheckM2)  
+  Chklovksi A [Rapid assessment of genome bin quality using machine learning](https://github.com/chklovski/CheckM2) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/checkm2/download)

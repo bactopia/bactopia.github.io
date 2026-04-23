@@ -1,0 +1,147 @@
+---
+title: snippy_core
+description: "Core-SNP alignment from Snippy outputs."
+tags:
+  - snippy
+  - core-genome
+  - alignment
+  - phylogeny
+  - snp
+  - bacteria
+  - run-scope
+---
+
+# snippy_core
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">bactopia-variants v1.0.4</span> <span class="badge badge--info">run scope</span>
+
+Core-SNP alignment from Snippy outputs.
+
+Uses [Snippy](https://github.com/tseemann/snippy) to generate a core genome alignment
+from multiple Snippy outputs. It combines variant calls (VCF) and alignments to produce
+a core SNP alignment, which can be used for phylogenetic analysis.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    _vcf: Set<Path>,
+    _aligned_fa: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `_vcf` | `Set<Path>` | List of VCF files from Snippy |
+| `_aligned_fa` | `Set<Path>` | List of aligned FASTA files from Snippy |
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing reference information |
+| `reference` | `Path` | Reference genome (FASTA or GenBank format) |
+
+```
+reference: Path
+mask: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `mask` | `Path?` | BED file of regions to mask in the alignment |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    supplemental: Set<Path>,
+    aln: Path,
+    full_aln: Path,
+    clean_full_aln: Path,
+    tab: Path,
+    vcf: Path,
+    txt: Path,
+    samples: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `supplemental` | `Set<Path>` | Supplemental files including individual sample alignments |
+| `aln` | `Path` | A core SNP alignment in FASTA format |
+| `full_aln` | `Path` | A whole genome SNP alignment (includes invariant sites) |
+| `clean_full_aln` | `Path` | A whole genome SNP alignment (includes invariant sites) with Ns |
+| `tab` | `Path` | Tab-separated list of core SNP sites with alleles (no annotations) |
+| `vcf` | `Path` | Multi-sample VCF file with genotype GT tags for all discovered alleles |
+| `txt` | `Path` | Tab-separated list of alignment and core-size statistics |
+| `samples` | `Path` | List of samples included in the core alignment |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Snippy-Core Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--snippy_core_maxhap` | integer | `100` | Largest haplotype to decompose |
+| `--snippy_core_mask` | string |  | BED file of sites to mask |
+| `--snippy_core_mask_char` | string | `X` | Masking character |
+| `--snippy_core_opts` | string |  | Extra options in quotes for snippy-core |
+
+## Used By
+
+### Subworkflows
+
+- [snippy_core](/subworkflows/snippy_core) - Generate core-genome SNP alignment from per-sample Snippy outputs.
+
+### Workflows
+
+- [snippy](/workflows/bactopia-tools/snippy) - Rapid haplotype variant calling and core genome alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Snippy](https://github.com/tseemann/snippy)  
+  Seemann T [Snippy: fast bacterial variant calling from NGS reads](https://github.com/tseemann/snippy) (GitHub)
+
+- [BCFtools](https://github.com/samtools/bcftools)  
+  Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H [Twelve years of SAMtools and BCFtools](https://doi.org/10.1093/gigascience/giab008) _GigaScience_ Volume 10, Issue 2 (2021)
+
+- [Bedtools](https://github.com/arq5x/bedtools2)  
+  Quinlan AR, Hall IM [BEDTools: a flexible suite of utilities for comparing genomic features](http://dx.doi.org/10.1093/bioinformatics/btq033). _Bioinformatics_ 26, 841-842 (2010)
+
+- [freebayes](https://github.com/ekg/freebayes)  
+  Garrison E, Marth G [Haplotype-based variant detection from short-read sequencing.](https://arxiv.org/abs/1207.3907) arXiv preprint arXiv:1207.3907 [q-bio.GN] (2012)
+
+- [Seqtk](https://github.com/lh3/seqtk)  
+  Li H [Toolkit for processing sequences in FASTA/Q formats](https://github.com/lh3/seqtk) (GitHub)
+
+- [SnpEff](http://snpeff.sourceforge.net/)  
+  Cingolani P, Platts A, Wang LL, Coon M, Nguyen T, Wang L, Land SJ, Lu X, Douglas M [A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3.](https://doi.org/10.4161/fly.19695) _Fly_ 6(2), 80-92 (2012)
+
+- [VCF-Annotator](https://github.com/rpetit3/vcf-annotator)  
+  Petit III RA [VCF-Annotator: Add biological annotations to variants in a VCF file.](https://github.com/rpetit3/vcf-annotator) (GitHub)
+
+- [Vcflib](https://github.com/vcflib/vcflib)  
+  Garrison E [Vcflib: A C++ library for parsing and manipulating VCF files](https://github.com/vcflib/vcflib) (GitHub)
+
+- [vt](https://github.com/atks/vt)  
+  Tan A, Abecasis GR, Kang HM [Unified representation of genetic variants.](https://doi.org/10.1093/bioinformatics/btv112) _Bioinformatics_ 31(13), 2202-2204 (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/snippy/core)

@@ -1,0 +1,76 @@
+---
+title: midas_download
+description: "Download the MIDAS reference database."
+tags:
+  - midas
+  - download
+  - database
+  - metagenomics
+  - species
+  - run-scope
+---
+
+# midas_download
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">gnu-wget v1.18</span> <span class="badge badge--info">run scope</span>
+
+Download the MIDAS reference database.
+
+Fetches the pre-compiled database required by [MIDAS](https://github.com/snayfach/MIDAS)
+for metagenomic species profiling. The database contains reference genomes from the
+UHGG collection used for species identification and abundance estimation.
+
+:::note[Internet & Storage Required]
+This process requires an active internet connection and significant disk space
+to store the database files (~3.3GB compressed, ~7GB uncompressed).
+:::
+
+## Outputs
+
+```
+record (
+    db: Path?,
+    db_tarball: Path?,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path?` | The MIDAS database directory containing reference genome data |
+| `db_tarball` | `Path?` | A compressed tarball of the database (if requested via parameters) |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+### MIDAS Database Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--midas_db` | string |  | A single tarball or path to a MIDAS formatted database |
+| `--midas_save_as_tarball` | boolean | `false` | Save the MIDAS database as a tarball |
+| `--download_midas` | boolean | `false` | Download the MIDAS database to the path given by --midas_db |
+
+## Used By
+
+### Subworkflows
+
+- [midas](/subworkflows/midas) - Species-level profiling from metagenomic data.
+
+### Workflows
+
+- [midas](/workflows/bactopia-tools/midas) - Estimate species abundances from metagenomic samples.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [MIDAS](https://github.com/snayfach/MIDAS)  
+  Nayfach S, Rodriguez-Mueller B, Garud N, and Pollard KS [An integrated metagenomics pipeline for strain profiling reveals novel patterns of bacterial transmission and biogeography.](https://doi.org/10.1101/gr.201863.115) _Genome Research_, 26(11), 1612-1625. (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/midas/download)

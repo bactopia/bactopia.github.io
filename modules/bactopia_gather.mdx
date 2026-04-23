@@ -1,0 +1,126 @@
+---
+title: bactopia_gather
+description: "Search, validate, gather, or simulate input samples."
+tags:
+  - fastq
+  - validation
+  - sra
+  - ena
+  - download
+  - merging
+  - simulation
+  - art
+  - ncbi
+  - sample-scope
+---
+
+# bactopia_gather
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">bactopia-gather v1.0.5</span> <span class="badge badge--info">sample scope</span>
+
+Search, validate, gather, or simulate input samples.
+
+This process is the entry point for data ingestion. It handles:
+- **Validation:** Verifies FASTQ formatting and gzip integrity.
+- **Merging:** Combines multiple runs (lanes) into a single sample.
+- **Downloading:** Fetches reads (SRA/ENA) or assemblies (NCBI) from accessions.
+- **Simulation:** Generates synthetic reads from assemblies using [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art) to enable read-based analysis.
+
+Uses explicit named slots for input and output reads:
+- Input accepts Set&lt;Path&gt; for each slot (pre-merge, supports multiple files)
+- Output emits Path? for each slot (post-merge, single consolidated file or null)
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    r1_files: Set<Path?>,
+    r2_files: Set<Path?>,
+    se_files: Set<Path?>,
+    lr_files: Set<Path?>,
+    fna_files: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `r1_files` | `Set<Path?>` | Illumina R1 read files (Set, elements may be null) |
+| `r2_files` | `Set<Path?>` | Illumina R2 read files (Set, elements may be null) |
+| `se_files` | `Set<Path?>` | Single-end read files (Set, elements may be null) |
+| `lr_files` | `Set<Path?>` | Long read files (ONT) or assembly for simulation (Set, elements may be null) |
+| `fna_files` | `Set<Path?>` | Input or downloaded assembly file (Set, elements may be null) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    fna: Path?,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `r1` | `Path?` | Merged Illumina R1 read file |
+| `r2` | `Path?` | Merged Illumina R2 read file |
+| `se` | `Path?` | Merged single-end read file |
+| `lr` | `Path?` | Merged long read file (ONT) |
+| `fna` | `Path?` | Assembly file |
+| `tsv` | `Path` | A tab-delimited metadata file describing the valid samples |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path?>` | A YAML formatted file with program versions |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [bactopia_gather](/subworkflows/bactopia_gather) - Search, validate, gather, and standardize input samples.
+
+### Workflows
+
+- [bactopia](/workflows/named-workflows/bactopia) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [cleanyerreads](/workflows/named-workflows/cleanyerreads) - Quality control and optional host read removal from raw sequencing reads.
+- [staphopia](/workflows/named-workflows/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+- [teton](/workflows/named-workflows/teton) - Taxonomic classification and abundance profiling of metagenomic reads.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm)  
+  Huang W, Li L, Myers JR, Marth GT [ART: a next-generation sequencing read simulator.](http://dx.doi.org/10.1093/bioinformatics/btr708) _Bioinformatics_ 28, 593-594 (2012)
+
+- [fastq-dl](https://github.com/rpetit3/fastq-dl)  
+  Petit III RA [fastq-dl: Download FASTQ files from SRA or ENA repositories.](https://github.com/rpetit3/fastq-dl) (GitHub)
+
+- [fastq-scan](https://github.com/rpetit3/fastq-scan)  
+  Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
+
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+
+- [Pigz](https://zlib.net/pigz/)  
+  Adler M. [pigz: A parallel implementation of gzip for modern multi-processor, multi-core machines.](https://zlib.net/pigz/) _Jet Propulsion Laboratory_ (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/gather)

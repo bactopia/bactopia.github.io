@@ -1,0 +1,141 @@
+---
+title: merlin_dist
+description: "Identify species to trigger genus-specific downstream analyses (Merlin)."
+tags:
+  - merlin
+  - mash
+  - routing
+  - logic
+  - genus-specific
+  - automation
+  - sample-scope
+---
+
+# merlin_dist
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">mash v2.3</span> <span class="badge badge--info">sample scope</span>
+
+Identify species to trigger genus-specific downstream analyses (Merlin).
+
+This is a specialized process for the [Merlin](https://bactopia.github.io/latest/bactopia-tools/merlin/)
+workflow. It runs `mash dist` against a reference database and parses the results to detect
+specific genera (e.g., *Salmonella*, *Staphylococcus*). Based on the detected genus, it
+outputs data into specific channels to trigger targeted tools (e.g., finding *Salmonella* triggers Sistr).
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+| `r1` | `Path?` | Illumina R1 reads (paired-end) |
+| `r2` | `Path?` | Illumina R2 reads (paired-end) |
+| `se` | `Path?` | Single-end Illumina reads |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+```
+reference: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `reference` | `Path` | The reference Mash database to screen against |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    fna: Path,
+    r1: Path,
+    r2: Path,
+    se: Path,
+    lr: Path,
+    escherichia: Path?,
+    haemophilus: Path?,
+    klebsiella: Path?,
+    legionella: Path?,
+    listeria: Path?,
+    mycobacterium: Path?,
+    neisseria: Path?,
+    pseudomonas: Path?,
+    salmonella: Path?,
+    staphylococcus: Path?,
+    streptococcus: Path?,
+    genus: Set<Path?>,
+    dist: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `fna` | `Path` | Passthrough of assembled contigs |
+| `r1` | `Path` | Passthrough of Illumina R1 reads |
+| `r2` | `Path` | Passthrough of Illumina R2 reads |
+| `se` | `Path` | Passthrough of single-end reads |
+| `lr` | `Path` | Passthrough of long reads |
+| `escherichia` | `Path?` | Conditional marker file triggering Escherichia analysis tools |
+| `haemophilus` | `Path?` | Conditional marker file triggering Haemophilus analysis tools |
+| `klebsiella` | `Path?` | Conditional marker file triggering Klebsiella analysis tools |
+| `legionella` | `Path?` | Conditional marker file triggering Legionella analysis tools |
+| `listeria` | `Path?` | Conditional marker file triggering Listeria analysis tools |
+| `mycobacterium` | `Path?` | Conditional marker file triggering Mycobacterium analysis tools |
+| `neisseria` | `Path?` | Conditional marker file triggering Neisseria analysis tools |
+| `pseudomonas` | `Path?` | Conditional marker file triggering Pseudomonas analysis tools |
+| `salmonella` | `Path?` | Conditional marker file triggering Salmonella analysis tools |
+| `staphylococcus` | `Path?` | Conditional marker file triggering Staphylococcus analysis tools |
+| `streptococcus` | `Path?` | Conditional marker file triggering Streptococcus analysis tools |
+| `genus` | `Set<Path?>` | Marker file indicating the detected genus |
+| `dist` | `Path` | Raw Mash distance results |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### mashdist Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--mash_sketch` | string |  | The reference sequence as a Mash Sketch (.msh file) |
+| `--full_merlin` | boolean | `false` | Go full Merlin and run all species-specific tools, no matter the Mash distance |
+
+## Used By
+
+### Subworkflows
+
+- [merlindist](/subworkflows/merlindist) - Identify species from assembly and read data using Mash distances.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+- [NCBI RefSeq Database](https://www.ncbi.nlm.nih.gov/refseq/)  
+  O'Leary NA, Wright MW, Brister JR, Ciufo S, Haddad D, McVeigh R, Rajput B, Robbertse B, Smith-White B, Ako-Adjei D, Astashyn A, Badretdin A, Bao Y, Blinkova O0, Brover V, Chetvernin V, Choi J, Cox E, Ermolaeva O, Farrell CM, Goldfarb T, Gupta T, Haft D, Hatcher E, Hlavina W, Joardar VS, Kodali VK, Li W, Maglott D, Masterson P, McGarvey KM, Murphy MR, O'Neill K, Pujar S, Rangwala SH, Rausch D, Riddick LD, Schoch C, Shkeda A, Storz SS, Sun H, Thibaud-Nissen F, Tolstoy I, Tully RE, Vatsan AR, Wallin C, Webb D, Wu W, Landrum MJ, Kimchi A, Tatusova T, DiCuccio M, Kitts P, Murphy TD, Pruitt KD [Reference sequence (RefSeq) database at NCBI: current status, taxonomic expansion, and functional annotation.](https://doi.org/10.1093/nar/gkv1189) _Nucleic Acids Res._ 44, D733-45 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/merlin/dist)

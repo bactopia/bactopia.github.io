@@ -1,0 +1,191 @@
+---
+title: seqsero2
+description: "Salmonella serotype prediction from sequencing reads or assemblies."
+tags:
+  - salmonella
+  - serotyping
+  - epidemiology
+  - o-antigen
+  - h-antigen
+  - bactopia-tool
+---
+
+# seqsero2
+
+<span class="badge badge--success">stable</span>
+
+Salmonella serotype prediction from sequencing reads or assemblies.
+
+This Bactopia Tool uses [SeqSero2](https://github.com/denglab/SeqSero2) to predict Salmonella
+serotypes from both raw sequencing reads and assembled genomes. SeqSero2 is a novel pipeline
+for determining Salmonella serotypes using raw sequencing reads or assemblies through
+k-mer analysis and targeted identification of O and H antigen genes. The tool provides
+accurate serotype predictions following the Kaufmann-White scheme, supporting traditional
+and molecular serotyping methods for epidemiological surveillance and outbreak investigation.
+
+## Usage
+
+```bash
+bactopia --wf seqsero2 \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── seqsero2-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           ├── <SAMPLE_NAME>.txt
+│           └── logs
+│               ├── <SAMPLE_NAME>.log
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── seqsero2-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── seqsero2-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── seqsero2.tsv
+        └── nf-reports
+            ├── seqsero2-dag.dot
+            ├── seqsero2-report.html
+            └── seqsero2-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*_result.tsv` | Tab-delimited file with detailed SeqSero2 results for each sample |
+| `*_result.txt` | Text file with key-value pairs of SeqSero2 prediction results |
+| `*_log.txt` | Detailed log file from SeqSero2 analysis |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `seqsero2.tsv` | Merged TSV file containing SeqSero2 results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| seqsero2-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#dag-visualisation) |
+| seqsero2-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| seqsero2-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#timeline-report) |
+| seqsero2-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-report) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### SeqSero2 Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--seqsero2_run_mode` | string | `k` | Workflow to run. 'a' allele mode, or 'k' k-mer mode (choices: `a`, `k`) |
+| `--seqsero2_input_type` | string | `assembly` | Input format to analyze. 'assembly' or 'fastq' (choices: `assembly`, `fastq`) |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [seqsero2](/subworkflows/seqsero2) - Predict Salmonella serotypes from genome assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+- [SeqSero2](https://github.com/denglab/SeqSero2)  
+  Zhang S, Den-Bakker HC, Li S, Dinsmore BA, Lane C, Lauer AC, Fields PI, Deng X. [SeqSero2: rapid and improved Salmonella serotype determination using whole genome sequencing data.](https://doi.org/10.1128/AEM.01746-19) _Appl Environ Microbiology_ 85(23):e01746-19 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/seqsero2)

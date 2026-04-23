@@ -1,0 +1,199 @@
+---
+title: prokka
+description: "Rapid whole genome annotation of bacterial, archaeal, and viral genomes."
+tags:
+  - annotation
+  - genome
+  - prokaryote
+  - functional-annotation
+  - genes
+  - bactopia-tool
+---
+
+# prokka
+
+<span class="badge badge--success">stable</span>
+
+Rapid whole genome annotation of bacterial, archaeal, and viral genomes.
+
+This Bactopia Tool uses [Prokka](https://github.com/tseemann/prokka) to rapidly annotate small genomes
+in a standardized fashion. It identifies protein-coding genes, rRNA, tRNA, and other features,
+then searches them against multiple reference databases to provide comprehensive functional annotation.
+
+## Usage
+
+```bash
+bactopia --wf prokka \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── main
+│       └── annotator
+│           └── prokka-<TIMESTAMP>
+│               ├── <SAMPLE_NAME>-blastdb.tar.gz
+│               ├── <SAMPLE_NAME>.faa.gz
+│               ├── <SAMPLE_NAME>.ffn.gz
+│               ├── <SAMPLE_NAME>.fna.gz
+│               ├── <SAMPLE_NAME>.fsa.gz
+│               ├── <SAMPLE_NAME>.gbk.gz
+│               ├── <SAMPLE_NAME>.gff.gz
+│               ├── <SAMPLE_NAME>.sqn.gz
+│               ├── <SAMPLE_NAME>.tbl.gz
+│               ├── <SAMPLE_NAME>.tsv
+│               ├── <SAMPLE_NAME>.txt
+│               └── logs
+│                   ├── <SAMPLE_NAME>.err
+│                   ├── <SAMPLE_NAME>.log
+│                   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│                   └── versions.yml
+└── bactopia-runs
+    └── prokka-<TIMESTAMP>
+        └── nf-reports
+            ├── prokka-dag.dot
+            ├── prokka-report.html
+            └── prokka-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.gff` | Genome annotation in GFF3 format containing sequences and annotations |
+| `*.gbk` | Genome annotation in GenBank format containing sequences and annotations |
+| `*.faa` | Protein FASTA file of translated CDS sequences |
+| `*.fna` | Nucleotide FASTA file of input contig sequences |
+| `*.ffn` | Nucleotide FASTA file of all predicted transcripts |
+| `*.fsa` | Nucleotide FASTA file of predicted protein sequences |
+| `*.sqn` | ASN1 format Sequin file for GenBank submission |
+| `*.tbl` | Feature Table file for GenBank submission |
+| `*.tsv` | Tab-separated file of all features with functional information |
+| `*.txt` | Statistics report of annotated features |
+| `*.blastdb.tar.gz` | BLAST+ database archive of contigs, genes, and proteins |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `prokka.tsv` | Merged TSV file containing annotation summaries from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| prokka-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#dag-visualisation) |
+| prokka-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| prokka-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#timeline-report) |
+| prokka-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-report) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### Prokka Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--prokka_proteins` | string | `${projectDir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
+| `--prokka_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--prokka_coverage` | integer | `80` | Minimum coverage on query protein |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [prokka](/subworkflows/prokka) - Annotate bacterial genomes with functional information.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Prokka](https://github.com/tseemann/prokka)  
+  Seemann T [Prokka: rapid prokaryotic genome annotation](http://dx.doi.org/10.1093/bioinformatics/btu153) _Bioinformatics_ 30, 2068-2069 (2014)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/prokka)

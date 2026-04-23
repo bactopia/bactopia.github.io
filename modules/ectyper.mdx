@@ -1,0 +1,95 @@
+---
+title: ectyper
+description: "Predict *Escherichia coli* serotype (O and H antigens)."
+tags:
+  - bacteria
+  - escherichia-coli
+  - serotype
+  - o-antigen
+  - h-antigen
+  - typing
+  - sample-scope
+---
+
+# ectyper
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">ectyper v2.0.0</span> <span class="badge badge--info">sample scope</span>
+
+Predict *Escherichia coli* serotype (O and H antigens).
+
+Uses [ECTyper](https://github.com/phac-nml/ectyper) to identify the O-antigen (lipopolysaccharide)
+and H-antigen (flagella) genes in *E. coli* genome assemblies via BLAST. It provides a
+standardized serotype prediction (e.g., O157:H7).
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    txt: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited E. coli serotype predictions (O and H antigens) |
+| `txt` | `Path` | BLAST allele details for serotype determination |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### ECTyper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--ectyper_opid` | integer | `90` | Percent identity required for an O antigen allele match |
+| `--ectyper_opcov` | integer | `90` | Minimum percent coverage required for an O antigen allele match |
+| `--ectyper_hpid` | integer | `95` | Percent identity required for an H antigen allele match |
+| `--ectyper_hpcov` | integer | `50` | Minimum percent coverage required for an H antigen allele match |
+
+## Used By
+
+### Subworkflows
+
+- [ectyper](/subworkflows/ectyper) - In silico prediction of Escherichia coli serotype.
+
+### Workflows
+
+- [ectyper](/workflows/bactopia-tools/ectyper) - In silico prediction of Escherichia coli serotype.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ECTyper](https://github.com/phac-nml/ecoli_serotyping)  
+  Laing C, Bessonov K, Sung S, La Rose C [ECTyper - In silico prediction of _Escherichia coli_ serotype](https://github.com/phac-nml/ecoli_serotyping) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ectyper)

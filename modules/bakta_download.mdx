@@ -1,0 +1,81 @@
+---
+title: bakta_download
+description: "Download the Bakta annotation database."
+tags:
+  - bacteria
+  - database
+  - download
+  - annotation
+  - bakta
+  - setup
+  - run-scope
+---
+
+# bakta_download
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">bakta v1.12.0</span> <span class="badge badge--info">run scope</span>
+
+Download the Bakta annotation database.
+
+Fetches the pre-compiled database required by [Bakta](https://github.com/oschwengers/bakta)
+for genome annotation. The database contains UniProt clusters, AMR genes, and other
+reference data needed for comprehensive bacterial genome annotation.
+
+:::note[Internet & Storage Required]
+This process requires an active internet connection and significant disk space
+to store the database files. The 'light' database is ~1.5GB, while the 'full'
+database is ~30GB uncompressed.
+:::
+
+## Outputs
+
+```
+record (
+    db: Path?,
+    db_tarball: Path?,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path?` | The Bakta database directory containing annotation reference data |
+| `db_tarball` | `Path?` | A compressed tarball of the database (if requested via parameters) |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+### Bakta Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bakta_db` | string |  | Tarball or path to the Bakta database |
+| `--bakta_db_type` | string | `full` | Which Bakta DB to download 'full' (~30GB) or 'light' (~2GB) (choices: `full`, `light`) |
+| `--bakta_save_as_tarball` | boolean | `false` | Save the Bakta database as a tarball |
+| `--download_bakta` | boolean | `false` | Download the Bakta database to the path given by --bakta_db |
+
+## Used By
+
+### Subworkflows
+
+- [bakta](/subworkflows/bakta) - Rapid bacterial genome annotation.
+
+### Workflows
+
+- [bactopia](/workflows/named-workflows/bactopia) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [bakta](/workflows/bactopia-tools/bakta) - Rapid annotation of bacterial genomes and plasmids.
+- [staphopia](/workflows/named-workflows/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Bakta](https://github.com/oschwengers/bakta)  
+  Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A [Bakta - rapid and standardized annotation of bacterial genomes via alignment-free sequence identification.](https://doi.org/10.1099/mgen.0.000685) _Microbial Genomics_ 7(11) (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bakta/download)

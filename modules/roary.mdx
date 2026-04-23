@@ -1,0 +1,90 @@
+---
+title: roary
+description: "Rapid large-scale prokaryote pan genome analysis."
+tags:
+  - pangenome
+  - orthology
+  - core-genome
+  - alignment
+  - bacteria
+  - run-scope
+---
+
+# roary
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">roary v3.13.0</span> <span class="badge badge--info">run scope</span>
+
+Rapid large-scale prokaryote pan genome analysis.
+
+Uses [Roary](https://github.com/sanger-pathogens/Roary) to calculate the pan genome of a
+collection of prokaryotic annotated assemblies. It outputs a core gene alignment and a
+gene presence/absence table.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    gff: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `gff` | `Set<Path>` | List of GFF3 files to be analyzed (typically from Prokka) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    aln: Path?,
+    csv: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `aln` | `Path?` | Core genome alignment in FASTA format |
+| `csv` | `Path?` | Gene presence/absence table |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Roary Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--use_roary` | boolean | `false` | Use Roary instead of PIRATE in the 'pangenome' subworkflow |
+| `--roary_cd` | integer | `99` | Percentage of isolates a gene must be in to be core |
+| `--roary_s` | boolean | `false` | Do not split paralogs |
+| `--roary_ap` | boolean | `false` | Allow paralogs in core alignment |
+
+## Used By
+
+### Subworkflows
+
+- [roary](/subworkflows/roary) - Build a pangenome from GFF3 annotations using Roary.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Roary](https://github.com/sanger-pathogens/Roary)  
+  Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691-3693 (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/roary)

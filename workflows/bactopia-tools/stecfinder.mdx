@@ -1,0 +1,196 @@
+---
+title: stecfinder
+description: "Serotype identification of Shiga toxin-producing E. coli."
+tags:
+  - stec
+  - serotype
+  - e-coli
+  - shiga-toxin
+  - bactopia-tool
+---
+
+# stecfinder
+
+<span class="badge badge--success">stable</span>
+
+Serotype identification of Shiga toxin-producing E. coli.
+
+This Bactopia Tool uses [STECFinder](https://github.com/LanLab/STECFinder) to identify
+the serotype of Shiga toxin-producing _E. coli_ (STEC) from sequencing data.
+STECFinder determines the serotype as well as the O-antigen and H-antigens.
+
+## Usage
+
+```bash
+bactopia --wf stecfinder \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── stecfinder-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+├── <SAMPLE_NAME>SE
+│   └── tools
+│       └── stecfinder-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>SE.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+├── SRR13039589
+│   └── tools
+│       └── stecfinder-<TIMESTAMP>
+│           ├── SRR13039589.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── stecfinder-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── stecfinder-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── stecfinder.tsv
+        └── nf-reports
+            ├── stecfinder-dag.dot
+            ├── stecfinder-report.html
+            └── stecfinder-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.txt` | Serotype identification results |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `stecfinder.tsv` | Merged TSV file containing STECFinder results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| stecfinder-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#dag-visualisation) |
+| stecfinder-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| stecfinder-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#timeline-report) |
+| stecfinder-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-report) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### STECFinder Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--stecfinder_use_reads` | boolean | `false` | Paired-end Illumina reads will be used instead of assemblies |
+| `--stecfinder_hits` | boolean | `false` | Show detailed gene search results |
+| `--stecfinder_cutoff` | number | `10.0` | Minimum read coverage for gene to be called |
+| `--stecfinder_length` | number | `50.0` | Percentage of gene length needed for positive call |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [stecfinder](/subworkflows/stecfinder) - Identify and serotype Shiga toxin-producing E. coli (STEC) from assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [STECFinder](https://github.com/LanLab/STECFinder)  
+  Zhang X, Payne M, Kaur S, and Lan R [Improved Genomic Identification, Clustering, and Serotyping of Shiga Toxin-Producing Escherichia coli Using Cluster/Serotype-Specific Gene Markers.](https://doi.org/10.3389/fcimb.2021.772574) _Frontiers in Cellular and Infection Microbiology_, 11, 772574. (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/stecfinder)

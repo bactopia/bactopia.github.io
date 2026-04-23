@@ -22,7 +22,7 @@ const config: Config = {
   },
 
   markdown: {
-    format: 'md',
+    format: 'detect',
     mermaid: true,
     parseFrontMatter: async (params) => {
       const result = await params.defaultParseFrontMatter(params);
@@ -45,20 +45,40 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'cli',
-        path: 'cli',
-        routeBasePath: 'cli',
-        sidebarPath: './sidebars-cli.ts',
+        id: 'impact',
+        path: 'impact',
+        routeBasePath: 'impact-and-outreach',
+        sidebarPath: './sidebars-impact.ts',
         editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
       },
     ],
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'impact',
-        path: 'impact',
-        routeBasePath: 'impact',
-        sidebarPath: './sidebars-impact.ts',
+        id: 'workflows',
+        path: 'workflows',
+        routeBasePath: 'workflows',
+        sidebarPath: './sidebars-workflows.ts',
+        editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'subworkflows',
+        path: 'subworkflows',
+        routeBasePath: 'subworkflows',
+        sidebarPath: './sidebars-subworkflows.ts',
+        editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'modules',
+        path: 'modules',
+        routeBasePath: 'modules',
+        sidebarPath: './sidebars-modules.ts',
         editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
       },
     ],
@@ -80,7 +100,10 @@ const config: Config = {
             'impact-and-outreach/**',
           ],
         },
-        blog: false,
+        blog: {
+          showReadingTime: true,
+          editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -105,21 +128,36 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'bactopia',
           position: 'left',
-          label: 'Docs',
+          label: 'Bactopia',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'cli',
-          docsPluginId: 'cli',
+          sidebarId: 'workflows',
+          docsPluginId: 'workflows',
           position: 'left',
-          label: 'CLI',
+          label: 'Workflows',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'subworkflows',
+          docsPluginId: 'subworkflows',
+          position: 'left',
+          label: 'Subworkflows',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'modules',
+          docsPluginId: 'modules',
+          position: 'left',
+          label: 'Modules',
+        },
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           type: 'docSidebar',
           sidebarId: 'impact',
           docsPluginId: 'impact',
           position: 'left',
-          label: 'Impact',
+          label: 'Impact & Outreach',
         },
         {
           href: 'https://github.com/bactopia/bactopia',
@@ -144,11 +182,24 @@ const config: Config = {
             },
             {
               label: 'CLI Reference',
-              to: '/cli/',
+              to: '/docs/cli/',
+            },
+          ],
+        },
+        {
+          title: 'Pipelines',
+          items: [
+            {
+              label: 'Workflows',
+              to: '/workflows/',
             },
             {
-              label: 'Impact & Outreach',
-              to: '/impact/',
+              label: 'Subworkflows',
+              to: '/subworkflows/',
+            },
+            {
+              label: 'Modules',
+              to: '/modules/',
             },
           ],
         },
@@ -163,14 +214,9 @@ const config: Config = {
               label: 'Twitter',
               href: 'https://twitter.com/rpetit3',
             },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
             {
-              label: 'GitHub Docs Repo',
-              href: 'https://github.com/bactopia/bactopia.github.io',
+              label: 'Impact & Outreach',
+              to: '/impact-and-outreach/',
             },
           ],
         },

@@ -1,3 +1,2 @@
-mkdocs-material-extensions
-pygments
-pymdown-extensions
+jinja2
+pyyaml

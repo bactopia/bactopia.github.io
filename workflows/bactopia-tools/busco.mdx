@@ -1,0 +1,434 @@
+---
+title: busco
+description: "Assessment of genome assembly completeness using evolutionarily informed expectations."
+tags:
+  - assembly
+  - completeness
+  - assessment
+  - orthologs
+  - quality-control
+  - bactopia-tool
+---
+
+# busco
+
+<span class="badge badge--success">stable</span>
+
+Assessment of genome assembly completeness using evolutionarily informed expectations.
+
+This Bactopia Tool uses [BUSCO](https://gitlab.com/ezlab/busco) (Benchmarking Universal Single-Copy Orthologs)
+to assess the completeness of genome assemblies by searching for single-copy orthologs. The workflow
+processes each assembly against a specified lineage dataset and provides comprehensive completeness metrics.
+
+## Usage
+
+```bash
+bactopia --wf busco \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── busco
+│           └── bacteria_odb10
+│               ├── <SAMPLE_NAME>-summary.txt
+│               ├── logs
+│               │   ├── bbtools_err.log
+│               │   ├── bbtools_out.log
+│               │   ├── busco.log
+│               │   ├── hmmsearch_err.log
+│               │   ├── hmmsearch_out.log
+│               │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               │   ├── prodigal_err.log
+│               │   ├── prodigal_mode_single_code_11_err.log
+│               │   ├── prodigal_mode_single_code_11_out.log
+│               │   ├── prodigal_mode_single_code_4_err.log
+│               │   ├── prodigal_mode_single_code_4_out.log
+│               │   ├── prodigal_out.log
+│               │   └── versions.yml
+│               └── supplemental
+│                   ├── prodigal_output
+│                   │   └── predicted_genes
+│                   │       ├── predicted.faa.gz
+│                   │       ├── predicted.fna.gz
+│                   │       └── tmp
+│                   │           ├── prodigal_mode_single_code_11.faa.gz
+│                   │           ├── prodigal_mode_single_code_11.fna.gz
+│                   │           ├── prodigal_mode_single_code_4.faa.gz
+│                   │           └── prodigal_mode_single_code_4.fna.gz
+│                   ├── run_bacteria_odb10
+│                   │   ├── .bbtools_output
+│                   │   ├── busco_sequences
+│                   │   │   ├── fragmented_busco_sequences
+│                   │   │   │   ├── 1540940at2.faa.gz
+│                   │   │   │   ├── 1540940at2.fna.gz
+│                   │   │   │   ├── 1827334at2.faa.gz
+│                   │   │   │   ├── 1827334at2.fna.gz
+│                   │   │   │   ├── 1830156at2.faa.gz
+│                   │   │   │   ├── 1830156at2.fna.gz
+│                   │   │   │   ├── 1874945at2.faa.gz
+│                   │   │   │   ├── 1874945at2.fna.gz
+│                   │   │   │   ├── 1937072at2.faa.gz
+│                   │   │   │   ├── 1937072at2.fna.gz
+│                   │   │   │   ├── 1971380at2.faa.gz
+│                   │   │   │   ├── 1971380at2.fna.gz
+│                   │   │   │   ├── 226836at2.faa.gz
+│                   │   │   │   ├── 226836at2.fna.gz
+│                   │   │   │   ├── 4421at2.faa.gz
+│                   │   │   │   ├── 4421at2.fna.gz
+│                   │   │   │   ├── 469058at2.faa.gz
+│                   │   │   │   ├── 469058at2.fna.gz
+│                   │   │   │   ├── 837522at2.faa.gz
+│                   │   │   │   ├── 837522at2.fna.gz
+│                   │   │   │   ├── 9601at2.faa.gz
+│                   │   │   │   ├── 9601at2.fna.gz
+│                   │   │   │   ├── 981870at2.faa.gz
+│                   │   │   │   └── 981870at2.fna.gz
+│                   │   │   ├── multi_copy_busco_sequences
+│                   │   │   └── single_copy_busco_sequences
+│                   │   │       ├── 1132353at2.faa.gz
+│                   │   │       ├── 1132353at2.fna.gz
+│                   │   │       ├── 1211060at2.faa.gz
+│                   │   │       ├── 1211060at2.fna.gz
+│                   │   │       ├── 1456375at2.faa.gz
+│                   │   │       ├── 1456375at2.fna.gz
+│                   │   │       ├── 1505038at2.faa.gz
+│                   │   │       ├── 1505038at2.fna.gz
+│                   │   │       ├── 1567535at2.faa.gz
+│                   │   │       ├── 1567535at2.fna.gz
+│                   │   │       ├── 1666043at2.faa.gz
+│                   │   │       ├── 1666043at2.fna.gz
+│                   │   │       ├── 1692188at2.faa.gz
+│                   │   │       ├── 1692188at2.fna.gz
+│                   │   │       ├── 1698718at2.faa.gz
+│                   │   │       ├── 1698718at2.fna.gz
+│                   │   │       ├── 1707228at2.faa.gz
+│                   │   │       ├── 1707228at2.fna.gz
+│                   │   │       ├── 1713391at2.faa.gz
+│                   │   │       ├── 1713391at2.fna.gz
+│                   │   │       ├── 1772647at2.faa.gz
+│                   │   │       ├── 1772647at2.fna.gz
+│                   │   │       ├── 1786618at2.faa.gz
+│                   │   │       ├── 1786618at2.fna.gz
+│                   │   │       ├── 1799923at2.faa.gz
+│                   │   │       ├── 1799923at2.fna.gz
+│                   │   │       ├── 1838961at2.faa.gz
+│                   │   │       ├── 1838961at2.fna.gz
+│                   │   │       ├── 1893906at2.faa.gz
+│                   │   │       ├── 1893906at2.fna.gz
+│                   │   │       ├── 1904463at2.faa.gz
+│                   │   │       ├── 1904463at2.fna.gz
+│                   │   │       ├── 1963491at2.faa.gz
+│                   │   │       ├── 1963491at2.fna.gz
+│                   │   │       ├── 1978865at2.faa.gz
+│                   │   │       ├── 1978865at2.fna.gz
+│                   │   │       ├── 2005443at2.faa.gz
+│                   │   │       ├── 2005443at2.fna.gz
+│                   │   │       ├── 2012682at2.faa.gz
+│                   │   │       ├── 2012682at2.fna.gz
+│                   │   │       ├── 2035880at2.faa.gz
+│                   │   │       ├── 2035880at2.fna.gz
+│                   │   │       ├── 2040741at2.faa.gz
+│                   │   │       ├── 2040741at2.fna.gz
+│                   │   │       ├── 2063644at2.faa.gz
+│                   │   │       ├── 2063644at2.fna.gz
+│                   │   │       ├── 353391at2.faa.gz
+│                   │   │       ├── 353391at2.fna.gz
+│                   │   │       ├── 430176at2.faa.gz
+│                   │   │       ├── 430176at2.fna.gz
+│                   │   │       ├── 662686at2.faa.gz
+│                   │   │       ├── 662686at2.fna.gz
+│                   │   │       ├── 665824at2.faa.gz
+│                   │   │       ├── 665824at2.fna.gz
+│                   │   │       ├── 761140at2.faa.gz
+│                   │   │       ├── 761140at2.fna.gz
+│                   │   │       ├── 776861at2.faa.gz
+│                   │   │       ├── 776861at2.fna.gz
+│                   │   │       ├── 961486at2.faa.gz
+│                   │   │       └── 961486at2.fna.gz
+│                   │   ├── full_table.tsv
+│                   │   ├── hmmer_output
+│                   │   │   ├── 1009041at2.out.gz
+│                   │   │   ├── 1024388at2.out.gz
+│                   │   │   ├── 1036075at2.out.gz
+│                   │   │   ├── 1043239at2.out.gz
+│                   │   │   ├── 1049662at2.out.gz
+│                   │   │   ├── 1054741at2.out.gz
+│                   │   │   ├── 1069591at2.out.gz
+│                   │   │   ├── 1074831at2.out.gz
+│                   │   │   ├── 1080436at2.out.gz
+│                   │   │   ├── 1093223at2.out.gz
+│                   │   │   ├── 1132353at2.out.gz
+│                   │   │   ├── 1151822at2.out.gz
+│                   │   │   ├── 1166299at2.out.gz
+│                   │   │   ├── 1211060at2.out.gz
+│                   │   │   ├── 1257362at2.out.gz
+│                   │   │   ├── 1266295at2.out.gz
+│                   │   │   ├── 1270636at2.out.gz
+│                   │   │   ├── 1272633at2.out.gz
+│                   │   │   ├── 1346419at2.out.gz
+│                   │   │   ├── 1395197at2.out.gz
+│                   │   │   ├── 1398618at2.out.gz
+│                   │   │   ├── 1419877at2.out.gz
+│                   │   │   ├── 143460at2.out.gz
+│                   │   │   ├── 1456375at2.out.gz
+│                   │   │   ├── 1470978at2.out.gz
+│                   │   │   ├── 1490892at2.out.gz
+│                   │   │   ├── 1491686at2.out.gz
+│                   │   │   ├── 1497415at2.out.gz
+│                   │   │   ├── 1502854at2.out.gz
+│                   │   │   ├── 1504821at2.out.gz
+│                   │   │   ├── 1505038at2.out.gz
+│                   │   │   ├── 1540940at2.out.gz
+│                   │   │   ├── 1567535at2.out.gz
+│                   │   │   ├── 1572673at2.out.gz
+│                   │   │   ├── 1574817at2.out.gz
+│                   │   │   ├── 1590629at2.out.gz
+│                   │   │   ├── 1592033at2.out.gz
+│                   │   │   ├── 1595498at2.out.gz
+│                   │   │   ├── 1623045at2.out.gz
+│                   │   │   ├── 1661836at2.out.gz
+│                   │   │   ├── 1666043at2.out.gz
+│                   │   │   ├── 1671455at2.out.gz
+│                   │   │   ├── 1674344at2.out.gz
+│                   │   │   ├── 1676462at2.out.gz
+│                   │   │   ├── 1692188at2.out.gz
+│                   │   │   ├── 1698718at2.out.gz
+│                   │   │   ├── 1701531at2.out.gz
+│                   │   │   ├── 1702697at2.out.gz
+│                   │   │   ├── 1707228at2.out.gz
+│                   │   │   ├── 1713391at2.out.gz
+│                   │   │   ├── 1720952at2.out.gz
+│                   │   │   ├── 1758685at2.out.gz
+│                   │   │   ├── 1760144at2.out.gz
+│                   │   │   ├── 1766414at2.out.gz
+│                   │   │   ├── 1772647at2.out.gz
+│                   │   │   ├── 1776954at2.out.gz
+│                   │   │   ├── 1786618at2.out.gz
+│                   │   │   ├── 1799923at2.out.gz
+│                   │   │   ├── 182107at2.out.gz
+│                   │   │   ├── 1822215at2.out.gz
+│                   │   │   ├── 1822695at2.out.gz
+│                   │   │   ├── 1827295at2.out.gz
+│                   │   │   ├── 1827334at2.out.gz
+│                   │   │   ├── 1830156at2.out.gz
+│                   │   │   ├── 1838961at2.out.gz
+│                   │   │   ├── 1842956at2.out.gz
+│                   │   │   ├── 1844275at2.out.gz
+│                   │   │   ├── 1846503at2.out.gz
+│                   │   │   ├── 1874945at2.out.gz
+│                   │   │   ├── 1890943at2.out.gz
+│                   │   │   ├── 1893906at2.out.gz
+│                   │   │   ├── 1904463at2.out.gz
+│                   │   │   ├── 1906715at2.out.gz
+│                   │   │   ├── 1932144at2.out.gz
+│                   │   │   ├── 1937072at2.out.gz
+│                   │   │   ├── 1937493at2.out.gz
+│                   │   │   ├── 1940575at2.out.gz
+│                   │   │   ├── 1949059at2.out.gz
+│                   │   │   ├── 1959318at2.out.gz
+│                   │   │   ├── 1963491at2.out.gz
+│                   │   │   ├── 1971380at2.out.gz
+│                   │   │   ├── 1978865at2.out.gz
+│                   │   │   ├── 1990141at2.out.gz
+│                   │   │   ├── 1990650at2.out.gz
+│                   │   │   ├── 2005443at2.out.gz
+│                   │   │   ├── 2012682at2.out.gz
+│                   │   │   ├── 2035880at2.out.gz
+│                   │   │   ├── 2040741at2.out.gz
+│                   │   │   ├── 2046660at2.out.gz
+│                   │   │   ├── 2063644at2.out.gz
+│                   │   │   ├── 2066663at2.out.gz
+│                   │   │   ├── 2075502at2.out.gz
+│                   │   │   ├── 219876at2.out.gz
+│                   │   │   ├── 223233at2.out.gz
+│                   │   │   ├── 226836at2.out.gz
+│                   │   │   ├── 232152at2.out.gz
+│                   │   │   ├── 26038at2.out.gz
+│                   │   │   ├── 267682at2.out.gz
+│                   │   │   ├── 353391at2.out.gz
+│                   │   │   ├── 384865at2.out.gz
+│                   │   │   ├── 402899at2.out.gz
+│                   │   │   ├── 430176at2.out.gz
+│                   │   │   ├── 4421at2.out.gz
+│                   │   │   ├── 462069at2.out.gz
+│                   │   │   ├── 469058at2.out.gz
+│                   │   │   ├── 504464at2.out.gz
+│                   │   │   ├── 505485at2.out.gz
+│                   │   │   ├── 533698at2.out.gz
+│                   │   │   ├── 662686at2.out.gz
+│                   │   │   ├── 665824at2.out.gz
+│                   │   │   ├── 761140at2.out.gz
+│                   │   │   ├── 776861at2.out.gz
+│                   │   │   ├── 837522at2.out.gz
+│                   │   │   ├── 841869at2.out.gz
+│                   │   │   ├── 874197at2.out.gz
+│                   │   │   ├── 91428at2.out.gz
+│                   │   │   ├── 923547at2.out.gz
+│                   │   │   ├── 932854at2.out.gz
+│                   │   │   ├── 932993at2.out.gz
+│                   │   │   ├── 95696at2.out.gz
+│                   │   │   ├── 9601at2.out.gz
+│                   │   │   ├── 961486at2.out.gz
+│                   │   │   ├── 981870at2.out.gz
+│                   │   │   └── 984717at2.out.gz
+│                   │   ├── missing_busco_list.tsv
+│                   │   ├── short_summary.json
+│                   │   └── short_summary.txt
+│                   ├── short_summary.specific.bacteria_odb10.<SAMPLE_NAME>.fna.json
+│                   └── short_summary.specific.bacteria_odb10.<SAMPLE_NAME>.fna.txt
+└── bactopia-runs
+    └── busco-bacteria_odb10-<TIMESTAMP>
+        ├── merged-results
+        │   ├── busco-bacteria_odb10.tsv
+        │   └── logs
+        │       └── busco-bacteria_odb10-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── busco-dag.dot
+            ├── busco-report.html
+            └── busco-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `run_` | BUSCO analysis output directory for each lineage |
+| `run_/full_table.tsv` | Complete results with scores and lengths of BUSCO matches |
+| `run_/missing_busco_list.tsv` | List of missing BUSCO genes |
+| `run_/short_summary.txt` | Summary of BUSCO assessment results |
+| `run_/short_summary.json` | Summary of BUSCO assessment in JSON format |
+| `*-summary.txt` | Per-sample BUSCO summary file |
+| `*-summary.json` | Per-sample BUSCO summary in JSON format |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `busco.tsv` | Merged TSV file containing BUSCO summaries from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| busco-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#dag-visualisation) |
+| busco-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| busco-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#timeline-report) |
+| busco-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-report) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### BUSCO Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--busco_lineage` | string | `bacteria_odb10` | Specify the name of the BUSCO lineage to be used |
+| `--busco_evalue` | string | `1e-03` | E-value cutoff for BLAST searches. Allowed formats, 0.001 or 1e-03 |
+| `--busco_limit` | integer | `3` | Total candidate regions to consider per BUSCO |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [busco](/subworkflows/busco) - Assess genome assembly completeness using BUSCO.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BUSCO](https://gitlab.com/ezlab/busco)  
+  Manni M, Berkeley MR, Seppey M, Simão FA, Zdobnov EM [BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes.](https://doi.org/10.1093/molbev/msab199) _Molecular Biology and Evolution_ 38(10), 4647-4654. (2021)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/busco)

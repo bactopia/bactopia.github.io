@@ -1,0 +1,194 @@
+---
+title: phispy
+description: "Prediction of prophages in bacterial and archaeal genomes."
+tags:
+  - prophage
+  - phage
+  - annotation
+  - bacterial
+  - archaeal
+  - bactopia-tool
+---
+
+# phispy
+
+<span class="badge badge--success">stable</span>
+
+Prediction of prophages in bacterial and archaeal genomes.
+
+This Bactopia Tool uses [PhiSpy](https://github.com/linsalrob/PhiSpy) to identify prophages
+from bacterial and archaeal genomes using machine learning approaches.
+
+## Usage
+
+```bash
+bactopia --wf phispy \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── phispy-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           ├── logs
+│           │   ├── <SAMPLE_NAME>.log
+│           │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│           │   └── versions.yml
+│           └── supplemental
+│               └── <SAMPLE_NAME>_<SAMPLE_NAME>.gbk.gz
+├── GCF_900478275
+│   └── tools
+│       └── phispy-<TIMESTAMP>
+│           ├── GCF_900478275.tsv
+│           ├── logs
+│           │   ├── GCF_900478275.log
+│           │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│           │   └── versions.yml
+│           └── supplemental
+│               └── GCF_900478275_GCF_900478275.gbk.gz
+└── bactopia-runs
+    └── phispy-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── phispy-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── phispy.tsv
+        └── nf-reports
+            ├── phispy-dag.dot
+            ├── phispy-report.html
+            └── phispy-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.txt` | Tab-delimited file containing prophage predictions |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `phispy.tsv` | Merged TSV file containing prophage predictions from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| phispy-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#dag-visualisation) |
+| phispy-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| phispy-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#timeline-report) |
+| phispy-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-report) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### PhiSpy Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--phispy_number` | integer | `5` | Number of consecutive genes in a region of window size that must be prophage genes to be called |
+| `--phispy_mincontigsize` | integer | `5000` | Minimum contig size (in bp) to be included in the analysis. Smaller contigs will be dropped. |
+| `--phispy_opts` | string |  | Extra options in quotes for Snippy |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [phispy](/subworkflows/phispy) - Prediction of prophages from bacterial genomes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PhiSpy](https://github.com/linsalrob/PhiSpy)  
+  Akhter S, Aziz RK, and Edwards RA [PhiSpy: a novel algorithm for finding prophages in bacterial genomes that combines similarity- and composition-based strategies.](https://doi.org/10.1093/nar/gks406) _Nucleic Acids Research_, 40(16), e126. (2012)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/phispy)

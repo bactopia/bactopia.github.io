@@ -1,0 +1,205 @@
+---
+title: rgi
+description: "Prediction of antibiotic resistance genes using RGI."
+tags:
+  - bacteria
+  - antibiotic-resistance
+  - card
+  - resistance-genes
+  - bactopia-tool
+---
+
+# rgi
+
+<span class="badge badge--success">stable</span>
+
+Prediction of antibiotic resistance genes using RGI.
+
+This Bactopia Tool uses [Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi) to identify
+and characterize antibiotic resistance genes in bacterial assemblies. RGI integrates with the
+Comprehensive Antibiotic Resistance Database (CARD) to provide high-confidence predictions
+of resistance determinants, including perfect and strict hits to known resistance genes,
+as well as loose hits for novel variants. The tool generates detailed reports in both
+JSON and TSV formats, along with heatmap visualizations for comparative analysis
+across multiple samples.
+
+## Usage
+
+```bash
+bactopia --wf rgi \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── rgi_main
+│           ├── <SAMPLE_NAME>.json
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+├── GCF_900478275
+│   └── tools
+│       └── rgi_main
+│           ├── GCF_900478275.json
+│           ├── GCF_900478275.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── rgi-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── rgi-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── rgi.tsv
+        ├── nf-reports
+        │   ├── rgi-dag.dot
+        │   ├── rgi-report.html
+        │   └── rgi-timeline.html
+        └── rgi-heatmap
+            ├── logs
+            │   └── rgi-heatmap
+            │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+            │       └── versions.yml
+            ├── rgi-2.csv
+            ├── rgi-2.eps
+            └── rgi-2.png
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.json` | JSON report containing detailed RGI results for each sample |
+| `*.txt` | Tab-delimited report of RGI results for each sample |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `rgi.tsv` | Merged TSV file containing RGI results from all samples |
+| `rgi-2.{csv,png}` | Heatmap representations of resistance genes across all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| rgi-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#dag-visualisation) |
+| rgi-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| rgi-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#timeline-report) |
+| rgi-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-report) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### RGI Main Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--rgi_use_diamond` | boolean | `false` | Use DIAMOND for alignments instead of BLAST |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [rgi](/subworkflows/rgi) - Predict antimicrobial resistance from protein or nucleotide data.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+- [Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi)  
+  Alcock BP, Raphenya AR, Lau TTY, Tsang KK, Bouchard M, Edalatmand A, Huynh W, Nguyen A-L V, Cheng AA, Liu S, Min SY, Miroshnichenko A, Tran H-K, Werfalli RE, Nasir JA, Oloni M, Speicher DJ, Florescu A, Singh B, Faltyn M, Hernandez-Koutoucheva A, Sharma AN, Bordeleau E, Pawlowski AC, Zubyk HL, Dooley D, Griffiths E, Maguire F, Winsor GL, Beiko RG, Brinkman FSL, Hsiao WWL, Domselaar GV, McArthur AG [CARD 2020: antibiotic resistome surveillance with the comprehensive antibiotic resistance database.](https://doi.org/10.1093/nar/gkz935) _Nucleic acids research_ 48.D1, D517-D525 (2020)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/rgi)

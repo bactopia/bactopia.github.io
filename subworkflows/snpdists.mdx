@@ -1,0 +1,70 @@
+---
+title: snpdists
+description: "Calculate pairwise SNP distances from sequence alignments."
+tags:
+  - snp
+  - distance
+  - alignment
+  - phylogeny
+  - core-genome
+  - run-scope
+---
+
+# snpdists
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">run scope</span>
+
+Calculate pairwise SNP distances from sequence alignments.
+
+This subworkflow uses [snp-dists](https://github.com/tseemann/snp-dists) to compute
+pairwise SNP distance matrices from multiple sequence alignments. It reads an
+alignment file (typically a core-genome alignment) and calculates the number
+of SNP differences between each pair of sequences, producing a distance matrix
+useful for phylogenetic and epidemiological analyses.
+
+## Take
+
+```
+alignment: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `aln` | Multiple sequence alignment in FASTA format |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+No sample-scope outputs.
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | Pairwise SNP distance matrix in TSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [snpdists](/modules/snpdists) - Create a SNP distance matrix from a multiple sequence alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/snpdists)

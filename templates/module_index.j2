@@ -1,0 +1,16 @@
+---
+title: Modules
+description: All available Bactopia modules
+slug: /
+---
+
+# Modules
+
+Bactopia includes {{ total }} modules -- individual processes that perform specific analysis tasks. You can also [browse modules by tag](/modules/tags).
+
+| Module | Description |
+|--------|-------------|
+{% for key in sorted_keys %}
+{% set mod = modules[key] %}
+| [{{ key }}](/modules/{{ key }}) | {{ mod.summary }} |
+{% endfor %}

@@ -1,0 +1,90 @@
+---
+title: hicap
+description: "In silico serotyping of the Haemophilus influenzae capsule locus."
+tags:
+  - haemophilus
+  - influenzae
+  - serotype
+  - capsule
+  - cap-locus
+  - sample-scope
+---
+
+# hicap
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+In silico serotyping of the Haemophilus influenzae capsule locus.
+
+This subworkflow performs serotyping of Haemophilus influenzae by analyzing
+the capsule locus using [hicap](https://github.com/scwatts/hicap). The tool
+identifies capsule type and produces detailed annotations of the cap locus,
+including graphical representation in SVG format and annotation in GenBank format.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembly files in FASTA format for H. influenzae serotype prediction |
+
+```
+database_dir: Path?
+model_fp: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `database_dir` | `Path?` | Directory containing hicap reference database files (optional) |
+| `model_fp` | `Path?` | Path to HMM model file for improved detection (optional) |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `gbff` | GenBank file containing the annotated capsule locus region (optional) |
+| `svg` | SVG visualization of the capsule locus gene arrangement (optional) |
+| `tsv` | Tab-delimited summary of the predicted serotype and locus coverage |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [hicap](/modules/hicap) - Predict *Haemophilus influenzae* capsule serotype.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [hicap](/workflows/bactopia-tools/hicap) - Identify cap locus serotype and structure in Haemophilus influenzae assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [hicap](https://github.com/scwatts/hicap)  
+  Watts SC, Holt KE [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) _Journal of Clinical Microbiology_ JCM.00190-19 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/hicap)

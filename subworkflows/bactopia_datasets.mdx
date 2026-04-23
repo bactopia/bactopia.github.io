@@ -1,0 +1,87 @@
+---
+title: bactopia_datasets
+description: "Download and provide pre-compiled datasets required by Bactopia."
+tags:
+  - download
+  - database
+  - setup
+  - amr
+  - mlst
+  - minhash
+  - sourmash
+  - gtdb
+  - custom-scope
+---
+
+# bactopia_datasets
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">custom scope</span>
+
+Download and provide pre-compiled datasets required by Bactopia.
+
+This subworkflow wraps the DATASETS module and extracts individual database
+paths as separate channel emissions for downstream consumption.
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+### Downstream Inputs
+
+The following emissions are meant to be used as inputs to downstream subworkflows.
+
+#### `amrfinderplus_db`
+
+Path to the AMRFinderPlus database tarball
+
+#### `mlst_db`
+
+Path to the PubMLST database tarball
+
+#### `mash_db`
+
+Path to the Mash RefSeq sketch
+
+#### `sourmash_db`
+
+Path to the Sourmash GTDB signatures
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [bactopia_datasets](/modules/bactopia_datasets) - Download pre-compiled datasets required by Bactopia.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [amrfinderplus](/workflows/bactopia-tools/amrfinderplus) - Bactopia Tool: Amrfinderplus.
+- [bactopia](/workflows/named-workflows/bactopia) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [merlin](/workflows/bactopia-tools/merlin) - MinMER-assisted species-specific tool selection and execution.
+- [staphopia](/workflows/named-workflows/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AMRFinderPlus](https://github.com/ncbi/amr)  
+  Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
+
+- [Mash Refseq (release 88) Sketch](https://mash.readthedocs.io/en/latest/data.html)  
+  Ondov BD, Starrett GJ, Sappington A, Kostic A, Koren S, Buck CB, Phillippy AM [Mash Screen: high-throughput sequence containment estimation for genome discovery](https://doi.org/10.1186/s13059-019-1841-x) _Genome Biol_ 20, 232 (2019)
+
+- [PubMLST.org](https://pubmlst.org/)  
+  Jolley KA, Bray JE, Maiden MCJ [Open-access bacterial population genomics: BIGSdb software, the PubMLST.org website and their applications.](http://dx.doi.org/10.12688/wellcomeopenres.14826.1) _Wellcome Open Res_ 3, 124 (2018)
+
+- [Sourmash Genbank LCA Signature](https://sourmash.readthedocs.io/en/latest/databases.html)  
+  Brown CT, Irber L [sourmash: a library for MinHash sketching of DNA](http://dx.doi.org/10.21105/joss.00027). _JOSS_ 1, 27 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/bactopia/datasets)

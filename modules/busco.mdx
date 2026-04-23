@@ -1,0 +1,92 @@
+---
+title: busco
+description: "Assess genome assembly completeness using single-copy orthologs."
+tags:
+  - quality-control
+  - completeness
+  - genome
+  - assembly
+  - orthologs
+  - busco
+  - sample-scope
+---
+
+# busco
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">busco v6.0.0</span> <span class="badge badge--info">sample scope</span>
+
+Assess genome assembly completeness using single-copy orthologs.
+
+Uses [BUSCO](https://gitlab.com/ezlab/busco) (Benchmarking Universal Single-Copy Orthologs)
+to measure the completeness of genome assemblies, gene sets, or transcriptomes by matching
+them against a lineage-specific set of conserved orthologs.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Text summary report of the completeness score (C/S/D/F/M%) |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### BUSCO Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--busco_lineage` | string | `bacteria_odb10` | Specify the name of the BUSCO lineage to be used |
+| `--busco_evalue` | string | `1e-03` | E-value cutoff for BLAST searches. Allowed formats, 0.001 or 1e-03 |
+| `--busco_limit` | integer | `3` | Total candidate regions to consider per BUSCO |
+
+## Used By
+
+### Subworkflows
+
+- [busco](/subworkflows/busco) - Assess genome assembly completeness using BUSCO.
+
+### Workflows
+
+- [busco](/workflows/bactopia-tools/busco) - Assessment of genome assembly completeness using evolutionarily informed expectations.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BUSCO](https://gitlab.com/ezlab/busco)  
+  Manni M, Berkeley MR, Seppey M, Simão FA, Zdobnov EM [BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes.](https://doi.org/10.1093/molbev/msab199) _Molecular Biology and Evolution_ 38(10), 4647-4654. (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/busco)

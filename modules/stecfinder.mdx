@@ -1,0 +1,99 @@
+---
+title: stecfinder
+description: "Serotype of Shigatoxin producing E. coli using reads/assemblies."
+tags:
+  - stec
+  - e.-coli
+  - virulence
+  - serotype
+  - typing
+  - sample-scope
+---
+
+# stecfinder
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">stecfinder v1.1.2</span> <span class="badge badge--info">sample scope</span>
+
+Serotype of Shigatoxin producing E. coli using reads/assemblies.
+
+Uses [STECFinder](https://github.com/LanLab/STECFinder) to identify Shiga toxin-producing
+*Escherichia coli* (STEC) serotypes and virulence factors from genome assemblies or sequencing reads.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+| `r1` | `Path?` | Illumina R1 reads (paired-end) |
+| `r2` | `Path?` | Illumina R2 reads (paired-end) |
+| `se` | `Path?` | Single-end Illumina reads |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | TSV file with STEC gene markers results |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### STECFinder Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--stecfinder_use_reads` | boolean | `false` | Paired-end Illumina reads will be used instead of assemblies |
+| `--stecfinder_hits` | boolean | `false` | Show detailed gene search results |
+| `--stecfinder_cutoff` | number | `10.0` | Minimum read coverage for gene to be called |
+| `--stecfinder_length` | number | `50.0` | Percentage of gene length needed for positive call |
+
+## Used By
+
+### Subworkflows
+
+- [stecfinder](/subworkflows/stecfinder) - Identify and serotype Shiga toxin-producing E. coli (STEC) from assemblies.
+
+### Workflows
+
+- [stecfinder](/workflows/bactopia-tools/stecfinder) - Serotype identification of Shiga toxin-producing E. coli.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [STECFinder](https://github.com/LanLab/STECFinder)  
+  Zhang X, Payne M, Kaur S, and Lan R [Improved Genomic Identification, Clustering, and Serotyping of Shiga Toxin-Producing Escherichia coli Using Cluster/Serotype-Specific Gene Markers.](https://doi.org/10.3389/fcimb.2021.772574) _Frontiers in Cellular and Infection Microbiology_, 11, 772574. (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/stecfinder)

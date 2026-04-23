@@ -1,0 +1,154 @@
+---
+title: prokka
+description: "Annotate prokaryotic genomes."
+tags:
+  - prokka
+  - annotation
+  - prokaryotic
+  - bacteria
+  - genbank
+  - gff
+  - sample-scope
+---
+
+# prokka
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">prokka v1.15.6</span> <span class="badge badge--info">sample scope</span>
+
+Annotate prokaryotic genomes.
+
+Uses [Prokka](https://github.com/tseemann/prokka) to rapidly annotate bacterial, archaeal,
+and viral genomes, producing standards-compliant output files including GFF3, GenBank, and Sequin.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+```
+proteins: Path?
+prodigal_tf: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `proteins` | `Path?` | FASTA file of trusted proteins to first annotate from |
+| `prodigal_tf` | `Path?` | Training file to use for gene prediction |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    gff: Path,
+    gbff: Path,
+    fna: Path,
+    faa: Path,
+    ffn: Path,
+    sqn: Path,
+    fsa: Path,
+    tbl: Path,
+    txt: Path,
+    tsv: Path,
+    blastdb: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `gff` | `Path` | Annotation in GFF3 format, containing both sequences and annotations |
+| `gbff` | `Path` | Annotation in GenBank format, containing both sequences and annotations |
+| `fna` | `Path` | Nucleotide FASTA file of the input contig sequences |
+| `faa` | `Path` | Protein FASTA file of the translated CDS sequences |
+| `ffn` | `Path` | Nucleotide FASTA file of all prediction transcripts (CDS, rRNA, tRNA, tmRNA, misc_RNA) |
+| `sqn` | `Path` | An ASN1 format "Sequin" file for submission to GenBank |
+| `fsa` | `Path` | Nucleotide FASTA file of the input contig sequences, used by tbl2asn |
+| `tbl` | `Path` | Feature Table file for NCBI submission |
+| `txt` | `Path` | Summary statistics relating to the annotated features found |
+| `tsv` | `Path` | Tab-separated file of all features (locus_tag, ftype, len_bp, gene, EC_number, COG, product) |
+| `blastdb` | `Path` | A compressed tar.gz archive of BLAST+ databases of the contigs, genes, and proteins |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Prokka Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--prokka_proteins` | string | `${projectDir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
+| `--prokka_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--prokka_coverage` | integer | `80` | Minimum coverage on query protein |
+
+## Used By
+
+### Subworkflows
+
+- [prokka](/subworkflows/prokka) - Annotate bacterial genomes with functional information.
+
+### Workflows
+
+- [bactopia](/workflows/named-workflows/bactopia) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [pangenome](/workflows/bactopia-tools/pangenome) - Pangenome analysis with optional core-genome phylogeny.
+- [prokka](/workflows/bactopia-tools/prokka) - Rapid whole genome annotation of bacterial, archaeal, and viral genomes.
+- [staphopia](/workflows/named-workflows/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Prokka](https://github.com/tseemann/prokka)  
+  Seemann T [Prokka: rapid prokaryotic genome annotation](http://dx.doi.org/10.1093/bioinformatics/btu153) _Bioinformatics_ 30, 2068-2069 (2014)
+
+- [Aragorn](http://130.235.244.92/ARAGORN/Downloads/)  
+  Laslett D, Canback B [ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences.](https://doi.org/10.1093/nar/gkh152) _Nucleic Acids Res_. 32(1):11-6 (2004)
+
+- [Barrnap](https://github.com/tseemann/barrnap)  
+  Seemann T [Barrnap: Bacterial ribosomal RNA predictor](https://github.com/tseemann/barrnap) (GitHub)
+
+- [CD-HIT](https://github.com/weizhongli/cdhit)  
+  Li W, Godzik A [Cd-hit: a fast program for clustering and comparing large sets of protein or nucleotide sequences](http://dx.doi.org/10.1093/bioinformatics/btl158). _Bioinformatics_ 22, 1658-1659 (2006)
+
+- [HMMER](http://hmmer.org/)  
+  Eddy SR [Accelerated Profile HMM Searches.](https://doi.org/10.1371/journal.pcbi.1002195) _PLoS Comput. Biol._ 7, e1002195 (2011)
+
+- [Infernal](http://eddylab.org/infernal/)  
+  Nawrocki EP, Eddy SR [Infernal 1.1: 100-fold faster RNA homology searches.](https://doi.org/10.1093/bioinformatics/btt509) _Bioinformatics_ 29(22), 2933-2935 (2013)
+
+- [MinCED](https://github.com/ctSkennerton/minced)  
+  Skennerton C [MinCED: Mining CRISPRs in Environmental Datasets](https://github.com/ctSkennerton/minced) (GitHub)
+
+- [nhmmer](http://hmmer.org/)  
+  Wheeler TJ, Eddy SR [nhmmer: DNA homology search with profile HMMs.](https://doi.org/10.1093/bioinformatics/btt403) _Bioinformatics_ 29, 2487-2489 (2013)
+
+- [Prodigal](https://github.com/hyattpd/Prodigal)  
+  Hyatt D, Chen G-L, LoCascio PF, Land ML, Larimer FW, Hauser LJ [Prodigal: prokaryotic gene recognition and translation initiation site identification.](https://doi.org/10.1186/1471-2105-11-119) _BMC Bioinformatics_ 11.1 119 (2010)
+
+- [RNAmmer](http://www.cbs.dtu.dk/services/RNAmmer/)  
+  Lagesen K, Hallin P, Rødland EA, Stærfeldt H-H, Rognes T, Ussery DW [RNAmmer: consistent annotation of rRNA genes in genomic sequences.](https://dx.doi.org/10.1093%2Fnar%2Fgkm160) _Nucleic Acids Res_ 35.9: 3100-3108 (2007)
+
+- [SignalP](http://www.cbs.dtu.dk/services/SignalP-4.0/)  
+  Petersen TN, Brunak S, von Heijne G, Nielsen H [SignalP 4.0: discriminating signal peptides from transmembrane regions.](https://doi.org/10.1038/nmeth.1701) _Nature methods_ 8.10: 785 (2011)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/prokka)

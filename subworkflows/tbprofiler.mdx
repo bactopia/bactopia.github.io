@@ -1,0 +1,92 @@
+---
+title: tbprofiler
+description: "Profiling tool for Mycobacterium tuberculosis to detect resistance and strain type."
+tags:
+  - mycobacterium
+  - tuberculosis
+  - drug-resistance
+  - lineage
+  - variants
+  - sample-scope
+---
+
+# tbprofiler
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+Profiling tool for Mycobacterium tuberculosis to detect resistance and strain type.
+
+This subworkflow performs comprehensive profiling of Mycobacterium tuberculosis
+from sequencing reads using [TBProfiler](https://github.com/jodyphelan/TBProfiler).
+The tool detects drug resistance mutations, determines lineage and strain type,
+and provides detailed variant calling results. It combines individual sample
+results with population-level analysis for surveillance and epidemiological studies.
+
+Uses explicit positional record fields for reads:
+- Input: record(meta, r1, r2, se, lr) where each read slot is Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `r1` | Illumina R1 reads (paired-end) |
+| `r2` | Illumina R2 reads (paired-end) |
+| `se` | Single-end Illumina reads |
+| `lr` | Long reads (ONT/PacBio) |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `bam` | Aligned BAM file |
+| `csv` | Results in CSV format |
+| `json` | Compressed JSON results file |
+| `txt` | Results in text format |
+| `vcf` | Compressed VCF file with variants |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Main collated results in CSV format |
+| `variants_csv` | Collated variants in CSV format |
+| `variants_txt` | Collated variants in text format |
+| `itol` | iTOL formatted files for visualization |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [tbprofiler_profile](/modules/tbprofiler_profile) - Detect resistance and lineages of Mycobacterium tuberculosis genomes.
+- [tbprofiler_collate](/modules/tbprofiler_collate) - Collate TB-Profiler results from multiple samples.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [tbprofiler](/workflows/bactopia-tools/tbprofiler) - Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [TBProfiler](https://github.com/jodyphelan/TBProfiler)  
+  Phelan JE, O'Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O'Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/tbprofiler)

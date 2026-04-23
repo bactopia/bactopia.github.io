@@ -1,0 +1,34 @@
+---
+title: {{ sw.key }}
+description: "{{ sw.summary }}"
+tags:
+{{ tags_yaml(tags) }}
+---
+
+# {{ sw.key }}
+
+{{ badges }}
+
+{{ description }}
+
+{% block after_description %}{% endblock %}
+{% if inputs_section %}
+{{ inputs_section }}
+{% endif %}
+{% if outputs_section %}
+{{ outputs_section }}
+{% endif %}
+{% block after_outputs %}{% endblock %}
+{% if composition_section %}
+{{ composition_section }}
+{% endif %}
+{% if used_by_section %}
+{{ used_by_section }}
+{% endif %}
+{% block before_citations %}{% endblock %}
+{% if citations_section %}
+{{ citations_section }}
+{% endif %}
+## Source
+
+[View source on GitHub]({{ sw.source_url }})

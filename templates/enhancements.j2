@@ -1,14 +1,16 @@
 ---
 title: Enhancements to OSS
 description: >-
-    Discover the design principles behind Bactopia's numerous contributions to the
-    bioinformatics community
+  Discover the design principles behind Bactopia's numerous contributions to the
+  bioinformatics community
+sidebar_position: 4
 ---
+
 # Enhancements to Open-Source Software
 
 Sustaining open source software is a difficult challenge that often demands substantial time
 and effort, usually without the benefit of recognition or support. The field of bioinformatics
-is no exception, as it heavily depends on tools maintained by individuals with little to no 
+is no exception, as it heavily depends on tools maintained by individuals with little to no
 support. Bactopia is no different.
 
 Recognizing these challenges, I designed Bactopia with an explicit goal of giving back to the
@@ -18,14 +20,15 @@ community. To fulfill this aim, I incorporated several key design requirements:
 2. Tools must be available from conda
 3. Bactopia Tools must be available on [nf-core/modules](https://github.com/nf-core/modules)
 
-!!! tip "Bactopia has provided {{ total_contributions }}+ contributions to the bioinformatics community"
-    - [x] {{ tools | length }} stand-alone tools, each available from Bioconda
-    - [x] {{ conda_submissions | length }} new Conda recipes, {{ conda_updates | length }} 
-    updated recipes, and [2,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
-    - [x] {{ nfcore_modules | length }} contributions to nf-core/modules
-    - [x] {{ other | length }} contributions to other tools
-    
-    These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
+:::tip[Bactopia has provided {{ total_contributions }}+ contributions to the bioinformatics community]
+- {{ tools | length }} stand-alone tools, each available from Bioconda
+- {{ conda_submissions | length }} new Conda recipes, {{ conda_updates | length }}
+  updated recipes, and [2,000+ Bioconda pull requests reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
+- {{ nfcore_modules | length }} contributions to nf-core/modules
+- {{ other | length }} contributions to other tools
+
+These contributions are to the wider community, and do not require you to use Bactopia to take advantage of them.
+:::
 
 ## Stand-Alone Tools
 
@@ -41,18 +44,17 @@ independent of Bactopia.
 | [{{ tool.tool }}]({{ tool.tool_url }}) | {{ tool.description }} |
 {% endfor %}
 
-
 ## Bioconda Contributions
 
 Bactopia requires tools be installable with Conda to simplify the installation process for
-users. This requirement led to an unintended, but welcomed, deeper involvement involvement
-with the Bioconda community. Bioconda is more than `conda install`, it is a valuable resource
+users. This requirement led to an unintended, but welcomed, deeper involvement with
+the Bioconda community. Bioconda is more than `conda install`, it is a valuable resource
 that makes bioinformatics tools more accessible to the community. Every time a tool is added
 to Bioconda, a Docker container is created by [Biocontainers](https://biocontainers.pro/),
 as well as a Singularity image is created by the [Galaxy Project](https://galaxyproject.org/).
 In essence, a single recipe contributes significantly to the broader community.
 
-Bactopia has led to  {{ conda_submissions | length }} new recipes, {{ conda_updates | length }}
+Bactopia has led to {{ conda_submissions | length }} new recipes, {{ conda_updates | length }}
 updated recipes, and [more than 2,000 pull requests have been reviewed](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+involves%3Arpetit3+is%3Aclosed).
 
 ### New Recipes
@@ -68,12 +70,12 @@ and include:
 | [{{ submission.tool }}]({{ submission.tool_url }}) | {{ submission.description }} | [{{ submission.pr_name }}]({{ submission.pr_url }}) |
 {% endfor %}
 
-
-!!! note "Every recipe gets a Docker and Singularity container"
-    Sometimes overlooked, its important to reinterate, every recipe added to Bioconda has a 
-    Docker container created by [Biocontainers](https://biocontainers.pro/), and a Singularity
-    container created by the [Galaxy Project](https://galaxyproject.org/). These containers 
-    allow for version controlled reproducible analyses.
+:::note[Every recipe gets a Docker and Singularity container]
+Sometimes overlooked, its important to reiterate, every recipe added to Bioconda has a
+Docker container created by [Biocontainers](https://biocontainers.pro/), and a Singularity
+container created by the [Galaxy Project](https://galaxyproject.org/). These containers
+allow for version controlled reproducible analyses.
+:::
 
 ### Enhancements and Fixes
 
@@ -93,9 +95,8 @@ and improvements to some Bioconda recipes:
 When Bactopia transitioned to Nextflow DSL2, it opened the door to adopting modules
 from [nf-core/modules](https://github.com/nf-core/modules). These modules enable users to
 seamlessly integrate them in their own Nextflow DSL2 pipelines. To support this integration,
-I decided to require each [Bactopia Tool](https://bactopia.github.io/bactopia-tools/), must
-have a corresponding module be available from nf-core/modules. If such a module is not already
-available, it will be added.
+I decided to require each Bactopia Tool must have a corresponding module be available from
+nf-core/modules. If such a module is not already available, it will be added.
 
 By adopting this practice, there have been {{ nfcore_modules | length }} contributions to
 nf-core/modules in the form of new modules, module updates, and testing adjustments.

@@ -1,0 +1,38 @@
+---
+title: {{ mod.key }}
+description: "{{ mod.summary }}"
+tags:
+{{ tags_yaml(tags) }}
+---
+
+# {{ mod.key }}
+
+{{ badges }}
+
+{{ description }}
+
+{% if notes_section %}
+{{ notes_section }}
+{% endif %}
+{% block after_description %}{% endblock %}
+{% if inputs_section %}
+{{ inputs_section }}
+{% endif %}
+{% if outputs_section %}
+{{ outputs_section }}
+{% endif %}
+{% block after_outputs %}{% endblock %}
+{% if params_section %}
+{{ params_section }}
+{% endif %}
+{% block after_params %}{% endblock %}
+{% if used_by_section %}
+{{ used_by_section }}
+{% endif %}
+{% block before_citations %}{% endblock %}
+{% if citations_section %}
+{{ citations_section }}
+{% endif %}
+## Source
+
+[View source on GitHub]({{ mod.source_url }})

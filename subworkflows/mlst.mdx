@@ -1,0 +1,86 @@
+---
+title: mlst
+description: "Determine multilocus sequence types (MLST) from bacterial assemblies."
+tags:
+  - mlst
+  - sequence-typing
+  - pubmlst
+  - bacteria
+  - sample-scope
+---
+
+# mlst
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+Determine multilocus sequence types (MLST) from bacterial assemblies.
+
+This subworkflow uses [mlst](https://github.com/tseemann/mlst) to scan assembled
+contigs against PubMLST typing schemes and determine sequence types (STs). It processes
+each sample individually and aggregates the results into a single consolidated report.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembled contigs in FASTA format |
+
+```
+db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path` | PubMLST database to use for MLST typing |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | A tab-delimited summary containing the Sample, Scheme, ST, and Allele IDs |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | A merged TSV file with mlst results from all samples |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [mlst](/modules/mlst) - Automatic Multi-Locus Sequence Typing (MLST) of genome assemblies.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [bactopia](/workflows/named-workflows/bactopia) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [mlst](/workflows/bactopia-tools/mlst) - Automatic Multi-Locus Sequence Type (MLST) calling from assembled contigs.
+- [staphopia](/workflows/named-workflows/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [mlst](https://github.com/tseemann/mlst)  
+  Seemann T [mlst: scan contig files against PubMLST typing schemes](https://github.com/tseemann/mlst) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/mlst)

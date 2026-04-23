@@ -1,0 +1,194 @@
+---
+title: midas
+description: "Estimate species abundances from metagenomic samples."
+tags:
+  - metagenomics
+  - species-abundance
+  - profiling
+  - midas
+  - bactopia-tool
+---
+
+# midas
+
+<span class="badge badge--success">stable</span>
+
+Estimate species abundances from metagenomic samples.
+
+This Bactopia Tool uses [MIDAS](https://github.com/snayfach/MIDAS) to estimate
+bacterial species abundances in metagenomic samples. MIDAS uses a database
+with more than 30,000 reference genomes for accurate species profiling.
+
+## Usage
+
+```bash
+bactopia --wf midas \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── midas-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.midas.abundances.txt
+│           ├── <SAMPLE_NAME>.midas.adjusted.abundances.txt
+│           ├── <SAMPLE_NAME>.midas.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── midas-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── midas-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── midas.tsv
+        └── nf-reports
+            ├── midas-dag.dot
+            ├── midas-report.html
+            └── midas-timeline.html
+```
+
+### Species Abundance
+
+| File | Description |
+|------|-------------|
+| `*.tsv` | Species abundance profiles |
+| `*-species.tsv` | Species-level abundance |
+| `*-genes.tsv` | Gene-level abundance |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `midas.tsv` | Merged TSV file containing MIDAS results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| midas-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#dag-visualisation) |
+| midas-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| midas-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#timeline-report) |
+| midas-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-report) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### MIDAS Database Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--midas_db` | string |  | A single tarball or path to a MIDAS formatted database |
+| `--midas_save_as_tarball` | boolean | `false` | Save the MIDAS database as a tarball |
+| `--download_midas` | boolean | `false` | Download the MIDAS database to the path given by --midas_db |
+
+### MIDAS Species Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--midas_word_size` | integer | `28` | Word size for BLAST search |
+| `--midas_aln_cov` | number | `0.75` | Discard reads with alignment coverage &lt; ALN_COV |
+| `--midas_opts` | string |  | Extra MIDAS options |
+| `--midas_debug` | boolean | `false` | Keep all temporary files created by MIDAS |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [midas](/subworkflows/midas) - Species-level profiling from metagenomic data.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [MIDAS](https://github.com/snayfach/MIDAS)  
+  Nayfach S, Rodriguez-Mueller B, Garud N, and Pollard KS [An integrated metagenomics pipeline for strain profiling reveals novel patterns of bacterial transmission and biogeography.](https://doi.org/10.1101/gr.201863.115) _Genome Research_, 26(11), 1612-1625. (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/midas)

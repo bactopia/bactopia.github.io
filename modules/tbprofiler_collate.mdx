@@ -1,0 +1,97 @@
+---
+title: tbprofiler_collate
+description: "Collate TB-Profiler results from multiple samples."
+tags:
+  - tuberculosis
+  - mycobacterium
+  - drug-resistance
+  - collate
+  - summary
+  - run-scope
+---
+
+# tbprofiler_collate
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">tb-profiler v6.7.0</span> <span class="badge badge--info">run scope</span>
+
+Collate TB-Profiler results from multiple samples.
+
+Uses [TBProfiler](https://github.com/jodyphelan/TBProfiler) to aggregate profiling results
+from multiple samples into summary tables and files suitable for phylogenetic visualization.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    json: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `json` | `Set<Path>` | List of TB-Profiler JSON output files |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    csv: Path,
+    variants_csv: Path,
+    variants_txt: Path,
+    itol: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `csv` | `Path` | Main collated results in CSV format |
+| `variants_csv` | `Path` | Collated variants in CSV format |
+| `variants_txt` | `Path` | Collated variants in text format |
+| `itol` | `Set<Path?>` | iTOL formatted files for visualization |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### TB-Profiler Collate Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--tbprofiler_itol` | boolean | `false` | Generate itol config files |
+| `--tbprofiler_full` | boolean | `false` | Output mutations in main result file |
+| `--tbprofiler_all_variants` | boolean | `false` | Output all variants in variant matrix |
+| `--tbprofiler_mark_missing` | boolean | `false` | An asterisk will be used to mark predictions which are affected by missing data at a drug resistance position |
+
+## Used By
+
+### Subworkflows
+
+- [tbprofiler](/subworkflows/tbprofiler) - Profiling tool for Mycobacterium tuberculosis to detect resistance and strain type.
+
+### Workflows
+
+- [tbprofiler](/workflows/bactopia-tools/tbprofiler) - Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [TBProfiler](https://github.com/jodyphelan/TBProfiler)  
+  Phelan JE, O'Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O'Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/tbprofiler/collate)
