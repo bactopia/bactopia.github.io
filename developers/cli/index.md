@@ -1,6 +1,7 @@
 ---
 title: CLI Reference
-sidebar_position: 1
+description: Command-line reference documentation for all Bactopia CLI commands and options
+slug: /cli
 ---
 
 Command-line reference documentation for all Bactopia CLI commands and options.

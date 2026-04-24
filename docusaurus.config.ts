@@ -195,7 +195,7 @@ const config: Config = {
             },
             {
               label: 'CLI Reference',
-              to: '/cli/',
+              to: '/developers/cli/',
             },
           ],
         },
