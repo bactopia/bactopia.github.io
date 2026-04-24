@@ -46,8 +46,8 @@ independent of Bactopia.
 | [pbptyper](https://github.com/rpetit3/pbptyper) | In silico Penicillin Binding Protein typer for Streptococcus pneumoniae |
 | [pmga](https://github.com/rpetit3/pmga) | A fork of PMGA for all Neisseria species and Haemophilus influenzae |
 | [shovill-se](https://github.com/rpetit3/shovill) | A fork of Shovill that includes support for single end reads |
-| [staphopia-sccmec](https://github.com/rpetit3/vcf-annotator) | A standalone version of Staphopia’s SCCmec typing method |
-| [vcf-annotator](https://github.com/staphopia/staphopia-sccmec) | Add biological annotations to variants in a given VCF file |
+| [staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec) | A standalone version of Staphopia’s SCCmec typing method |
+| [vcf-annotator](https://github.com/rpetit3/vcf-annotator) | Add biological annotations to variants in a given VCF file |
 
 
 
