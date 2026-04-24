@@ -1,0 +1,93 @@
+---
+title: gubbins
+description: "Detect recombination and construct a recombination-free phylogeny."
+tags:
+  - bacteria
+  - recombination
+  - phylogeny
+  - alignment
+  - msa
+  - evolution
+  - snp
+  - run-scope
+---
+
+# gubbins
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">gubbins v3.4.3</span> <span class="badge badge--info">run scope</span>
+
+Detect recombination and construct a recombination-free phylogeny.
+
+Uses [Gubbins](https://github.com/nickjcroucher/gubbins) (Genealogies Unbiased By recomBinations In Nucleotide Sequences)
+to iteratively identify and mask recombinant regions in a multiple sequence alignment. It generates
+a phylogenetic tree based only on vertically inherited point mutations.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    aln: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `aln` | `Path` | Multiple sequence alignment in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    masked_aln: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `masked_aln` | `Path` | The input alignment with recombinant regions masked (*.masked.aln.gz) |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Gubbins Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--gubbins_iterations` | integer | `5` | Maximum number of iterations |
+| `--gubbins_opts` | string |  | Extra Gubbins options in quotes |
+| `--skip_recombination` | boolean | `false` | Skip Gubbins execution in subworkflows |
+
+## Used By
+
+### Subworkflows
+
+- [gubbins](/subworkflows/gubbins) - Detect and filter recombination regions in bacterial alignments.
+
+### Workflows
+
+- [snippy](/workflows/bactopia-tools/snippy) - Rapid haplotype variant calling and core genome alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Gubbins](https://github.com/nickjcroucher/gubbins)  
+  Croucher NJ, Page AJ, Connor TR, Delaney AJ, Keane JA, Bentley SD, Parkhill J, Harris SR [Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins.](https://doi.org/10.1093/nar/gku1196) _Nucleic Acids Research_ 43(3), e15. (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/gubbins)

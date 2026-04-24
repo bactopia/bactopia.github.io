@@ -1,0 +1,86 @@
+---
+title: ariba_getref
+description: "Download and prepare reference databases for ARIBA analysis."
+tags:
+  - bacteria
+  - database
+  - download
+  - antimicrobial-resistance
+  - virulence
+  - ariba
+  - setup
+  - run-scope
+---
+
+# ariba_getref
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">ariba v2.14.7</span> <span class="badge badge--info">run scope</span>
+
+Download and prepare reference databases for ARIBA analysis.
+
+Uses [ARIBA](https://github.com/sanger-pathogens/ariba) to fetch curated reference databases
+(e.g., CARD, ResFinder, VFDB, PlasmidFinder) and prepare them for local assembly-based
+gene detection. The database is indexed and packaged into a tarball for use with `ariba run`.
+
+:::note[Internet Required]
+This process requires an active internet connection to fetch the specified database.
+:::
+
+## Inputs
+
+```
+db_name: String
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db_name` | `String` | Name of the database to download (e.g., 'card', 'resfinder', 'vfdb_core', 'plasmidfinder') |
+
+## Outputs
+
+```
+record (
+    db: Path,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path` | A compressed tarball containing the prepared ARIBA database |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [ariba](/subworkflows/ariba) - Rapidly identify genes by creating local assemblies from paired-end reads.
+
+### Workflows
+
+- [ariba](/workflows/bactopia-tools/ariba) - Gene identification through local assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Ariba](https://github.com/sanger-pathogens/ariba)  
+  Hunt M, Mather AE, Sánchez-Busó L, Page AJ, Parkhill J, Keane JA, Harris SR [ARIBA: rapid antimicrobial resistance genotyping directly from sequencing reads](http://dx.doi.org/10.1099/mgen.0.000131). _Microb Genom_ 3, e000131 (2017)
+
+- [MEGARes](https://megares.meglab.org/)  
+  Lakin SM, Dean C, Noyes NR, Dettenwanger A, Ross AS, Doster E, Rovira P, Abdo Z, Jones KL, Ruiz J, Belk KE, Morley PS, Boucher C [MEGARes: an antimicrobial resistance database for high throughput sequencing.](https://doi.org/10.1093/nar/gkw1009) _Nucleic Acids Res._ 45, D574-D580 (2017)
+
+- [SRST2](https://github.com/katholt/srst2)  
+  Inouye M, Dashnow H, Raven L-A, Schultz MB, Pope BJ, Tomita T, Zobel J, Holt KE [SRST2: Rapid genomic surveillance for public health and hospital microbiology labs.](https://doi.org/10.1186/s13073-014-0090-6) _Genome Med._ 6, 90 (2014)
+
+- [VirulenceFinder](https://cge.food.dtu.dk/services/VirulenceFinder/)  
+  Joensen KG, Scheutz F, Lund O, Hasman H, Kaas RS, Nielsen EM, Aarestrup FM [Real-time whole-genome sequencing for routine typing, surveillance, and outbreak detection of verotoxigenic _Escherichia coli_.](https://doi.org/10.1128/jcm.03617-13) _J. Clin. Microbiol._ 52, 1501-1510 (2014)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ariba/getref)

@@ -1,0 +1,100 @@
+---
+title: mashtree
+description: "Rapid alignment-free phylogenomic tree construction."
+tags:
+  - phylogeny
+  - tree
+  - mash
+  - minhash
+  - alignment-free
+  - distance
+  - clustering
+  - neighbor-joining
+  - run-scope
+---
+
+# mashtree
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">mashtree v1.4.6</span> <span class="badge badge--info">run scope</span>
+
+Rapid alignment-free phylogenomic tree construction.
+
+Uses [Mashtree](https://github.com/lskatz/mashtree) to create a phylogenetic tree
+from genome sequences (FASTA, FASTQ, or GenBank) using MinHash distances. It computes
+pairwise distances between all inputs and uses the Neighbor-Joining algorithm to
+cluster genomes, effectively creating a "distance-based" tree without full alignment.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Set<Path>` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    nwk: Path,
+    tsv: Path,
+    sketches: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `nwk` | `Path` | The final phylogenetic tree in Newick format (*.dnd) |
+| `tsv` | `Path` | The pairwise distance matrix used to build the tree (*.tsv) |
+| `sketches` | `Set<Path?>` | Directory containing the individual Mash sketches |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Mashtree Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--mashtree_sortorder` | string | `ABC` | For neighbor-joining, the sort order can make a difference. (choices: `ABC`, `random`, `input-order`) |
+| `--mashtree_genomesize` | integer | `5000000` | Genome size of the input samples |
+| `--mashtree_mindepth` | integer | `5` | If mindepth is zero, then it will be chosen in a smart but slower method, to discard lower-abundance kmers. |
+| `--mashtree_kmerlength` | integer | `21` | Hashes will be based on strings of this many nucleotides |
+
+## Used By
+
+### Subworkflows
+
+- [mashtree](/subworkflows/mashtree) - Create phylogenetic trees using Mash distances.
+
+### Workflows
+
+- [mashtree](/workflows/bactopia-tools/mashtree) - Rapid phylogenetic tree construction using Mash distances.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mashtree](https://github.com/lskatz/mashtree)  
+  Katz LS, Griswold T, Morrison S, Caravas J, Zhang S, den Bakker HC, Deng X, Carleton HA [Mashtree: a rapid comparison of whole genome sequence files.](https://doi.org/10.21105/joss.01762) _Journal of Open Source Software_, 4(44), 1762 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mashtree)

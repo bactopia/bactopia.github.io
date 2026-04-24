@@ -1,0 +1,99 @@
+---
+title: mash_dist
+description: "Calculate genomic distances using MinHash sketches."
+tags:
+  - mash
+  - distance
+  - minhash
+  - ani
+  - comparison
+  - taxonomy
+  - sample-scope
+---
+
+# mash_dist
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">mash v2.3</span> <span class="badge badge--info">sample scope</span>
+
+Calculate genomic distances using MinHash sketches.
+
+Uses [Mash](https://github.com/marbl/Mash) to compute the distance between query sequences
+and a reference database. It uses MinHash sketches to rapidly estimate the Jaccard index,
+providing a fast approximation of Average Nucleotide Identity (ANI).
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | FASTA, FASTQ, or Mash sketch file to be queried |
+
+```
+reference: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `reference` | `Path` | The reference file (FASTA, FASTQ, or Mash sketch) to compare against |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    dist: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `dist` | `Path` | A tab-delimited summary of the Mash distances and p-values |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### mashdist Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--mash_sketch` | string |  | The reference sequence as a Mash Sketch (.msh file) |
+| `--full_merlin` | boolean | `false` | Go full Merlin and run all species-specific tools, no matter the Mash distance |
+
+## Used By
+
+### Subworkflows
+
+- [mashdist](/subworkflows/mashdist) - Calculate Mash distances between sequences and a reference.
+
+### Workflows
+
+- [mashdist](/workflows/bactopia-tools/mashdist) - Calculate Mash distances between sequences and reference genomes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mash/dist)

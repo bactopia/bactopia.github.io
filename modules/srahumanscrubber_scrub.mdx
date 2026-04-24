@@ -1,0 +1,113 @@
+---
+title: srahumanscrubber_scrub
+description: "Scrub human reads from FASTQ files."
+tags:
+  - human
+  - contamination
+  - scrubber
+  - decontamination
+  - ncbi
+  - sra
+  - sample-scope
+---
+
+# srahumanscrubber_scrub
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">bactopia-teton v1.1.3</span> <span class="badge badge--info">sample scope</span>
+
+Scrub human reads from FASTQ files.
+
+Uses [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber) to identify and remove
+human reads from sequencing data. It relies on a specific k-mer database to mask or remove
+sequences that align to human references.
+
+Uses explicit positional named parameters for reads:
+- Input: record(meta, r1, r2, se, lr) where each read slot is Path?
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `r1` | `Path?` | Illumina R1 reads (paired-end) |
+| `r2` | `Path?` | Illumina R2 reads (paired-end) |
+| `se` | `Path?` | Single-end Illumina reads |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+```
+db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path` | SRA Human Scrubber database directory |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    special_meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    scrub_report: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `special_meta` | `Record` | A simplified metadata record for downstream report joining |
+| `r1` | `Path?` | Scrubbed paired-end forward reads |
+| `r2` | `Path?` | Scrubbed paired-end reverse reads |
+| `se` | `Path?` | Scrubbed single-end reads |
+| `lr` | `Path?` | Scrubbed long reads |
+| `scrub_report` | `Path?` | Report of scrubbing statistics |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### SRA Human Scrubber Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--use_srascrubber` | boolean | `false` | Use SRAHumanScrubber for scrubbing human reads |
+
+## Used By
+
+### Subworkflows
+
+- [srahumanscrubber](/subworkflows/srahumanscrubber) - Remove human contamination from sequencing reads for SRA submission.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber)  
+  Katz KS, Shutov O, Lapoint R, Kimelman M, Brister JR, and O'Sullivan C [STAT: a fast, scalable, MinHash-based k-mer tool to assess Sequence Read Archive next-generation sequence submissions.](https://doi.org/10.1186/s13059-021-02490-0) _Genome Biology_, 22(1), 270 (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/srahumanscrubber/scrub)

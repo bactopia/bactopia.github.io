@@ -1,0 +1,96 @@
+---
+title: fastani
+description: "Compute whole-genome Average Nucleotide Identity (ANI)."
+tags:
+  - fastani
+  - ani
+  - average-nucleotide-identity
+  - taxonomy
+  - genomic-distance
+  - comparison
+  - run-scope
+---
+
+# fastani
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">fastani v1.34</span> <span class="badge badge--info">run scope</span>
+
+Compute whole-genome Average Nucleotide Identity (ANI).
+
+Uses [FastANI](https://github.com/ParBLiSS/FastANI) to perform alignment-free computation
+of ANI between the input query genomes and a reference genome. This is the standard method
+for species definition (typically &gt;95% ANI) and is much faster than traditional BLAST-based approaches.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    query: Set<Path>,
+    reference: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `query` | `Set<Path>` | One or more assembled contigs in FASTA format (Query genomes) |
+| `reference` | `Path` | The reference genome assembly in FASTA format to compare against |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited summary of ANI scores, matched fragments, and total fragments |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### fastANI Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--fastani_reference` | string |  | Path to reference genome in FASTA format |
+| `--fastani_kmer` | integer | `16` | kmer size (&lt;= 16) for ANI calculation  |
+| `--fastani_min_fraction` | number | `0.2` | Minimum fraction of genome that must be shared for trusting ANI. |
+| `--fastani_frag_len` | integer | `3000` | fragment length |
+| `--fastani_skip_pairwise` | boolean | `false` | Only use RefSeq or local assemblies for ANI calculations |
+
+## Used By
+
+### Subworkflows
+
+- [fastani](/subworkflows/fastani) - Calculate Average Nucleotide Identity (ANI) between genomes.
+
+### Workflows
+
+- [fastani](/workflows/bactopia-tools/fastani) - Fast alignment-free computation of whole-genome Average Nucleotide Identity.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [FastANI](https://github.com/ParBLiSS/FastANI)  
+  Jain C, Rodriguez-R LM, Phillippy AM, Konstantinidis KT, Aluru S [High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.](http://dx.doi.org/10.1038/s41467-018-07641-9) _Nat. Commun._ 9, 5114 (2018)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/fastani)

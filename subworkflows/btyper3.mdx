@@ -1,0 +1,78 @@
+---
+title: btyper3
+description: "In silico taxonomic classification of Bacillus cereus group genomes."
+tags:
+  - bacillus
+  - cereus
+  - taxonomy
+  - typing
+  - toxin-genes
+  - sample-scope
+---
+
+# btyper3
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+In silico taxonomic classification of Bacillus cereus group genomes.
+
+This subworkflow performs taxonomic classification of Bacillus cereus group
+genomes using [BTyper3](https://github.com/lmc297/BTyper3), which provides
+comprehensive classification including species, lineage, and toxin gene detection.
+The results from individual samples are aggregated into a combined summary file.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembly files in FASTA format for Bacillus cereus group classification |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | Tab-delimited BTyper3 typing and classification results |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [btyper3](/modules/btyper3) - In silico typing and characterization of *Bacillus cereus* group genomes.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [btyper3](/workflows/bactopia-tools/btyper3) - Taxonomic classification of Bacillus cereus group isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BTyper3](https://github.com/lmc297/BTyper3)  
+  Carroll LM, Cheng RA, Kovac J [No Assembly Required: Using BTyper3 to Assess the Congruency of a Proposed Taxonomic Framework for the Bacillus cereus Group With Historical Typing Methods.](https://doi.org/10.3389/fmicb.2020.580691) _Frontiers in Microbiology_, 11, 580691. (2020)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/btyper3)

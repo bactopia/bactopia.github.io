@@ -1,0 +1,99 @@
+---
+title: plasmidfinder
+description: "Identify plasmid replicon types in bacterial sequences and assemblies."
+tags:
+  - plasmid
+  - replicon
+  - typing
+  - identification
+  - mobility
+  - amr
+  - sample-scope
+---
+
+# plasmidfinder
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">plasmidfinder v2.1.6</span> <span class="badge badge--info">sample scope</span>
+
+Identify plasmid replicon types in bacterial sequences and assemblies.
+
+Uses [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder/src/master/)
+to identify plasmid types (replicon typing) by querying the genome assembly against a database
+of plasmid sequences. This is a crucial step for understanding the mobility of resistance and virulence genes.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    json: Path,
+    txt: Path,
+    tsv: Path,
+    genome_seq: Path,
+    plasmid_seq: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `json` | `Path` | PlasmidFinder results in JSON format |
+| `txt` | `Path` | PlasmidFinder results in text format |
+| `tsv` | `Path` | Tab-delimited PlasmidFinder results with replicon typing information |
+| `genome_seq` | `Path` | FASTA sequences of plasmid hits found in the genome (gzipped) |
+| `plasmid_seq` | `Path` | Reference plasmid sequences matched (gzipped) |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### PlasmidFinder Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--plasmidfinder_mincov` | number | `0.6` | Minimum percent coverage to be considered a hit |
+| `--plasmidfinder_threshold` | number | `0.9` | Minimum threshold for identity |
+
+## Used By
+
+### Subworkflows
+
+- [plasmidfinder](/subworkflows/plasmidfinder) - Identify plasmid replicons in bacterial genome assemblies.
+
+### Workflows
+
+- [plasmidfinder](/workflows/bactopia-tools/plasmidfinder) - Bactopia Tool: Plasmidfinder.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder)  
+  Carattoli A, Zankari E, García-Fernández A, Voldby Larsen M, Lund O, Villa L, Møller Aarestrup F, Hasman H [In silico detection and typing of plasmids using PlasmidFinder and plasmid multilocus sequence typing.](https://doi.org/10.1128/AAC.02412-14) _Antimicrobial Agents and Chemotherapy_ 58(7), 3895-3903. (2014)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/plasmidfinder)

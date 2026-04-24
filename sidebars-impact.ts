@@ -5,6 +5,8 @@ const sidebars: SidebarsConfig = {
     'index',
     'acknowledgements',
     'citations',
+    'enhancements',
+    'presentations',
   ],
 };
 

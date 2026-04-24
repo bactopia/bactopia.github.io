@@ -1,0 +1,175 @@
+---
+title: mcroni
+description: "Sequence variation analysis of mcr-1 genes (mobilized colistin resistance)."
+tags:
+  - mcr-1
+  - colistin-resistance
+  - antimicrobial-resistance
+  - fasta
+  - bactopia-tool
+---
+
+# mcroni
+
+<span class="badge badge--success">stable</span>
+
+Sequence variation analysis of mcr-1 genes (mobilized colistin resistance).
+
+This Bactopia Tool uses [mcroni](https://github.com/liampshaw/mcroni) to identify _mcr-1_ genes in
+assemblies and report sequence variations. If _mcr-1_ is found, the variations will be reported
+and available in an output FASTA file.
+
+## Usage
+
+```bash
+bactopia --wf mcroni \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── mcroni-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.fasta
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── mcroni-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── mcroni-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── mcroni.tsv
+        └── nf-reports
+            ├── mcroni-dag.dot
+            ├── mcroni-report.html
+            └── mcroni-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.txt` | Summary of mcr-1 variants found |
+| `*.fasta` | FASTA file of mcr-1 variants |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `mcroni.tsv` | Merged TSV file containing mcroni results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| mcroni-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| mcroni-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| mcroni-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| mcroni-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [mcroni](/subworkflows/mcroni) - Scripts for finding and processing promoter variants upstream of mcr-1.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [mcroni](https://github.com/liampshaw/mcroni)  
+  Shaw L [mcroni: Scripts for finding and processing promoter variants upstream of mcr-1](https://github.com/liampshaw/mcroni) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/mcroni)

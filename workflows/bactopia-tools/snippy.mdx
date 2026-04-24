@@ -1,0 +1,475 @@
+---
+title: snippy
+description: "Rapid haplotype variant calling and core genome alignment."
+tags:
+  - snp
+  - variant-calling
+  - phylogeny
+  - core-genome
+  - snippy
+  - bactopia-tool
+---
+
+# snippy
+
+<span class="badge badge--success">stable</span>
+
+Rapid haplotype variant calling and core genome alignment.
+
+This Bactopia Tool uses [Snippy](https://github.com/tseemann/snippy) to find SNPs between a
+reference genome and a set of reads, perform core genome alignment, and generate
+phylogenetic trees. It includes optional recombination detection with Gubbins
+and phylogenetic tree construction with IQ-Tree.
+
+## Usage
+
+```bash
+bactopia --wf snippy \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── snippy-<TIMESTAMP>
+│           └── GCF_000292685
+│               ├── <SAMPLE_NAME>.aligned.fa.gz
+│               ├── <SAMPLE_NAME>.annotated.vcf.gz
+│               ├── <SAMPLE_NAME>.bam
+│               ├── <SAMPLE_NAME>.bam.bai
+│               ├── <SAMPLE_NAME>.bed.gz
+│               ├── <SAMPLE_NAME>.consensus.fa.gz
+│               ├── <SAMPLE_NAME>.consensus.subs.fa.gz
+│               ├── <SAMPLE_NAME>.consensus.subs.masked.fa.gz
+│               ├── <SAMPLE_NAME>.coverage.txt.gz
+│               ├── <SAMPLE_NAME>.csv.gz
+│               ├── <SAMPLE_NAME>.filt.vcf.gz
+│               ├── <SAMPLE_NAME>.gff.gz
+│               ├── <SAMPLE_NAME>.html
+│               ├── <SAMPLE_NAME>.raw.vcf.gz
+│               ├── <SAMPLE_NAME>.subs.vcf.gz
+│               ├── <SAMPLE_NAME>.tab
+│               ├── <SAMPLE_NAME>.txt
+│               ├── <SAMPLE_NAME>.vcf.gz
+│               └── logs
+│                   ├── <SAMPLE_NAME>.log
+│                   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│                   └── versions.yml
+├── ERR6005894
+│   └── tools
+│       └── snippy-<TIMESTAMP>
+│           └── GCF_000292685
+│               ├── ERR6005894.aligned.fa.gz
+│               ├── ERR6005894.annotated.vcf.gz
+│               ├── ERR6005894.bam
+│               ├── ERR6005894.bam.bai
+│               ├── ERR6005894.bed.gz
+│               ├── ERR6005894.consensus.fa.gz
+│               ├── ERR6005894.consensus.subs.fa.gz
+│               ├── ERR6005894.consensus.subs.masked.fa.gz
+│               ├── ERR6005894.coverage.txt.gz
+│               ├── ERR6005894.csv.gz
+│               ├── ERR6005894.filt.vcf.gz
+│               ├── ERR6005894.gff.gz
+│               ├── ERR6005894.html
+│               ├── ERR6005894.raw.vcf.gz
+│               ├── ERR6005894.subs.vcf.gz
+│               ├── ERR6005894.tab
+│               ├── ERR6005894.txt
+│               ├── ERR6005894.vcf.gz
+│               └── logs
+│                   ├── ERR6005894.log
+│                   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│                   └── versions.yml
+├── ERR6005894SE
+│   └── tools
+│       └── snippy-<TIMESTAMP>
+│           └── GCF_000292685
+│               ├── ERR6005894SE.aligned.fa.gz
+│               ├── ERR6005894SE.annotated.vcf.gz
+│               ├── ERR6005894SE.bam
+│               ├── ERR6005894SE.bam.bai
+│               ├── ERR6005894SE.bed.gz
+│               ├── ERR6005894SE.consensus.fa.gz
+│               ├── ERR6005894SE.consensus.subs.fa.gz
+│               ├── ERR6005894SE.consensus.subs.masked.fa.gz
+│               ├── ERR6005894SE.coverage.txt.gz
+│               ├── ERR6005894SE.csv.gz
+│               ├── ERR6005894SE.filt.vcf.gz
+│               ├── ERR6005894SE.gff.gz
+│               ├── ERR6005894SE.html
+│               ├── ERR6005894SE.raw.vcf.gz
+│               ├── ERR6005894SE.subs.vcf.gz
+│               ├── ERR6005894SE.tab
+│               ├── ERR6005894SE.txt
+│               ├── ERR6005894SE.vcf.gz
+│               └── logs
+│                   ├── ERR6005894SE.log
+│                   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│                   └── versions.yml
+├── SRR2838702
+│   └── tools
+│       └── snippy-<TIMESTAMP>
+│           └── GCF_000292685
+│               ├── SRR2838702.aligned.fa.gz
+│               ├── SRR2838702.annotated.vcf.gz
+│               ├── SRR2838702.bam
+│               ├── SRR2838702.bam.bai
+│               ├── SRR2838702.bed.gz
+│               ├── SRR2838702.consensus.fa.gz
+│               ├── SRR2838702.consensus.subs.fa.gz
+│               ├── SRR2838702.consensus.subs.masked.fa.gz
+│               ├── SRR2838702.coverage.txt.gz
+│               ├── SRR2838702.csv.gz
+│               ├── SRR2838702.filt.vcf.gz
+│               ├── SRR2838702.gff.gz
+│               ├── SRR2838702.html
+│               ├── SRR2838702.raw.vcf.gz
+│               ├── SRR2838702.subs.vcf.gz
+│               ├── SRR2838702.tab
+│               ├── SRR2838702.txt
+│               ├── SRR2838702.vcf.gz
+│               └── logs
+│                   ├── SRR2838702.log
+│                   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│                   └── versions.yml
+├── SRR2838702SE
+│   └── tools
+│       └── snippy-<TIMESTAMP>
+│           └── GCF_000292685
+│               ├── SRR2838702SE.aligned.fa.gz
+│               ├── SRR2838702SE.annotated.vcf.gz
+│               ├── SRR2838702SE.bam
+│               ├── SRR2838702SE.bam.bai
+│               ├── SRR2838702SE.bed.gz
+│               ├── SRR2838702SE.consensus.fa.gz
+│               ├── SRR2838702SE.consensus.subs.fa.gz
+│               ├── SRR2838702SE.consensus.subs.masked.fa.gz
+│               ├── SRR2838702SE.coverage.txt.gz
+│               ├── SRR2838702SE.csv.gz
+│               ├── SRR2838702SE.filt.vcf.gz
+│               ├── SRR2838702SE.gff.gz
+│               ├── SRR2838702SE.html
+│               ├── SRR2838702SE.raw.vcf.gz
+│               ├── SRR2838702SE.subs.vcf.gz
+│               ├── SRR2838702SE.tab
+│               ├── SRR2838702SE.txt
+│               ├── SRR2838702SE.vcf.gz
+│               └── logs
+│                   ├── SRR2838702SE.log
+│                   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│                   └── versions.yml
+├── SRR2838702SE_2
+│   └── tools
+│       └── snippy-<TIMESTAMP>
+│           └── GCF_000292685
+│               ├── SRR2838702SE_2.aligned.fa.gz
+│               ├── SRR2838702SE_2.annotated.vcf.gz
+│               ├── SRR2838702SE_2.bam
+│               ├── SRR2838702SE_2.bam.bai
+│               ├── SRR2838702SE_2.bed.gz
+│               ├── SRR2838702SE_2.consensus.fa.gz
+│               ├── SRR2838702SE_2.consensus.subs.fa.gz
+│               ├── SRR2838702SE_2.consensus.subs.masked.fa.gz
+│               ├── SRR2838702SE_2.coverage.txt.gz
+│               ├── SRR2838702SE_2.csv.gz
+│               ├── SRR2838702SE_2.filt.vcf.gz
+│               ├── SRR2838702SE_2.gff.gz
+│               ├── SRR2838702SE_2.html
+│               ├── SRR2838702SE_2.raw.vcf.gz
+│               ├── SRR2838702SE_2.subs.vcf.gz
+│               ├── SRR2838702SE_2.tab
+│               ├── SRR2838702SE_2.txt
+│               ├── SRR2838702SE_2.vcf.gz
+│               └── logs
+│                   ├── SRR2838702SE_2.log
+│                   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│                   └── versions.yml
+├── SRR2838702_2
+│   └── tools
+│       └── snippy-<TIMESTAMP>
+│           └── GCF_000292685
+│               ├── SRR2838702_2.aligned.fa.gz
+│               ├── SRR2838702_2.annotated.vcf.gz
+│               ├── SRR2838702_2.bam
+│               ├── SRR2838702_2.bam.bai
+│               ├── SRR2838702_2.bed.gz
+│               ├── SRR2838702_2.consensus.fa.gz
+│               ├── SRR2838702_2.consensus.subs.fa.gz
+│               ├── SRR2838702_2.consensus.subs.masked.fa.gz
+│               ├── SRR2838702_2.coverage.txt.gz
+│               ├── SRR2838702_2.csv.gz
+│               ├── SRR2838702_2.filt.vcf.gz
+│               ├── SRR2838702_2.gff.gz
+│               ├── SRR2838702_2.html
+│               ├── SRR2838702_2.raw.vcf.gz
+│               ├── SRR2838702_2.subs.vcf.gz
+│               ├── SRR2838702_2.tab
+│               ├── SRR2838702_2.txt
+│               ├── SRR2838702_2.vcf.gz
+│               └── logs
+│                   ├── SRR2838702_2.log
+│                   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│                   └── versions.yml
+└── bactopia-runs
+    └── snippy-<TIMESTAMP>
+        ├── GCF_000292685.samples.txt
+        ├── core-snp-clean.full.aln.gz
+        ├── core-snp.distance.tsv
+        ├── core-snp.full.aln.gz
+        ├── core-snp.masked.aln.gz
+        ├── core-snp.masked.distance.tsv
+        ├── gubbins
+        │   ├── core-snp.branch_base_reconstruction.embl.gz
+        │   ├── core-snp.filtered_polymorphic_sites.fasta.gz
+        │   ├── core-snp.filtered_polymorphic_sites.phylip
+        │   ├── core-snp.final_tree.tre
+        │   ├── core-snp.node_labelled.final_tree.tre
+        │   ├── core-snp.per_branch_statistics.csv
+        │   ├── core-snp.recombination_predictions.embl.gz
+        │   ├── core-snp.recombination_predictions.gff.gz
+        │   ├── core-snp.summary_of_snp_distribution.vcf.gz
+        │   └── logs
+        │       ├── core-snp.log
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        ├── nf-reports
+        │   ├── snippy-dag.dot
+        │   ├── snippy-report.html
+        │   └── snippy-timeline.html
+        ├── snippy-core
+        │   ├── core-snp.aln.gz
+        │   ├── core-snp.tab.gz
+        │   ├── core-snp.txt
+        │   ├── core-snp.vcf.gz
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        ├── snpdists
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        └── snpdists-masked
+            └── logs
+                ├── nf.command.{begin,err,log,out,run,sh,trace}
+                └── versions.yml
+```
+
+### Variant Calling
+
+| File | Description |
+|------|-------------|
+| `*.vcf` | Variant calls in VCF format |
+| `*.bam` | Alignment file |
+| `*.txt` | Snippy summary report |
+
+### Core Genome Alignment
+
+| File | Description |
+|------|-------------|
+| `core.full.aln` | Full core genome alignment |
+| `core.snps.aln` | Core SNP alignment |
+
+### Recombination Analysis
+
+:::note
+Only created if recombination analysis is enabled
+:::
+
+| File | Description |
+|------|-------------|
+| `*.filtered.aln` | Alignment with recombination regions removed |
+| `*.gff` | Recombination predictions |
+
+### Phylogeny
+
+:::note
+Only created if phylogeny analysis is enabled
+:::
+
+| File | Description |
+|------|-------------|
+| `*.treefile` | Phylogenetic tree in Newick format |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `snippy.tsv` | Merged summary of Snippy analyses |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| snippy-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| snippy-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| snippy-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| snippy-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### NCBI Genome Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--species` | string |  | Name of the species to download assemblies |
+| `--accession` | string |  | An NCBI Assembly accession to be downloaded |
+| `--accessions` | string |  | An file of NCBI Assembly accessions (one per line) to be downloaded |
+| `--format` | string | `fasta` | Comma separated list of formats to download |
+| `--limit` | string |  | Limit the number of assemblies to download |
+| `--keep_downloads` | boolean | `false` | Save downloaded files into the bactopia-runs folder |
+
+### Snippy Run Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--reference` | string |  | Reference genome in GenBank format |
+| `--snippy_mapqual` | integer | `60` | Minimum read mapping quality to consider |
+| `--snippy_basequal` | integer | `13` | Minimum base quality to consider |
+| `--snippy_bwaopt` | string |  | Extra BWA MEM options, eg. -x pacbio |
+| `--snippy_fbopt` | string |  | Extra Freebayes options, eg. --theta 1E-6 --read-snp-limit 2 |
+| `--snippy_opts` | string |  | Extra options in quotes for Snippy |
+
+### Snippy-Core Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--snippy_core_maxhap` | integer | `100` | Largest haplotype to decompose |
+| `--snippy_core_mask` | string |  | BED file of sites to mask |
+| `--snippy_core_mask_char` | string | `X` | Masking character |
+| `--snippy_core_opts` | string |  | Extra options in quotes for snippy-core |
+
+### SNP-Dists Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--snpdists_a` | boolean | `false` | Count all differences not just [AGTC] |
+
+### Gubbins Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--gubbins_iterations` | integer | `5` | Maximum number of iterations |
+| `--gubbins_opts` | string |  | Extra Gubbins options in quotes |
+| `--skip_recombination` | boolean | `false` | Skip Gubbins execution in subworkflows |
+
+### IQ-TREE Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--iqtree_model` | string | `HKY` | Substitution model name |
+| `--iqtree_bb` | integer | `1000` | Ultrafast bootstrap replicates |
+| `--iqtree_alrt` | integer | `1000` | SH-like approximate likelihood ratio test replicates |
+| `--iqtree_asr` | boolean | `false` | Ancestral state reconstruction by empirical Bayes |
+| `--skip_phylogeny` | boolean | `false` | Skip IQ-TREE execution in subworkflows |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [gubbins](/subworkflows/gubbins) - Detect and filter recombination regions in bacterial alignments.
+- [iqtree](/subworkflows/iqtree) - Construct maximum likelihood phylogenetic trees from alignments.
+- [ncbigenomedownload](/subworkflows/ncbigenomedownload) - Download bacterial genomes from NCBI's RefSeq database.
+- [snippy_core](/subworkflows/snippy_core) - Generate core-genome SNP alignment from per-sample Snippy outputs.
+- [snippy_run](/subworkflows/snippy_run) - Call variants against a reference genome using Snippy.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Snippy](https://github.com/tseemann/snippy)  
+  Seemann T [Snippy: fast bacterial variant calling from NGS reads](https://github.com/tseemann/snippy) (GitHub)
+
+- [Gubbins](https://github.com/nickjcroucher/gubbins)  
+  Croucher NJ, Page AJ, Connor TR, Delaney AJ, Keane JA, Bentley SD, Parkhill J, Harris SR [Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins.](https://doi.org/10.1093/nar/gku1196) _Nucleic Acids Research_ 43(3), e15. (2015)
+
+- [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
+  Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/snippy)

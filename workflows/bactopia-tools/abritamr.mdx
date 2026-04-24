@@ -1,0 +1,199 @@
+---
+title: abritamr
+description: "A NATA accredited tool for reporting the presence of antimicrobial resistance genes."
+tags:
+  - bacteria
+  - antimicrobial-resistance
+  - virulence
+  - amr
+  - nata
+  - bactopia-tool
+---
+
+# abritamr
+
+<span class="badge badge--success">stable</span>
+
+A NATA accredited tool for reporting the presence of antimicrobial resistance genes.
+
+This Bactopia Tool uses [abriTAMR](https://github.com/MDU-PHL/abritamr) to identify
+antimicrobial resistance genes in bacterial genomes. It runs AMRFinderPlus on each
+sample and collates the results into functional classes, producing detailed reports
+on resistance genes, partial matches, and virulence factors. It is accredited by NATA
+for use in reporting presence of reportable AMR genes in Victoria, Australia.
+
+## Usage
+
+```bash
+bactopia --wf abritamr \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── abritamr-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.abritamr.tsv
+│           ├── <SAMPLE_NAME>.amrfinder.out
+│           ├── <SAMPLE_NAME>.summary_matches.tsv
+│           ├── <SAMPLE_NAME>.summary_partials.tsv
+│           ├── <SAMPLE_NAME>.summary_virulence.tsv
+│           └── logs
+│               ├── abritamr.log
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               ├── update_abritamr_db.log
+│               └── versions.yml
+└── bactopia-runs
+    └── abritamr-<TIMESTAMP>
+        ├── merged-results
+        │   ├── abritamr.tsv
+        │   └── logs
+        │       └── abritamr-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── abritamr-dag.dot
+            ├── abritamr-report.html
+            └── abritamr-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.abritamr.txt` | Tab-delimited file combining non-empty summary files from abriTAMR |
+| `*.amrfinder.out` | Raw output from AMRFinderPlus (per sequence) |
+| `*.summary_matches.txt` | Tab-delimited file with AMR gene matches per sequence |
+| `*.summary_partials.txt` | Tab-delimited file with partial AMR gene matches |
+| `*.summary_virulence.txt` | Tab-delimited file with virulence gene classifications |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `abritamr.tsv` | Merged TSV file containing AMR summaries from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| abritamr-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| abritamr-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| abritamr-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| abritamr-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### abriTAMR Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--abritamr_species` | string |  | Use species specific point mutations, must provide a valid species |
+| `--abritamr_identity` | integer |  | Minimum identity of matches with amrfinder (0 - 1.0), defaults to amrfinder preset |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [abritamr](/subworkflows/abritamr) - Identify antimicrobial resistance genes using AMRFinderPlus.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [abriTAMR](https://github.com/MDU-PHL/abritamr)  
+  Sherry NL, Horan KA, Ballard SA, Gonҫalves da Silva A, Gorrie CL, Schultz MB, Stevens K, Valcanis M, Sait ML, Stinear TP, Howden BP, and Seemann T [An ISO-certified genomics workflow for identification and surveillance of antimicrobial resistance.](https://doi.org/10.1038/s41467-022-35713-4) _Nature Communications_, 14(1), 60. (2023)
+
+- [AMRFinderPlus](https://github.com/ncbi/amr)  
+  Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/abritamr)

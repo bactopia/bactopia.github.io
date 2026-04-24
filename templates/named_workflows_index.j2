@@ -1,0 +1,15 @@
+---
+title: Named Workflows
+description: Bactopia named analysis pipelines
+sidebar_position: 1
+---
+
+# Named Workflows
+
+Named workflows are complete analysis pipelines that process raw sequencing data through multiple analysis steps. There are {{ total }} named workflows available.
+
+| Workflow | Status | Description |
+|----------|--------|-------------|
+{% for key in named_keys %}
+| [{{ key }}](/workflows/named-workflows/{{ key }}) | {{ named[key].status | default('') }} | {{ named[key].summary }} |
+{% endfor %}

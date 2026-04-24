@@ -1,0 +1,171 @@
+---
+title: snippy_run
+description: "Rapid haploid variant calling and core genome alignment."
+tags:
+  - snippy
+  - variant-calling
+  - snp
+  - indel
+  - alignment
+  - bacteria
+  - sample-scope
+---
+
+# snippy_run
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">bactopia-variants v1.0.4</span> <span class="badge badge--info">sample scope</span>
+
+Rapid haploid variant calling and core genome alignment.
+
+Uses [Snippy](https://github.com/tseemann/snippy) to find SNPs and indels between a haploid
+reference genome and your Next-Generation Sequencing (NGS) sequence reads. It maps reads to
+the reference, calls variants, and generates a consensus sequence.
+
+Uses explicit positional record fields for reads:
+- Input: record(meta, r1, r2, se) where each read slot is Path?
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `r1` | `Path?` | Illumina R1 reads (paired-end) |
+| `r2` | `Path?` | Illumina R2 reads (paired-end) |
+| `se` | `Path?` | Single-end Illumina reads |
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing reference information |
+| `reference` | `Path` | Reference genome (FASTA or GenBank format) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    aligned_fa: Path?,
+    vcf: Path?,
+    aligned_fa_error: Path?,
+    vcf_error: Path?,
+    error: Path?,
+    annotated_vcf: Path,
+    bam: Path?,
+    bai: Path?,
+    bed: Path,
+    consensus_fa: Path,
+    consensus_subs_fa: Path,
+    consensus_subs_masked_fa: Path,
+    coverage: Path,
+    csv: Path,
+    filt_vcf: Path,
+    gff: Path,
+    html: Path,
+    raw_vcf: Path,
+    subs_vcf: Path,
+    tab: Path,
+    txt: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `aligned_fa` | `Path?` | A version of the reference with - at zero coverage positions |
+| `vcf` | `Path?` | The final annotated variants in VCF format |
+| `aligned_fa_error` | `Path?` | Aligned FASTA file generated during error state |
+| `vcf_error` | `Path?` | VCF file generated during error state |
+| `error` | `Path?` | Error log text file |
+| `annotated_vcf` | `Path` | Annotated VCF file |
+| `bam` | `Path?` | The alignments in BAM format (includes unmapped/multimapping) |
+| `bai` | `Path?` | Index for the BAM file |
+| `bed` | `Path` | The variants in BED format |
+| `consensus_fa` | `Path` | Reference genome with all variants instantiated |
+| `consensus_subs_fa` | `Path` | Reference genome with only substitution variants instantiated |
+| `consensus_subs_masked_fa` | `Path` | Reference genome with substitutions instantiated and low coverage masked |
+| `coverage` | `Path` | Per-base coverage depth information |
+| `csv` | `Path` | A comma-separated summary of variants |
+| `filt_vcf` | `Path` | The filtered variant calls from Freebayes |
+| `gff` | `Path` | The variants in GFF3 format |
+| `html` | `Path` | A HTML summary of the variants |
+| `raw_vcf` | `Path` | The unfiltered variant calls from Freebayes |
+| `subs_vcf` | `Path` | VCF containing only substitution variants |
+| `tab` | `Path` | A simple tab-separated summary of all variants |
+| `txt` | `Path` | Tab-separated columnar list of alignment statistics |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Snippy Run Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--reference` | string |  | Reference genome in GenBank format |
+| `--snippy_mapqual` | integer | `60` | Minimum read mapping quality to consider |
+| `--snippy_basequal` | integer | `13` | Minimum base quality to consider |
+| `--snippy_bwaopt` | string |  | Extra BWA MEM options, eg. -x pacbio |
+| `--snippy_fbopt` | string |  | Extra Freebayes options, eg. --theta 1E-6 --read-snp-limit 2 |
+| `--snippy_opts` | string |  | Extra options in quotes for Snippy |
+
+## Used By
+
+### Subworkflows
+
+- [snippy_run](/subworkflows/snippy_run) - Call variants against a reference genome using Snippy.
+
+### Workflows
+
+- [snippy](/workflows/bactopia-tools/snippy) - Rapid haplotype variant calling and core genome alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Snippy](https://github.com/tseemann/snippy)  
+  Seemann T [Snippy: fast bacterial variant calling from NGS reads](https://github.com/tseemann/snippy) (GitHub)
+
+- [BCFtools](https://github.com/samtools/bcftools)  
+  Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H [Twelve years of SAMtools and BCFtools](https://doi.org/10.1093/gigascience/giab008) _GigaScience_ Volume 10, Issue 2 (2021)
+
+- [Bedtools](https://github.com/arq5x/bedtools2)  
+  Quinlan AR, Hall IM [BEDTools: a flexible suite of utilities for comparing genomic features](http://dx.doi.org/10.1093/bioinformatics/btq033). _Bioinformatics_ 26, 841-842 (2010)
+
+- [freebayes](https://github.com/ekg/freebayes)  
+  Garrison E, Marth G [Haplotype-based variant detection from short-read sequencing.](https://arxiv.org/abs/1207.3907) arXiv preprint arXiv:1207.3907 [q-bio.GN] (2012)
+
+- [Seqtk](https://github.com/lh3/seqtk)  
+  Li H [Toolkit for processing sequences in FASTA/Q formats](https://github.com/lh3/seqtk) (GitHub)
+
+- [SnpEff](http://snpeff.sourceforge.net/)  
+  Cingolani P, Platts A, Wang LL, Coon M, Nguyen T, Wang L, Land SJ, Lu X, Douglas M [A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3.](https://doi.org/10.4161/fly.19695) _Fly_ 6(2), 80-92 (2012)
+
+- [VCF-Annotator](https://github.com/rpetit3/vcf-annotator)  
+  Petit III RA [VCF-Annotator: Add biological annotations to variants in a VCF file.](https://github.com/rpetit3/vcf-annotator) (GitHub)
+
+- [Vcflib](https://github.com/vcflib/vcflib)  
+  Garrison E [Vcflib: A C++ library for parsing and manipulating VCF files](https://github.com/vcflib/vcflib) (GitHub)
+
+- [vt](https://github.com/atks/vt)  
+  Tan A, Abecasis GR, Kang HM [Unified representation of genetic variants.](https://doi.org/10.1093/bioinformatics/btv112) _Bioinformatics_ 31(13), 2202-2204 (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/snippy/run)

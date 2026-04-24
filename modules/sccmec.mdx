@@ -1,0 +1,100 @@
+---
+title: sccmec
+description: "Identify SCCmec elements in Staphylococcus aureus genomes."
+tags:
+  - sccmec
+  - staphylococcus-aureus
+  - mrsa
+  - antimicrobial-resistance
+  - typing
+  - sample-scope
+---
+
+# sccmec
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">sccmec v1.2.0</span> <span class="badge badge--info">sample scope</span>
+
+Identify SCCmec elements in Staphylococcus aureus genomes.
+
+Uses [SCCmec](https://github.com/rpetit3/sccmec) to identify the Staphylococcal Cassette
+Chromosome mec (SCCmec) element in *Staphylococcus aureus* assemblies. It predicts the type
+based on the presence of specific *mec* and *ccr* gene complexes.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    targets: Path,
+    target_details: Path,
+    regions: Path,
+    regions_details: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Main results file with SCCmec typing |
+| `targets` | `Path` | BLAST results for target sequences |
+| `target_details` | `Path` | Detailed results for target matches |
+| `regions` | `Path` | BLAST results for SCCmec regions |
+| `regions_details` | `Path` | Detailed results for SCCmec region matches |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### sccmec Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--sccmec_min_targets_pident` | integer | `90` | Minimum percent identity to count a target hit |
+| `--sccmec_min_targets_coverage` | integer | `80` | Minimum percent coverage to count a target hit |
+| `--sccmec_min_regions_pident` | integer | `85` | Minimum percent identity to count a region hit |
+| `--sccmec_min_regions_coverage` | integer | `93` | Minimum percent coverage to count a region hit |
+
+## Used By
+
+### Subworkflows
+
+- [sccmec](/subworkflows/sccmec) - Identify SCCmec elements in Staphylococcus aureus genomes.
+
+### Workflows
+
+- [sccmec](/workflows/bactopia-tools/sccmec) - Typing of SCCmec cassettes in Staphylococcus aureus assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [sccmec](https://github.com/rpetit3/sccmec)  
+  Petit III RA, Read TD [sccmec: A tool for typing SCCmec cassettes in assemblies](https://github.com/rpetit3/sccmec) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/sccmec)

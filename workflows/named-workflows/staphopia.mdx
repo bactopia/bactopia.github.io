@@ -1,0 +1,381 @@
+---
+title: staphopia
+description: "Comprehensive analysis pipeline for Staphylococcus aureus isolates."
+tags:
+  - staphylococcus-aureus
+  - assembly
+  - annotation
+  - amr
+  - mlst
+  - spa-typing
+  - agr-typing
+  - sccmec
+  - named-workflow
+---
+
+# staphopia
+
+<span class="badge badge--success">stable</span>
+
+Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+This workflow performs complete bacterial analysis including quality control,
+assembly, annotation, antimicrobial resistance detection, MLST typing,
+and Staphylococcus-specific analysis using [Spatyper](https://github.com/HCGB-IGTP/spaTyper),
+[AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE), and [SCCmecFinder](https://github.com/rpetit3/sccmec).
+It processes raw sequencing reads and produces a comprehensive genomic characterization for S. aureus isolates.
+
+## Usage
+
+```bash
+bactopia --wf staphopia \
+  --input samples.csv \
+  --outdir results/
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   ├── main
+│   │   ├── annotator
+│   │   │   └── prokka
+│   │   │       ├── <SAMPLE_NAME>-blastdb.tar.gz
+│   │   │       ├── <SAMPLE_NAME>.faa.gz
+│   │   │       ├── <SAMPLE_NAME>.ffn.gz
+│   │   │       ├── <SAMPLE_NAME>.fna.gz
+│   │   │       ├── <SAMPLE_NAME>.fsa.gz
+│   │   │       ├── <SAMPLE_NAME>.gbk.gz
+│   │   │       ├── <SAMPLE_NAME>.gff.gz
+│   │   │       ├── <SAMPLE_NAME>.sqn.gz
+│   │   │       ├── <SAMPLE_NAME>.tbl.gz
+│   │   │       ├── <SAMPLE_NAME>.tsv
+│   │   │       ├── <SAMPLE_NAME>.txt
+│   │   │       └── logs
+│   │   │           ├── <SAMPLE_NAME>.err
+│   │   │           ├── <SAMPLE_NAME>.log
+│   │   │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │           └── versions.yml
+│   │   ├── assembler
+│   │   │   ├── <SAMPLE_NAME>.fna.gz
+│   │   │   ├── <SAMPLE_NAME>.tsv
+│   │   │   ├── logs
+│   │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │   │   ├── shovill.log
+│   │   │   │   └── versions.yml
+│   │   │   └── supplemental
+│   │   │       ├── flash.hist
+│   │   │       ├── flash.histogram
+│   │   │       └── shovill.corrections
+│   │   ├── gather
+│   │   │   ├── <SAMPLE_NAME>-meta.tsv
+│   │   │   └── logs
+│   │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │       └── versions.yml
+│   │   ├── qc
+│   │   │   ├── <SAMPLE_NAME>_R1.fastq.gz
+│   │   │   ├── <SAMPLE_NAME>_R2.fastq.gz
+│   │   │   ├── logs
+│   │   │   │   ├── <SAMPLE_NAME>-fastp.log
+│   │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │   │   └── versions.yml
+│   │   │   └── supplemental
+│   │   │       ├── <SAMPLE_NAME>.fastp.html
+│   │   │       ├── <SAMPLE_NAME>.fastp.json
+│   │   │       ├── <SAMPLE_NAME>_R1-final.json
+│   │   │       ├── <SAMPLE_NAME>_R1-final_fastqc.html
+│   │   │       ├── <SAMPLE_NAME>_R1-final_fastqc.zip
+│   │   │       ├── <SAMPLE_NAME>_R1-original.json
+│   │   │       ├── <SAMPLE_NAME>_R1-original_fastqc.html
+│   │   │       ├── <SAMPLE_NAME>_R1-original_fastqc.zip
+│   │   │       ├── <SAMPLE_NAME>_R2-final.json
+│   │   │       ├── <SAMPLE_NAME>_R2-final_fastqc.html
+│   │   │       ├── <SAMPLE_NAME>_R2-final_fastqc.zip
+│   │   │       ├── <SAMPLE_NAME>_R2-original.json
+│   │   │       ├── <SAMPLE_NAME>_R2-original_fastqc.html
+│   │   │       └── <SAMPLE_NAME>_R2-original_fastqc.zip
+│   │   └── sketcher
+│   │       ├── <SAMPLE_NAME>-k21.msh
+│   │       ├── <SAMPLE_NAME>-k31.msh
+│   │       ├── <SAMPLE_NAME>-mash-refseq88-k21.txt
+│   │       ├── <SAMPLE_NAME>-sourmash-gtdb-rs207-k31.txt
+│   │       ├── <SAMPLE_NAME>.sig
+│   │       └── logs
+│   │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │           └── versions.yml
+│   └── tools
+│       ├── agrvate
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   ├── logs
+│       │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │   │   └── versions.yml
+│       │   └── supplemental
+│       │       ├── <SAMPLE_NAME>-agr_gp.tab
+│       │       ├── <SAMPLE_NAME>-blastn_log.txt
+│       │       ├── <SAMPLE_NAME>-hmm-log.txt
+│       │       ├── <SAMPLE_NAME>-hmm.tab
+│       │       └── <SAMPLE_NAME>.fna-error-report.tab
+│       ├── amrfinderplus
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── mlst
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── sccmec
+│       │   ├── <SAMPLE_NAME>.regions.blastn.tsv
+│       │   ├── <SAMPLE_NAME>.regions.details.tsv
+│       │   ├── <SAMPLE_NAME>.targets.blastn.tsv
+│       │   ├── <SAMPLE_NAME>.targets.details.tsv
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       └── spatyper
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── staphopia-<TIMESTAMP>
+        ├── merged-results
+        │   ├── agrvate.tsv
+        │   ├── amrfinderplus.tsv
+        │   ├── assembly-scan.tsv
+        │   ├── logs
+        │   │   ├── agrvate-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── amrfinderplus-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── assembly-scan-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── meta-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── mlst-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── sccmec-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   └── spatyper-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   ├── meta.tsv
+        │   ├── mlst.tsv
+        │   ├── sccmec.tsv
+        │   └── spatyper.tsv
+        └── nf-reports
+            ├── staphopia-dag.dot
+            ├── staphopia-report.html
+            └── staphopia-timeline.html
+```
+
+### Quality Control
+
+| File | Description |
+|------|-------------|
+| `supplemental/*_fastqc.*` | FastQC quality control reports for raw and cleaned reads |
+| `supplemental/*-NanoPlot.*` | NanoPlot reports for Nanopore reads |
+| `supplemental/*.fastp.*` | Fastp quality reports (when applicable) |
+
+### Assembly
+
+| File | Description |
+|------|-------------|
+| `*.fna` | Assembled genome sequences in FASTA format |
+| `assembly-stats.tsv` | Assembly quality metrics per sample |
+
+### Annotation
+
+:::note
+Output format depends on chosen annotation tool (Bakta or Prokka)
+:::
+
+| File | Description |
+|------|-------------|
+| `*.gff.gz` | Genome annotation in GFF3 format (compressed) |
+| `*.gbk.gz` | Genome annotation in GenBank format (compressed) |
+| `*.faa.gz` | Protein sequences (compressed) |
+| `*.fna.gz` | Nucleotide sequences from annotation (compressed) |
+| `annotation.tsv` | Annotation summary tables |
+
+### Typing
+
+| File | Description |
+|------|-------------|
+| `mlst.tsv` | MLST sequence type results |
+| `agrvate-*` | Agr locus typing results |
+| `spatyper-*` | spa typing results |
+| `sccmec-*` | SCCmec typing results (targets, regions, details) |
+
+### Antimicrobial Resistance
+
+| File | Description |
+|------|-------------|
+| `amrfinderplus.tsv` | AMR gene detection results |
+| `amrfinderplus.mutation.tsv` | AMR point mutation results |
+
+### Comparative Analysis
+
+| File | Description |
+|------|-------------|
+| `*-k21.msh` | Mash sketch files (k=21) |
+| `*-k31.msh` | Mash sketch files (k=31) |
+| `*-mash-refseq88-*.txt` | Mash screening results against RefSeq |
+| `*.sig` | Sourmash signatures |
+| `sourmash-*.txt` | Sourmash classification results |
+
+### Merged Results
+
+:::note
+Run-level aggregated results from all samples
+:::
+
+| File | Description |
+|------|-------------|
+| `merged-assembly-stats.tsv` | Consolidated assembly statistics |
+| `merged-mlst.tsv` | Consolidated MLST results |
+| `staphtyper.tsv` | Consolidated Staphylococcus typing summary |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| staphopia-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| staphopia-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| staphopia-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| staphopia-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+The following parameters are how you will provide either local or remote samples to be processed by Bactopia.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--samples` | string |  | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
+ |
+| `--r1` | string |  | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) |
+| `--r2` | string |  | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) |
+| `--se` | string |  | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) |
+| `--ont` | string |  | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) |
+| `--hybrid` | boolean | `false` | Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) |
+| `--short_polish` | boolean | `false` | Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) |
+| `--sample` | string |  | Sample name to use for the input sequences
+ |
+| `--accessions` | string |  | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed |
+| `--accession` | string |  | Sample name to use for the input sequences
+ |
+| `--assembly` | string |  | A assembled genome in compressed FASTA format. (requires --sample) |
+| `--check_samples` | boolean | `false` | Validate the input FOFN provided by --samples |
+
+<details>
+<summary>Dataset Parameters</summary>
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--species` | string |  | Name of species for species-specific dataset to use |
+| `--ask_merlin` | boolean |  | Ask Merlin to execute species specific Bactopia tools based on Mash distances |
+| `--coverage` | integer | `100` | Reduce samples to a given coverage, requires a genome size |
+| `--genome_size` | integer | `0` | Expected genome size (bp) for all samples, required for read error correction and read subsampling |
+| `--use_bakta` | boolean |  | Use Bakta for annotation, instead of Prokka |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [amrfinderplus](/subworkflows/amrfinderplus) - Find antimicrobial resistance genes and point mutations.
+- [bactopia_assembler](/subworkflows/bactopia_assembler) - Assemble bacterial genomes using automated assembler selection.
+- [bactopia_datasets](/subworkflows/bactopia_datasets) - Download and provide pre-compiled datasets required by Bactopia.
+- [bactopia_gather](/subworkflows/bactopia_gather) - Search, validate, gather, and standardize input samples.
+- [bactopia_qc](/subworkflows/bactopia_qc) - Perform comprehensive quality control on sequencing reads.
+- [bactopia_sketcher](/subworkflows/bactopia_sketcher) - Create genomic sketches and perform rapid taxonomic classification.
+- [bakta](/subworkflows/bakta) - Rapid bacterial genome annotation.
+- [mlst](/subworkflows/mlst) - Determine multilocus sequence types (MLST) from bacterial assemblies.
+- [prokka](/subworkflows/prokka) - Annotate bacterial genomes with functional information.
+- [staphtyper](/subworkflows/staphtyper) - Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Staphopia](https://staphopia.emory.edu)  
+  Petit III RA, Read TD [_Staphylococcus aureus_ viewed from the perspective of 40,000+ genomes.](http://dx.doi.org/10.7717/peerj.5261) _PeerJ_ 6, e5261 (2018)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/staphopia)

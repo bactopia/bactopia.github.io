@@ -1,0 +1,93 @@
+---
+title: phispy
+description: "Predict prophage regions integrated into bacterial genomes."
+tags:
+  - genomics
+  - virus
+  - phage
+  - prophage
+  - bacteriophage
+  - identification
+  - annotation
+  - sample-scope
+---
+
+# phispy
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">phispy v5.0.6</span> <span class="badge badge--info">sample scope</span>
+
+Predict prophage regions integrated into bacterial genomes.
+
+Uses [PhiSpy](https://github.com/linsalrob/PhiSpy) to identify integrated bacteriophage
+(prophage) regions in a fully annotated bacterial genome. The prediction relies on scoring
+features like strand-switch, AT-skew, unique phage-like proteins, and short coding regions.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    gbff: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `gbff` | `Path` | Annotated genome file in GenBank format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Coordinates (start/end) of each predicted prophage region in the genome |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### PhiSpy Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--phispy_number` | integer | `5` | Number of consecutive genes in a region of window size that must be prophage genes to be called |
+| `--phispy_mincontigsize` | integer | `5000` | Minimum contig size (in bp) to be included in the analysis. Smaller contigs will be dropped. |
+| `--phispy_opts` | string |  | Extra options in quotes for PhiSpy |
+
+## Used By
+
+### Subworkflows
+
+- [phispy](/subworkflows/phispy) - Prediction of prophages from bacterial genomes.
+
+### Workflows
+
+- [phispy](/workflows/bactopia-tools/phispy) - Prediction of prophages in bacterial and archaeal genomes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PhiSpy](https://github.com/linsalrob/PhiSpy)  
+  Akhter S, Aziz RK, and Edwards RA [PhiSpy: a novel algorithm for finding prophages in bacterial genomes that combines similarity- and composition-based strategies.](https://doi.org/10.1093/nar/gks406) _Nucleic Acids Research_, 40(16), e126. (2012)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/phispy)

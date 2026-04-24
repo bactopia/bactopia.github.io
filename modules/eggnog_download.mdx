@@ -1,0 +1,82 @@
+---
+title: eggnog_download
+description: "Download the eggNOG database for functional annotation."
+tags:
+  - eggnog
+  - database
+  - download
+  - annotation
+  - functional
+  - orthology
+  - sample-scope
+---
+
+# eggnog_download
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">eggnog-mapper v2.1.13</span> <span class="badge badge--info">sample scope</span>
+
+Download the eggNOG database for functional annotation.
+
+Fetches the pre-computed orthology data and Diamond database required by
+[eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper). This includes the massive
+protein database and taxonomic information needed for accurate ortholog assignment.
+
+:::note[Internet & Storage Required]
+This process requires an active internet connection and significant disk space (often &gt;50GB)
+to store the uncompressed database files.
+:::
+
+## Outputs
+
+```
+record (
+    db: Path?,
+    db_tarball: Path?,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path?` | The eggNOG database directory (Diamond database and taxonomy info) |
+| `db_tarball` | `Path?` | A compressed tarball of the database (if requested via parameters) |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+### eggNOG Downloader Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--eggnog_db` | string |  | Tarball or path to eggNOG databases |
+| `--download_eggnog` | boolean | `false` | Required if downloading latest eggNOG database, will overwrite existing databases. |
+| `--eggnog_save_as_tarball` | string |  | Save the eggNOG database as a single tarball |
+| `--eggnog_skip_diamond` | boolean | `false` | Do not install the diamond database |
+| `--eggnog_install_mmseq` | boolean | `false` | Install the MMseqs2 database |
+| `--eggnog_install_pfam` | boolean | `false` | Install the Pfam database, required for de novo annotation or realignment |
+| `--eggnog_install_hmm` | boolean | `false` | Install the HMMER database specified with --hmmer_taxid |
+| `--eggnog_hmmer_taxid` | integer | `2` | Tax ID of eggNOG HMM database to download |
+
+## Used By
+
+### Subworkflows
+
+- [eggnog](/subworkflows/eggnog) - Functional annotation through orthology assignment.
+
+### Workflows
+
+- [eggnog](/workflows/bactopia-tools/eggnog) - Functional annotation of proteins using orthologous groups and phylogenies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)  
+  Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115-2122 (2017)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/eggnog/download)

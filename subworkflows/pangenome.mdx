@@ -1,0 +1,125 @@
+---
+title: pangenome
+description: "Perform pangenome analysis with optional core-genome phylogeny."
+tags:
+  - alignment
+  - core-genome
+  - pan-genome
+  - phylogeny
+  - comparative-genomics
+  - run-scope
+---
+
+# pangenome
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">run scope</span>
+
+Perform pangenome analysis with optional core-genome phylogeny.
+
+This subworkflow creates a pangenome from GFF3 annotation files using one of three
+tools: [Panaroo](https://github.com/gtonkinhill/panaroo) (default),
+[PIRATE](https://github.com/SionBayliss/PIRATE), or
+[Roary](https://github.com/sanger-pathogens/roary). It generates core-genome alignments
+and gene presence/absence matrices, followed by SNP distance calculations using
+[snp-dists](https://github.com/tseemann/snp-dists). The workflow conditionally executes
+the selected pangenome tool based on Boolean parameters.
+
+## Take
+
+```
+gff: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `gff` | Set of GFF3 annotation files from assembled genomes |
+
+```
+use_pirate: Boolean
+use_roary: Boolean
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `use_pirate` | `Boolean` | Boolean flag to use PIRATE for pangenome analysis |
+| `use_roary` | `Boolean` | Boolean flag to use Roary for pangenome analysis |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+No sample-scope outputs.
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `aln` | Core-genome alignment in FASTA format |
+| `csv` | Gene presence/absence matrix |
+| `supplemental` | Intermediate files and detailed outputs |
+| `tsv` | Pairwise SNP distance matrix from core-genome alignment |
+
+### Downstream Inputs
+
+The following emissions are meant to be used as inputs to downstream subworkflows.
+
+#### `alignment`
+
+| Output | Description |
+|--------|-------------|
+| `aln` | Core-genome alignment for downstream analysis (e.g., recombination detection) |
+
+#### `phylogeny_input`
+
+| Output | Description |
+|--------|-------------|
+| `aln` | Core-genome alignment with iqtree-ready meta for phylogeny construction |
+
+#### `csv`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Gene presence/absence matrix for downstream analysis (e.g., pan-GWAS) |
+
+## Subworkflow Composition
+
+This subworkflow calls the following subworkflows:
+
+- [pirate](/subworkflows/pirate) - Build a pangenome from GFF3 annotations using PIRATE.
+- [roary](/subworkflows/roary) - Build a pangenome from GFF3 annotations using Roary.
+- [panaroo](/subworkflows/panaroo) - Build a pangenome from GFF3 annotations using Panaroo.
+- [snpdists](/subworkflows/snpdists) - Calculate pairwise SNP distances from sequence alignments.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [pangenome](/workflows/bactopia-tools/pangenome) - Pangenome analysis with optional core-genome phylogeny.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PIRATE](http://github.com/SionBayliss/PIRATE)  
+  Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ [PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) _Gigascience_ 8 (2019)
+
+- [Panaroo](https://github.com/gtonkinhill/panaroo)  
+  Tonkin-Hill G, MacAlasdair N, Ruis C, Weimann A, Horesh G, Lees JA, Gladstone RA, Lo S, Beaudoin C, Floto RA, Frost SDW, Corander J, Bentley SD, Parkhill J [Producing polished prokaryotic pangenomes with the Panaroo pipeline.](https://doi.org/10.1186/s13059-020-02090-4) _Genome Biology_ 21(1), 180. (2020)
+
+- [Roary](https://github.com/sanger-pathogens/Roary)  
+  Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691-3693 (2015)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/pangenome)

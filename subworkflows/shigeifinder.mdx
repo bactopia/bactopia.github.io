@@ -1,0 +1,78 @@
+---
+title: shigeifinder
+description: "Predict serotypes of Shigella and EIEC from assemblies."
+tags:
+  - shigella
+  - eiec
+  - serotype
+  - typing
+  - cluster-analysis
+  - sample-scope
+---
+
+# shigeifinder
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+Predict serotypes of Shigella and EIEC from assemblies.
+
+This subworkflow uses [ShigEiFinder](https://github.com/LanLab/ShigEiFinder) to predict
+serotypes of *Shigella* and Enteroinvasive *E. coli* (EIEC) from assembled genomes.
+It uses a cluster-informed approach to identify specific serotype markers and classify
+isolates based on their antigenic profiles.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembled contigs in FASTA format |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | ShigEiFinder results in TSV format |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [shigeifinder](/modules/shigeifinder) - Shigella and EIEC serotyping from assemblies.
+- [csvtk_concat](/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [shigeifinder](/workflows/bactopia-tools/shigeifinder) - In silico serotype prediction for Shigella and Enteroinvasive E. coli (EIEC).
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ShigEiFinder](https://github.com/LanLab/ShigEiFinder)  
+  Zhang X, Payne M, Nguyen T, Kaur S, Lan R [Cluster-specific gene markers enhance Shigella and enteroinvasive Escherichia coli in silico serotyping.](https://doi.org/10.1099/mgen.0.000704) Microbial Genomics, 7(12). (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/shigeifinder)

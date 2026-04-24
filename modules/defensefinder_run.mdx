@@ -1,0 +1,115 @@
+---
+title: defensefinder_run
+description: "Detect anti-phage defense systems using HMM profiles."
+tags:
+  - bacteria
+  - defense-systems
+  - antiviral
+  - phage
+  - crispr
+  - restriction-modification
+  - hmm
+  - macsyfinder
+  - sample-scope
+---
+
+# defensefinder_run
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">defense-finder v2.0.1</span> <span class="badge badge--info">sample scope</span>
+
+Detect anti-phage defense systems using HMM profiles.
+
+Uses [DefenseFinder](https://github.com/mdmparis/defense-finder) to systematically search
+protein sequences for known antiviral defense systems (e.g., CRISPR-Cas, Restriction-Modification,
+TA systems, CBASS) using MacSyFinder and a dedicated database of HMM models.
+
+:::note[Database Required]
+Requires the DefenseFinder HMM database to be available.
+:::
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    faa: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `faa` | `Path` | Protein sequences in FASTA format (amino acids) |
+
+```
+db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path` | Directory containing the DefenseFinder models database |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    genes_tsv: Path,
+    hmmer_tsv: Path,
+    systems_tsv: Path,
+    proteins: Path?,
+    proteins_index: Path?,
+    macsydata_raw: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `genes_tsv` | `Path` | Tab-delimited list of detected defense genes |
+| `hmmer_tsv` | `Path` | Tab-delimited list of HMMER hits used for detection |
+| `systems_tsv` | `Path` | Tab-delimited summary of detected defense systems |
+| `proteins` | `Path?` | Protein sequences of the detected defense genes |
+| `proteins_index` | `Path?` | Index file for the protein sequences |
+| `macsydata_raw` | `Path?` | Compressed tarball of raw MacSyFinder data |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### defense-finder Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--defensefinder_coverage` | number | `0.4` | Minimal percentage of coverage for each profiles |
+| `--defensefinder_dbtype` | string | `ordered_replicon` | The macsyfinder --db-type option (choices: `ordered_replicon`, `gembase`, `unordered`) |
+
+## Used By
+
+### Subworkflows
+
+- [defensefinder](/subworkflows/defensefinder) - Systematically search for anti-phage defense systems.
+
+### Workflows
+
+- [defensefinder](/workflows/bactopia-tools/defensefinder) - Systematic identification of anti-phage defense systems.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [DefenseFinder](https://github.com/mdmparis/defense-finder)  
+  Tesson F, Hervé A, Mordret E, Touchon M, d'Humières C, Cury J, Bernheim A [Systematic and quantitative view of the antiviral arsenal of prokaryotes.](https://doi.org/10.1038/s41467-022-30269-9) Nature Communications, 13(1), 2561. (2022)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/defensefinder/run)

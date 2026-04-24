@@ -1,0 +1,86 @@
+---
+title: tblastn
+description: "Search protein query sequences against nucleotide database."
+tags:
+  - blast
+  - protein
+  - nucleotide
+  - alignment
+  - database
+  - sample-scope
+---
+
+# tblastn
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+Search protein query sequences against nucleotide database.
+
+This subworkflow uses [TBLASTN](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROGRAM=tblastn)
+from the NCBI BLAST+ suite to search protein query sequences against a nucleotide database
+translated in all six reading frames. It processes each assembly individually
+and aggregates the results into a single consolidated report.
+
+## Take
+
+```
+blastdb: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `blastdb` | A compressed tarball containing the BLAST database |
+
+```
+query: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `query` | `Path` | Path to protein query sequences for searching against translated nucleotide database |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | Tab-delimited protein-to-translated nucleotide alignment results (BLAST outfmt 6) |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [blast_tblastn](/modules/blast_tblastn) - Search a translated nucleotide database using a protein query.
+- [csvtk_concat](/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [tblastn](/workflows/bactopia-tools/tblastn) - Search against translated nucleotide databases using protein queries.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+  Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/tblastn)

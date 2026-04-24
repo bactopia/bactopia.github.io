@@ -17,6 +17,10 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
+.theme-doc-markdown table {
+  width: 100%;
+}
+
 [data-theme='dark'] {
   --ifm-color-primary: #b39ddb;
   --ifm-color-primary-dark: #9f84d0;

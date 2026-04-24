@@ -1,0 +1,100 @@
+---
+title: merlindist
+description: "Identify species from assembly and read data using Mash distances."
+tags:
+  - species
+  - identification
+  - mash
+  - distance
+  - classification
+  - taxonomy
+  - sample-scope
+---
+
+# merlindist
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+Identify species from assembly and read data using Mash distances.
+
+This subworkflow performs rapid species identification using [Mash](https://github.com/marbl/Mash)
+distance calculations against a reference database. It is a core component of the MERLIN
+(MinER assisted species-specific bactopia tool seLectIoN) pipeline, responsible for determining
+which species-specific typing tools should be run based on the detected organism. The workflow
+outputs channels filtered by detected genera for downstream species-specific analysis.
+
+## Take
+
+```
+ch_seqs: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `fna` | Assembled contigs in FASTA format for species identification |
+| `r1` | Illumina R1 reads (paired-end) or null |
+| `r2` | Illumina R2 reads (paired-end) or null |
+| `se` | Single-end Illumina reads or null |
+| `lr` | Long reads (ONT/PacBio) or null |
+
+```
+ch_mash_db: Path
+```
+
+| Name | Description |
+|------|-------------|
+| `mash_db` | Mash sketch database for rapid species identification |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `dist` | The raw Mash distance results |
+| `fna` | Passthrough of assembled contigs |
+| `r1` | Passthrough of Illumina R1 reads |
+| `r2` | Passthrough of Illumina R2 reads |
+| `se` | Passthrough of single-end reads |
+| `lr` | Passthrough of long reads |
+| `escherichia` | Conditional marker file triggering Escherichia analysis tools |
+| `haemophilus` | Conditional marker file triggering Haemophilus analysis tools |
+| `klebsiella` | Conditional marker file triggering Klebsiella analysis tools |
+| `legionella` | Conditional marker file triggering Legionella analysis tools |
+| `listeria` | Conditional marker file triggering Listeria analysis tools |
+| `mycobacterium` | Conditional marker file triggering Mycobacterium analysis tools |
+| `neisseria` | Conditional marker file triggering Neisseria analysis tools |
+| `pseudomonas` | Conditional marker file triggering Pseudomonas analysis tools |
+| `salmonella` | Conditional marker file triggering Salmonella analysis tools |
+| `staphylococcus` | Conditional marker file triggering Staphylococcus analysis tools |
+| `streptococcus` | Conditional marker file triggering Streptococcus analysis tools |
+| `genus` | A marker file indicating the detected genus (for debugging) |
+
+#### `run_outputs`
+
+No run-scope outputs.
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [merlin_dist](/modules/merlin_dist) - Identify species to trigger genus-specific downstream analyses (Merlin).
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/merlindist)

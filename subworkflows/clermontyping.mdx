@@ -1,0 +1,76 @@
+---
+title: clermontyping
+description: "Predict phylogroups of Escherichia coli from genome assemblies."
+tags:
+  - escherichia-coli
+  - phylogroup
+  - typing
+  - clermont
+  - sample-scope
+---
+
+# clermontyping
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">sample scope</span>
+
+Predict phylogroups of Escherichia coli from genome assemblies.
+
+This subworkflow uses [ClermontTyping](https://github.com/happykhan/ClermonTyping) to determine
+the phylogenetic groups of *Escherichia coli* strains from assembled genomes. It processes
+each sample individually and aggregates the results into a single consolidated report.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembled contigs in FASTA format |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | Tab-delimited ClermonTyping phylogroup assignment results |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [clermontyping](/modules/clermontyping) - Determine the phylogroup of Escherichia coli isolates.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [clermontyping](/workflows/bactopia-tools/clermontyping) - In silico phylotyping of Escherichia genus.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClermontTyping](https://github.com/happykhan/ClermonTyping)  
+  Beghain J, Bridier-Nahmias A, Le Nagard H, Denamur E, Clermont O. [ClermonTyping: an easy-to-use and accurate in silico method for Escherichia genus strain phylotyping.](https://doi.org/10.1099/mgen.0.000192) Microbial Genomics, 4(7), e000192. (2018)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/clermontyping)

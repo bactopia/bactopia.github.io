@@ -1,0 +1,205 @@
+---
+title: tbprofiler
+description: "Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis."
+tags:
+  - mycobacterium-tuberculosis
+  - resistance
+  - lineage
+  - typing
+  - tb
+  - bactopia-tool
+---
+
+# tbprofiler
+
+<span class="badge badge--success">stable</span>
+
+Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis.
+
+This Bactopia Tool uses [TBProfiler](https://github.com/jodyphelan/TBProfiler) to profile
+Mycobacterium tuberculosis genomes for resistance mutations and strain typing. The workflow
+processes sequencing reads to identify resistance-conferring variants and determine
+the lineage of each TB isolate.
+
+## Usage
+
+```bash
+bactopia --wf tbprofiler \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── tbprofiler-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.csv
+│           ├── <SAMPLE_NAME>.results.json.gz
+│           ├── <SAMPLE_NAME>.txt
+│           ├── logs
+│           │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│           │   └── versions.yml
+│           └── supplemental
+│               ├── <SAMPLE_NAME>.bam
+│               ├── <SAMPLE_NAME>.bam.bai
+│               └── <SAMPLE_NAME>.targets.vcf.gz
+└── bactopia-runs
+    └── tbprofiler-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── tbprofiler-collate
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   ├── tbprofiler.csv
+        │   ├── tbprofiler.variants.csv
+        │   └── tbprofiler.variants.txt
+        └── nf-reports
+            ├── tbprofiler-dag.dot
+            ├── tbprofiler-report.html
+            └── tbprofiler-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.results.txt` | Text file containing TBProfiler resistance and strain typing results |
+| `*.results.json` | JSON file containing detailed TBProfiler analysis results |
+| `*.results.csv` | CSV file containing TBProfiler results in tabular format |
+| `bam/*.bam` | BAM file with read alignment details against reference genomes |
+| `vcf/*.targets.csq.vcf.gz` | VCF file with variant annotations and functional consequences |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `tbprofiler.tsv` | Merged TSV file containing TBProfiler results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| tbprofiler-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| tbprofiler-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| tbprofiler-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| tbprofiler-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### TB-Profiler Profile Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--tbprofiler_call_whole_genome` | boolean | `false` | Call whole genome |
+| `--tbprofiler_mapper` | string | `bwa` | Mapping tool to use. If you are using nanopore data it will default to minimap2 (choices: `bwa`, `minimap2`, `bowtie2`, `bwa-mem2`) |
+| `--tbprofiler_caller` | string | `freebayes` | Variant calling tool to use (choices: `bcftools`, `gatk`, `freebayes`) |
+| `--tbprofiler_opts` | string |  | Extra options in quotes for TBProfiler |
+
+### TB-Profiler Collate Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--tbprofiler_itol` | boolean | `false` | Generate itol config files |
+| `--tbprofiler_full` | boolean | `false` | Output mutations in main result file |
+| `--tbprofiler_all_variants` | boolean | `false` | Output all variants in variant matrix |
+| `--tbprofiler_mark_missing` | boolean | `false` | An asterisk will be used to mark predictions which are affected by missing data at a drug resistance position |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [tbprofiler](/subworkflows/tbprofiler) - Profiling tool for Mycobacterium tuberculosis to detect resistance and strain type.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [TBProfiler](https://github.com/jodyphelan/TBProfiler)  
+  Phelan JE, O'Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O'Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/tbprofiler)

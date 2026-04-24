@@ -1,0 +1,157 @@
+---
+title: bactopia_qc
+description: "Automated quality control, error correction, and read subsampling."
+tags:
+  - fastq
+  - qc
+  - adapter-removal
+  - error-correction
+  - subsampling
+  - fastp
+  - bbduk
+  - lighter
+  - porechop
+  - nanoq
+  - fastqc
+  - nanoplot
+  - sample-scope
+---
+
+# bactopia_qc
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">bactopia-qc v1.0.4</span> <span class="badge badge--info">sample scope</span>
+
+Automated quality control, error correction, and read subsampling.
+
+A comprehensive QC pipeline that adapts to the input read type:
+- **Illumina:** Adapter/PhiX removal ([Fastp](https://github.com/OpenGene/fastp) or
+  [BBDuk](https://jgi.doe.gov/data-and-tools/software-tools/bbtools/)), Error Correction
+  ([Lighter](https://github.com/mourisl/Lighter)), and Subsampling ([Rasusa](https://github.com/mbhall88/rasusa))
+- **Nanopore:** Adapter removal ([Porechop](https://github.com/rrwick/Porechop)), Quality filtering
+  ([Nanoq](https://github.com/esteinig/nanoq)), and Subsampling ([Rasusa](https://github.com/mbhall88/rasusa))
+- **Hybrid:** Processes both short and long reads through their respective pipelines
+- **Assembly:** Passes through simulated reads from assemblies
+
+Generates quality metrics using [fastq-scan](https://github.com/rpetit3/fastq-scan) and optional
+quality reports using [FastQC](https://github.com/s-andrews/FastQC) (Illumina) and
+[NanoPlot](https://github.com/wdecoster/NanoPlot) (ONT).
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    fna: Path?
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information (must include `runtype`, `genome_size`, `species`) |
+| `r1` | `Path?` | Illumina R1 reads (paired-end forward) |
+| `r2` | `Path?` | Illumina R2 reads (paired-end reverse) |
+| `se` | `Path?` | Single-end Illumina reads |
+| `lr` | `Path?` | Long reads (ONT) |
+| `fna` | `Path?` | Assembly file (FASTA) for assembly-based simulations |
+
+```
+adapters: Path?
+phix: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `adapters` | `Path?` | Filepath for custom adapter sequences (FASTA) |
+| `phix` | `Path?` | Filepath for custom PhiX sequences (FASTA) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    fna: Path?,
+    reads_grouped: Set<Path?>,
+    error: Set<Path?>,
+    skipped: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `r1` | `Path?` | QC'd Illumina R1 reads (paired-end forward) |
+| `r2` | `Path?` | QC'd Illumina R2 reads (paired-end reverse) |
+| `se` | `Path?` | QC'd single-end Illumina reads |
+| `lr` | `Path?` | QC'd long reads (ONT) |
+| `fna` | `Path?` | Assembly file (FASTA) |
+| `reads_grouped` | `Set<Path?>` | All output FASTQs for publishing |
+| `error` | `Set<Path?>` | Captured error messages if QC failed (e.g., reads empty after trimming) |
+| `skipped` | `Path?` | Marker file indicating QC was skipped for this sample |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [bactopia_qc](/subworkflows/bactopia_qc) - Perform comprehensive quality control on sequencing reads.
+
+### Workflows
+
+- [bactopia](/workflows/named-workflows/bactopia) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [cleanyerreads](/workflows/named-workflows/cleanyerreads) - Quality control and optional host read removal from raw sequencing reads.
+- [staphopia](/workflows/named-workflows/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BBTools](https://jgi.doe.gov/data-and-tools/bbtools/)  
+  Bushnell B [BBMap short read aligner, and other bioinformatic tools.](http://sourceforge.net/projects/bbmap/) (Link)
+
+- [fastp](https://github.com/OpenGene/fastp)  
+  Chen S, Zhou Y, Chen Y, and Gu J [fastp: an ultra-fast all-in-one FASTQ preprocessor.](https://doi.org/10.1093/bioinformatics/bty560) _Bioinformatics_, 34(17), i884-i890. (2018)
+
+- [FastQC](https://github.com/s-andrews/FastQC)  
+  Andrews S [FastQC: a quality control tool for high throughput sequence data.](http://www.bioinformatics.babraham.ac.uk/projects/fastqc) (WebLink)
+
+- [fastq-scan](https://github.com/rpetit3/fastq-scan)  
+  Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
+
+- [Lighter](https://github.com/mourisl/Lighter)  
+  Song L, Florea L, Langmead B [Lighter: Fast and Memory-efficient Sequencing Error Correction without Counting](https://doi.org/10.1186/s13059-014-0509-9). _Genome Biol._ 15(11):509 (2014)
+
+- [NanoPlot](https://github.com/wdecoster/NanoPlot)  
+  De Coster W, D'Hert S, Schultz DT, Cruts M, Van Broeckhoven C [NanoPack: visualizing and processing long-read sequencing data](https://doi.org/10.1093/bioinformatics/bty149) _Bioinformatics_ Volume 34, Issue 15 (2018)
+
+- [Nanoq](https://github.com/esteinig/nanoq)  
+  Steinig E [Nanoq: Minimal but speedy quality control for nanopore reads in Rust](https://github.com/esteinig/nanoq) (GitHub)
+
+- [Porechop](https://github.com/rrwick/Porechop)  
+  Wick RR, Judd LM, Gorrie CL, Holt KE. [Completing bacterial genome assemblies with multiplex MinION sequencing.](https://doi.org/10.1099/mgen.0.000132) _Microb Genom._ 3(10):e000132 (2017)
+
+- [Rasusa](https://github.com/mbhall88/rasusa)  
+  Hall MB [Rasusa: Randomly subsample sequencing reads to a specified coverage.](https://doi.org/10.5281/zenodo.3731394) (2019).
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/qc)

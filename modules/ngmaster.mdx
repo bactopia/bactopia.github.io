@@ -1,0 +1,91 @@
+---
+title: ngmaster
+description: "Serotyping and Multi-Antigen Sequence Typing (MAST) of *Neisseria gonorrhoeae*."
+tags:
+  - bacteria
+  - neisseria-gonorrhoeae
+  - serotype
+  - typing
+  - mast
+  - porb
+  - tbpb
+  - sample-scope
+---
+
+# ngmaster
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">ngmaster v2.0.0</span> <span class="badge badge--info">sample scope</span>
+
+Serotyping and Multi-Antigen Sequence Typing (MAST) of *Neisseria gonorrhoeae*.
+
+Uses [NG-MASTER](https://github.com/phac-nml/NG-MASTER) to identify the alleles of the
+*porB* and *tbpB* genes in *N. gonorrhoeae* assemblies, which is the basis for the
+internationally recognized MAST genotyping scheme.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited NG-MASTER results with porB and tbpB alleles and sequence type |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### ngmaster Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--ngmaster_csv` | boolean | `false` | output comma-separated format (CSV) rather than tab-separated |
+
+## Used By
+
+### Subworkflows
+
+- [ngmaster](/subworkflows/ngmaster) - Perform multi-antigen sequence typing of Neisseria gonorrhoeae from genome assemblies.
+
+### Workflows
+
+- [ngmaster](/workflows/bactopia-tools/ngmaster) - Multi-antigen sequence typing of Neisseria gonorrhoeae.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ngmaster](https://github.com/MDU-PHL/ngmaster)  
+  Kwong J, Gonçalves da Silva A, Schultz M, Seeman T [ngmaster - _In silico_ multi-antigen sequence typing for _Neisseria gonorrhoeae_ (NG-MAST)](https://github.com/MDU-PHL/ngmaster) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ngmaster)

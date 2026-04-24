@@ -1,0 +1,75 @@
+---
+title: nohuman_download
+description: "Download the nohuman database for human read removal."
+tags:
+  - bacteria
+  - database
+  - download
+  - human
+  - decontamination
+  - kraken2
+  - nohuman
+  - run-scope
+---
+
+# nohuman_download
+
+<span class="badge badge--success">stable</span> <span class="badge badge--secondary">bactopia-teton v1.1.3</span> <span class="badge badge--info">run scope</span>
+
+Download the nohuman database for human read removal.
+
+Fetches the Kraken2-based database used by [nohuman](https://github.com/mbhall88/nohuman)
+to classify and remove human reads from sequencing datasets. The database is built from
+Human Pangenome Reference Consortium (HPRC) genomes.
+
+:::note[Internet & Storage Required]
+This process requires an active internet connection and sufficient disk space
+to store the Kraken2 database files.
+:::
+
+## Outputs
+
+```
+record (
+    db: Path?,
+    db_tarball: Path?,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path?` | The nohuman Kraken2 database directory |
+| `db_tarball` | `Path?` | A compressed tarball of the database (if requested via parameters) |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+### Nohuman Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--nohuman_db` | string |  | Path to the nohuman database or directory to download it to |
+| `--nohuman_db_version` | string |  | Database version to download (default: latest HPRC release) |
+| `--nohuman_save_as_tarball` | boolean | `false` | Save the nohuman database as a tarball |
+| `--download_nohuman` | boolean | `false` | Download the nohuman database to the path given by --nohuman_db |
+
+## Used By
+
+### Subworkflows
+
+- [nohuman](/subworkflows/nohuman) - Remove human reads from sequencing data using nohuman.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/nohuman/download)

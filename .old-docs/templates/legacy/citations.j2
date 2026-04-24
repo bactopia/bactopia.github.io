@@ -1,0 +1,16 @@
+
+Since its launch in 2019, Bactopia has seen significant academic usage, being cited in at
+least {{ total }} scholarly publications. We are excited to see Bactopia being used
+by the community and hope that it continues to be a valuable tool for researchers.
+
+!!! info "Total citations might be out of date"
+    The citations below are updated regularly, but not daily. To get the most up to date list
+    of citations, please visit
+    [Google Scholar](https://scholar.google.com/scholar?cites=11269093140070503615) or 
+    [PubMed](https://pubmed.ncbi.nlm.nih.gov/?linkname=pubmed_pubmed_citedin&from_uid=32753501)
+
+{% for citation in citations.citations -%}
+
+{{ loop.revindex }}: {{ citation.authors }} [{{ citation.title }}]({{ citation.url }}) _{{ citation.journal }}_ ({{ citation.date.strftime('%Y') }}).
+
+{% endfor %}

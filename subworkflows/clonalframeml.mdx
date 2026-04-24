@@ -1,0 +1,108 @@
+---
+title: clonalframeml
+description: "Detect and mask recombination events in bacterial phylogenies."
+tags:
+  - recombination
+  - phylogeny
+  - masking
+  - clonalframe
+  - bacterial-evolution
+  - run-scope
+---
+
+# clonalframeml
+
+<span class="badge badge--success">stable</span> <span class="badge badge--info">run scope</span>
+
+Detect and mask recombination events in bacterial phylogenies.
+
+This subworkflow uses [ClonalFrameML](https://github.com/xavierdidelot/ClonalFrameML) to
+detect and mask recombination events in bacterial phylogenies. It first builds a quick
+phylogenetic tree using [IQ-TREE](https://github.com/iqtree/iqtree2), then identifies
+recombination regions and creates a recombination-masked alignment. Finally, it
+calculates SNP distances from the masked alignment using [snp-dists](https://github.com/tseemann/snp-dists).
+
+## Take
+
+```
+alignment: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `aln` | Core-genome alignment in FASTA format |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+No sample-scope outputs.
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `masked_aln` | Recombination-masked alignment with detected recombination regions removed |
+| `emsim` | Uncertainty estimation results |
+| `em` | Final parameter estimates from the EM algorithm |
+| `status` | Predicted recombination events (importations) |
+| `nwk` | Input tree with internal nodes labelled |
+| `fasta` | Reconstructed ancestral sequences |
+| `pos_ref` | Position cross-reference table |
+| `aln` | Input multiple sequence alignment (passed through from IQ-TREE) |
+| `nwk` | Quick-start maximum-likelihood phylogenetic tree from IQ-TREE |
+| `tsv` | Pairwise SNP distances from masked alignment in TSV format |
+
+### Downstream Inputs
+
+The following emissions are meant to be used as inputs to downstream subworkflows.
+
+#### `alignment`
+
+| Output | Description |
+|--------|-------------|
+| `aln` | Recombination-masked alignment for downstream phylogenetic analysis |
+
+## Subworkflow Composition
+
+This subworkflow calls the following subworkflows:
+
+- [iqtree](/subworkflows/iqtree) - Construct maximum likelihood phylogenetic trees from alignments.
+- [snpdists](/subworkflows/snpdists) - Calculate pairwise SNP distances from sequence alignments.
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [clonalframeml](/modules/clonalframeml) - Inference of recombination in bacterial genomes.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [pangenome](/workflows/bactopia-tools/pangenome) - Pangenome analysis with optional core-genome phylogeny.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)  
+  Didelot X, Wilson DJ [ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.](https://doi.org/10.1371/journal.pcbi.1004041) _PLoS Comput Biol_ 11(2) e1004041 (2015)
+
+- [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
+  Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/clonalframeml)
