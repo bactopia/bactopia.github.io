@@ -129,7 +129,8 @@ const config: Config = {
   themeConfig: {
     image: 'img/bactopia-small-logo.png',
     navbar: {
-      title: 'Bactopia',
+      style: 'primary',
+      title: '',
       logo: {
         alt: 'Bactopia Logo',
         src: 'img/bactopia-small-logo.png',
