@@ -1,8 +1,0 @@
-.git
-conf/
-docs/
-publication/
-templates/
-.simg
-.js
-template.txt
