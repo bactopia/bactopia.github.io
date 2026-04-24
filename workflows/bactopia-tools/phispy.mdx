@@ -96,7 +96,7 @@ files for you to review if the need ever arises.
 | .out         | Contains STDOUT outputs from the process |
 | .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
 | .sh          | The script executed by bash for the process  |
-| .trace       | The Nextflow [Trace](https://www.nextflow.io/docs/latest/tracing.html#trace-report) report for the process |
+| .trace       | The Nextflow trace report for the process |
 | versions.yml | A YAML formatted file with program versions |
 
 #### Nextflow Reports
@@ -106,10 +106,10 @@ resource usage and estimate expected costs if using cloud platforms.
 
 | Filename | Description |
 |----------|-------------|
-| phispy-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#dag-visualisation) |
+| phispy-dag.dot | The Nextflow [DAG visualisation](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
 | phispy-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
-| phispy-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#timeline-report) |
-| phispy-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-report) report |
+| phispy-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| phispy-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
 
 ## Parameters
 
@@ -127,7 +127,7 @@ Define where the pipeline should find input data and save output data.
 |-----------|------|---------|-------------|
 | `--phispy_number` | integer | `5` | Number of consecutive genes in a region of window size that must be prophage genes to be called |
 | `--phispy_mincontigsize` | integer | `5000` | Minimum contig size (in bp) to be included in the analysis. Smaller contigs will be dropped. |
-| `--phispy_opts` | string |  | Extra options in quotes for Snippy |
+| `--phispy_opts` | string |  | Extra options in quotes for PhiSpy |
 
 <details>
 <summary>Filtering Parameters</summary>
