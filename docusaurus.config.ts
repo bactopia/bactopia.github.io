@@ -89,7 +89,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: 'docs',
+          routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
           exclude: [
@@ -103,14 +103,25 @@ const config: Config = {
         blog: {
           showReadingTime: true,
           editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
+          blogTitle: 'Bactopia Blog',
+          blogDescription: 'News, tutorials, and updates from the Bactopia project.',
+          blogSidebarCount: 'ALL',
+          feedOptions: {
+            type: ['rss', 'atom'],
+            title: 'Bactopia Blog',
+            description: 'News, tutorials, and updates from the Bactopia project.',
+            copyright: `Copyright ${new Date().getFullYear()} Robert A. Petit III`,
+          },
         },
         theme: {
           customCss: './src/css/custom.css',
         },
-        gtag: {
-          trackingID: 'G-QH76FN9N78',
-          anonymizeIP: true,
-        },
+        ...(process.env.NODE_ENV === 'production' && {
+          gtag: {
+            trackingID: 'G-QH76FN9N78',
+            anonymizeIP: true,
+          },
+        }),
       } satisfies Preset.Options,
     ],
   ],
@@ -151,7 +162,6 @@ const config: Config = {
           position: 'left',
           label: 'Modules',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
           type: 'docSidebar',
           sidebarId: 'impact',
@@ -159,6 +169,7 @@ const config: Config = {
           position: 'left',
           label: 'Impact & Outreach',
         },
+        {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/bactopia/bactopia',
           label: 'GitHub',
@@ -174,20 +185,20 @@ const config: Config = {
           items: [
             {
               label: 'Quick Start',
-              to: '/docs/quick-start',
+              to: '/quick-start',
             },
             {
               label: 'Installation',
-              to: '/docs/installation',
+              to: '/installation',
             },
             {
               label: 'CLI Reference',
-              to: '/docs/cli/',
+              to: '/cli/',
             },
           ],
         },
         {
-          title: 'Pipelines',
+          title: 'Bactopia',
           items: [
             {
               label: 'Workflows',

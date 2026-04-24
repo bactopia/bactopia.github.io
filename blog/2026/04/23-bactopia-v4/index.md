@@ -1,9 +1,9 @@
 ---
 title: Bactopia v4 and New Documentation
-authors:
-  - name: Robert A. Petit III
-    url: https://github.com/rpetit3
+authors: [rpetit3]
 tags: [bactopia, v4, documentation]
+date: 2026-04-23
+slug: bactopia-v4
 ---
 
 Bactopia v4 is here, and with it comes a completely redesigned documentation site.

@@ -408,7 +408,7 @@ Illumina and Oxford Nanopore reads. The tools used are:
 |------|-------------|
 | [Dragonflye](https://github.com/rpetit3/dragonflye) | Assembly of Oxford Nanopore reads, as well as hybrid assembly with short-read polishing |
 | [Shovill](https://github.com/tseemann/shovill) | Assembly of Illumina paired-end reads |
-| [Shovill-SE](https://github.com/rpetit/shovill) | Assembly of Illumina single-end reads |
+| [Shovill-SE](https://github.com/rpetit3/shovill) | Assembly of Illumina single-end reads |
 | [Unicycler](https://github.com/rrwick/Unicycler) | Hybrid assembly, using short-reads first then long-reads |
 
 Summary statistics for each assembly are generated using [assembly-scan](https://github.com/rpetit3/assembly-scan).
@@ -500,7 +500,7 @@ to polish the assembly.
 Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
 assembly works great when you have low-coverage noisy long-reads. However, if you are
 using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
-method is going to yeild better results (_and be faster!_) than `--hybrid`.
+method is going to yield better results (_and be faster!_) than `--hybrid`.
 :::
 
 

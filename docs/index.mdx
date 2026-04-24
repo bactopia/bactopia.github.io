@@ -1,0 +1,90 @@
+---
+title: Bactopia
+description: An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
+slug: /
+sidebar_position: 0
+sidebar_label: Home
+---
+
+import {CardGrid, Card} from '@site/src/components/CardGrid';
+
+<div style={{textAlign: 'center', padding: '4rem 2rem'}}>
+  <img src="/img/bactopia-logo.png" alt="Bactopia" style={{maxWidth: '500px', width: '100%', marginBottom: '1.5rem'}} />
+  <span style={{fontSize: '1.25rem', color: 'var(--ifm-color-emphasis-700)', maxWidth: '700px', margin: '0 auto', display: 'block'}}>
+    An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
+  </span>
+</div>
+
+<CardGrid columns={2}>
+  <Card
+    icon="material-clock-fast"
+    title="Set up in minutes"
+    description="Install bactopia from Bioconda and start processing genomes in minutes"
+    link="/installation"
+    linkText="Installation"
+  />
+  <Card
+    icon="material-bacteria"
+    title="Effortless bacterial genomics"
+    description="Streamlined pipeline for efficient and complete analysis of bacterial genomes"
+    link="/beginners-guide"
+    linkText="Beginner's Guide"
+  />
+  <Card
+    icon="material-lightbulb-on"
+    title="Seamlessly expand analyses"
+    description="Rapidly extend studies with a variety of supplementary, ready-made, workflows"
+    link="/workflows/bactopia-tools/"
+    linkText="Bactopia Tools"
+  />
+  <Card
+    icon="material-star"
+    title="Making an impact"
+    description="A free and open-source tool that regularly contributes back to the community"
+    link="/impact-and-outreach/"
+    linkText="Impact and Outreach"
+  />
+</CardGrid>
+
+## Overview
+
+Bactopia is a flexible pipeline for complete analysis of bacterial genomes. The goal of Bactopia
+is process your data with a broad set of tools, so that you can get to the fun part of analyses
+quicker!
+
+Bactopia was inspired by [Staphopia](https://staphopia.github.io/), a workflow targeted towards
+*Staphylococcus aureus* genomes. Using what we learned from Staphopia and user feedback, Bactopia
+was developed from scratch with usability, portability, and speed in mind from the start.
+
+Bactopia uses [Nextflow](https://www.nextflow.io/) to manage the workflow, allowing for support
+of many types of environments (e.g. cluster or cloud). Bactopia allows for the usage of many
+public datasets as well as your own datasets to further enhance the analysis of your sequencing.
+Bactopia only uses software packages available from [Bioconda](https://bioconda.github.io/) and
+[Conda-Forge](https://conda-forge.org/) to make installation as simple as possible for *all* users.
+
+<a href="/img/bactopia-workflow.png" target="_blank" rel="noopener">
+  <img src="/img/bactopia-workflow.png" alt="Bactopia Workflow" style={{display: 'block', maxWidth: '100%', margin: '2rem auto', borderRadius: '0.5rem'}} />
+</a>
+
+## Funding
+
+Support for this project came (in part) from an Emory Public Health Bioinformatics Fellowship
+funded by the [CDC Emerging Infections Program](https://dph.georgia.gov/EIP), the
+[Wyoming Public Health Division](https://health.wyo.gov/publichealth/), and the
+[Center for Applied Pathogen Epidemiology and Outbreak Control (CAPE)](https://www.linkedin.com/company/center-for-applied-pathogen-epidemiology-and-outbreak-control/).
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', margin: '2rem 0'}}>
+  <a href="https://dph.georgia.gov/EIP">
+    <img src="/img/gaeip-banner.png" alt="Georgia Emerging Infections Program" style={{width: '140px', borderRadius: '0.25rem'}} />
+  </a>
+  <a href="https://health.wyo.gov/publichealth/">
+    <img src="/img/wyphd-banner.jpg" alt="Wyoming Public Health Division" style={{width: '280px', borderRadius: '0.25rem'}} />
+  </a>
+  <a href="https://www.linkedin.com/company/center-for-applied-pathogen-epidemiology-and-outbreak-control/">
+    <img src="/img/cape-banner.png" alt="Center for Applied Pathogen Epidemiology and Outbreak Control" style={{width: '185px', borderRadius: '0.25rem'}} />
+  </a>
+</div>
+
+## Citing Bactopia
+
+Petit III RA, Read TD. [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) *mSystems* 5 (2020)

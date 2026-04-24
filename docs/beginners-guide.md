@@ -2,6 +2,7 @@
 title: Beginner's Guide
 description: >-
     A beginner's guide to getting started using Bactopia to process your bacterial genomes.
+sidebar_position: 3
 ---
 
 Bactopia is a complete pipeline for the analysis of bacterial genomes, which includes
@@ -21,9 +22,9 @@ few examples of each of these accepted inputs, including:
 
 Towards the end of this guide, we'll also take a look at some helpful parameters. If you
 are interested in learning more about the full set of parameters available in Bactopia,
-please check out the [Full Guide](full-guide.md) section.
+please check out the Full Guide section.
 
-![Bactopia Workflow](assets/bactopia-workflow.png)
+![Bactopia Workflow](/img/bactopia-workflow.png)
 
 ## Gathering Inputs
 
