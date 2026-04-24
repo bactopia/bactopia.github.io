@@ -101,6 +101,14 @@ const config: Config = {
             'data/**',
             'impact-and-outreach/**',
           ],
+          lastVersion: 'current',
+          versions: {
+            current: {
+              label: 'dev',
+              path: '',
+              badge: true,
+            },
+          },
         },
         blog: {
           showReadingTime: true,
@@ -173,6 +181,19 @@ const config: Config = {
           label: 'Impact & Outreach',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownItemsAfter: [
+            {type: 'html', value: '<hr style="margin: 0.3rem 0">'},
+            {href: 'pathname:///v3.1.0/', label: 'v3.1.0', target: '_self'},
+            {href: 'pathname:///v3.0.1/', label: 'v3.0.1', target: '_self'},
+            {href: 'pathname:///v3.0.0/', label: 'v3.0.0', target: '_self'},
+            {href: 'pathname:///v2.2.0/', label: 'v2.2.0', target: '_self'},
+            {href: 'pathname:///v2.1.1/', label: 'v2.1.1', target: '_self'},
+            {href: 'pathname:///v2.1.0/', label: 'v2.1.0', target: '_self'},
+          ],
+        },
         {
           type: 'custom-github',
           position: 'right',
