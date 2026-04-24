@@ -17,9 +17,8 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-table {
+.theme-doc-markdown table {
   width: 100%;
-  display: table;
 }
 
 [data-theme='dark'] {
