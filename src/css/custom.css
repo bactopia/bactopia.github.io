@@ -96,6 +96,10 @@
   display: none;
 }
 
+.theme-doc-footer-edit-meta-row .theme-edit-this-page {
+  display: none;
+}
+
 .badge--tag {
   margin-right: 0.35rem;
   margin-bottom: 0.35rem;
