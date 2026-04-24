@@ -1,10 +1,11 @@
-BACTOPIA_REPO ?= /home/rpetit3/repos/bactopia/bactopia
+BACTOPIA_REPO ?=
 
 .PHONY: generate parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements update-citations clean-generated
 
 generate: parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements
 
 parse:
+	@test -n "$(BACTOPIA_REPO)" || (echo "Error: BACTOPIA_REPO is not set. Pass it explicitly, for example: make generate BACTOPIA_REPO=../bactopia" >&2; exit 1)
 	python bin/parse-bactopia.py $(BACTOPIA_REPO) --output data/bactopia.json
 
 generate-workflows:
