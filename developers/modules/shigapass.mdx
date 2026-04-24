@@ -1,0 +1,92 @@
+---
+title: shigapass
+description: "Predict Shigella serotypes and differentiate Shigella/EIEC."
+tags:
+  - shigella
+  - eiec
+  - serotype
+  - virulence
+  - prediction
+  - sample-scope
+---
+
+# shigapass
+
+**Tags:** <a href="/developers/tags/shigella" class="badge badge--primary badge--tag">shigella</a> <a href="/developers/tags/eiec" class="badge badge--primary badge--tag">eiec</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predict Shigella serotypes and differentiate Shigella/EIEC.
+
+Uses [ShigaPass](https://github.com/Munch-Lab/ShigaPass) to identify *Shigella* serotypes and
+distinguish *Shigella* species from Enteroinvasive *Escherichia coli* (EIEC) using specific
+genomic markers from assembled contigs.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    flex_tsv: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | ShigaPass summary results in TSV format |
+| `flex_tsv` | `Path?` | ShigaPass Flex summary results in TSV format |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [shigapass](/developers/subworkflows/shigapass) - Predict serotypes of Shigella from assemblies.
+
+### Workflows
+
+- [shigapass](/bactopia-tools/shigapass) - Prediction of Shigella serotypes and differentiation from EIEC.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [shigapass](https://github.com/imanyass/ShigaPass)  
+  Yassine I, Hansen EE, Lefèvre S, Ruckly C, Carle I, Lejay-Collin M, Fabre L, Rafei R, Pardos de la Gandara M, Daboussi F, Shahin A, Weill FX [ShigaPass: an in silico tool predicting Shigella serotypes from whole-genome sequencing assemblies.](https://doi.org/10.1099%2Fmgen.0.000961) _Microb Genomics_ 9(3) (2023)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/shigapass)
+
+## Version
+
+```yaml
+SHIGAPASS:
+    - shigapass: 1.5.0
+```

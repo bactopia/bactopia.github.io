@@ -1,0 +1,79 @@
+---
+title: ectyper
+description: "In silico prediction of Escherichia coli serotype."
+tags:
+  - escherichia
+  - coli
+  - serotype
+  - o-antigen
+  - h-antigen
+  - sample-scope
+---
+
+# ectyper
+
+**Tags:** <a href="/developers/tags/escherichia" class="badge badge--primary badge--tag">escherichia</a> <a href="/developers/tags/coli" class="badge badge--primary badge--tag">coli</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/o-antigen" class="badge badge--primary badge--tag">o-antigen</a> <a href="/developers/tags/h-antigen" class="badge badge--primary badge--tag">h-antigen</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+In silico prediction of Escherichia coli serotype.
+
+This subworkflow performs serotype prediction for Escherichia coli genomes
+using [ECTyper](https://github.com/phac-nml/ecoli_serotyping), which predicts
+O and H antigens from whole genome assemblies. The tool identifies specific
+serotype markers and provides comprehensive serotype classification.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembly files in FASTA format for E. coli serotype prediction |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | Tab-delimited ECTyper serotype prediction results |
+| `txt` | ECTyper detailed results in text format |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [ectyper](/developers/modules/ectyper) - Predict *Escherichia coli* serotype (O and H antigens).
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [ectyper](/bactopia-tools/ectyper) - In silico prediction of Escherichia coli serotype.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ECTyper](https://github.com/phac-nml/ecoli_serotyping)  
+  Laing C, Bessonov K, Sung S, La Rose C [ECTyper - In silico prediction of _Escherichia coli_ serotype](https://github.com/phac-nml/ecoli_serotyping) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/ectyper)

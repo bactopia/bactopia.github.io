@@ -1,0 +1,104 @@
+---
+title: iqtree
+description: "Efficient phylogenomic inference using Maximum Likelihood."
+tags:
+  - phylogeny
+  - tree
+  - maximum-likelihood
+  - bootstrap
+  - model-selection
+  - iqtree
+  - run-scope
+---
+
+# iqtree
+
+**Tags:** <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/tree" class="badge badge--primary badge--tag">tree</a> <a href="/developers/tags/maximum-likelihood" class="badge badge--primary badge--tag">maximum-likelihood</a> <a href="/developers/tags/bootstrap" class="badge badge--primary badge--tag">bootstrap</a> <a href="/developers/tags/model-selection" class="badge badge--primary badge--tag">model-selection</a> <a href="/developers/tags/iqtree" class="badge badge--primary badge--tag">iqtree</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Efficient phylogenomic inference using Maximum Likelihood.
+
+Uses [IQ-TREE](https://iqtree.github.io/) to construct a maximum-likelihood phylogenetic tree
+from a multiple sequence alignment. It automatically determines the best-fit substitution model
+(via ModelFinder) and assesses branch support using the Ultrafast Bootstrap approximation.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    aln: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `aln` | `Path` | Multiple sequence alignment in FASTA, PHYLIP, or NEXUS format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    aln: Path,
+    nwk: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `aln` | `Path` | The input alignment (passed through) |
+| `nwk` | `Path` | The final maximum-likelihood phylogenetic tree (Newick format) |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### IQ-TREE Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--iqtree_model` | string | `HKY` | Substitution model name |
+| `--iqtree_bb` | integer | `1000` | Ultrafast bootstrap replicates |
+| `--iqtree_alrt` | integer | `1000` | SH-like approximate likelihood ratio test replicates |
+| `--iqtree_asr` | boolean | `false` | Ancestral state reconstruction by empirical Bayes |
+| `--skip_phylogeny` | boolean | `false` | Skip IQ-TREE execution in subworkflows |
+
+## Used By
+
+### Subworkflows
+
+- [iqtree](/developers/subworkflows/iqtree) - Construct maximum likelihood phylogenetic trees from alignments.
+
+### Workflows
+
+- [pangenome](/bactopia-tools/pangenome) - Pangenome analysis with optional core-genome phylogeny.
+- [snippy](/bactopia-tools/snippy) - Rapid haplotype variant calling and core genome alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
+  Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/iqtree)
+
+## Version
+
+```yaml
+IQTREE:
+    - iqtree: 3.1.1
+```

@@ -9,7 +9,7 @@ description: Learn how to use Bactopia to analyze nearly 2,000,000 bacterial ass
 
 [AllTheBacteria](https://github.com/iqbal-lab-org/AllTheBacteria) (ATB) is a collection
 of nearly 2,000,000 bacterial assemblies. In this post you'll learn how to use Bactopia to
-seamlessly analyze these assemblies with the available [Bactopia Tools](/workflows/bactopia-tools).
+seamlessly analyze these assemblies with the available [Bactopia Tools](/bactopia-tools).
 
 <!-- truncate -->
 
@@ -30,11 +30,11 @@ please see:
 - GitHub: [AllTheBacteria](https://github.com/iqbal-lab-org/AllTheBacteria)
 
 Since Zamin revealed the latest updates on AllTheBacteria, I've been wondering: _How could Bactopia
-users take advantage these assemblies? Especially, through available [Bactopia Tools](/workflows/bactopia-tools)?_
+users take advantage these assemblies? Especially, through available [Bactopia Tools](/bactopia-tools)?_
 
 ## Why Bactopia Tools?
 
-The really nice thing about Bactopia Tools is they make it super easy to run [60 additional analyses](/workflows/bactopia-tools)
+The really nice thing about Bactopia Tools is they make it super easy to run [60 additional analyses](/bactopia-tools)
 on your genomes. It's really as simple as adding `--wf <tool>` to your Bactopia command, then Bactopia
 will then handle the rest for you, including container selection and audit trails. 
 
@@ -55,43 +55,43 @@ Each of the tools listed below accepts a single assembly as input.
 
 | Tool | Description |
 |------|-------------|
-| [bakta](/workflows/bactopia-tools/bakta) | Rapid annotation of bacterial genomes & plasmids |
-| [fastani](/workflows/bactopia-tools/fastani) | Fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
-| [gtdb](/workflows/bactopia-tools/gtdb) | Identify marker genes and assign taxonomic classifications |
-| [mashtree](/workflows/bactopia-tools/mashtree) | Create a trees using Mash distances |
-| [abricate](/workflows/bactopia-tools/abricate) | Mass screening of contigs for antimicrobial and virulence genes |
-| [abritamr](/workflows/bactopia-tools/abritamr) | A NATA accredited tool for reporting the presence of antimicrobial resistance genes |
-| [agrvate](/workflows/bactopia-tools/agrvate) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants |
-| [amrfinderplus](/workflows/bactopia-tools/amrfinderplus) | Identify antimicrobial resistance in genes or proteins |
-| [btyper3](/workflows/bactopia-tools/btyper3) | Taxonomic classification of Bacillus cereus group isolates |
-| [busco](/workflows/bactopia-tools/busco) | Assembly completeness based on evolutionarily informed expectations |
-| [checkm](/workflows/bactopia-tools/checkm) | Assess the assembly quality of your microbial samples |
-| [ectyper](/workflows/bactopia-tools/ectyper) | In-silico prediction of Escherichia coli serotype |
-| [emmtyper](/workflows/bactopia-tools/emmtyper) | emm-typing of Streptococcus pyogenes assemblies |
-| [gamma](/workflows/bactopia-tools/gamma) | Identification, classification, and annotation of translated gene matches |
-| [hicap](/workflows/bactopia-tools/hicap) | Identify cap locus serotype and structure in your Haemophilus influenzae assemblies |
-| [hpsuissero](/workflows/bactopia-tools/hpsuissero) | Rapid Haemophilus parasuis Serotyping of assemblies |
-| [kleborate](/workflows/bactopia-tools/kleborate) | Screen for MLST, sub-species, and other Klebsiella related genes of interest |
-| [legsta](/workflows/bactopia-tools/legsta) | Typing of Legionella pneumophila assemblies |
-| [lissero](/workflows/bactopia-tools/lissero) | Serogroup typing prediction for Listeria monocytogenes |
-| [mashdist](/workflows/bactopia-tools/mashdist) | Calculate Mash distances between sequences |
-| [mcroni](/workflows/bactopia-tools/mcroni) | Sequence variation in mobilized colistin resistance (mcr-1) genes |
-| [meningotype](/workflows/bactopia-tools/meningotype) | Serotyping of Neisseria meningitidis |
-| [mlst](/workflows/bactopia-tools/mlst) | Scan contig files against PubMLST typing schemes |
-| [mobsuite](/workflows/bactopia-tools/mobsuite) | Reconstruct and annotate plasmids in bacterial assemblies |
-| [pasty](/workflows/bactopia-tools/pasty) | Serogrouping of Pseudomonas aeruginosa isolates |
-| [pbptyper](/workflows/bactopia-tools/pbptyper) | Penicillin Binding Protein (PBP) typer for Streptococcus pneumoniae |
-| [phispy](/workflows/bactopia-tools/phispy) | Predict prophages in bacterial genomes |
-| [plasmidfinder](/workflows/bactopia-tools/plasmidfinder) | Plasmid identification from assemblies |
-| [prokka](/workflows/bactopia-tools/prokka) | Whole genome annotation of small genomes (bacterial, archeal, viral) |
-| [quast](/workflows/bactopia-tools/quast) | Assess the quality of assembled contigs |
-| [rgi](/workflows/bactopia-tools/rgi) | Predict antibiotic resistance from assemblies |
-| [seqsero2](/workflows/bactopia-tools/seqsero2) | Salmonella serotype prediction from reads or assemblies |
-| [shigeifinder](/workflows/bactopia-tools/shigeifinder) | Shigella and EIEC serotyping from assemblies |
-| [sistr](/workflows/bactopia-tools/sistr) | Serovar prediction of Salmonella assemblies |
-| [spatyper](/workflows/bactopia-tools/spatyper) | Computational method for finding spa types in Staphylococcus aureus |
-| [stecfinder](/workflows/bactopia-tools/stecfinder) | Serotyping Shigella toxin producing Escherichia coli genomes |
-| [ssuissero](/workflows/bactopia-tools/ssuissero) | Rapid Streptococcus suis Serotyping of assemblies |
+| [bakta](/bactopia-tools/bakta) | Rapid annotation of bacterial genomes & plasmids |
+| [fastani](/bactopia-tools/fastani) | Fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI) |
+| [gtdb](/bactopia-tools/gtdb) | Identify marker genes and assign taxonomic classifications |
+| [mashtree](/bactopia-tools/mashtree) | Create a trees using Mash distances |
+| [abricate](/bactopia-tools/abricate) | Mass screening of contigs for antimicrobial and virulence genes |
+| [abritamr](/bactopia-tools/abritamr) | A NATA accredited tool for reporting the presence of antimicrobial resistance genes |
+| [agrvate](/bactopia-tools/agrvate) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants |
+| [amrfinderplus](/bactopia-tools/amrfinderplus) | Identify antimicrobial resistance in genes or proteins |
+| [btyper3](/bactopia-tools/btyper3) | Taxonomic classification of Bacillus cereus group isolates |
+| [busco](/bactopia-tools/busco) | Assembly completeness based on evolutionarily informed expectations |
+| [checkm](/bactopia-tools/checkm) | Assess the assembly quality of your microbial samples |
+| [ectyper](/bactopia-tools/ectyper) | In-silico prediction of Escherichia coli serotype |
+| [emmtyper](/bactopia-tools/emmtyper) | emm-typing of Streptococcus pyogenes assemblies |
+| [gamma](/bactopia-tools/gamma) | Identification, classification, and annotation of translated gene matches |
+| [hicap](/bactopia-tools/hicap) | Identify cap locus serotype and structure in your Haemophilus influenzae assemblies |
+| [hpsuissero](/bactopia-tools/hpsuissero) | Rapid Haemophilus parasuis Serotyping of assemblies |
+| [kleborate](/bactopia-tools/kleborate) | Screen for MLST, sub-species, and other Klebsiella related genes of interest |
+| [legsta](/bactopia-tools/legsta) | Typing of Legionella pneumophila assemblies |
+| [lissero](/bactopia-tools/lissero) | Serogroup typing prediction for Listeria monocytogenes |
+| [mashdist](/bactopia-tools/mashdist) | Calculate Mash distances between sequences |
+| [mcroni](/bactopia-tools/mcroni) | Sequence variation in mobilized colistin resistance (mcr-1) genes |
+| [meningotype](/bactopia-tools/meningotype) | Serotyping of Neisseria meningitidis |
+| [mlst](/bactopia-tools/mlst) | Scan contig files against PubMLST typing schemes |
+| [mobsuite](/bactopia-tools/mobsuite) | Reconstruct and annotate plasmids in bacterial assemblies |
+| [pasty](/bactopia-tools/pasty) | Serogrouping of Pseudomonas aeruginosa isolates |
+| [pbptyper](/bactopia-tools/pbptyper) | Penicillin Binding Protein (PBP) typer for Streptococcus pneumoniae |
+| [phispy](/bactopia-tools/phispy) | Predict prophages in bacterial genomes |
+| [plasmidfinder](/bactopia-tools/plasmidfinder) | Plasmid identification from assemblies |
+| [prokka](/bactopia-tools/prokka) | Whole genome annotation of small genomes (bacterial, archeal, viral) |
+| [quast](/bactopia-tools/quast) | Assess the quality of assembled contigs |
+| [rgi](/bactopia-tools/rgi) | Predict antibiotic resistance from assemblies |
+| [seqsero2](/bactopia-tools/seqsero2) | Salmonella serotype prediction from reads or assemblies |
+| [shigeifinder](/bactopia-tools/shigeifinder) | Shigella and EIEC serotyping from assemblies |
+| [sistr](/bactopia-tools/sistr) | Serovar prediction of Salmonella assemblies |
+| [spatyper](/bactopia-tools/spatyper) | Computational method for finding spa types in Staphylococcus aureus |
+| [stecfinder](/bactopia-tools/stecfinder) | Serotyping Shigella toxin producing Escherichia coli genomes |
+| [ssuissero](/bactopia-tools/ssuissero) | Rapid Streptococcus suis Serotyping of assemblies |
 
 :::
 
@@ -127,7 +127,7 @@ _Legionella pneumophila_ assemblies from AllTheBacteria.
 To demonstrate the usage of `bactopia atb-formatter`, I will use assemblies for
 _Legionella pneumophila_ from AllTheBacteria and run [legsta](https://github.com/tseemann/legsta),
  a typing tool for _L. pneumophila_ assemblies, written by [Torsten Seeman](https://www.doherty.edu.au/people/associate-professor-torsten-seemann),
-To be specific, I will run legsta from the available [Bactopia Tool](/workflows/bactopia-tools/legsta).
+To be specific, I will run legsta from the available [Bactopia Tool](/bactopia-tools/legsta).
 
 ### Getting Setup
 
@@ -205,7 +205,7 @@ After running the above command, you should see something like the following:
 
 Fancy! Now we have all the assemblies sym-linked into a Bactopia directory structure. It's
 time to let Bactopia Tools shine! To do this, I will run the
-[legsta Bactopia Tool](/workflows/bactopia-tools/legsta) and demonstrate
+[legsta Bactopia Tool](/bactopia-tools/legsta) and demonstrate
 how seamless it is to type 5,393 assemblies.
 
 With a simple addition of `--wf legsta` and pointing to the Bactopia directory, `legsta` will

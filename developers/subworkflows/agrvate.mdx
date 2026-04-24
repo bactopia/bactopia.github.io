@@ -1,0 +1,77 @@
+---
+title: agrvate
+description: "Identify Staphylococcus aureus agr locus type and operon variants."
+tags:
+  - staphylococcus-aureus
+  - assembly
+  - agr-locus
+  - virulence
+  - quorum-sensing
+  - sample-scope
+---
+
+# agrvate
+
+**Tags:** <a href="/developers/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/agr-locus" class="badge badge--primary badge--tag">agr-locus</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/quorum-sensing" class="badge badge--primary badge--tag">quorum-sensing</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identify Staphylococcus aureus agr locus type and operon variants.
+
+This subworkflow uses [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE) to rapidly identify the
+accessory gene regulator (agr) locus type and detect agr operon variants in Staphylococcus aureus.
+The agr system is a key quorum-sensing regulator of virulence in S. aureus.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembled contigs in FASTA format for agr locus detection |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `summary` | Tab-delimited summary of agr locus type and operon variants |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [agrvate](/developers/modules/agrvate) - Determine the agr locus type and operon variants in Staphylococcus aureus.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [agrvate](/bactopia-tools/agrvate) - Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)  
+  Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/agrvate)

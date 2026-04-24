@@ -25,11 +25,8 @@ def build_module_context(mod, data):
     tool_version = tool.get('version', '')
     scope_label = scope
 
-    badge_parts = [f'<span class="badge badge--{badge_color}">{mod["status"]}</span>']
-    if tool_name and tool_version:
-        badge_parts.append(f'<span class="badge badge--secondary">{tool_name} v{tool_version}</span>')
-    badge_parts.append(f'<span class="badge badge--info">{scope_label} scope</span>')
-    badges = ' '.join(badge_parts)
+    badges = ''
+    tool_url = tool.get('url', '')
 
     desc_parts = []
     if mod['summary']:
@@ -91,7 +88,7 @@ def build_module_context(mod, data):
             for sw_name in sorted(sw_list):
                 sw = data['subworkflows'].get(sw_name, {})
                 sw_summary = sw.get('summary', '')
-                used_by_parts.append(f'- [{sw_name}](/subworkflows/{sw_name}) - {sw_summary}')
+                used_by_parts.append(f'- [{sw_name}](/developers/subworkflows/{sw_name}) - {sw_summary}')
             used_by_parts.append('')
         if wf_list:
             used_by_parts.append('### Workflows')
@@ -99,7 +96,12 @@ def build_module_context(mod, data):
             for wf_name in sorted(wf_list):
                 wf = data['workflows'].get(wf_name, {})
                 wf_summary = wf.get('summary', '')
-                wf_path = f'/workflows/bactopia-tools/{wf_name}' if wf.get('type') == 'tool' else f'/workflows/named-workflows/{wf_name}'
+                if wf_name == 'bactopia':
+                    wf_path = '/bactopia-workflow'
+                elif wf.get('type') == 'tool':
+                    wf_path = f'/bactopia-tools/{wf_name}'
+                else:
+                    wf_path = f'/bactopia-pipelines/{wf_name}'
                 used_by_parts.append(f'- [{wf_name}]({wf_path}) - {wf_summary}')
             used_by_parts.append('')
     used_by_section = '\n'.join(used_by_parts)
@@ -111,7 +113,11 @@ def build_module_context(mod, data):
         'mod': mod,
         'data': data,
         'tags': tags,
+        'tag_base': '/developers',
         'badges': badges,
+        'tool_name': tool_name,
+        'tool_version': tool_version,
+        'tool_url': tool_url,
         'description': description,
         'notes_section': notes_section,
         'inputs_section': inputs_section,
@@ -125,8 +131,8 @@ def build_module_context(mod, data):
 def main():
     parser = argparse.ArgumentParser(description='Generate module MDX pages from parsed Bactopia metadata')
     parser.add_argument('catalog', help='Path to parsed bactopia.json')
-    parser.add_argument('--output-dir', '-o', default='modules',
-                        help='Output directory for MDX files (default: modules)')
+    parser.add_argument('--output-dir', '-o', default='developers/modules',
+                        help='Output directory for MDX files (default: developers/modules)')
     parser.add_argument('--template-dir', '-t', default='templates',
                         help='Template directory (default: templates)')
     args = parser.parse_args()

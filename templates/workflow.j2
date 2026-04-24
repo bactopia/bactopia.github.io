@@ -6,8 +6,15 @@ tags:
 ---
 
 # {{ wf.key }}
+{% if badges %}
 
 {{ badges }}
+{% endif %}
+{% if tags %}
+
+**Tags:** {% for tag in tags %}<a href="{{ tag_base }}/tags/{{ tag }}" class="badge badge--primary badge--tag">{{ tag }}</a> {% endfor %}
+
+{% endif %}
 
 {{ description }}
 

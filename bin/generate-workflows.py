@@ -21,8 +21,7 @@ def build_workflow_context(wf, data):
     if wf_type_tag not in tags:
         tags.append(wf_type_tag)
 
-    badge_color = STATUS_BADGE.get(wf['status'], 'secondary')
-    badges = f'<span class="badge badge--{badge_color}">{wf["status"]}</span>'
+    badges = ''
 
     desc_parts = []
     if wf['summary']:
@@ -102,17 +101,20 @@ def build_workflow_context(wf, data):
         for sw_name in sorted(sw_list):
             sw = data['subworkflows'].get(sw_name, {})
             sw_summary = sw.get('summary', '')
-            comp_parts.append(f'- [{sw_name}](/subworkflows/{sw_name}) - {sw_summary}')
+            comp_parts.append(f'- [{sw_name}](/developers/subworkflows/{sw_name}) - {sw_summary}')
         comp_parts.append('')
     composition_section = '\n'.join(comp_parts)
 
     # Citations
     citations_section = render_citations(wf.get('citations', []), data['citations'])
 
+    tag_base = '/bactopia-tools' if wf['type'] == 'tool' else '/bactopia-pipelines'
+
     return {
         'wf': wf,
         'data': data,
         'tags': tags,
+        'tag_base': tag_base,
         'badges': badges,
         'description': description,
         'params_section': params_section,
@@ -125,8 +127,12 @@ def build_workflow_context(wf, data):
 def main():
     parser = argparse.ArgumentParser(description='Generate workflow MDX pages from parsed Bactopia metadata')
     parser.add_argument('catalog', help='Path to parsed bactopia.json')
-    parser.add_argument('--output-dir', '-o', default='workflows',
-                        help='Output directory for MDX files (default: workflows)')
+    parser.add_argument('--tools-dir', default='bactopia-tools',
+                        help='Output directory for Bactopia Tools (default: bactopia-tools)')
+    parser.add_argument('--pipelines-dir', default='bactopia-pipelines',
+                        help='Output directory for Bactopia Pipelines (default: bactopia-pipelines)')
+    parser.add_argument('--docs-dir', default='docs',
+                        help='Output directory for main docs (default: docs)')
     parser.add_argument('--template-dir', '-t', default='templates',
                         help='Template directory (default: templates)')
     args = parser.parse_args()
@@ -140,14 +146,13 @@ def main():
         data = json.load(f)
 
     env = create_jinja_env(args.template_dir)
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    tools_dir = Path(args.tools_dir)
+    tools_dir.mkdir(parents=True, exist_ok=True)
+    pipelines_dir = Path(args.pipelines_dir)
+    pipelines_dir.mkdir(parents=True, exist_ok=True)
+    docs_dir = Path(args.docs_dir)
 
     workflows = data.get('workflows', {})
-    tools_dir = output_dir / 'bactopia-tools'
-    tools_dir.mkdir(parents=True, exist_ok=True)
-    named_dir = output_dir / 'named-workflows'
-    named_dir.mkdir(parents=True, exist_ok=True)
 
     for key in sorted(workflows.keys()):
         wf = workflows[key]
@@ -156,24 +161,20 @@ def main():
         page = template.render(**context)
         if wf['type'] == 'tool':
             (tools_dir / f'{key}.mdx').write_text(page)
+        elif key == 'bactopia':
+            page = page.replace(
+                'title: bactopia\n',
+                'title: Bactopia Workflow\nsidebar_label: Bactopia Workflow\nsidebar_position: 6\n',
+                1,
+            )
+            page = page.replace('  - named-workflow\n', '', 1)
+            (docs_dir / 'bactopia-workflow.mdx').write_text(page)
         else:
-            (named_dir / f'{key}.mdx').write_text(page)
+            (pipelines_dir / f'{key}.mdx').write_text(page)
 
     # Index pages
-    named = {k: v for k, v in workflows.items() if v['type'] == 'named'}
+    named = {k: v for k, v in workflows.items() if v['type'] == 'named' and k != 'bactopia'}
     tools = {k: v for k, v in workflows.items() if v['type'] == 'tool'}
-
-    index_template = env.get_template('workflow_index.j2')
-    index_page = index_template.render(
-        total=len(workflows),
-        named_count=len(named),
-        tools_count=len(tools),
-        named=named,
-        named_keys=sorted(named.keys()),
-        tools=tools,
-        tools_keys=sorted(tools.keys()),
-    )
-    (output_dir / 'index.mdx').write_text(index_page)
 
     named_index_template = env.get_template('named_workflows_index.j2')
     named_index_page = named_index_template.render(
@@ -181,7 +182,7 @@ def main():
         named=named,
         named_keys=sorted(named.keys()),
     )
-    (named_dir / 'index.mdx').write_text(named_index_page)
+    (pipelines_dir / 'index.mdx').write_text(named_index_page)
 
     tools_index_template = env.get_template('bactopia_tools_index.j2')
     tools_index_page = tools_index_template.render(
@@ -191,7 +192,7 @@ def main():
     )
     (tools_dir / 'index.mdx').write_text(tools_index_page)
 
-    print(f'Generated {len(named)} named + {len(tools)} tool workflow pages + indexes in {output_dir}/')
+    print(f'Generated {len(named)} pipeline + {len(tools)} tool workflow pages + indexes')
 
 
 if __name__ == '__main__':

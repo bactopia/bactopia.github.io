@@ -1,0 +1,410 @@
+---
+title: pangenome
+description: "Pangenome analysis with optional core-genome phylogeny."
+tags:
+  - alignment
+  - core-genome
+  - pan-genome
+  - phylogeny
+  - comparative-genomics
+  - bactopia-tool
+---
+
+# pangenome
+
+**Tags:** <a href="/bactopia-tools/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/bactopia-tools/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/bactopia-tools/tags/pan-genome" class="badge badge--primary badge--tag">pan-genome</a> <a href="/bactopia-tools/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/bactopia-tools/tags/comparative-genomics" class="badge badge--primary badge--tag">comparative-genomics</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Pangenome analysis with optional core-genome phylogeny.
+
+This Bactopia Tool creates a pangenome from GFF3 annotation files using one of three
+tools: [Panaroo](https://github.com/gtonkinhill/panaroo) (default),
+[PIRATE](https://github.com/SionBayliss/PIRATE), or
+[Roary](https://github.com/sanger-pathogens/roary). It generates core-genome alignments
+and gene presence/absence matrices, followed by SNP distance calculations.
+You can supplement your pangenome with completed genomes using the --species or
+--accessions parameters, which downloads genomes from RefSeq and annotates them with
+Prokka. A phylogeny based on the core-genome alignment is created by IQ-Tree, with
+optional recombination masking using ClonalFrameML. Finally, pan-genome wide
+association studies can be conducted using Scoary.
+
+## Usage
+
+```bash
+bactopia --wf pangenome \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+└── <SAMPLE_NAME>
+    └── pangenome-<TIMESTAMP>
+        ├── clonalframeml
+        │   ├── core-genome.ML_sequence.fasta.gz
+        │   ├── core-genome.em.txt
+        │   ├── core-genome.emsim.txt
+        │   ├── core-genome.importation_status.txt
+        │   ├── core-genome.labelled_tree.newick
+        │   ├── core-genome.position_cross_reference.txt.gz
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        ├── core-genome.distance.tsv
+        ├── core-genome.masked.aln.gz
+        ├── core-genome.masked.distance.tsv
+        ├── core-genome.treefile
+        ├── iqtree
+        │   ├── core-genome.alninfo.gz
+        │   ├── core-genome.bionj
+        │   ├── core-genome.ckp.gz
+        │   ├── core-genome.contree
+        │   ├── core-genome.iqtree
+        │   ├── core-genome.log
+        │   ├── core-genome.mldist
+        │   ├── core-genome.splits.nex
+        │   ├── core-genome.ufboot
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        ├── iqtree-fast
+        │   ├── logs
+        │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   └── versions.yml
+        │   ├── roary.bionj
+        │   ├── roary.ckp.gz
+        │   ├── roary.iqtree
+        │   ├── roary.log
+        │   ├── roary.mldist
+        │   ├── roary.model.gz
+        │   └── roary.treefile
+        ├── nf-reports
+        │   ├── pangenome-dag.dot
+        │   ├── pangenome-report.html
+        │   └── pangenome-timeline.html
+        ├── roary
+        │   ├── accessory.header.embl
+        │   ├── accessory.tab
+        │   ├── accessory_binary_genes.fa.gz
+        │   ├── accessory_binary_genes.fa.newick
+        │   ├── accessory_graph.dot
+        │   ├── blast_identity_frequency.Rtab
+        │   ├── clustered_proteins
+        │   ├── core_accessory.header.embl
+        │   ├── core_accessory.tab
+        │   ├── core_accessory_graph.dot
+        │   ├── core_alignment_header.embl
+        │   ├── core_gene_alignment.aln.gz
+        │   ├── gene_presence_absence.Rtab
+        │   ├── gene_presence_absence.csv
+        │   ├── logs
+        │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   └── versions.yml
+        │   ├── number_of_conserved_genes.Rtab
+        │   ├── number_of_genes_in_pan_genome.Rtab
+        │   ├── number_of_new_genes.Rtab
+        │   ├── number_of_unique_genes.Rtab
+        │   ├── pan_genome_reference.fa.gz
+        │   └── summary_statistics.txt
+        ├── roary.aln.gz
+        ├── scoary
+        │   ├── Bogus_trait.results.csv
+        │   ├── Tetracycline_resistance.results.csv
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       ├── scoary.log
+        │       └── versions.yml
+        ├── snpdists
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        └── snpdists-masked
+            └── logs
+                ├── nf.command.{begin,err,log,out,run,sh,trace}
+                └── versions.yml
+```
+
+### Pangenome Results
+
+| File | Description |
+|------|-------------|
+| `*.aln` | Core-genome alignment file containing genes present across all input genomes |
+| `*.csv` | Gene presence/absence matrix showing which genes are present in each genome |
+| `*.tsv` | SNP distance matrix between all samples |
+
+### Phylogeny Results
+
+:::note
+Only created if --skip_phylogeny is not enabled
+:::
+
+| File | Description |
+|------|-------------|
+| `*.treefile` | Maximum likelihood phylogenetic tree in Newick format |
+| `*.iqtree` | IQ-Tree analysis report with model selection and support values |
+| `*.log` | IQ-Tree execution log |
+
+### Recombination Analysis
+
+:::note
+Only created if --skip_recombination is not enabled
+:::
+
+| File | Description |
+|------|-------------|
+| `*.masked.aln` | Core-genome alignment with recombination regions masked |
+
+### Association Analysis
+
+:::note
+Only created if --scoary_traits is specified
+:::
+
+| File | Description |
+|------|-------------|
+| `scoary/*` | Scoary association analysis results and plots |
+
+### Panaroo Results
+
+:::note
+Only created when Panaroo is selected as the pangenome tool
+:::
+
+| File | Description |
+|------|-------------|
+| `panaroo/*` | Panaroo-specific output files including graph and statistics |
+
+### PIRATE Results
+
+:::note
+Only created when PIRATE is selected as the pangenome tool
+:::
+
+| File | Description |
+|------|-------------|
+| `pirate/*` | PIRATE-specific output files including gene families and clusters |
+
+### Roary Results
+
+:::note
+Only created when Roary is selected as the pangenome tool
+:::
+
+| File | Description |
+|------|-------------|
+| `roary/*` | Roary-specific output files including gene presence/absence matrices |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| pangenome-dag.dot | The Nextflow [DAG visualization](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| pangenome-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| pangenome-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| pangenome-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### NCBI Genome Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--species` | string |  | Name of the species to download assemblies |
+| `--accession` | string |  | An NCBI Assembly accession to be downloaded |
+| `--accessions` | string |  | An file of NCBI Assembly accessions (one per line) to be downloaded |
+| `--format` | string | `fasta` | Comma separated list of formats to download |
+| `--limit` | string |  | Limit the number of assemblies to download |
+| `--keep_downloads` | boolean | `false` | Save downloaded files into the bactopia-runs folder |
+
+### Prokka Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--prokka_proteins` | string | `${projectDir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
+| `--prokka_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--prokka_coverage` | integer | `80` | Minimum coverage on query protein |
+
+### PIRATE Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--use_pirate` | boolean | `false` | Use PIRATE instead of panaroo in the 'pangenome' subworkflow |
+| `--pirate_steps` | string | `50,60,70,80,90,95,98` | Percent identity thresholds to use for pangenome construction |
+| `--pirate_features` | string | `CDS` | Comma-delimited features to use for pangenome construction |
+| `--pirate_para_off` | boolean | `false` | Switch off paralog identification |
+
+### Roary Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--use_roary` | boolean | `false` | Use Roary instead of PIRATE in the 'pangenome' subworkflow |
+| `--roary_cd` | integer | `99` | Percentage of isolates a gene must be in to be core |
+| `--roary_s` | boolean | `false` | Do not split paralogs |
+| `--roary_ap` | boolean | `false` | Allow paralogs in core alignment |
+
+### Panaroo Run Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--panaroo_merge_paralogs` | boolean | `false` | Do not split paralogs |
+| `--panaroo_opts` | string |  | Additional options to pass to panaroo |
+
+### SNP-Dists Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--snpdists_a` | boolean | `false` | Count all differences not just [AGTC] |
+
+### ClonalFrameML Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--clonalframeml_emsim` | integer | `100` | Number of simulations to estimate uncertainty in the EM results |
+| `--skip_recombination` | boolean | `false` | Skip ClonalFrameML execution in subworkflows |
+
+### IQ-TREE Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--iqtree_model` | string | `HKY` | Substitution model name |
+| `--iqtree_bb` | integer | `1000` | Ultrafast bootstrap replicates |
+| `--iqtree_alrt` | integer | `1000` | SH-like approximate likelihood ratio test replicates |
+| `--iqtree_asr` | boolean | `false` | Ancestral state reconstruction by empirical Bayes |
+| `--skip_phylogeny` | boolean | `false` | Skip IQ-TREE execution in subworkflows |
+
+### Scoary Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--scoary_traits` | string |  | Input trait table (CSV) to test for associations |
+| `--scoary_permute` | integer | `0` | Perform N number of permutations of the significant results post-analysis |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [clonalframeml](/developers/subworkflows/clonalframeml) - Detect and mask recombination events in bacterial phylogenies.
+- [iqtree](/developers/subworkflows/iqtree) - Construct maximum likelihood phylogenetic trees from alignments.
+- [ncbigenomedownload](/developers/subworkflows/ncbigenomedownload) - Download bacterial genomes from NCBI's RefSeq database.
+- [pangenome](/developers/subworkflows/pangenome) - Perform pangenome analysis with optional core-genome phylogeny.
+- [prokka](/developers/subworkflows/prokka) - Annotate bacterial genomes with functional information.
+- [scoary](/developers/subworkflows/scoary) - Pan-genome wide association studies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)  
+  Didelot X, Wilson DJ [ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.](https://doi.org/10.1371/journal.pcbi.1004041) _PLoS Comput Biol_ 11(2) e1004041 (2015)
+
+- [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
+  Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
+
+- [ModelFinder](https://github.com/Cibiv/IQ-TREE)  
+  Kalyaanamoorthy S, Minh BQ, Wong TKF, von Haeseler A, Jermiin LS [ModelFinder - Fast model selection for accurate phylogenetic estimates.](https://doi.org/10.1038/nmeth.4285) _Nat. Methods_ 14:587-589 (2017)
+
+- [UFBoot2](https://github.com/Cibiv/IQ-TREE)  
+  Hoang DT, Chernomor O, von Haeseler A, Minh BQ, Vinh LS [UFBoot2: Improving the ultrafast bootstrap approximation.](https://doi.org/10.1093/molbev/msx281) _Mol. Biol. Evol._ 35:518-522 (2018)
+
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+
+- [Panaroo](https://github.com/gtonkinhill/panaroo)  
+  Tonkin-Hill G, MacAlasdair N, Ruis C, Weimann A, Horesh G, Lees JA, Gladstone RA, Lo S, Beaudoin C, Floto RA, Frost SDW, Corander J, Bentley SD, Parkhill J [Producing polished prokaryotic pangenomes with the Panaroo pipeline.](https://doi.org/10.1186/s13059-020-02090-4) _Genome Biology_ 21(1), 180. (2020)
+
+- [PIRATE](http://github.com/SionBayliss/PIRATE)  
+  Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ [PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) _Gigascience_ 8 (2019)
+
+- [Prokka](https://github.com/tseemann/prokka)  
+  Seemann T [Prokka: rapid prokaryotic genome annotation](http://dx.doi.org/10.1093/bioinformatics/btu153) _Bioinformatics_ 30, 2068-2069 (2014)
+
+- [Roary](https://github.com/sanger-pathogens/Roary)  
+  Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691-3693 (2015)
+
+- [Scoary](https://github.com/AdmiralenOla/Scoary)  
+  Brynildsrud O, Bohlin J, Scheffer L, Eldholm V [Rapid scoring of genes in microbial pan-genome-wide association studies with Scoary.](https://doi.org/10.1186/s13059-016-1108-8) _Genome Biol._ 17:238 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/pangenome)

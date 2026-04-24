@@ -18,12 +18,7 @@ def build_subworkflow_context(sw, data):
     scope = sw.get('scope', 'sample')
     tags = normalize_tags(sw.get('keywords', []) + [f'{scope}-scope'])
 
-    badge_color = STATUS_BADGE.get(sw['status'], 'secondary')
-    scope_label = sw.get('scope', 'sample')
-    badges = (
-        f'<span class="badge badge--{badge_color}">{sw["status"]}</span> '
-        f'<span class="badge badge--info">{scope_label} scope</span>'
-    )
+    badges = ''
 
     desc_parts = []
     if sw['summary']:
@@ -97,7 +92,7 @@ def build_subworkflow_context(sw, data):
         for sw_name in sw_list:
             sub = data['subworkflows'].get(sw_name, {})
             sub_summary = sub.get('summary', '')
-            comp_parts.append(f'- [{sw_name}](/subworkflows/{sw_name}) - {sub_summary}')
+            comp_parts.append(f'- [{sw_name}](/developers/subworkflows/{sw_name}) - {sub_summary}')
         comp_parts.append('')
 
     mod_list = sw.get('modules', [])
@@ -109,7 +104,7 @@ def build_subworkflow_context(sw, data):
         for mod_name in mod_list:
             mod = data['modules'].get(mod_name, {})
             mod_summary = mod.get('summary', '')
-            comp_parts.append(f'- [{mod_name}](/modules/{mod_name}) - {mod_summary}')
+            comp_parts.append(f'- [{mod_name}](/developers/modules/{mod_name}) - {mod_summary}')
         comp_parts.append('')
     composition_section = '\n'.join(comp_parts)
 
@@ -124,7 +119,12 @@ def build_subworkflow_context(sw, data):
         for wf_name in sorted(wf_list):
             wf = data['workflows'].get(wf_name, {})
             wf_summary = wf.get('summary', '')
-            wf_path = f'/workflows/bactopia-tools/{wf_name}' if wf.get('type') == 'tool' else f'/workflows/named-workflows/{wf_name}'
+            if wf_name == 'bactopia':
+                wf_path = '/bactopia-workflow'
+            elif wf.get('type') == 'tool':
+                wf_path = f'/bactopia-tools/{wf_name}'
+            else:
+                wf_path = f'/bactopia-pipelines/{wf_name}'
             used_by_parts.append(f'- [{wf_name}]({wf_path}) - {wf_summary}')
         used_by_parts.append('')
     used_by_section = '\n'.join(used_by_parts)
@@ -136,6 +136,7 @@ def build_subworkflow_context(sw, data):
         'sw': sw,
         'data': data,
         'tags': tags,
+        'tag_base': '/developers',
         'badges': badges,
         'description': description,
         'inputs_section': inputs_section,
@@ -149,8 +150,8 @@ def build_subworkflow_context(sw, data):
 def main():
     parser = argparse.ArgumentParser(description='Generate subworkflow MDX pages from parsed Bactopia metadata')
     parser.add_argument('catalog', help='Path to parsed bactopia.json')
-    parser.add_argument('--output-dir', '-o', default='subworkflows',
-                        help='Output directory for MDX files (default: subworkflows)')
+    parser.add_argument('--output-dir', '-o', default='developers/subworkflows',
+                        help='Output directory for MDX files (default: developers/subworkflows)')
     parser.add_argument('--template-dir', '-t', default='templates',
                         help='Template directory (default: templates)')
     args = parser.parse_args()

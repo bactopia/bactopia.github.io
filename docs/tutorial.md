@@ -21,7 +21,7 @@ The goal of the tutorial is to:
     * [ ] Aggregate results from multiple samples
 * [ ] Use Bactopia Tools to:
     * [ ] Run *S. aureus* specific analyses
-    * [ ] Generate a tree using [Mashtree](/workflows/bactopia-tools/mashtree)
+    * [ ] Generate a tree using [Mashtree](/bactopia-tools/mashtree)
 
 Upon completion of this tutorial, you should be ready to process your own data using Bactopia!
 
@@ -863,7 +863,7 @@ Finally, we covered the `bactopia summary` command to get a quick overview of yo
     * [x] Aggregate results from multiple samples
 
 __*BUT!*__ We're not done yet! Let's take a look into how we can further process these
-samples using [Bactopia Tools](/workflows/bactopia-tools/). These are additional pre-made
+samples using [Bactopia Tools](/bactopia-tools/). These are additional pre-made
 workflows that make use of existing Bactopia outputs to dig even deeper in to your studies.
 
 ## Bactopia Tools
@@ -884,7 +884,7 @@ In this section will explore how you can use a few of these. Let's get started!
 ### Species Specific Analyses
 
 All the samples we've processed so far have been from the same species, _Staphylococcus aureus_.
-There is a Bactopia Tool call [staphtyper](/workflows/bactopia-tools/staphtyper) that can be used to
+There is a Bactopia Tool call [staphtyper](/bactopia-tools/staphtyper) that can be used to
 run a few tools specific to _S. aureus_ analysis. Let's run our first Bactopia Tool using the
 samples in `local-multiple-samples`:
 
@@ -934,18 +934,18 @@ these analyses were combined into a single file for easy viewing.
 
 :::tip[Visit `staphtyper` documentation to learn more]
 To learn more about `staphtyper` and the outputs it produces, check out the
-[staphtyper documentation](/workflows/bactopia-tools/staphtyper). It's worth noting,
+[staphtyper documentation](/bactopia-tools/staphtyper). It's worth noting,
 **all** Bactopia Tools will have a similar documentation page.
 :::
 
 * [x] Use Bactopia Tools to:
     * [x] Run *S. aureus* specific analyses
-    * [ ] Generate a tree using [Mashtree](/workflows/bactopia-tools/mashtree)
+    * [ ] Generate a tree using [Mashtree](/bactopia-tools/mashtree)
 
 ### Building a Tree
 
 Now that we've run some _S. aureus_ specific analyses, let's try something a little different.
-Let's build a tree using [Mashtree](/workflows/bactopia-tools/mashtree), which builds the tree using
+Let's build a tree using [Mashtree](/bactopia-tools/mashtree), which builds the tree using
 Mash distances.
 
 For this tutorial, we are using Mashtree, because it is quick, and if you've made it this
@@ -1020,7 +1020,7 @@ executor >  local (2)
 
 :::tip[Visit `mashtree` documentation to learn more]
 To learn more about `mashtree` and the outputs it produces, check out the
-[mashtree documentation](/workflows/bactopia-tools/mashtree). Again, each Bactopia
+[mashtree documentation](/bactopia-tools/mashtree). Again, each Bactopia
 Tool will have a similar documentation page.
 :::
 
@@ -1031,7 +1031,7 @@ Bactopia Tools can help make things easier for you.
 
 * [x] Use Bactopia Tools to:
     * [x] Run *S. aureus* specific analyses
-    * [x] Generate a tree using [Mashtree](/workflows/bactopia-tools/mashtree)
+    * [x] Generate a tree using [Mashtree](/bactopia-tools/mashtree)
 
 By this point, you are probably done! Let's finish this!
 
@@ -1048,7 +1048,7 @@ This tutorial has covered a lot! Let's recap what we've done:
     * [x] Aggregate results from multiple samples
 * [x] Use Bactopia Tools to:
     * [x] Run *S. aureus* specific analyses
-    * [x] Generate a tree using [Mashtree](/workflows/bactopia-tools/mashtree)
+    * [x] Generate a tree using [Mashtree](/bactopia-tools/mashtree)
 
 Hopefully you have succeeded (yay! 🎉) and would like to use Bactopia on your own data!
 

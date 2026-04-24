@@ -1,0 +1,1214 @@
+---
+title: ismapper
+description: "Identify insertion sequence positions in bacterial genomes."
+tags:
+  - insertion-sequences
+  - transposons
+  - comparative-genomics
+  - bactopia-tool
+---
+
+# ismapper
+
+**Tags:** <a href="/bactopia-tools/tags/insertion-sequences" class="badge badge--primary badge--tag">insertion-sequences</a> <a href="/bactopia-tools/tags/transposons" class="badge badge--primary badge--tag">transposons</a> <a href="/bactopia-tools/tags/comparative-genomics" class="badge badge--primary badge--tag">comparative-genomics</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Identify insertion sequence positions in bacterial genomes.
+
+This Bactopia Tool uses [ISMapper](https://github.com/jhawkey/IS_mapper) to identify
+transposase insertion sites in bacterial genomes from short read sequence data.
+
+## Usage
+
+```bash
+bactopia --wf ismapper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── ismapper-<TIMESTAMP>
+│           └── is1016.fasta
+│               ├── logs
+│               │   ├── <SAMPLE_NAME>.log
+│               │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               │   └── versions.yml
+│               └── supplemental
+│                   └── IS1016V1_IS1595_IS1016
+│                       ├── <SAMPLE_NAME>_IS1016V1_IS1595_IS1016_left_final.fastq.gz
+│                       ├── <SAMPLE_NAME>_IS1016V1_IS1595_IS1016_right_final.fastq.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_10_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_10_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_10_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_11_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_11_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_11_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_12_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_12_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_12_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_13_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_13_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_13_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_14_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_14_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_14_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_15_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_15_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_15_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_16_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_16_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_16_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_17_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_17_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_17_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_18_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_18_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_18_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_19_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_19_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_19_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_1_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_1_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_1_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_20_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_20_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_20_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_21_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_21_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_21_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_22_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_22_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_22_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_23_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_23_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_23_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_24_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_24_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_24_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_25_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_25_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_25_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_26_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_26_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_26_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_27_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_27_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_27_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_28_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_28_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_28_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_29_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_29_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_29_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_2_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_2_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_2_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_30_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_30_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_30_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_31_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_31_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_31_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_32_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_32_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_32_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_33_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_33_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_33_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_34_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_34_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_34_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_35_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_35_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_35_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_36_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_36_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_36_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_37_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_37_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_37_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_38_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_38_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_38_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_39_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_39_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_39_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_3_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_3_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_3_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_40_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_40_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_40_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_41_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_41_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_41_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_42_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_42_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_42_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_43_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_43_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_43_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_44_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_44_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_44_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_45_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_45_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_45_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_46_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_46_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_46_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_47_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_47_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_47_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_48_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_48_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_48_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_49_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_49_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_49_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_4_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_4_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_4_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_50_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_50_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_50_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_51_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_51_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_51_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_52_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_52_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_52_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_53_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_53_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_53_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_54_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_54_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_54_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_55_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_55_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_55_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_56_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_56_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_56_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_57_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_57_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_57_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_58_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_58_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_58_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_59_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_59_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_59_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_5_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_5_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_5_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_60_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_60_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_60_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_61_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_61_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_61_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_62_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_62_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_62_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_63_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_63_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_63_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_64_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_64_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_64_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_65_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_65_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_65_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_66_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_66_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_66_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_67_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_67_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_67_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_68_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_68_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_68_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_69_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_69_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_69_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_6_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_6_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_6_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_70_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_70_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_70_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_71_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_71_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_71_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_72_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_72_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_72_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_73_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_73_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_73_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_74_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_74_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_74_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_75_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_75_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_75_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_76_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_76_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_76_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_77_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_77_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_77_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_78_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_78_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_78_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_79_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_79_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_79_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_7_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_7_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_7_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_80_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_80_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_80_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_8_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_8_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_8_table.txt
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_9_closest.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_9_intersect.bed.gz
+│                       ├── <SAMPLE_NAME>__<SAMPLE_NAME>_9_table.txt
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_1.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_1.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_10.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_10.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_10_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_10_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_10_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_11.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_11.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_11_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_11_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_11_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_12.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_12.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_12_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_12_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_12_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_13.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_13.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_13_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_13_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_13_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_14.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_14.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_14_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_14_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_14_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_15.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_15.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_15_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_15_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_15_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_16.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_16.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_16_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_16_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_16_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_17.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_17.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_17_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_17_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_17_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_18.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_18.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_18_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_18_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_18_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_19.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_19.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_19_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_19_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_19_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_1_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_1_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_1_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_2.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_2.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_20.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_20.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_20_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_20_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_20_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_21.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_21.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_21_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_21_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_21_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_22.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_22.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_22_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_22_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_22_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_23.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_23.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_23_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_23_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_23_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_24.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_24.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_24_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_24_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_24_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_25.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_25.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_25_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_25_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_25_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_26.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_26.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_26_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_26_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_26_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_27.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_27.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_27_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_27_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_27_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_28.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_28.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_28_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_28_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_28_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_29.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_29.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_29_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_29_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_29_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_2_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_2_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_2_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_3.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_3.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_30.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_30.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_30_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_30_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_30_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_31.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_31.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_31_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_31_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_31_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_32.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_32.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_32_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_32_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_32_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_33.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_33.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_33_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_33_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_33_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_34.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_34.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_34_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_34_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_34_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_35.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_35.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_35_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_35_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_35_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_36.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_36.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_36_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_36_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_36_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_37.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_37.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_37_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_37_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_37_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_38.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_38.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_38_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_38_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_38_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_39.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_39.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_39_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_39_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_39_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_3_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_3_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_3_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_4.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_4.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_40.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_40.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_40_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_40_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_40_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_41.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_41.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_41_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_41_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_41_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_42.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_42.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_42_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_42_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_42_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_43.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_43.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_43_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_43_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_43_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_44.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_44.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_44_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_44_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_44_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_45.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_45.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_45_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_45_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_45_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_46.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_46.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_46_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_46_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_46_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_47.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_47.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_47_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_47_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_47_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_48.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_48.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_48_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_48_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_48_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_49.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_49.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_49_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_49_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_49_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_4_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_4_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_4_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_5.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_5.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_50.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_50.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_50_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_50_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_50_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_51.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_51.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_51_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_51_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_51_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_52.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_52.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_52_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_52_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_52_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_53.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_53.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_53_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_53_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_53_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_54.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_54.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_54_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_54_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_54_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_55.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_55.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_55_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_55_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_55_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_56.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_56.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_56_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_56_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_56_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_57.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_57.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_57_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_57_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_57_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_58.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_58.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_58_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_58_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_58_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_59.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_59.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_59_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_59_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_59_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_5_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_5_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_5_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_6.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_6.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_60.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_60.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_60_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_60_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_60_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_61.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_61.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_61_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_61_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_61_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_62.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_62.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_62_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_62_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_62_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_63.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_63.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_63_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_63_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_63_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_64.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_64.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_64_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_64_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_64_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_65.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_65.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_65_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_65_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_65_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_66.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_66.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_66_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_66_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_66_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_67.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_67.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_67_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_67_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_67_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_68.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_68.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_68_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_68_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_68_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_69.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_69.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_69_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_69_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_69_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_6_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_6_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_6_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_7.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_7.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_70.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_70.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_70_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_70_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_70_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_71.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_71.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_71_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_71_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_71_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_72.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_72.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_72_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_72_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_72_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_73.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_73.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_73_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_73_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_73_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_74.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_74.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_74_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_74_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_74_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_75.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_75.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_75_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_75_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_75_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_76.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_76.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_76_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_76_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_76_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_77.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_77.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_77_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_77_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_77_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_78.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_78.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_78_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_78_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_78_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_79.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_79.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_79_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_79_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_79_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_7_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_7_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_7_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_8.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_8.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_80_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_80_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_80_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_8_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_8_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_8_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_9.sorted.bam
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_9.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_9_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_9_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_left_<SAMPLE_NAME>_9_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_1.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_1.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_10.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_10.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_10_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_10_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_10_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_11.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_11.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_11_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_11_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_11_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_12.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_12.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_12_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_12_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_12_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_13.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_13.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_13_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_13_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_13_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_14.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_14.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_14_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_14_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_14_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_15.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_15.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_15_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_15_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_15_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_16.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_16.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_16_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_16_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_16_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_17.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_17.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_17_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_17_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_17_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_18.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_18.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_18_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_18_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_18_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_19.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_19.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_19_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_19_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_19_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_1_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_1_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_1_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_2.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_2.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_20.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_20.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_20_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_20_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_20_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_21.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_21.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_21_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_21_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_21_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_22.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_22.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_22_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_22_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_22_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_23.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_23.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_23_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_23_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_23_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_24.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_24.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_24_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_24_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_24_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_25.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_25.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_25_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_25_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_25_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_26.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_26.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_26_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_26_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_26_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_27.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_27.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_27_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_27_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_27_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_28.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_28.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_28_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_28_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_28_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_29.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_29.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_29_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_29_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_29_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_2_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_2_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_2_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_3.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_3.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_30.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_30.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_30_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_30_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_30_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_31.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_31.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_31_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_31_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_31_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_32.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_32.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_32_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_32_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_32_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_33.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_33.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_33_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_33_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_33_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_34.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_34.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_34_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_34_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_34_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_35.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_35.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_35_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_35_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_35_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_36.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_36.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_36_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_36_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_36_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_37.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_37.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_37_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_37_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_37_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_38.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_38.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_38_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_38_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_38_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_39.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_39.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_39_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_39_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_39_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_3_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_3_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_3_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_4.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_4.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_40.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_40.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_40_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_40_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_40_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_41.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_41.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_41_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_41_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_41_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_42.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_42.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_42_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_42_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_42_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_43.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_43.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_43_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_43_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_43_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_44.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_44.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_44_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_44_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_44_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_45.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_45.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_45_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_45_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_45_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_46.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_46.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_46_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_46_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_46_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_47.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_47.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_47_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_47_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_47_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_48.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_48.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_48_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_48_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_48_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_49.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_49.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_49_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_49_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_49_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_4_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_4_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_4_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_5.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_5.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_50.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_50.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_50_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_50_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_50_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_51.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_51.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_51_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_51_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_51_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_52.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_52.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_52_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_52_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_52_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_53.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_53.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_53_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_53_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_53_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_54.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_54.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_54_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_54_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_54_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_55.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_55.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_55_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_55_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_55_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_56.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_56.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_56_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_56_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_56_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_57.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_57.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_57_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_57_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_57_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_58.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_58.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_58_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_58_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_58_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_59.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_59.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_59_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_59_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_59_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_5_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_5_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_5_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_6.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_6.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_60.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_60.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_60_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_60_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_60_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_61.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_61.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_61_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_61_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_61_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_62.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_62.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_62_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_62_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_62_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_63.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_63.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_63_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_63_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_63_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_64.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_64.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_64_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_64_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_64_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_65.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_65.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_65_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_65_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_65_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_66.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_66.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_66_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_66_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_66_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_67.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_67.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_67_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_67_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_67_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_68.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_68.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_68_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_68_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_68_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_69.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_69.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_69_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_69_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_69_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_6_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_6_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_6_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_7.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_7.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_70.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_70.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_70_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_70_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_70_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_71.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_71.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_71_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_71_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_71_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_72.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_72.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_72_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_72_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_72_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_73.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_73.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_73_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_73_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_73_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_74.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_74.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_74_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_74_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_74_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_75.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_75.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_75_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_75_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_75_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_76.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_76.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_76_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_76_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_76_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_77.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_77.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_77_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_77_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_77_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_78.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_78.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_78_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_78_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_78_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_79.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_79.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_79_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_79_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_79_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_7_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_7_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_7_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_8.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_8.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_80_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_80_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_80_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_8_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_8_merged.sorted.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_8_unpaired.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_9.sorted.bam
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_9.sorted.bam.bai
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_9_finalcov.bed.gz
+│                       ├── <SAMPLE_NAME>_right_<SAMPLE_NAME>_9_merged.sorted.bed.gz
+│                       └── <SAMPLE_NAME>_right_<SAMPLE_NAME>_9_unpaired.bed.gz
+└── bactopia-runs
+    └── ismapper-<TIMESTAMP>
+        └── nf-reports
+            ├── ismapper-dag.dot
+            ├── ismapper-report.html
+            └── ismapper-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.vcf` | VCF file with insertion site calls |
+| `*.txt` | Summary of insertion site findings |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `ismapper.tsv` | Merged TSV file containing ISMapper results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| ismapper-dag.dot | The Nextflow [DAG visualization](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| ismapper-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| ismapper-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| ismapper-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### ISMapper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--reference` | string |  | Reference genome for typing against in GenBank format |
+| `--insertions` | string |  | Multifasta file with insertion sequence(s) to be mapped to |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [ismapper](/developers/subworkflows/ismapper) - Identify transposase insertion sites in bacterial genomes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ISMapper](https://github.com/jhawkey/IS_mapper)  
+  Hawkey J, Hamidian M, Wick RR, Edwards DJ, Billman-Jacobe H, Hall RM, Holt KE [ISMapper: identifying transposase insertion sites in bacterial genomes from short read sequence data](http://dx.doi.org/10.1186/s12864-015-1860-2). _BMC Genomics_ 16, 667 (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/ismapper)

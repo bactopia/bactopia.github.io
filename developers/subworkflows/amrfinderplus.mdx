@@ -1,0 +1,88 @@
+---
+title: amrfinderplus
+description: "Find antimicrobial resistance genes and point mutations."
+tags:
+  - bacteria
+  - assembly
+  - antimicrobial-resistance
+  - gene-prediction
+  - sample-scope
+---
+
+# amrfinderplus
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/gene-prediction" class="badge badge--primary badge--tag">gene-prediction</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Find antimicrobial resistance genes and point mutations.
+
+This subworkflow uses [AMRFinderPlus](https://github.com/ncbi/amr) to identify acquired antimicrobial
+resistance genes and some point mutations in protein or assembled nucleotide sequences.
+
+## Take
+
+```
+fasta: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `genes` | Nucleotide sequences of genes in FASTA format |
+| `proteins` | Optional amino acid sequences of proteins in FASTA format (Path?) |
+| `gff` | Optional GFF3 annotation file (Path?) |
+
+```
+db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path` | Path to the AMRFinderPlus database directory containing reference data for AMR gene detection. |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `report` | A tab-delimited report of identified AMR genes and virulence factors |
+| `mutation_report` | Organism-specific point mutations associated with antimicrobial resistance |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | A merged TSV file with AMRFinder+ results from all samples |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [amrfinderplus_run](/developers/modules/amrfinderplus_run) - Identify antimicrobial resistance and virulence genes in gene or protein sequences.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [amrfinderplus](/bactopia-tools/amrfinderplus) - Bactopia Tool: Amrfinderplus.
+- [bactopia](/bactopia-workflow) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AMRFinderPlus](https://github.com/ncbi/amr)  
+  Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/amrfinderplus)

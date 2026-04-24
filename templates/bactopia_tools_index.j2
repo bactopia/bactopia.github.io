@@ -6,10 +6,10 @@ sidebar_position: 2
 
 # Bactopia Tools
 
-Bactopia Tools are additional analysis workflows that run specific tools on existing Bactopia results. There are {{ total }} Bactopia Tools available.
+Bactopia Tools are additional analysis workflows that run specific tools on existing Bactopia results. There are {{ total }} Bactopia Tools available. You can also [browse by tag](/bactopia-tools/tags).
 
-| Workflow | Status | Description |
-|----------|--------|-------------|
+| Workflow | Description |
+|----------|-------------|
 {% for key in tools_keys %}
-| [{{ key }}](/workflows/bactopia-tools/{{ key }}) | {{ tools[key].status | default('') }} | {{ tools[key].summary }} |
+| [{{ key }}](/bactopia-tools/{{ key }}) | {{ tools[key].summary }} |
 {% endfor %}

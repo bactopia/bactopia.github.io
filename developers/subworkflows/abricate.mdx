@@ -1,0 +1,77 @@
+---
+title: abricate
+description: "Mass screening of contigs for antimicrobial and virulence genes."
+tags:
+  - bacteria
+  - assembly
+  - antimicrobial-resistance
+  - virulence
+  - workflow
+  - sample-scope
+---
+
+# abricate
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/workflow" class="badge badge--primary badge--tag">workflow</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Mass screening of contigs for antimicrobial and virulence genes.
+
+This subworkflow orchestrates the execution of [Abricate](https://github.com/tseemann/abricate)
+to screen genome assemblies for antimicrobial resistance and virulence genes, followed by
+aggregating the results into a single summary report.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembled contigs in FASTA format |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `report` | A tab-delimited report of hits, for full details please see [Abricate - Output](https://github.com/tseemann/abricate#output) |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `report` | Aggregated tab-delimited summary of Abricate results from all samples |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [abricate_run](/developers/modules/abricate_run) - Mass screening of contigs for antimicrobial and virulence genes.
+- [abricate_summary](/developers/modules/abricate_summary) - Summarize Abricate screening results.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [abricate](/bactopia-tools/abricate) - Mass screening of contigs for antimicrobial resistance and virulence genes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Abricate](https://github.com/tseemann/abricate)  
+  Seemann T [Abricate: mass screening of contigs for antimicrobial and virulence genes](https://github.com/tseemann/abricate) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/abricate)

@@ -1,15 +1,15 @@
 ---
 title: Subworkflows
 description: All available Bactopia subworkflows
-slug: /
+slug: /subworkflows
 ---
 
 # Subworkflows
 
-Bactopia includes {{ total }} subworkflows that orchestrate modules into reusable analysis units. You can also [browse subworkflows by tag](/subworkflows/tags).
+Bactopia includes {{ total }} subworkflows that orchestrate modules into reusable analysis units. You can also [browse by tag](/developers/tags).
 
 | Subworkflow | Description |
 |-------------|-------------|
 {% for key in sorted_keys %}
-| [{{ key }}](/subworkflows/{{ key }}) | {{ subworkflows[key].summary }} |
+| [{{ key }}](/developers/subworkflows/{{ key }}) | {{ subworkflows[key].summary }} |
 {% endfor %}

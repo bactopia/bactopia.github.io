@@ -1,0 +1,184 @@
+---
+title: shigapass
+description: "Prediction of Shigella serotypes and differentiation from EIEC."
+tags:
+  - shigella
+  - eiec
+  - serotyping
+  - o-antigen
+  - ipa-genes
+  - epidemiology
+  - bactopia-tool
+---
+
+# shigapass
+
+**Tags:** <a href="/bactopia-tools/tags/shigella" class="badge badge--primary badge--tag">shigella</a> <a href="/bactopia-tools/tags/eiec" class="badge badge--primary badge--tag">eiec</a> <a href="/bactopia-tools/tags/serotyping" class="badge badge--primary badge--tag">serotyping</a> <a href="/bactopia-tools/tags/o-antigen" class="badge badge--primary badge--tag">o-antigen</a> <a href="/bactopia-tools/tags/ipa-genes" class="badge badge--primary badge--tag">ipa-genes</a> <a href="/bactopia-tools/tags/epidemiology" class="badge badge--primary badge--tag">epidemiology</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Prediction of Shigella serotypes and differentiation from EIEC.
+
+This Bactopia Tool uses [ShigaPass](https://github.com/imanyass/ShigaPass) for in silico
+prediction of serotypes in *Shigella* assemblies and differentiation between *Shigella*,
+EIEC (Enteroinvasive *E. coli*) and non-*Shigella EIEC strains. ShigaPass analyzes
+key antigenic determinants including O-antigen processing genes and invasion plasmid
+antigens (ipa genes) to provide accurate serotype predictions following the
+White-Kauffmann-Le Minor scheme. This enables rapid serological characterization
+essential for epidemiological investigations and outbreak tracking.
+
+## Usage
+
+```bash
+bactopia --wf shigapass \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── shigapass-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           ├── logs
+│           │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│           │   └── versions.yml
+│           └── supplemental
+│               └── ShigaPass_summary.csv
+└── bactopia-runs
+    └── shigapass-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── shigapass-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── shigapass.tsv
+        └── nf-reports
+            ├── shigapass-dag.dot
+            ├── shigapass-report.html
+            └── shigapass-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.csv` | CSV file containing predicted Shigella or EIEC serotype for each sample |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `shigapass.csv` | Merged CSV file containing ShigaPass results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| shigapass-dag.dot | The Nextflow [DAG visualization](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| shigapass-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| shigapass-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| shigapass-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [shigapass](/developers/subworkflows/shigapass) - Predict serotypes of Shigella from assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+- [shigapass](https://github.com/imanyass/ShigaPass)  
+  Yassine I, Hansen EE, Lefèvre S, Ruckly C, Carle I, Lejay-Collin M, Fabre L, Rafei R, Pardos de la Gandara M, Daboussi F, Shahin A, Weill FX [ShigaPass: an in silico tool predicting Shigella serotypes from whole-genome sequencing assemblies.](https://doi.org/10.1099%2Fmgen.0.000961) _Microb Genomics_ 9(3) (2023)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/shigapass)

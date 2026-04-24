@@ -1,0 +1,114 @@
+---
+title: hicap
+description: "Predict *Haemophilus influenzae* capsule serotype."
+tags:
+  - bacteria
+  - haemophilus-influenzae
+  - serotype
+  - capsule
+  - typing
+  - nthi
+  - sample-scope
+---
+
+# hicap
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/haemophilus-influenzae" class="badge badge--primary badge--tag">haemophilus-influenzae</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/capsule" class="badge badge--primary badge--tag">capsule</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/nthi" class="badge badge--primary badge--tag">nthi</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predict *Haemophilus influenzae* capsule serotype.
+
+Uses [hicap](https://github.com/scwatts/hicap) to identify the capsule locus in *H. influenzae*
+genome assemblies. It predicts the serotype (a, b, c, d, e, f, or Non-Typeable/NTHi) and
+can optionally generate visualizations of the locus structure.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+```
+database_dir: Path?
+model_fp: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `database_dir` | `Path?` | Path to a custom hicap reference database directory |
+| `model_fp` | `Path?` | Path to a custom Prodigal training model file |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    gbff: Path?,
+    svg: Path?,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `gbff` | `Path?` | GenBank file containing the annotated capsule locus region |
+| `svg` | `Path?` | SVG visualization of the capsule locus gene arrangement |
+| `tsv` | `Path` | Tab-delimited summary of the predicted serotype and locus coverage |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### hicap Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--hicap_gene_coverage` | number | `0.8` | Minimum percentage coverage to consider a single gene complete |
+| `--hicap_gene_identity` | number | `0.7` | Minimum percentage identity to consider a single gene complete |
+| `--hicap_broken_gene_length` | integer | `60` | Minimum length to consider a broken gene |
+| `--hicap_broken_gene_identity` | number | `0.8` | Minimum percentage identity to consider a broken gene |
+
+## Used By
+
+### Subworkflows
+
+- [hicap](/developers/subworkflows/hicap) - In silico serotyping of the Haemophilus influenzae capsule locus.
+
+### Workflows
+
+- [hicap](/bactopia-tools/hicap) - Identify cap locus serotype and structure in Haemophilus influenzae assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [hicap](https://github.com/scwatts/hicap)  
+  Watts SC, Holt KE [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) _Journal of Clinical Microbiology_ JCM.00190-19 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/hicap)
+
+## Version
+
+```yaml
+HICAP:
+    - hicap: 1.0.4
+```

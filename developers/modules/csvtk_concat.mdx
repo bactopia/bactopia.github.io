@@ -1,0 +1,214 @@
+---
+title: csvtk_concat
+description: "Concatenate multiple CSV or TSV files into a single table."
+tags:
+  - utility
+  - table
+  - merge
+  - concat
+  - csv
+  - tsv
+  - csvtk
+  - run-scope
+---
+
+# csvtk_concat
+
+**Tags:** <a href="/developers/tags/utility" class="badge badge--primary badge--tag">utility</a> <a href="/developers/tags/table" class="badge badge--primary badge--tag">table</a> <a href="/developers/tags/merge" class="badge badge--primary badge--tag">merge</a> <a href="/developers/tags/concat" class="badge badge--primary badge--tag">concat</a> <a href="/developers/tags/csv" class="badge badge--primary badge--tag">csv</a> <a href="/developers/tags/tsv" class="badge badge--primary badge--tag">tsv</a> <a href="/developers/tags/csvtk" class="badge badge--primary badge--tag">csvtk</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Concatenate multiple CSV or TSV files into a single table.
+
+Uses [csvtk concat](https://github.com/shenwei356/csvtk) to merge a list of delimited files
+by row. It handles header processing (keeping only one header) and supports format conversion
+(e.g., merging CSVs but outputting a TSV).
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    csv: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `csv` | `Set<Path>` | A list of CSV/TSV files to be concatenated |
+
+```
+in_format: String
+out_format: String
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `in_format` | `String` | Input format string ('csv', 'tsv', or a specific delimiter character) |
+| `out_format` | `String` | Output format string ('csv', 'tsv', or a specific delimiter character) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    csv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `csv` | `Path` | Concatenated results from all samples in the specified output format |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [abritamr](/developers/subworkflows/abritamr) - Identify antimicrobial resistance genes using AMRFinderPlus.
+- [agrvate](/developers/subworkflows/agrvate) - Identify Staphylococcus aureus agr locus type and operon variants.
+- [amrfinderplus](/developers/subworkflows/amrfinderplus) - Find antimicrobial resistance genes and point mutations.
+- [ariba](/developers/subworkflows/ariba) - Rapidly identify genes by creating local assemblies from paired-end reads.
+- [bactopia_assembler](/developers/subworkflows/bactopia_assembler) - Assemble bacterial genomes using automated assembler selection.
+- [bactopia_gather](/developers/subworkflows/bactopia_gather) - Search, validate, gather, and standardize input samples.
+- [blastn](/developers/subworkflows/blastn) - Search a nucleotide database using nucleotide query sequences.
+- [blastp](/developers/subworkflows/blastp) - Search protein sequences against protein database.
+- [blastx](/developers/subworkflows/blastx) - Translate nucleotide sequences and search protein database.
+- [bracken](/developers/subworkflows/bracken) - Estimate species abundance from metagenomic reads.
+- [btyper3](/developers/subworkflows/btyper3) - In silico taxonomic classification of Bacillus cereus group genomes.
+- [busco](/developers/subworkflows/busco) - Assess genome assembly completeness using BUSCO.
+- [checkm](/developers/subworkflows/checkm) - Assess metagenome bin completeness using CheckM.
+- [checkm2](/developers/subworkflows/checkm2) - Assess metagenome bin completeness using CheckM2.
+- [clermontyping](/developers/subworkflows/clermontyping) - Predict phylogroups of Escherichia coli from genome assemblies.
+- [defensefinder](/developers/subworkflows/defensefinder) - Systematically search for anti-phage defense systems.
+- [ectyper](/developers/subworkflows/ectyper) - In silico prediction of Escherichia coli serotype.
+- [emmtyper](/developers/subworkflows/emmtyper) - Predict emm types of Streptococcus pyogenes from genome assemblies.
+- [fastani](/developers/subworkflows/fastani) - Calculate Average Nucleotide Identity (ANI) between genomes.
+- [gamma](/developers/subworkflows/gamma) - Gene Allele Mutation Microbial Assessment.
+- [genotyphi](/developers/subworkflows/genotyphi) - Assign genotypes to Salmonella Typhi genomes.
+- [gtdb](/developers/subworkflows/gtdb) - Taxonomic classification with the Genome Taxonomy Database.
+- [hicap](/developers/subworkflows/hicap) - In silico serotyping of the Haemophilus influenzae capsule locus.
+- [hpsuissero](/developers/subworkflows/hpsuissero) - Rapid Haemophilus parasuis serotyping.
+- [kleborate](/developers/subworkflows/kleborate) - Genotyping tool for Klebsiella pneumoniae and its related species complex.
+- [legsta](/developers/subworkflows/legsta) - In silico Legionella pneumophila Sequence Based Typing.
+- [lissero](/developers/subworkflows/lissero) - In silico serotype prediction for Listeria monocytogenes.
+- [mashdist](/developers/subworkflows/mashdist) - Calculate Mash distances between sequences and a reference.
+- [mcroni](/developers/subworkflows/mcroni) - Scripts for finding and processing promoter variants upstream of mcr-1.
+- [meningotype](/developers/subworkflows/meningotype) - Predict serotypes of Neisseria meningitidis from genome assemblies.
+- [midas](/developers/subworkflows/midas) - Species-level profiling from metagenomic data.
+- [mlst](/developers/subworkflows/mlst) - Determine multilocus sequence types (MLST) from bacterial assemblies.
+- [mobsuite](/developers/subworkflows/mobsuite) - Reconstruct and type plasmids from bacterial genome assemblies.
+- [mykrobe](/developers/subworkflows/mykrobe) - Predict antibiotic resistance from sequence reads.
+- [ngmaster](/developers/subworkflows/ngmaster) - Perform multi-antigen sequence typing of Neisseria gonorrhoeae from genome assemblies.
+- [pasty](/developers/subworkflows/pasty) - Predict serogroups of Pseudomonas aeruginosa from assemblies.
+- [pbptyper](/developers/subworkflows/pbptyper) - Predict penicillin binding protein (PBP) types of Streptococcus pneumoniae from genome assemblies.
+- [phispy](/developers/subworkflows/phispy) - Prediction of prophages from bacterial genomes.
+- [plasmidfinder](/developers/subworkflows/plasmidfinder) - Identify plasmid replicons in bacterial genome assemblies.
+- [quast](/developers/subworkflows/quast) - Evaluate assembly quality using QUAST.
+- [rgi](/developers/subworkflows/rgi) - Predict antimicrobial resistance from protein or nucleotide data.
+- [sccmec](/developers/subworkflows/sccmec) - Identify SCCmec elements in Staphylococcus aureus genomes.
+- [scrubber](/developers/subworkflows/scrubber) - Remove contaminant sequences from metagenomic data.
+- [seqsero2](/developers/subworkflows/seqsero2) - Predict Salmonella serotypes from genome assemblies.
+- [seroba](/developers/subworkflows/seroba) - k-mer based pipeline to identify the serotype of Streptococcus pneumoniae.
+- [shigapass](/developers/subworkflows/shigapass) - Predict serotypes of Shigella from assemblies.
+- [shigatyper](/developers/subworkflows/shigatyper) - Predict serotypes of Shigella from reads or assemblies.
+- [shigeifinder](/developers/subworkflows/shigeifinder) - Predict serotypes of Shigella and EIEC from assemblies.
+- [sistr](/developers/subworkflows/sistr) - Salmonella In Silico Typing Resource command-line tool.
+- [spatyper](/developers/subworkflows/spatyper) - Predict spa types of Staphylococcus aureus from genome assemblies.
+- [ssuissero](/developers/subworkflows/ssuissero) - Predict serotypes of Streptococcus suis from genome assemblies.
+- [staphopiasccmec](/developers/subworkflows/staphopiasccmec) - Identify SCCmec elements in Staphylococcus aureus genomes using Staphopia method.
+- [stecfinder](/developers/subworkflows/stecfinder) - Identify and serotype Shiga toxin-producing E. coli (STEC) from assemblies.
+- [sylph](/developers/subworkflows/sylph) - Profile microbial composition using Sylph.
+- [tblastn](/developers/subworkflows/tblastn) - Search protein query sequences against nucleotide database.
+- [tblastx](/developers/subworkflows/tblastx) - Translate nucleotide query sequences and search nucleotide database.
+- [teton](/developers/subworkflows/teton) - Perform taxonomic classification and estimate bacterial genome sizes.
+
+### Workflows
+
+- [abritamr](/bactopia-tools/abritamr) - A NATA accredited tool for reporting the presence of antimicrobial resistance genes.
+- [agrvate](/bactopia-tools/agrvate) - Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.
+- [amrfinderplus](/bactopia-tools/amrfinderplus) - Bactopia Tool: Amrfinderplus.
+- [ariba](/bactopia-tools/ariba) - Gene identification through local assemblies.
+- [bactopia](/bactopia-workflow) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [blastn](/bactopia-tools/blastn) - Search against nucleotide BLAST databases using nucleotide queries.
+- [blastp](/bactopia-tools/blastp) - Search against protein BLAST databases using protein queries.
+- [blastx](/bactopia-tools/blastx) - Search against protein BLAST databases using translated nucleotide queries.
+- [bracken](/bactopia-tools/bracken) - Estimate taxonomic abundance of metagenomic samples.
+- [btyper3](/bactopia-tools/btyper3) - Taxonomic classification of Bacillus cereus group isolates.
+- [busco](/bactopia-tools/busco) - Assessment of genome assembly completeness using evolutionarily informed expectations.
+- [checkm](/bactopia-tools/checkm) - Assessment of microbial genome assembly quality.
+- [checkm2](/bactopia-tools/checkm2) - Machine learning-based assessment of microbial genome assembly quality.
+- [cleanyerreads](/bactopia-pipelines/cleanyerreads) - Quality control and optional host read removal from raw sequencing reads.
+- [clermontyping](/bactopia-tools/clermontyping) - In silico phylotyping of Escherichia genus.
+- [defensefinder](/bactopia-tools/defensefinder) - Systematic identification of anti-phage defense systems.
+- [ectyper](/bactopia-tools/ectyper) - In silico prediction of Escherichia coli serotype.
+- [emmtyper](/bactopia-tools/emmtyper) - emm-typing of Streptococcus pyogenes assemblies.
+- [fastani](/bactopia-tools/fastani) - Fast alignment-free computation of whole-genome Average Nucleotide Identity.
+- [gamma](/bactopia-tools/gamma) - Identification, classification, and annotation of translated gene matches.
+- [genotyphi](/bactopia-tools/genotyphi) - Salmonella Typhi genotyping with lineage assignment.
+- [gtdb](/bactopia-tools/gtdb) - Identify marker genes and assign taxonomic classifications using GTDB.
+- [hicap](/bactopia-tools/hicap) - Identify cap locus serotype and structure in Haemophilus influenzae assemblies.
+- [hpsuissero](/bactopia-tools/hpsuissero) - Serotype prediction of Haemophilus parasuis assemblies.
+- [kleborate](/bactopia-tools/kleborate) - Comprehensive screening of Klebsiella genomes for virulence and resistance determinants.
+- [legsta](/bactopia-tools/legsta) - Sequence Based Typing (SBT) of Legionella pneumophila.
+- [lissero](/bactopia-tools/lissero) - Serogroup typing prediction for Listeria monocytogenes.
+- [mashdist](/bactopia-tools/mashdist) - Calculate Mash distances between sequences and reference genomes.
+- [mcroni](/bactopia-tools/mcroni) - Sequence variation analysis of mcr-1 genes (mobilized colistin resistance).
+- [meningotype](/bactopia-tools/meningotype) - Comprehensive typing of Neisseria meningitidis.
+- [midas](/bactopia-tools/midas) - Estimate species abundances from metagenomic samples.
+- [mlst](/bactopia-tools/mlst) - Automatic Multi-Locus Sequence Type (MLST) calling from assembled contigs.
+- [mobsuite](/bactopia-tools/mobsuite) - Reconstruction and annotation of plasmids from bacterial genome assemblies.
+- [mykrobe](/bactopia-tools/mykrobe) - Antimicrobial resistance detection for specific bacterial species.
+- [ngmaster](/bactopia-tools/ngmaster) - Multi-antigen sequence typing of Neisseria gonorrhoeae.
+- [pasty](/bactopia-tools/pasty) - In silico serogrouping of Pseudomonas aeruginosa isolates.
+- [pbptyper](/bactopia-tools/pbptyper) - Penicillin Binding Protein (PBP) typing for Streptococcus pneumoniae.
+- [phispy](/bactopia-tools/phispy) - Prediction of prophages in bacterial and archaeal genomes.
+- [plasmidfinder](/bactopia-tools/plasmidfinder) - Bactopia Tool: Plasmidfinder.
+- [quast](/bactopia-tools/quast) - Quality assessment of assembled contigs using QUAST.
+- [rgi](/bactopia-tools/rgi) - Prediction of antibiotic resistance genes using RGI.
+- [sccmec](/bactopia-tools/sccmec) - Typing of SCCmec cassettes in Staphylococcus aureus assemblies.
+- [scrubber](/bactopia-tools/scrubber) - Removal of human and contaminant sequences from metagenomic reads.
+- [seqsero2](/bactopia-tools/seqsero2) - Salmonella serotype prediction from sequencing reads or assemblies.
+- [seroba](/bactopia-tools/seroba) - Serotyping of Streptococcus pneumoniae from Illumina paired-end reads.
+- [shigapass](/bactopia-tools/shigapass) - Prediction of Shigella serotypes and differentiation from EIEC.
+- [shigatyper](/bactopia-tools/shigatyper) - Rapid determination of Shigella serotypes from sequencing reads.
+- [shigeifinder](/bactopia-tools/shigeifinder) - In silico serotype prediction for Shigella and Enteroinvasive E. coli (EIEC).
+- [sistr](/bactopia-tools/sistr) - Serovar prediction of Salmonella enterica from assemblies.
+- [spatyper](/bactopia-tools/spatyper) - spa typing of Staphylococcus aureus assemblies.
+- [ssuissero](/bactopia-tools/ssuissero) - Serotype prediction of Streptococcus suis assemblies.
+- [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+- [stecfinder](/bactopia-tools/stecfinder) - Serotype identification of Shiga toxin-producing E. coli.
+- [sylph](/bactopia-tools/sylph) - Taxonomic profiling by abundance-corrected MinHash.
+- [tblastn](/bactopia-tools/tblastn) - Search against translated nucleotide databases using protein queries.
+- [tblastx](/bactopia-tools/tblastx) - Search against translated nucleotide databases using translated nucleotide queries.
+- [teton](/bactopia-pipelines/teton) - Taxonomic classification and abundance profiling of metagenomic reads.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/csvtk/concat)
+
+## Version
+
+```yaml
+CSVTK_CONCAT:
+    - csvtk: 0.31.0
+```

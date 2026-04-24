@@ -6,8 +6,15 @@ tags:
 ---
 
 # {{ mod.key }}
+{% if badges %}
 
 {{ badges }}
+{% endif %}
+{% if tags %}
+
+**Tags:** {% for tag in tags %}<a href="{{ tag_base }}/tags/{{ tag }}" class="badge badge--primary badge--tag">{{ tag }}</a> {% endfor %}
+
+{% endif %}
 
 {{ description }}
 
@@ -36,3 +43,12 @@ tags:
 ## Source
 
 [View source on GitHub]({{ mod.source_url }})
+{% if tool_name and tool_version %}
+
+## Version
+
+```yaml
+{{ mod.key | upper }}:
+    - {{ tool_name }}: {{ tool_version }}
+```
+{% endif %}

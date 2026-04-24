@@ -1,0 +1,84 @@
+---
+title: fastani
+description: "Calculate Average Nucleotide Identity (ANI) between genomes."
+tags:
+  - ani
+  - average-nucleotide-identity
+  - taxonomy
+  - species
+  - comparison
+  - run-scope
+---
+
+# fastani
+
+**Tags:** <a href="/developers/tags/ani" class="badge badge--primary badge--tag">ani</a> <a href="/developers/tags/average-nucleotide-identity" class="badge badge--primary badge--tag">average-nucleotide-identity</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/species" class="badge badge--primary badge--tag">species</a> <a href="/developers/tags/comparison" class="badge badge--primary badge--tag">comparison</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Calculate Average Nucleotide Identity (ANI) between genomes.
+
+This subworkflow uses [FastANI](https://github.com/ParBLiSS/FastANI) to compute
+whole-genome Average Nucleotide Identity (ANI) values between query genomes
+and reference genomes. ANI is a robust measure of genomic similarity used for
+species delineation in microbial taxonomy. The results are aggregated into
+a single consolidated report.
+
+## Take
+
+```
+query: Channel<Record>
+reference: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `fna` | Query genomes in FASTA format for ANI calculation |
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `fna` | Reference genomes in FASTA format for ANI calculation |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+No sample-scope outputs.
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | A tab-delimited summary of the ANI scores, matched fragments, and total fragments |
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [fastani](/developers/modules/fastani) - Compute whole-genome Average Nucleotide Identity (ANI).
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [fastani](/bactopia-tools/fastani) - Fast alignment-free computation of whole-genome Average Nucleotide Identity.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [FastANI](https://github.com/ParBLiSS/FastANI)  
+  Jain C, Rodriguez-R LM, Phillippy AM, Konstantinidis KT, Aluru S [High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.](http://dx.doi.org/10.1038/s41467-018-07641-9) _Nat. Commun._ 9, 5114 (2018)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/fastani)

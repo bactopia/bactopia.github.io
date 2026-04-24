@@ -40,6 +40,8 @@ const config: Config = {
 
   themes: ['@docusaurus/theme-mermaid'],
 
+  clientModules: ['./src/gtag-noop.js'],
+
   plugins: [
     'docusaurus-plugin-image-zoom',
     [
@@ -55,30 +57,30 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'workflows',
-        path: 'workflows',
-        routeBasePath: 'workflows',
-        sidebarPath: './sidebars-workflows.ts',
+        id: 'bactopia-tools',
+        path: 'bactopia-tools',
+        routeBasePath: 'bactopia-tools',
+        sidebarPath: './sidebars-bactopia-tools.ts',
         editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
       },
     ],
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'subworkflows',
-        path: 'subworkflows',
-        routeBasePath: 'subworkflows',
-        sidebarPath: './sidebars-subworkflows.ts',
+        id: 'bactopia-pipelines',
+        path: 'bactopia-pipelines',
+        routeBasePath: 'bactopia-pipelines',
+        sidebarPath: './sidebars-bactopia-pipelines.ts',
         editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
       },
     ],
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'modules',
-        path: 'modules',
-        routeBasePath: 'modules',
-        sidebarPath: './sidebars-modules.ts',
+        id: 'developers',
+        path: 'developers',
+        routeBasePath: 'developers',
+        sidebarPath: './sidebars-developers.ts',
         editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
       },
     ],
@@ -144,24 +146,24 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'workflows',
-          docsPluginId: 'workflows',
+          sidebarId: 'bactopia-tools',
+          docsPluginId: 'bactopia-tools',
           position: 'left',
-          label: 'Workflows',
+          label: 'Bactopia Tools',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'subworkflows',
-          docsPluginId: 'subworkflows',
+          sidebarId: 'bactopia-pipelines',
+          docsPluginId: 'bactopia-pipelines',
           position: 'left',
-          label: 'Subworkflows',
+          label: 'Bactopia Pipelines',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'modules',
-          docsPluginId: 'modules',
+          sidebarId: 'developers',
+          docsPluginId: 'developers',
           position: 'left',
-          label: 'Modules',
+          label: 'Developers',
         },
         {
           type: 'docSidebar',
@@ -172,8 +174,7 @@ const config: Config = {
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/bactopia/bactopia',
-          label: 'GitHub',
+          type: 'custom-github',
           position: 'right',
         },
       ],
@@ -202,16 +203,16 @@ const config: Config = {
           title: 'Bactopia',
           items: [
             {
-              label: 'Workflows',
-              to: '/workflows/',
+              label: 'Bactopia Tools',
+              to: '/bactopia-tools/',
             },
             {
-              label: 'Subworkflows',
-              to: '/subworkflows/',
+              label: 'Bactopia Pipelines',
+              to: '/bactopia-pipelines/',
             },
             {
-              label: 'Modules',
-              to: '/modules/',
+              label: 'Developers',
+              to: '/developers/',
             },
           ],
         },

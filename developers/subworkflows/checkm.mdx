@@ -1,0 +1,80 @@
+---
+title: checkm
+description: "Assess metagenome bin completeness using CheckM."
+tags:
+  - metagenome
+  - bin
+  - completeness
+  - contamination
+  - mag
+  - quality
+  - sample-scope
+---
+
+# checkm
+
+**Tags:** <a href="/developers/tags/metagenome" class="badge badge--primary badge--tag">metagenome</a> <a href="/developers/tags/bin" class="badge badge--primary badge--tag">bin</a> <a href="/developers/tags/completeness" class="badge badge--primary badge--tag">completeness</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/mag" class="badge badge--primary badge--tag">mag</a> <a href="/developers/tags/quality" class="badge badge--primary badge--tag">quality</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Assess metagenome bin completeness using CheckM.
+
+This subworkflow evaluates the quality and completeness of metagenome-assembled genomes
+(MAGs) using [CheckM](https://github.com/Ecogenomics/CheckM). It provides a comprehensive
+assessment based on lineage-specific marker sets, estimating completeness and contamination
+of genome bins. The workflow generates detailed reports including marker gene statistics,
+taxonomy predictions, and quality metrics for each bin.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Metagenome-assembled genome bins to evaluate. Each record contains metadata |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | Tab-delimited CheckM quality assessment results |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [checkm_lineagewf](/developers/modules/checkm_lineagewf) - Assess genome quality using lineage-specific marker sets.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [checkm](/bactopia-tools/checkm) - Assessment of microbial genome assembly quality.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [CheckM](https://github.com/Ecogenomics/CheckM)  
+  Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW [CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes.](http://dx.doi.org/10.1101/gr.186072.114) _Genome Res_ 25, 1043-1055 (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/checkm)

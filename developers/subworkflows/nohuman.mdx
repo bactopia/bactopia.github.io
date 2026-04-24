@@ -1,0 +1,87 @@
+---
+title: nohuman
+description: "Remove human reads from sequencing data using nohuman."
+tags:
+  - human
+  - contamination
+  - decontamination
+  - scrubbing
+  - reads
+  - nohuman
+  - kraken2
+  - sample-scope
+---
+
+# nohuman
+
+**Tags:** <a href="/developers/tags/human" class="badge badge--primary badge--tag">human</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/decontamination" class="badge badge--primary badge--tag">decontamination</a> <a href="/developers/tags/scrubbing" class="badge badge--primary badge--tag">scrubbing</a> <a href="/developers/tags/reads" class="badge badge--primary badge--tag">reads</a> <a href="/developers/tags/nohuman" class="badge badge--primary badge--tag">nohuman</a> <a href="/developers/tags/kraken2" class="badge badge--primary badge--tag">kraken2</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Remove human reads from sequencing data using nohuman.
+
+This subworkflow uses [nohuman](https://github.com/mbhall88/nohuman) to identify and remove
+human reads from FASTQ files using a Kraken2 database built from Human Pangenome Reference
+Consortium (HPRC) genomes. It optionally downloads the database if not already available.
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `r1` | Illumina R1 reads (paired-end forward) |
+| `r2` | Illumina R2 reads (paired-end reverse) |
+| `se` | Single-end Illumina reads |
+| `lr` | Long reads (ONT/PacBio) |
+
+```
+database: Path?
+download_nohuman: Boolean
+save_as_tarball: Boolean
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `database` | `Path?` | Path to nohuman database directory or tarball (ignored if download_nohuman is true) |
+| `download_nohuman` | `Boolean` | Boolean flag to download the database instead of using the provided path |
+| `save_as_tarball` | `Boolean` | Boolean flag to save downloaded database as tarball |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `scrubbed` | FASTQ files with human reads removed |
+| `scrub_report` | Kraken2 classification report (optional) |
+
+#### `run_outputs`
+
+No run-scope outputs.
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [nohuman_download](/developers/modules/nohuman_download) - Download the nohuman database for human read removal.
+- [nohuman_run](/developers/modules/nohuman_run) - Remove human reads from sequencing data.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/nohuman)

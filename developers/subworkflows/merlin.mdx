@@ -1,0 +1,119 @@
+---
+title: merlin
+description: "MinER assisted species-specific bactopia tool seLectIoN."
+tags:
+  - species
+  - identification
+  - typing
+  - serotype
+  - virulence
+  - sample-scope
+---
+
+# merlin
+
+**Tags:** <a href="/developers/tags/species" class="badge badge--primary badge--tag">species</a> <a href="/developers/tags/identification" class="badge badge--primary badge--tag">identification</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+MinER assisted species-specific bactopia tool seLectIoN.
+
+This subworkflow performs intelligent species identification and selects appropriate
+species-specific typing tools based on the detected organism. It first identifies
+potential species using MinHash distance estimation, then runs species-specific
+subworkflows for detailed characterization including serotyping, MLST, virulence
+factor detection, and antimicrobial resistance profiling.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `fna` | Assembly file for species identification and typing |
+| `r1` | Illumina R1 reads (paired-end) or null |
+| `r2` | Illumina R2 reads (paired-end) or null |
+| `se` | Single-end Illumina reads or null |
+| `lr` | Long reads (ONT/PacBio) or null |
+
+```
+mash_db: Path
+emmtyper_blastdb: Path?
+hicap_database_dir: Path?
+hicap_model_fp: Path?
+staphtyper_repeats: Path?
+staphtyper_repeat_order: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `mash_db` | `Path` | Mash sketch database for rapid species identification |
+| `emmtyper_blastdb` | `Path?` | EMMTyper BLAST database for Streptococcus pyogenes emm typing (optional) |
+| `hicap_database_dir` | `Path?` | HiCAP database directory for Haemophilus influenzae serotyping (optional) |
+| `hicap_model_fp` | `Path?` | HiCAP HMM model file for improved detection (optional) |
+| `staphtyper_repeats` | `Path?` | Staphylococcus aureus repeat sequences for spa typing (optional) |
+| `staphtyper_repeat_order` | `Path?` | Staphylococcus aureus repeat order file for spa typing (optional) |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+Mixed per-sample records from merlindist and all activated species-specific typing subworkflows (e.g., ectyper, sistr, kleborate). Each record carries tool-specific fields.
+
+#### `run_outputs`
+
+Mixed aggregated results from all activated species-specific typing subworkflows. Each record contains tool-specific cross-sample summaries.
+
+## Subworkflow Composition
+
+This subworkflow calls the following subworkflows:
+
+- [merlindist](/developers/subworkflows/merlindist) - Identify species from assembly and read data using Mash distances.
+- [clermontyping](/developers/subworkflows/clermontyping) - Predict phylogroups of Escherichia coli from genome assemblies.
+- [ectyper](/developers/subworkflows/ectyper) - In silico prediction of Escherichia coli serotype.
+- [emmtyper](/developers/subworkflows/emmtyper) - Predict emm types of Streptococcus pyogenes from genome assemblies.
+- [genotyphi](/developers/subworkflows/genotyphi) - Assign genotypes to Salmonella Typhi genomes.
+- [hicap](/developers/subworkflows/hicap) - In silico serotyping of the Haemophilus influenzae capsule locus.
+- [hpsuissero](/developers/subworkflows/hpsuissero) - Rapid Haemophilus parasuis serotyping.
+- [kleborate](/developers/subworkflows/kleborate) - Genotyping tool for Klebsiella pneumoniae and its related species complex.
+- [legsta](/developers/subworkflows/legsta) - In silico Legionella pneumophila Sequence Based Typing.
+- [lissero](/developers/subworkflows/lissero) - In silico serotype prediction for Listeria monocytogenes.
+- [ngmaster](/developers/subworkflows/ngmaster) - Perform multi-antigen sequence typing of Neisseria gonorrhoeae from genome assemblies.
+- [pasty](/developers/subworkflows/pasty) - Predict serogroups of Pseudomonas aeruginosa from assemblies.
+- [pbptyper](/developers/subworkflows/pbptyper) - Predict penicillin binding protein (PBP) types of Streptococcus pneumoniae from genome assemblies.
+- [seqsero2](/developers/subworkflows/seqsero2) - Predict Salmonella serotypes from genome assemblies.
+- [seroba](/developers/subworkflows/seroba) - k-mer based pipeline to identify the serotype of Streptococcus pneumoniae.
+- [shigapass](/developers/subworkflows/shigapass) - Predict serotypes of Shigella from assemblies.
+- [shigatyper](/developers/subworkflows/shigatyper) - Predict serotypes of Shigella from reads or assemblies.
+- [shigeifinder](/developers/subworkflows/shigeifinder) - Predict serotypes of Shigella and EIEC from assemblies.
+- [sistr](/developers/subworkflows/sistr) - Salmonella In Silico Typing Resource command-line tool.
+- [ssuissero](/developers/subworkflows/ssuissero) - Predict serotypes of Streptococcus suis from genome assemblies.
+- [staphtyper](/developers/subworkflows/staphtyper) - Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.
+- [stecfinder](/developers/subworkflows/stecfinder) - Identify and serotype Shiga toxin-producing E. coli (STEC) from assemblies.
+- [tbprofiler](/developers/subworkflows/tbprofiler) - Profiling tool for Mycobacterium tuberculosis to detect resistance and strain type.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [bactopia](/bactopia-workflow) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [merlin](/bactopia-tools/merlin) - MinMER-assisted species-specific tool selection and execution.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/merlin)

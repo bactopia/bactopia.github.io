@@ -1,0 +1,98 @@
+---
+title: seqsero2
+description: "Salmonella serotype prediction from genome sequencing data."
+tags:
+  - salmonella
+  - serotype
+  - prediction
+  - seqsero2
+  - antigen
+  - sample-scope
+---
+
+# seqsero2
+
+**Tags:** <a href="/developers/tags/salmonella" class="badge badge--primary badge--tag">salmonella</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/seqsero2" class="badge badge--primary badge--tag">seqsero2</a> <a href="/developers/tags/antigen" class="badge badge--primary badge--tag">antigen</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Salmonella serotype prediction from genome sequencing data.
+
+Uses [SeqSero2](https://github.com/denglab/SeqSero2) to predict *Salmonella* serotypes from
+raw sequencing reads or genome assemblies using specific O-antigen and H-antigen markers.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | FASTQ reads or Assembled contigs |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    txt: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | SeqSero2 serotype prediction results in TSV format |
+| `txt` | `Path` | SeqSero2 serotype prediction results in text format |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### SeqSero2 Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--seqsero2_run_mode` | string | `k` | Workflow to run. 'a' allele mode, or 'k' k-mer mode (choices: `a`, `k`) |
+| `--seqsero2_input_type` | string | `assembly` | Input format to analyze. 'assembly' or 'fastq' (choices: `assembly`, `fastq`) |
+
+## Used By
+
+### Subworkflows
+
+- [seqsero2](/developers/subworkflows/seqsero2) - Predict Salmonella serotypes from genome assemblies.
+
+### Workflows
+
+- [seqsero2](/bactopia-tools/seqsero2) - Salmonella serotype prediction from sequencing reads or assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SeqSero2](https://github.com/denglab/SeqSero2)  
+  Zhang S, Den-Bakker HC, Li S, Dinsmore BA, Lane C, Lauer AC, Fields PI, Deng X. [SeqSero2: rapid and improved Salmonella serotype determination using whole genome sequencing data.](https://doi.org/10.1128/AEM.01746-19) _Appl Environ Microbiology_ 85(23):e01746-19 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/seqsero2)
+
+## Version
+
+```yaml
+SEQSERO2:
+    - seqsero2: 1.3.2
+```

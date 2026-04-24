@@ -1,0 +1,118 @@
+---
+title: bactopia_gather
+description: "Search, validate, gather, and standardize input samples."
+tags:
+  - validation
+  - download
+  - merging
+  - simulation
+  - metadata
+  - fastq
+  - sra
+  - ena
+  - art
+  - sample-scope
+---
+
+# bactopia_gather
+
+**Tags:** <a href="/developers/tags/validation" class="badge badge--primary badge--tag">validation</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/merging" class="badge badge--primary badge--tag">merging</a> <a href="/developers/tags/simulation" class="badge badge--primary badge--tag">simulation</a> <a href="/developers/tags/metadata" class="badge badge--primary badge--tag">metadata</a> <a href="/developers/tags/fastq" class="badge badge--primary badge--tag">fastq</a> <a href="/developers/tags/sra" class="badge badge--primary badge--tag">sra</a> <a href="/developers/tags/ena" class="badge badge--primary badge--tag">ena</a> <a href="/developers/tags/art" class="badge badge--primary badge--tag">art</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Search, validate, gather, and standardize input samples.
+
+This subworkflow processes raw input samples through validation, standardization, and metadata
+collection. It handles various input types including local FASTQ files, SRA/ENA accessions,
+NCBI assembly accessions, and assemblies. The workflow can merge multiple sequencing runs,
+download remote data, and simulate reads from assemblies using [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art).
+
+Uses explicit positional record fields for reads:
+- Input: record(meta, r1_files, r2_files, se_files, lr_files) with Set&lt;Path&gt; slots (pre-merge)
+- Output: record(meta, r1, r2, se, lr) with Path? slots (post-merge, consolidated)
+
+## Take
+
+```
+samples: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `r1_files` | Illumina R1 read files (Set, elements may be null) |
+| `r2_files` | Illumina R2 read files (Set, elements may be null) |
+| `se_files` | Single-end read files (Set, elements may be null) |
+| `lr_files` | Long read files (ONT/PacBio) or assembly for simulation (Set, elements may be null) |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | A tab-delimited metadata file describing the valid samples |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated metadata from all samples |
+
+### Downstream Inputs
+
+The following emissions are meant to be used as inputs to downstream subworkflows.
+
+#### `reads`
+
+| Output | Description |
+|--------|-------------|
+| `r1` | Illumina R1 reads (paired-end forward) |
+| `r2` | Illumina R2 reads (paired-end reverse) |
+| `se` | Single-end Illumina reads |
+| `lr` | Long reads (ONT/PacBio) |
+| `fna` | Assembly file for assembly-based samples |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [bactopia_gather](/developers/modules/bactopia_gather) - Search, validate, gather, or simulate input samples.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [bactopia](/bactopia-workflow) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [cleanyerreads](/bactopia-pipelines/cleanyerreads) - Quality control and optional host read removal from raw sequencing reads.
+- [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+- [teton](/bactopia-pipelines/teton) - Taxonomic classification and abundance profiling of metagenomic reads.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm)  
+  Huang W, Li L, Myers JR, Marth GT [ART: a next-generation sequencing read simulator.](http://dx.doi.org/10.1093/bioinformatics/btr708) _Bioinformatics_ 28, 593-594 (2012)
+
+- [fastq-dl](https://github.com/rpetit3/fastq-dl)  
+  Petit III RA [fastq-dl: Download FASTQ files from SRA or ENA repositories.](https://github.com/rpetit3/fastq-dl) (GitHub)
+
+- [fastq-scan](https://github.com/rpetit3/fastq-scan)  
+  Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
+
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+
+- [Pigz](https://zlib.net/pigz/)  
+  Adler M. [pigz: A parallel implementation of gzip for modern multi-processor, multi-core machines.](https://zlib.net/pigz/) _Jet Propulsion Laboratory_ (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/bactopia/gather)

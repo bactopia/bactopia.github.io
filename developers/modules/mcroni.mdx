@@ -1,0 +1,95 @@
+---
+title: mcroni
+description: "Detect sequence variations in the *mcr-1* colistin resistance gene."
+tags:
+  - bacteria
+  - amr
+  - resistance
+  - colistin
+  - mcr-1
+  - plasmid
+  - variation
+  - sample-scope
+---
+
+# mcroni
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/resistance" class="badge badge--primary badge--tag">resistance</a> <a href="/developers/tags/colistin" class="badge badge--primary badge--tag">colistin</a> <a href="/developers/tags/mcr-1" class="badge badge--primary badge--tag">mcr-1</a> <a href="/developers/tags/plasmid" class="badge badge--primary badge--tag">plasmid</a> <a href="/developers/tags/variation" class="badge badge--primary badge--tag">variation</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Detect sequence variations in the *mcr-1* colistin resistance gene.
+
+Uses [Mcroni](https://github.com/tseemann/mcroni) to screen genome assemblies for the
+*mcr-1* gene (Mobilized Colistin Resistance). It extracts the gene sequence and reports
+any variations (mutations) relative to the reference, which is critical for tracking
+resistance to colistin, a last-resort antibiotic.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    fa: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited mcr-1 gene variation results |
+| `fa` | `Path?` | Extracted mcr-1 gene sequence in FASTA format |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [mcroni](/developers/subworkflows/mcroni) - Scripts for finding and processing promoter variants upstream of mcr-1.
+
+### Workflows
+
+- [mcroni](/bactopia-tools/mcroni) - Sequence variation analysis of mcr-1 genes (mobilized colistin resistance).
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [mcroni](https://github.com/liampshaw/mcroni)  
+  Shaw L [mcroni: Scripts for finding and processing promoter variants upstream of mcr-1](https://github.com/liampshaw/mcroni) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mcroni)
+
+## Version
+
+```yaml
+MCRONI:
+    - mcroni: 1.0.4
+```

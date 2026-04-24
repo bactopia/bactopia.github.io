@@ -1,0 +1,126 @@
+---
+title: nohuman_run
+description: "Remove human reads from sequencing data."
+tags:
+  - human
+  - contamination
+  - decontamination
+  - scrubbing
+  - reads
+  - kraken2
+  - nohuman
+  - sample-scope
+---
+
+# nohuman_run
+
+**Tags:** <a href="/developers/tags/human" class="badge badge--primary badge--tag">human</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/decontamination" class="badge badge--primary badge--tag">decontamination</a> <a href="/developers/tags/scrubbing" class="badge badge--primary badge--tag">scrubbing</a> <a href="/developers/tags/reads" class="badge badge--primary badge--tag">reads</a> <a href="/developers/tags/kraken2" class="badge badge--primary badge--tag">kraken2</a> <a href="/developers/tags/nohuman" class="badge badge--primary badge--tag">nohuman</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Remove human reads from sequencing data.
+
+Uses [nohuman](https://github.com/mbhall88/nohuman) to classify and remove human reads
+from FASTQ files using a Kraken2 database built from Human Pangenome Reference Consortium
+(HPRC) genomes. Supports paired-end and single-end Illumina reads.
+
+:::note[Database Required]
+Requires the nohuman Kraken2 database. Use the nohuman/download module or
+provide a pre-existing database via --nohuman_db.
+:::
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `r1` | `Path?` | Illumina R1 reads (paired-end forward) |
+| `r2` | `Path?` | Illumina R2 reads (paired-end reverse) |
+| `se` | `Path?` | Single-end Illumina reads |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+```
+db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path` | Directory or compressed tarball containing the nohuman Kraken2 database |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    special_meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    scrub_report: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `special_meta` | `Record` | A simplified metadata record for downstream report joining |
+| `r1` | `Path?` | Scrubbed paired-end forward reads |
+| `r2` | `Path?` | Scrubbed paired-end reverse reads |
+| `se` | `Path?` | Scrubbed single-end reads |
+| `lr` | `Path?` | Scrubbed long reads |
+| `scrub_report` | `Path` | Summary report of reads removed during scrubbing |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Nohuman Run Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--nohuman_db` | string |  | Path to the nohuman database directory or tarball |
+| `--nohuman_confidence` | number | `0.0` | Kraken2 minimum confidence score for classification (0.0-1.0) |
+| `--nohuman_human` | boolean | `false` | Invert output to keep only human reads instead of removing them |
+| `--nohuman_save_report` | boolean | `false` | Save the Kraken2 classification report |
+
+## Used By
+
+### Subworkflows
+
+- [nohuman](/developers/subworkflows/nohuman) - Remove human reads from sequencing data using nohuman.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/nohuman/run)
+
+## Version
+
+```yaml
+NOHUMAN_RUN:
+    - bactopia-teton: 1.1.3
+```

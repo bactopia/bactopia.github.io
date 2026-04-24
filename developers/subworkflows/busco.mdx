@@ -1,0 +1,89 @@
+---
+title: busco
+description: "Assess genome assembly completeness using BUSCO."
+tags:
+  - assembly
+  - completeness
+  - quality
+  - assessment
+  - orthologs
+  - evaluation
+  - sample-scope
+---
+
+# busco
+
+**Tags:** <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/completeness" class="badge badge--primary badge--tag">completeness</a> <a href="/developers/tags/quality" class="badge badge--primary badge--tag">quality</a> <a href="/developers/tags/assessment" class="badge badge--primary badge--tag">assessment</a> <a href="/developers/tags/orthologs" class="badge badge--primary badge--tag">orthologs</a> <a href="/developers/tags/evaluation" class="badge badge--primary badge--tag">evaluation</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Assess genome assembly completeness using BUSCO.
+
+This subworkflow evaluates genome assembly completeness by searching for
+single-copy orthologs against the [BUSCO](https://busco.ezlab.org/) database.
+It generates comprehensive completeness reports including missing, duplicated,
+fragmented, and complete single-copy orthologs. The workflow includes individual
+sample assessments and a merged summary report across all samples.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Genome assemblies to evaluate for completeness. Each record contains metadata |
+
+```
+busco_lineage: String
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `busco_lineage` | `String` | BUSCO lineage dataset to use for assessment (e.g., bacteria_odb10). |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | A text summary report of the completeness score (C/S/D/F/M%) |
+| `supplemental` | Directory containing full tables, missing gene lists, and lineage data |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [busco](/developers/modules/busco) - Assess genome assembly completeness using single-copy orthologs.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [busco](/bactopia-tools/busco) - Assessment of genome assembly completeness using evolutionarily informed expectations.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BUSCO](https://gitlab.com/ezlab/busco)  
+  Manni M, Berkeley MR, Seppey M, Simão FA, Zdobnov EM [BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes.](https://doi.org/10.1093/molbev/msab199) _Molecular Biology and Evolution_ 38(10), 4647-4654. (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/busco)

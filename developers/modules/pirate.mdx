@@ -1,0 +1,99 @@
+---
+title: pirate
+description: "Pangenome Identification and Reconciliation Analysis Tool for Epidemiology (PIRATE)."
+tags:
+  - pan-genome
+  - orthologs
+  - core-genome
+  - gene-presence-absence
+  - epidemiology
+  - annotation
+  - run-scope
+---
+
+# pirate
+
+**Tags:** <a href="/developers/tags/pan-genome" class="badge badge--primary badge--tag">pan-genome</a> <a href="/developers/tags/orthologs" class="badge badge--primary badge--tag">orthologs</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/gene-presence-absence" class="badge badge--primary badge--tag">gene-presence-absence</a> <a href="/developers/tags/epidemiology" class="badge badge--primary badge--tag">epidemiology</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Pangenome Identification and Reconciliation Analysis Tool for Epidemiology (PIRATE).
+
+Uses [PIRATE](https://github.com/SionBayliss/PIRATE) to construct the pangenome of a
+collection of bacterial isolates. It clusters orthologous genes and generates the core
+genome alignment and a gene presence/absence matrix, which is compatible with downstream
+analysis tools like Scoary for association testing.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    gff: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `gff` | `Set<Path>` | A list of annotated genome files in GFF3 format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    aln: Path?,
+    csv: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `aln` | `Path?` | The core-genome alignment (*core-genome.aln.gz), suitable for phylogenetic tree building |
+| `csv` | `Path?` | Gene presence/absence matrix in CSV format, compatible with Scoary |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### PIRATE Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--use_pirate` | boolean | `false` | Use PIRATE instead of panaroo in the 'pangenome' subworkflow |
+| `--pirate_steps` | string | `50,60,70,80,90,95,98` | Percent identity thresholds to use for pangenome construction |
+| `--pirate_features` | string | `CDS` | Comma-delimited features to use for pangenome construction |
+| `--pirate_para_off` | boolean | `false` | Switch off paralog identification |
+
+## Used By
+
+### Subworkflows
+
+- [pirate](/developers/subworkflows/pirate) - Build a pangenome from GFF3 annotations using PIRATE.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PIRATE](http://github.com/SionBayliss/PIRATE)  
+  Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ [PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) _Gigascience_ 8 (2019)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/pirate)
+
+## Version
+
+```yaml
+PIRATE:
+    - pirate: 1.0.5
+```

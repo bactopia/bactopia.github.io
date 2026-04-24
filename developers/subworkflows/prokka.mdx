@@ -1,0 +1,117 @@
+---
+title: prokka
+description: "Annotate bacterial genomes with functional information."
+tags:
+  - bacteria
+  - annotation
+  - genome
+  - prokaryote
+  - functional-annotation
+  - genes
+  - sample-scope
+---
+
+# prokka
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/prokaryote" class="badge badge--primary badge--tag">prokaryote</a> <a href="/developers/tags/functional-annotation" class="badge badge--primary badge--tag">functional-annotation</a> <a href="/developers/tags/genes" class="badge badge--primary badge--tag">genes</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Annotate bacterial genomes with functional information.
+
+This subworkflow annotates bacterial assemblies using [Prokka](https://github.com/tseemann/prokka).
+It rapidly calls genes, translates them, and searches them against multiple protein databases
+to produce comprehensive annotation in various standard formats. Optional protein sequences
+and Prodigal training files can be provided to improve annotation accuracy.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Bacterial assembly files in FASTA format to be annotated |
+
+```
+proteins: Path?
+prodigal_tf: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `proteins` | `Path?` | Optional protein sequences for homology search to improve annotation accuracy |
+| `prodigal_tf` | `Path?` | Optional Prodigal training file for improved gene prediction accuracy |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `gff` | Annotation in GFF3 format, containing both sequences and annotations |
+| `gbff` | Annotation in GenBank format, containing both sequences and annotations |
+| `fna` | Nucleotide FASTA file of the input contig sequences |
+| `faa` | Protein FASTA file of the translated CDS sequences |
+| `ffn` | Nucleotide FASTA file of all prediction transcripts (CDS, rRNA, tRNA, tmRNA, misc_RNA) |
+| `sqn` | An ASN1 format "Sequin" file for submission to GenBank |
+| `fsa` | Nucleotide FASTA file of the input contig sequences, used by tbl2asn |
+| `tbl` | Feature Table file for NCBI submission |
+| `txt` | Summary statistics relating to the annotated features found |
+| `tsv` | Tab-separated file of all features |
+| `blastdb` | A compressed tar.gz archive of BLAST+ databases |
+
+#### `run_outputs`
+
+No run-scope outputs.
+
+### Downstream Inputs
+
+The following emissions are meant to be used as inputs to downstream subworkflows.
+
+#### `annotations`
+
+| Output | Description |
+|--------|-------------|
+| `fna` | Annotated nucleotide sequences in FASTA format |
+| `faa` | Protein sequences in FASTA format |
+| `gff` | Annotations in GFF3 format |
+
+#### `gffs`
+
+| Output | Description |
+|--------|-------------|
+| `gff` | GFF3 annotation file for pangenome analysis |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [prokka](/developers/modules/prokka) - Annotate prokaryotic genomes.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [bactopia](/bactopia-workflow) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [pangenome](/bactopia-tools/pangenome) - Pangenome analysis with optional core-genome phylogeny.
+- [prokka](/bactopia-tools/prokka) - Rapid whole genome annotation of bacterial, archaeal, and viral genomes.
+- [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Prokka](https://github.com/tseemann/prokka)  
+  Seemann T [Prokka: rapid prokaryotic genome annotation](http://dx.doi.org/10.1093/bioinformatics/btu153) _Bioinformatics_ 30, 2068-2069 (2014)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/prokka)

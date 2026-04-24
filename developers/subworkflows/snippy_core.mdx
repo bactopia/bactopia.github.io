@@ -1,0 +1,109 @@
+---
+title: snippy_core
+description: "Generate core-genome SNP alignment from per-sample Snippy outputs."
+tags:
+  - variant-calling
+  - core-genome
+  - snp
+  - alignment
+  - phylogenetics
+  - run-scope
+---
+
+# snippy_core
+
+**Tags:** <a href="/developers/tags/variant-calling" class="badge badge--primary badge--tag">variant-calling</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/phylogenetics" class="badge badge--primary badge--tag">phylogenetics</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Generate core-genome SNP alignment from per-sample Snippy outputs.
+
+This subworkflow aggregates individual Snippy variant calls to produce a core-genome
+alignment using [snippy-core](https://github.com/tseemann/snippy). It identifies core
+SNPs present across all samples, generates a clean alignment suitable for phylogenetic
+analysis, and calculates pairwise SNP distances using snp-dists. The output can be
+used directly with tree-building tools like IQ-TREE, RAxML, or Gubbins.
+
+## Take
+
+```
+alignments: Channel<Record>
+```
+
+```
+reference: Path
+mask: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `alignments` | `` | Channel containing per-sample aligned FASTA files and VCFs from Snippy runs |
+| `reference` | `Path` | Reference genome in GenBank or FASTA format used for variant calling |
+| `mask` | `Path?` | Optional BED file of regions to mask from the core alignment (e.g., recombinant regions, repeat regions) |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+No sample-scope outputs.
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `aln` | Core SNP alignment in FASTA format (polymorphic sites only) |
+| `full_aln` | Full core alignment including monomorphic sites |
+| `clean_full_aln` | Cleaned full alignment with constant sites for phylogenetic inference |
+| `tab` | Core SNPs in TAB format |
+| `vcf` | Core SNPs in VCF format |
+| `txt` | Core summary statistics (number of SNPs, core genome size) |
+| `samples` | List of samples included in the core alignment |
+| `supplemental` | Individual sample alignments and intermediate files |
+| `tsv` | Pairwise SNP distance matrix from snp-dists |
+
+### Downstream Inputs
+
+The following emissions are meant to be used as inputs to downstream subworkflows.
+
+#### `alignment`
+
+| Output | Description |
+|--------|-------------|
+| `aln` | Core-SNP alignment for downstream phylogenetic analysis |
+
+## Subworkflow Composition
+
+This subworkflow calls the following subworkflows:
+
+- [snpdists](/developers/subworkflows/snpdists) - Calculate pairwise SNP distances from sequence alignments.
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [snippy_core](/developers/modules/snippy_core) - Core-SNP alignment from Snippy outputs.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [snippy](/bactopia-tools/snippy) - Rapid haplotype variant calling and core genome alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Snippy](https://github.com/tseemann/snippy)  
+  Seemann T [Snippy: fast bacterial variant calling from NGS reads](https://github.com/tseemann/snippy) (GitHub)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/snippy/core)

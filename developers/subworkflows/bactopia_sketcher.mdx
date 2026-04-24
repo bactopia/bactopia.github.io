@@ -1,0 +1,95 @@
+---
+title: bactopia_sketcher
+description: "Create genomic sketches and perform rapid taxonomic classification."
+tags:
+  - taxonomy
+  - classification
+  - minhash
+  - sketch
+  - mash
+  - sourmash
+  - refseq
+  - gtdb
+  - sample-scope
+---
+
+# bactopia_sketcher
+
+**Tags:** <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/classification" class="badge badge--primary badge--tag">classification</a> <a href="/developers/tags/minhash" class="badge badge--primary badge--tag">minhash</a> <a href="/developers/tags/sketch" class="badge badge--primary badge--tag">sketch</a> <a href="/developers/tags/mash" class="badge badge--primary badge--tag">mash</a> <a href="/developers/tags/sourmash" class="badge badge--primary badge--tag">sourmash</a> <a href="/developers/tags/refseq" class="badge badge--primary badge--tag">refseq</a> <a href="/developers/tags/gtdb" class="badge badge--primary badge--tag">gtdb</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Create genomic sketches and perform rapid taxonomic classification.
+
+This subworkflow generates MinHash sketches from assembled genomes using [Mash](https://github.com/marbl/Mash)
+and [Sourmash](https://github.com/dib-lab/sourmash). The sketches are compared against reference databases
+to identify taxonomic classification and find closely related genomes. Mash queries against RefSeq while
+Sourmash uses the GTDB database for comprehensive taxonomic placement.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembled contigs in FASTA format |
+
+```
+mash_db: Path
+sourmash_db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `mash_db` | `Path` | Path to the Mash RefSeq database for taxonomic classification |
+| `sourmash_db` | `Path` | Path to the Sourmash GTDB LCA database for taxonomic classification |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `sig` | Sourmash signature file |
+| `msh` | Mash sketch files for k=21 and k=31 |
+| `mash` | Mash Screen classification report against RefSeq |
+| `sourmash` | Sourmash LCA classification report against GTDB |
+
+#### `run_outputs`
+
+No run-scope outputs.
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [bactopia_sketcher](/developers/modules/bactopia_sketcher) - Create genomic sketches and perform rapid taxonomic classification.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [bactopia](/bactopia-workflow) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+- [Sourmash](https://github.com/dib-lab/sourmash)  
+  Brown CT, Irber L [sourmash: a library for MinHash sketching of DNA](http://dx.doi.org/10.21105/joss.00027). _JOSS_ 1, 27 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/bactopia/sketcher)

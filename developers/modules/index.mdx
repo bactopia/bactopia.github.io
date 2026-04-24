@@ -1,0 +1,109 @@
+---
+title: Modules
+description: All available Bactopia modules
+slug: /modules
+---
+
+# Modules
+
+Bactopia includes 97 modules -- individual processes that perform specific analysis tasks. You can also [browse by tag](/developers/tags).
+
+| Module | Description |
+|--------|-------------|
+| [abricate_run](/developers/modules/abricate_run) | Mass screening of contigs for antimicrobial and virulence genes. |
+| [abricate_summary](/developers/modules/abricate_summary) | Summarize Abricate screening results. |
+| [abritamr_run](/developers/modules/abritamr_run) | Detect antimicrobial resistance and virulence genes. |
+| [agrvate](/developers/modules/agrvate) | Determine the agr locus type and operon variants in Staphylococcus aureus. |
+| [amrfinderplus_run](/developers/modules/amrfinderplus_run) | Identify antimicrobial resistance and virulence genes in gene or protein sequences. |
+| [amrfinderplus_update](/developers/modules/amrfinderplus_update) | Download and index the latest AMRFinder+ database. |
+| [ariba_getref](/developers/modules/ariba_getref) | Download and prepare reference databases for ARIBA analysis. |
+| [ariba_run](/developers/modules/ariba_run) | Identify genes by local assembly of reads. |
+| [bactopia_assembler](/developers/modules/bactopia_assembler) | Assemble bacterial genomes using short read, long read, or hybrid strategies. |
+| [bactopia_datasets](/developers/modules/bactopia_datasets) | Download pre-compiled datasets required by Bactopia. |
+| [bactopia_gather](/developers/modules/bactopia_gather) | Search, validate, gather, or simulate input samples. |
+| [bactopia_qc](/developers/modules/bactopia_qc) | Automated quality control, error correction, and read subsampling. |
+| [bactopia_sketcher](/developers/modules/bactopia_sketcher) | Create genomic sketches and perform rapid taxonomic classification. |
+| [bactopia_teton](/developers/modules/bactopia_teton) | Predict genome size and route samples based on taxonomic classification. |
+| [bakta_download](/developers/modules/bakta_download) | Download the Bakta annotation database. |
+| [bakta_run](/developers/modules/bakta_run) | Rapid and standardized annotation of bacterial genomes and plasmids. |
+| [blast_blastn](/developers/modules/blast_blastn) | Search a nucleotide database using a nucleotide query. |
+| [blast_blastp](/developers/modules/blast_blastp) | Search a protein database using a protein query. |
+| [blast_blastx](/developers/modules/blast_blastx) | Search a protein database using a translated nucleotide query. |
+| [blast_tblastn](/developers/modules/blast_tblastn) | Search a translated nucleotide database using a protein query. |
+| [blast_tblastx](/developers/modules/blast_tblastx) | Search a translated nucleotide database using a translated nucleotide query. |
+| [bracken](/developers/modules/bracken) | Taxonomic classification and abundance estimation. |
+| [btyper3](/developers/modules/btyper3) | In silico typing and characterization of *Bacillus cereus* group genomes. |
+| [busco](/developers/modules/busco) | Assess genome assembly completeness using single-copy orthologs. |
+| [checkm2_download](/developers/modules/checkm2_download) | Download the pre-trained CheckM2 database. |
+| [checkm2_predict](/developers/modules/checkm2_predict) | Assess genome quality using machine learning. |
+| [checkm_lineagewf](/developers/modules/checkm_lineagewf) | Assess genome quality using lineage-specific marker sets. |
+| [clermontyping](/developers/modules/clermontyping) | Determine the phylogroup of Escherichia coli isolates. |
+| [clonalframeml](/developers/modules/clonalframeml) | Inference of recombination in bacterial genomes. |
+| [csvtk_concat](/developers/modules/csvtk_concat) | Concatenate multiple CSV or TSV files into a single table. |
+| [csvtk_join](/developers/modules/csvtk_join) | Join two CSV or TSV files based on common fields. |
+| [defensefinder_run](/developers/modules/defensefinder_run) | Detect anti-phage defense systems using HMM profiles. |
+| [defensefinder_update](/developers/modules/defensefinder_update) | Download and package the DefenseFinder and CasFinder model databases. |
+| [ectyper](/developers/modules/ectyper) | Predict *Escherichia coli* serotype (O and H antigens). |
+| [eggnog_download](/developers/modules/eggnog_download) | Download the eggNOG database for functional annotation. |
+| [eggnog_mapper](/developers/modules/eggnog_mapper) | Functional annotation of proteins using eggNOG orthology data. |
+| [emmtyper](/developers/modules/emmtyper) | *emm*-typing of *Streptococcus pyogenes* (Group A Strep) assemblies. |
+| [fastani](/developers/modules/fastani) | Compute whole-genome Average Nucleotide Identity (ANI). |
+| [gamma](/developers/modules/gamma) | Identification, classification, and annotation of translated gene matches. |
+| [genotyphi_parse](/developers/modules/genotyphi_parse) | Parse Mykrobe results to genotype *Salmonella* Typhi. |
+| [gtdbtk_classifywf](/developers/modules/gtdbtk_classifywf) | Taxonomic classification of bacterial and archaeal genomes using GTDB-Tk. |
+| [gtdbtk_download](/developers/modules/gtdbtk_download) | Download and configure the GTDB-Tk reference database. |
+| [gubbins](/developers/modules/gubbins) | Detect recombination and construct a recombination-free phylogeny. |
+| [hicap](/developers/modules/hicap) | Predict *Haemophilus influenzae* capsule serotype. |
+| [hpsuissero](/developers/modules/hpsuissero) | Predict *Haemophilus parasuis* serotype. |
+| [iqtree](/developers/modules/iqtree) | Efficient phylogenomic inference using Maximum Likelihood. |
+| [ismapper](/developers/modules/ismapper) | Identify insertion sites and orientation of mobile genetic elements. |
+| [kleborate](/developers/modules/kleborate) | Genotyping and screening of *Klebsiella* genome assemblies. |
+| [kraken2](/developers/modules/kraken2) | Taxonomic classification and host filtering of sequence reads. |
+| [legsta](/developers/modules/legsta) | In silico Sequence Based Typing (SBT) of *Legionella pneumophila*. |
+| [lissero](/developers/modules/lissero) | Predict *Listeria monocytogenes* serogroup. |
+| [mash_dist](/developers/modules/mash_dist) | Calculate genomic distances using MinHash sketches. |
+| [mashtree](/developers/modules/mashtree) | Rapid alignment-free phylogenomic tree construction. |
+| [mcroni](/developers/modules/mcroni) | Detect sequence variations in the *mcr-1* colistin resistance gene. |
+| [meningotype](/developers/modules/meningotype) | Serotyping and finetyping of *Neisseria meningitidis*. |
+| [merlin_dist](/developers/modules/merlin_dist) | Identify species to trigger genus-specific downstream analyses (Merlin). |
+| [midas_download](/developers/modules/midas_download) | Download the MIDAS reference database. |
+| [midas_species](/developers/modules/midas_species) | Estimate bacterial species abundance from metagenomic reads. |
+| [mlst](/developers/modules/mlst) | Automatic Multi-Locus Sequence Typing (MLST) of genome assemblies. |
+| [mobsuite_recon](/developers/modules/mobsuite_recon) | Reconstruct and type plasmids from a bacterial genome assembly. |
+| [mykrobe_predict](/developers/modules/mykrobe_predict) | Predict Antimicrobial Resistance (AMR) for supported bacterial species. |
+| [ncbigenomedownload](/developers/modules/ncbigenomedownload) | Download assemblies and annotation files from NCBI's Assembly database. |
+| [ngmaster](/developers/modules/ngmaster) | Serotyping and Multi-Antigen Sequence Typing (MAST) of *Neisseria gonorrhoeae*. |
+| [nohuman_download](/developers/modules/nohuman_download) | Download the nohuman database for human read removal. |
+| [nohuman_run](/developers/modules/nohuman_run) | Remove human reads from sequencing data. |
+| [panaroo_run](/developers/modules/panaroo_run) | Fast and scalable bacterial pangenome analysis using a graph-based approach. |
+| [pasty](/developers/modules/pasty) | Predict O-antigen serogroup of Pseudomonas aeruginosa isolates. |
+| [pbptyper](/developers/modules/pbptyper) | Predict Penicillin Binding Protein (PBP) type of *Streptococcus pneumoniae* assemblies. |
+| [phispy](/developers/modules/phispy) | Predict prophage regions integrated into bacterial genomes. |
+| [pirate](/developers/modules/pirate) | Pangenome Identification and Reconciliation Analysis Tool for Epidemiology (PIRATE). |
+| [plasmidfinder](/developers/modules/plasmidfinder) | Identify plasmid replicon types in bacterial sequences and assemblies. |
+| [pneumocat](/developers/modules/pneumocat) | Capsular typing of Streptococcus pneumoniae from Illumina reads. |
+| [prokka](/developers/modules/prokka) | Annotate prokaryotic genomes. |
+| [quast](/developers/modules/quast) | Quality Assessment Tool for Genome Assemblies. |
+| [rgi_heatmap](/developers/modules/rgi_heatmap) | Create heatmaps of resistance gene presence/absence. |
+| [rgi_main](/developers/modules/rgi_main) | Predict antibiotic resistance from assemblies. |
+| [roary](/developers/modules/roary) | Rapid large-scale prokaryote pan genome analysis. |
+| [sccmec](/developers/modules/sccmec) | Identify SCCmec elements in Staphylococcus aureus genomes. |
+| [scoary](/developers/modules/scoary) | Pan-genome wide association studies. |
+| [seqsero2](/developers/modules/seqsero2) | Salmonella serotype prediction from genome sequencing data. |
+| [seroba_run](/developers/modules/seroba_run) | k-mer based Streptococcus pneumoniae serotyping. |
+| [shigapass](/developers/modules/shigapass) | Predict Shigella serotypes and differentiate Shigella/EIEC. |
+| [shigatyper](/developers/modules/shigatyper) | Shigella serotype from Illumina or Oxford Nanopore reads. |
+| [shigeifinder](/developers/modules/shigeifinder) | Shigella and EIEC serotyping from assemblies. |
+| [sistr](/developers/modules/sistr) | Serovar prediction of Salmonella assemblies. |
+| [snippy_core](/developers/modules/snippy_core) | Core-SNP alignment from Snippy outputs. |
+| [snippy_run](/developers/modules/snippy_run) | Rapid haploid variant calling and core genome alignment. |
+| [snpdists](/developers/modules/snpdists) | Create a SNP distance matrix from a multiple sequence alignment. |
+| [spatyper](/developers/modules/spatyper) | Finding spa types in Staphylococcus aureus. |
+| [srahumanscrubber_initdb](/developers/modules/srahumanscrubber_initdb) | Initialize human read removal database for SRA Human Scrubber. |
+| [srahumanscrubber_scrub](/developers/modules/srahumanscrubber_scrub) | Scrub human reads from FASTQ files. |
+| [ssuissero](/developers/modules/ssuissero) | Serotype prediction of Streptococcus suis assemblies. |
+| [staphopiasccmec](/developers/modules/staphopiasccmec) | Primer based SCCmec typing of S. aureus genomes. |
+| [stecfinder](/developers/modules/stecfinder) | Serotype of Shigatoxin producing E. coli using reads/assemblies. |
+| [sylph_profile](/developers/modules/sylph_profile) | Profile metagenome samples against a database using Sylph. |
+| [tbprofiler_collate](/developers/modules/tbprofiler_collate) | Collate TB-Profiler results from multiple samples. |
+| [tbprofiler_profile](/developers/modules/tbprofiler_profile) | Detect resistance and lineages of Mycobacterium tuberculosis genomes. |

@@ -1,0 +1,90 @@
+---
+title: bactopia_datasets
+description: "Download pre-compiled datasets required by Bactopia."
+tags:
+  - download
+  - database
+  - setup
+  - amr
+  - mlst
+  - minhash
+  - sourmash
+  - gtdb
+  - run-scope
+---
+
+# bactopia_datasets
+
+**Tags:** <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/setup" class="badge badge--primary badge--tag">setup</a> <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/minhash" class="badge badge--primary badge--tag">minhash</a> <a href="/developers/tags/sourmash" class="badge badge--primary badge--tag">sourmash</a> <a href="/developers/tags/gtdb" class="badge badge--primary badge--tag">gtdb</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Download pre-compiled datasets required by Bactopia.
+
+Fetches the core datasets (AMR, MLST, Mash, Sourmash) hosted by the Bactopia project.
+These are used to populate the local cache for offline use.
+
+:::note[Internet Required]
+This process requires an active internet connection to fetch files from `datasets.bactopia.com`.
+:::
+
+## Outputs
+
+```
+record (
+    amrfinderplus_db: Path,
+    mlst_db: Path,
+    mash_db: Path,
+    sourmash_db: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `amrfinderplus_db` | `Path` | A compressed tarball of the [AMRFinderPlus](https://github.com/ncbi/amr) database |
+| `mlst_db` | `Path` | A compressed tarball of the [PubMLST](https://pubmlst.org/) schemes |
+| `mash_db` | `Path` | Pre-computed [Mash](https://github.com/marbl/Mash) sketches (RefSeq) |
+| `sourmash_db` | `Path` | Pre-computed [Sourmash](https://github.com/sourmash-bio/sourmash) signatures (GTDB) |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [bactopia_datasets](/developers/subworkflows/bactopia_datasets) - Download and provide pre-compiled datasets required by Bactopia.
+
+### Workflows
+
+- [amrfinderplus](/bactopia-tools/amrfinderplus) - Bactopia Tool: Amrfinderplus.
+- [bactopia](/bactopia-workflow) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [merlin](/bactopia-tools/merlin) - MinMER-assisted species-specific tool selection and execution.
+- [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AMRFinderPlus](https://github.com/ncbi/amr)  
+  Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using Antimicrobial Resistance Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
+
+- [mlst](https://github.com/tseemann/mlst)  
+  Seemann T [mlst: scan contig files against PubMLST typing schemes](https://github.com/tseemann/mlst) (GitHub)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+- [Sourmash](https://github.com/dib-lab/sourmash)  
+  Brown CT, Irber L [sourmash: a library for MinHash sketching of DNA](http://dx.doi.org/10.21105/joss.00027). _JOSS_ 1, 27 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/datasets)
+
+## Version
+
+```yaml
+BACTOPIA_DATASETS:
+    - gnu-wget: 1.18
+```

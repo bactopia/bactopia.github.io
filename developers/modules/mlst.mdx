@@ -1,0 +1,116 @@
+---
+title: mlst
+description: "Automatic Multi-Locus Sequence Typing (MLST) of genome assemblies."
+tags:
+  - bacteria
+  - typing
+  - mlst
+  - sequence-type
+  - pubmlst
+  - alleles
+  - sample-scope
+---
+
+# mlst
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/sequence-type" class="badge badge--primary badge--tag">sequence-type</a> <a href="/developers/tags/pubmlst" class="badge badge--primary badge--tag">pubmlst</a> <a href="/developers/tags/alleles" class="badge badge--primary badge--tag">alleles</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Automatic Multi-Locus Sequence Typing (MLST) of genome assemblies.
+
+Uses [mlst](https://github.com/tseemann/mlst) to scan genome assemblies against traditional
+PubMLST schemes. It automatically detects the likely species scheme, identifies the alleles
+for the 7 housekeeping genes, and assigns a Sequence Type (ST).
+
+:::note[Database Required]
+Requires the MLST database (derived from PubMLST) to be available.
+:::
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+```
+db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path` | Directory or compressed tarball containing the MLST database schemes |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | A tab-delimited summary containing the Sample, Scheme, ST, and Allele IDs |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### MLST Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--mlst_scheme` | string |  | Don't autodetect, force this scheme on all inputs |
+| `--mlst_minid` | integer | `95` | Minimum DNA percent identity of full allele to consider 'similar' |
+| `--mlst_mincov` | integer | `10` | Minimum DNA percent coverage to report partial allele at all |
+| `--mlst_minscore` | integer | `50` | Minimum score out of 100 to match a scheme |
+| `--mlst_nopath` | boolean | `false` | Strip filename paths from FILE column |
+| `--mlst_db` | string |  | A custom MLST database to use, either a tarball or a directory |
+
+## Used By
+
+### Subworkflows
+
+- [mlst](/developers/subworkflows/mlst) - Determine multilocus sequence types (MLST) from bacterial assemblies.
+
+### Workflows
+
+- [bactopia](/bactopia-workflow) - Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [mlst](/bactopia-tools/mlst) - Automatic Multi-Locus Sequence Type (MLST) calling from assembled contigs.
+- [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [mlst](https://github.com/tseemann/mlst)  
+  Seemann T [mlst: scan contig files against PubMLST typing schemes](https://github.com/tseemann/mlst) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mlst)
+
+## Version
+
+```yaml
+MLST:
+    - mlst: 2.33.1
+```

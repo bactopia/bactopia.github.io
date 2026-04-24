@@ -1,0 +1,187 @@
+---
+title: clermontyping
+description: "In silico phylotyping of Escherichia genus."
+tags:
+  - e-coli
+  - phylotyping
+  - phylogroups
+  - clermontyping
+  - bactopia-tool
+---
+
+# clermontyping
+
+**Tags:** <a href="/bactopia-tools/tags/e-coli" class="badge badge--primary badge--tag">e-coli</a> <a href="/bactopia-tools/tags/phylotyping" class="badge badge--primary badge--tag">phylotyping</a> <a href="/bactopia-tools/tags/phylogroups" class="badge badge--primary badge--tag">phylogroups</a> <a href="/bactopia-tools/tags/clermontyping" class="badge badge--primary badge--tag">clermontyping</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+In silico phylotyping of Escherichia genus.
+
+This Bactopia Tool uses [ClermonTyping](https://github.com/happykhan/ClermonTyping)
+to conduct _in silico_ prediction of phylotype for _Escherichia_ genomes. It uses
+genome assemblies to assign them to _E. albertii_, _E. fergusonii_, _Escherichia_
+clades I–V, _E. coli sensu stricto_ as well as to the main _E. coli_ phylogroups.
+
+## Usage
+
+```bash
+bactopia --wf clermontyping \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── clermontyping-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           ├── logs
+│           │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│           │   └── versions.yml
+│           └── supplemental
+│               ├── <SAMPLE_NAME>.blast.xml
+│               ├── <SAMPLE_NAME>.html
+│               └── <SAMPLE_NAME>.mash.tsv
+└── bactopia-runs
+    └── clermontyping-<TIMESTAMP>
+        ├── merged-results
+        │   ├── clermontyping.tsv
+        │   └── logs
+        │       └── clermontyping-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── clermontyping-dag.dot
+            ├── clermontyping-report.html
+            └── clermontyping-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.blast.xml` | BLAST XML file with ClermonTyping analysis results |
+| `*.html` | HTML file with ClermonTyping analysis results |
+| `*.mash.tsv` | TSV file with Mash distances |
+| `*.phylogroups.txt` | TSV file with final phylogroup assignments |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `clermontyping.tsv` | Merged TSV file with ClermonTyping results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| clermontyping-dag.dot | The Nextflow [DAG visualization](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| clermontyping-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| clermontyping-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| clermontyping-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### ClermonTyping Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--clermontyping_threshold` | integer | `0` | Do not use contigs under this size |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [clermontyping](/developers/subworkflows/clermontyping) - Predict phylogroups of Escherichia coli from genome assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClermontTyping](https://github.com/happykhan/ClermonTyping)  
+  Beghain J, Bridier-Nahmias A, Le Nagard H, Denamur E, Clermont O. [ClermonTyping: an easy-to-use and accurate in silico method for Escherichia genus strain phylotyping.](https://doi.org/10.1099/mgen.0.000192) Microbial Genomics, 4(7), e000192. (2018)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/clermontyping)

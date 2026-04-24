@@ -1,0 +1,98 @@
+---
+title: Subworkflows
+description: All available Bactopia subworkflows
+slug: /subworkflows
+---
+
+# Subworkflows
+
+Bactopia includes 86 subworkflows that orchestrate modules into reusable analysis units. You can also [browse by tag](/developers/tags).
+
+| Subworkflow | Description |
+|-------------|-------------|
+| [abricate](/developers/subworkflows/abricate) | Mass screening of contigs for antimicrobial and virulence genes. |
+| [abritamr](/developers/subworkflows/abritamr) | Identify antimicrobial resistance genes using AMRFinderPlus. |
+| [agrvate](/developers/subworkflows/agrvate) | Identify Staphylococcus aureus agr locus type and operon variants. |
+| [amrfinderplus](/developers/subworkflows/amrfinderplus) | Find antimicrobial resistance genes and point mutations. |
+| [ariba](/developers/subworkflows/ariba) | Rapidly identify genes by creating local assemblies from paired-end reads. |
+| [bactopia_assembler](/developers/subworkflows/bactopia_assembler) | Assemble bacterial genomes using automated assembler selection. |
+| [bactopia_datasets](/developers/subworkflows/bactopia_datasets) | Download and provide pre-compiled datasets required by Bactopia. |
+| [bactopia_gather](/developers/subworkflows/bactopia_gather) | Search, validate, gather, and standardize input samples. |
+| [bactopia_qc](/developers/subworkflows/bactopia_qc) | Perform comprehensive quality control on sequencing reads. |
+| [bactopia_sketcher](/developers/subworkflows/bactopia_sketcher) | Create genomic sketches and perform rapid taxonomic classification. |
+| [bakta](/developers/subworkflows/bakta) | Rapid bacterial genome annotation. |
+| [blastn](/developers/subworkflows/blastn) | Search a nucleotide database using nucleotide query sequences. |
+| [blastp](/developers/subworkflows/blastp) | Search protein sequences against protein database. |
+| [blastx](/developers/subworkflows/blastx) | Translate nucleotide sequences and search protein database. |
+| [bracken](/developers/subworkflows/bracken) | Estimate species abundance from metagenomic reads. |
+| [btyper3](/developers/subworkflows/btyper3) | In silico taxonomic classification of Bacillus cereus group genomes. |
+| [busco](/developers/subworkflows/busco) | Assess genome assembly completeness using BUSCO. |
+| [checkm](/developers/subworkflows/checkm) | Assess metagenome bin completeness using CheckM. |
+| [checkm2](/developers/subworkflows/checkm2) | Assess metagenome bin completeness using CheckM2. |
+| [clermontyping](/developers/subworkflows/clermontyping) | Predict phylogroups of Escherichia coli from genome assemblies. |
+| [clonalframeml](/developers/subworkflows/clonalframeml) | Detect and mask recombination events in bacterial phylogenies. |
+| [defensefinder](/developers/subworkflows/defensefinder) | Systematically search for anti-phage defense systems. |
+| [ectyper](/developers/subworkflows/ectyper) | In silico prediction of Escherichia coli serotype. |
+| [eggnog](/developers/subworkflows/eggnog) | Functional annotation through orthology assignment. |
+| [emmtyper](/developers/subworkflows/emmtyper) | Predict emm types of Streptococcus pyogenes from genome assemblies. |
+| [fastani](/developers/subworkflows/fastani) | Calculate Average Nucleotide Identity (ANI) between genomes. |
+| [gamma](/developers/subworkflows/gamma) | Gene Allele Mutation Microbial Assessment. |
+| [genotyphi](/developers/subworkflows/genotyphi) | Assign genotypes to Salmonella Typhi genomes. |
+| [gtdb](/developers/subworkflows/gtdb) | Taxonomic classification with the Genome Taxonomy Database. |
+| [gubbins](/developers/subworkflows/gubbins) | Detect and filter recombination regions in bacterial alignments. |
+| [hicap](/developers/subworkflows/hicap) | In silico serotyping of the Haemophilus influenzae capsule locus. |
+| [hpsuissero](/developers/subworkflows/hpsuissero) | Rapid Haemophilus parasuis serotyping. |
+| [iqtree](/developers/subworkflows/iqtree) | Construct maximum likelihood phylogenetic trees from alignments. |
+| [ismapper](/developers/subworkflows/ismapper) | Identify transposase insertion sites in bacterial genomes. |
+| [kleborate](/developers/subworkflows/kleborate) | Genotyping tool for Klebsiella pneumoniae and its related species complex. |
+| [kraken2](/developers/subworkflows/kraken2) | Classify metagenomic reads using Kraken2. |
+| [legsta](/developers/subworkflows/legsta) | In silico Legionella pneumophila Sequence Based Typing. |
+| [lissero](/developers/subworkflows/lissero) | In silico serotype prediction for Listeria monocytogenes. |
+| [mashdist](/developers/subworkflows/mashdist) | Calculate Mash distances between sequences and a reference. |
+| [mashtree](/developers/subworkflows/mashtree) | Create phylogenetic trees using Mash distances. |
+| [mcroni](/developers/subworkflows/mcroni) | Scripts for finding and processing promoter variants upstream of mcr-1. |
+| [meningotype](/developers/subworkflows/meningotype) | Predict serotypes of Neisseria meningitidis from genome assemblies. |
+| [merlin](/developers/subworkflows/merlin) | MinER assisted species-specific bactopia tool seLectIoN. |
+| [merlindist](/developers/subworkflows/merlindist) | Identify species from assembly and read data using Mash distances. |
+| [midas](/developers/subworkflows/midas) | Species-level profiling from metagenomic data. |
+| [mlst](/developers/subworkflows/mlst) | Determine multilocus sequence types (MLST) from bacterial assemblies. |
+| [mobsuite](/developers/subworkflows/mobsuite) | Reconstruct and type plasmids from bacterial genome assemblies. |
+| [mykrobe](/developers/subworkflows/mykrobe) | Predict antibiotic resistance from sequence reads. |
+| [ncbigenomedownload](/developers/subworkflows/ncbigenomedownload) | Download bacterial genomes from NCBI's RefSeq database. |
+| [ngmaster](/developers/subworkflows/ngmaster) | Perform multi-antigen sequence typing of Neisseria gonorrhoeae from genome assemblies. |
+| [nohuman](/developers/subworkflows/nohuman) | Remove human reads from sequencing data using nohuman. |
+| [panaroo](/developers/subworkflows/panaroo) | Build a pangenome from GFF3 annotations using Panaroo. |
+| [pangenome](/developers/subworkflows/pangenome) | Perform pangenome analysis with optional core-genome phylogeny. |
+| [pasty](/developers/subworkflows/pasty) | Predict serogroups of Pseudomonas aeruginosa from assemblies. |
+| [pbptyper](/developers/subworkflows/pbptyper) | Predict penicillin binding protein (PBP) types of Streptococcus pneumoniae from genome assemblies. |
+| [phispy](/developers/subworkflows/phispy) | Prediction of prophages from bacterial genomes. |
+| [pirate](/developers/subworkflows/pirate) | Build a pangenome from GFF3 annotations using PIRATE. |
+| [plasmidfinder](/developers/subworkflows/plasmidfinder) | Identify plasmid replicons in bacterial genome assemblies. |
+| [pneumocat](/developers/subworkflows/pneumocat) | Perform capsular typing of Streptococcus pneumoniae from NGS data. |
+| [prokka](/developers/subworkflows/prokka) | Annotate bacterial genomes with functional information. |
+| [quast](/developers/subworkflows/quast) | Evaluate assembly quality using QUAST. |
+| [rgi](/developers/subworkflows/rgi) | Predict antimicrobial resistance from protein or nucleotide data. |
+| [roary](/developers/subworkflows/roary) | Build a pangenome from GFF3 annotations using Roary. |
+| [sccmec](/developers/subworkflows/sccmec) | Identify SCCmec elements in Staphylococcus aureus genomes. |
+| [scoary](/developers/subworkflows/scoary) | Pan-genome wide association studies. |
+| [scrubber](/developers/subworkflows/scrubber) | Remove contaminant sequences from metagenomic data. |
+| [seqsero2](/developers/subworkflows/seqsero2) | Predict Salmonella serotypes from genome assemblies. |
+| [seroba](/developers/subworkflows/seroba) | k-mer based pipeline to identify the serotype of Streptococcus pneumoniae. |
+| [shigapass](/developers/subworkflows/shigapass) | Predict serotypes of Shigella from assemblies. |
+| [shigatyper](/developers/subworkflows/shigatyper) | Predict serotypes of Shigella from reads or assemblies. |
+| [shigeifinder](/developers/subworkflows/shigeifinder) | Predict serotypes of Shigella and EIEC from assemblies. |
+| [sistr](/developers/subworkflows/sistr) | Salmonella In Silico Typing Resource command-line tool. |
+| [snippy_core](/developers/subworkflows/snippy_core) | Generate core-genome SNP alignment from per-sample Snippy outputs. |
+| [snippy_run](/developers/subworkflows/snippy_run) | Call variants against a reference genome using Snippy. |
+| [snpdists](/developers/subworkflows/snpdists) | Calculate pairwise SNP distances from sequence alignments. |
+| [spatyper](/developers/subworkflows/spatyper) | Predict spa types of Staphylococcus aureus from genome assemblies. |
+| [srahumanscrubber](/developers/subworkflows/srahumanscrubber) | Remove human contamination from sequencing reads for SRA submission. |
+| [ssuissero](/developers/subworkflows/ssuissero) | Predict serotypes of Streptococcus suis from genome assemblies. |
+| [staphopiasccmec](/developers/subworkflows/staphopiasccmec) | Identify SCCmec elements in Staphylococcus aureus genomes using Staphopia method. |
+| [staphtyper](/developers/subworkflows/staphtyper) | Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes. |
+| [stecfinder](/developers/subworkflows/stecfinder) | Identify and serotype Shiga toxin-producing E. coli (STEC) from assemblies. |
+| [sylph](/developers/subworkflows/sylph) | Profile microbial composition using Sylph. |
+| [tblastn](/developers/subworkflows/tblastn) | Search protein query sequences against nucleotide database. |
+| [tblastx](/developers/subworkflows/tblastx) | Translate nucleotide query sequences and search nucleotide database. |
+| [tbprofiler](/developers/subworkflows/tbprofiler) | Profiling tool for Mycobacterium tuberculosis to detect resistance and strain type. |
+| [teton](/developers/subworkflows/teton) | Perform taxonomic classification and estimate bacterial genome sizes. |

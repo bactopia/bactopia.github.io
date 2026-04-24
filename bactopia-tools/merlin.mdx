@@ -1,0 +1,512 @@
+---
+title: merlin
+description: "MinMER-assisted species-specific tool selection and execution."
+tags:
+  - species-specific
+  - automated
+  - mash
+  - minmer
+  - typing
+  - bactopia-tool
+---
+
+# merlin
+
+**Tags:** <a href="/bactopia-tools/tags/species-specific" class="badge badge--primary badge--tag">species-specific</a> <a href="/bactopia-tools/tags/automated" class="badge badge--primary badge--tag">automated</a> <a href="/bactopia-tools/tags/mash" class="badge badge--primary badge--tag">mash</a> <a href="/bactopia-tools/tags/minmer" class="badge badge--primary badge--tag">minmer</a> <a href="/bactopia-tools/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+MinMER-assisted species-specific tool selection and execution.
+
+This Bactopia Tool, Merlin, uses MinMER distances based on the RefSeq sketch to automatically
+run species-specific analysis tools. Merlin identifies the closest reference genomes
+and executes appropriate typing and analysis tools for each detected species.
+
+## Usage
+
+```bash
+bactopia --wf merlin \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       ├── clermontyping
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   ├── logs
+│       │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │   │   └── versions.yml
+│       │   └── supplemental
+│       │       ├── <SAMPLE_NAME>.blast.xml
+│       │       ├── <SAMPLE_NAME>.html
+│       │       └── <SAMPLE_NAME>.mash.tsv
+│       ├── ectyper
+│       │   ├── <SAMPLE_NAME>.blast_alleles.txt
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── ectyper.log
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── kleborate
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── merlindist
+│       │   └── merlin-<TIMESTAMP>
+│       │       ├── <SAMPLE_NAME>-dist.txt
+│       │       └── logs
+│       │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │           └── versions.yml
+│       ├── shigapass
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   ├── logs
+│       │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │   │   └── versions.yml
+│       │   └── supplemental
+│       │       └── ShigaPass_summary.csv
+│       ├── shigatyper
+│       │   ├── <SAMPLE_NAME>-hits.tsv
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── shigeifinder
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       └── stecfinder
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+├── <SAMPLE_NAME>SE
+│   └── tools
+│       ├── clermontyping
+│       │   ├── <SAMPLE_NAME>SE.tsv
+│       │   ├── logs
+│       │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │   │   └── versions.yml
+│       │   └── supplemental
+│       │       ├── <SAMPLE_NAME>SE.blast.xml
+│       │       ├── <SAMPLE_NAME>SE.html
+│       │       └── <SAMPLE_NAME>SE.mash.tsv
+│       ├── ectyper
+│       │   ├── <SAMPLE_NAME>SE.blast_alleles.txt
+│       │   ├── <SAMPLE_NAME>SE.tsv
+│       │   └── logs
+│       │       ├── ectyper.log
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── kleborate
+│       │   ├── <SAMPLE_NAME>SE.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── merlindist
+│       │   └── merlin-<TIMESTAMP>
+│       │       ├── <SAMPLE_NAME>SE-dist.txt
+│       │       └── logs
+│       │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │           └── versions.yml
+│       ├── shigapass
+│       │   ├── <SAMPLE_NAME>SE.tsv
+│       │   ├── logs
+│       │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │   │   └── versions.yml
+│       │   └── supplemental
+│       │       └── ShigaPass_summary.csv
+│       ├── shigatyper
+│       │   ├── <SAMPLE_NAME>SE-hits.tsv
+│       │   ├── <SAMPLE_NAME>SE.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── shigeifinder
+│       │   ├── <SAMPLE_NAME>SE.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       └── stecfinder
+│           ├── <SAMPLE_NAME>SE.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+├── SRR13039589
+│   └── tools
+│       ├── clermontyping
+│       │   ├── SRR13039589.tsv
+│       │   ├── logs
+│       │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │   │   └── versions.yml
+│       │   └── supplemental
+│       │       ├── SRR13039589.blast.xml
+│       │       ├── SRR13039589.html
+│       │       └── SRR13039589.mash.tsv
+│       ├── ectyper
+│       │   ├── SRR13039589.blast_alleles.txt
+│       │   ├── SRR13039589.tsv
+│       │   └── logs
+│       │       ├── ectyper.log
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── kleborate
+│       │   ├── SRR13039589.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── merlindist
+│       │   └── merlin-<TIMESTAMP>
+│       │       ├── SRR13039589-dist.txt
+│       │       └── logs
+│       │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │           └── versions.yml
+│       ├── shigapass
+│       │   ├── SRR13039589.tsv
+│       │   ├── logs
+│       │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │   │   └── versions.yml
+│       │   └── supplemental
+│       │       └── ShigaPass_summary.csv
+│       ├── shigatyper
+│       │   ├── SRR13039589-hits.tsv
+│       │   ├── SRR13039589.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       ├── shigeifinder
+│       │   ├── SRR13039589.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       └── stecfinder
+│           ├── SRR13039589.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── merlin-<TIMESTAMP>
+        ├── merged-results
+        │   ├── clermontyping.tsv
+        │   ├── ectyper.tsv
+        │   ├── kleborate.tsv
+        │   ├── logs
+        │   │   ├── clermontyping-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── ectyper-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── kleborate-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── shigapass-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── shigatyper-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── shigeifinder-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   └── stecfinder-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   ├── shigapass.tsv
+        │   ├── shigatyper.tsv
+        │   ├── shigeifinder.tsv
+        │   └── stecfinder.tsv
+        └── nf-reports
+            ├── merlin-dag.dot
+            ├── merlin-report.html
+            └── merlin-timeline.html
+```
+
+### Species-Specific Analysis
+
+:::note
+Tools executed depend on detected species
+:::
+
+| File | Description |
+|------|-------------|
+| `Analysis` | results from all executed species-specific tools |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `merlin.tsv` | Merged summary of all species-specific analyses |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| merlin-dag.dot | The Nextflow [DAG visualization](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| merlin-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| merlin-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| merlin-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### mashdist Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--mash_sketch` | string |  | The reference sequence as a Mash Sketch (.msh file) |
+| `--full_merlin` | boolean | `false` | Go full Merlin and run all species-specific tools, no matter the Mash distance |
+
+### ClermonTyping Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--clermontyping_threshold` | integer | `0` | Do not use contigs under this size |
+
+### ECTyper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--ectyper_opid` | integer | `90` | Percent identity required for an O antigen allele match |
+| `--ectyper_opcov` | integer | `90` | Minimum percent coverage required for an O antigen allele match |
+| `--ectyper_hpid` | integer | `95` | Percent identity required for an H antigen allele match |
+| `--ectyper_hpcov` | integer | `50` | Minimum percent coverage required for an H antigen allele match |
+
+### emmtyper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--emmtyper_wf` | string | `blast` | Workflow for emmtyper to use. (choices: `blast`, `pcr`) |
+| `--emmtyper_blastdb` | string |  | Path to custom EMM BLAST DB. |
+| `--emmtyper_cluster_distance` | integer | `500` | Distance between cluster of matches to consider as different clusters |
+| `--emmtyper_percid` | integer | `95` | Minimal percent identity of sequence |
+
+### hicap Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--hicap_gene_coverage` | number | `0.8` | Minimum percentage coverage to consider a single gene complete |
+| `--hicap_gene_identity` | number | `0.7` | Minimum percentage identity to consider a single gene complete |
+| `--hicap_broken_gene_length` | integer | `60` | Minimum length to consider a broken gene |
+| `--hicap_broken_gene_identity` | number | `0.8` | Minimum percentage identity to consider a broken gene |
+
+### Mykrobe Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--mykrobe_species` | string |  | Species panel to use (choices: `sonnei`, `staph`, `tb`, `typhi`) |
+| `--mykrobe_opts` | string |  | Extra Mykrobe options in quotes |
+
+### GenoTyphi Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--genotyphi_mykrobe_opts` | string |  | Extra Mykrobe options in quotes |
+
+### Kleborate Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--kleborate_preset` | string | `kpsc` | Preset module to use for Kleborate (choices: `kpsc`, `kosc`, `escherichia`) |
+| `--kleborate_opts` | string |  | Extra options in quotes for Kleborate |
+
+### legsta Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--legsta_noheader` | boolean | `false` | Don't print header row |
+
+### LisSero Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--lissero_min_id` | number | `95.0` | Minimum percent identity to accept a match |
+| `--lissero_min_cov` | number | `95.0` | Minimum coverage of the gene to accept a match |
+
+### ngmaster Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--ngmaster_csv` | boolean | `false` | output comma-separated format (CSV) rather than tab-separated |
+
+### pasty Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--pasty_min_pident` | integer | `95` | Minimum percent identity to count a hit |
+| `--pasty_min_coverage` | integer | `95` | Minimum percent coverage to count a hit |
+
+### pbptyper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--pbptyper_min_pident` | integer | `95` | Minimum percent identity to count a hit |
+| `--pbptyper_min_coverage` | integer | `95` | Minimum percent coverage to count a hit |
+
+### SeqSero2 Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--seqsero2_run_mode` | string | `k` | Workflow to run. 'a' allele mode, or 'k' k-mer mode (choices: `a`, `k`) |
+| `--seqsero2_input_type` | string | `assembly` | Input format to analyze. 'assembly' or 'fastq' (choices: `assembly`, `fastq`) |
+
+### SeroBA Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--seroba_coverage` | integer | `20` | Threshold for k-mer coverage of the reference sequence |
+
+### SISTR Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--sistr_full_cgmlst` | boolean | `false` |  Use the full set of cgMLST alleles which can include highly similar alleles |
+
+### AgrVATE Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--agrvate_typing_only` | boolean | `false` | agr typing only. Skips agr operon extraction and frameshift detection |
+
+### spaTyper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--spatyper_do_enrich` | boolean | `false` | Do PCR product enrichment |
+
+### sccmec Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--sccmec_min_targets_pident` | integer | `90` | Minimum percent identity to count a target hit |
+| `--sccmec_min_targets_coverage` | integer | `80` | Minimum percent coverage to count a target hit |
+| `--sccmec_min_regions_pident` | integer | `85` | Minimum percent identity to count a region hit |
+| `--sccmec_min_regions_coverage` | integer | `93` | Minimum percent coverage to count a region hit |
+
+### STECFinder Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--stecfinder_use_reads` | boolean | `false` | Paired-end Illumina reads will be used instead of assemblies |
+| `--stecfinder_hits` | boolean | `false` | Show detailed gene search results |
+| `--stecfinder_cutoff` | number | `10.0` | Minimum read coverage for gene to be called |
+| `--stecfinder_length` | number | `50.0` | Percentage of gene length needed for positive call |
+
+### TB-Profiler Profile Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--tbprofiler_call_whole_genome` | boolean | `false` | Call whole genome |
+| `--tbprofiler_mapper` | string | `bwa` | Mapping tool to use. If you are using nanopore data it will default to minimap2 (choices: `bwa`, `minimap2`, `bowtie2`, `bwa-mem2`) |
+| `--tbprofiler_caller` | string | `freebayes` | Variant calling tool to use (choices: `bcftools`, `gatk`, `freebayes`) |
+| `--tbprofiler_opts` | string |  | Extra options in quotes for TBProfiler |
+
+### TB-Profiler Collate Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--tbprofiler_itol` | boolean | `false` | Generate itol config files |
+| `--tbprofiler_full` | boolean | `false` | Output mutations in main result file |
+| `--tbprofiler_all_variants` | boolean | `false` | Output all variants in variant matrix |
+| `--tbprofiler_mark_missing` | boolean | `false` | An asterisk will be used to mark predictions which are affected by missing data at a drug resistance position |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [bactopia_datasets](/developers/subworkflows/bactopia_datasets) - Download and provide pre-compiled datasets required by Bactopia.
+- [merlin](/developers/subworkflows/merlin) - MinER assisted species-specific bactopia tool seLectIoN.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/merlin)

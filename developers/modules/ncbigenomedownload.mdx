@@ -1,0 +1,128 @@
+---
+title: ncbigenomedownload
+description: "Download assemblies and annotation files from NCBI's Assembly database."
+tags:
+  - ncbi
+  - download
+  - genome
+  - assembly
+  - fasta
+  - genbank
+  - utility
+  - run-scope
+---
+
+# ncbigenomedownload
+
+**Tags:** <a href="/developers/tags/ncbi" class="badge badge--primary badge--tag">ncbi</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/genbank" class="badge badge--primary badge--tag">genbank</a> <a href="/developers/tags/utility" class="badge badge--primary badge--tag">utility</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Download assemblies and annotation files from NCBI's Assembly database.
+
+Uses [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) to efficiently fetch
+one or more complete genome assemblies and their associated annotation and report files from
+the NCBI FTP site based on accession numbers, species name, or assembly ID.
+
+## Inputs
+
+```
+accessions: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `accessions` | `Path?` | A path to a text file containing a list of NCBI Assembly accession numbers (one per line) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    gbff: Set<Path?>,
+    fna: Set<Path?>,
+    rm: Set<Path?>,
+    features: Set<Path?>,
+    gff: Set<Path?>,
+    faa: Set<Path?>,
+    gpff: Set<Path?>,
+    wgs_gbk: Set<Path?>,
+    cds: Set<Path?>,
+    rna: Set<Path?>,
+    rna_fna: Set<Path?>,
+    report: Set<Path?>,
+    stats: Set<Path?>,
+    accessions: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `gbff` | `Set<Path?>` | GenBank format of the genomic sequence(s) (*_genomic.gbff.gz) |
+| `fna` | `Set<Path?>` | FASTA format of the genomic nucleotide sequence(s) (*_genomic.fna.gz) |
+| `rm` | `Set<Path?>` | RepeatMasker output for eukaryotes |
+| `features` | `Set<Path?>` | Tab-delimited text file reporting locations and attributes for a subset of features |
+| `gff` | `Set<Path?>` | Annotation of the genomic sequence(s) in GFF3 format (*_genomic.gff.gz) |
+| `faa` | `Set<Path?>` | FASTA format of the accessioned protein products (*_protein.faa.gz) |
+| `gpff` | `Set<Path?>` | GenPept format of the accessioned protein products |
+| `wgs_gbk` | `Set<Path?>` | GenBank flat file format of the WGS master |
+| `cds` | `Set<Path?>` | FASTA format of the nucleotide sequences corresponding to all CDS features |
+| `rna` | `Set<Path?>` | FASTA format of accessioned RNA products |
+| `rna_fna` | `Set<Path?>` | FASTA format of the nucleotide sequences corresponding to all RNA features |
+| `report` | `Set<Path?>` | Tab-delimited text file reporting assembly unit names, roles, and relationships |
+| `stats` | `Set<Path?>` | Tab-delimited text file reporting assembly statistics |
+| `accessions` | `Set<Path?>` | The generated accession list files |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### NCBI Genome Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--species` | string |  | Name of the species to download assemblies |
+| `--accession` | string |  | An NCBI Assembly accession to be downloaded |
+| `--accessions` | string |  | An file of NCBI Assembly accessions (one per line) to be downloaded |
+| `--format` | string | `fasta` | Comma separated list of formats to download |
+| `--limit` | string |  | Limit the number of assemblies to download |
+| `--keep_downloads` | boolean | `false` | Save downloaded files into the bactopia-runs folder |
+
+## Used By
+
+### Subworkflows
+
+- [ncbigenomedownload](/developers/subworkflows/ncbigenomedownload) - Download bacterial genomes from NCBI's RefSeq database.
+
+### Workflows
+
+- [fastani](/bactopia-tools/fastani) - Fast alignment-free computation of whole-genome Average Nucleotide Identity.
+- [mashtree](/bactopia-tools/mashtree) - Rapid phylogenetic tree construction using Mash distances.
+- [pangenome](/bactopia-tools/pangenome) - Pangenome analysis with optional core-genome phylogeny.
+- [snippy](/bactopia-tools/snippy) - Rapid haplotype variant calling and core genome alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ncbigenomedownload)
+
+## Version
+
+```yaml
+NCBIGENOMEDOWNLOAD:
+    - ncbi-genome-download: 0.3.3
+```

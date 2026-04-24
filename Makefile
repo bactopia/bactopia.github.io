@@ -9,13 +9,13 @@ parse:
 	python bin/parse-bactopia.py $(BACTOPIA_REPO) --output data/bactopia.json
 
 generate-workflows:
-	python bin/generate-workflows.py data/bactopia.json --output-dir workflows/
+	python bin/generate-workflows.py data/bactopia.json --tools-dir bactopia-tools/ --pipelines-dir bactopia-pipelines/ --docs-dir docs/
 
 generate-subworkflows:
-	python bin/generate-subworkflows.py data/bactopia.json --output-dir subworkflows/
+	python bin/generate-subworkflows.py data/bactopia.json --output-dir developers/subworkflows/
 
 generate-modules:
-	python bin/generate-modules.py data/bactopia.json --output-dir modules/
+	python bin/generate-modules.py data/bactopia.json --output-dir developers/modules/
 
 generate-citations:
 	python bin/generate-citations.py data/citations.yml --output impact/citations.md
@@ -30,4 +30,4 @@ update-citations:
 	python bin/update-citations.py --output data/citations.yml
 
 clean-generated:
-	rm -rf data/bactopia.json workflows/*.mdx subworkflows/*.mdx modules/*.mdx impact/citations.md impact/acknowledgements.md impact/enhancements.md
+	rm -rf data/bactopia.json bactopia-tools/*.mdx bactopia-pipelines/*.mdx developers/subworkflows/*.mdx developers/modules/*.mdx impact/citations.md impact/acknowledgements.md impact/enhancements.md

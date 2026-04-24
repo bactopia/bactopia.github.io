@@ -1,0 +1,99 @@
+---
+title: bactopia_teton
+description: "Predict genome size and route samples based on taxonomic classification."
+tags:
+  - taxonomy
+  - genome-size
+  - routing
+  - filtering
+  - bacteria
+  - sizemeup
+  - bracken
+  - sample-scope
+---
+
+# bactopia_teton
+
+**Tags:** <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/genome-size" class="badge badge--primary badge--tag">genome-size</a> <a href="/developers/tags/routing" class="badge badge--primary badge--tag">routing</a> <a href="/developers/tags/filtering" class="badge badge--primary badge--tag">filtering</a> <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/sizemeup" class="badge badge--primary badge--tag">sizemeup</a> <a href="/developers/tags/bracken" class="badge badge--primary badge--tag">bracken</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predict genome size and route samples based on taxonomic classification.
+
+Uses [SizeMeUp](https://github.com/bactopia/bactopia) to parse [Bracken](https://github.com/jenniferlu717/Bracken)
+abundance reports, estimate the genome size for the identified species, and split samples
+into "Bacteria" (for downstream analysis with Bactopia) and "Non-Bacteria" lists.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    classification: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `classification` | `Path` | Bracken species abundance report |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    bacteria_tsv: Path,
+    nonbacteria_tsv: Path,
+    sizemeup: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `bacteria_tsv` | `Path` | A tab-delimited samplesheet compatible with Bactopia (--samples) for samples identified as Bacteria |
+| `nonbacteria_tsv` | `Path` | A tab-delimited samplesheet for samples NOT identified as Bacteria |
+| `sizemeup` | `Path` | A text file containing the predicted species and genome size |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [teton](/developers/subworkflows/teton) - Perform taxonomic classification and estimate bacterial genome sizes.
+
+### Workflows
+
+- [teton](/bactopia-pipelines/teton) - Taxonomic classification and abundance profiling of metagenomic reads.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Bracken](https://github.com/jenniferlu717/Bracken)  
+  Lu J, Breitwieser FP, Thielen P, and Salzberg SL [Bracken: estimating species abundance in metagenomics data.](https://doi.org/10.7717/peerj-cs.104) _PeerJ Computer Science_, 3, e104. (2017)
+
+- [sizemeup](https://github.com/rpetit3/sizemeup)  
+  Petit III RA [sizemeup: A simple tool to retrieve the genome size for a given species name or tax ID](https://github.com/rpetit3/sizemeup) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/teton)
+
+## Version
+
+```yaml
+BACTOPIA_TETON:
+    - bactopia-teton: 1.1.3
+```
