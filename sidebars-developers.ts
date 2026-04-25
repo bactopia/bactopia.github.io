@@ -19,6 +19,7 @@ const sidebars: SidebarsConfig = {
           ],
         },
         'nf-bactopia/index',
+        'ai-skills/index',
         {
           type: 'category',
           label: 'Subworkflows',
