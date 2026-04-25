@@ -43,28 +43,28 @@ bactopia-scaffold lookup PACKAGE [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
 
 #### Query Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--channel` | STRING |  | Force a specific channel (bioconda or conda-forge). Default: try bioconda first, then conda-forge. |
+| `--channel` | STRING |  | Force a specific channel (bioconda or conda-forge). Default: try bioconda first, then conda-forge |
 | `--max-retry` | INT | `3` | Maximum times to attempt API queries. (Default: 3) |
 
 #### Output Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--json` | BOOL | `false` | Output flat JSON. |
-| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
+| `--json` | BOOL | `false` | Output flat JSON |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON |
 
 #### Additional Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
 
 ---
 
@@ -80,13 +80,13 @@ bactopia-scaffold module [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--config` | PATH |  | JSON design config file. |
-| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
-| `--dry-run` | BOOL | `false` | Show what would be created without writing files. |
-| `--json` | BOOL | `false` | Output flat JSON. |
-| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+| `--config` | PATH |  | JSON design config file |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+| `--dry-run` | BOOL | `false` | Show what would be created without writing files |
+| `--json` | BOOL | `false` | Output flat JSON |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
 
 ---
 
@@ -102,13 +102,13 @@ bactopia-scaffold subworkflow [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--config` | PATH |  | JSON design config file. |
-| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
-| `--dry-run` | BOOL | `false` | Show what would be created without writing files. |
-| `--json` | BOOL | `false` | Output flat JSON. |
-| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+| `--config` | PATH |  | JSON design config file |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+| `--dry-run` | BOOL | `false` | Show what would be created without writing files |
+| `--json` | BOOL | `false` | Output flat JSON |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
 
 ---
 
@@ -124,22 +124,22 @@ bactopia-scaffold test-data [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--input-type` | CHOICE (assembly, assembly_reads, genbank, gff, proteins, reads) |  | Input type to search for in existing tests. |
-| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
+| `--input-type` | CHOICE (assembly, assembly_reads, genbank, gff, proteins, reads) |  | Input type to search for in existing tests |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
 
 #### Output Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--json` | BOOL | `false` | Output flat JSON. |
-| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
+| `--json` | BOOL | `false` | Output flat JSON |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON |
 
 #### Additional Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
 
 ---
 
@@ -155,10 +155,10 @@ bactopia-scaffold tool [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--config` | PATH |  | JSON design config file. |
-| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
-| `--dry-run` | BOOL | `false` | Show what would be created without writing files. |
-| `--json` | BOOL | `false` | Output flat JSON. |
-| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+| `--config` | PATH |  | JSON design config file |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+| `--dry-run` | BOOL | `false` | Show what would be created without writing files |
+| `--json` | BOOL | `false` | Output flat JSON |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |

@@ -1,5 +1,0 @@
-name: bactopia-docs
-channels:
-  - conda-forge
-dependencies:
-  - nodejs=22

@@ -29,22 +29,22 @@ bactopia-download UNKNOWN [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--envtype` | CHOICE (conda, docker, singularity, all) | `conda` | The type of environment to build. |
+| `--envtype` | CHOICE (conda, docker, singularity, all) | `conda` | The type of environment to build |
 | `--wf` | STRING | `bactopia` | Build a environment for a the given workflow |
 | `--build-all` | BOOL | `false` | Builds all environments for Bactopia workflows |
 | `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Directory to create Conda environments (NXF_CONDA_CACHEDIR env variable takes precedence) |
 | `--use-conda` | BOOL | `false` | Use Conda for building Conda environments instead of Mamba |
-| `--registry` | STRING | `quay.io` | Registry to pull Docker containers from. |
+| `--registry` | STRING | `quay.io` | Registry to pull Docker containers from |
 | `--singularity_cache` | STRING | `/home/rpetit3/.bactopia/singularity` | Directory to download Singularity images (NXF_SINGULARITY_CACHEDIR env variable takes precedence) |
 | `--singularity_pull_docker_container` | BOOL | `false` | Force conversion of Docker containers, instead downloading Singularity images directly |
-| `--force_rebuild` | BOOL | `false` | Force overwrite of existing pre-built environments. |
+| `--force_rebuild` | BOOL | `false` | Force overwrite of existing pre-built environments |
 | `--max_retry` | INT | `3` | Maximum times to attempt creating Conda environment. (Default: 3) |
 
 ## Additional Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--dry-run` | BOOL | `false` | Show environments that would be built, without building them. |
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
-| `--version` | BOOL | `false` | Show the version and exit. |
+| `--dry-run` | BOOL | `false` | Show environments that would be built, without building them |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

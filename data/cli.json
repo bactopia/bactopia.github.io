@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "2.1.2",
-    "generated": "2026-04-25T02:23:30.325187+00:00"
+    "generated": "2026-04-25T03:39:27.853531+00:00"
   },
   "categories": {
     "user": {
@@ -67,6 +67,32 @@
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -220,32 +246,6 @@
           "is_flag": true,
           "help": "Overwrite existing files",
           "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Increase the verbosity of output",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed",
-          "choices": null
         }
       ],
       "option_groups": [
@@ -305,6 +305,32 @@
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -378,32 +404,6 @@
           "default": false,
           "is_flag": true,
           "help": "Traverse recursively through provided path",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Increase the verbosity of output",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed",
           "choices": null
         }
       ],
@@ -514,13 +514,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -560,7 +587,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Pretty-print JSON output.",
+          "help": "Pretty-print JSON output",
           "choices": null
         },
         {
@@ -573,7 +600,7 @@
           "required": false,
           "default": null,
           "is_flag": false,
-          "help": "Also render llms.txt to this path. Uses the bundled template at bactopia/templates/bactopia/llms.txt.j2 unless --llms-template is provided.",
+          "help": "Also render llms.txt to this path. Uses the bundled template at bactopia/templates/bactopia/llms.txt.j2 unless --llms-template is provided",
           "choices": null
         },
         {
@@ -586,24 +613,36 @@
           "required": false,
           "default": null,
           "is_flag": false,
-          "help": "Jinja2 template for llms.txt. Defaults to the template bundled inside bactopia-py.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
+          "help": "Jinja2 template for llms.txt. Defaults to the template bundled inside bactopia-py",
           "choices": null
         }
       ],
-      "option_groups": []
+      "option_groups": [
+        {
+          "name": "Required Options",
+          "options": [
+            "--bactopia-path"
+          ]
+        },
+        {
+          "name": "Output Options",
+          "options": [
+            "--output",
+            "--pretty",
+            "--llms-output",
+            "--llms-template"
+          ]
+        },
+        {
+          "name": "Additional Options",
+          "options": [
+            "--verbose",
+            "--silent",
+            "--version",
+            "--help"
+          ]
+        }
+      ]
     },
     "bactopia-check-assembly-accession": {
       "name": "bactopia-check-assembly-accession",
@@ -777,6 +816,32 @@
         },
         {
           "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
+          "choices": null
+        },
+        {
+          "kind": "option",
           "name": "bactopia_path",
           "opts": [
             "--bactopia-path",
@@ -842,22 +907,34 @@
           "is_flag": true,
           "help": "Emit validation results as JSON (use with --validate)",
           "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Suppress non-error output when validation is clean",
-          "choices": null
         }
       ],
-      "option_groups": []
+      "option_groups": [
+        {
+          "name": "Required Options",
+          "options": [
+            "--bactopia-path"
+          ]
+        },
+        {
+          "name": "Output Options",
+          "options": [
+            "--name",
+            "--plain-text",
+            "--validate",
+            "--json"
+          ]
+        },
+        {
+          "name": "Additional Options",
+          "options": [
+            "--verbose",
+            "--silent",
+            "--version",
+            "--help"
+          ]
+        }
+      ]
     },
     "bactopia-cleanup-coverage": {
       "name": "bactopia-cleanup-coverage",
@@ -914,13 +991,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -959,7 +1063,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Force overwrite of existing pre-built environments.",
+          "help": "Force overwrite of existing pre-built environments",
           "choices": null
         },
         {
@@ -973,32 +1077,6 @@
           "default": 3,
           "is_flag": false,
           "help": "Maximum times to attempt creating Conda environment. (Default: 3)",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
           "choices": null
         }
       ],
@@ -1051,6 +1129,32 @@
         },
         {
           "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
+          "choices": null
+        },
+        {
+          "kind": "option",
           "name": "bactopia_path",
           "opts": [
             "--bactopia-path",
@@ -1099,7 +1203,7 @@
           "required": false,
           "default": null,
           "is_flag": false,
-          "help": "Path to bactopia-py repo (for D105 CLI / D106 lint-rule checks). Defaults to <bactopia-path>/../bactopia-py.",
+          "help": "Path to bactopia-py repo (for D105 CLI / D106 lint-rule checks). Defaults to <bactopia-path>/../bactopia-py",
           "choices": null
         },
         {
@@ -1125,7 +1229,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Run validation (default action; flag is accepted for parity with bactopia-citations).",
+          "help": "Run validation (default action; flag is accepted for parity with bactopia-citations)",
           "choices": null
         },
         {
@@ -1143,19 +1247,6 @@
         },
         {
           "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Suppress non-error output when validation is clean",
-          "choices": null
-        },
-        {
-          "kind": "option",
           "name": "plain_text",
           "opts": [
             "--plain-text",
@@ -1169,7 +1260,40 @@
           "choices": null
         }
       ],
-      "option_groups": []
+      "option_groups": [
+        {
+          "name": "Required Options",
+          "options": [
+            "--bactopia-path"
+          ]
+        },
+        {
+          "name": "Validation Options",
+          "options": [
+            "--docs-path",
+            "--patterns-file",
+            "--bactopia-py-path",
+            "--skip-path-check",
+            "--validate"
+          ]
+        },
+        {
+          "name": "Output Options",
+          "options": [
+            "--json",
+            "--plain-text"
+          ]
+        },
+        {
+          "name": "Additional Options",
+          "options": [
+            "--verbose",
+            "--silent",
+            "--version",
+            "--help"
+          ]
+        }
+      ]
     },
     "bactopia-download": {
       "name": "bactopia-download",
@@ -1192,13 +1316,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -1224,7 +1375,7 @@
           "required": false,
           "default": "conda",
           "is_flag": false,
-          "help": "The type of environment to build.",
+          "help": "The type of environment to build",
           "choices": [
             "conda",
             "docker",
@@ -1294,7 +1445,7 @@
           "required": false,
           "default": "quay.io",
           "is_flag": false,
-          "help": "Registry to pull Docker containers from.",
+          "help": "Registry to pull Docker containers from",
           "choices": null
         },
         {
@@ -1333,7 +1484,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Force overwrite of existing pre-built environments.",
+          "help": "Force overwrite of existing pre-built environments",
           "choices": null
         },
         {
@@ -1359,33 +1510,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Show environments that would be built, without building them.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "Show environments that would be built, without building them",
           "choices": null
         }
       ],
@@ -1508,13 +1633,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -1622,7 +1774,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Only show components with warnings or failures.",
+          "help": "Only show components with warnings or failures",
           "choices": null
         },
         {
@@ -1635,7 +1787,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Output as JSON.",
+          "help": "Output as JSON",
           "choices": null
         },
         {
@@ -1648,20 +1800,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Pretty-print JSON output (implies --json).",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
+          "help": "Pretty-print JSON output (implies --json)",
           "choices": null
         }
       ],
@@ -1695,6 +1834,7 @@
           "name": "Additional Options",
           "options": [
             "--verbose",
+            "--silent",
             "--version",
             "--help"
           ]
@@ -1805,13 +1945,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -1837,7 +2004,7 @@
           "required": true,
           "default": null,
           "is_flag": false,
-          "help": "The workflow to create a nextflow_schema.json for.",
+          "help": "The workflow to create a nextflow_schema.json for",
           "choices": null
         },
         {
@@ -1864,32 +2031,6 @@
           "default": false,
           "is_flag": true,
           "help": "Overwrite existing output files",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
           "choices": null
         }
       ],
@@ -1938,6 +2079,32 @@
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -2166,32 +2333,6 @@
           "is_flag": true,
           "help": "Print example usage",
           "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Increase the verbosity of output",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed",
-          "choices": null
         }
       ],
       "option_groups": [
@@ -2249,13 +2390,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -2281,7 +2449,7 @@
           "required": false,
           "default": "all",
           "is_flag": false,
-          "help": "The type of environment to check for stale items.",
+          "help": "The type of environment to check for stale items",
           "choices": [
             "conda",
             "docker",
@@ -2325,7 +2493,7 @@
           "required": false,
           "default": "quay.io",
           "is_flag": false,
-          "help": "Registry to match Docker containers against.",
+          "help": "Registry to match Docker containers against",
           "choices": null
         },
         {
@@ -2364,33 +2532,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Actually remove stale environments. Default is dry-run (report only).",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "Actually remove stale environments. Default is dry-run (report only)",
           "choices": null
         }
       ],
@@ -2447,6 +2589,32 @@
         },
         {
           "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
+          "choices": null
+        },
+        {
+          "kind": "option",
           "name": "database",
           "opts": [
             "--database",
@@ -2487,7 +2655,7 @@
           "required": false,
           "default": "/home/rpetit3/.bactopia",
           "is_flag": false,
-          "help": "The directory where the token file is saved.",
+          "help": "The directory where the token file is saved",
           "choices": null
         },
         {
@@ -2501,7 +2669,7 @@
           "required": false,
           "default": "./bactopia-mlst",
           "is_flag": false,
-          "help": "The directory where the database files will be saved.",
+          "help": "The directory where the database files will be saved",
           "choices": null
         },
         {
@@ -2514,7 +2682,7 @@
           "required": false,
           "default": "afumigatus,blastocystis,calbicans,cbotulinum,cglabrata,ckrusei,ctropicalis,csinensis,kseptempunctata,rmlst,sparasitica,test,tpallidum,tvaginalis",
           "is_flag": false,
-          "help": "A comma separated list of databases to ignore.",
+          "help": "A comma separated list of databases to ignore",
           "choices": null
         },
         {
@@ -2527,7 +2695,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Skip downloading the database files.",
+          "help": "Skip downloading the database files",
           "choices": null
         },
         {
@@ -2540,7 +2708,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Skip building the BLAST database.",
+          "help": "Skip building the BLAST database",
           "choices": null
         },
         {
@@ -2553,33 +2721,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Force overwrite of existing files.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "Force overwrite of existing files",
           "choices": null
         }
       ],
@@ -2637,6 +2779,32 @@
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -2722,33 +2890,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Force overwrite of existing token files.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "Force overwrite of existing token files",
           "choices": null
         }
       ],
@@ -2791,117 +2933,14 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "bactopia_path",
-          "opts": [
-            "--bactopia-path"
-          ],
-          "type": "STRING",
-          "required": true,
-          "default": null,
-          "is_flag": false,
-          "help": "Directory where Bactopia repository is stored.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "run_timestamp",
-          "opts": [
-            "--run"
-          ],
-          "type": "STRING",
-          "required": false,
-          "default": null,
-          "is_flag": false,
-          "help": "Specific test run timestamp (YYYYMMDD_HHMMSS). Default: latest.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "logs_dir",
-          "opts": [
-            "--logs-dir"
-          ],
-          "type": "STRING",
-          "required": false,
-          "default": null,
-          "is_flag": false,
-          "help": "Directory containing test run logs. Default: {bactopia-path}/logs.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "baselines",
-          "opts": [
-            "--baselines"
-          ],
-          "type": "STRING",
-          "required": false,
-          "default": null,
-          "is_flag": false,
-          "help": "Path to test-times baseline JSON file. Default: {bactopia-path}/conf/test-times.json.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "tolerance",
-          "opts": [
-            "--tolerance"
-          ],
-          "type": "FLOAT",
-          "required": false,
-          "default": 2.0,
-          "is_flag": false,
-          "help": "Tolerance factor for timing anomaly detection.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "do_update_baselines",
-          "opts": [
-            "--update-baselines"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Write/update the baselines file from current run results.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "use_json",
-          "opts": [
-            "--json"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Output as JSON.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "pretty",
-          "opts": [
-            "--pretty"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Pretty-print JSON output (implies --json).",
           "choices": null
         },
         {
@@ -2914,7 +2953,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Print debug related text.",
+          "help": "Print debug related text",
           "choices": null
         },
         {
@@ -2927,7 +2966,111 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "Only critical errors will be printed",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "bactopia_path",
+          "opts": [
+            "--bactopia-path"
+          ],
+          "type": "STRING",
+          "required": true,
+          "default": null,
+          "is_flag": false,
+          "help": "Directory where Bactopia repository is stored",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "run_timestamp",
+          "opts": [
+            "--run"
+          ],
+          "type": "STRING",
+          "required": false,
+          "default": null,
+          "is_flag": false,
+          "help": "Specific test run timestamp (YYYYMMDD_HHMMSS). Default: latest",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "logs_dir",
+          "opts": [
+            "--logs-dir"
+          ],
+          "type": "STRING",
+          "required": false,
+          "default": null,
+          "is_flag": false,
+          "help": "Directory containing test run logs. Default: {bactopia-path}/logs",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "baselines",
+          "opts": [
+            "--baselines"
+          ],
+          "type": "STRING",
+          "required": false,
+          "default": null,
+          "is_flag": false,
+          "help": "Path to test-times baseline JSON file. Default: {bactopia-path}/conf/test-times.json",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "tolerance",
+          "opts": [
+            "--tolerance"
+          ],
+          "type": "FLOAT",
+          "required": false,
+          "default": 2.0,
+          "is_flag": false,
+          "help": "Tolerance factor for timing anomaly detection",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "do_update_baselines",
+          "opts": [
+            "--update-baselines"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Write/update the baselines file from current run results",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "use_json",
+          "opts": [
+            "--json"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Output as JSON",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "pretty",
+          "opts": [
+            "--pretty"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Pretty-print JSON output (implies --json)",
           "choices": null
         }
       ],
@@ -2982,7 +3125,8 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
@@ -3033,7 +3177,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "Directory where Bactopia repository is stored.",
+              "help": "Directory where Bactopia repository is stored",
               "choices": null
             },
             {
@@ -3046,7 +3190,7 @@
               "required": false,
               "default": null,
               "is_flag": false,
-              "help": "Force a specific channel (bioconda or conda-forge). Default: try bioconda first, then conda-forge.",
+              "help": "Force a specific channel (bioconda or conda-forge). Default: try bioconda first, then conda-forge",
               "choices": null
             },
             {
@@ -3072,7 +3216,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output flat JSON.",
+              "help": "Output flat JSON",
               "choices": null
             },
             {
@@ -3085,7 +3229,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output pretty-printed JSON.",
+              "help": "Output pretty-printed JSON",
               "choices": null
             },
             {
@@ -3098,7 +3242,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Print debug related text.",
+              "help": "Print debug related text",
               "choices": null
             },
             {
@@ -3111,7 +3255,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Only critical errors will be printed.",
+              "help": "Only critical errors will be printed",
               "choices": null
             }
           ],
@@ -3161,7 +3305,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "JSON design config file.",
+              "help": "JSON design config file",
               "choices": null
             },
             {
@@ -3174,7 +3318,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "Directory where Bactopia repository is stored.",
+              "help": "Directory where Bactopia repository is stored",
               "choices": null
             },
             {
@@ -3187,7 +3331,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Show what would be created without writing files.",
+              "help": "Show what would be created without writing files",
               "choices": null
             },
             {
@@ -3200,7 +3344,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output flat JSON.",
+              "help": "Output flat JSON",
               "choices": null
             },
             {
@@ -3213,7 +3357,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output pretty-printed JSON.",
+              "help": "Output pretty-printed JSON",
               "choices": null
             },
             {
@@ -3226,7 +3370,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Print debug related text.",
+              "help": "Print debug related text",
               "choices": null
             },
             {
@@ -3239,7 +3383,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Only critical errors will be printed.",
+              "help": "Only critical errors will be printed",
               "choices": null
             }
           ],
@@ -3260,7 +3404,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "JSON design config file.",
+              "help": "JSON design config file",
               "choices": null
             },
             {
@@ -3273,7 +3417,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "Directory where Bactopia repository is stored.",
+              "help": "Directory where Bactopia repository is stored",
               "choices": null
             },
             {
@@ -3286,7 +3430,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Show what would be created without writing files.",
+              "help": "Show what would be created without writing files",
               "choices": null
             },
             {
@@ -3299,7 +3443,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output flat JSON.",
+              "help": "Output flat JSON",
               "choices": null
             },
             {
@@ -3312,7 +3456,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output pretty-printed JSON.",
+              "help": "Output pretty-printed JSON",
               "choices": null
             },
             {
@@ -3325,7 +3469,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Print debug related text.",
+              "help": "Print debug related text",
               "choices": null
             },
             {
@@ -3338,7 +3482,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Only critical errors will be printed.",
+              "help": "Only critical errors will be printed",
               "choices": null
             }
           ],
@@ -3359,7 +3503,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "Input type to search for in existing tests.",
+              "help": "Input type to search for in existing tests",
               "choices": [
                 "assembly",
                 "assembly_reads",
@@ -3379,7 +3523,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "Directory where Bactopia repository is stored.",
+              "help": "Directory where Bactopia repository is stored",
               "choices": null
             },
             {
@@ -3392,7 +3536,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output flat JSON.",
+              "help": "Output flat JSON",
               "choices": null
             },
             {
@@ -3405,7 +3549,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output pretty-printed JSON.",
+              "help": "Output pretty-printed JSON",
               "choices": null
             },
             {
@@ -3418,7 +3562,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Print debug related text.",
+              "help": "Print debug related text",
               "choices": null
             },
             {
@@ -3431,7 +3575,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Only critical errors will be printed.",
+              "help": "Only critical errors will be printed",
               "choices": null
             }
           ],
@@ -3475,7 +3619,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "JSON design config file.",
+              "help": "JSON design config file",
               "choices": null
             },
             {
@@ -3488,7 +3632,7 @@
               "required": true,
               "default": null,
               "is_flag": false,
-              "help": "Directory where Bactopia repository is stored.",
+              "help": "Directory where Bactopia repository is stored",
               "choices": null
             },
             {
@@ -3501,7 +3645,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Show what would be created without writing files.",
+              "help": "Show what would be created without writing files",
               "choices": null
             },
             {
@@ -3514,7 +3658,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output flat JSON.",
+              "help": "Output flat JSON",
               "choices": null
             },
             {
@@ -3527,7 +3671,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Output pretty-printed JSON.",
+              "help": "Output pretty-printed JSON",
               "choices": null
             },
             {
@@ -3540,7 +3684,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Print debug related text.",
+              "help": "Print debug related text",
               "choices": null
             },
             {
@@ -3553,7 +3697,7 @@
               "required": false,
               "default": false,
               "is_flag": true,
-              "help": "Only critical errors will be printed.",
+              "help": "Only critical errors will be printed",
               "choices": null
             }
           ],
@@ -3632,6 +3776,32 @@
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -3824,32 +3994,6 @@
           "is_flag": true,
           "help": "Overwrite existing reports",
           "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Increase the verbosity of output",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed",
-          "choices": null
         }
       ],
       "option_groups": [
@@ -3904,13 +4048,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -3936,7 +4107,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Output as JSON.",
+          "help": "Output as JSON",
           "choices": null
         },
         {
@@ -3949,33 +4120,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Pretty-print JSON output (implies --json).",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "Pretty-print JSON output (implies --json)",
           "choices": null
         }
       ],
@@ -4023,6 +4168,32 @@
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -4272,32 +4443,6 @@
           "is_flag": true,
           "help": "Overwrite existing reports",
           "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Increase the verbosity of output",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed",
-          "choices": null
         }
       ],
       "option_groups": [
@@ -4380,13 +4525,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -4399,7 +4571,7 @@
           "required": true,
           "default": null,
           "is_flag": false,
-          "help": "Directory where the Bactopia repository is stored.",
+          "help": "Directory where the Bactopia repository is stored",
           "choices": null
         },
         {
@@ -4412,7 +4584,7 @@
           "required": false,
           "default": null,
           "is_flag": false,
-          "help": "Directory containing bactopia-tests data (sets BACTOPIA_TESTS env). Required unless --cleanup.",
+          "help": "Directory containing bactopia-tests data (sets BACTOPIA_TESTS env). Required unless --cleanup",
           "choices": null
         },
         {
@@ -4425,7 +4597,7 @@
           "required": false,
           "default": "all",
           "is_flag": false,
-          "help": "Which component tier to test.",
+          "help": "Which component tier to test",
           "choices": [
             "modules",
             "subworkflows",
@@ -4443,7 +4615,7 @@
           "required": false,
           "default": null,
           "is_flag": false,
-          "help": "Comma-separated list of component names to include.",
+          "help": "Comma-separated list of component names to include",
           "choices": null
         },
         {
@@ -4456,7 +4628,7 @@
           "required": false,
           "default": null,
           "is_flag": false,
-          "help": "Comma-separated list of component names to exclude.",
+          "help": "Comma-separated list of component names to exclude",
           "choices": null
         },
         {
@@ -4469,7 +4641,7 @@
           "required": false,
           "default": "docker",
           "is_flag": false,
-          "help": "Nextflow profile to use for tests.",
+          "help": "Nextflow profile to use for tests",
           "choices": [
             "docker",
             "singularity",
@@ -4486,7 +4658,7 @@
           "required": false,
           "default": "/home/rpetit3/.bactopia/conda",
           "is_flag": false,
-          "help": "Directory where Conda environments are stored (NXF_CONDA_CACHEDIR env variable takes precedence).",
+          "help": "Directory where Conda environments are stored (NXF_CONDA_CACHEDIR env variable takes precedence)",
           "choices": null
         },
         {
@@ -4499,7 +4671,7 @@
           "required": false,
           "default": "/home/rpetit3/.bactopia/singularity",
           "is_flag": false,
-          "help": "Directory where Singularity images are stored (NXF_SINGULARITY_CACHEDIR env variable takes precedence).",
+          "help": "Directory where Singularity images are stored (NXF_SINGULARITY_CACHEDIR env variable takes precedence)",
           "choices": null
         },
         {
@@ -4512,7 +4684,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Generate mode: delete snapshots and run twice to verify reproducibility.",
+          "help": "Generate mode: delete snapshots and run twice to verify reproducibility",
           "choices": null
         },
         {
@@ -4525,7 +4697,7 @@
           "required": false,
           "default": 64,
           "is_flag": false,
-          "help": "Number of parallel test workers.",
+          "help": "Number of parallel test workers",
           "choices": null
         },
         {
@@ -4538,7 +4710,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Stop on the first test failure instead of continuing.",
+          "help": "Stop on the first test failure instead of continuing",
           "choices": null
         },
         {
@@ -4551,7 +4723,7 @@
           "required": false,
           "default": 90,
           "is_flag": false,
-          "help": "Per-test timeout in minutes. Each nf-test subprocess is killed after this duration. Set to 0 to disable.",
+          "help": "Per-test timeout in minutes. Each nf-test subprocess is killed after this duration. Set to 0 to disable",
           "choices": null
         },
         {
@@ -4564,7 +4736,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Find and remove all .nf-test/ temp files, then exit (no tests run).",
+          "help": "Find and remove all .nf-test/ temp files, then exit (no tests run)",
           "choices": null
         },
         {
@@ -4577,7 +4749,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "With --cleanup, list what would be removed without deleting.",
+          "help": "With --cleanup, list what would be removed without deleting",
           "choices": null
         },
         {
@@ -4590,7 +4762,7 @@
           "required": false,
           "default": ".",
           "is_flag": false,
-          "help": "Directory to write the logs/ folder into.",
+          "help": "Directory to write the logs/ folder into",
           "choices": null
         },
         {
@@ -4603,7 +4775,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Keep .nf-test/ directories and logs after tests pass (useful for debugging).",
+          "help": "Keep .nf-test/ directories and logs after tests pass (useful for debugging)",
           "choices": null
         },
         {
@@ -4616,33 +4788,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Output results as JSON.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "Output results as JSON",
           "choices": null
         }
       ],
@@ -4791,13 +4937,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -4849,7 +5022,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Output flat JSON.",
+          "help": "Output flat JSON",
           "choices": null
         },
         {
@@ -4862,33 +5035,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "Output pretty-printed JSON.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "Output pretty-printed JSON",
           "choices": null
         }
       ],
@@ -4945,13 +5092,40 @@
           "kind": "option",
           "name": "version",
           "opts": [
-            "--version"
+            "--version",
+            "-V"
           ],
           "type": "BOOL",
           "required": false,
           "default": false,
           "is_flag": true,
           "help": "Show the version and exit.",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "verbose",
+          "opts": [
+            "--verbose"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Print debug related text",
+          "choices": null
+        },
+        {
+          "kind": "option",
+          "name": "silent",
+          "opts": [
+            "--silent"
+          ],
+          "type": "BOOL",
+          "required": false,
+          "default": false,
+          "is_flag": true,
+          "help": "Only critical errors will be printed",
           "choices": null
         },
         {
@@ -4990,33 +5164,7 @@
           "required": false,
           "default": false,
           "is_flag": true,
-          "help": "List available Bactopia workflows and exit.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "verbose",
-          "opts": [
-            "--verbose"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Print debug related text.",
-          "choices": null
-        },
-        {
-          "kind": "option",
-          "name": "silent",
-          "opts": [
-            "--silent"
-          ],
-          "type": "BOOL",
-          "required": false,
-          "default": false,
-          "is_flag": true,
-          "help": "Only critical errors will be printed.",
+          "help": "List available Bactopia workflows and exit",
           "choices": null
         }
       ],

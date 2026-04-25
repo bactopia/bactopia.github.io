@@ -22,48 +22,48 @@ bactopia-test [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--bactopia-path` | STRING |  | Directory where the Bactopia repository is stored. |
-| `--test-data` | STRING |  | Directory containing bactopia-tests data (sets BACTOPIA_TESTS env). Required unless --cleanup. |
+| `--bactopia-path` | STRING |  | Directory where the Bactopia repository is stored |
+| `--test-data` | STRING |  | Directory containing bactopia-tests data (sets BACTOPIA_TESTS env). Required unless --cleanup |
 
 ## Cleanup
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--cleanup` | BOOL | `false` | Find and remove all .nf-test/ temp files, then exit (no tests run). |
-| `--dry-run` | BOOL | `false` | With --cleanup, list what would be removed without deleting. |
-| `--keep` | BOOL | `false` | Keep .nf-test/ directories and logs after tests pass (useful for debugging). |
+| `--cleanup` | BOOL | `false` | Find and remove all .nf-test/ temp files, then exit (no tests run) |
+| `--dry-run` | BOOL | `false` | With --cleanup, list what would be removed without deleting |
+| `--keep` | BOOL | `false` | Keep .nf-test/ directories and logs after tests pass (useful for debugging) |
 
 ## Test Selection
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--tier` | CHOICE (modules, subworkflows, workflows, all) | `all` | Which component tier to test. |
-| `--include` | STRING |  | Comma-separated list of component names to include. |
-| `--exclude` | STRING |  | Comma-separated list of component names to exclude. |
+| `--tier` | CHOICE (modules, subworkflows, workflows, all) | `all` | Which component tier to test |
+| `--include` | STRING |  | Comma-separated list of component names to include |
+| `--exclude` | STRING |  | Comma-separated list of component names to exclude |
 
 ## Execution Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--profile` | CHOICE (docker, singularity, conda) | `docker` | Nextflow profile to use for tests. |
-| `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Directory where Conda environments are stored (NXF_CONDA_CACHEDIR env variable takes precedence). |
-| `--singularity_cache` | STRING | `/home/rpetit3/.bactopia/singularity` | Directory where Singularity images are stored (NXF_SINGULARITY_CACHEDIR env variable takes precedence). |
-| `--generate` | BOOL | `false` | Generate mode: delete snapshots and run twice to verify reproducibility. |
-| `--jobs` | INT | `64` | Number of parallel test workers. |
-| `--fail-fast` | BOOL | `false` | Stop on the first test failure instead of continuing. |
-| `--timeout` | INT | `90` | Per-test timeout in minutes. Each nf-test subprocess is killed after this duration. Set to 0 to disable. |
+| `--profile` | CHOICE (docker, singularity, conda) | `docker` | Nextflow profile to use for tests |
+| `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Directory where Conda environments are stored (NXF_CONDA_CACHEDIR env variable takes precedence) |
+| `--singularity_cache` | STRING | `/home/rpetit3/.bactopia/singularity` | Directory where Singularity images are stored (NXF_SINGULARITY_CACHEDIR env variable takes precedence) |
+| `--generate` | BOOL | `false` | Generate mode: delete snapshots and run twice to verify reproducibility |
+| `--jobs` | INT | `64` | Number of parallel test workers |
+| `--fail-fast` | BOOL | `false` | Stop on the first test failure instead of continuing |
+| `--timeout` | INT | `90` | Per-test timeout in minutes. Each nf-test subprocess is killed after this duration. Set to 0 to disable |
 
 ## Output Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--outdir` | STRING | `.` | Directory to write the logs/ folder into. |
-| `--json` | BOOL | `false` | Output results as JSON. |
+| `--outdir` | STRING | `.` | Directory to write the logs/ folder into |
+| `--json` | BOOL | `false` | Output results as JSON |
 
 ## Additional Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
-| `--version` | BOOL | `false` | Show the version and exit. |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

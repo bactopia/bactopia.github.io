@@ -29,17 +29,33 @@ Exits 1 if any FAIL is found.
 bactopia-docs [OPTIONS]
 ```
 
-## Options
+## Required Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--version, -V` | BOOL | `false` | Show the version and exit. |
 | `--bactopia-path, -b` | STRING |  | Directory where Bactopia repository is stored |
+
+## Validation Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
 | `--docs-path` | STRING | `.claude/docs` | Docs directory relative to --bactopia-path |
 | `--patterns-file` | STRING | `data/docs-patterns.yml` | Deprecated-patterns YAML relative to --bactopia-path |
-| `--bactopia-py-path` | PATH |  | Path to bactopia-py repo (for D105 CLI / D106 lint-rule checks). Defaults to &lt;bactopia-path&gt;/../bactopia-py. |
+| `--bactopia-py-path` | PATH |  | Path to bactopia-py repo (for D105 CLI / D106 lint-rule checks). Defaults to &lt;bactopia-path&gt;/../bactopia-py |
 | `--skip-path-check` | BOOL | `false` | Skip D108 markdown-link target resolution |
-| `--validate` | BOOL | `false` | Run validation (default action; flag is accepted for parity with bactopia-citations). |
+| `--validate` | BOOL | `false` | Run validation (default action; flag is accepted for parity with bactopia-citations) |
+
+## Output Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
 | `--json` | BOOL | `false` | Emit results as JSON |
-| `--silent` | BOOL | `false` | Suppress non-error output when validation is clean |
 | `--plain-text, -p` | BOOL | `false` | Disable rich formatting |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

@@ -21,34 +21,34 @@ bactopia-review-tests [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
 
 ## Run Selection
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--run` | STRING |  | Specific test run timestamp (YYYYMMDD_HHMMSS). Default: latest. |
-| `--logs-dir` | STRING |  | Directory containing test run logs. Default: &#123;bactopia-path&#125;/logs. |
+| `--run` | STRING |  | Specific test run timestamp (YYYYMMDD_HHMMSS). Default: latest |
+| `--logs-dir` | STRING |  | Directory containing test run logs. Default: &#123;bactopia-path&#125;/logs |
 
 ## Timing Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--baselines` | STRING |  | Path to test-times baseline JSON file. Default: &#123;bactopia-path&#125;/conf/test-times.json. |
-| `--tolerance` | FLOAT | `2.0` | Tolerance factor for timing anomaly detection. |
-| `--update-baselines` | BOOL | `false` | Write/update the baselines file from current run results. |
+| `--baselines` | STRING |  | Path to test-times baseline JSON file. Default: &#123;bactopia-path&#125;/conf/test-times.json |
+| `--tolerance` | FLOAT | `2.0` | Tolerance factor for timing anomaly detection |
+| `--update-baselines` | BOOL | `false` | Write/update the baselines file from current run results |
 
 ## Output Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--json` | BOOL | `false` | Output as JSON. |
-| `--pretty` | BOOL | `false` | Pretty-print JSON output (implies --json). |
+| `--json` | BOOL | `false` | Output as JSON |
+| `--pretty` | BOOL | `false` | Pretty-print JSON output (implies --json) |
 
 ## Additional Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
-| `--version` | BOOL | `false` | Show the version and exit. |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

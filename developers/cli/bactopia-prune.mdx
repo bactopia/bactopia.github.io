@@ -23,18 +23,18 @@ bactopia-prune [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--envtype` | CHOICE (conda, docker, singularity, all) | `all` | The type of environment to check for stale items. |
+| `--envtype` | CHOICE (conda, docker, singularity, all) | `all` | The type of environment to check for stale items |
 | `--wf` | STRING |  | Only check environments for the given workflow (default: all workflows) |
 | `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Directory where Conda environments are stored (NXF_CONDA_CACHEDIR env variable takes precedence) |
-| `--registry` | STRING | `quay.io` | Registry to match Docker containers against. |
+| `--registry` | STRING | `quay.io` | Registry to match Docker containers against |
 | `--singularity_cache` | STRING | `/home/rpetit3/.bactopia/singularity` | Directory where Singularity images are stored (NXF_SINGULARITY_CACHEDIR env variable takes precedence) |
 | `--singularity_pull_docker_container` | BOOL | `false` | Use Docker-based naming for Singularity images |
-| `--execute` | BOOL | `false` | Actually remove stale environments. Default is dry-run (report only). |
+| `--execute` | BOOL | `false` | Actually remove stale environments. Default is dry-run (report only) |
 
 ## Additional Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--verbose` | BOOL | `false` | Print debug related text. |
-| `--silent` | BOOL | `false` | Only critical errors will be printed. |
-| `--version` | BOOL | `false` | Show the version and exit. |
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

@@ -21,14 +21,25 @@ Optionally also renders llms.txt from a Jinja2 template when
 bactopia-catalog [OPTIONS]
 ```
 
-## Options
+## Required Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--version` | BOOL | `false` | Show the version and exit. |
 | `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+
+## Output Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
 | `-o, --output` | STRING |  | Output path for catalog.json (default: stdout) |
-| `--pretty` | BOOL | `false` | Pretty-print JSON output. |
-| `--llms-output` | PATH |  | Also render llms.txt to this path. Uses the bundled template at bactopia/templates/bactopia/llms.txt.j2 unless --llms-template is provided. |
-| `--llms-template` | PATH |  | Jinja2 template for llms.txt. Defaults to the template bundled inside bactopia-py. |
-| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--pretty` | BOOL | `false` | Pretty-print JSON output |
+| `--llms-output` | PATH |  | Also render llms.txt to this path. Uses the bundled template at bactopia/templates/bactopia/llms.txt.j2 unless --llms-template is provided |
+| `--llms-template` | PATH |  | Jinja2 template for llms.txt. Defaults to the template bundled inside bactopia-py |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Print debug related text |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |
