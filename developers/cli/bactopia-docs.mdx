@@ -1,0 +1,45 @@
+---
+title: bactopia-docs
+description: "Validate reference-doc staleness across a Bactopia repo."
+---
+
+# bactopia-docs
+
+Validate reference-doc staleness across a Bactopia repo.
+
+Two checks run against every .md file under [b]--docs-path[/b]:
+
+[b]Deprecated patterns (D0xx)[/b]: regex matches against
+[b]--patterns-file[/b] entries — phrases retired by past migrations
+(e.g. ``flattenPaths``, the 4-channel emission framing).
+
+[b]Ground-truth assertions (D1xx)[/b]: counts (D101-D103), Nextflow
+version (D104), bactopia-py CLI references (D105), lint rule IDs
+(D106), markdown link targets (D108).
+
+Suppress a rule on a single line with
+``<!-- bactopia-docs: ignore D0xx -->`` (or a comma-separated list).
+
+Exits 1 if any FAIL is found.
+
+
+## Usage
+
+```bash
+bactopia-docs [OPTIONS]
+```
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--version, -V` | BOOL | `false` | Show the version and exit. |
+| `--bactopia-path, -b` | STRING |  | Directory where Bactopia repository is stored |
+| `--docs-path` | STRING | `.claude/docs` | Docs directory relative to --bactopia-path |
+| `--patterns-file` | STRING | `data/docs-patterns.yml` | Deprecated-patterns YAML relative to --bactopia-path |
+| `--bactopia-py-path` | PATH |  | Path to bactopia-py repo (for D105 CLI / D106 lint-rule checks). Defaults to &lt;bactopia-path&gt;/../bactopia-py. |
+| `--skip-path-check` | BOOL | `false` | Skip D108 markdown-link target resolution |
+| `--validate` | BOOL | `false` | Run validation (default action; flag is accepted for parity with bactopia-citations). |
+| `--json` | BOOL | `false` | Emit results as JSON |
+| `--silent` | BOOL | `false` | Suppress non-error output when validation is clean |
+| `--plain-text, -p` | BOOL | `false` | Disable rich formatting |

@@ -1,0 +1,164 @@
+---
+title: bactopia-scaffold
+description: "Scaffold Bactopia components from bioconda/conda-forge packages."
+---
+
+# bactopia-scaffold
+
+Scaffold Bactopia components from bioconda/conda-forge packages.
+
+## Usage
+
+```bash
+bactopia-scaffold COMMAND [OPTIONS]
+```
+
+## Subcommands
+
+| Command | Description |
+|---------|-------------|
+| [`bactopia-scaffold lookup`](#lookup) | Look up package info from Anaconda and check for existing components. |
+| [`bactopia-scaffold module`](#module) | Generate module files from a design config. |
+| [`bactopia-scaffold subworkflow`](#subworkflow) | Generate subworkflow files from a design config. |
+| [`bactopia-scaffold test-data`](#test-data) | Discover test data paths from existing module tests. |
+| [`bactopia-scaffold tool`](#tool) | Generate all three tiers (module + subworkflow + workflow) for a bactopia-tool. |
+
+---
+
+### lookup
+
+Look up package info from Anaconda and check for existing components.
+
+```bash
+bactopia-scaffold lookup PACKAGE [OPTIONS]
+```
+
+#### Arguments
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+| `PACKAGE` | STRING | Yes |  |
+
+#### Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
+
+#### Query Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--channel` | STRING |  | Force a specific channel (bioconda or conda-forge). Default: try bioconda first, then conda-forge. |
+| `--max-retry` | INT | `3` | Maximum times to attempt API queries. (Default: 3) |
+
+#### Output Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--json` | BOOL | `false` | Output flat JSON. |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
+
+#### Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+
+---
+
+### module
+
+Generate module files from a design config.
+
+```bash
+bactopia-scaffold module [OPTIONS]
+```
+
+#### Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--config` | PATH |  | JSON design config file. |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
+| `--dry-run` | BOOL | `false` | Show what would be created without writing files. |
+| `--json` | BOOL | `false` | Output flat JSON. |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+
+---
+
+### subworkflow
+
+Generate subworkflow files from a design config.
+
+```bash
+bactopia-scaffold subworkflow [OPTIONS]
+```
+
+#### Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--config` | PATH |  | JSON design config file. |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
+| `--dry-run` | BOOL | `false` | Show what would be created without writing files. |
+| `--json` | BOOL | `false` | Output flat JSON. |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+
+---
+
+### test-data
+
+Discover test data paths from existing module tests.
+
+```bash
+bactopia-scaffold test-data [OPTIONS]
+```
+
+#### Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--input-type` | CHOICE (assembly, assembly_reads, genbank, gff, proteins, reads) |  | Input type to search for in existing tests. |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
+
+#### Output Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--json` | BOOL | `false` | Output flat JSON. |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
+
+#### Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+
+---
+
+### tool
+
+Generate all three tiers (module + subworkflow + workflow) for a bactopia-tool.
+
+```bash
+bactopia-scaffold tool [OPTIONS]
+```
+
+#### Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--config` | PATH |  | JSON design config file. |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored. |
+| `--dry-run` | BOOL | `false` | Show what would be created without writing files. |
+| `--json` | BOOL | `false` | Output flat JSON. |
+| `--pretty` | BOOL | `false` | Output pretty-printed JSON. |
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--silent` | BOOL | `false` | Only critical errors will be printed. |

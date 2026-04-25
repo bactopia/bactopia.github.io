@@ -1,0 +1,41 @@
+---
+title: bactopia-workflows
+description: "Output the path to a Bactopia workflow main.nf file."
+---
+
+# bactopia-workflows
+
+Output the path to a Bactopia workflow main.nf file.
+
+## Usage
+
+```bash
+bactopia-workflows UNKNOWN [OPTIONS]
+```
+
+## Arguments
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+| `UNKNOWN` | UNPROCESSED | No |  |
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+
+## Workflow Related Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--wf` | STRING | `bactopia` | Build a environment for a the given workflow |
+| `--list_wfs` | BOOL | `false` | List available Bactopia workflows and exit. |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+| `--version` | BOOL | `false` | Show the version and exit. |

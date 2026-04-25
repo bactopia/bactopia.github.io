@@ -1,0 +1,50 @@
+---
+title: bactopia-lint
+description: "Lint Bactopia pipeline components against style guidelines."
+---
+
+# bactopia-lint
+
+Lint Bactopia pipeline components against style guidelines.
+
+Checks modules, subworkflows, and workflows for compliance with
+Bactopia's GroovyDoc, structural, and configuration standards.
+
+
+## Usage
+
+```bash
+bactopia-lint [OPTIONS]
+```
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+
+## Scope Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--modules, --no-modules` | BOOL | `true` | Lint modules (default: on) |
+| `--subworkflows, --no-subworkflows` | BOOL | `true` | Lint subworkflows (default: on) |
+| `--workflows, --no-workflows` | BOOL | `true` | Lint workflows (default: on) |
+| `--module` | STRING |  | Lint a single module by name (e.g. 'mlst', 'bakta/run') |
+| `--subworkflow` | STRING |  | Lint a single subworkflow by name (e.g. 'mlst') |
+| `--workflow` | STRING |  | Lint a single workflow by name (e.g. 'mlst', 'bactopia-tools/mlst') |
+
+## Output Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `-q, --quiet` | BOOL | `false` | Only show components with warnings or failures. |
+| `--json` | BOOL | `false` | Output as JSON. |
+| `--pretty` | BOOL | `false` | Pretty-print JSON output (implies --json). |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--version` | BOOL | `false` | Show the version and exit. |

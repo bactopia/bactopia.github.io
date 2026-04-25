@@ -1,0 +1,33 @@
+---
+title: bactopia-citations
+description: "Print or validate citations used throughout Bactopia."
+---
+
+# bactopia-citations
+
+Print or validate citations used throughout Bactopia.
+
+Default mode prints the full citation list (or one entry with --name).
+Pass --validate to instead scan the repo for orphan keys (defined but
+never referenced) and workflow @citation keys that don't resolve to
+an entry in citations.yml. Module and subworkflow @citation keys are
+validated by bactopia-lint (rules M035 and S019).
+
+
+## Usage
+
+```bash
+bactopia-citations [OPTIONS]
+```
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--version, -V` | BOOL | `false` | Show the version and exit. |
+| `--bactopia-path, -b` | STRING |  | Directory where Bactopia repository is stored |
+| `--name, -n` | STRING |  | Only print citation matching a given name |
+| `--plain-text, -p` | BOOL | `false` | Disable rich formatting |
+| `--validate` | BOOL | `false` | Validate citation integrity: orphan keys + workflow @citation references |
+| `--json` | BOOL | `false` | Emit validation results as JSON (use with --validate) |
+| `--silent` | BOOL | `false` | Suppress non-error output when validation is clean |

@@ -1,0 +1,38 @@
+---
+title: bactopia-pubmlst-setup
+description: "One-time setup for interacting with the PubMLST API"
+---
+
+# bactopia-pubmlst-setup
+
+One-time setup for interacting with the PubMLST API
+
+## Usage
+
+```bash
+bactopia-pubmlst-setup [OPTIONS]
+```
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--client-id, -ci` | STRING |  | The client ID for the site |
+| `--client-secret, -cs` | STRING |  | The client secret for the site |
+
+## API Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--site, -s` | CHOICE (pubmlst, pasteur) | `pubmlst` | Only print citation matching a given name |
+| `--database, -d` | STRING | `pubmlst_yersinia_seqdef` | The organism database to interact with for setup. Note: the default is available from both PubMLST and Pasteur |
+| `--save-dir, -sd` | STRING | `/home/rpetit3/.bactopia` | The directory to save the token |
+| `--force` | BOOL | `false` | Force overwrite of existing token files. |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

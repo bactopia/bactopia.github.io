@@ -1,0 +1,34 @@
+---
+title: bactopia-catalog
+description: "Generate machine-readable catalog of all Bactopia components."
+---
+
+# bactopia-catalog
+
+Generate machine-readable catalog of all Bactopia components.
+
+Produces catalog.json containing workflows, subworkflows, and modules
+with their contracts (takes/emits), dependencies, and metadata.
+Replaces data/workflows.yml as the authoritative component index.
+
+Optionally also renders llms.txt from a Jinja2 template when
+--llms-output is provided.
+
+
+## Usage
+
+```bash
+bactopia-catalog [OPTIONS]
+```
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--version` | BOOL | `false` | Show the version and exit. |
+| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+| `-o, --output` | STRING |  | Output path for catalog.json (default: stdout) |
+| `--pretty` | BOOL | `false` | Pretty-print JSON output. |
+| `--llms-output` | PATH |  | Also render llms.txt to this path. Uses the bundled template at bactopia/templates/bactopia/llms.txt.j2 unless --llms-template is provided. |
+| `--llms-template` | PATH |  | Jinja2 template for llms.txt. Defaults to the template bundled inside bactopia-py. |
+| `--verbose` | BOOL | `false` | Print debug related text. |

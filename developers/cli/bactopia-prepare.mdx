@@ -1,0 +1,54 @@
+---
+title: bactopia-prepare
+description: "Create a 'file of filenames' (FOFN) of samples to be processed by Bactopia"
+---
+
+# bactopia-prepare
+
+Create a 'file of filenames' (FOFN) of samples to be processed by Bactopia
+
+## Usage
+
+```bash
+bactopia-prepare [OPTIONS]
+```
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--path, -p` | STRING |  | Directory where FASTQ files are stored |
+
+## Matching Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--assembly-ext, -a` | STRING | `.fna.gz` | Extension of the FASTA assemblies |
+| `--fastq-ext, -f` | STRING | `.fastq.gz` | Extension of the FASTQs |
+| `--fastq-separator` | STRING | `_` | Split FASTQ name on the last occurrence of the separator |
+| `--pe1-pattern` | STRING | `[Aa]|[Rr]1|1` | Designates difference first set of paired-end reads |
+| `--pe2-pattern` | STRING | `[Bb]|[Rr]2|2` | Designates difference second set of paired-end reads |
+| `--merge` | BOOL | `false` | Flag samples with multiple read sets to be merged by Bactopia |
+| `--ont` | BOOL | `false` | Single-end reads should be treated as Oxford Nanopore reads |
+| `--hybrid` | BOOL | `false` | Samples with paired and single-end reads will be set to Illumina-first hybrid assembly (requires --ont) |
+| `--short-polish` | BOOL | `false` | Samples with paired and single-end reads will be set to Nanopore-first hybrid assembly (requires --ont) |
+| `--recursive, -r` | BOOL | `false` | Directories will be traversed recursively |
+| `--prefix` | STRING |  | Prefix to add to the path |
+
+## Sample Information Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--metadata` | STRING |  | Metadata per sample with genome size and species information |
+| `--genome-size, -gsize` | INT | `0` | Genome size to use for all samples |
+| `--species, -s` | STRING | `UNKNOWN_SPECIES` | Species to use for all samples (If available, can be used to determine genome size) |
+| `--taxid` | STRING |  | Use the genome size of the Taxon ID for all samples |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--examples` | BOOL | `false` | Print example usage |
+| `--verbose` | BOOL | `false` | Increase the verbosity of output |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

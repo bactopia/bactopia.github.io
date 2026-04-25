@@ -1,0 +1,28 @@
+---
+title: bactopia-scrubber-summary
+description: "Create a before-and-after report from human read scrubbing."
+---
+
+# bactopia-scrubber-summary
+
+Create a before-and-after report from human read scrubbing.
+
+## Usage
+
+```bash
+bactopia-scrubber-summary SAMPLE ORIGINAL SCRUBBED [OPTIONS]
+```
+
+## Arguments
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+| `SAMPLE` | STRING | Yes | Name of the input sample. |
+| `ORIGINAL` | STRING | Yes | Original FASTQ stats in JSON format. |
+| `SCRUBBED` | STRING | Yes | Scrubbed FASTQ stats in JSON format. |
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

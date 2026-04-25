@@ -1,0 +1,35 @@
+---
+title: bactopia-sysinfo
+description: "Auto-detect host RAM and CPUs, emit Nextflow CLI fragments for local profiles."
+---
+
+# bactopia-sysinfo
+
+Auto-detect host RAM and CPUs, emit Nextflow CLI fragments for local profiles.
+
+Reads the bactopia wrapper's argv as a passthrough. Emits to stdout the
+additional `--max_memory <N>.GB` / `--max_cpus <N>` flags that should be
+appended to the `nextflow run` command line. Emits nothing when:
+
+  - a custom config is supplied (`-c` or `--nfconfig`)
+  - any `-profile` value is not in the local-executor allow-list
+  - both `--max_memory` and `--max_cpus` are already set by the user
+  - the invocation is informational (`--help`, `--help_all`, `--list_wfs`)
+
+
+## Usage
+
+```bash
+bactopia-sysinfo ARGS [OPTIONS]
+```
+
+## Arguments
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+| `ARGS` | UNPROCESSED | No |  |
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|

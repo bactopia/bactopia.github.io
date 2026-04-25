@@ -1,0 +1,45 @@
+---
+title: bactopia-pubmlst-build
+description: "Build PubMLST databases for use with the 'mlst' Bactopia Tool."
+---
+
+# bactopia-pubmlst-build
+
+Build PubMLST databases for use with the 'mlst' Bactopia Tool.
+
+## Usage
+
+```bash
+bactopia-pubmlst-build [OPTIONS]
+```
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--database, -d` | STRING |  | A known organism database to download. (Use 'all' to download all databases.) |
+
+## Build Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--ignore` | STRING | `afumigatus,blastocystis,calbicans,cbotulinum,cglabrata,ckrusei,ctropicalis,csinensis,kseptempunctata,rmlst,sparasitica,test,tpallidum,tvaginalis` | A comma separated list of databases to ignore. |
+| `--skip-download` | BOOL | `false` | Skip downloading the database files. |
+| `--skip-blast` | BOOL | `false` | Skip building the BLAST database. |
+| `--force` | BOOL | `false` | Force overwrite of existing files. |
+
+## API Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--site, -s` | CHOICE (pubmlst, pasteur) | `pubmlst` | Only print citation matching a given name |
+| `--token-dir, -t` | STRING | `/home/rpetit3/.bactopia` | The directory where the token file is saved. |
+| `--out-dir, -o` | STRING | `./bactopia-mlst` | The directory where the database files will be saved. |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Print debug related text. |
+| `--silent` | BOOL | `false` | Only critical errors will be printed. |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

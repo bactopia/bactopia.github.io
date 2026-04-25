@@ -1,0 +1,60 @@
+---
+title: bactopia-summary
+description: "Generate a summary table from the Bactopia results."
+---
+
+# bactopia-summary
+
+Generate a summary table from the Bactopia results.
+
+## Usage
+
+```bash
+bactopia-summary [OPTIONS]
+```
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--bactopia-path, -b` | STRING |  | Directory where Bactopia results are stored |
+
+## Gold Cutoffs
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--gold-coverage, -gcov` | INT | `100` | Minimum amount of coverage required for Gold status |
+| `--gold-quality, -gqual` | INT | `30` | Minimum per-read mean quality score required for Gold status |
+| `--gold-read-length, -glen` | INT | `95` | Minimum mean read length required for Gold status |
+| `--gold-contigs, -gcontigs` | INT | `100` | Maximum contig count required for Gold status |
+
+## Silver Cutoffs
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--silver-coverage, -scov` | INT | `50` | Minimum amount of coverage required for Silver status |
+| `--silver-quality, -squal` | INT | `20` | Minimum per-read mean quality score required for Silver status |
+| `--silver-read-length, -slen` | INT | `75` | Minimum mean read length required for Silver status |
+| `--silver-contigs, -scontigs` | INT | `200` | Maximum contig count required for Silver status |
+
+## Fail Cutoffs
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--min-coverage, -mincov` | INT | `20` | Minimum amount of coverage required to pass |
+| `--min-quality, -minqual` | INT | `12` | Minimum per-read mean quality score required to pass |
+| `--min-read-length, -minlen` | INT | `49` | Minimum mean read length required to pass |
+| `--max-contigs` | INT | `500` | Maximum contig count required to pass |
+| `--min-assembled-size` | INT |  | Minimum assembled genome size |
+| `--max-assembled-size` | INT |  | Maximum assembled genome size |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--outdir, -o` | PATH | `./` | Directory to write output |
+| `--prefix, -p` | STRING | `bactopia` | Prefix to use for output files |
+| `--force` | BOOL | `false` | Overwrite existing reports |
+| `--verbose` | BOOL | `false` | Increase the verbosity of output |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

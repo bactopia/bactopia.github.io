@@ -1,0 +1,54 @@
+---
+title: CLI Reference
+description: Command-line reference for all bactopia-py CLI commands
+slug: /cli
+---
+
+# CLI Reference
+
+Command-line reference for all [bactopia-py](https://github.com/bactopia/bactopia-py) CLI commands (v2.1.2).
+
+## User & Developer Commands
+
+Commands for preparing inputs, querying databases, and developing Bactopia components.
+
+| Command | Description |
+|---------|-------------|
+| [`bactopia-atb-downloader`](/developers/cli/bactopia-atb-downloader) | Download All-the-Bacteria assemblies based on input query |
+| [`bactopia-atb-formatter`](/developers/cli/bactopia-atb-formatter) | Restructure All-the-Bacteria assemblies to allow usage with Bactopia Tools |
+| [`bactopia-catalog`](/developers/cli/bactopia-catalog) | Generate machine-readable catalog of all Bactopia components. |
+| [`bactopia-citations`](/developers/cli/bactopia-citations) | Print or validate citations used throughout Bactopia. |
+| [`bactopia-datasets`](/developers/cli/bactopia-datasets) | Download optional datasets to supplement your analyses with Bactopia |
+| [`bactopia-docs`](/developers/cli/bactopia-docs) | Validate reference-doc staleness across a Bactopia repo. |
+| [`bactopia-download`](/developers/cli/bactopia-download) | Builds Bactopia environments for use with Nextflow. |
+| [`bactopia-lint`](/developers/cli/bactopia-lint) | Lint Bactopia pipeline components against style guidelines. |
+| [`bactopia-merge-schemas`](/developers/cli/bactopia-merge-schemas) | Builds a Nextflow Schema and/or Nextflow config for a given workflow. |
+| [`bactopia-prepare`](/developers/cli/bactopia-prepare) | Create a 'file of filenames' (FOFN) of samples to be processed by Bactopia |
+| [`bactopia-prune`](/developers/cli/bactopia-prune) | Removes stale Bactopia environments that no longer match current module versions. |
+| [`bactopia-pubmlst-build`](/developers/cli/bactopia-pubmlst-build) | Build PubMLST databases for use with the 'mlst' Bactopia Tool. |
+| [`bactopia-pubmlst-setup`](/developers/cli/bactopia-pubmlst-setup) | One-time setup for interacting with the PubMLST API |
+| [`bactopia-review-tests`](/developers/cli/bactopia-review-tests) | Review nf-test results with grouped error analysis and timing checks. |
+| [`bactopia-scaffold`](/developers/cli/bactopia-scaffold) | Scaffold Bactopia components from bioconda/conda-forge packages. |
+| [`bactopia-search`](/developers/cli/bactopia-search) | Query against ENA and SRA for public accessions to process with Bactopia |
+| [`bactopia-status`](/developers/cli/bactopia-status) | Show a snapshot of the Bactopia project state. |
+| [`bactopia-summary`](/developers/cli/bactopia-summary) | Generate a summary table from the Bactopia results. |
+| [`bactopia-sysinfo`](/developers/cli/bactopia-sysinfo) | Auto-detect host RAM and CPUs, emit Nextflow CLI fragments for local profiles. |
+| [`bactopia-test`](/developers/cli/bactopia-test) | Run nf-test suites for Bactopia components. |
+| [`bactopia-update`](/developers/cli/bactopia-update) | Check if modules used by Bactopia Tools have newer versions available |
+| [`bactopia-workflows`](/developers/cli/bactopia-workflows) | Output the path to a Bactopia workflow main.nf file. |
+
+## Pipeline Utility Scripts
+
+Internal scripts called by Nextflow modules during pipeline execution.
+
+| Command | Description |
+|---------|-------------|
+| [`bactopia-bracken-to-excel`](/developers/cli/bactopia-bracken-to-excel) | Write Bracken abundances to an Excel file. |
+| [`bactopia-check-assembly-accession`](/developers/cli/bactopia-check-assembly-accession) | Verify NCBI Assembly accession is latest and still available. |
+| [`bactopia-check-fastqs`](/developers/cli/bactopia-check-fastqs) | Verify input FASTQs meet minimum requirements. |
+| [`bactopia-cleanup-coverage`](/developers/cli/bactopia-cleanup-coverage) | Reduce redundancy in per-base coverage from genomeCoverageBed output. |
+| [`bactopia-kraken-bracken-summary`](/developers/cli/bactopia-kraken-bracken-summary) | Update the Bracken abundances with unclassified counts. |
+| [`bactopia-mask-consensus`](/developers/cli/bactopia-mask-consensus) | Snippy consensus (subs) with coverage masking. |
+| [`bactopia-scrubber-summary`](/developers/cli/bactopia-scrubber-summary) | Create a before-and-after report from human read scrubbing. |
+| [`bactopia-teton-prepare`](/developers/cli/bactopia-teton-prepare) | Prepare sample sheets for downstream analysis in the Teton workflow. |
+

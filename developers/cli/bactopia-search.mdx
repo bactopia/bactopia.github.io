@@ -1,0 +1,51 @@
+---
+title: bactopia-search
+description: "Query against ENA and SRA for public accessions to process with Bactopia"
+---
+
+# bactopia-search
+
+Query against ENA and SRA for public accessions to process with Bactopia
+
+## Usage
+
+```bash
+bactopia-search [OPTIONS]
+```
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--query, -q` | STRING |  | Taxon ID or Study, BioSample, or Run accession (can also be comma separated or a file of accessions) |
+
+## Query Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--exact-taxon` | BOOL | `false` | Exclude Taxon ID descendants |
+| `--limit, -l` | INT | `1000000` | Maximum number of results (per query) to return |
+| `--accession-limit, -al` | INT | `5000` | Maximum number of accessions to query at once |
+| `--biosample-subset` | INT | `0` | If a BioSample has multiple Experiments, maximum number to randomly select (0 = disabled) |
+| `--include-empty` | BOOL | `false` | Include metadata columns that are empty for all rows |
+
+## Filtering Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--min-base-count, -mbc` | INT | `0` | Filters samples based on minimum base pair count (0 = disabled) |
+| `--min-read-length, -mrl` | INT | `0` | Filters samples based on minimum mean read length (0 = disabled) |
+| `--min-coverage, -mc` | INT | `0` | Filter samples based on minimum coverage (requires --genome_size, 0 = disabled) |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--genome-size, -gsize` | INT | `0` | Genome size to be used for all samples, and for calculating min coverage |
+| `--use-ncbi-genome-size` | BOOL | `false` | If available, use NCBI genome size for species |
+| `--outdir, -o` | STRING | `./` | Directory to write output |
+| `--prefix, -p` | STRING | `bactopia` | Prefix to use for output file names |
+| `--force` | BOOL | `false` | Overwrite existing reports |
+| `--verbose` | BOOL | `false` | Increase the verbosity of output |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

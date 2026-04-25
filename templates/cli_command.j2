@@ -1,0 +1,77 @@
+---
+title: {{ cmd.name }}
+description: "{{ cmd.help.split('\n')[0] | truncate(160) }}"
+---
+
+# {{ cmd.name }}
+
+{{ cmd.help }}
+
+## Usage
+
+```bash
+{{ usage }}
+```
+{% if cmd.arguments %}
+
+## Arguments
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+{% for arg in cmd.arguments %}
+| `{{ arg.human_readable_name }}` | {{ arg.type }} | {{ "Yes" if arg.required else "No" }} | {{ escape_mdx(arg.help) }} |
+{% endfor %}
+{% endif %}
+{% if cmd.is_group and cmd.subcommands %}
+
+## Subcommands
+
+| Command | Description |
+|---------|-------------|
+{% for sub_name, sub in cmd.subcommands.items() %}
+| [`{{ cmd.name }} {{ sub_name }}`](#{{ sub_name }}) | {{ escape_mdx(sub.help) }} |
+{% endfor %}
+{% for sub_name, sub in cmd.subcommands.items() %}
+
+---
+
+### {{ sub_name }}
+
+{{ sub.help }}
+
+```bash
+{{ cmd.name }} {{ sub_name }}{% for arg in sub.arguments %} {{ arg.human_readable_name }}{% endfor %} [OPTIONS]
+```
+{% if sub.arguments %}
+
+#### Arguments
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+{% for arg in sub.arguments %}
+| `{{ arg.human_readable_name }}` | {{ arg.type }} | {{ "Yes" if arg.required else "No" }} | {{ escape_mdx(arg.help) }} |
+{% endfor %}
+{% endif %}
+{% for group in sub.grouped_options %}
+
+#### {{ group.name }}
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+{% for opt in group.options %}
+| `{{ opt.opts | join(", ") }}` | {{ opt.type }}{% if opt.choices %} ({{ opt.choices | join(", ") }}){% endif %} | {{ format_default(opt.default) }} | {{ escape_mdx(opt.help) }} |
+{% endfor %}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% for group in option_groups %}
+
+## {{ group.name }}
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+{% for opt in group.options %}
+| `{{ opt.opts | join(", ") }}` | {{ opt.type }}{% if opt.choices %} ({{ opt.choices | join(", ") }}){% endif %} | {{ format_default(opt.default) }} | {{ escape_mdx(opt.help) }} |
+{% endfor %}
+{% endfor %}
+{% endif %}

@@ -1,0 +1,48 @@
+---
+title: bactopia-atb-downloader
+description: "Download All-the-Bacteria assemblies based on input query"
+---
+
+# bactopia-atb-downloader
+
+Download All-the-Bacteria assemblies based on input query
+
+## Usage
+
+```bash
+bactopia-atb-downloader [OPTIONS]
+```
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--query, -q` | STRING |  | The species name, taxid, accession to query and download |
+
+## ATB Download Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--outdir, -o` | STRING | `./atb-assemblies` | Directory to download ATB assemblies to |
+| `--atb-file-list-url, -a` | STRING | `https://osf.io/download/4yv85/` | The URL to the ATB file list |
+| `--dry-run, -d` | BOOL | `false` | Do not download any files, just show what would be downloaded |
+| `--progress, -p` | BOOL | `false` | Show download progress bar |
+| `--cpus` | INT | `4` | The total number of cpus to use for downloading and compressing |
+| `--uncompressed, -u` | BOOL | `false` | Do not compress the downloaded files |
+| `--remove-archives, -r` | BOOL | `false` | Remove the downloaded tar.xz archives after extracting samples |
+
+## NCBI API Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--ncbi-api-key, -k` | STRING |  | The API key to use for the NCBI API |
+| `--chunk-size, -c` | INT | `200` | The size of the chunks to split the list into |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--force` | BOOL | `false` | Overwrite existing files |
+| `--verbose` | BOOL | `false` | Increase the verbosity of output |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |

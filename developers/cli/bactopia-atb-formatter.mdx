@@ -1,0 +1,37 @@
+---
+title: bactopia-atb-formatter
+description: "Restructure All-the-Bacteria assemblies to allow usage with Bactopia Tools"
+---
+
+# bactopia-atb-formatter
+
+Restructure All-the-Bacteria assemblies to allow usage with Bactopia Tools
+
+## Usage
+
+```bash
+bactopia-atb-formatter [OPTIONS]
+```
+
+## Required Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--path, -p` | STRING |  | Directory where ATB assemblies are stored |
+
+## Bactopia Directory Structure Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--bactopia-dir, -b` | STRING | `bactopia` | The path you would like to place bactopia structure |
+| `--publish-mode, -m` | CHOICE (symlink, copy) | `symlink` | Specifies how assemblies will be saved in the Bactopia directory |
+| `--recursive, -r` | BOOL | `false` | Traverse recursively through provided path |
+| `--extension, -e` | STRING | `.fa` | The extension of the FASTA files |
+
+## Additional Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--verbose` | BOOL | `false` | Increase the verbosity of output |
+| `--silent` | BOOL | `false` | Only critical errors will be printed |
+| `--version, -V` | BOOL | `false` | Show the version and exit. |
