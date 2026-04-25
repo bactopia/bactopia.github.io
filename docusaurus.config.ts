@@ -17,6 +17,27 @@ const config: Config = {
 
   onBrokenLinks: 'warn',
 
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'alternate',
+        type: 'text/plain',
+        href: '/llms.txt',
+        title: 'LLM-readable site index',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'alternate',
+        type: 'application/json',
+        href: '/catalog.json',
+        title: 'Machine-readable documentation catalog',
+      },
+    },
+  ],
+
   future: {
     v4: true,
   },
