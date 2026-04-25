@@ -38,7 +38,20 @@ const config: Config = {
     locales: ['en'],
   },
 
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      '@easyops-cn/docusaurus-search-local',
+      {
+        hashed: true,
+        indexBlog: true,
+        indexDocs: true,
+        docsRouteBasePath: ['/', 'bactopia-tools', 'bactopia-pipelines', 'developers', 'impact-and-outreach'],
+        docsDir: ['docs', 'bactopia-tools', 'bactopia-pipelines', 'developers', 'impact'],
+        highlightSearchTermsOnTargetPage: true,
+      },
+    ],
+  ],
 
   clientModules: ['./src/gtag-noop.js'],
 
@@ -106,7 +119,7 @@ const config: Config = {
             current: {
               label: 'dev',
               path: '',
-              badge: true,
+              badge: false,
             },
           },
         },
@@ -193,6 +206,10 @@ const config: Config = {
             {href: 'pathname:///v2.1.1/', label: 'v2.1.1', target: '_self'},
             {href: 'pathname:///v2.1.0/', label: 'v2.1.0', target: '_self'},
           ],
+        },
+        {
+          type: 'search',
+          position: 'right',
         },
         {
           type: 'custom-github',
