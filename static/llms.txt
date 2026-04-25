@@ -1,0 +1,340 @@
+# Bactopia
+
+> An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
+
+## Bactopia
+
+Core Bactopia documentation -- installation, quick start, tutorials, and workflow reference.
+
+- [Bactopia](https://bactopia.github.io/): An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
+- [Quick Start](https://bactopia.github.io/quick-start): Get started using Bactopia in a few commands, no asking questions and no looking back!
+- [Installation](https://bactopia.github.io/installation): Learn how Bactopia install and get started using Bactopia for your genomic analyses.
+- [Beginner's Guide](https://bactopia.github.io/beginners-guide): A beginner's guide to getting started using Bactopia to process your bacterial genomes.
+- [Tutorial](https://bactopia.github.io/tutorial): A tutorial to get started with Bactopia using publicly available genomes.
+- [Bactopia Workflow](https://bactopia.github.io/bactopia-workflow): Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [Changelog](https://bactopia.github.io/changelog): A full list of Bactopia releases and a description of the changes.
+
+## Bactopia Tools
+
+Additional analysis workflows that run specific tools on existing Bactopia results.
+
+- [Bactopia Tools](https://bactopia.github.io/bactopia-tools): All available Bactopia Tool workflows
+- [abricate](https://bactopia.github.io/bactopia-tools/abricate): Mass screening of contigs for antimicrobial resistance and virulence genes.
+- [abritamr](https://bactopia.github.io/bactopia-tools/abritamr): A NATA accredited tool for reporting the presence of antimicrobial resistance genes.
+- [agrvate](https://bactopia.github.io/bactopia-tools/agrvate): Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.
+- [amrfinderplus](https://bactopia.github.io/bactopia-tools/amrfinderplus): Bactopia Tool: Amrfinderplus.
+- [ariba](https://bactopia.github.io/bactopia-tools/ariba): Gene identification through local assemblies.
+- [bakta](https://bactopia.github.io/bactopia-tools/bakta): Rapid annotation of bacterial genomes and plasmids.
+- [blastn](https://bactopia.github.io/bactopia-tools/blastn): Search against nucleotide BLAST databases using nucleotide queries.
+- [blastp](https://bactopia.github.io/bactopia-tools/blastp): Search against protein BLAST databases using protein queries.
+- [blastx](https://bactopia.github.io/bactopia-tools/blastx): Search against protein BLAST databases using translated nucleotide queries.
+- [bracken](https://bactopia.github.io/bactopia-tools/bracken): Estimate taxonomic abundance of metagenomic samples.
+- [btyper3](https://bactopia.github.io/bactopia-tools/btyper3): Taxonomic classification of Bacillus cereus group isolates.
+- [busco](https://bactopia.github.io/bactopia-tools/busco): Assessment of genome assembly completeness using evolutionarily informed expectations.
+- [checkm](https://bactopia.github.io/bactopia-tools/checkm): Assessment of microbial genome assembly quality.
+- [checkm2](https://bactopia.github.io/bactopia-tools/checkm2): Machine learning-based assessment of microbial genome assembly quality.
+- [clermontyping](https://bactopia.github.io/bactopia-tools/clermontyping): In silico phylotyping of Escherichia genus.
+- [defensefinder](https://bactopia.github.io/bactopia-tools/defensefinder): Systematic identification of anti-phage defense systems.
+- [ectyper](https://bactopia.github.io/bactopia-tools/ectyper): In silico prediction of Escherichia coli serotype.
+- [eggnog](https://bactopia.github.io/bactopia-tools/eggnog): Functional annotation of proteins using orthologous groups and phylogenies.
+- [emmtyper](https://bactopia.github.io/bactopia-tools/emmtyper): emm-typing of Streptococcus pyogenes assemblies.
+- [fastani](https://bactopia.github.io/bactopia-tools/fastani): Fast alignment-free computation of whole-genome Average Nucleotide Identity.
+- [gamma](https://bactopia.github.io/bactopia-tools/gamma): Identification, classification, and annotation of translated gene matches.
+- [genotyphi](https://bactopia.github.io/bactopia-tools/genotyphi): Salmonella Typhi genotyping with lineage assignment.
+- [gigatyper](https://bactopia.github.io/bactopia-tools/gigatyper): Run all available MLST schemes for a species against an assembly
+- [gtdb](https://bactopia.github.io/bactopia-tools/gtdb): Identify marker genes and assign taxonomic classifications using GTDB.
+- [hicap](https://bactopia.github.io/bactopia-tools/hicap): Identify cap locus serotype and structure in Haemophilus influenzae assemblies.
+- [hpsuissero](https://bactopia.github.io/bactopia-tools/hpsuissero): Serotype prediction of Haemophilus parasuis assemblies.
+- [ismapper](https://bactopia.github.io/bactopia-tools/ismapper): Identify insertion sequence positions in bacterial genomes.
+- [kleborate](https://bactopia.github.io/bactopia-tools/kleborate): Comprehensive screening of Klebsiella genomes for virulence and resistance determinants.
+- [kraken2](https://bactopia.github.io/bactopia-tools/kraken2): Taxonomic classification of metagenomic sequence reads.
+- [legsta](https://bactopia.github.io/bactopia-tools/legsta): Sequence Based Typing (SBT) of Legionella pneumophila.
+- [lissero](https://bactopia.github.io/bactopia-tools/lissero): Serogroup typing prediction for Listeria monocytogenes.
+- [mashdist](https://bactopia.github.io/bactopia-tools/mashdist): Calculate Mash distances between sequences and reference genomes.
+- [mashtree](https://bactopia.github.io/bactopia-tools/mashtree): Rapid phylogenetic tree construction using Mash distances.
+- [mcroni](https://bactopia.github.io/bactopia-tools/mcroni): Sequence variation analysis of mcr-1 genes (mobilized colistin resistance).
+- [meningotype](https://bactopia.github.io/bactopia-tools/meningotype): Comprehensive typing of Neisseria meningitidis.
+- [merlin](https://bactopia.github.io/bactopia-tools/merlin): MinMER-assisted species-specific tool selection and execution.
+- [midas](https://bactopia.github.io/bactopia-tools/midas): Estimate species abundances from metagenomic samples.
+- [mlst](https://bactopia.github.io/bactopia-tools/mlst): Automatic Multi-Locus Sequence Type (MLST) calling from assembled contigs.
+- [mobsuite](https://bactopia.github.io/bactopia-tools/mobsuite): Reconstruction and annotation of plasmids from bacterial genome assemblies.
+- [mykrobe](https://bactopia.github.io/bactopia-tools/mykrobe): Antimicrobial resistance detection for specific bacterial species.
+- [ngmaster](https://bactopia.github.io/bactopia-tools/ngmaster): Multi-antigen sequence typing of Neisseria gonorrhoeae.
+- [pangenome](https://bactopia.github.io/bactopia-tools/pangenome): Pangenome analysis with optional core-genome phylogeny.
+- [pasty](https://bactopia.github.io/bactopia-tools/pasty): In silico serogrouping of Pseudomonas aeruginosa isolates.
+- [pbptyper](https://bactopia.github.io/bactopia-tools/pbptyper): Penicillin Binding Protein (PBP) typing for Streptococcus pneumoniae.
+- [phispy](https://bactopia.github.io/bactopia-tools/phispy): Prediction of prophages in bacterial and archaeal genomes.
+- [plasmidfinder](https://bactopia.github.io/bactopia-tools/plasmidfinder): Bactopia Tool: Plasmidfinder.
+- [pneumocat](https://bactopia.github.io/bactopia-tools/pneumocat): Capsular type assignment to Streptococcus pneumoniae from sequence reads.
+- [prokka](https://bactopia.github.io/bactopia-tools/prokka): Rapid whole genome annotation of bacterial, archaeal, and viral genomes.
+- [quast](https://bactopia.github.io/bactopia-tools/quast): Quality assessment of assembled contigs using QUAST.
+- [rgi](https://bactopia.github.io/bactopia-tools/rgi): Prediction of antibiotic resistance genes using RGI.
+- [sccmec](https://bactopia.github.io/bactopia-tools/sccmec): Typing of SCCmec cassettes in Staphylococcus aureus assemblies.
+- [scrubber](https://bactopia.github.io/bactopia-tools/scrubber): Removal of human and contaminant sequences from metagenomic reads.
+- [seqsero2](https://bactopia.github.io/bactopia-tools/seqsero2): Salmonella serotype prediction from sequencing reads or assemblies.
+- [seroba](https://bactopia.github.io/bactopia-tools/seroba): Serotyping of Streptococcus pneumoniae from Illumina paired-end reads.
+- [shigapass](https://bactopia.github.io/bactopia-tools/shigapass): Prediction of Shigella serotypes and differentiation from EIEC.
+- [shigatyper](https://bactopia.github.io/bactopia-tools/shigatyper): Rapid determination of Shigella serotypes from sequencing reads.
+- [shigeifinder](https://bactopia.github.io/bactopia-tools/shigeifinder): In silico serotype prediction for Shigella and Enteroinvasive E.
+- [sistr](https://bactopia.github.io/bactopia-tools/sistr): Serovar prediction of Salmonella enterica from assemblies.
+- [snippy](https://bactopia.github.io/bactopia-tools/snippy): Rapid haplotype variant calling and core genome alignment.
+- [spatyper](https://bactopia.github.io/bactopia-tools/spatyper): spa typing of Staphylococcus aureus assemblies.
+- [ssuissero](https://bactopia.github.io/bactopia-tools/ssuissero): Serotype prediction of Streptococcus suis assemblies.
+- [staphtyper](https://bactopia.github.io/bactopia-tools/staphtyper): Comprehensive typing of Staphylococcus aureus genomes.
+- [stecfinder](https://bactopia.github.io/bactopia-tools/stecfinder): Serotype identification of Shiga toxin-producing E.
+- [sylph](https://bactopia.github.io/bactopia-tools/sylph): Taxonomic profiling by abundance-corrected MinHash.
+- [tblastn](https://bactopia.github.io/bactopia-tools/tblastn): Search against translated nucleotide databases using protein queries.
+- [tblastx](https://bactopia.github.io/bactopia-tools/tblastx): Search against translated nucleotide databases using translated nucleotide queries.
+- [tbprofiler](https://bactopia.github.io/bactopia-tools/tbprofiler): Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis.
+
+## Bactopia Pipelines
+
+Complete analysis pipelines built from Bactopia's subworkflows and modules.
+
+- [Bactopia Pipelines](https://bactopia.github.io/bactopia-pipelines): Bactopia analysis pipelines
+- [cleanyerreads](https://bactopia.github.io/bactopia-pipelines/cleanyerreads): Quality control and optional host read removal from raw sequencing reads.
+- [staphopia](https://bactopia.github.io/bactopia-pipelines/staphopia): Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+- [teton](https://bactopia.github.io/bactopia-pipelines/teton): Taxonomic classification and abundance profiling of metagenomic reads.
+
+## Developers
+
+Developer reference for CLI commands, subworkflows, modules, and AI skills.
+
+- [Developers](https://bactopia.github.io/developers): Bactopia developer reference for CLI commands, subworkflows, and modules
+- [abricate](https://bactopia.github.io/developers/subworkflows/abricate): Mass screening of contigs for antimicrobial and virulence genes.
+- [abricate_run](https://bactopia.github.io/developers/modules/abricate_run): Mass screening of contigs for antimicrobial and virulence genes.
+- [abricate_summary](https://bactopia.github.io/developers/modules/abricate_summary): Summarize Abricate screening results.
+- [abritamr](https://bactopia.github.io/developers/subworkflows/abritamr): Identify antimicrobial resistance genes using AMRFinderPlus.
+- [abritamr_run](https://bactopia.github.io/developers/modules/abritamr_run): Detect antimicrobial resistance and virulence genes.
+- [agrvate](https://bactopia.github.io/developers/modules/agrvate): Determine the agr locus type and operon variants in Staphylococcus aureus.
+- [agrvate](https://bactopia.github.io/developers/subworkflows/agrvate): Identify Staphylococcus aureus agr locus type and operon variants.
+- [AI Skills](https://bactopia.github.io/developers/ai-skills): Reference for AI skills that automate Bactopia development tasks
+- [amrfinderplus](https://bactopia.github.io/developers/subworkflows/amrfinderplus): Find antimicrobial resistance genes and point mutations.
+- [amrfinderplus_run](https://bactopia.github.io/developers/modules/amrfinderplus_run): Identify antimicrobial resistance and virulence genes in gene or protein sequences.
+- [amrfinderplus_update](https://bactopia.github.io/developers/modules/amrfinderplus_update): Download and index the latest AMRFinder+ database.
+- [ariba](https://bactopia.github.io/developers/subworkflows/ariba): Rapidly identify genes by creating local assemblies from paired-end reads.
+- [ariba_getref](https://bactopia.github.io/developers/modules/ariba_getref): Download and prepare reference databases for ARIBA analysis.
+- [ariba_run](https://bactopia.github.io/developers/modules/ariba_run): Identify genes by local assembly of reads.
+- [bactopia-atb-downloader](https://bactopia.github.io/developers/cli/bactopia-atb-downloader): Download All-the-Bacteria assemblies based on input query
+- [bactopia-atb-formatter](https://bactopia.github.io/developers/cli/bactopia-atb-formatter): Restructure All-the-Bacteria assemblies to allow usage with Bactopia Tools
+- [bactopia-bracken-to-excel](https://bactopia.github.io/developers/cli/bactopia-bracken-to-excel): Write Bracken abundances to an Excel file.
+- [bactopia-catalog](https://bactopia.github.io/developers/cli/bactopia-catalog): Generate machine-readable catalog of all Bactopia components.
+- [bactopia-check-assembly-accession](https://bactopia.github.io/developers/cli/bactopia-check-assembly-accession): Verify NCBI Assembly accession is latest and still available.
+- [bactopia-check-fastqs](https://bactopia.github.io/developers/cli/bactopia-check-fastqs): Verify input FASTQs meet minimum requirements.
+- [bactopia-citations](https://bactopia.github.io/developers/cli/bactopia-citations): Print or validate citations used throughout Bactopia.
+- [bactopia-cleanup-coverage](https://bactopia.github.io/developers/cli/bactopia-cleanup-coverage): Reduce redundancy in per-base coverage from genomeCoverageBed output.
+- [bactopia-datasets](https://bactopia.github.io/developers/cli/bactopia-datasets): Download optional datasets to supplement your analyses with Bactopia
+- [bactopia-docs](https://bactopia.github.io/developers/cli/bactopia-docs): Validate reference-doc staleness across a Bactopia repo.
+- [bactopia-download](https://bactopia.github.io/developers/cli/bactopia-download): Builds Bactopia environments for use with Nextflow.
+- [bactopia-kraken-bracken-summary](https://bactopia.github.io/developers/cli/bactopia-kraken-bracken-summary): Update the Bracken abundances with unclassified counts.
+- [bactopia-lint](https://bactopia.github.io/developers/cli/bactopia-lint): Lint Bactopia pipeline components against style guidelines.
+- [bactopia-mask-consensus](https://bactopia.github.io/developers/cli/bactopia-mask-consensus): Snippy consensus (subs) with coverage masking.
+- [bactopia-merge-schemas](https://bactopia.github.io/developers/cli/bactopia-merge-schemas): Builds a Nextflow Schema and/or Nextflow config for a given workflow.
+- [bactopia-prepare](https://bactopia.github.io/developers/cli/bactopia-prepare): Create a 'file of filenames' (FOFN) of samples to be processed by Bactopia
+- [bactopia-prune](https://bactopia.github.io/developers/cli/bactopia-prune): Removes stale Bactopia environments that no longer match current module versions.
+- [bactopia-pubmlst-build](https://bactopia.github.io/developers/cli/bactopia-pubmlst-build): Build PubMLST databases for use with the 'mlst' Bactopia Tool.
+- [bactopia-pubmlst-setup](https://bactopia.github.io/developers/cli/bactopia-pubmlst-setup): One-time setup for interacting with the PubMLST API
+- [bactopia-review-tests](https://bactopia.github.io/developers/cli/bactopia-review-tests): Review nf-test results with grouped error analysis and timing checks.
+- [bactopia-scaffold](https://bactopia.github.io/developers/cli/bactopia-scaffold): Scaffold Bactopia components from bioconda/conda-forge packages.
+- [bactopia-scrubber-summary](https://bactopia.github.io/developers/cli/bactopia-scrubber-summary): Create a before-and-after report from human read scrubbing.
+- [bactopia-search](https://bactopia.github.io/developers/cli/bactopia-search): Query against ENA and SRA for public accessions to process with Bactopia
+- [bactopia-status](https://bactopia.github.io/developers/cli/bactopia-status): Show a snapshot of the Bactopia project state.
+- [bactopia-summary](https://bactopia.github.io/developers/cli/bactopia-summary): Generate a summary table from the Bactopia results.
+- [bactopia-sysinfo](https://bactopia.github.io/developers/cli/bactopia-sysinfo): Auto-detect host RAM and CPUs, emit Nextflow CLI fragments for local profiles.
+- [bactopia-test](https://bactopia.github.io/developers/cli/bactopia-test): Run nf-test suites for Bactopia components.
+- [bactopia-teton-prepare](https://bactopia.github.io/developers/cli/bactopia-teton-prepare): Prepare sample sheets for downstream analysis in the Teton workflow.
+- [bactopia-update](https://bactopia.github.io/developers/cli/bactopia-update): Check if modules used by Bactopia Tools have newer versions available
+- [bactopia-workflows](https://bactopia.github.io/developers/cli/bactopia-workflows): Output the path to a Bactopia workflow main.nf file.
+- [bactopia_assembler](https://bactopia.github.io/developers/modules/bactopia_assembler): Assemble bacterial genomes using short read, long read, or hybrid strategies.
+- [bactopia_assembler](https://bactopia.github.io/developers/subworkflows/bactopia_assembler): Assemble bacterial genomes using automated assembler selection.
+- [bactopia_datasets](https://bactopia.github.io/developers/modules/bactopia_datasets): Download pre-compiled datasets required by Bactopia.
+- [bactopia_datasets](https://bactopia.github.io/developers/subworkflows/bactopia_datasets): Download and provide pre-compiled datasets required by Bactopia.
+- [bactopia_gather](https://bactopia.github.io/developers/modules/bactopia_gather): Search, validate, gather, or simulate input samples.
+- [bactopia_gather](https://bactopia.github.io/developers/subworkflows/bactopia_gather): Search, validate, gather, and standardize input samples.
+- [bactopia_qc](https://bactopia.github.io/developers/modules/bactopia_qc): Automated quality control, error correction, and read subsampling.
+- [bactopia_qc](https://bactopia.github.io/developers/subworkflows/bactopia_qc): Perform comprehensive quality control on sequencing reads.
+- [bactopia_sketcher](https://bactopia.github.io/developers/modules/bactopia_sketcher): Create genomic sketches and perform rapid taxonomic classification.
+- [bactopia_sketcher](https://bactopia.github.io/developers/subworkflows/bactopia_sketcher): Create genomic sketches and perform rapid taxonomic classification.
+- [bactopia_teton](https://bactopia.github.io/developers/modules/bactopia_teton): Predict genome size and route samples based on taxonomic classification.
+- [bakta](https://bactopia.github.io/developers/subworkflows/bakta): Rapid bacterial genome annotation.
+- [bakta_download](https://bactopia.github.io/developers/modules/bakta_download): Download the Bakta annotation database.
+- [bakta_run](https://bactopia.github.io/developers/modules/bakta_run): Rapid and standardized annotation of bacterial genomes and plasmids.
+- [blast_blastn](https://bactopia.github.io/developers/modules/blast_blastn): Search a nucleotide database using a nucleotide query.
+- [blast_blastp](https://bactopia.github.io/developers/modules/blast_blastp): Search a protein database using a protein query.
+- [blast_blastx](https://bactopia.github.io/developers/modules/blast_blastx): Search a protein database using a translated nucleotide query.
+- [blast_tblastn](https://bactopia.github.io/developers/modules/blast_tblastn): Search a translated nucleotide database using a protein query.
+- [blast_tblastx](https://bactopia.github.io/developers/modules/blast_tblastx): Search a translated nucleotide database using a translated nucleotide query.
+- [blastn](https://bactopia.github.io/developers/subworkflows/blastn): Search a nucleotide database using nucleotide query sequences.
+- [blastp](https://bactopia.github.io/developers/subworkflows/blastp): Search protein sequences against protein database.
+- [blastx](https://bactopia.github.io/developers/subworkflows/blastx): Translate nucleotide sequences and search protein database.
+- [bracken](https://bactopia.github.io/developers/modules/bracken): Taxonomic classification and abundance estimation.
+- [bracken](https://bactopia.github.io/developers/subworkflows/bracken): Estimate species abundance from metagenomic reads.
+- [btyper3](https://bactopia.github.io/developers/modules/btyper3): In silico typing and characterization of *Bacillus cereus* group genomes.
+- [btyper3](https://bactopia.github.io/developers/subworkflows/btyper3): In silico taxonomic classification of Bacillus cereus group genomes.
+- [busco](https://bactopia.github.io/developers/modules/busco): Assess genome assembly completeness using single-copy orthologs.
+- [busco](https://bactopia.github.io/developers/subworkflows/busco): Assess genome assembly completeness using BUSCO.
+- [checkm](https://bactopia.github.io/developers/subworkflows/checkm): Assess metagenome bin completeness using CheckM.
+- [checkm2](https://bactopia.github.io/developers/subworkflows/checkm2): Assess metagenome bin completeness using CheckM2.
+- [checkm2_download](https://bactopia.github.io/developers/modules/checkm2_download): Download the pre-trained CheckM2 database.
+- [checkm2_predict](https://bactopia.github.io/developers/modules/checkm2_predict): Assess genome quality using machine learning.
+- [checkm_lineagewf](https://bactopia.github.io/developers/modules/checkm_lineagewf): Assess genome quality using lineage-specific marker sets.
+- [clermontyping](https://bactopia.github.io/developers/modules/clermontyping): Determine the phylogroup of Escherichia coli isolates.
+- [clermontyping](https://bactopia.github.io/developers/subworkflows/clermontyping): Predict phylogroups of Escherichia coli from genome assemblies.
+- [CLI Reference](https://bactopia.github.io/developers/cli): Command-line reference for all bactopia-py CLI commands
+- [clonalframeml](https://bactopia.github.io/developers/modules/clonalframeml): Inference of recombination in bacterial genomes.
+- [clonalframeml](https://bactopia.github.io/developers/subworkflows/clonalframeml): Detect and mask recombination events in bacterial phylogenies.
+- [csvtk_concat](https://bactopia.github.io/developers/modules/csvtk_concat): Concatenate multiple CSV or TSV files into a single table.
+- [csvtk_join](https://bactopia.github.io/developers/modules/csvtk_join): Join two CSV or TSV files based on common fields.
+- [defensefinder](https://bactopia.github.io/developers/subworkflows/defensefinder): Systematically search for anti-phage defense systems.
+- [defensefinder_run](https://bactopia.github.io/developers/modules/defensefinder_run): Detect anti-phage defense systems using HMM profiles.
+- [defensefinder_update](https://bactopia.github.io/developers/modules/defensefinder_update): Download and package the DefenseFinder and CasFinder model databases.
+- [ectyper](https://bactopia.github.io/developers/modules/ectyper): Predict *Escherichia coli* serotype (O and H antigens).
+- [ectyper](https://bactopia.github.io/developers/subworkflows/ectyper): In silico prediction of Escherichia coli serotype.
+- [eggnog](https://bactopia.github.io/developers/subworkflows/eggnog): Functional annotation through orthology assignment.
+- [eggnog_download](https://bactopia.github.io/developers/modules/eggnog_download): Download the eggNOG database for functional annotation.
+- [eggnog_mapper](https://bactopia.github.io/developers/modules/eggnog_mapper): Functional annotation of proteins using eggNOG orthology data.
+- [emmtyper](https://bactopia.github.io/developers/modules/emmtyper): *emm*-typing of *Streptococcus pyogenes* (Group A Strep) assemblies.
+- [emmtyper](https://bactopia.github.io/developers/subworkflows/emmtyper): Predict emm types of Streptococcus pyogenes from genome assemblies.
+- [fastani](https://bactopia.github.io/developers/modules/fastani): Compute whole-genome Average Nucleotide Identity (ANI).
+- [fastani](https://bactopia.github.io/developers/subworkflows/fastani): Calculate Average Nucleotide Identity (ANI) between genomes.
+- [gamma](https://bactopia.github.io/developers/modules/gamma): Identification, classification, and annotation of translated gene matches.
+- [gamma](https://bactopia.github.io/developers/subworkflows/gamma): Gene Allele Mutation Microbial Assessment.
+- [genotyphi](https://bactopia.github.io/developers/subworkflows/genotyphi): Assign genotypes to Salmonella Typhi genomes.
+- [genotyphi_parse](https://bactopia.github.io/developers/modules/genotyphi_parse): Parse Mykrobe results to genotype *Salmonella* Typhi.
+- [gigatyper](https://bactopia.github.io/developers/modules/gigatyper): Run all available MLST schemes for a species against an assembly
+- [gigatyper](https://bactopia.github.io/developers/subworkflows/gigatyper): Run all available MLST schemes for a species against an assembly
+- [gtdb](https://bactopia.github.io/developers/subworkflows/gtdb): Taxonomic classification with the Genome Taxonomy Database.
+- [gtdbtk_classifywf](https://bactopia.github.io/developers/modules/gtdbtk_classifywf): Taxonomic classification of bacterial and archaeal genomes using GTDB-Tk.
+- [gtdbtk_download](https://bactopia.github.io/developers/modules/gtdbtk_download): Download and configure the GTDB-Tk reference database.
+- [gubbins](https://bactopia.github.io/developers/modules/gubbins): Detect recombination and construct a recombination-free phylogeny.
+- [gubbins](https://bactopia.github.io/developers/subworkflows/gubbins): Detect and filter recombination regions in bacterial alignments.
+- [hicap](https://bactopia.github.io/developers/modules/hicap): Predict *Haemophilus influenzae* capsule serotype.
+- [hicap](https://bactopia.github.io/developers/subworkflows/hicap): In silico serotyping of the Haemophilus influenzae capsule locus.
+- [hpsuissero](https://bactopia.github.io/developers/modules/hpsuissero): Predict *Haemophilus parasuis* serotype.
+- [hpsuissero](https://bactopia.github.io/developers/subworkflows/hpsuissero): Rapid Haemophilus parasuis serotyping.
+- [iqtree](https://bactopia.github.io/developers/modules/iqtree): Efficient phylogenomic inference using Maximum Likelihood.
+- [iqtree](https://bactopia.github.io/developers/subworkflows/iqtree): Construct maximum likelihood phylogenetic trees from alignments.
+- [ismapper](https://bactopia.github.io/developers/modules/ismapper): Identify insertion sites and orientation of mobile genetic elements.
+- [ismapper](https://bactopia.github.io/developers/subworkflows/ismapper): Identify transposase insertion sites in bacterial genomes.
+- [kleborate](https://bactopia.github.io/developers/modules/kleborate): Genotyping and screening of *Klebsiella* genome assemblies.
+- [kleborate](https://bactopia.github.io/developers/subworkflows/kleborate): Genotyping tool for Klebsiella pneumoniae and its related species complex.
+- [kraken2](https://bactopia.github.io/developers/modules/kraken2): Taxonomic classification and host filtering of sequence reads.
+- [kraken2](https://bactopia.github.io/developers/subworkflows/kraken2): Classify metagenomic reads using Kraken2.
+- [legsta](https://bactopia.github.io/developers/modules/legsta): In silico Sequence Based Typing (SBT) of *Legionella pneumophila*.
+- [legsta](https://bactopia.github.io/developers/subworkflows/legsta): In silico Legionella pneumophila Sequence Based Typing.
+- [lissero](https://bactopia.github.io/developers/modules/lissero): Predict *Listeria monocytogenes* serogroup.
+- [lissero](https://bactopia.github.io/developers/subworkflows/lissero): In silico serotype prediction for Listeria monocytogenes.
+- [mash_dist](https://bactopia.github.io/developers/modules/mash_dist): Calculate genomic distances using MinHash sketches.
+- [mashdist](https://bactopia.github.io/developers/subworkflows/mashdist): Calculate Mash distances between sequences and a reference.
+- [mashtree](https://bactopia.github.io/developers/modules/mashtree): Rapid alignment-free phylogenomic tree construction.
+- [mashtree](https://bactopia.github.io/developers/subworkflows/mashtree): Create phylogenetic trees using Mash distances.
+- [mcroni](https://bactopia.github.io/developers/modules/mcroni): Detect sequence variations in the *mcr-1* colistin resistance gene.
+- [mcroni](https://bactopia.github.io/developers/subworkflows/mcroni): Scripts for finding and processing promoter variants upstream of mcr-1.
+- [meningotype](https://bactopia.github.io/developers/modules/meningotype): Serotyping and finetyping of *Neisseria meningitidis*.
+- [meningotype](https://bactopia.github.io/developers/subworkflows/meningotype): Predict serotypes of Neisseria meningitidis from genome assemblies.
+- [merlin](https://bactopia.github.io/developers/subworkflows/merlin): MinER assisted species-specific bactopia tool seLectIoN.
+- [merlin_dist](https://bactopia.github.io/developers/modules/merlin_dist): Identify species to trigger genus-specific downstream analyses (Merlin).
+- [merlindist](https://bactopia.github.io/developers/subworkflows/merlindist): Identify species from assembly and read data using Mash distances.
+- [midas](https://bactopia.github.io/developers/subworkflows/midas): Species-level profiling from metagenomic data.
+- [midas_download](https://bactopia.github.io/developers/modules/midas_download): Download the MIDAS reference database.
+- [midas_species](https://bactopia.github.io/developers/modules/midas_species): Estimate bacterial species abundance from metagenomic reads.
+- [mlst](https://bactopia.github.io/developers/modules/mlst): Automatic Multi-Locus Sequence Typing (MLST) of genome assemblies.
+- [mlst](https://bactopia.github.io/developers/subworkflows/mlst): Determine multilocus sequence types (MLST) from bacterial assemblies.
+- [mobsuite](https://bactopia.github.io/developers/subworkflows/mobsuite): Reconstruct and type plasmids from bacterial genome assemblies.
+- [mobsuite_recon](https://bactopia.github.io/developers/modules/mobsuite_recon): Reconstruct and type plasmids from a bacterial genome assembly.
+- [Modules](https://bactopia.github.io/developers/modules): All available Bactopia modules
+- [mykrobe](https://bactopia.github.io/developers/subworkflows/mykrobe): Predict antibiotic resistance from sequence reads.
+- [mykrobe_predict](https://bactopia.github.io/developers/modules/mykrobe_predict): Predict Antimicrobial Resistance (AMR) for supported bacterial species.
+- [ncbigenomedownload](https://bactopia.github.io/developers/modules/ncbigenomedownload): Download assemblies and annotation files from NCBI's Assembly database.
+- [ncbigenomedownload](https://bactopia.github.io/developers/subworkflows/ncbigenomedownload): Download bacterial genomes from NCBI's RefSeq database.
+- [nf-bactopia Plugin](https://bactopia.github.io/developers/nf-bactopia): Developer reference for the nf-bactopia Nextflow plugin -- utility functions used across Bactopia workflows
+- [ngmaster](https://bactopia.github.io/developers/modules/ngmaster): Serotyping and Multi-Antigen Sequence Typing (MAST) of *Neisseria gonorrhoeae*.
+- [ngmaster](https://bactopia.github.io/developers/subworkflows/ngmaster): Perform multi-antigen sequence typing of Neisseria gonorrhoeae from genome assemblies.
+- [nohuman](https://bactopia.github.io/developers/subworkflows/nohuman): Remove human reads from sequencing data using nohuman.
+- [nohuman_download](https://bactopia.github.io/developers/modules/nohuman_download): Download the nohuman database for human read removal.
+- [nohuman_run](https://bactopia.github.io/developers/modules/nohuman_run): Remove human reads from sequencing data.
+- [panaroo](https://bactopia.github.io/developers/subworkflows/panaroo): Build a pangenome from GFF3 annotations using Panaroo.
+- [panaroo_run](https://bactopia.github.io/developers/modules/panaroo_run): Fast and scalable bacterial pangenome analysis using a graph-based approach.
+- [pangenome](https://bactopia.github.io/developers/subworkflows/pangenome): Perform pangenome analysis with optional core-genome phylogeny.
+- [pasty](https://bactopia.github.io/developers/modules/pasty): Predict O-antigen serogroup of Pseudomonas aeruginosa isolates.
+- [pasty](https://bactopia.github.io/developers/subworkflows/pasty): Predict serogroups of Pseudomonas aeruginosa from assemblies.
+- [pbptyper](https://bactopia.github.io/developers/modules/pbptyper): Predict Penicillin Binding Protein (PBP) type of *Streptococcus pneumoniae* assemblies.
+- [pbptyper](https://bactopia.github.io/developers/subworkflows/pbptyper): Predict penicillin binding protein (PBP) types of Streptococcus pneumoniae from genome assemblies.
+- [phispy](https://bactopia.github.io/developers/modules/phispy): Predict prophage regions integrated into bacterial genomes.
+- [phispy](https://bactopia.github.io/developers/subworkflows/phispy): Prediction of prophages from bacterial genomes.
+- [pirate](https://bactopia.github.io/developers/modules/pirate): Pangenome Identification and Reconciliation Analysis Tool for Epidemiology (PIRATE).
+- [pirate](https://bactopia.github.io/developers/subworkflows/pirate): Build a pangenome from GFF3 annotations using PIRATE.
+- [plasmidfinder](https://bactopia.github.io/developers/modules/plasmidfinder): Identify plasmid replicon types in bacterial sequences and assemblies.
+- [plasmidfinder](https://bactopia.github.io/developers/subworkflows/plasmidfinder): Identify plasmid replicons in bacterial genome assemblies.
+- [pneumocat](https://bactopia.github.io/developers/modules/pneumocat): Capsular typing of Streptococcus pneumoniae from Illumina reads.
+- [pneumocat](https://bactopia.github.io/developers/subworkflows/pneumocat): Perform capsular typing of Streptococcus pneumoniae from NGS data.
+- [prokka](https://bactopia.github.io/developers/modules/prokka): Annotate prokaryotic genomes.
+- [prokka](https://bactopia.github.io/developers/subworkflows/prokka): Annotate bacterial genomes with functional information.
+- [quast](https://bactopia.github.io/developers/modules/quast): Quality Assessment Tool for Genome Assemblies.
+- [quast](https://bactopia.github.io/developers/subworkflows/quast): Evaluate assembly quality using QUAST.
+- [rgi](https://bactopia.github.io/developers/subworkflows/rgi): Predict antimicrobial resistance from protein or nucleotide data.
+- [rgi_heatmap](https://bactopia.github.io/developers/modules/rgi_heatmap): Create heatmaps of resistance gene presence/absence.
+- [rgi_main](https://bactopia.github.io/developers/modules/rgi_main): Predict antibiotic resistance from assemblies.
+- [roary](https://bactopia.github.io/developers/modules/roary): Rapid large-scale prokaryote pan genome analysis.
+- [roary](https://bactopia.github.io/developers/subworkflows/roary): Build a pangenome from GFF3 annotations using Roary.
+- [sccmec](https://bactopia.github.io/developers/modules/sccmec): Identify SCCmec elements in Staphylococcus aureus genomes.
+- [sccmec](https://bactopia.github.io/developers/subworkflows/sccmec): Identify SCCmec elements in Staphylococcus aureus genomes.
+- [scoary](https://bactopia.github.io/developers/modules/scoary): Pan-genome wide association studies.
+- [scoary](https://bactopia.github.io/developers/subworkflows/scoary): Pan-genome wide association studies.
+- [scrubber](https://bactopia.github.io/developers/subworkflows/scrubber): Remove contaminant sequences from metagenomic data.
+- [seqsero2](https://bactopia.github.io/developers/modules/seqsero2): Salmonella serotype prediction from genome sequencing data.
+- [seqsero2](https://bactopia.github.io/developers/subworkflows/seqsero2): Predict Salmonella serotypes from genome assemblies.
+- [seroba](https://bactopia.github.io/developers/subworkflows/seroba): k-mer based pipeline to identify the serotype of Streptococcus pneumoniae.
+- [seroba_run](https://bactopia.github.io/developers/modules/seroba_run): k-mer based Streptococcus pneumoniae serotyping.
+- [shigapass](https://bactopia.github.io/developers/modules/shigapass): Predict Shigella serotypes and differentiate Shigella/EIEC.
+- [shigapass](https://bactopia.github.io/developers/subworkflows/shigapass): Predict serotypes of Shigella from assemblies.
+- [shigatyper](https://bactopia.github.io/developers/modules/shigatyper): Shigella serotype from Illumina or Oxford Nanopore reads.
+- [shigatyper](https://bactopia.github.io/developers/subworkflows/shigatyper): Predict serotypes of Shigella from reads or assemblies.
+- [shigeifinder](https://bactopia.github.io/developers/modules/shigeifinder): Shigella and EIEC serotyping from assemblies.
+- [shigeifinder](https://bactopia.github.io/developers/subworkflows/shigeifinder): Predict serotypes of Shigella and EIEC from assemblies.
+- [sistr](https://bactopia.github.io/developers/modules/sistr): Serovar prediction of Salmonella assemblies.
+- [sistr](https://bactopia.github.io/developers/subworkflows/sistr): Salmonella In Silico Typing Resource command-line tool.
+- [snippy_core](https://bactopia.github.io/developers/modules/snippy_core): Core-SNP alignment from Snippy outputs.
+- [snippy_core](https://bactopia.github.io/developers/subworkflows/snippy_core): Generate core-genome SNP alignment from per-sample Snippy outputs.
+- [snippy_run](https://bactopia.github.io/developers/modules/snippy_run): Rapid haploid variant calling and core genome alignment.
+- [snippy_run](https://bactopia.github.io/developers/subworkflows/snippy_run): Call variants against a reference genome using Snippy.
+- [snpdists](https://bactopia.github.io/developers/modules/snpdists): Create a SNP distance matrix from a multiple sequence alignment.
+- [snpdists](https://bactopia.github.io/developers/subworkflows/snpdists): Calculate pairwise SNP distances from sequence alignments.
+- [spatyper](https://bactopia.github.io/developers/modules/spatyper): Finding spa types in Staphylococcus aureus.
+- [spatyper](https://bactopia.github.io/developers/subworkflows/spatyper): Predict spa types of Staphylococcus aureus from genome assemblies.
+- [srahumanscrubber](https://bactopia.github.io/developers/subworkflows/srahumanscrubber): Remove human contamination from sequencing reads for SRA submission.
+- [srahumanscrubber_initdb](https://bactopia.github.io/developers/modules/srahumanscrubber_initdb): Initialize human read removal database for SRA Human Scrubber.
+- [srahumanscrubber_scrub](https://bactopia.github.io/developers/modules/srahumanscrubber_scrub): Scrub human reads from FASTQ files.
+- [ssuissero](https://bactopia.github.io/developers/modules/ssuissero): Serotype prediction of Streptococcus suis assemblies.
+- [ssuissero](https://bactopia.github.io/developers/subworkflows/ssuissero): Predict serotypes of Streptococcus suis from genome assemblies.
+- [staphopiasccmec](https://bactopia.github.io/developers/modules/staphopiasccmec): Primer based SCCmec typing of S.
+- [staphopiasccmec](https://bactopia.github.io/developers/subworkflows/staphopiasccmec): Identify SCCmec elements in Staphylococcus aureus genomes using Staphopia method.
+- [staphtyper](https://bactopia.github.io/developers/subworkflows/staphtyper): Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.
+- [stecfinder](https://bactopia.github.io/developers/modules/stecfinder): Serotype of Shigatoxin producing E.
+- [stecfinder](https://bactopia.github.io/developers/subworkflows/stecfinder): Identify and serotype Shiga toxin-producing E.
+- [Subworkflows](https://bactopia.github.io/developers/subworkflows): All available Bactopia subworkflows
+- [sylph](https://bactopia.github.io/developers/subworkflows/sylph): Profile microbial composition using Sylph.
+- [sylph_profile](https://bactopia.github.io/developers/modules/sylph_profile): Profile metagenome samples against a database using Sylph.
+- [tblastn](https://bactopia.github.io/developers/subworkflows/tblastn): Search protein query sequences against nucleotide database.
+- [tblastx](https://bactopia.github.io/developers/subworkflows/tblastx): Translate nucleotide query sequences and search nucleotide database.
+- [tbprofiler](https://bactopia.github.io/developers/subworkflows/tbprofiler): Profiling tool for Mycobacterium tuberculosis to detect resistance and strain type.
+- [tbprofiler_collate](https://bactopia.github.io/developers/modules/tbprofiler_collate): Collate TB-Profiler results from multiple samples.
+- [tbprofiler_profile](https://bactopia.github.io/developers/modules/tbprofiler_profile): Detect resistance and lineages of Mycobacterium tuberculosis genomes.
+- [teton](https://bactopia.github.io/developers/subworkflows/teton): Perform taxonomic classification and estimate bacterial genome sizes.
+
+## Impact & Outreach
+
+Citations, acknowledgements, presentations, and community contributions.
+
+- [Impact & Outreach](https://bactopia.github.io/impact-and-outreach): Discover how Bactopia is making an impact and giving back to the community.
+- [Acknowledgements](https://bactopia.github.io/impact-and-outreach/acknowledgements): A comprehensive list of datasets and software packages utilized in Bactopia, complete with links and citations.
+- [Citations](https://bactopia.github.io/impact-and-outreach/citations): Papers that have cited Bactopia
+- [Enhancements to OSS](https://bactopia.github.io/impact-and-outreach/enhancements): Discover the design principles behind Bactopia's numerous contributions to the bioinformatics community
+- [Presentations](https://bactopia.github.io/impact-and-outreach/presentations): A curated Collection of Bactopia related Talks and Posters.
+
+## Blog
+
+News, tutorials, and updates from the Bactopia project.
+
+- [Bactopia v4 and New Documentation](https://bactopia.github.io/blog/bactopia-v4)
+- [Using Bactopia with AllTheBacteria Assemblies](https://bactopia.github.io/blog/allthebacteria-tutorial): Learn how to use Bactopia to analyze nearly 2,000,000 bacterial assemblies from the AllTheBacteria project.

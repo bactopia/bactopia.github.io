@@ -2,7 +2,7 @@ BACTOPIA_REPO ?=
 
 BACTOPIA_DEV_PYTHON ?= /home/rpetit3/.conda/envs/bactopia-dev/bin/python
 
-.PHONY: generate parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements parse-cli generate-cli update-citations clean-generated
+.PHONY: generate parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements parse-cli generate-cli update-citations generate-llms-catalog llms-catalog clean-generated
 
 generate: parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements parse-cli generate-cli
 
@@ -37,5 +37,10 @@ generate-cli:
 update-citations:
 	python bin/update-citations.py --output data/citations.yml
 
+generate-llms-catalog:
+	python bin/generate-llms-catalog.py
+
+llms-catalog: generate-llms-catalog
+
 clean-generated:
-	rm -rf data/bactopia.json data/cli.json bactopia-tools/*.mdx bactopia-pipelines/*.mdx developers/subworkflows/*.mdx developers/modules/*.mdx developers/cli/*.mdx impact/citations.md impact/acknowledgements.md impact/enhancements.md
+	rm -rf data/bactopia.json data/cli.json bactopia-tools/*.mdx bactopia-pipelines/*.mdx developers/subworkflows/*.mdx developers/modules/*.mdx developers/cli/*.mdx impact/citations.md impact/acknowledgements.md impact/enhancements.md static/llms.txt static/catalog.json
