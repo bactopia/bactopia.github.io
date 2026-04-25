@@ -1,0 +1,75 @@
+---
+title: gigatyper
+description: "Run all available MLST schemes for a species against an assembly"
+tags:
+  - mlst
+  - typing
+  - multi-scheme
+  - sample-scope
+---
+
+# gigatyper
+
+**Tags:** <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/multi-scheme" class="badge badge--primary badge--tag">multi-scheme</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Run all available MLST schemes for a species against an assembly
+
+This subworkflow uses [GigaTyper](https://github.com/rpetit3/gigatyper) to run all available mlst schemes for a species against an assembly.
+It processes each sample individually and aggregates the results into
+a single consolidated report.
+
+## Take
+
+```
+fna: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `fna` | Assembled contigs in FASTA format |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | MLST results across all schemes |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | A merged TSV file with gigatyper results from all samples |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [gigatyper](/developers/modules/gigatyper) - Run all available MLST schemes for a species against an assembly
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [gigatyper](/bactopia-tools/gigatyper) - Run all available MLST schemes for a species against an assembly
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [GigaTyper](https://github.com/rpetit3/gigatyper)  
+  Petit III RA, Fearing T, Groves E [GigaTyper: Why choose one scheme when you can flex them all?](https://github.com/rpetit3/gigatyper) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/gigatyper)

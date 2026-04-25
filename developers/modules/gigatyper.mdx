@@ -1,0 +1,92 @@
+---
+title: gigatyper
+description: "Run all available MLST schemes for a species against an assembly"
+tags:
+  - mlst
+  - typing
+  - multi-scheme
+  - sample-scope
+---
+
+# gigatyper
+
+**Tags:** <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/multi-scheme" class="badge badge--primary badge--tag">multi-scheme</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Run all available MLST schemes for a species against an assembly
+
+Uses [GigaTyper](https://github.com/rpetit3/gigatyper) to run all available mlst schemes for a species against an assembly.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | MLST results across all schemes |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### GigaTyper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--gigatyper_species` | string |  | Force a specific species for scheme selection |
+
+## Used By
+
+### Subworkflows
+
+- [gigatyper](/developers/subworkflows/gigatyper) - Run all available MLST schemes for a species against an assembly
+
+### Workflows
+
+- [gigatyper](/bactopia-tools/gigatyper) - Run all available MLST schemes for a species against an assembly
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [GigaTyper](https://github.com/rpetit3/gigatyper)  
+  Petit III RA, Fearing T, Groves E [GigaTyper: Why choose one scheme when you can flex them all?](https://github.com/rpetit3/gigatyper) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/gigatyper)
+
+## Version
+
+```yaml
+GIGATYPER:
+    - gigatyper: 1.0.0
+```

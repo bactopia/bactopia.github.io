@@ -61,10 +61,10 @@ record (
 record (
     meta: Record,
     fna: Path?,
-    r1: Path,
-    r2: Path,
-    se: Path,
-    lr: Path,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
     tsv: Path?,
     results: Set<Path>,
     logs: Set<Path?>,
@@ -77,10 +77,10 @@ record (
 |-------|------|-------------|
 | `meta` | `Record` | Sample information record |
 | `fna` | `Path?` | Assembled contigs in FASTA format |
-| `r1` | `Path` | Passthrough Illumina R1 reads |
-| `r2` | `Path` | Passthrough Illumina R2 reads |
-| `se` | `Path` | Passthrough single-end reads |
-| `lr` | `Path` | Passthrough long reads |
+| `r1` | `Path?` | Passthrough Illumina R1 reads |
+| `r2` | `Path?` | Passthrough Illumina R2 reads |
+| `se` | `Path?` | Passthrough single-end reads |
+| `lr` | `Path?` | Passthrough long reads |
 | `tsv` | `Path?` | Tab-delimited report of assembly statistics (N50, length, coverage) |
 | `results` | `Set<Path>` | All output files to be published |
 | `logs` | `Set<Path?>` | Optional program specific log files |

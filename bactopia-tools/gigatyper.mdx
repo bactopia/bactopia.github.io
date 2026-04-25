@@ -1,0 +1,179 @@
+---
+title: gigatyper
+description: "Run all available MLST schemes for a species against an assembly"
+tags:
+  - mlst
+  - typing
+  - multi-scheme
+  - bactopia-tool
+---
+
+# gigatyper
+
+**Tags:** <a href="/bactopia-tools/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/bactopia-tools/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/bactopia-tools/tags/multi-scheme" class="badge badge--primary badge--tag">multi-scheme</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Run all available MLST schemes for a species against an assembly
+
+This Bactopia Tool uses [GigaTyper](https://github.com/rpetit3/gigatyper) to run all available mlst schemes for a species against an assembly.
+
+## Usage
+
+```bash
+bactopia --wf gigatyper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── gigatyper-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── gigatyper-<TIMESTAMP>
+        ├── merged-results
+        │   ├── gigatyper.tsv
+        │   └── logs
+        │       └── gigatyper-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── gigatyper-dag.dot
+            ├── gigatyper-report.html
+            └── gigatyper-timeline.html
+```
+
+### Per-Sample Results
+
+| File | Description |
+|------|-------------|
+| `*.tsv` | MLST results across all schemes |
+
+### Merged Results
+
+| File | Description |
+|------|-------------|
+| `gigatyper.tsv` | Merged TSV file containing gigatyper results from all samples |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| gigatyper-dag.dot | The Nextflow [DAG visualization](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| gigatyper-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| gigatyper-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| gigatyper-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+
+### GigaTyper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--gigatyper_species` | string |  | Force a specific species for scheme selection |
+
+<details>
+<summary>Filtering Parameters</summary>
+
+Use these parameters to specify which samples to include or exclude.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [gigatyper](/developers/subworkflows/gigatyper) - Run all available MLST schemes for a species against an assembly
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+- [GigaTyper](https://github.com/rpetit3/gigatyper)  
+  Petit III RA, Fearing T, Groves E [GigaTyper: Why choose one scheme when you can flex them all?](https://github.com/rpetit3/gigatyper) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/gigatyper)
