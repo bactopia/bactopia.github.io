@@ -126,3 +126,54 @@
 
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Admonition: keep text default, only icon + border get accent color */
+.alert {
+  color: var(--ifm-font-color-base);
+}
+.alert [class*='admonitionIcon'] {
+  color: var(--ifm-alert-foreground-color);
+}
+
+/* Admonition colors: Material Design palette (mkdocs-material style) */
+.alert--secondary {
+  --ifm-alert-foreground-color: #448aff;
+  --ifm-alert-background-color: rgba(68, 138, 255, 0.20);
+  border-color: rgb(68, 138, 255);
+}
+.alert--success {
+  --ifm-alert-foreground-color: #00bfa5;
+  --ifm-alert-background-color: rgba(0, 191, 165, 0.20);
+  border-color: rgb(0, 191, 165);
+}
+.alert--info {
+  --ifm-alert-foreground-color: #00b8d4;
+  --ifm-alert-background-color: rgba(0, 184, 212, 0.20);
+  border-color: rgb(0, 184, 212);
+}
+.alert--warning {
+  --ifm-alert-foreground-color: #ff9100;
+  --ifm-alert-background-color: rgba(255, 145, 0, 0.20);
+  border-color: rgb(255, 145, 0);
+}
+.alert--danger {
+  --ifm-alert-foreground-color: #ff1744;
+  --ifm-alert-background-color: rgba(255, 23, 68, 0.20);
+  border-color: rgb(255, 23, 68);
+}
+
+[data-theme='dark'] .alert--secondary {
+  --ifm-alert-background-color: rgba(68, 138, 255, 0.15);
+}
+[data-theme='dark'] .alert--success {
+  --ifm-alert-background-color: rgba(0, 191, 165, 0.15);
+}
+[data-theme='dark'] .alert--info {
+  --ifm-alert-background-color: rgba(0, 184, 212, 0.15);
+}
+[data-theme='dark'] .alert--warning {
+  --ifm-alert-background-color: rgba(255, 145, 0, 0.15);
+}
+[data-theme='dark'] .alert--danger {
+  --ifm-alert-background-color: rgba(255, 23, 68, 0.15);
+}
