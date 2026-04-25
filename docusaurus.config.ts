@@ -95,6 +95,10 @@ const config: Config = {
         routeBasePath: 'developers',
         sidebarPath: './sidebars-developers.ts',
         editUrl: 'https://github.com/bactopia/bactopia.github.io/edit/master/',
+        async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}: any) {
+          const items = await defaultSidebarItemsGenerator(args);
+          return items.filter((item: any) => !(item.type === 'doc' && item.id?.endsWith('/index')));
+        },
       },
     ],
   ],
