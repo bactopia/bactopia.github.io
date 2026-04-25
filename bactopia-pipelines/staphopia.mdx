@@ -27,8 +27,18 @@ It processes raw sequencing reads and produces a comprehensive genomic character
 
 ## Usage
 
+staphopia CLI:
+
 ```bash
-bactopia --wf staphopia \
+staphopia \
+  --input samples.csv \
+  --outdir results/
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/staphopia/main.nf \
   --input samples.csv \
   --outdir results/
 ```

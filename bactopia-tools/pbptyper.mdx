@@ -21,8 +21,17 @@ to predict penicillin susceptibility.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf pbptyper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/pbptyper/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

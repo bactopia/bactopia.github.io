@@ -19,8 +19,17 @@ transposase insertion sites in bacterial genomes from short read sequence data.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf ismapper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/ismapper/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

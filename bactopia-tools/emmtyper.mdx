@@ -19,8 +19,17 @@ emm-typing of _Streptococcus pyogenes_ using a de novo or complete assembly.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf emmtyper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/emmtyper/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

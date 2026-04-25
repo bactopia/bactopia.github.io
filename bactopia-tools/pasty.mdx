@@ -20,8 +20,17 @@ serogrouping of _Pseudomonas aeruginosa_ isolates from genome assemblies.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf pasty \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/pasty/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

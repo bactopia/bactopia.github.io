@@ -22,8 +22,17 @@ BLASTN finds regions of local similarity between nucleotide sequences.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf blastn \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/blastn/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

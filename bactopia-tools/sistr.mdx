@@ -22,8 +22,17 @@ and molecular serovar prediction.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf sistr \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/sistr/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

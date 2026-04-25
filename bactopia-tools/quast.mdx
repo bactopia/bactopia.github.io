@@ -24,8 +24,17 @@ across multiple samples.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf quast \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/quast/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

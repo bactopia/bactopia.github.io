@@ -21,8 +21,17 @@ from the eggNOG database to more precisely functionally annotate than traditiona
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf eggnog \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/eggnog/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

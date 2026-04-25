@@ -110,6 +110,14 @@ def build_workflow_context(wf, data):
 
     tag_base = '/bactopia-tools' if wf['type'] == 'tool' else '/bactopia-pipelines'
 
+    display_names = {'cleanyerreads': 'clean-yer-reads'}
+    display_name = display_names.get(wf['key'], wf['key'])
+
+    if wf['path'] == '.':
+        nf_run = 'bactopia/bactopia'
+    else:
+        nf_run = f"bactopia/bactopia/{wf['path']}main.nf"
+
     return {
         'wf': wf,
         'data': data,
@@ -117,6 +125,8 @@ def build_workflow_context(wf, data):
         'tag_base': tag_base,
         'badges': badges,
         'description': description,
+        'display_name': display_name,
+        'nf_run': nf_run,
         'params_section': params_section,
         'outputs_section': outputs_section,
         'composition_section': composition_section,

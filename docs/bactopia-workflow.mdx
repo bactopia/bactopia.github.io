@@ -26,8 +26,18 @@ and produces a complete genomic characterization suitable for downstream analysi
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
-bactopia --wf bactopia \
+bactopia \
+  --input samples.csv \
+  --outdir results/
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia \
   --input samples.csv \
   --outdir results/
 ```

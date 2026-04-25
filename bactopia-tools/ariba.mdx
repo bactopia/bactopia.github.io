@@ -22,8 +22,17 @@ ARIBA performs reference-based assembly and variant calling for gene detection.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf ariba \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/ariba/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

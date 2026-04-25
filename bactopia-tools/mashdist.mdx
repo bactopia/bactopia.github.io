@@ -20,8 +20,17 @@ distance from samples to reference genome sketches for rapid genomic comparison.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf mashdist \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/mashdist/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

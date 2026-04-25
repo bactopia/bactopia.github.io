@@ -22,8 +22,17 @@ and generates interactive Krona plots for visualization of classification result
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf kraken2 \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/kraken2/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

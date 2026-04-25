@@ -22,8 +22,17 @@ workflow to assign taxonomic classifications to samples using the
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf gtdb \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/gtdb/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

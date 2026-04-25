@@ -21,8 +21,17 @@ by downloading RefSeq assemblies using NCBI genome download.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf fastani \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/fastani/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

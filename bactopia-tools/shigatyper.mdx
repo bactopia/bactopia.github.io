@@ -27,8 +27,17 @@ and outbreak response.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf shigatyper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/shigatyper/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

@@ -21,8 +21,17 @@ The `plasmidfinder` module identifies plasmids in total or partial sequenced iso
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf plasmidfinder \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/plasmidfinder/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

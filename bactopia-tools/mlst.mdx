@@ -23,8 +23,17 @@ standardized sequence type assignments.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf mlst \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/mlst/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

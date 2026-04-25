@@ -22,8 +22,17 @@ clades I–V, _E. coli sensu stricto_ as well as to the main _E. coli_ phylogrou
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf clermontyping \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/clermontyping/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

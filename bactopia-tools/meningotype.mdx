@@ -23,8 +23,17 @@ Bexsero antigen sequence typing (BAST) (_fHbp_, _NHBA_, _NadA_, _PorA_).
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf meningotype \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/meningotype/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

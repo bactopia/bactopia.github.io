@@ -1,9 +1,11 @@
 {% extends "workflow.j2" %}
 
-{% block after_description %}
-## Examples
+{% block usage %}
+## Usage
 
 Run with the CARD database for antimicrobial resistance gene detection:
+
+Bactopia CLI:
 
 ```bash
 bactopia --wf abricate \
@@ -11,12 +13,12 @@ bactopia --wf abricate \
   --abricate_db card
 ```
 
-Run with VFDB for virulence factor screening:
+Nextflow:
 
 ```bash
-bactopia --wf abricate \
+nextflow run {{ nf_run }} \
   --bactopia /path/to/your/bactopia/results \
-  --abricate_db vfdb
+  --abricate_db card
 ```
 
 :::tip
@@ -24,5 +26,4 @@ You can run this workflow multiple times with different databases to screen
 against all of them. Each run will produce separate results that can be
 compared.
 :::
-
 {% endblock %}

@@ -21,8 +21,17 @@ from bacterial and archaeal genomes using machine learning approaches.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf phispy \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/phispy/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

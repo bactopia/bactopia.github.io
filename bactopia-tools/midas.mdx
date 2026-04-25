@@ -21,8 +21,17 @@ with more than 30,000 reference genomes for accurate species profiling.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf midas \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/midas/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

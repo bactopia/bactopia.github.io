@@ -25,8 +25,17 @@ across multiple samples.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf rgi \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/rgi/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

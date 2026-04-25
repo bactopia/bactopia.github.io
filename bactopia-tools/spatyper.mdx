@@ -19,8 +19,17 @@ spa types to _Staphylococcus aureus_ assemblies for epidemiological typing.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf spatyper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/spatyper/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

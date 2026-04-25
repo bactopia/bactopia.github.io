@@ -19,8 +19,17 @@ the serotype of _Haemophilus parasuis_ assemblies.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf hpsuissero \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/hpsuissero/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

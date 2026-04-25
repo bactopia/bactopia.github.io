@@ -18,8 +18,17 @@ This Bactopia Tool uses [GigaTyper](https://github.com/rpetit3/gigatyper) to run
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf gigatyper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/gigatyper/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

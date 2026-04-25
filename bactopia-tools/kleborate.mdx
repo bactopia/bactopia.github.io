@@ -23,8 +23,17 @@ antimicrobial resistance determinants, and K (capsule) and O antigen (LPS) serot
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf kleborate \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/kleborate/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

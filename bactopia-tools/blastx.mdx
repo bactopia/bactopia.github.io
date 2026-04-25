@@ -21,8 +21,17 @@ to query translated nucleotide sequences against protein databases for protein h
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf blastx \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/blastx/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

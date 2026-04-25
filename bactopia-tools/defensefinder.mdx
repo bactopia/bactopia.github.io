@@ -21,8 +21,17 @@ in bacterial genomes using HMM-based protein domain detection.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf defensefinder \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/defensefinder/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

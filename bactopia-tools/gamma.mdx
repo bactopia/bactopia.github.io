@@ -20,8 +20,17 @@ translated gene matches from assemblies using a comprehensive protein database.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf gamma \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/gamma/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

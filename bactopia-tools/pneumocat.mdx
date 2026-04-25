@@ -19,8 +19,17 @@ type to _Streptococcus pneumoniae_ from sequence reads for epidemiological typin
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf pneumocat \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/pneumocat/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

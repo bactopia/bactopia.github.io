@@ -23,8 +23,17 @@ for taxonomic classification and generates [Krona](https://github.com/marbl/Kron
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf bracken \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/bracken/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

@@ -29,8 +29,17 @@ association studies can be conducted using Scoary.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf pangenome \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/pangenome/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

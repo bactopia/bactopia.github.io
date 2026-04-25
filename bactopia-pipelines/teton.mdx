@@ -24,8 +24,18 @@ genome sizes and separate bacterial from non-bacterial organisms.
 
 ## Usage
 
+teton CLI:
+
 ```bash
-bactopia --wf teton \
+teton \
+  --input samples.csv \
+  --outdir results/
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/teton/main.nf \
   --input samples.csv \
   --outdir results/
 ```

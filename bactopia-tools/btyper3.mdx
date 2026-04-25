@@ -20,8 +20,17 @@ Bacillus cereus group isolates from genome assemblies.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf btyper3 \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/btyper3/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

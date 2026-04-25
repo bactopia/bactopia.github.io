@@ -19,22 +19,59 @@ tags:
 {{ description }}
 
 {% block after_description %}{% endblock %}
-{% if wf.type == 'tool' %}
+{% block usage %}
 ## Usage
+{% if wf.type == 'tool' %}
+
+Bactopia CLI:
 
 ```bash
 bactopia --wf {{ wf.key }} \
   --bactopia /path/to/your/bactopia/results
 ```
-{% else %}
-## Usage
+
+Nextflow:
 
 ```bash
-bactopia --wf {{ wf.key }} \
+nextflow run {{ nf_run }} \
+  --bactopia /path/to/your/bactopia/results
+```
+{% elif wf.path == '.' %}
+
+Bactopia CLI:
+
+```bash
+bactopia \
+  --input samples.csv \
+  --outdir results/
+```
+
+Nextflow:
+
+```bash
+nextflow run {{ nf_run }} \
+  --input samples.csv \
+  --outdir results/
+```
+{% else %}
+
+{{ display_name }} CLI:
+
+```bash
+{{ display_name }} \
+  --input samples.csv \
+  --outdir results/
+```
+
+Nextflow:
+
+```bash
+nextflow run {{ nf_run }} \
   --input samples.csv \
   --outdir results/
 ```
 {% endif %}
+{% endblock %}
 
 {% block after_usage %}{% endblock %}
 {% if outputs_section %}

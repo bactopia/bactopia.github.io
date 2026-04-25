@@ -27,8 +27,17 @@ essential for epidemiological investigations and outbreak tracking.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf shigapass \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/shigapass/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

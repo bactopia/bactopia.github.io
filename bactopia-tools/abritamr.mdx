@@ -24,8 +24,17 @@ for use in reporting presence of reportable AMR genes in Victoria, Australia.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf abritamr \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/abritamr/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

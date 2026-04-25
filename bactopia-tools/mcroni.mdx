@@ -21,8 +21,17 @@ and available in an output FASTA file.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf mcroni \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/mcroni/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

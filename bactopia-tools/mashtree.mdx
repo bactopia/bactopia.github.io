@@ -22,8 +22,17 @@ genomes from RefSeq by downloading them with NCBI genome download.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf mashtree \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/mashtree/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

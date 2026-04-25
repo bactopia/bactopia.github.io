@@ -21,8 +21,17 @@ to query protein sequences against translated nucleotide databases (contigs) for
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf tblastn \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/tblastn/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

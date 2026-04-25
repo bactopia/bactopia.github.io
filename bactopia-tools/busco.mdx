@@ -22,8 +22,17 @@ processes each assembly against a specified lineage dataset and provides compreh
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf busco \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/busco/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

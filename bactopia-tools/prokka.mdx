@@ -22,8 +22,17 @@ then searches them against multiple reference databases to provide comprehensive
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf prokka \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/prokka/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

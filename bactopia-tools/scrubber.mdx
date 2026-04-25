@@ -24,8 +24,17 @@ reports documenting the decontamination process.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf scrubber \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/scrubber/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

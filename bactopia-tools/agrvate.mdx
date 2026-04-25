@@ -21,8 +21,17 @@ The agr system is a key quorum-sensing regulator of virulence in S. aureus.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf agrvate \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/agrvate/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

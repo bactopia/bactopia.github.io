@@ -21,8 +21,17 @@ a set of lineage-specific marker genes.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf checkm \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/checkm/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

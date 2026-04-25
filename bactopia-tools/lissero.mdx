@@ -19,8 +19,17 @@ _in silico_ serotype prediction for _Listeria monocytogenes_ assemblies.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf lissero \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/lissero/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

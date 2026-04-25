@@ -21,8 +21,17 @@ STECFinder determines the serotype as well as the O-antigen and H-antigens.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf stecfinder \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/stecfinder/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

@@ -25,8 +25,18 @@ for downstream analysis.
 
 ## Usage
 
+clean-yer-reads CLI:
+
 ```bash
-bactopia --wf cleanyerreads \
+clean-yer-reads \
+  --input samples.csv \
+  --outdir results/
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/cleanyerreads/main.nf \
   --input samples.csv \
   --outdir results/
 ```

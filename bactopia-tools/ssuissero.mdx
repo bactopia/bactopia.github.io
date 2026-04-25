@@ -19,8 +19,17 @@ the serotype of _Streptococcus suis_ assemblies.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf ssuissero \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/ssuissero/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

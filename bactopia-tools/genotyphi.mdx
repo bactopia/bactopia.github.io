@@ -24,8 +24,17 @@ GenoTyphi parse_typhi_mykrobe.py script.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf genotyphi \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/genotyphi/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

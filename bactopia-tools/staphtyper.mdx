@@ -24,8 +24,17 @@ _Staphylococcus aureus_ features. Currently `staphtyper` includes:
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf staphtyper \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/staphtyper/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

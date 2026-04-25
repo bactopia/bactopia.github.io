@@ -22,8 +22,17 @@ BLASTP compares a protein query to a protein database to find similar sequences.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf blastp \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/blastp/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

@@ -22,8 +22,17 @@ comprehensive homology search at the protein level.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf tblastx \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/tblastx/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 

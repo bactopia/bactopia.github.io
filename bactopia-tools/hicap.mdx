@@ -19,8 +19,17 @@ _in silico_ typing of the _Haemophilus influenzae_ capsular locus.
 
 ## Usage
 
+Bactopia CLI:
+
 ```bash
 bactopia --wf hicap \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/hicap/main.nf \
   --bactopia /path/to/your/bactopia/results
 ```
 
