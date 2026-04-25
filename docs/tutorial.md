@@ -101,7 +101,7 @@ Upon completion, you will hopefully be met with text like the following:
 ```bash
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/bactopia/main.nf -w /path/to/work/ -profile test
     Resumed          : false
@@ -195,7 +195,7 @@ executor >  local (13)
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --accession SRX4563634 --coverage 100 --genome_size 2800000 --outdir ena-single-sample --max_cpus 2
     Resumed          : false
@@ -362,7 +362,7 @@ executor >  local (41)
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --accessions bactopia-accessions.txt --coverage 100 --outdir ena-multiple-samples --max_cpus 2
     Resumed          : false
@@ -482,7 +482,7 @@ executor >  local (13)
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --r1 fastqs/SRX4563634_R1.fastq.gz --r2 fastqs/SRX4563634_R2.fastq.gz --sample SRX4563634 --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 2
     Resumed          : false
@@ -548,7 +548,7 @@ executor >  local (13)
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /home/robert_petit/temp/bactopia3/tutorial/work/ --se fastqs/SRX4563634-SE.fastq.gz --sample SRX4563634-SE --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 2
     Resumed          : false
@@ -694,7 +694,7 @@ analysis. Here is example logging text you should see:
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --samples samples.txt --coverage 100 --max_cpus 2 --outdir local-multiple-samples
     Resumed          : false
@@ -908,15 +908,15 @@ Here's the logging information you should see:
 executor >  local (2)
 [9c/31f28f] process > BACTOPIATOOLS:STAPHTYPER:AGRVATE (SRX4563690)                           [100%] 7 of 7 ✔
 [f7/b722d7] process > BACTOPIATOOLS:STAPHTYPER:SPATYPER (SRX4563634)                          [100%] 7 of 7 ✔
-[68/067620] process > BACTOPIATOOLS:STAPHTYPER:STAPHOPIASCCMEC (SRX4563634)                   [100%] 7 of 7 ✔
+[68/067620] process > BACTOPIATOOLS:STAPHTYPER:SCCMEC (SRX4563634)                            [100%] 7 of 7 ✔
 [33/2e5476] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_AGRVATE (agrvate)                 [100%] 1 of 1 ✔
 [b9/a755e3] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_SPATYPER (spatyper)               [100%] 1 of 1 ✔
-[78/6a0552] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_STAPHOPIASCCMEC (staphopiasccmec) [100%] 1 of 1 ✔
+[78/6a0552] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_SCCMEC (sccmec)                   [100%] 1 of 1 ✔
 [c2/694b33] process > BACTOPIATOOLS:CUSTOM_DUMPSOFTWAREVERSIONS (1)                           [100%] 1 of 1 ✔
 
     Bactopia Tools: `staphtyper Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --wf staphtyper --bactopia local-multiple-samples/
     Resumed          : false
@@ -1006,7 +1006,7 @@ executor >  local (2)
 
     Bactopia Tools: `mashtree Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf --wf mashtree --bactopia local-multiple-samples/ --run_name tutorial
     Resumed          : false

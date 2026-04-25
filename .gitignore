@@ -10,3 +10,5 @@ npm-debug.log*
 Thumbs.db
 .idea/
 data/bactopia.json
+data/cli.json
+TODO.md

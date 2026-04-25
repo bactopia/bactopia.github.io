@@ -22,7 +22,7 @@ few examples of each of these accepted inputs, including:
 
 Towards the end of this guide, we'll also take a look at some helpful parameters. If you
 are interested in learning more about the full set of parameters available in Bactopia,
-please check out the Full Guide section.
+please check out the [Full Guide](full-guide.md) section.
 
 ![Bactopia Workflow](/img/bactopia-workflow.png)
 
