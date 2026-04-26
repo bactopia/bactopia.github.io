@@ -82,15 +82,54 @@ templates/             Jinja2 templates for doc generation
 static/                Static assets (images, logos)
 ```
 
-## Versioning
+## Version Snapshots
 
-When a new Bactopia release ships, a version snapshot is created so users can access docs for prior releases via the version dropdown in the navbar.
+The site uses 5 Docusaurus docs plugins, so native versioning (which only supports the default plugin) is not used. Instead, each release is preserved as a static build snapshot stored in an orphan git branch (`snapshot/vX.Y.Z`). The deploy workflow assembles active snapshots into the build output at deploy time.
+
+- `/` -- always serves the current version
+- `/vX.Y.Z/` -- serves active version snapshots (with an announcement banner linking to latest)
+- `snapshots.json` -- registry of all versions; the `active` flag controls which are included in the deploy
+- Cloudflare Pages free plan has a 20,000 file limit; each snapshot uses ~2,000 files
+
+### Creating a snapshot (new Bactopia release)
+
+1. Go to **Actions > Create Version Snapshot** and run the workflow
+   - `version`: the version tag (e.g., `v4.0.0`)
+   - `bactopia_ref`: the bactopia repo ref to build from (e.g., `v4.0.0`)
+2. The workflow builds the site with a version banner, pushes an orphan branch `snapshot/vX.Y.Z`, and updates `snapshots.json` on master
+3. The deploy workflow runs automatically, including the new snapshot
+
+After creating the snapshot, update the version label in `docusaurus.config.ts` to the new version:
+
+```typescript
+versions: {
+  current: {
+    label: 'v4.1.0',  // update to new version
+    ...
+  },
+},
+```
+
+### Rebuilding a snapshot
+
+Re-run the **Create Version Snapshot** workflow with the same version. The orphan branch is force-pushed with the new build.
+
+### Managing versions
+
+```bash
+make snapshot-list                       # show all versions and file budget
+make snapshot-add VERSION=vX.Y.Z FILES=N # manually register a snapshot
+make snapshot-deactivate VERSION=v2.1.0  # drop from active deploy
+make snapshot-activate VERSION=v2.1.0    # restore to active deploy
+```
+
+Deactivated versions appear under "Archived Versions" in the dropdown, linking to the GitHub branch. Re-activate anytime with `make snapshot-activate`.
 
 ## Deployment
 
-The site is deployed to GitHub Pages on the `gh-pages` branch.
+The site is deployed to [Cloudflare Pages](https://pages.cloudflare.com/) via GitHub Actions. Pushes to `master` trigger the deploy workflow (`.github/workflows/deploy.yml`), which:
 
-```bash
-npm run build    # build the production site
-npm run deploy   # deploy to GitHub Pages
-```
+1. Generates docs from the bactopia source repo
+2. Builds the Docusaurus site
+3. Fetches active version snapshots from their orphan branches
+4. Deploys the assembled output to Cloudflare Pages

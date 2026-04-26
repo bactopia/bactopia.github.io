@@ -19,7 +19,8 @@ Five content sections with separate sidebar files, each registered as a Docusaur
 
 Plus blog at `/blog` (configured in preset-classic).
 
-Static versioned snapshots of older releases live in `static/` (v2.1.0 through v3.1.0).
+Versioned snapshots of older releases are stored as orphan git branches (`snapshot/vX.Y.Z`).
+See the [Version Snapshots](#version-snapshots) section for details.
 
 ## Auto-generation Pipeline
 
@@ -70,6 +71,10 @@ Data files in `data/`:
 | `npm run clear` | Clear Docusaurus cache |
 | `make generate BACTOPIA_REPO=../bactopia` | Generate all docs from bactopia source |
 | `make llms-catalog` | Generate `static/llms.txt` and `static/catalog.json` |
+| `make snapshot-list` | Show all version snapshots and file budget |
+| `make snapshot-add VERSION=vX.Y.Z FILES=N` | Register a new active snapshot |
+| `make snapshot-deactivate VERSION=vX.Y.Z` | Remove a version from the active deploy |
+| `make snapshot-activate VERSION=vX.Y.Z` | Restore a version to the active deploy |
 
 ## LLM Index Files
 
@@ -102,6 +107,63 @@ Each generator script in `bin/` follows this structure:
 - Use `create_jinja_env()` with templates, or direct string generation
 - Write output with `Path.write_text()`
 - Print summary to stdout
+
+## Version Snapshots
+
+Each release gets a static snapshot so users can access older docs. Snapshots are stored as
+orphan git branches (`snapshot/vX.Y.Z`) and assembled into the deploy output at build time.
+
+- `/` always serves the current version (label set in `docusaurus.config.ts` under `versions.current.label`)
+- `/vX.Y.Z/` serves active snapshots (built with `baseUrl: '/vX.Y.Z/'` and an announcement banner)
+- `snapshots.json` is the registry of all versions; the `active` flag controls deploy inclusion
+- Cloudflare Pages has a 20,000 file limit; use `make snapshot-list` to check remaining budget
+
+### Creating a snapshot (new Bactopia release)
+
+1. Go to GitHub Actions and run the **Create Version Snapshot** workflow
+   - `version`: the version tag (e.g., `v4.0.0`)
+   - `bactopia_ref`: the bactopia repo ref to build from (e.g., `v4.0.0`)
+2. The workflow builds the site with the version banner, pushes an orphan branch
+   `snapshot/vX.Y.Z`, and updates `snapshots.json` on master
+3. The deploy workflow runs automatically, assembling the snapshot into the build output
+
+### Updating the current version label
+
+After creating a snapshot for the outgoing version, update the label in `docusaurus.config.ts`:
+
+```typescript
+versions: {
+  current: {
+    label: 'v4.1.0',  // update to new version
+    ...
+  },
+},
+```
+
+### Rebuilding a snapshot
+
+Re-run the **Create Version Snapshot** workflow with the same version. The orphan branch
+is force-pushed with the new build output.
+
+### Dropping old versions (approaching 20k file limit)
+
+```bash
+make snapshot-list                       # check budget
+make snapshot-deactivate VERSION=v2.1.0  # remove from active deploy
+# commit and push snapshots.json
+```
+
+The version moves to "Archived Versions" in the dropdown (links to the GitHub branch).
+The branch is preserved and can be re-activated with `make snapshot-activate`.
+
+### Key files
+
+| File | Purpose |
+|------|---------|
+| `snapshots.json` | Version registry (all versions, active flag, file counts) |
+| `docusaurus.config.ts` | `DOCS_VERSION` env var controls banner and `baseUrl` |
+| `.github/workflows/create-snapshot.yml` | Builds snapshot and pushes orphan branch |
+| `.github/workflows/deploy.yml` | Assembles active snapshots at deploy time |
 
 ## Skills
 
