@@ -237,6 +237,10 @@ const config: Config = {
           position: 'right',
         },
         {
+          type: 'custom-slack',
+          position: 'right',
+        },
+        {
           type: 'custom-github',
           position: 'right',
         },
@@ -246,7 +250,7 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Bactopia',
           items: [
             {
               label: 'Quick Start',
@@ -263,7 +267,7 @@ const config: Config = {
           ],
         },
         {
-          title: 'Bactopia',
+          title: 'More Resources',
           items: [
             {
               label: 'Bactopia Tools',
@@ -287,12 +291,12 @@ const config: Config = {
               href: 'https://github.com/bactopia/bactopia',
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/rpetit3',
+              label: 'Bluesky',
+              href: 'https://bsky.app/profile/bactopia.io',
             },
             {
-              label: 'Impact & Outreach',
-              to: '/impact-and-outreach/',
+              label: 'Slack',
+              href: 'pathname:///slack/',
             },
           ],
         },
