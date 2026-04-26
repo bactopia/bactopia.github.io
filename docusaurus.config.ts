@@ -1,6 +1,17 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import versionsData from './snapshots.json';
+
+const docsVersion = process.env.DOCS_VERSION;
+
+const activeVersions = versionsData.snapshots
+  .filter((v) => v.active)
+  .map((v) => ({
+    href: `pathname:///${v.version}/`,
+    label: v.version,
+    target: '_self' as const,
+  }));
 
 const config: Config = {
   title: 'Bactopia',
@@ -8,7 +19,7 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   url: 'https://bactopia.io',
-  baseUrl: '/',
+  baseUrl: docsVersion ? `/${docsVersion}/` : '/',
 
   organizationName: 'bactopia',
   projectName: 'bactopia.github.io',
@@ -142,7 +153,7 @@ const config: Config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: 'dev',
+              label: 'v4.0.0',
               path: '',
               badge: false,
             },
@@ -175,6 +186,15 @@ const config: Config = {
   ],
 
   themeConfig: {
+    ...(docsVersion && {
+      announcementBar: {
+        id: 'version_banner',
+        content: `You are viewing docs for <strong>${docsVersion}</strong>. <a href="https://bactopia.io">View the latest version</a>.`,
+        backgroundColor: '#d32f2f',
+        textColor: '#fff',
+        isCloseable: false,
+      },
+    }),
     image: 'img/bactopia-small-logo.png',
     navbar: {
       style: 'primary',
@@ -224,12 +244,13 @@ const config: Config = {
           position: 'right',
           dropdownItemsAfter: [
             {type: 'html', value: '<hr style="margin: 0.3rem 0">'},
-            {href: 'pathname:///v3.1.0/', label: 'v3.1.0', target: '_self'},
-            {href: 'pathname:///v3.0.1/', label: 'v3.0.1', target: '_self'},
-            {href: 'pathname:///v3.0.0/', label: 'v3.0.0', target: '_self'},
-            {href: 'pathname:///v2.2.0/', label: 'v2.2.0', target: '_self'},
-            {href: 'pathname:///v2.1.1/', label: 'v2.1.1', target: '_self'},
-            {href: 'pathname:///v2.1.0/', label: 'v2.1.0', target: '_self'},
+            ...activeVersions,
+            {type: 'html', value: '<hr style="margin: 0.3rem 0">'},
+            {
+              href: 'https://github.com/bactopia/bactopia.github.io/branches/all?query=snapshot%2F',
+              label: 'Archived Versions',
+              target: '_blank',
+            },
           ],
         },
         {

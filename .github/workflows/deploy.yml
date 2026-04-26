@@ -52,6 +52,25 @@ jobs:
       - name: Build Docusaurus site
         run: npm run build
 
+      - name: Assemble version snapshots from branches
+        run: |
+          for snap in $(python3 -c "import json; [print(s['version']) for s in json.load(open('snapshots.json'))['snapshots'] if s['active']]"); do
+            branch="snapshot/$snap"
+            target="build/$snap"
+            echo "Fetching $branch -> $target"
+            git fetch origin "$branch" --depth=1 || { echo "WARNING: branch $branch not found, skipping"; continue; }
+            mkdir -p "$target"
+            git archive "origin/$branch" | tar -x -C "$target"
+          done
+
+      - name: Report deployment file count
+        run: |
+          count=$(find build -type f | wc -l)
+          echo "Total deployment files: $count / 20000"
+          if [ "$count" -gt 19000 ]; then
+            echo "::warning::Approaching Cloudflare Pages 20k file limit: $count files"
+          fi
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
