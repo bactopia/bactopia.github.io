@@ -2,9 +2,9 @@ BACTOPIA_REPO ?=
 
 BACTOPIA_DEV_PYTHON ?= /home/rpetit3/.conda/envs/bactopia-dev/bin/python
 
-.PHONY: generate parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements parse-cli generate-cli update-citations generate-llms-catalog llms-catalog clean-generated
+.PHONY: generate parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements parse-cli generate-cli generate-tools-index update-citations generate-llms-catalog llms-catalog clean-generated
 
-generate: parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements parse-cli generate-cli
+generate: parse generate-workflows generate-subworkflows generate-modules generate-citations generate-acknowledgements generate-enhancements parse-cli generate-cli generate-tools-index
 
 parse:
 	@test -n "$(BACTOPIA_REPO)" || (echo "Error: BACTOPIA_REPO is not set. Pass it explicitly, for example: make generate BACTOPIA_REPO=../bactopia" >&2; exit 1)
@@ -33,6 +33,9 @@ parse-cli:
 
 generate-cli:
 	python bin/generate-cli.py data/cli.json --output-dir developers/cli/
+
+generate-tools-index:
+	python bin/generate-tools-index.py data/tool-categories.yml --tools-dir bactopia-tools/ --output bactopia-tools/index.mdx
 
 update-citations:
 	python bin/update-citations.py --output data/citations.yml

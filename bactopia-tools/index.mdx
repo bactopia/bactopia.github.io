@@ -6,74 +6,136 @@ sidebar_position: 2
 
 # Bactopia Tools
 
-Bactopia Tools are additional analysis workflows that run specific tools on existing Bactopia results. There are 67 Bactopia Tools available. You can also [browse by tag](/bactopia-tools/tags).
+Bactopia Tools are additional analysis workflows that run specific tools on existing
+Bactopia results. There are 67 Bactopia Tools available across 9 categories.
+You can also [browse by tag](/bactopia-tools/tags).
+
+## Antimicrobial Resistance
+
+Detect and characterize antimicrobial resistance genes, point mutations, and mobilized resistance determinants across bacterial genomes.
 
 | Workflow | Description |
 |----------|-------------|
 | [abricate](/bactopia-tools/abricate) | Mass screening of contigs for antimicrobial resistance and virulence genes. |
 | [abritamr](/bactopia-tools/abritamr) | A NATA accredited tool for reporting the presence of antimicrobial resistance genes. |
-| [agrvate](/bactopia-tools/agrvate) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants. |
 | [amrfinderplus](/bactopia-tools/amrfinderplus) | Bactopia Tool: Amrfinderplus. |
-| [ariba](/bactopia-tools/ariba) | Gene identification through local assemblies. |
+| [mcroni](/bactopia-tools/mcroni) | Sequence variation analysis of mcr-1 genes (mobilized colistin resistance). |
+| [mykrobe](/bactopia-tools/mykrobe) | Antimicrobial resistance detection for specific bacterial species. |
+| [rgi](/bactopia-tools/rgi) | Prediction of antibiotic resistance genes using RGI. |
+| [tbprofiler](/bactopia-tools/tbprofiler) | Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis. |
+
+## Annotation
+
+Annotate genome features including genes, proteins, functional domains, prophages, and defense systems.
+
+| Workflow | Description |
+|----------|-------------|
 | [bakta](/bactopia-tools/bakta) | Rapid annotation of bacterial genomes and plasmids. |
-| [blastn](/bactopia-tools/blastn) | Search against nucleotide BLAST databases using nucleotide queries. |
-| [blastp](/bactopia-tools/blastp) | Search against protein BLAST databases using protein queries. |
-| [blastx](/bactopia-tools/blastx) | Search against protein BLAST databases using translated nucleotide queries. |
-| [bracken](/bactopia-tools/bracken) | Estimate taxonomic abundance of metagenomic samples. |
-| [btyper3](/bactopia-tools/btyper3) | Taxonomic classification of Bacillus cereus group isolates. |
+| [defensefinder](/bactopia-tools/defensefinder) | Systematic identification of anti-phage defense systems. |
+| [eggnog](/bactopia-tools/eggnog) | Functional annotation of proteins using orthologous groups and phylogenies. |
+| [gamma](/bactopia-tools/gamma) | Identification, classification, and annotation of translated gene matches. |
+| [phispy](/bactopia-tools/phispy) | Prediction of prophages in bacterial and archaeal genomes. |
+| [prokka](/bactopia-tools/prokka) | Rapid whole genome annotation of bacterial, archaeal, and viral genomes. |
+
+## Assembly Quality
+
+Evaluate genome assembly completeness, contamination, and overall quality metrics.
+
+| Workflow | Description |
+|----------|-------------|
 | [busco](/bactopia-tools/busco) | Assessment of genome assembly completeness using evolutionarily informed expectations. |
 | [checkm](/bactopia-tools/checkm) | Assessment of microbial genome assembly quality. |
 | [checkm2](/bactopia-tools/checkm2) | Machine learning-based assessment of microbial genome assembly quality. |
-| [clermontyping](/bactopia-tools/clermontyping) | In silico phylotyping of Escherichia genus. |
-| [defensefinder](/bactopia-tools/defensefinder) | Systematic identification of anti-phage defense systems. |
-| [ectyper](/bactopia-tools/ectyper) | In silico prediction of Escherichia coli serotype. |
-| [eggnog](/bactopia-tools/eggnog) | Functional annotation of proteins using orthologous groups and phylogenies. |
-| [emmtyper](/bactopia-tools/emmtyper) | emm-typing of Streptococcus pyogenes assemblies. |
+| [quast](/bactopia-tools/quast) | Quality assessment of assembled contigs using QUAST. |
+
+## BLAST
+
+Search nucleotide and protein sequences against BLAST databases using all five standard BLAST programs.
+
+| Workflow | Description |
+|----------|-------------|
+| [blastn](/bactopia-tools/blastn) | Search against nucleotide BLAST databases using nucleotide queries. |
+| [blastp](/bactopia-tools/blastp) | Search against protein BLAST databases using protein queries. |
+| [blastx](/bactopia-tools/blastx) | Search against protein BLAST databases using translated nucleotide queries. |
+| [tblastn](/bactopia-tools/tblastn) | Search against translated nucleotide databases using protein queries. |
+| [tblastx](/bactopia-tools/tblastx) | Search against translated nucleotide databases using translated nucleotide queries. |
+
+## Comparative Genomics
+
+Compare genomes through distance estimation, average nucleotide identity, variant calling, pangenome analysis, and phylogenetic tree construction.
+
+| Workflow | Description |
+|----------|-------------|
 | [fastani](/bactopia-tools/fastani) | Fast alignment-free computation of whole-genome Average Nucleotide Identity. |
-| [gamma](/bactopia-tools/gamma) | Identification, classification, and annotation of translated gene matches. |
-| [genotyphi](/bactopia-tools/genotyphi) | Salmonella Typhi genotyping with lineage assignment. |
-| [gigatyper](/bactopia-tools/gigatyper) | Run all available MLST schemes for a species against an assembly |
-| [gtdb](/bactopia-tools/gtdb) | Identify marker genes and assign taxonomic classifications using GTDB. |
-| [hicap](/bactopia-tools/hicap) | Identify cap locus serotype and structure in Haemophilus influenzae assemblies. |
-| [hpsuissero](/bactopia-tools/hpsuissero) | Serotype prediction of Haemophilus parasuis assemblies. |
-| [ismapper](/bactopia-tools/ismapper) | Identify insertion sequence positions in bacterial genomes. |
-| [kleborate](/bactopia-tools/kleborate) | Comprehensive screening of Klebsiella genomes for virulence and resistance determinants. |
-| [kraken2](/bactopia-tools/kraken2) | Taxonomic classification of metagenomic sequence reads. |
-| [legsta](/bactopia-tools/legsta) | Sequence Based Typing (SBT) of Legionella pneumophila. |
-| [lissero](/bactopia-tools/lissero) | Serogroup typing prediction for Listeria monocytogenes. |
 | [mashdist](/bactopia-tools/mashdist) | Calculate Mash distances between sequences and reference genomes. |
 | [mashtree](/bactopia-tools/mashtree) | Rapid phylogenetic tree construction using Mash distances. |
-| [mcroni](/bactopia-tools/mcroni) | Sequence variation analysis of mcr-1 genes (mobilized colistin resistance). |
+| [pangenome](/bactopia-tools/pangenome) | Pangenome analysis with optional core-genome phylogeny. |
+| [snippy](/bactopia-tools/snippy) | Rapid haplotype variant calling and core genome alignment. |
+
+## Metagenomics & Taxonomy
+
+Classify reads taxonomically, estimate species abundances in metagenomic samples, and remove contaminant sequences.
+
+| Workflow | Description |
+|----------|-------------|
+| [bracken](/bactopia-tools/bracken) | Estimate taxonomic abundance of metagenomic samples. |
+| [gtdb](/bactopia-tools/gtdb) | Identify marker genes and assign taxonomic classifications using GTDB. |
+| [kraken2](/bactopia-tools/kraken2) | Taxonomic classification of metagenomic sequence reads. |
+| [midas](/bactopia-tools/midas) | Estimate species abundances from metagenomic samples. |
+| [scrubber](/bactopia-tools/scrubber) | Removal of human and contaminant sequences from metagenomic reads. |
+| [sylph](/bactopia-tools/sylph) | Taxonomic profiling by abundance-corrected MinHash. |
+
+## Plasmids & Mobile Elements
+
+Identify, reconstruct, and type plasmids and insertion sequences from bacterial genome assemblies.
+
+| Workflow | Description |
+|----------|-------------|
+| [ismapper](/bactopia-tools/ismapper) | Identify insertion sequence positions in bacterial genomes. |
+| [mobsuite](/bactopia-tools/mobsuite) | Reconstruction and annotation of plasmids from bacterial genome assemblies. |
+| [plasmidfinder](/bactopia-tools/plasmidfinder) | Bactopia Tool: Plasmidfinder. |
+
+## Typing
+
+Perform multi-locus sequence typing (MLST), phylotyping, and other general sequence-based typing methods.
+
+| Workflow | Description |
+|----------|-------------|
+| [ariba](/bactopia-tools/ariba) | Gene identification through local assemblies. |
+| [gigatyper](/bactopia-tools/gigatyper) | Run all available MLST schemes for a species against an assembly |
+| [mlst](/bactopia-tools/mlst) | Automatic Multi-Locus Sequence Type (MLST) calling from assembled contigs. |
+
+## Serotyping & Species-Specific Analysis
+
+Predict serotypes, serogroups, and perform species-specific characterization including specialized typing, virulence screening, and lineage assignment. Many of these tools can be automatically selected and run with [merlin](/bactopia-tools/merlin) based on species identification.
+
+| Workflow | Description |
+|----------|-------------|
+| [agrvate](/bactopia-tools/agrvate) | Rapid identification of Staphylococcus aureus agr locus type and agr operon variants. |
+| [btyper3](/bactopia-tools/btyper3) | Taxonomic classification of Bacillus cereus group isolates. |
+| [clermontyping](/bactopia-tools/clermontyping) | In silico phylotyping of Escherichia genus. |
+| [ectyper](/bactopia-tools/ectyper) | In silico prediction of Escherichia coli serotype. |
+| [emmtyper](/bactopia-tools/emmtyper) | emm-typing of Streptococcus pyogenes assemblies. |
+| [genotyphi](/bactopia-tools/genotyphi) | Salmonella Typhi genotyping with lineage assignment. |
+| [hicap](/bactopia-tools/hicap) | Identify cap locus serotype and structure in Haemophilus influenzae assemblies. |
+| [hpsuissero](/bactopia-tools/hpsuissero) | Serotype prediction of Haemophilus parasuis assemblies. |
+| [kleborate](/bactopia-tools/kleborate) | Comprehensive screening of Klebsiella genomes for virulence and resistance determinants. |
+| [legsta](/bactopia-tools/legsta) | Sequence Based Typing (SBT) of Legionella pneumophila. |
+| [lissero](/bactopia-tools/lissero) | Serogroup typing prediction for Listeria monocytogenes. |
 | [meningotype](/bactopia-tools/meningotype) | Comprehensive typing of Neisseria meningitidis. |
 | [merlin](/bactopia-tools/merlin) | MinMER-assisted species-specific tool selection and execution. |
-| [midas](/bactopia-tools/midas) | Estimate species abundances from metagenomic samples. |
-| [mlst](/bactopia-tools/mlst) | Automatic Multi-Locus Sequence Type (MLST) calling from assembled contigs. |
-| [mobsuite](/bactopia-tools/mobsuite) | Reconstruction and annotation of plasmids from bacterial genome assemblies. |
-| [mykrobe](/bactopia-tools/mykrobe) | Antimicrobial resistance detection for specific bacterial species. |
 | [ngmaster](/bactopia-tools/ngmaster) | Multi-antigen sequence typing of Neisseria gonorrhoeae. |
-| [pangenome](/bactopia-tools/pangenome) | Pangenome analysis with optional core-genome phylogeny. |
 | [pasty](/bactopia-tools/pasty) | In silico serogrouping of Pseudomonas aeruginosa isolates. |
 | [pbptyper](/bactopia-tools/pbptyper) | Penicillin Binding Protein (PBP) typing for Streptococcus pneumoniae. |
-| [phispy](/bactopia-tools/phispy) | Prediction of prophages in bacterial and archaeal genomes. |
-| [plasmidfinder](/bactopia-tools/plasmidfinder) | Bactopia Tool: Plasmidfinder. |
 | [pneumocat](/bactopia-tools/pneumocat) | Capsular type assignment to Streptococcus pneumoniae from sequence reads. |
-| [prokka](/bactopia-tools/prokka) | Rapid whole genome annotation of bacterial, archaeal, and viral genomes. |
-| [quast](/bactopia-tools/quast) | Quality assessment of assembled contigs using QUAST. |
-| [rgi](/bactopia-tools/rgi) | Prediction of antibiotic resistance genes using RGI. |
 | [sccmec](/bactopia-tools/sccmec) | Typing of SCCmec cassettes in Staphylococcus aureus assemblies. |
-| [scrubber](/bactopia-tools/scrubber) | Removal of human and contaminant sequences from metagenomic reads. |
 | [seqsero2](/bactopia-tools/seqsero2) | Salmonella serotype prediction from sequencing reads or assemblies. |
 | [seroba](/bactopia-tools/seroba) | Serotyping of Streptococcus pneumoniae from Illumina paired-end reads. |
 | [shigapass](/bactopia-tools/shigapass) | Prediction of Shigella serotypes and differentiation from EIEC. |
 | [shigatyper](/bactopia-tools/shigatyper) | Rapid determination of Shigella serotypes from sequencing reads. |
 | [shigeifinder](/bactopia-tools/shigeifinder) | In silico serotype prediction for Shigella and Enteroinvasive E. coli (EIEC). |
 | [sistr](/bactopia-tools/sistr) | Serovar prediction of Salmonella enterica from assemblies. |
-| [snippy](/bactopia-tools/snippy) | Rapid haplotype variant calling and core genome alignment. |
 | [spatyper](/bactopia-tools/spatyper) | spa typing of Staphylococcus aureus assemblies. |
 | [ssuissero](/bactopia-tools/ssuissero) | Serotype prediction of Streptococcus suis assemblies. |
 | [staphtyper](/bactopia-tools/staphtyper) | Comprehensive typing of Staphylococcus aureus genomes. |
 | [stecfinder](/bactopia-tools/stecfinder) | Serotype identification of Shiga toxin-producing E. coli. |
-| [sylph](/bactopia-tools/sylph) | Taxonomic profiling by abundance-corrected MinHash. |
-| [tblastn](/bactopia-tools/tblastn) | Search against translated nucleotide databases using protein queries. |
-| [tblastx](/bactopia-tools/tblastx) | Search against translated nucleotide databases using translated nucleotide queries. |
-| [tbprofiler](/bactopia-tools/tbprofiler) | Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis. |
