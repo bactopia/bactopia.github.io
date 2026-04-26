@@ -7,7 +7,7 @@ const config: Config = {
   tagline: 'An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.',
   favicon: 'img/favicon.ico',
 
-  url: 'https://bactopia.github.io',
+  url: 'https://bactopia.io',
   baseUrl: '/',
 
   organizationName: 'bactopia',

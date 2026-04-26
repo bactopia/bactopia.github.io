@@ -2,8 +2,8 @@
 
 Docusaurus 3.10 site for [Bactopia](https://github.com/bactopia/bactopia), a bacterial genomics workflow.
 
-- Site: https://bactopia.github.io
-- Repo: bactopia/bactopia.github.io (deployed to gh-pages branch)
+- Site: https://bactopia.io
+- Repo: bactopia/bactopia.github.io (deployed to Cloudflare Pages)
 
 ## Architecture
 

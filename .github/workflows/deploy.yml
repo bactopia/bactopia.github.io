@@ -1,0 +1,60 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+    inputs:
+      bactopia_ref:
+        description: 'bactopia/bactopia ref to checkout (branch, tag, or SHA)'
+        required: false
+        default: 'main'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout docs repo
+        uses: actions/checkout@v4
+
+      - name: Checkout bactopia source repo
+        uses: actions/checkout@v4
+        with:
+          repository: bactopia/bactopia
+          path: bactopia-source
+          ref: ${{ github.event.inputs.bactopia_ref || 'main' }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Generate docs from bactopia source
+        run: make generate BACTOPIA_REPO=bactopia-source
+        env:
+          BACTOPIA_DEV_PYTHON: python
+
+      - name: Build Docusaurus site
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build/ --project-name=bactopia-docs --branch=main
