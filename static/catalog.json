@@ -4,8 +4,8 @@
     "url": "https://bactopia.github.io",
     "tagline": "An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes."
   },
-  "generated": "2026-04-25T04:33:48Z",
-  "total_pages": 307,
+  "generated": "2026-04-28T19:01:26Z",
+  "total_pages": 306,
   "sections": [
     {
       "key": "bactopia",
@@ -16,7 +16,7 @@
       "pages": [
         {
           "title": "Bactopia",
-          "description": "An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.",
+          "description": "An end-to-end workflow Nextflow pipeline for bacterial genome analysis.",
           "url": "https://bactopia.github.io/",
           "path": "/",
           "tags": [],
@@ -60,10 +60,10 @@
           "sidebar_position": 4
         },
         {
-          "title": "Bactopia Workflow",
+          "title": "Full Guide",
           "description": "Comprehensive bacterial analysis pipeline for complete genomic characterization.",
-          "url": "https://bactopia.github.io/bactopia-workflow",
-          "path": "/bactopia-workflow",
+          "url": "https://bactopia.github.io/full-guide",
+          "path": "/full-guide",
           "tags": [
             "bacteria",
             "assembly",
@@ -73,8 +73,8 @@
             "genomics",
             "pipeline"
           ],
-          "source_file": "docs/bactopia-workflow.mdx",
-          "sidebar_position": 6
+          "source_file": "docs/full-guide.mdx",
+          "sidebar_position": 5
         },
         {
           "title": "Changelog",
@@ -4423,21 +4423,8 @@
       "title": "Blog",
       "route_base": "/blog",
       "description": "News, tutorials, and updates from the Bactopia project.",
-      "page_count": 2,
+      "page_count": 1,
       "pages": [
-        {
-          "title": "Bactopia v4 and New Documentation",
-          "description": "",
-          "url": "https://bactopia.github.io/blog/bactopia-v4",
-          "path": "/blog/bactopia-v4",
-          "tags": [
-            "bactopia",
-            "v4",
-            "documentation"
-          ],
-          "source_file": "blog/2026/04/23-bactopia-v4/index.md",
-          "date": "2026-04-23"
-        },
         {
           "title": "Using Bactopia with AllTheBacteria Assemblies",
           "description": "Learn how to use Bactopia to analyze nearly 2,000,000 bacterial assemblies from the AllTheBacteria project.",

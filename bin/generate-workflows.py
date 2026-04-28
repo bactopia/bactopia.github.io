@@ -174,11 +174,11 @@ def main():
         elif key == 'bactopia':
             page = page.replace(
                 'title: bactopia\n',
-                'title: Bactopia Workflow\nsidebar_label: Bactopia Workflow\nsidebar_position: 6\n',
+                'title: Full Guide\nsidebar_label: Full Guide\nsidebar_position: 5\n',
                 1,
             )
             page = page.replace('  - named-workflow\n', '', 1)
-            (docs_dir / 'bactopia-workflow.mdx').write_text(page)
+            (docs_dir / 'full-guide.mdx').write_text(page)
         else:
             (pipelines_dir / f'{key}.mdx').write_text(page)
 

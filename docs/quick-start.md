@@ -10,14 +10,21 @@ sidebar_position: 1
 This is as quick as it gets. The following commands will install Bactopia and run a test dataset.
 
 ```bash
-# Install Bactopia using Mamba
-mamba create -y -n bactopia -c conda-forge -c bioconda bactopia
+# Install Bactopia using Conda
+conda create -y -n bactopia -c conda-forge -c bioconda bactopia
 
 # Test Bactopia
 # First launch will set up environments (e.g. Conda, Docker, or Singularity)
 conda activate bactopia
 bactopia -profile test,standard
 ```
+
+:::note[The first run might take a while]
+The first time you run Bactopia it will build the environments (Conda, Docker, or Singularity)
+needed for analysis. Depending on your internet connection this might take a little while.
+I recommend grabbing a coffee or going for a walk. This is only a one time build, future
+runs will be much faster.
+:::
 
 :::note[Use `-profile` to change environment]
 The default profile for Bactopia is Conda. If you would like to test using Docker or

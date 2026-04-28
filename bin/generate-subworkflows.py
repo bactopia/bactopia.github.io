@@ -120,7 +120,7 @@ def build_subworkflow_context(sw, data):
             wf = data['workflows'].get(wf_name, {})
             wf_summary = wf.get('summary', '')
             if wf_name == 'bactopia':
-                wf_path = '/bactopia-workflow'
+                wf_path = '/full-guide'
             elif wf.get('type') == 'tool':
                 wf_path = f'/bactopia-tools/{wf_name}'
             else:

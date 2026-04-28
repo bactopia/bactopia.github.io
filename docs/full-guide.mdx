@@ -1,7 +1,7 @@
 ---
-title: Bactopia Workflow
-sidebar_label: Bactopia Workflow
-sidebar_position: 6
+title: Full Guide
+sidebar_label: Full Guide
+sidebar_position: 5
 description: "Comprehensive bacterial analysis pipeline for complete genomic characterization."
 tags:
   - bacteria
@@ -23,6 +23,275 @@ This workflow performs end-to-end analysis including quality control, assembly,
 annotation, antimicrobial resistance detection, MLST typing, and optional
 pathogen-specific analysis through Merlin. It processes raw sequencing reads
 and produces a complete genomic characterization suitable for downstream analysis.
+
+## Pipeline Overview
+
+![Bactopia Workflow](/img/bactopia-workflow-main.png)
+
+Looking at the workflow overview above, it might not look like much is happening, but I can
+assure you that a lot is going on. The workflow is broken down into 8 steps, which are:
+
+1. **Gather** - Collect all the data in one place
+2. **QC** - Quality control of the data
+3. **Assembler** - Assemble the reads into contigs
+4. **Annotator** - Annotate the contigs
+5. **Sketcher** - Create a sketch of the contigs, and query databases
+6. **Sequence Typing** - Determine the sequence type of the contigs
+7. **Antibiotic Resistance** - Determine the antibiotic resistance of the contigs and proteins
+8. **Merlin** - Automatically run species-specific tools based on distance
+
+If you are looking for a guide to get started quickly, please check out the
+[Beginner's Guide](beginners-guide.md).
+
+### Step 1 - Gather
+
+The main purpose of the `gather` step is to get all the samples into a single place. This
+includes downloading samples from ENA/SRA or NCBI Assembly. The tools used are:
+
+| Tool | Description |
+|------|-------------|
+| [art](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm) | For simulating error-free reads for an input assembly |
+| [fastq-dl](https://github.com/rpetit3/fastq-dl) | Downloading FASTQ files from ENA/SRA |
+| [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) | Downloading FASTA files from NCBI Assembly |
+
+This `gather` step also does basic QC checks to help prevent downstream failures.
+
+#### Failed Quality Checks
+
+| Filename | Description |
+|----------|-------------|
+| -gzip-error.txt | Sample failed Gzip checks and excluded from further analysis |
+| -low-basepair-proportion-error.txt | Sample failed basepair proportion checks and excluded from further analysis |
+| -low-read-count-error.txt | Sample failed read count checks and excluded from further analysis |
+| -low-sequence-depth-error.txt | Sample failed sequenced basepair checks and excluded from further analysis |
+
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
+
+<details>
+<summary>Example Error: Input FASTQ(s) failed Gzip checks</summary>
+
+If input FASTQ(s) fail to pass Gzip test, the sample will be excluded from
+further analysis.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-gzip-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQs failed Gzip tests. Please check the input FASTQs. Further
+analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Input FASTQs have disproportionate number of reads</summary>
+
+If input FASTQ(s) for a sample have disproportionately different number of reads
+between the two pairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_proportion` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-basepair-proportion-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQs failed to meet the minimum shared basepairs. They
+shared `Y` basepairs, with R1 having `A` bp and R2 having `B` bp. Further
+analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Input FASTQ(s) has too few reads</summary>
+
+If input FASTQ(s) for a sample have less than the minimum required reads, the
+sample will be excluded from further analysis. You can adjust this minimum read
+count using the `--min_reads` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
+minimum `Y` read count. Further analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Input FASTQ(s) has too little sequenced basepairs</summary>
+
+If input FASTQ(s) for a sample fails to meet the minimum number of sequenced
+basepairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_basepairs` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
+required minimum `Y` bp. Further analysis is discontinued._
+
+</details>
+
+### Step 2 - QC
+
+The `qc` module uses a variety of tools to perform quality control on Illumina and
+Oxford Nanopore reads. The tools used are:
+
+| Tool | Technology | Description |
+|------|------------|-------------|
+| [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/) | Illumina | A suite of tools for manipulating reads |
+| [fastp](https://github.com/OpenGene/fastp) | Illumina | A tool designed to provide fast all-in-one preprocessing for FastQ files |
+| [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) | Illumina | A quality control tool for high throughput sequence data |
+| [fastq_scan](https://github.com/rpetit3/fastq-scan) | Nanopore | A tool for quickly scanning FASTQ files |
+| [lighter](https://github.com/mourisl/Lighter) | Illumina | A tool for correcting sequencing errors in Illumina reads |
+| [NanoPlot](https://github.com/wdecoster/NanoPlot) | Nanopore | A tool for plotting long read sequencing data |
+| [nanoq](https://github.com/esteinig/nanoq) | Nanopore | A tool for calculating quality metrics for Oxford Nanopore reads |
+| [porechop](https://github.com/rrwick/Porechop) | Nanopore | A tool for removing adapters from Oxford Nanopore reads |
+| [rasusa](https://github.com/mbhall88/rasusa) | Nanopore | Randomly subsample sequencing reads to a specified coverage |
+
+Similar to the `gather` step, the `qc` step will also stop samples that fail to meet
+basic QC checks from continuing downstream.
+
+#### Failed Quality Checks
+
+| Filename | Description |
+|----------|-------------|
+| .error-fastq.gz | A gzipped FASTQ file of reads that failed QC |
+| -low-read-count-error.txt | Sample failed read count checks and excluded from further analysis |
+| -low-sequence-coverage-error.txt | Sample failed sequenced coverage checks and excluded from further analysis |
+| -low-sequence-depth-error.txt | Sample failed sequenced basepair checks and excluded from further analysis |
+
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
+
+<details>
+<summary>Example Error: After QC, too few reads remain</summary>
+
+If after cleaning reads, a sample has less than the minimum required reads, the
+sample will be excluded from further analysis. You can adjust this minimum read
+count using the `--min_reads` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
+minimum `Y` read count. Further analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: After QC, too little sequence coverage remains</summary>
+
+If after cleaning reads, a sample has failed to meet the minimum sequence
+coverage required, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_coverage` parameter.
+
+__Note:__ This check is only performed when a genome size is available.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-coverage-error.txt__
+_After QC, &lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not
+exceed the required minimum `Y` bp (`Z`x coverage). Further analysis is
+discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: After QC, too little sequenced basepairs remain</summary>
+
+If after cleaning reads, a sample has failed to meet the minimum number of
+sequenced basepairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_basepairs` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
+required minimum `Y` bp. Further analysis is discontinued._
+
+</details>
+
+### Step 3 - Assembler
+
+The `assembler` module uses a variety of assembly tools to create an assembly of
+Illumina and Oxford Nanopore reads. The tools used are:
+
+| Tool | Description |
+|------|-------------|
+| [Dragonflye](https://github.com/rpetit3/dragonflye) | Assembly of Oxford Nanopore reads, as well as hybrid assembly with short-read polishing |
+| [Shovill](https://github.com/tseemann/shovill) | Assembly of Illumina paired-end reads |
+| [Shovill-SE](https://github.com/rpetit3/shovill) | Assembly of Illumina single-end reads |
+| [Unicycler](https://github.com/rrwick/Unicycler) | Hybrid assembly, using short-reads first then long-reads |
+
+Summary statistics for each assembly are generated using [assembly-scan](https://github.com/rpetit3/assembly-scan).
+
+:::tip[Prefer `--short_polish` over `--hybrid` with recent ONT sequencing]
+Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
+assembly works great when you have low-coverage noisy long-reads. However, if you are
+using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
+method is going to yield better results (_and be faster!_) than `--hybrid`.
+:::
+
+#### Failed Quality Checks
+
+| Filename | Description |
+|----------|-------------|
+| -assembly-error.txt | Sample failed assembly checks and excluded from further analysis |
+
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
+
+<details>
+<summary>Example Error: Assembled Successfully, but 0 Contigs</summary>
+
+If a sample assembles successfully, but 0 contigs are formed, the sample will be
+excluded from further analysis.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__
+_&lt;SAMPLE_NAME&gt; assembled successfully, but 0 contigs were formed. Please investigate
+&lt;SAMPLE_NAME&gt; to determine a cause (e.g. metagenomic, contaminants, etc...) for this
+outcome. Further assembly-based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Assembled successfully, but poor assembly size</summary>
+
+If your sample assembles successfully, but the assembly size is less than the minimum
+allowed genome size, the sample will be excluded from further analysis. You can
+adjust this minimum size using the `--min_genome_size` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__
+_&lt;SAMPLE_NAME&gt; assembled size (000 bp) is less than the minimum allowed genome
+size (000 bp). If this is unexpected, please investigate &lt;SAMPLE_NAME&gt; to
+determine a cause (e.g. metagenomic, contaminants, etc...) for the poor assembly.
+Otherwise, adjust the `--min_genome_size` parameter to fit your need. Further
+assembly based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+
+</details>
+
+### Step 4 - Annotator
+
+The `annotator` step uses either [Prokka](https://github.com/tseemann/prokka) (default)
+or [Bakta](https://github.com/oschwengers/bakta) (via `--use_bakta`) to annotate
+assembled contigs with functional information including genes, proteins, rRNA, tRNA,
+and other genomic features.
+
+### Step 5 - Sketcher
+
+The `sketcher` module uses [Mash](https://github.com/marbl/Mash) and
+[Sourmash](https://github.com/dib-lab/sourmash) to create sketches and query
+[RefSeq](https://www.ncbi.nlm.nih.gov/refseq/) and [GTDB](https://gtdb.ecogenomic.org/).
+
+### Step 6 - Sequence Typing
+
+The `mlst` step uses [mlst](https://github.com/tseemann/mlst) to scan assemblies against
+[PubMLST](https://pubmlst.org/) typing schemes and determine the sequence type.
+
+### Step 7 - Antibiotic Resistance
+
+The `amrfinderplus` step uses [AMRFinder+](https://github.com/ncbi/amr) to identify
+antimicrobial resistance genes and point mutations from both assembled contigs and
+annotated protein sequences.
+
+### Step 8 - Merlin
+
+The `merlin` step automatically selects and runs species-specific typing tools based on
+Mash distance results from the `sketcher` step. Enable with `--ask_merlin`. See the
+[Pathogen-Specific Analysis](#pathogen-specific-analysis) output section below for the
+full list of supported organisms and tools.
 
 ## Usage
 

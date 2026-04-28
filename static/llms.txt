@@ -6,12 +6,12 @@
 
 Core Bactopia documentation -- installation, quick start, tutorials, and workflow reference.
 
-- [Bactopia](https://bactopia.github.io/): An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes.
+- [Bactopia](https://bactopia.github.io/): An end-to-end workflow Nextflow pipeline for bacterial genome analysis.
 - [Quick Start](https://bactopia.github.io/quick-start): Get started using Bactopia in a few commands, no asking questions and no looking back!
 - [Installation](https://bactopia.github.io/installation): Learn how Bactopia install and get started using Bactopia for your genomic analyses.
 - [Beginner's Guide](https://bactopia.github.io/beginners-guide): A beginner's guide to getting started using Bactopia to process your bacterial genomes.
 - [Tutorial](https://bactopia.github.io/tutorial): A tutorial to get started with Bactopia using publicly available genomes.
-- [Bactopia Workflow](https://bactopia.github.io/bactopia-workflow): Comprehensive bacterial analysis pipeline for complete genomic characterization.
+- [Full Guide](https://bactopia.github.io/full-guide): Comprehensive bacterial analysis pipeline for complete genomic characterization.
 - [Changelog](https://bactopia.github.io/changelog): A full list of Bactopia releases and a description of the changes.
 
 ## Bactopia Tools
@@ -336,5 +336,4 @@ Citations, acknowledgements, presentations, and community contributions.
 
 News, tutorials, and updates from the Bactopia project.
 
-- [Bactopia v4 and New Documentation](https://bactopia.github.io/blog/bactopia-v4)
 - [Using Bactopia with AllTheBacteria Assemblies](https://bactopia.github.io/blog/allthebacteria-tutorial): Learn how to use Bactopia to analyze nearly 2,000,000 bacterial assemblies from the AllTheBacteria project.
