@@ -177,34 +177,57 @@ the Gather Step
 Nextflow will produce logging information explaining what is happening during the
 analysis. Here is example logging text you should see:
 ```bash
-executor >  local (13)
-[skipped  ] process > BACTOPIA:DATASETS                                               [100%] 1 of 1, stored: 1 ✔
-[08/0e0374] process > BACTOPIA:GATHER:GATHER_MODULE (SRX4563634)                      [100%] 1 of 1 ✔
-[dc/2efa12] process > BACTOPIA:GATHER:CSVTK_CONCAT (meta)                             [100%] 1 of 1 ✔
-[ec/f045fb] process > BACTOPIA:QC:QC_MODULE (SRX4563634)                              [100%] 1 of 1 ✔
-[3b/ec192d] process > BACTOPIA:ASSEMBLER:ASSEMBLER_MODULE (SRX4563634)                [100%] 1 of 1 ✔
-[9f/f4db15] process > BACTOPIA:ASSEMBLER:CSVTK_CONCAT (assembly-scan)                 [100%] 1 of 1 ✔
-[84/131342] process > BACTOPIA:SKETCHER:SKETCHER_MODULE (SRX4563634)                  [100%] 1 of 1 ✔
-[12/b266ba] process > BACTOPIA:ANNOTATOR:PROKKA_MODULE (SRX4563634)                   [100%] 1 of 1 ✔
-[d5/7183c8] process > BACTOPIA:AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563634)           [100%] 1 of 1 ✔
-[1c/cdac50] process > BACTOPIA:AMRFINDERPLUS:GENES_CONCAT (amrfinderplus-genes)       [100%] 1 of 1 ✔
-[47/e35d5b] process > BACTOPIA:AMRFINDERPLUS:PROTEINS_CONCAT (amrfinderplus-proteins) [100%] 1 of 1 ✔
-[29/28a819] process > BACTOPIA:MLST:MLST_MODULE (SRX4563634)                          [100%] 1 of 1 ✔
-[20/8d35e9] process > BACTOPIA:MLST:CSVTK_CONCAT (mlst)                               [100%] 1 of 1 ✔
-[e8/17f49c] process > BACTOPIA:DUMPSOFTWAREVERSIONS (1)                               [100%] 1 of 1 ✔
+executor >  local (11)
+[skipped  ] DATASETS:DATASETS_MODULE                     [100%] 1 of 1, stored: 1 ✔
+[ee/03bca9] GATHER:GATHER_MODULE (SRX4563634)            [100%] 1 of 1 ✔
+[1c/00a83a] GATHER:CSVTK_CONCAT (meta)                   [100%] 1 of 1 ✔
+[5f/e313c3] QC:QC_MODULE (SRX4563634)                    [100%] 1 of 1 ✔
+[f0/76d7d3] ASSEMBLER:ASSEMBLER_MODULE (SRX4563634)      [100%] 1 of 1 ✔
+[e0/ed8bf7] ASSEMBLER:CSVTK_CONCAT (assembly-scan)       [100%] 1 of 1 ✔
+[05/bc5789] SKETCHER:SKETCHER_MODULE (SRX4563634)        [100%] 1 of 1 ✔
+[b8/5c3c0b] PROKKA:PROKKA_MODULE (SRX4563634)            [100%] 1 of 1 ✔
+[71/1c2646] AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563634) [100%] 1 of 1 ✔
+[f1/d82589] AMRFINDERPLUS:CSVTK_CONCAT (amrfinderplus)   [100%] 1 of 1 ✔
+[76/d9b39f] MLST:MLST_MODULE (SRX4563634)                [100%] 1 of 1 ✔
+[b1/3c8b94] MLST:CSVTK_CONCAT (mlst)                     [100%] 1 of 1 ✔
+Completed at: 29-Apr-2026 11:05:37
+Duration    : 8m 55s
+CPU hours   : 0.3
+Succeeded   : 11
 
-    Bactopia Execution Summary
-    ---------------------------
-    Bactopia Version : 4.0.0
-    Nextflow Version : 23.04.1
-    Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --accession SRX4563634 --coverage 100 --genome_size 2800000 --outdir ena-single-sample --max_cpus 2
-    Resumed          : false
-    Completed At     : 2023-09-06T00:50:51.995313157Z
-    Duration         : 15m 7s
-    Success          : true
-    Exit Code        : 0
-    Error Report     : -
-    Launch Dir       : /path/to/tutorial
+WARN: Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+
+--------------------------------------------------------------------
+
+Bactopia Execution Summary
+-------------------------------
+Workflow         : bactopia
+Bactopia Version : 4.0.0
+Nextflow Version : 26.04.0
+Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --accession SRX4563634 --coverage 100 --genome_size 2800000 --max_cpus 2 --outdir ena-single-sample -profile docker
+Launch Dir       : /home/rpetit3/bactopia-tutorial
+Profile          : docker
+Completed At     : 2026-04-29T11:05:37.643590738-06:00
+Duration         : 8m 55s
+Resumed          : false
+Success          : true
+Merged Results   : ena-single-sample/bactopia-runs/bactopia-20260429-105641
+
+
+Further analyze your samples using Bactopia Tools, with the following command:
+--------------------------------------------------------------------------------
+bactopia -profile docker --bactopia ena-single-sample --wf <REPLACE_WITH_BACTOPIA_TOOL_NAME>
+
+Examples:
+bactopia -profile docker --bactopia ena-single-sample --wf pangenome
+bactopia -profile docker --bactopia ena-single-sample --wf merlin
+bactopia -profile docker --bactopia ena-single-sample --wf sccmec
+
+See the full list of available Bactopia Tools: bactopia --list_wfs
+
+Message of the Day
+-------------------------------
+When does a joke become a 'dad' joke? When it becomes apparent!
 ```
 
 </details>
@@ -215,39 +238,180 @@ executor >  local (13)
 After your Bactopia run has completed you should have a directory structure that looks
 like the following:
 ```bash
+tree ena-single-sample/
 ena-single-sample/
-├── SRX4563634
-│   ├── main
-│   │   ├── annotator
-│   │   │   └── prokka
-│   │   │       └── logs
-│   │   ├── assembler
-│   │   │   └── logs
-│   │   ├── gather
-│   │   │   └── logs
-│   │   ├── qc
-│   │   │   ├── extra
-│   │   │   ├── logs
-│   │   │   └── summary
-│   │   └── sketcher
-│   │       └── logs
-│   └── tools
-│       ├── amrfinderplus
-│       │   └── logs
-│       └── mlst
-│           └── logs
-└── bactopia-runs
-    └── bactopia-20230906-003544
-        ├── merged-results
-        │   └── logs
-        │       ├── amrfinderplus-genes-concat
-        │       ├── amrfinderplus-proteins-concat
-        │       ├── assembly-scan-concat
-        │       ├── meta-concat
-        │       └── mlst-concat
-        ├── nf-reports
-        └── software-versions
-            └── logs
+├── bactopia-runs
+│   └── bactopia-20260429-105641
+│       ├── merged-results
+│       │   ├── amrfinderplus.tsv
+│       │   ├── assembly-scan.tsv
+│       │   ├── logs
+│       │   │   ├── amrfinderplus-concat
+│       │   │   │   ├── nf.command.begin
+│       │   │   │   ├── nf.command.err
+│       │   │   │   ├── nf.command.log
+│       │   │   │   ├── nf.command.out
+│       │   │   │   ├── nf.command.run
+│       │   │   │   ├── nf.command.sh
+│       │   │   │   ├── nf.command.trace
+│       │   │   │   └── versions.yml
+│       │   │   ├── assembly-scan-concat
+│       │   │   │   ├── nf.command.begin
+│       │   │   │   ├── nf.command.err
+│       │   │   │   ├── nf.command.log
+│       │   │   │   ├── nf.command.out
+│       │   │   │   ├── nf.command.run
+│       │   │   │   ├── nf.command.sh
+│       │   │   │   ├── nf.command.trace
+│       │   │   │   └── versions.yml
+│       │   │   ├── meta-concat
+│       │   │   │   ├── nf.command.begin
+│       │   │   │   ├── nf.command.err
+│       │   │   │   ├── nf.command.log
+│       │   │   │   ├── nf.command.out
+│       │   │   │   ├── nf.command.run
+│       │   │   │   ├── nf.command.sh
+│       │   │   │   ├── nf.command.trace
+│       │   │   │   └── versions.yml
+│       │   │   └── mlst-concat
+│       │   │       ├── nf.command.begin
+│       │   │       ├── nf.command.err
+│       │   │       ├── nf.command.log
+│       │   │       ├── nf.command.out
+│       │   │       ├── nf.command.run
+│       │   │       ├── nf.command.sh
+│       │   │       ├── nf.command.trace
+│       │   │       └── versions.yml
+│       │   ├── meta.tsv
+│       │   └── mlst.tsv
+│       └── nf-reports
+│           ├── bactopia-dag.dot
+│           ├── bactopia-report.html
+│           ├── bactopia-timeline.html
+│           └── bactopia-trace.txt
+└── SRX4563634
+    ├── main
+    │   ├── annotator
+    │   │   └── prokka
+    │   │       ├── logs
+    │   │       │   ├── nf.command.begin
+    │   │       │   ├── nf.command.err
+    │   │       │   ├── nf.command.log
+    │   │       │   ├── nf.command.out
+    │   │       │   ├── nf.command.run
+    │   │       │   ├── nf.command.sh
+    │   │       │   ├── nf.command.trace
+    │   │       │   ├── SRX4563634.err
+    │   │       │   ├── SRX4563634.log
+    │   │       │   └── versions.yml
+    │   │       ├── SRX4563634-blastdb.tar.gz
+    │   │       ├── SRX4563634.faa.gz
+    │   │       ├── SRX4563634.ffn.gz
+    │   │       ├── SRX4563634.fna.gz
+    │   │       ├── SRX4563634.fsa.gz
+    │   │       ├── SRX4563634.gbk.gz
+    │   │       ├── SRX4563634.gff.gz
+    │   │       ├── SRX4563634.sqn.gz
+    │   │       ├── SRX4563634.tbl.gz
+    │   │       ├── SRX4563634.tsv
+    │   │       └── SRX4563634.txt
+    │   ├── assembler
+    │   │   ├── logs
+    │   │   │   ├── nf.command.begin
+    │   │   │   ├── nf.command.err
+    │   │   │   ├── nf.command.log
+    │   │   │   ├── nf.command.out
+    │   │   │   ├── nf.command.run
+    │   │   │   ├── nf.command.sh
+    │   │   │   ├── nf.command.trace
+    │   │   │   ├── shovill.log
+    │   │   │   └── versions.yml
+    │   │   ├── SRX4563634.fna.gz
+    │   │   ├── SRX4563634.tsv
+    │   │   └── supplemental
+    │   │       ├── flash.hist
+    │   │       ├── flash.histogram
+    │   │       ├── illumina.txt
+    │   │       └── shovill.corrections
+    │   ├── gather
+    │   │   ├── logs
+    │   │   │   ├── nf.command.begin
+    │   │   │   ├── nf.command.err
+    │   │   │   ├── nf.command.log
+    │   │   │   ├── nf.command.out
+    │   │   │   ├── nf.command.run
+    │   │   │   ├── nf.command.sh
+    │   │   │   ├── nf.command.trace
+    │   │   │   └── versions.yml
+    │   │   └── SRX4563634-meta.tsv
+    │   ├── qc
+    │   │   ├── logs
+    │   │   │   ├── nf.command.begin
+    │   │   │   ├── nf.command.err
+    │   │   │   ├── nf.command.log
+    │   │   │   ├── nf.command.out
+    │   │   │   ├── nf.command.run
+    │   │   │   ├── nf.command.sh
+    │   │   │   ├── nf.command.trace
+    │   │   │   ├── SRX4563634-fastp.log
+    │   │   │   └── versions.yml
+    │   │   ├── SRX4563634_R1.fastq.gz
+    │   │   ├── SRX4563634_R2.fastq.gz
+    │   │   └── supplemental
+    │   │       ├── SRX4563634.fastp.html
+    │   │       ├── SRX4563634.fastp.json
+    │   │       ├── SRX4563634_R1-final_fastqc.html
+    │   │       ├── SRX4563634_R1-final_fastqc.zip
+    │   │       ├── SRX4563634_R1-final.json
+    │   │       ├── SRX4563634_R1-original_fastqc.html
+    │   │       ├── SRX4563634_R1-original_fastqc.zip
+    │   │       ├── SRX4563634_R1-original.json
+    │   │       ├── SRX4563634_R2-final_fastqc.html
+    │   │       ├── SRX4563634_R2-final_fastqc.zip
+    │   │       ├── SRX4563634_R2-final.json
+    │   │       ├── SRX4563634_R2-original_fastqc.html
+    │   │       ├── SRX4563634_R2-original_fastqc.zip
+    │   │       └── SRX4563634_R2-original.json
+    │   └── sketcher
+    │       ├── logs
+    │       │   ├── nf.command.begin
+    │       │   ├── nf.command.err
+    │       │   ├── nf.command.log
+    │       │   ├── nf.command.out
+    │       │   ├── nf.command.run
+    │       │   ├── nf.command.sh
+    │       │   ├── nf.command.trace
+    │       │   └── versions.yml
+    │       ├── SRX4563634-k21.msh
+    │       ├── SRX4563634-k31.msh
+    │       ├── SRX4563634-mash-refseq88-k21.txt
+    │       ├── SRX4563634.sig
+    │       └── SRX4563634-sourmash-gtdb-rs207-k31.txt
+    └── tools
+        ├── amrfinderplus
+        │   ├── logs
+        │   │   ├── nf.command.begin
+        │   │   ├── nf.command.err
+        │   │   ├── nf.command.log
+        │   │   ├── nf.command.out
+        │   │   ├── nf.command.run
+        │   │   ├── nf.command.sh
+        │   │   ├── nf.command.trace
+        │   │   └── versions.yml
+        │   └── SRX4563634.tsv
+        └── mlst
+            ├── logs
+            │   ├── nf.command.begin
+            │   ├── nf.command.err
+            │   ├── nf.command.log
+            │   ├── nf.command.out
+            │   ├── nf.command.run
+            │   ├── nf.command.sh
+            │   ├── nf.command.trace
+            │   └── versions.yml
+            └── SRX4563634.tsv
+
+30 directories, 141 files
 ```
 
 </details>
@@ -277,7 +441,8 @@ Let's go ahead and give `bactopia search` a try:
 ```bash
 bactopia search \
     --query PRJNA480016 \
-    --limit 5
+    --limit 5 \
+    --use-ncbi-genome-size
 ```
 
 This command will produce 4 files:
@@ -344,34 +509,57 @@ Once this is complete, the results for all five samples will be found in the
 Nextflow will produce logging information explaining what is happening during the
 analysis. Here is example logging text you should see:
 ```bash
-executor >  local (41)
-[skipped  ] process > BACTOPIA:DATASETS                                               [100%] 1 of 1, stored: 1 ✔
-[be/2db067] process > BACTOPIA:GATHER:GATHER_MODULE (SRX4563682)                      [100%] 5 of 5 ✔
-[ea/e3dba2] process > BACTOPIA:GATHER:CSVTK_CONCAT (meta)                             [100%] 1 of 1 ✔
-[e8/9b6c36] process > BACTOPIA:QC:QC_MODULE (SRX4563682)                              [100%] 5 of 5 ✔
-[43/07a775] process > BACTOPIA:ASSEMBLER:ASSEMBLER_MODULE (SRX4563682)                [100%] 5 of 5 ✔
-[81/ac44db] process > BACTOPIA:ASSEMBLER:CSVTK_CONCAT (assembly-scan)                 [100%] 1 of 1 ✔
-[97/0f8d92] process > BACTOPIA:SKETCHER:SKETCHER_MODULE (SRX4563682)                  [100%] 5 of 5 ✔
-[0a/498254] process > BACTOPIA:ANNOTATOR:PROKKA_MODULE (SRX4563682)                   [100%] 5 of 5 ✔
-[4a/a75b58] process > BACTOPIA:AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563682)           [100%] 5 of 5 ✔
-[b0/23c407] process > BACTOPIA:AMRFINDERPLUS:GENES_CONCAT (amrfinderplus-genes)       [100%] 1 of 1 ✔
-[ad/45dd2f] process > BACTOPIA:AMRFINDERPLUS:PROTEINS_CONCAT (amrfinderplus-proteins) [100%] 1 of 1 ✔
-[80/1b2e1e] process > BACTOPIA:MLST:MLST_MODULE (SRX4563682)                          [100%] 5 of 5 ✔
-[e3/72a4c9] process > BACTOPIA:MLST:CSVTK_CONCAT (mlst)                               [100%] 1 of 1 ✔
-[c7/e909dc] process > BACTOPIA:DUMPSOFTWAREVERSIONS (1)                               [100%] 1 of 1 ✔
+executor >  local (39)
+[skipped  ] DATASETS:DATASETS_MODULE                     [100%] 1 of 1, stored: 1 ✔
+[e6/6018f9] GATHER:GATHER_MODULE (SRX4563688)            [100%] 5 of 5 ✔
+[53/b1868a] GATHER:CSVTK_CONCAT (meta)                   [100%] 1 of 1 ✔
+[0e/05679c] QC:QC_MODULE (SRX4563688)                    [100%] 5 of 5 ✔
+[d7/aaf093] ASSEMBLER:ASSEMBLER_MODULE (SRX4563688)      [100%] 5 of 5 ✔
+[d2/04970a] ASSEMBLER:CSVTK_CONCAT (assembly-scan)       [100%] 1 of 1 ✔
+[46/6ef407] SKETCHER:SKETCHER_MODULE (SRX4563688)        [100%] 5 of 5 ✔
+[50/4e3e72] PROKKA:PROKKA_MODULE (SRX4563688)            [100%] 5 of 5 ✔
+[62/d43d72] AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563688) [100%] 5 of 5 ✔
+[76/a4e627] AMRFINDERPLUS:CSVTK_CONCAT (amrfinderplus)   [100%] 1 of 1 ✔
+[f2/1d3aa4] MLST:MLST_MODULE (SRX4563688)                [100%] 5 of 5 ✔
+[80/19f956] MLST:CSVTK_CONCAT (mlst)                     [100%] 1 of 1 ✔
+Completed at: 29-Apr-2026 11:21:01
+Duration    : 10m 59s
+CPU hours   : 3.9
+Succeeded   : 39
 
-    Bactopia Execution Summary
-    ---------------------------
-    Bactopia Version : 4.0.0
-    Nextflow Version : 23.04.1
-    Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --accessions bactopia-accessions.txt --coverage 100 --outdir ena-multiple-samples --max_cpus 2
-    Resumed          : false
-    Completed At     : 2023-09-06T01:53:40.466149409Z
-    Duration         : 16m 12s
-    Success          : true
-    Exit Code        : 0
-    Error Report     : -
-    Launch Dir       : /path/to/tutorial
+WARN: Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+
+--------------------------------------------------------------------
+
+Bactopia Execution Summary
+-------------------------------
+Workflow         : bactopia
+Bactopia Version : 4.0.0
+Nextflow Version : 26.04.0
+Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --accessions bactopia-accessions.txt --coverage 100 --outdir ena-multiple-samples --max_cpus 4 -profile docker
+Launch Dir       : /home/rpetit3/bactopia-tutorial
+Profile          : docker
+Completed At     : 2026-04-29T11:21:01.214462971-06:00
+Duration         : 11m
+Resumed          : false
+Success          : true
+Merged Results   : ena-multiple-samples/bactopia-runs/bactopia-20260429-111000
+
+
+Further analyze your samples using Bactopia Tools, with the following command:
+--------------------------------------------------------------------------------
+bactopia -profile docker --bactopia ena-multiple-samples --wf <REPLACE_WITH_BACTOPIA_TOOL_NAME>
+
+Examples:
+bactopia -profile docker --bactopia ena-multiple-samples --wf pangenome
+bactopia -profile docker --bactopia ena-multiple-samples --wf merlin
+bactopia -profile docker --bactopia ena-multiple-samples --wf sccmec
+
+See the full list of available Bactopia Tools: bactopia --list_wfs
+
+Message of the Day
+-------------------------------
+What kind of music do planets listen to? Neptunes!
 ```
 
 </details>
@@ -464,34 +652,57 @@ Nextflow will produce logging information explaining what is happening during th
 analysis. Here is example logging text you should see:
 
 ```bash
-executor >  local (13)
-[skipped  ] process > BACTOPIA:DATASETS                                               [100%] 1 of 1, stored: 1 ✔
-[0b/addada] process > BACTOPIA:GATHER:GATHER_MODULE (SRX4563634)                      [100%] 1 of 1 ✔
-[e6/2528f0] process > BACTOPIA:GATHER:CSVTK_CONCAT (meta)                             [100%] 1 of 1 ✔
-[22/bc27bd] process > BACTOPIA:QC:QC_MODULE (SRX4563634)                              [100%] 1 of 1 ✔
-[ca/4d5c44] process > BACTOPIA:ASSEMBLER:ASSEMBLER_MODULE (SRX4563634)                [100%] 1 of 1 ✔
-[b0/732cc7] process > BACTOPIA:ASSEMBLER:CSVTK_CONCAT (assembly-scan)                 [100%] 1 of 1 ✔
-[05/56cb35] process > BACTOPIA:SKETCHER:SKETCHER_MODULE (SRX4563634)                  [100%] 1 of 1 ✔
-[91/312af4] process > BACTOPIA:ANNOTATOR:PROKKA_MODULE (SRX4563634)                   [100%] 1 of 1 ✔
-[fa/515a6c] process > BACTOPIA:AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563634)           [100%] 1 of 1 ✔
-[d5/0d9535] process > BACTOPIA:AMRFINDERPLUS:GENES_CONCAT (amrfinderplus-genes)       [100%] 1 of 1 ✔
-[0c/9b80f4] process > BACTOPIA:AMRFINDERPLUS:PROTEINS_CONCAT (amrfinderplus-proteins) [100%] 1 of 1 ✔
-[aa/d955da] process > BACTOPIA:MLST:MLST_MODULE (SRX4563634)                          [100%] 1 of 1 ✔
-[ea/84b6c9] process > BACTOPIA:MLST:CSVTK_CONCAT (mlst)                               [100%] 1 of 1 ✔
-[0c/7fccf1] process > BACTOPIA:DUMPSOFTWAREVERSIONS (1)                               [100%] 1 of 1 ✔
+executor >  local (11)
+[skipped  ] DATASETS:DATASETS_MODULE                     [100%] 1 of 1, stored: 1 ✔
+[f2/02a83e] GATHER:GATHER_MODULE (SRX4563634)            [100%] 1 of 1 ✔
+[67/4c51ca] GATHER:CSVTK_CONCAT (meta)                   [100%] 1 of 1 ✔
+[8c/d85d58] QC:QC_MODULE (SRX4563634)                    [100%] 1 of 1 ✔
+[6a/c11313] ASSEMBLER:ASSEMBLER_MODULE (SRX4563634)      [100%] 1 of 1 ✔
+[b7/a83b77] ASSEMBLER:CSVTK_CONCAT (assembly-scan)       [100%] 1 of 1 ✔
+[16/ba5aef] SKETCHER:SKETCHER_MODULE (SRX4563634)        [100%] 1 of 1 ✔
+[ae/c0cc9f] PROKKA:PROKKA_MODULE (SRX4563634)            [100%] 1 of 1 ✔
+[4d/40bbaf] AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563634) [100%] 1 of 1 ✔
+[1a/d416b4] AMRFINDERPLUS:CSVTK_CONCAT (amrfinderplus)   [100%] 1 of 1 ✔
+[35/d75a90] MLST:MLST_MODULE (SRX4563634)                [100%] 1 of 1 ✔
+[c2/98573c] MLST:CSVTK_CONCAT (mlst)                     [100%] 1 of 1 ✔
+Completed at: 29-Apr-2026 11:44:07
+Duration    : 7m
+CPU hours   : 0.6
+Succeeded   : 11
 
-    Bactopia Execution Summary
-    ---------------------------
-    Bactopia Version : 4.0.0
-    Nextflow Version : 23.04.1
-    Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --r1 fastqs/SRX4563634_R1.fastq.gz --r2 fastqs/SRX4563634_R2.fastq.gz --sample SRX4563634 --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 2
-    Resumed          : false
-    Completed At     : 2023-09-06T02:50:28.928305768Z
-    Duration         : 7m 38s
-    Success          : true
-    Exit Code        : 0
-    Error Report     : -
-    Launch Dir       : /path/to/tutorial
+WARN: Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+
+--------------------------------------------------------------------
+
+Bactopia Execution Summary
+-------------------------------
+Workflow         : bactopia
+Bactopia Version : 4.0.0
+Nextflow Version : 26.04.0
+Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --r1 fastqs/SRX4563634_R1.fastq.gz --r2 fastqs/SRX4563634_R2.fastq.gz --sample SRX4563634 --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 4 -profile docker
+Launch Dir       : /home/rpetit3/bactopia-tutorial
+Profile          : docker
+Completed At     : 2026-04-29T11:44:07.351753090-06:00
+Duration         : 7m 1s
+Resumed          : false
+Success          : true
+Merged Results   : local-single-sample/bactopia-runs/bactopia-20260429-113705
+
+
+Further analyze your samples using Bactopia Tools, with the following command:
+--------------------------------------------------------------------------------
+bactopia -profile docker --bactopia local-single-sample --wf <REPLACE_WITH_BACTOPIA_TOOL_NAME>
+
+Examples:
+bactopia -profile docker --bactopia local-single-sample --wf pangenome
+bactopia -profile docker --bactopia local-single-sample --wf merlin
+bactopia -profile docker --bactopia local-single-sample --wf sccmec
+
+See the full list of available Bactopia Tools: bactopia --list_wfs
+
+Message of the Day
+-------------------------------
+What do you call a cow with no legs? Ground beef!
 ```
 
 </details>
@@ -530,34 +741,57 @@ Nextflow will produce logging information explaining what is happening during th
 analysis. Here is example logging text you should see:
 
 ```bash
-executor >  local (13)
-[skipped  ] process > BACTOPIA:DATASETS                                               [100%] 1 of 1, stored: 1 ✔
-[15/42dd1d] process > BACTOPIA:GATHER:GATHER_MODULE (SRX4563634-SE)                   [100%] 1 of 1 ✔
-[a4/37cac4] process > BACTOPIA:GATHER:CSVTK_CONCAT (meta)                             [100%] 1 of 1 ✔
-[1b/50f36f] process > BACTOPIA:QC:QC_MODULE (SRX4563634-SE)                           [100%] 1 of 1 ✔
-[fb/646763] process > BACTOPIA:ASSEMBLER:ASSEMBLER_MODULE (SRX4563634-SE)             [100%] 1 of 1 ✔
-[e8/4a3315] process > BACTOPIA:ASSEMBLER:CSVTK_CONCAT (assembly-scan)                 [100%] 1 of 1 ✔
-[b8/aac864] process > BACTOPIA:SKETCHER:SKETCHER_MODULE (SRX4563634-SE)               [100%] 1 of 1 ✔
-[3c/81380b] process > BACTOPIA:ANNOTATOR:PROKKA_MODULE (SRX4563634-SE)                [100%] 1 of 1 ✔
-[9b/7b9582] process > BACTOPIA:AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563634-SE)        [100%] 1 of 1 ✔
-[4a/f2ad21] process > BACTOPIA:AMRFINDERPLUS:GENES_CONCAT (amrfinderplus-genes)       [100%] 1 of 1 ✔
-[b7/0b4b24] process > BACTOPIA:AMRFINDERPLUS:PROTEINS_CONCAT (amrfinderplus-proteins) [100%] 1 of 1 ✔
-[85/4ab00c] process > BACTOPIA:MLST:MLST_MODULE (SRX4563634-SE)                       [100%] 1 of 1 ✔
-[f4/002f5e] process > BACTOPIA:MLST:CSVTK_CONCAT (mlst)                               [100%] 1 of 1 ✔
-[03/ba2407] process > BACTOPIA:DUMPSOFTWAREVERSIONS (1)                               [100%] 1 of 1 ✔
+executor >  local (11)
+[skipped  ] DATASETS:DATASETS_MODULE                        [100%] 1 of 1, stored: 1 ✔
+[3f/ac6144] GATHER:GATHER_MODULE (SRX4563634-SE)            [100%] 1 of 1 ✔
+[b9/4aceb0] GATHER:CSVTK_CONCAT (meta)                      [100%] 1 of 1 ✔
+[53/b4c1fd] QC:QC_MODULE (SRX4563634-SE)                    [100%] 1 of 1 ✔
+[7b/81dffd] ASSEMBLER:ASSEMBLER_MODULE (SRX4563634-SE)      [100%] 1 of 1 ✔
+[17/25f551] ASSEMBLER:CSVTK_CONCAT (assembly-scan)          [100%] 1 of 1 ✔
+[cb/1b89ef] SKETCHER:SKETCHER_MODULE (SRX4563634-SE)        [100%] 1 of 1 ✔
+[27/f7c3e5] PROKKA:PROKKA_MODULE (SRX4563634-SE)            [100%] 1 of 1 ✔
+[a2/9ffd0c] AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563634-SE) [100%] 1 of 1 ✔
+[d5/257b5e] AMRFINDERPLUS:CSVTK_CONCAT (amrfinderplus)      [100%] 1 of 1 ✔
+[d6/3402fe] MLST:MLST_MODULE (SRX4563634-SE)                [100%] 1 of 1 ✔
+[bb/760752] MLST:CSVTK_CONCAT (mlst)                        [100%] 1 of 1 ✔
+Completed at: 29-Apr-2026 11:55:49
+Duration    : 7m 47s
+CPU hours   : 0.3
+Succeeded   : 11
 
-    Bactopia Execution Summary
-    ---------------------------
-    Bactopia Version : 4.0.0
-    Nextflow Version : 23.04.1
-    Command Line     : nextflow run /path/to/main.nf -w /home/robert_petit/temp/bactopia3/tutorial/work/ --se fastqs/SRX4563634-SE.fastq.gz --sample SRX4563634-SE --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 2
-    Resumed          : false
-    Completed At     : 2023-09-06T03:17:08.633994540Z
-    Duration         : 10m 14s
-    Success          : true
-    Exit Code        : 0
-    Error Report     : -
-    Launch Dir       : /path/to/tutorial
+WARN: Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+
+--------------------------------------------------------------------
+
+Bactopia Execution Summary
+-------------------------------
+Workflow         : bactopia
+Bactopia Version : 4.0.0
+Nextflow Version : 26.04.0
+Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --se fastqs/SRX4563634-SE.fastq.gz --sample SRX4563634-SE --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 2 -profile docker
+Launch Dir       : /home/rpetit3/bactopia-tutorial
+Profile          : docker
+Completed At     : 2026-04-29T11:55:49.702989944-06:00
+Duration         : 7m 47s
+Resumed          : false
+Success          : true
+Merged Results   : local-single-sample/bactopia-runs/bactopia-20260429-114801
+
+
+Further analyze your samples using Bactopia Tools, with the following command:
+--------------------------------------------------------------------------------
+bactopia -profile docker --bactopia local-single-sample --wf <REPLACE_WITH_BACTOPIA_TOOL_NAME>
+
+Examples:
+bactopia -profile docker --bactopia local-single-sample --wf pangenome
+bactopia -profile docker --bactopia local-single-sample --wf merlin
+bactopia -profile docker --bactopia local-single-sample --wf sccmec
+
+See the full list of available Bactopia Tools: bactopia --list_wfs
+
+Message of the Day
+-------------------------------
+Where do lizards go after their tails fall off? The retail store!
 ```
 
 </details>
@@ -597,17 +831,17 @@ a FOFN using `bactopia prepare`:
 
 ```bash
 bactopia prepare --path fastqs/
-sample  runtype genome_size     species r1      r2      extra
-SRX4563634      paired-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX4563634_R1.fastq.gz        /path/to/fastqs/SRX4563634_R2.fastq.gz
-SRX4563634-SE   single-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX4563634-SE.fastq.gz
-SRX4563681      paired-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX4563681_R1.fastq.gz        /path/to/fastqs/SRX4563681_R2.fastq.gz
-SRX4563682      paired-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX4563682_R1.fastq.gz        /path/to/fastqs/SRX4563682_R2.fastq.gz
-SRX4563687      paired-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX4563687_R1.fastq.gz        /path/to/fastqs/SRX4563687_R2.fastq.gz
-SRX4563689      paired-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX4563689_R1.fastq.gz        /path/to/fastqs/SRX4563689_R2.fastq.gz
-SRX4563690      paired-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX4563690_R1.fastq.gz        /path/to/fastqs/SRX4563690_R2.fastq.gz
+sample  runtype genome_size     species r1      r2      se      ont     assembly
+SRX4563634      paired-end      0       UNKNOWN_SPECIES /home/rpetit3/bactopia-tutorial/fastqs/SRX4563634_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563634_R2.fastq.gz
+SRX4563634-SE   single-end      0       UNKNOWN_SPECIES                 /home/rpetit3/bactopia-tutorial/fastqs/SRX4563634-SE.fastq.gz
+SRX4563678      paired-end      0       UNKNOWN_SPECIES /home/rpetit3/bactopia-tutorial/fastqs/SRX4563678_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563678_R2.fastq.gz
+SRX4563680      paired-end      0       UNKNOWN_SPECIES /home/rpetit3/bactopia-tutorial/fastqs/SRX4563680_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563680_R2.fastq.gz
+SRX4563684      paired-end      0       UNKNOWN_SPECIES /home/rpetit3/bactopia-tutorial/fastqs/SRX4563684_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563684_R2.fastq.gz
+SRX4563686      paired-end      0       UNKNOWN_SPECIES /home/rpetit3/bactopia-tutorial/fastqs/SRX4563686_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563686_R2.fastq.gz
+SRX4563688      paired-end      0       UNKNOWN_SPECIES /home/rpetit3/bactopia-tutorial/fastqs/SRX4563688_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563688_R2.fastq.gz
 ```
 
-This command will try to create a FOFN for you. For this turorial, the FASTQ names are pretty straight forward and should produce a correct FOFN (or at least it should! ... hopefully!). If that wasn't the case for you, there are ways to [tweak `bactopia prepare`](./beginners-guide#bactopia-prepare).
+This command will try to create a FOFN for you. For this tutorial, the FASTQ names are pretty straight forward and should produce a correct FOFN (or at least it should! ... hopefully!). If that wasn't the case for you, there are ways to [tweak `bactopia prepare`](./beginners-guide#bactopia-prepare).
 
 Wait! We for got something, in the output above we have `0` for `genome_size` and
 `UNKNOWN_SPECIES` for `species`. We can fix this by using the `--species` and `--genome-size`
@@ -618,14 +852,14 @@ bactopia prepare \
     --path fastqs/ \
     --species "Staphylococcus aureus" \
     --genome-size 2800000
-sample  runtype genome_size     species r1      r2      extra
-SRX4563634      paired-end      2800000 Staphylococcus aureus   /path/to/fastqs/SRX4563634_R1.fastq.gz        /path/to/fastqs/SRX4563634_R2.fastq.gz
-SRX4563634-SE   single-end      2800000 Staphylococcus aureus   /path/to/fastqs/SRX4563634-SE.fastq.gz
-SRX4563681      paired-end      2800000 Staphylococcus aureus   /path/to/fastqs/SRX4563681_R1.fastq.gz        /path/to/fastqs/SRX4563681_R2.fastq.gz
-SRX4563682      paired-end      2800000 Staphylococcus aureus   /path/to/fastqs/SRX4563682_R1.fastq.gz        /path/to/fastqs/SRX4563682_R2.fastq.gz
-SRX4563687      paired-end      2800000 Staphylococcus aureus   /path/to/fastqs/SRX4563687_R1.fastq.gz        /path/to/fastqs/SRX4563687_R2.fastq.gz
-SRX4563689      paired-end      2800000 Staphylococcus aureus   /path/to/fastqs/SRX4563689_R1.fastq.gz        /path/to/fastqs/SRX4563689_R2.fastq.gz
-SRX4563690      paired-end      2800000 Staphylococcus aureus   /path/to/fastqs/SRX4563690_R1.fastq.gz        /path/to/fastqs/SRX4563690_R2.fastq.gz
+sample  runtype genome_size     species r1      r2      se      ont     assembly
+SRX4563634      paired-end      2800000 Staphylococcus aureus   /home/rpetit3/bactopia-tutorial/fastqs/SRX4563634_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563634_R2.fastq.gz
+SRX4563634-SE   single-end      2800000 Staphylococcus aureus                   /home/rpetit3/bactopia-tutorial/fastqs/SRX4563634-SE.fastq.gz
+SRX4563678      paired-end      2800000 Staphylococcus aureus   /home/rpetit3/bactopia-tutorial/fastqs/SRX4563678_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563678_R2.fastq.gz
+SRX4563680      paired-end      2800000 Staphylococcus aureus   /home/rpetit3/bactopia-tutorial/fastqs/SRX4563680_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563680_R2.fastq.gz
+SRX4563684      paired-end      2800000 Staphylococcus aureus   /home/rpetit3/bactopia-tutorial/fastqs/SRX4563684_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563684_R2.fastq.gz
+SRX4563686      paired-end      2800000 Staphylococcus aureus   /home/rpetit3/bactopia-tutorial/fastqs/SRX4563686_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563686_R2.fastq.gz
+SRX4563688      paired-end      2800000 Staphylococcus aureus   /home/rpetit3/bactopia-tutorial/fastqs/SRX4563688_R1.fastq.gz      /home/rpetit3/bactopia-tutorial/fastqs/SRX4563688_R2.fastq.gz
 ```
 
 Much better! By adding the genome size, Bactopia can now reduce the total coverage to the
@@ -677,33 +911,57 @@ Nextflow will produce logging information explaining what is happening during th
 analysis. Here is example logging text you should see:
 
 ```bash
-[skipped  ] process > BACTOPIA:DATASETS                                               [100%] 1 of 1, stored: 1 ✔
-[9e/f962fc] process > BACTOPIA:GATHER:GATHER_MODULE (SRX4563689)                      [100%] 7 of 7 ✔
-[55/7512ca] process > BACTOPIA:GATHER:CSVTK_CONCAT (meta)                             [100%] 1 of 1 ✔
-[fd/8e5dbd] process > BACTOPIA:QC:QC_MODULE (SRX4563690)                              [100%] 7 of 7 ✔
-[29/5235d0] process > BACTOPIA:ASSEMBLER:ASSEMBLER_MODULE (SRX4563690)                [100%] 7 of 7 ✔
-[5c/2ee7f8] process > BACTOPIA:ASSEMBLER:CSVTK_CONCAT (assembly-scan)                 [100%] 1 of 1 ✔
-[a4/9e6960] process > BACTOPIA:SKETCHER:SKETCHER_MODULE (SRX4563690)                  [100%] 7 of 7 ✔
-[35/569283] process > BACTOPIA:ANNOTATOR:PROKKA_MODULE (SRX4563690)                   [100%] 7 of 7 ✔
-[0f/9aadaa] process > BACTOPIA:AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563690)           [100%] 7 of 7 ✔
-[e8/0f2eb5] process > BACTOPIA:AMRFINDERPLUS:GENES_CONCAT (amrfinderplus-genes)       [100%] 1 of 1 ✔
-[f5/c26c46] process > BACTOPIA:AMRFINDERPLUS:PROTEINS_CONCAT (amrfinderplus-proteins) [100%] 1 of 1 ✔
-[1a/3c6d44] process > BACTOPIA:MLST:MLST_MODULE (SRX4563690)                          [100%] 7 of 7 ✔
-[9b/600e24] process > BACTOPIA:MLST:CSVTK_CONCAT (mlst)                               [100%] 1 of 1 ✔
-[7a/eeb047] process > BACTOPIA:DUMPSOFTWAREVERSIONS (1)                               [100%] 1 of 1 ✔
+executor >  local (53)
+[skipped  ] DATASETS:DATASETS_MODULE                     [100%] 1 of 1, stored: 1 ✔
+[2e/454798] GATHER:GATHER_MODULE (SRX4563634)            [100%] 7 of 7 ✔
+[0f/47679f] GATHER:CSVTK_CONCAT (meta)                   [100%] 1 of 1 ✔
+[6b/941117] QC:QC_MODULE (SRX4563680)                    [100%] 7 of 7 ✔
+[42/913683] ASSEMBLER:ASSEMBLER_MODULE (SRX4563634)      [100%] 7 of 7 ✔
+[e2/048276] ASSEMBLER:CSVTK_CONCAT (assembly-scan)       [100%] 1 of 1 ✔
+[5b/b2ac99] SKETCHER:SKETCHER_MODULE (SRX4563634)        [100%] 7 of 7 ✔
+[c8/64642a] PROKKA:PROKKA_MODULE (SRX4563634)            [100%] 7 of 7 ✔
+[8c/577268] AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRX4563634) [100%] 7 of 7 ✔
+[2c/0dfff6] AMRFINDERPLUS:CSVTK_CONCAT (amrfinderplus)   [100%] 1 of 1 ✔
+[7d/2da0da] MLST:MLST_MODULE (SRX4563634)                [100%] 7 of 7 ✔
+[1b/4f229b] MLST:CSVTK_CONCAT (mlst)                     [100%] 1 of 1 ✔
+Completed at: 29-Apr-2026 12:24:25
+Duration    : 9m 48s
+CPU hours   : 2.5
+Succeeded   : 53
 
-    Bactopia Execution Summary
-    ---------------------------
-    Bactopia Version : 4.0.0
-    Nextflow Version : 23.04.1
-    Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --samples samples.txt --coverage 100 --max_cpus 2 --outdir local-multiple-samples
-    Resumed          : false
-    Completed At     : 2023-09-06T03:47:15.580898057Z
-    Duration         : 12m 47s
-    Success          : true
-    Exit Code        : 0
-    Error Report     : -
-    Launch Dir       : /path/to/tutorial
+WARN: Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+
+--------------------------------------------------------------------
+
+Bactopia Execution Summary
+-------------------------------
+Workflow         : bactopia
+Bactopia Version : 4.0.0
+Nextflow Version : 26.04.0
+Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --samples samples.txt --coverage 100 --max_cpus 2 --outdir local-multiple-samples -profile docker
+Launch Dir       : /home/rpetit3/bactopia-tutorial
+Profile          : docker
+Completed At     : 2026-04-29T12:24:25.163874442-06:00
+Duration         : 9m 48s
+Resumed          : false
+Success          : true
+Merged Results   : local-multiple-samples/bactopia-runs/bactopia-20260429-121435
+
+
+Further analyze your samples using Bactopia Tools, with the following command:
+--------------------------------------------------------------------------------
+bactopia -profile docker --bactopia local-multiple-samples --wf <REPLACE_WITH_BACTOPIA_TOOL_NAME>
+
+Examples:
+bactopia -profile docker --bactopia local-multiple-samples --wf pangenome
+bactopia -profile docker --bactopia local-multiple-samples --wf merlin
+bactopia -profile docker --bactopia local-multiple-samples --wf sccmec
+
+See the full list of available Bactopia Tools: bactopia --list_wfs
+
+Message of the Day
+-------------------------------
+Learn more about Bactopia at https://bactopia.io/
 ```
 
 </details>
@@ -726,6 +984,10 @@ Let's give it a try, then we'll walk through some of the details. For this we'll
 ```bash
 bactopia summary \
     --bactopia-path local-multiple-samples/
+2026-04-29 12:45:12 INFO     2026-04-29 12:45:12:root:INFO - Found 7 samples in local-multiple-samples/ to process                                                    summary.py:341
+                    INFO     2026-04-29 12:45:12:root:INFO - Writing report: ./bactopia-report.tsv                                                                    summary.py:432
+                    INFO     2026-04-29 12:45:12:root:INFO - Writing exclusion report: ./bactopia-exclude.tsv                                                         summary.py:436
+                    INFO     2026-04-29 12:45:12:root:INFO - Writing summary report: ./bactopia-summary.txt
 ```
 
 Upon completion this will produce three files:
@@ -737,20 +999,21 @@ Upon completion this will produce three files:
 | `bactopia-summary.txt` | A simple summary of quality grades and excluded counts. |
 
 <details>
-<summary>Example: `bactopia-resport.tsv` _(Warning! Its wide!)_</summary>
+<summary>Example: `bactopia-report.tsv` _(Warning! Its wide!)_</summary>
 
 Below is an example of the `bactopia-report.tsv` file. As you can see there are a ton of
 columns! These columns include lots of information and works quite well with Excel or R.
 
 ```tsv
-sample	rank	reason	genome_size	species	runtype	original_runtype	mlst_scheme	mlst_st	annotator_total_CDS	annotator_total_rRNA	annotator_total_tRNA	annotator_total_tmRNA	assembler_total_contig	assembler_total_contig_length	assembler_max_contig_length	assembler_mean_contig_length	assembler_median_contig_length	assembler_min_contig_length	assembler_n50_contig_length	assembler_l50_contig_count	assembler_num_contig_non_acgtn	assembler_contig_percent_a	assembler_contig_percent_c	assembler_contig_percent_g	assembler_contig_percent_t	assembler_contig_percent_n	assembler_contig_non_acgtn	assembler_contigs_greater_1m	assembler_contigs_greater_100k	assembler_contigs_greater_10k	assembler_contigs_greater_1k	assembler_percent_contigs_greater_1m	assembler_percent_contigs_greater_100k	assembler_percent_contigs_greater_10k	assembler_percent_contigs_greater_1k	is_paired	is_compressed	qc_original_total_bp	qc_original_coverage	qc_original_read_total	qc_original_read_min	qc_original_read_mean	qc_original_read_std	qc_original_read_median	qc_original_read_max	qc_original_read_25th	qc_original_read_75th	qc_original_qual_min	qc_original_qual_mean	qc_original_qual_std	qc_original_qual_max	qc_original_qual_median	qc_original_qual_25th	qc_original_qual_75th	qc_final_is_paired	qc_final_total_bp	qc_final_coverage	qc_final_read_total	qc_final_read_min	qc_final_read_mean	qc_final_read_std	qc_final_read_median	qc_final_read_max	qc_final_read_25th	qc_final_read_75th	qc_final_qual_min	qc_final_qual_mean	qc_final_qual_std	qc_final_qual_max	qc_final_qual_median	qc_final_qual_25th	qc_final_qual_75th	annotator_total_repeat_region
-SRX4563690	gold	passed all cutoffs	2800000	Staphylococcus aureus	paired-end	paired-end	saureus	8	2648	4	59	1	22	2847871	859980	129448	47115	777	346443	3	0	34.86	15.28	17.38	32.48	0.00	0.00	0	8	14	20	0.00	36.36	63.64	90.91	true	true	279999959	100.0	1173310	30.5000	238.6410	73.9257	278	301	180	301	18	33.0331	3.8133	37	33.5000	30.5000	36.5000	True	279999959	100.0	1173310	30.5000	238.6410	73.9257	278	301	180	301	18	33.0331	3.8133	37	33.5000	30.5000	36.5000	
-SRX4563634-SE	bronze	Single-end reads	2800000	Staphylococcus aureus	single-end	single-end	saureus	8	2666	5	59	1	42	2866767	804144	68256	19360	506	150241	5	0	34.79	15.27	17.36	32.58	0.00	0.00	0	10	27	36	0.00	23.81	64.29	85.71	false	true	279999654	99.9999	1134630	31	246.776	67.8698	294	301	197	301	19	32.2018	4.12181	37	33	30	36	False	279999654	99.9999	1134630	31	246.776	67.8698	294	301	197	301	19	32.2018	4.12181	37	33	30	36	1.0
-SRX4563681	silver	Low coverage (91.14x, expect >= 100x)	2800000	Staphylococcus aureus	paired-end	paired-end	saureus	37	2710	4	56	1	47	2878360	481732	61241	31448	876	137601	7	0	33.97	16.08	16.58	33.37	0.00	0.00	0	11	32	45	0.00	23.40	68.09	95.74	true	true	255190690	91.1396	1091334	31	233.8335	72.8814	257	301	175	301	19	32.5926	4.0385	37	33.5000	30.5000	36	True	255190690	91.1396	1091334	31	233.8335	72.8814	257	301	175	301	19	32.5926	4.0385	37	33.5000	30.5000	36	
-SRX4563687	gold	passed all cutoffs	2800000	Staphylococcus aureus	paired-end	paired-end	saureus	5	2628	3	58	1	27	2819890	601960	104440	33076	750	389806	3	0	33.09	17.15	15.64	34.12	0.00	0.00	0	9	18	25	0.00	33.33	66.67	92.59	true	true	280000043	100.0	1164398	31	240.4680	71.0106	276.5000	301	185	301	19	32.4405	4.0673	37	33.5000	29.5000	36	True	279999531	99.9998	1164396	31	240.4680	71.0107	276.5000	301	185	301	19	32.4405	4.0673	37	33.5000	29.5000	36	
-SRX4563689	silver	Low coverage (83.26x, expect >= 100x)	2800000	Staphylococcus aureus	paired-end	paired-end	saureus	5	2575	5	58	1	24	2776912	473737	115704	52709	750	250837	4	0	33.37	16.60	16.19	33.84	0.00	0.00	0	11	16	23	0.00	45.83	66.67	95.83	true	true	233140431	83.2644	1015306	31	229.6255	72.2632	244	301	171	300.5000	19	32.5968	4.0349	37	33.5000	30	36	True	233140431	83.2644	1015306	31	229.6255	72.2632	244	301	171	300.5000	19	32.5968	4.0349	37	33.5000	30	36	
-SRX4563634	gold	passed all cutoffs	2800000	Staphylococcus aureus	paired-end	paired-end	saureus	8	2678	5	59	1	27	2875309	838477	106492	39259	855	304863	3	0	34.99	15.05	17.59	32.37	0.00	0.00	0	9	18	25	0.00	33.33	66.67	92.59	true	true	279999654	99.9999	1134630	31	246.7760	67.8666	293	301	197	301	19	32.2018	4.0873	37	33	29.5000	36	True	279999654	99.9999	1134630	31	246.7760	67.8666	293	301	197	301	19	32.2018	4.0873	37	33	29.5000	36	1.0
-SRX4563682	gold	passed all cutoffs	2800000	Staphylococcus aureus	paired-end	paired-end	saureus	5	2612	4	58	1	24	2798867	385705	116619	68098	1459	340863	4	0	34.37	15.47	17.28	32.88	0.00	0.00	0	8	18	24	0.00	33.33	75.00	100.00	true	true	280000143	100.0	1198514	31	233.6225	74.2875	259	301	174	301	17.5000	33.1307	3.8246	37	34	31	36.5000	True	279999695	99.9999	1198512	31	233.6225	74.2876	259	301	174	301	17.5000	33.1307	3.8246	37	34	31	36.5000	
+sample  rank    reason  genome_size     species runtype original_runtype        mlst_scheme     mlst_st assembler_total_contig  assembler_total_contig_length   assembler_max_conti _length assembler_mean_contig_length    assembler_median_contig_length  assembler_min_contig_length     assembler_n50_contig_length     assembler_l50_contig_count      assembler_n m_contig_non_acgtn      assembler_contig_percent_a      assembler_contig_percent_c      assembler_contig_percent_g      assembler_contig_percent_t      assembler_contig_percent_n  ssembler_contig_non_acgtn       assembler_contigs_greater_1m    assembler_contigs_greater_100k  assembler_contigs_greater_10k   assembler_contigs_greater_1k    assembler_percent_c ntigs_greater_1m        assembler_percent_contigs_greater_100k  assembler_percent_contigs_greater_10k   assembler_percent_contigs_greater_1k    is_paired       is_compressed   ann tator_total_CDS annotator_total_rRNA    annotator_total_tRNA    qc_original_total_bp    qc_original_coverage    qc_original_read_total  qc_original_read_min    qc_original_read_me n       qc_original_read_std    qc_original_read_median qc_original_read_max    qc_original_read_25th   qc_original_read_75th   qc_original_qual_min    qc_original_qual_mean   qc_ riginal_qual_std        qc_original_qual_max    qc_original_qual_median qc_original_qual_25th   qc_original_qual_75th   qc_final_is_paired      qc_final_total_bp       qc_final_co erage   qc_final_read_total     qc_final_read_min       qc_final_read_mean      qc_final_read_std       qc_final_read_median    qc_final_read_max       qc_final_read_25th      qc_ inal_read_75th  qc_final_qual_min       qc_final_qual_mean      qc_final_qual_std       qc_final_qual_max       qc_final_qual_median    qc_final_qual_25th      qc_final_qual_75th
+SRX4563680      gold    passed all cutoffs      2800000 Staphylococcus aureus   paired-end      paired-end      SCHEME  ST      24      2785142 552034  116047  47976   854     401 93      3       0       33.91   16.13   16.50   33.46   0.00    0.00    0       8       17      22      0.00    33.33   70.83   91.67   true    true    2579    3       59      280 00113   100.0   1156364 22.5000 242.1385        70.4918 282     301     188     301     19      32.4292 4.0463  37      33      29.5000 36      True    280000113       100.0   115 364     22.5000 242.1385        70.4918 282     301     188     301     19      32.4292 4.0463  37      33      29.5000 36
+SRX4563684      silver  Low coverage (85.07x, expect >= 100x)   2800000 Staphylococcus aureus   paired-end      paired-end      SCHEME  ST      67      2899294 524852  43273   394
+        521     160269  5       0       34.51   15.32   17.49   32.67   0.00    0.00    0       9       28      58      0.00    13.43   41.79   86.57   true    true    2725    3   8       238189696       85.0677 985930  27.5000 241.5890        69.2295 274     301     188     301     19      32.4652 4.0385  37      33      30      36      True    238189696   5.0677  985930  27.5000 241.5890        69.2295 274     301     188     301     19      32.4652 4.0385  37      33      30      36
+SRX4563686      silver  Low coverage (90.43x, expect >= 100x)   2800000 Staphylococcus aureus   paired-end      paired-end      SCHEME  ST      24      2782895 606699  115953  517 1       1071    289301  4       0       33.60   16.43   16.35   33.63   0.00    0.00    0       8       17      24      0.00    33.33   70.83   100.00  true    true    2568    4   8       253197833       90.42779999999999       1063712 25      238.0325        71.9346 268.5000        301     181     301     19      32.5022 4.0360  37      33.5000 30      36  rue     253197833       90.42779999999999       1063712 25      238.0325        71.9346 268.5000        301     181     301     19      32.5022 4.0360  37      33.5000 30      36
+SRX4563634      gold    passed all cutoffs      2800000 Staphylococcus aureus   paired-end      paired-end      SCHEME  ST      26      2875932 838470  110612  23259   855     346 58      3       0       35.00   15.02   17.62   32.36   0.00    0.00    0       8       16      24      0.00    30.77   61.54   92.31   true    true    2682    5       59      280 00172   100.0001        1135318 25      246.6270        67.9079 293     301     197     301     19      32.2062 4.0878  37      33      29.5000 36      True    280000172       100 0001    1135318 25      246.6270        67.9079 293     301     197     301     19      32.2062 4.0878  37      33      29.5000 36
+SRX4563678      gold    passed all cutoffs      2800000 Staphylococcus aureus   paired-end      paired-end      SCHEME  ST      30      2708907 356005  90296   68738   570     201 73      6       0       34.64   15.50   17.26   32.60   0.00    0.00    0       11      21      29      0.00    36.67   70.00   96.67   true    true    2469    6       55      280 00172   100.0   1196990 20      233.9205        73.6150 258.5000        301     175     301     18.5000 33.2099 3.7695  37      34      31      36.5000 True    280000172       100 0       1196990 20      233.9205        73.6150 258.5000        301     175     301     18.5000 33.2099 3.7695  37      34      31      36.5000
+SRX4563634-SE   bronze  Single-end reads        2800000 Staphylococcus aureus   single-end      single-end      SCHEME  ST      42      2866760 804138  68256   21805   506     150 23      5       0       34.79   15.27   17.36   32.58   0.00    0.00    0       10      28      37      0.00    23.81   66.67   88.10   false   true    2665    5       59      280 00172   100.0   1135318 25      246.627 67.9105 294     301     197     301     19      32.2063 4.12132 37      33      30      36      False   280000172       100.0   1135318 25  46.627  67.9105 294     301     197     301     19      32.2063 4.12132 37      33      30      36
+SRX4563688      gold    passed all cutoffs      2800000 Staphylococcus aureus   paired-end      paired-end      SCHEME  ST      21      2778300 606249  132300  52250   790     389 17      3       0       33.64   16.33   16.47   33.56   0.00    0.00    0       9       14      19      0.00    42.86   66.67   90.48   true    true    2576    5       58      280 00312   100.0002        1195526 24.5000 234.2070        71.1001 254.5000        301     178     301     18.5000 34.2879 3.3316  37      35.5000 33      37      True    280000312   00.0002 1195526 24.5000 234.2070        71.1001 254.5000        301     178     301     18.5000 34.2879 3.3316  37      35.5000 33      37
 ```
 
 </details>
@@ -772,7 +1035,9 @@ Passed: 7
 
 Excluded: 0
     Failed Cutoff: 0
+
     QC Failure: 0
+
 
 Reports:
     Full Report (txt): ./bactopia-report.tsv
@@ -905,27 +1170,35 @@ checks out, Bactopia will then run the `staphtyper` workflow.
 Here's the logging information you should see:
 
 ```bash
-executor >  local (2)
-[9c/31f28f] process > BACTOPIATOOLS:STAPHTYPER:AGRVATE (SRX4563690)                           [100%] 7 of 7 ✔
-[f7/b722d7] process > BACTOPIATOOLS:STAPHTYPER:SPATYPER (SRX4563634)                          [100%] 7 of 7 ✔
-[68/067620] process > BACTOPIATOOLS:STAPHTYPER:SCCMEC (SRX4563634)                            [100%] 7 of 7 ✔
-[33/2e5476] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_AGRVATE (agrvate)                 [100%] 1 of 1 ✔
-[b9/a755e3] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_SPATYPER (spatyper)               [100%] 1 of 1 ✔
-[78/6a0552] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_SCCMEC (sccmec)                   [100%] 1 of 1 ✔
-[c2/694b33] process > BACTOPIATOOLS:CUSTOM_DUMPSOFTWAREVERSIONS (1)                           [100%] 1 of 1 ✔
+executor >  local (24)
+[ae/f98c1e] STAPHTYPER:AGRVATE:AGRVATE_MODULE (SRX4563688)      [100%] 7 of 7 ✔
+[26/28fe35] STAPHTYPER:AGRVATE:CSVTK_CONCAT (agrvate)           [100%] 1 of 1 ✔
+[20/752007] STAPHTYPER:SPATYPER:SPATYPER_MODULE (SRX4563680)    [100%] 7 of 7 ✔
+[43/9bba69] STAPHTYPER:SPATYPER:CSVTK_CONCAT (spatyper)         [100%] 1 of 1 ✔
+[ea/518783] STAPHTYPER:SCCMEC:SCCMEC_MODULE (SRX4563680)        [100%] 7 of 7 ✔
+[51/655b71] STAPHTYPER:SCCMEC:CSVTK_CONCAT (sccmec)             [100%] 1 of 1 ✔
+WARN: Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
 
-    Bactopia Tools: `staphtyper Execution Summary
-    ---------------------------
-    Bactopia Version : 4.0.0
-    Nextflow Version : 23.04.1
-    Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --wf staphtyper --bactopia local-multiple-samples/
-    Resumed          : false
-    Completed At     : 2023-09-06T04:01:04.918782203Z
-    Duration         : 19.6s
-    Success          : true
-    Exit Code        : 0
-    Error Report     : -
-    Launch Dir       : /path/to/tutorial
+--------------------------------------------------------------------
+
+Bactopia Tool Execution Summary
+-------------------------------
+Workflow         : staphtyper
+Bactopia Version : 4.0.0
+Nextflow Version : 26.04.0
+Command Line     : nextflow run /path/to/bactopia/env/workflows/bactopia-tools/staphtyper/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --wf staphtyper --bactopia local-multiple-samples/ -profile docker
+Launch Dir       : /home/rpetit3/bactopia-tutorial
+Profile          : docker
+Completed At     : 2026-04-29T12:48:22.408539959-06:00
+Duration         : 15.6s
+Resumed          : false
+Success          : true
+Merged Results   : local-multiple-samples//bactopia-runs/staphtyper-20260429-124805
+
+
+Message of the Day
+-------------------------------
+When is a door not a door? When it's ajar!
 ```
 
 Pretty cool (_and fast!_) huh? By just adding `--wf` and `--bactopia` we were able to rapidly
@@ -993,29 +1266,39 @@ build a tree using Mash distances. Here's the logging information you should see
 where is says 1 was excluded and 6 were included:
 
 ```bash
-
+Validating parameters for Bactopia Tools...
+Validation complete.
 Excluding 1 samples from the analysis
 Found 6 samples to process
 
 If this looks wrong, now's your chance to back out (CTRL+C 3 times).
 Sleeping for 5 seconds...
---------------------------------------------------------------------
-executor >  local (2)
-[ff/c7abcb] process > BACTOPIATOOLS:MASHTREE:MASHTREE_MODULE (mashtree) [100%] 1 of 1 ✔
-[1d/f97b25] process > BACTOPIATOOLS:CUSTOM_DUMPSOFTWAREVERSIONS (1)     [100%] 1 of 1 ✔
 
-    Bactopia Tools: `mashtree Execution Summary
-    ---------------------------
-    Bactopia Version : 4.0.0
-    Nextflow Version : 23.04.1
-    Command Line     : nextflow run /path/to/main.nf --wf mashtree --bactopia local-multiple-samples/ --run_name tutorial
-    Resumed          : false
-    Completed At     : 2023-09-06T04:14:07.721594313Z
-    Duration         : 12.4s
-    Success          : true
-    Exit Code        : 0
-    Error Report     : -
-    Launch Dir       : /path/to/tutorial
+--------------------------------------------------------------------
+executor >  local (1)
+[95/dbe13d] MASHTREE:MASHTREE_MODULE (mashtree) [100%] 1 of 1 ✔
+WARN: Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+
+--------------------------------------------------------------------
+
+Bactopia Tool Execution Summary
+-------------------------------
+Workflow         : mashtree
+Bactopia Version : 4.0.0
+Nextflow Version : 26.04.0
+Command Line     : nextflow run /path/to/bactopia/env/workflows/bactopia-tools/mashtree/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --wf mashtree --bactopia local-multiple-samples/ --exclude exclude.txt -profile docker
+Launch Dir       : /home/rpetit3/bactopia-tutorial
+Profile          : docker
+Completed At     : 2026-04-29T12:49:37.337015453-06:00
+Duration         : 8.4s
+Resumed          : false
+Success          : true
+Merged Results   : local-multiple-samples//bactopia-runs/mashtree-20260429-124927
+
+
+Message of the Day
+-------------------------------
+What do you call a sleeping bull? A bulldozer!
 ```
 
 :::tip[Visit `mashtree` documentation to learn more]
