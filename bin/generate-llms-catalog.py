@@ -282,8 +282,8 @@ def main():
     )
     parser.add_argument(
         "--site-url",
-        default="https://bactopia.github.io",
-        help="Site base URL (default: https://bactopia.github.io)",
+        default="https://bactopia.io",
+        help="Site base URL (default: https://bactopia.io)",
     )
     parser.add_argument(
         "--output-dir",

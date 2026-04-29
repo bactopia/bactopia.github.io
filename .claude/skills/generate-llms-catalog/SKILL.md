@@ -73,5 +73,5 @@ Check that both files were generated correctly:
 Run `npm run build` to confirm the site builds with the new static files.
 Both should be served at the site root:
 
-- `https://bactopia.github.io/llms.txt`
-- `https://bactopia.github.io/catalog.json`
+- `https://bactopia.io/llms.txt`
+- `https://bactopia.io/catalog.json`
