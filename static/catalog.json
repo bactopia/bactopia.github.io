@@ -1,10 +1,10 @@
 {
   "site": {
     "name": "Bactopia",
-    "url": "https://bactopia.github.io",
+    "url": "https://bactopia.io",
     "tagline": "An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes."
   },
-  "generated": "2026-04-28T19:01:26Z",
+  "generated": "2026-04-29T18:58:56Z",
   "total_pages": 306,
   "sections": [
     {
@@ -17,7 +17,7 @@
         {
           "title": "Bactopia",
           "description": "An end-to-end workflow Nextflow pipeline for bacterial genome analysis.",
-          "url": "https://bactopia.github.io/",
+          "url": "https://bactopia.io/",
           "path": "/",
           "tags": [],
           "source_file": "docs/index.mdx",
@@ -26,7 +26,7 @@
         {
           "title": "Quick Start",
           "description": "Get started using Bactopia in a few commands, no asking questions and no looking back!",
-          "url": "https://bactopia.github.io/quick-start",
+          "url": "https://bactopia.io/quick-start",
           "path": "/quick-start",
           "tags": [],
           "source_file": "docs/quick-start.md",
@@ -35,7 +35,7 @@
         {
           "title": "Installation",
           "description": "Learn how Bactopia install and get started using Bactopia for your genomic analyses.",
-          "url": "https://bactopia.github.io/installation",
+          "url": "https://bactopia.io/installation",
           "path": "/installation",
           "tags": [],
           "source_file": "docs/installation.md",
@@ -44,7 +44,7 @@
         {
           "title": "Beginner's Guide",
           "description": "A beginner's guide to getting started using Bactopia to process your bacterial genomes.",
-          "url": "https://bactopia.github.io/beginners-guide",
+          "url": "https://bactopia.io/beginners-guide",
           "path": "/beginners-guide",
           "tags": [],
           "source_file": "docs/beginners-guide.md",
@@ -53,7 +53,7 @@
         {
           "title": "Tutorial",
           "description": "A tutorial to get started with Bactopia using publicly available genomes.",
-          "url": "https://bactopia.github.io/tutorial",
+          "url": "https://bactopia.io/tutorial",
           "path": "/tutorial",
           "tags": [],
           "source_file": "docs/tutorial.md",
@@ -62,7 +62,7 @@
         {
           "title": "Full Guide",
           "description": "Comprehensive bacterial analysis pipeline for complete genomic characterization.",
-          "url": "https://bactopia.github.io/full-guide",
+          "url": "https://bactopia.io/full-guide",
           "path": "/full-guide",
           "tags": [
             "bacteria",
@@ -79,7 +79,7 @@
         {
           "title": "Changelog",
           "description": "A full list of Bactopia releases and a description of the changes.",
-          "url": "https://bactopia.github.io/changelog",
+          "url": "https://bactopia.io/changelog",
           "path": "/changelog",
           "tags": [],
           "source_file": "docs/changelog.md",
@@ -97,7 +97,7 @@
         {
           "title": "Bactopia Tools",
           "description": "All available Bactopia Tool workflows",
-          "url": "https://bactopia.github.io/bactopia-tools",
+          "url": "https://bactopia.io/bactopia-tools",
           "path": "/bactopia-tools",
           "tags": [],
           "source_file": "bactopia-tools/index.mdx",
@@ -106,7 +106,7 @@
         {
           "title": "abricate",
           "description": "Mass screening of contigs for antimicrobial resistance and virulence genes.",
-          "url": "https://bactopia.github.io/bactopia-tools/abricate",
+          "url": "https://bactopia.io/bactopia-tools/abricate",
           "path": "/bactopia-tools/abricate",
           "tags": [
             "bacteria",
@@ -120,7 +120,7 @@
         {
           "title": "abritamr",
           "description": "A NATA accredited tool for reporting the presence of antimicrobial resistance genes.",
-          "url": "https://bactopia.github.io/bactopia-tools/abritamr",
+          "url": "https://bactopia.io/bactopia-tools/abritamr",
           "path": "/bactopia-tools/abritamr",
           "tags": [
             "bacteria",
@@ -135,7 +135,7 @@
         {
           "title": "agrvate",
           "description": "Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.",
-          "url": "https://bactopia.github.io/bactopia-tools/agrvate",
+          "url": "https://bactopia.io/bactopia-tools/agrvate",
           "path": "/bactopia-tools/agrvate",
           "tags": [
             "staphylococcus-aureus",
@@ -149,7 +149,7 @@
         {
           "title": "amrfinderplus",
           "description": "Bactopia Tool: Amrfinderplus.",
-          "url": "https://bactopia.github.io/bactopia-tools/amrfinderplus",
+          "url": "https://bactopia.io/bactopia-tools/amrfinderplus",
           "path": "/bactopia-tools/amrfinderplus",
           "tags": [
             "bacteria",
@@ -166,7 +166,7 @@
         {
           "title": "ariba",
           "description": "Gene identification through local assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/ariba",
+          "url": "https://bactopia.io/bactopia-tools/ariba",
           "path": "/bactopia-tools/ariba",
           "tags": [
             "fastq",
@@ -181,7 +181,7 @@
         {
           "title": "bakta",
           "description": "Rapid annotation of bacterial genomes and plasmids.",
-          "url": "https://bactopia.github.io/bactopia-tools/bakta",
+          "url": "https://bactopia.io/bactopia-tools/bakta",
           "path": "/bactopia-tools/bakta",
           "tags": [
             "bacteria",
@@ -197,7 +197,7 @@
         {
           "title": "blastn",
           "description": "Search against nucleotide BLAST databases using nucleotide queries.",
-          "url": "https://bactopia.github.io/bactopia-tools/blastn",
+          "url": "https://bactopia.io/bactopia-tools/blastn",
           "path": "/bactopia-tools/blastn",
           "tags": [
             "fasta",
@@ -212,7 +212,7 @@
         {
           "title": "blastp",
           "description": "Search against protein BLAST databases using protein queries.",
-          "url": "https://bactopia.github.io/bactopia-tools/blastp",
+          "url": "https://bactopia.io/bactopia-tools/blastp",
           "path": "/bactopia-tools/blastp",
           "tags": [
             "fasta",
@@ -227,7 +227,7 @@
         {
           "title": "blastx",
           "description": "Search against protein BLAST databases using translated nucleotide queries.",
-          "url": "https://bactopia.github.io/bactopia-tools/blastx",
+          "url": "https://bactopia.io/bactopia-tools/blastx",
           "path": "/bactopia-tools/blastx",
           "tags": [
             "fasta",
@@ -242,7 +242,7 @@
         {
           "title": "bracken",
           "description": "Estimate taxonomic abundance of metagenomic samples.",
-          "url": "https://bactopia.github.io/bactopia-tools/bracken",
+          "url": "https://bactopia.io/bactopia-tools/bracken",
           "path": "/bactopia-tools/bracken",
           "tags": [
             "metagenomics",
@@ -258,7 +258,7 @@
         {
           "title": "btyper3",
           "description": "Taxonomic classification of Bacillus cereus group isolates.",
-          "url": "https://bactopia.github.io/bactopia-tools/btyper3",
+          "url": "https://bactopia.io/bactopia-tools/btyper3",
           "path": "/bactopia-tools/btyper3",
           "tags": [
             "bacillus-cereus",
@@ -272,7 +272,7 @@
         {
           "title": "busco",
           "description": "Assessment of genome assembly completeness using evolutionarily informed expectations.",
-          "url": "https://bactopia.github.io/bactopia-tools/busco",
+          "url": "https://bactopia.io/bactopia-tools/busco",
           "path": "/bactopia-tools/busco",
           "tags": [
             "assembly",
@@ -287,7 +287,7 @@
         {
           "title": "checkm",
           "description": "Assessment of microbial genome assembly quality.",
-          "url": "https://bactopia.github.io/bactopia-tools/checkm",
+          "url": "https://bactopia.io/bactopia-tools/checkm",
           "path": "/bactopia-tools/checkm",
           "tags": [
             "assembly-quality",
@@ -301,7 +301,7 @@
         {
           "title": "checkm2",
           "description": "Machine learning-based assessment of microbial genome assembly quality.",
-          "url": "https://bactopia.github.io/bactopia-tools/checkm2",
+          "url": "https://bactopia.io/bactopia-tools/checkm2",
           "path": "/bactopia-tools/checkm2",
           "tags": [
             "assembly-quality",
@@ -315,7 +315,7 @@
         {
           "title": "clermontyping",
           "description": "In silico phylotyping of Escherichia genus.",
-          "url": "https://bactopia.github.io/bactopia-tools/clermontyping",
+          "url": "https://bactopia.io/bactopia-tools/clermontyping",
           "path": "/bactopia-tools/clermontyping",
           "tags": [
             "e-coli",
@@ -329,7 +329,7 @@
         {
           "title": "defensefinder",
           "description": "Systematic identification of anti-phage defense systems.",
-          "url": "https://bactopia.github.io/bactopia-tools/defensefinder",
+          "url": "https://bactopia.io/bactopia-tools/defensefinder",
           "path": "/bactopia-tools/defensefinder",
           "tags": [
             "anti-phage",
@@ -343,7 +343,7 @@
         {
           "title": "ectyper",
           "description": "In silico prediction of Escherichia coli serotype.",
-          "url": "https://bactopia.github.io/bactopia-tools/ectyper",
+          "url": "https://bactopia.io/bactopia-tools/ectyper",
           "path": "/bactopia-tools/ectyper",
           "tags": [
             "escherichia-coli",
@@ -356,7 +356,7 @@
         {
           "title": "eggnog",
           "description": "Functional annotation of proteins using orthologous groups and phylogenies.",
-          "url": "https://bactopia.github.io/bactopia-tools/eggnog",
+          "url": "https://bactopia.io/bactopia-tools/eggnog",
           "path": "/bactopia-tools/eggnog",
           "tags": [
             "functional-annotation",
@@ -370,7 +370,7 @@
         {
           "title": "emmtyper",
           "description": "emm-typing of Streptococcus pyogenes assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/emmtyper",
+          "url": "https://bactopia.io/bactopia-tools/emmtyper",
           "path": "/bactopia-tools/emmtyper",
           "tags": [
             "streptococcus-pyogenes",
@@ -383,7 +383,7 @@
         {
           "title": "fastani",
           "description": "Fast alignment-free computation of whole-genome Average Nucleotide Identity.",
-          "url": "https://bactopia.github.io/bactopia-tools/fastani",
+          "url": "https://bactopia.io/bactopia-tools/fastani",
           "path": "/bactopia-tools/fastani",
           "tags": [
             "ani",
@@ -397,7 +397,7 @@
         {
           "title": "gamma",
           "description": "Identification, classification, and annotation of translated gene matches.",
-          "url": "https://bactopia.github.io/bactopia-tools/gamma",
+          "url": "https://bactopia.io/bactopia-tools/gamma",
           "path": "/bactopia-tools/gamma",
           "tags": [
             "gene-annotation",
@@ -411,7 +411,7 @@
         {
           "title": "genotyphi",
           "description": "Salmonella Typhi genotyping with lineage assignment.",
-          "url": "https://bactopia.github.io/bactopia-tools/genotyphi",
+          "url": "https://bactopia.io/bactopia-tools/genotyphi",
           "path": "/bactopia-tools/genotyphi",
           "tags": [
             "salmonella-typhi",
@@ -426,7 +426,7 @@
         {
           "title": "gigatyper",
           "description": "Run all available MLST schemes for a species against an assembly",
-          "url": "https://bactopia.github.io/bactopia-tools/gigatyper",
+          "url": "https://bactopia.io/bactopia-tools/gigatyper",
           "path": "/bactopia-tools/gigatyper",
           "tags": [
             "mlst",
@@ -439,7 +439,7 @@
         {
           "title": "gtdb",
           "description": "Identify marker genes and assign taxonomic classifications using GTDB.",
-          "url": "https://bactopia.github.io/bactopia-tools/gtdb",
+          "url": "https://bactopia.io/bactopia-tools/gtdb",
           "path": "/bactopia-tools/gtdb",
           "tags": [
             "taxonomy",
@@ -454,7 +454,7 @@
         {
           "title": "hicap",
           "description": "Identify cap locus serotype and structure in Haemophilus influenzae assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/hicap",
+          "url": "https://bactopia.io/bactopia-tools/hicap",
           "path": "/bactopia-tools/hicap",
           "tags": [
             "haemophilus-influenzae",
@@ -467,7 +467,7 @@
         {
           "title": "hpsuissero",
           "description": "Serotype prediction of Haemophilus parasuis assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/hpsuissero",
+          "url": "https://bactopia.io/bactopia-tools/hpsuissero",
           "path": "/bactopia-tools/hpsuissero",
           "tags": [
             "haemophilus-parasuis",
@@ -480,7 +480,7 @@
         {
           "title": "ismapper",
           "description": "Identify insertion sequence positions in bacterial genomes.",
-          "url": "https://bactopia.github.io/bactopia-tools/ismapper",
+          "url": "https://bactopia.io/bactopia-tools/ismapper",
           "path": "/bactopia-tools/ismapper",
           "tags": [
             "insertion-sequences",
@@ -493,7 +493,7 @@
         {
           "title": "kleborate",
           "description": "Comprehensive screening of Klebsiella genomes for virulence and resistance determinants.",
-          "url": "https://bactopia.github.io/bactopia-tools/kleborate",
+          "url": "https://bactopia.io/bactopia-tools/kleborate",
           "path": "/bactopia-tools/kleborate",
           "tags": [
             "klebsiella",
@@ -508,7 +508,7 @@
         {
           "title": "kraken2",
           "description": "Taxonomic classification of metagenomic sequence reads.",
-          "url": "https://bactopia.github.io/bactopia-tools/kraken2",
+          "url": "https://bactopia.io/bactopia-tools/kraken2",
           "path": "/bactopia-tools/kraken2",
           "tags": [
             "taxonomy",
@@ -523,7 +523,7 @@
         {
           "title": "legsta",
           "description": "Sequence Based Typing (SBT) of Legionella pneumophila.",
-          "url": "https://bactopia.github.io/bactopia-tools/legsta",
+          "url": "https://bactopia.io/bactopia-tools/legsta",
           "path": "/bactopia-tools/legsta",
           "tags": [
             "legionella-pneumophila",
@@ -537,7 +537,7 @@
         {
           "title": "lissero",
           "description": "Serogroup typing prediction for Listeria monocytogenes.",
-          "url": "https://bactopia.github.io/bactopia-tools/lissero",
+          "url": "https://bactopia.io/bactopia-tools/lissero",
           "path": "/bactopia-tools/lissero",
           "tags": [
             "listeria-monocytogenes",
@@ -550,7 +550,7 @@
         {
           "title": "mashdist",
           "description": "Calculate Mash distances between sequences and reference genomes.",
-          "url": "https://bactopia.github.io/bactopia-tools/mashdist",
+          "url": "https://bactopia.io/bactopia-tools/mashdist",
           "path": "/bactopia-tools/mashdist",
           "tags": [
             "mash",
@@ -564,7 +564,7 @@
         {
           "title": "mashtree",
           "description": "Rapid phylogenetic tree construction using Mash distances.",
-          "url": "https://bactopia.github.io/bactopia-tools/mashtree",
+          "url": "https://bactopia.io/bactopia-tools/mashtree",
           "path": "/bactopia-tools/mashtree",
           "tags": [
             "phylogeny",
@@ -579,7 +579,7 @@
         {
           "title": "mcroni",
           "description": "Sequence variation analysis of mcr-1 genes (mobilized colistin resistance).",
-          "url": "https://bactopia.github.io/bactopia-tools/mcroni",
+          "url": "https://bactopia.io/bactopia-tools/mcroni",
           "path": "/bactopia-tools/mcroni",
           "tags": [
             "mcr-1",
@@ -593,7 +593,7 @@
         {
           "title": "meningotype",
           "description": "Comprehensive typing of Neisseria meningitidis.",
-          "url": "https://bactopia.github.io/bactopia-tools/meningotype",
+          "url": "https://bactopia.io/bactopia-tools/meningotype",
           "path": "/bactopia-tools/meningotype",
           "tags": [
             "neisseria-meningitidis",
@@ -608,7 +608,7 @@
         {
           "title": "merlin",
           "description": "MinMER-assisted species-specific tool selection and execution.",
-          "url": "https://bactopia.github.io/bactopia-tools/merlin",
+          "url": "https://bactopia.io/bactopia-tools/merlin",
           "path": "/bactopia-tools/merlin",
           "tags": [
             "species-specific",
@@ -623,7 +623,7 @@
         {
           "title": "midas",
           "description": "Estimate species abundances from metagenomic samples.",
-          "url": "https://bactopia.github.io/bactopia-tools/midas",
+          "url": "https://bactopia.io/bactopia-tools/midas",
           "path": "/bactopia-tools/midas",
           "tags": [
             "metagenomics",
@@ -637,7 +637,7 @@
         {
           "title": "mlst",
           "description": "Automatic Multi-Locus Sequence Type (MLST) calling from assembled contigs.",
-          "url": "https://bactopia.github.io/bactopia-tools/mlst",
+          "url": "https://bactopia.io/bactopia-tools/mlst",
           "path": "/bactopia-tools/mlst",
           "tags": [
             "typing",
@@ -652,7 +652,7 @@
         {
           "title": "mobsuite",
           "description": "Reconstruction and annotation of plasmids from bacterial genome assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/mobsuite",
+          "url": "https://bactopia.io/bactopia-tools/mobsuite",
           "path": "/bactopia-tools/mobsuite",
           "tags": [
             "plasmid",
@@ -667,7 +667,7 @@
         {
           "title": "mykrobe",
           "description": "Antimicrobial resistance detection for specific bacterial species.",
-          "url": "https://bactopia.github.io/bactopia-tools/mykrobe",
+          "url": "https://bactopia.io/bactopia-tools/mykrobe",
           "path": "/bactopia-tools/mykrobe",
           "tags": [
             "fastq",
@@ -681,7 +681,7 @@
         {
           "title": "ngmaster",
           "description": "Multi-antigen sequence typing of Neisseria gonorrhoeae.",
-          "url": "https://bactopia.github.io/bactopia-tools/ngmaster",
+          "url": "https://bactopia.io/bactopia-tools/ngmaster",
           "path": "/bactopia-tools/ngmaster",
           "tags": [
             "neisseria-gonorrhoeae",
@@ -694,7 +694,7 @@
         {
           "title": "pangenome",
           "description": "Pangenome analysis with optional core-genome phylogeny.",
-          "url": "https://bactopia.github.io/bactopia-tools/pangenome",
+          "url": "https://bactopia.io/bactopia-tools/pangenome",
           "path": "/bactopia-tools/pangenome",
           "tags": [
             "alignment",
@@ -709,7 +709,7 @@
         {
           "title": "pasty",
           "description": "In silico serogrouping of Pseudomonas aeruginosa isolates.",
-          "url": "https://bactopia.github.io/bactopia-tools/pasty",
+          "url": "https://bactopia.io/bactopia-tools/pasty",
           "path": "/bactopia-tools/pasty",
           "tags": [
             "fasta",
@@ -723,7 +723,7 @@
         {
           "title": "pbptyper",
           "description": "Penicillin Binding Protein (PBP) typing for Streptococcus pneumoniae.",
-          "url": "https://bactopia.github.io/bactopia-tools/pbptyper",
+          "url": "https://bactopia.io/bactopia-tools/pbptyper",
           "path": "/bactopia-tools/pbptyper",
           "tags": [
             "streptococcus-pneumoniae",
@@ -737,7 +737,7 @@
         {
           "title": "phispy",
           "description": "Prediction of prophages in bacterial and archaeal genomes.",
-          "url": "https://bactopia.github.io/bactopia-tools/phispy",
+          "url": "https://bactopia.io/bactopia-tools/phispy",
           "path": "/bactopia-tools/phispy",
           "tags": [
             "prophage",
@@ -752,7 +752,7 @@
         {
           "title": "plasmidfinder",
           "description": "Bactopia Tool: Plasmidfinder.",
-          "url": "https://bactopia.github.io/bactopia-tools/plasmidfinder",
+          "url": "https://bactopia.io/bactopia-tools/plasmidfinder",
           "path": "/bactopia-tools/plasmidfinder",
           "tags": [
             "plasmid",
@@ -767,7 +767,7 @@
         {
           "title": "pneumocat",
           "description": "Capsular type assignment to Streptococcus pneumoniae from sequence reads.",
-          "url": "https://bactopia.github.io/bactopia-tools/pneumocat",
+          "url": "https://bactopia.io/bactopia-tools/pneumocat",
           "path": "/bactopia-tools/pneumocat",
           "tags": [
             "streptococcus-pneumoniae",
@@ -780,7 +780,7 @@
         {
           "title": "prokka",
           "description": "Rapid whole genome annotation of bacterial, archaeal, and viral genomes.",
-          "url": "https://bactopia.github.io/bactopia-tools/prokka",
+          "url": "https://bactopia.io/bactopia-tools/prokka",
           "path": "/bactopia-tools/prokka",
           "tags": [
             "annotation",
@@ -795,7 +795,7 @@
         {
           "title": "quast",
           "description": "Quality assessment of assembled contigs using QUAST.",
-          "url": "https://bactopia.github.io/bactopia-tools/quast",
+          "url": "https://bactopia.io/bactopia-tools/quast",
           "path": "/bactopia-tools/quast",
           "tags": [
             "assembly",
@@ -809,7 +809,7 @@
         {
           "title": "rgi",
           "description": "Prediction of antibiotic resistance genes using RGI.",
-          "url": "https://bactopia.github.io/bactopia-tools/rgi",
+          "url": "https://bactopia.io/bactopia-tools/rgi",
           "path": "/bactopia-tools/rgi",
           "tags": [
             "bacteria",
@@ -823,7 +823,7 @@
         {
           "title": "sccmec",
           "description": "Typing of SCCmec cassettes in Staphylococcus aureus assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/sccmec",
+          "url": "https://bactopia.io/bactopia-tools/sccmec",
           "path": "/bactopia-tools/sccmec",
           "tags": [
             "resistance",
@@ -838,7 +838,7 @@
         {
           "title": "scrubber",
           "description": "Removal of human and contaminant sequences from metagenomic reads.",
-          "url": "https://bactopia.github.io/bactopia-tools/scrubber",
+          "url": "https://bactopia.io/bactopia-tools/scrubber",
           "path": "/bactopia-tools/scrubber",
           "tags": [
             "metagenomics",
@@ -852,7 +852,7 @@
         {
           "title": "seqsero2",
           "description": "Salmonella serotype prediction from sequencing reads or assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/seqsero2",
+          "url": "https://bactopia.io/bactopia-tools/seqsero2",
           "path": "/bactopia-tools/seqsero2",
           "tags": [
             "salmonella",
@@ -867,7 +867,7 @@
         {
           "title": "seroba",
           "description": "Serotyping of Streptococcus pneumoniae from Illumina paired-end reads.",
-          "url": "https://bactopia.github.io/bactopia-tools/seroba",
+          "url": "https://bactopia.io/bactopia-tools/seroba",
           "path": "/bactopia-tools/seroba",
           "tags": [
             "serotyping",
@@ -882,7 +882,7 @@
         {
           "title": "shigapass",
           "description": "Prediction of Shigella serotypes and differentiation from EIEC.",
-          "url": "https://bactopia.github.io/bactopia-tools/shigapass",
+          "url": "https://bactopia.io/bactopia-tools/shigapass",
           "path": "/bactopia-tools/shigapass",
           "tags": [
             "shigella",
@@ -898,7 +898,7 @@
         {
           "title": "shigatyper",
           "description": "Rapid determination of Shigella serotypes from sequencing reads.",
-          "url": "https://bactopia.github.io/bactopia-tools/shigatyper",
+          "url": "https://bactopia.io/bactopia-tools/shigatyper",
           "path": "/bactopia-tools/shigatyper",
           "tags": [
             "shigella",
@@ -914,7 +914,7 @@
         {
           "title": "shigeifinder",
           "description": "In silico serotype prediction for Shigella and Enteroinvasive E. coli (EIEC).",
-          "url": "https://bactopia.github.io/bactopia-tools/shigeifinder",
+          "url": "https://bactopia.io/bactopia-tools/shigeifinder",
           "path": "/bactopia-tools/shigeifinder",
           "tags": [
             "shigella",
@@ -929,7 +929,7 @@
         {
           "title": "sistr",
           "description": "Serovar prediction of Salmonella enterica from assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/sistr",
+          "url": "https://bactopia.io/bactopia-tools/sistr",
           "path": "/bactopia-tools/sistr",
           "tags": [
             "salmonella",
@@ -944,7 +944,7 @@
         {
           "title": "snippy",
           "description": "Rapid haplotype variant calling and core genome alignment.",
-          "url": "https://bactopia.github.io/bactopia-tools/snippy",
+          "url": "https://bactopia.io/bactopia-tools/snippy",
           "path": "/bactopia-tools/snippy",
           "tags": [
             "snp",
@@ -959,7 +959,7 @@
         {
           "title": "spatyper",
           "description": "spa typing of Staphylococcus aureus assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/spatyper",
+          "url": "https://bactopia.io/bactopia-tools/spatyper",
           "path": "/bactopia-tools/spatyper",
           "tags": [
             "staphylococcus-aureus",
@@ -972,7 +972,7 @@
         {
           "title": "ssuissero",
           "description": "Serotype prediction of Streptococcus suis assemblies.",
-          "url": "https://bactopia.github.io/bactopia-tools/ssuissero",
+          "url": "https://bactopia.io/bactopia-tools/ssuissero",
           "path": "/bactopia-tools/ssuissero",
           "tags": [
             "streptococcus-suis",
@@ -985,7 +985,7 @@
         {
           "title": "staphtyper",
           "description": "Comprehensive typing of Staphylococcus aureus genomes.",
-          "url": "https://bactopia.github.io/bactopia-tools/staphtyper",
+          "url": "https://bactopia.io/bactopia-tools/staphtyper",
           "path": "/bactopia-tools/staphtyper",
           "tags": [
             "staphylococcus-aureus",
@@ -1000,7 +1000,7 @@
         {
           "title": "stecfinder",
           "description": "Serotype identification of Shiga toxin-producing E. coli.",
-          "url": "https://bactopia.github.io/bactopia-tools/stecfinder",
+          "url": "https://bactopia.io/bactopia-tools/stecfinder",
           "path": "/bactopia-tools/stecfinder",
           "tags": [
             "stec",
@@ -1014,7 +1014,7 @@
         {
           "title": "sylph",
           "description": "Taxonomic profiling by abundance-corrected MinHash.",
-          "url": "https://bactopia.github.io/bactopia-tools/sylph",
+          "url": "https://bactopia.io/bactopia-tools/sylph",
           "path": "/bactopia-tools/sylph",
           "tags": [
             "taxonomic-profiling",
@@ -1029,7 +1029,7 @@
         {
           "title": "tblastn",
           "description": "Search against translated nucleotide databases using protein queries.",
-          "url": "https://bactopia.github.io/bactopia-tools/tblastn",
+          "url": "https://bactopia.io/bactopia-tools/tblastn",
           "path": "/bactopia-tools/tblastn",
           "tags": [
             "fasta",
@@ -1044,7 +1044,7 @@
         {
           "title": "tblastx",
           "description": "Search against translated nucleotide databases using translated nucleotide queries.",
-          "url": "https://bactopia.github.io/bactopia-tools/tblastx",
+          "url": "https://bactopia.io/bactopia-tools/tblastx",
           "path": "/bactopia-tools/tblastx",
           "tags": [
             "fasta",
@@ -1059,7 +1059,7 @@
         {
           "title": "tbprofiler",
           "description": "Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis.",
-          "url": "https://bactopia.github.io/bactopia-tools/tbprofiler",
+          "url": "https://bactopia.io/bactopia-tools/tbprofiler",
           "path": "/bactopia-tools/tbprofiler",
           "tags": [
             "mycobacterium-tuberculosis",
@@ -1083,7 +1083,7 @@
         {
           "title": "Bactopia Pipelines",
           "description": "Bactopia analysis pipelines",
-          "url": "https://bactopia.github.io/bactopia-pipelines",
+          "url": "https://bactopia.io/bactopia-pipelines",
           "path": "/bactopia-pipelines",
           "tags": [],
           "source_file": "bactopia-pipelines/index.mdx",
@@ -1092,7 +1092,7 @@
         {
           "title": "cleanyerreads",
           "description": "Quality control and optional host read removal from raw sequencing reads.",
-          "url": "https://bactopia.github.io/bactopia-pipelines/cleanyerreads",
+          "url": "https://bactopia.io/bactopia-pipelines/cleanyerreads",
           "path": "/bactopia-pipelines/cleanyerreads",
           "tags": [
             "reads",
@@ -1108,7 +1108,7 @@
         {
           "title": "staphopia",
           "description": "Comprehensive analysis pipeline for Staphylococcus aureus isolates.",
-          "url": "https://bactopia.github.io/bactopia-pipelines/staphopia",
+          "url": "https://bactopia.io/bactopia-pipelines/staphopia",
           "path": "/bactopia-pipelines/staphopia",
           "tags": [
             "staphylococcus-aureus",
@@ -1126,7 +1126,7 @@
         {
           "title": "teton",
           "description": "Taxonomic classification and abundance profiling of metagenomic reads.",
-          "url": "https://bactopia.github.io/bactopia-pipelines/teton",
+          "url": "https://bactopia.io/bactopia-pipelines/teton",
           "path": "/bactopia-pipelines/teton",
           "tags": [
             "metagenomics",
@@ -1151,7 +1151,7 @@
         {
           "title": "Developers",
           "description": "Bactopia developer reference for CLI commands, subworkflows, and modules",
-          "url": "https://bactopia.github.io/developers",
+          "url": "https://bactopia.io/developers",
           "path": "/developers",
           "tags": [],
           "source_file": "developers/index.mdx"
@@ -1159,7 +1159,7 @@
         {
           "title": "abricate",
           "description": "Mass screening of contigs for antimicrobial and virulence genes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/abricate",
+          "url": "https://bactopia.io/developers/subworkflows/abricate",
           "path": "/developers/subworkflows/abricate",
           "tags": [
             "bacteria",
@@ -1174,7 +1174,7 @@
         {
           "title": "abricate_run",
           "description": "Mass screening of contigs for antimicrobial and virulence genes.",
-          "url": "https://bactopia.github.io/developers/modules/abricate_run",
+          "url": "https://bactopia.io/developers/modules/abricate_run",
           "path": "/developers/modules/abricate_run",
           "tags": [
             "bacteria",
@@ -1191,7 +1191,7 @@
         {
           "title": "abricate_summary",
           "description": "Summarize Abricate screening results.",
-          "url": "https://bactopia.github.io/developers/modules/abricate_summary",
+          "url": "https://bactopia.io/developers/modules/abricate_summary",
           "path": "/developers/modules/abricate_summary",
           "tags": [
             "bacteria",
@@ -1204,7 +1204,7 @@
         {
           "title": "abritamr",
           "description": "Identify antimicrobial resistance genes using AMRFinderPlus.",
-          "url": "https://bactopia.github.io/developers/subworkflows/abritamr",
+          "url": "https://bactopia.io/developers/subworkflows/abritamr",
           "path": "/developers/subworkflows/abritamr",
           "tags": [
             "bacteria",
@@ -1219,7 +1219,7 @@
         {
           "title": "abritamr_run",
           "description": "Detect antimicrobial resistance and virulence genes.",
-          "url": "https://bactopia.github.io/developers/modules/abritamr_run",
+          "url": "https://bactopia.io/developers/modules/abritamr_run",
           "path": "/developers/modules/abritamr_run",
           "tags": [
             "bacteria",
@@ -1235,7 +1235,7 @@
         {
           "title": "agrvate",
           "description": "Determine the agr locus type and operon variants in Staphylococcus aureus.",
-          "url": "https://bactopia.github.io/developers/modules/agrvate",
+          "url": "https://bactopia.io/developers/modules/agrvate",
           "path": "/developers/modules/agrvate",
           "tags": [
             "bacteria",
@@ -1253,7 +1253,7 @@
         {
           "title": "agrvate",
           "description": "Identify Staphylococcus aureus agr locus type and operon variants.",
-          "url": "https://bactopia.github.io/developers/subworkflows/agrvate",
+          "url": "https://bactopia.io/developers/subworkflows/agrvate",
           "path": "/developers/subworkflows/agrvate",
           "tags": [
             "staphylococcus-aureus",
@@ -1268,7 +1268,7 @@
         {
           "title": "AI Skills",
           "description": "Reference for AI skills that automate Bactopia development tasks",
-          "url": "https://bactopia.github.io/developers/ai-skills",
+          "url": "https://bactopia.io/developers/ai-skills",
           "path": "/developers/ai-skills",
           "tags": [],
           "source_file": "developers/ai-skills/index.mdx"
@@ -1276,7 +1276,7 @@
         {
           "title": "amrfinderplus",
           "description": "Find antimicrobial resistance genes and point mutations.",
-          "url": "https://bactopia.github.io/developers/subworkflows/amrfinderplus",
+          "url": "https://bactopia.io/developers/subworkflows/amrfinderplus",
           "path": "/developers/subworkflows/amrfinderplus",
           "tags": [
             "bacteria",
@@ -1290,7 +1290,7 @@
         {
           "title": "amrfinderplus_run",
           "description": "Identify antimicrobial resistance and virulence genes in gene or protein sequences.",
-          "url": "https://bactopia.github.io/developers/modules/amrfinderplus_run",
+          "url": "https://bactopia.io/developers/modules/amrfinderplus_run",
           "path": "/developers/modules/amrfinderplus_run",
           "tags": [
             "bacteria",
@@ -1308,7 +1308,7 @@
         {
           "title": "amrfinderplus_update",
           "description": "Download and index the latest AMRFinder+ database.",
-          "url": "https://bactopia.github.io/developers/modules/amrfinderplus_update",
+          "url": "https://bactopia.io/developers/modules/amrfinderplus_update",
           "path": "/developers/modules/amrfinderplus_update",
           "tags": [
             "bacteria",
@@ -1324,7 +1324,7 @@
         {
           "title": "ariba",
           "description": "Rapidly identify genes by creating local assemblies from paired-end reads.",
-          "url": "https://bactopia.github.io/developers/subworkflows/ariba",
+          "url": "https://bactopia.io/developers/subworkflows/ariba",
           "path": "/developers/subworkflows/ariba",
           "tags": [
             "bacteria",
@@ -1339,7 +1339,7 @@
         {
           "title": "ariba_getref",
           "description": "Download and prepare reference databases for ARIBA analysis.",
-          "url": "https://bactopia.github.io/developers/modules/ariba_getref",
+          "url": "https://bactopia.io/developers/modules/ariba_getref",
           "path": "/developers/modules/ariba_getref",
           "tags": [
             "bacteria",
@@ -1356,7 +1356,7 @@
         {
           "title": "ariba_run",
           "description": "Identify genes by local assembly of reads.",
-          "url": "https://bactopia.github.io/developers/modules/ariba_run",
+          "url": "https://bactopia.io/developers/modules/ariba_run",
           "path": "/developers/modules/ariba_run",
           "tags": [
             "fastq",
@@ -1371,7 +1371,7 @@
         {
           "title": "bactopia-atb-downloader",
           "description": "Download All-the-Bacteria assemblies based on input query",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-atb-downloader",
+          "url": "https://bactopia.io/developers/cli/bactopia-atb-downloader",
           "path": "/developers/cli/bactopia-atb-downloader",
           "tags": [],
           "source_file": "developers/cli/bactopia-atb-downloader.mdx"
@@ -1379,7 +1379,7 @@
         {
           "title": "bactopia-atb-formatter",
           "description": "Restructure All-the-Bacteria assemblies to allow usage with Bactopia Tools",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-atb-formatter",
+          "url": "https://bactopia.io/developers/cli/bactopia-atb-formatter",
           "path": "/developers/cli/bactopia-atb-formatter",
           "tags": [],
           "source_file": "developers/cli/bactopia-atb-formatter.mdx"
@@ -1387,7 +1387,7 @@
         {
           "title": "bactopia-bracken-to-excel",
           "description": "Write Bracken abundances to an Excel file.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-bracken-to-excel",
+          "url": "https://bactopia.io/developers/cli/bactopia-bracken-to-excel",
           "path": "/developers/cli/bactopia-bracken-to-excel",
           "tags": [],
           "source_file": "developers/cli/bactopia-bracken-to-excel.mdx"
@@ -1395,7 +1395,7 @@
         {
           "title": "bactopia-catalog",
           "description": "Generate machine-readable catalog of all Bactopia components.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-catalog",
+          "url": "https://bactopia.io/developers/cli/bactopia-catalog",
           "path": "/developers/cli/bactopia-catalog",
           "tags": [],
           "source_file": "developers/cli/bactopia-catalog.mdx"
@@ -1403,7 +1403,7 @@
         {
           "title": "bactopia-check-assembly-accession",
           "description": "Verify NCBI Assembly accession is latest and still available.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-check-assembly-accession",
+          "url": "https://bactopia.io/developers/cli/bactopia-check-assembly-accession",
           "path": "/developers/cli/bactopia-check-assembly-accession",
           "tags": [],
           "source_file": "developers/cli/bactopia-check-assembly-accession.mdx"
@@ -1411,7 +1411,7 @@
         {
           "title": "bactopia-check-fastqs",
           "description": "Verify input FASTQs meet minimum requirements.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-check-fastqs",
+          "url": "https://bactopia.io/developers/cli/bactopia-check-fastqs",
           "path": "/developers/cli/bactopia-check-fastqs",
           "tags": [],
           "source_file": "developers/cli/bactopia-check-fastqs.mdx"
@@ -1419,7 +1419,7 @@
         {
           "title": "bactopia-citations",
           "description": "Print or validate citations used throughout Bactopia.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-citations",
+          "url": "https://bactopia.io/developers/cli/bactopia-citations",
           "path": "/developers/cli/bactopia-citations",
           "tags": [],
           "source_file": "developers/cli/bactopia-citations.mdx"
@@ -1427,7 +1427,7 @@
         {
           "title": "bactopia-cleanup-coverage",
           "description": "Reduce redundancy in per-base coverage from genomeCoverageBed output.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-cleanup-coverage",
+          "url": "https://bactopia.io/developers/cli/bactopia-cleanup-coverage",
           "path": "/developers/cli/bactopia-cleanup-coverage",
           "tags": [],
           "source_file": "developers/cli/bactopia-cleanup-coverage.mdx"
@@ -1435,7 +1435,7 @@
         {
           "title": "bactopia-datasets",
           "description": "Download optional datasets to supplement your analyses with Bactopia",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-datasets",
+          "url": "https://bactopia.io/developers/cli/bactopia-datasets",
           "path": "/developers/cli/bactopia-datasets",
           "tags": [],
           "source_file": "developers/cli/bactopia-datasets.mdx"
@@ -1443,7 +1443,7 @@
         {
           "title": "bactopia-docs",
           "description": "Validate reference-doc staleness across a Bactopia repo.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-docs",
+          "url": "https://bactopia.io/developers/cli/bactopia-docs",
           "path": "/developers/cli/bactopia-docs",
           "tags": [],
           "source_file": "developers/cli/bactopia-docs.mdx"
@@ -1451,7 +1451,7 @@
         {
           "title": "bactopia-download",
           "description": "Builds Bactopia environments for use with Nextflow.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-download",
+          "url": "https://bactopia.io/developers/cli/bactopia-download",
           "path": "/developers/cli/bactopia-download",
           "tags": [],
           "source_file": "developers/cli/bactopia-download.mdx"
@@ -1459,7 +1459,7 @@
         {
           "title": "bactopia-kraken-bracken-summary",
           "description": "Update the Bracken abundances with unclassified counts.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-kraken-bracken-summary",
+          "url": "https://bactopia.io/developers/cli/bactopia-kraken-bracken-summary",
           "path": "/developers/cli/bactopia-kraken-bracken-summary",
           "tags": [],
           "source_file": "developers/cli/bactopia-kraken-bracken-summary.mdx"
@@ -1467,7 +1467,7 @@
         {
           "title": "bactopia-lint",
           "description": "Lint Bactopia pipeline components against style guidelines.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-lint",
+          "url": "https://bactopia.io/developers/cli/bactopia-lint",
           "path": "/developers/cli/bactopia-lint",
           "tags": [],
           "source_file": "developers/cli/bactopia-lint.mdx"
@@ -1475,7 +1475,7 @@
         {
           "title": "bactopia-mask-consensus",
           "description": "Snippy consensus (subs) with coverage masking.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-mask-consensus",
+          "url": "https://bactopia.io/developers/cli/bactopia-mask-consensus",
           "path": "/developers/cli/bactopia-mask-consensus",
           "tags": [],
           "source_file": "developers/cli/bactopia-mask-consensus.mdx"
@@ -1483,7 +1483,7 @@
         {
           "title": "bactopia-merge-schemas",
           "description": "Builds a Nextflow Schema and/or Nextflow config for a given workflow.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-merge-schemas",
+          "url": "https://bactopia.io/developers/cli/bactopia-merge-schemas",
           "path": "/developers/cli/bactopia-merge-schemas",
           "tags": [],
           "source_file": "developers/cli/bactopia-merge-schemas.mdx"
@@ -1491,7 +1491,7 @@
         {
           "title": "bactopia-prepare",
           "description": "Create a 'file of filenames' (FOFN) of samples to be processed by Bactopia",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-prepare",
+          "url": "https://bactopia.io/developers/cli/bactopia-prepare",
           "path": "/developers/cli/bactopia-prepare",
           "tags": [],
           "source_file": "developers/cli/bactopia-prepare.mdx"
@@ -1499,7 +1499,7 @@
         {
           "title": "bactopia-prune",
           "description": "Removes stale Bactopia environments that no longer match current module versions.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-prune",
+          "url": "https://bactopia.io/developers/cli/bactopia-prune",
           "path": "/developers/cli/bactopia-prune",
           "tags": [],
           "source_file": "developers/cli/bactopia-prune.mdx"
@@ -1507,7 +1507,7 @@
         {
           "title": "bactopia-pubmlst-build",
           "description": "Build PubMLST databases for use with the 'mlst' Bactopia Tool.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-pubmlst-build",
+          "url": "https://bactopia.io/developers/cli/bactopia-pubmlst-build",
           "path": "/developers/cli/bactopia-pubmlst-build",
           "tags": [],
           "source_file": "developers/cli/bactopia-pubmlst-build.mdx"
@@ -1515,7 +1515,7 @@
         {
           "title": "bactopia-pubmlst-setup",
           "description": "One-time setup for interacting with the PubMLST API",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-pubmlst-setup",
+          "url": "https://bactopia.io/developers/cli/bactopia-pubmlst-setup",
           "path": "/developers/cli/bactopia-pubmlst-setup",
           "tags": [],
           "source_file": "developers/cli/bactopia-pubmlst-setup.mdx"
@@ -1523,7 +1523,7 @@
         {
           "title": "bactopia-review-tests",
           "description": "Review nf-test results with grouped error analysis and timing checks.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-review-tests",
+          "url": "https://bactopia.io/developers/cli/bactopia-review-tests",
           "path": "/developers/cli/bactopia-review-tests",
           "tags": [],
           "source_file": "developers/cli/bactopia-review-tests.mdx"
@@ -1531,7 +1531,7 @@
         {
           "title": "bactopia-scaffold",
           "description": "Scaffold Bactopia components from bioconda/conda-forge packages.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-scaffold",
+          "url": "https://bactopia.io/developers/cli/bactopia-scaffold",
           "path": "/developers/cli/bactopia-scaffold",
           "tags": [],
           "source_file": "developers/cli/bactopia-scaffold.mdx"
@@ -1539,7 +1539,7 @@
         {
           "title": "bactopia-scrubber-summary",
           "description": "Create a before-and-after report from human read scrubbing.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-scrubber-summary",
+          "url": "https://bactopia.io/developers/cli/bactopia-scrubber-summary",
           "path": "/developers/cli/bactopia-scrubber-summary",
           "tags": [],
           "source_file": "developers/cli/bactopia-scrubber-summary.mdx"
@@ -1547,7 +1547,7 @@
         {
           "title": "bactopia-search",
           "description": "Query against ENA and SRA for public accessions to process with Bactopia",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-search",
+          "url": "https://bactopia.io/developers/cli/bactopia-search",
           "path": "/developers/cli/bactopia-search",
           "tags": [],
           "source_file": "developers/cli/bactopia-search.mdx"
@@ -1555,7 +1555,7 @@
         {
           "title": "bactopia-status",
           "description": "Show a snapshot of the Bactopia project state.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-status",
+          "url": "https://bactopia.io/developers/cli/bactopia-status",
           "path": "/developers/cli/bactopia-status",
           "tags": [],
           "source_file": "developers/cli/bactopia-status.mdx"
@@ -1563,7 +1563,7 @@
         {
           "title": "bactopia-summary",
           "description": "Generate a summary table from the Bactopia results.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-summary",
+          "url": "https://bactopia.io/developers/cli/bactopia-summary",
           "path": "/developers/cli/bactopia-summary",
           "tags": [],
           "source_file": "developers/cli/bactopia-summary.mdx"
@@ -1571,7 +1571,7 @@
         {
           "title": "bactopia-sysinfo",
           "description": "Auto-detect host RAM and CPUs, emit Nextflow CLI fragments for local profiles.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-sysinfo",
+          "url": "https://bactopia.io/developers/cli/bactopia-sysinfo",
           "path": "/developers/cli/bactopia-sysinfo",
           "tags": [],
           "source_file": "developers/cli/bactopia-sysinfo.mdx"
@@ -1579,7 +1579,7 @@
         {
           "title": "bactopia-test",
           "description": "Run nf-test suites for Bactopia components.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-test",
+          "url": "https://bactopia.io/developers/cli/bactopia-test",
           "path": "/developers/cli/bactopia-test",
           "tags": [],
           "source_file": "developers/cli/bactopia-test.mdx"
@@ -1587,7 +1587,7 @@
         {
           "title": "bactopia-teton-prepare",
           "description": "Prepare sample sheets for downstream analysis in the Teton workflow.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-teton-prepare",
+          "url": "https://bactopia.io/developers/cli/bactopia-teton-prepare",
           "path": "/developers/cli/bactopia-teton-prepare",
           "tags": [],
           "source_file": "developers/cli/bactopia-teton-prepare.mdx"
@@ -1595,7 +1595,7 @@
         {
           "title": "bactopia-update",
           "description": "Check if modules used by Bactopia Tools have newer versions available",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-update",
+          "url": "https://bactopia.io/developers/cli/bactopia-update",
           "path": "/developers/cli/bactopia-update",
           "tags": [],
           "source_file": "developers/cli/bactopia-update.mdx"
@@ -1603,7 +1603,7 @@
         {
           "title": "bactopia-workflows",
           "description": "Output the path to a Bactopia workflow main.nf file.",
-          "url": "https://bactopia.github.io/developers/cli/bactopia-workflows",
+          "url": "https://bactopia.io/developers/cli/bactopia-workflows",
           "path": "/developers/cli/bactopia-workflows",
           "tags": [],
           "source_file": "developers/cli/bactopia-workflows.mdx"
@@ -1611,7 +1611,7 @@
         {
           "title": "bactopia_assembler",
           "description": "Assemble bacterial genomes using short read, long read, or hybrid strategies.",
-          "url": "https://bactopia.github.io/developers/modules/bactopia_assembler",
+          "url": "https://bactopia.io/developers/modules/bactopia_assembler",
           "path": "/developers/modules/bactopia_assembler",
           "tags": [
             "bacteria",
@@ -1629,7 +1629,7 @@
         {
           "title": "bactopia_assembler",
           "description": "Assemble bacterial genomes using automated assembler selection.",
-          "url": "https://bactopia.github.io/developers/subworkflows/bactopia_assembler",
+          "url": "https://bactopia.io/developers/subworkflows/bactopia_assembler",
           "path": "/developers/subworkflows/bactopia_assembler",
           "tags": [
             "bacteria",
@@ -1647,7 +1647,7 @@
         {
           "title": "bactopia_datasets",
           "description": "Download pre-compiled datasets required by Bactopia.",
-          "url": "https://bactopia.github.io/developers/modules/bactopia_datasets",
+          "url": "https://bactopia.io/developers/modules/bactopia_datasets",
           "path": "/developers/modules/bactopia_datasets",
           "tags": [
             "download",
@@ -1665,7 +1665,7 @@
         {
           "title": "bactopia_datasets",
           "description": "Download and provide pre-compiled datasets required by Bactopia.",
-          "url": "https://bactopia.github.io/developers/subworkflows/bactopia_datasets",
+          "url": "https://bactopia.io/developers/subworkflows/bactopia_datasets",
           "path": "/developers/subworkflows/bactopia_datasets",
           "tags": [
             "download",
@@ -1683,7 +1683,7 @@
         {
           "title": "bactopia_gather",
           "description": "Search, validate, gather, or simulate input samples.",
-          "url": "https://bactopia.github.io/developers/modules/bactopia_gather",
+          "url": "https://bactopia.io/developers/modules/bactopia_gather",
           "path": "/developers/modules/bactopia_gather",
           "tags": [
             "fastq",
@@ -1702,7 +1702,7 @@
         {
           "title": "bactopia_gather",
           "description": "Search, validate, gather, and standardize input samples.",
-          "url": "https://bactopia.github.io/developers/subworkflows/bactopia_gather",
+          "url": "https://bactopia.io/developers/subworkflows/bactopia_gather",
           "path": "/developers/subworkflows/bactopia_gather",
           "tags": [
             "validation",
@@ -1721,7 +1721,7 @@
         {
           "title": "bactopia_qc",
           "description": "Automated quality control, error correction, and read subsampling.",
-          "url": "https://bactopia.github.io/developers/modules/bactopia_qc",
+          "url": "https://bactopia.io/developers/modules/bactopia_qc",
           "path": "/developers/modules/bactopia_qc",
           "tags": [
             "fastq",
@@ -1743,7 +1743,7 @@
         {
           "title": "bactopia_qc",
           "description": "Perform comprehensive quality control on sequencing reads.",
-          "url": "https://bactopia.github.io/developers/subworkflows/bactopia_qc",
+          "url": "https://bactopia.io/developers/subworkflows/bactopia_qc",
           "path": "/developers/subworkflows/bactopia_qc",
           "tags": [
             "quality-control",
@@ -1763,7 +1763,7 @@
         {
           "title": "bactopia_sketcher",
           "description": "Create genomic sketches and perform rapid taxonomic classification.",
-          "url": "https://bactopia.github.io/developers/modules/bactopia_sketcher",
+          "url": "https://bactopia.io/developers/modules/bactopia_sketcher",
           "path": "/developers/modules/bactopia_sketcher",
           "tags": [
             "bacteria",
@@ -1782,7 +1782,7 @@
         {
           "title": "bactopia_sketcher",
           "description": "Create genomic sketches and perform rapid taxonomic classification.",
-          "url": "https://bactopia.github.io/developers/subworkflows/bactopia_sketcher",
+          "url": "https://bactopia.io/developers/subworkflows/bactopia_sketcher",
           "path": "/developers/subworkflows/bactopia_sketcher",
           "tags": [
             "taxonomy",
@@ -1800,7 +1800,7 @@
         {
           "title": "bactopia_teton",
           "description": "Predict genome size and route samples based on taxonomic classification.",
-          "url": "https://bactopia.github.io/developers/modules/bactopia_teton",
+          "url": "https://bactopia.io/developers/modules/bactopia_teton",
           "path": "/developers/modules/bactopia_teton",
           "tags": [
             "taxonomy",
@@ -1817,7 +1817,7 @@
         {
           "title": "bakta",
           "description": "Rapid bacterial genome annotation.",
-          "url": "https://bactopia.github.io/developers/subworkflows/bakta",
+          "url": "https://bactopia.io/developers/subworkflows/bakta",
           "path": "/developers/subworkflows/bakta",
           "tags": [
             "bacteria",
@@ -1832,7 +1832,7 @@
         {
           "title": "bakta_download",
           "description": "Download the Bakta annotation database.",
-          "url": "https://bactopia.github.io/developers/modules/bakta_download",
+          "url": "https://bactopia.io/developers/modules/bakta_download",
           "path": "/developers/modules/bakta_download",
           "tags": [
             "bacteria",
@@ -1848,7 +1848,7 @@
         {
           "title": "bakta_run",
           "description": "Rapid and standardized annotation of bacterial genomes and plasmids.",
-          "url": "https://bactopia.github.io/developers/modules/bakta_run",
+          "url": "https://bactopia.io/developers/modules/bakta_run",
           "path": "/developers/modules/bakta_run",
           "tags": [
             "bacteria",
@@ -1866,7 +1866,7 @@
         {
           "title": "blast_blastn",
           "description": "Search a nucleotide database using a nucleotide query.",
-          "url": "https://bactopia.github.io/developers/modules/blast_blastn",
+          "url": "https://bactopia.io/developers/modules/blast_blastn",
           "path": "/developers/modules/blast_blastn",
           "tags": [
             "blast",
@@ -1882,7 +1882,7 @@
         {
           "title": "blast_blastp",
           "description": "Search a protein database using a protein query.",
-          "url": "https://bactopia.github.io/developers/modules/blast_blastp",
+          "url": "https://bactopia.io/developers/modules/blast_blastp",
           "path": "/developers/modules/blast_blastp",
           "tags": [
             "blast",
@@ -1899,7 +1899,7 @@
         {
           "title": "blast_blastx",
           "description": "Search a protein database using a translated nucleotide query.",
-          "url": "https://bactopia.github.io/developers/modules/blast_blastx",
+          "url": "https://bactopia.io/developers/modules/blast_blastx",
           "path": "/developers/modules/blast_blastx",
           "tags": [
             "blast",
@@ -1917,7 +1917,7 @@
         {
           "title": "blast_tblastn",
           "description": "Search a translated nucleotide database using a protein query.",
-          "url": "https://bactopia.github.io/developers/modules/blast_tblastn",
+          "url": "https://bactopia.io/developers/modules/blast_tblastn",
           "path": "/developers/modules/blast_tblastn",
           "tags": [
             "blast",
@@ -1935,7 +1935,7 @@
         {
           "title": "blast_tblastx",
           "description": "Search a translated nucleotide database using a translated nucleotide query.",
-          "url": "https://bactopia.github.io/developers/modules/blast_tblastx",
+          "url": "https://bactopia.io/developers/modules/blast_tblastx",
           "path": "/developers/modules/blast_tblastx",
           "tags": [
             "blast",
@@ -1952,7 +1952,7 @@
         {
           "title": "blastn",
           "description": "Search a nucleotide database using nucleotide query sequences.",
-          "url": "https://bactopia.github.io/developers/subworkflows/blastn",
+          "url": "https://bactopia.io/developers/subworkflows/blastn",
           "path": "/developers/subworkflows/blastn",
           "tags": [
             "blast",
@@ -1968,7 +1968,7 @@
         {
           "title": "blastp",
           "description": "Search protein sequences against protein database.",
-          "url": "https://bactopia.github.io/developers/subworkflows/blastp",
+          "url": "https://bactopia.io/developers/subworkflows/blastp",
           "path": "/developers/subworkflows/blastp",
           "tags": [
             "blast",
@@ -1982,7 +1982,7 @@
         {
           "title": "blastx",
           "description": "Translate nucleotide sequences and search protein database.",
-          "url": "https://bactopia.github.io/developers/subworkflows/blastx",
+          "url": "https://bactopia.io/developers/subworkflows/blastx",
           "path": "/developers/subworkflows/blastx",
           "tags": [
             "blast",
@@ -1997,7 +1997,7 @@
         {
           "title": "bracken",
           "description": "Taxonomic classification and abundance estimation.",
-          "url": "https://bactopia.github.io/developers/modules/bracken",
+          "url": "https://bactopia.io/developers/modules/bracken",
           "path": "/developers/modules/bracken",
           "tags": [
             "metagenomics",
@@ -2014,7 +2014,7 @@
         {
           "title": "bracken",
           "description": "Estimate species abundance from metagenomic reads.",
-          "url": "https://bactopia.github.io/developers/subworkflows/bracken",
+          "url": "https://bactopia.io/developers/subworkflows/bracken",
           "path": "/developers/subworkflows/bracken",
           "tags": [
             "metagenomics",
@@ -2029,7 +2029,7 @@
         {
           "title": "btyper3",
           "description": "In silico typing and characterization of *Bacillus cereus* group genomes.",
-          "url": "https://bactopia.github.io/developers/modules/btyper3",
+          "url": "https://bactopia.io/developers/modules/btyper3",
           "path": "/developers/modules/btyper3",
           "tags": [
             "bacteria",
@@ -2047,7 +2047,7 @@
         {
           "title": "btyper3",
           "description": "In silico taxonomic classification of Bacillus cereus group genomes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/btyper3",
+          "url": "https://bactopia.io/developers/subworkflows/btyper3",
           "path": "/developers/subworkflows/btyper3",
           "tags": [
             "bacillus",
@@ -2062,7 +2062,7 @@
         {
           "title": "busco",
           "description": "Assess genome assembly completeness using single-copy orthologs.",
-          "url": "https://bactopia.github.io/developers/modules/busco",
+          "url": "https://bactopia.io/developers/modules/busco",
           "path": "/developers/modules/busco",
           "tags": [
             "quality-control",
@@ -2078,7 +2078,7 @@
         {
           "title": "busco",
           "description": "Assess genome assembly completeness using BUSCO.",
-          "url": "https://bactopia.github.io/developers/subworkflows/busco",
+          "url": "https://bactopia.io/developers/subworkflows/busco",
           "path": "/developers/subworkflows/busco",
           "tags": [
             "assembly",
@@ -2094,7 +2094,7 @@
         {
           "title": "checkm",
           "description": "Assess metagenome bin completeness using CheckM.",
-          "url": "https://bactopia.github.io/developers/subworkflows/checkm",
+          "url": "https://bactopia.io/developers/subworkflows/checkm",
           "path": "/developers/subworkflows/checkm",
           "tags": [
             "metagenome",
@@ -2110,7 +2110,7 @@
         {
           "title": "checkm2",
           "description": "Assess metagenome bin completeness using CheckM2.",
-          "url": "https://bactopia.github.io/developers/subworkflows/checkm2",
+          "url": "https://bactopia.io/developers/subworkflows/checkm2",
           "path": "/developers/subworkflows/checkm2",
           "tags": [
             "metagenome",
@@ -2127,7 +2127,7 @@
         {
           "title": "checkm2_download",
           "description": "Download the pre-trained CheckM2 database.",
-          "url": "https://bactopia.github.io/developers/modules/checkm2_download",
+          "url": "https://bactopia.io/developers/modules/checkm2_download",
           "path": "/developers/modules/checkm2_download",
           "tags": [
             "checkm2",
@@ -2142,7 +2142,7 @@
         {
           "title": "checkm2_predict",
           "description": "Assess genome quality using machine learning.",
-          "url": "https://bactopia.github.io/developers/modules/checkm2_predict",
+          "url": "https://bactopia.io/developers/modules/checkm2_predict",
           "path": "/developers/modules/checkm2_predict",
           "tags": [
             "quality-control",
@@ -2158,7 +2158,7 @@
         {
           "title": "checkm_lineagewf",
           "description": "Assess genome quality using lineage-specific marker sets.",
-          "url": "https://bactopia.github.io/developers/modules/checkm_lineagewf",
+          "url": "https://bactopia.io/developers/modules/checkm_lineagewf",
           "path": "/developers/modules/checkm_lineagewf",
           "tags": [
             "quality-control",
@@ -2175,7 +2175,7 @@
         {
           "title": "clermontyping",
           "description": "Determine the phylogroup of Escherichia coli isolates.",
-          "url": "https://bactopia.github.io/developers/modules/clermontyping",
+          "url": "https://bactopia.io/developers/modules/clermontyping",
           "path": "/developers/modules/clermontyping",
           "tags": [
             "bacteria",
@@ -2191,7 +2191,7 @@
         {
           "title": "clermontyping",
           "description": "Predict phylogroups of Escherichia coli from genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/clermontyping",
+          "url": "https://bactopia.io/developers/subworkflows/clermontyping",
           "path": "/developers/subworkflows/clermontyping",
           "tags": [
             "escherichia-coli",
@@ -2205,7 +2205,7 @@
         {
           "title": "CLI Reference",
           "description": "Command-line reference for all bactopia-py CLI commands",
-          "url": "https://bactopia.github.io/developers/cli",
+          "url": "https://bactopia.io/developers/cli",
           "path": "/developers/cli",
           "tags": [],
           "source_file": "developers/cli/index.mdx"
@@ -2213,7 +2213,7 @@
         {
           "title": "clonalframeml",
           "description": "Inference of recombination in bacterial genomes.",
-          "url": "https://bactopia.github.io/developers/modules/clonalframeml",
+          "url": "https://bactopia.io/developers/modules/clonalframeml",
           "path": "/developers/modules/clonalframeml",
           "tags": [
             "bacteria",
@@ -2229,7 +2229,7 @@
         {
           "title": "clonalframeml",
           "description": "Detect and mask recombination events in bacterial phylogenies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/clonalframeml",
+          "url": "https://bactopia.io/developers/subworkflows/clonalframeml",
           "path": "/developers/subworkflows/clonalframeml",
           "tags": [
             "recombination",
@@ -2244,7 +2244,7 @@
         {
           "title": "csvtk_concat",
           "description": "Concatenate multiple CSV or TSV files into a single table.",
-          "url": "https://bactopia.github.io/developers/modules/csvtk_concat",
+          "url": "https://bactopia.io/developers/modules/csvtk_concat",
           "path": "/developers/modules/csvtk_concat",
           "tags": [
             "utility",
@@ -2261,7 +2261,7 @@
         {
           "title": "csvtk_join",
           "description": "Join two CSV or TSV files based on common fields.",
-          "url": "https://bactopia.github.io/developers/modules/csvtk_join",
+          "url": "https://bactopia.io/developers/modules/csvtk_join",
           "path": "/developers/modules/csvtk_join",
           "tags": [
             "utility",
@@ -2279,7 +2279,7 @@
         {
           "title": "defensefinder",
           "description": "Systematically search for anti-phage defense systems.",
-          "url": "https://bactopia.github.io/developers/subworkflows/defensefinder",
+          "url": "https://bactopia.io/developers/subworkflows/defensefinder",
           "path": "/developers/subworkflows/defensefinder",
           "tags": [
             "bacteria",
@@ -2294,7 +2294,7 @@
         {
           "title": "defensefinder_run",
           "description": "Detect anti-phage defense systems using HMM profiles.",
-          "url": "https://bactopia.github.io/developers/modules/defensefinder_run",
+          "url": "https://bactopia.io/developers/modules/defensefinder_run",
           "path": "/developers/modules/defensefinder_run",
           "tags": [
             "bacteria",
@@ -2312,7 +2312,7 @@
         {
           "title": "defensefinder_update",
           "description": "Download and package the DefenseFinder and CasFinder model databases.",
-          "url": "https://bactopia.github.io/developers/modules/defensefinder_update",
+          "url": "https://bactopia.io/developers/modules/defensefinder_update",
           "path": "/developers/modules/defensefinder_update",
           "tags": [
             "bacteria",
@@ -2329,7 +2329,7 @@
         {
           "title": "ectyper",
           "description": "Predict *Escherichia coli* serotype (O and H antigens).",
-          "url": "https://bactopia.github.io/developers/modules/ectyper",
+          "url": "https://bactopia.io/developers/modules/ectyper",
           "path": "/developers/modules/ectyper",
           "tags": [
             "bacteria",
@@ -2345,7 +2345,7 @@
         {
           "title": "ectyper",
           "description": "In silico prediction of Escherichia coli serotype.",
-          "url": "https://bactopia.github.io/developers/subworkflows/ectyper",
+          "url": "https://bactopia.io/developers/subworkflows/ectyper",
           "path": "/developers/subworkflows/ectyper",
           "tags": [
             "escherichia",
@@ -2360,7 +2360,7 @@
         {
           "title": "eggnog",
           "description": "Functional annotation through orthology assignment.",
-          "url": "https://bactopia.github.io/developers/subworkflows/eggnog",
+          "url": "https://bactopia.io/developers/subworkflows/eggnog",
           "path": "/developers/subworkflows/eggnog",
           "tags": [
             "functional",
@@ -2375,7 +2375,7 @@
         {
           "title": "eggnog_download",
           "description": "Download the eggNOG database for functional annotation.",
-          "url": "https://bactopia.github.io/developers/modules/eggnog_download",
+          "url": "https://bactopia.io/developers/modules/eggnog_download",
           "path": "/developers/modules/eggnog_download",
           "tags": [
             "eggnog",
@@ -2391,7 +2391,7 @@
         {
           "title": "eggnog_mapper",
           "description": "Functional annotation of proteins using eggNOG orthology data.",
-          "url": "https://bactopia.github.io/developers/modules/eggnog_mapper",
+          "url": "https://bactopia.io/developers/modules/eggnog_mapper",
           "path": "/developers/modules/eggnog_mapper",
           "tags": [
             "functional-annotation",
@@ -2408,7 +2408,7 @@
         {
           "title": "emmtyper",
           "description": "*emm*-typing of *Streptococcus pyogenes* (Group A Strep) assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/emmtyper",
+          "url": "https://bactopia.io/developers/modules/emmtyper",
           "path": "/developers/modules/emmtyper",
           "tags": [
             "bacteria",
@@ -2425,7 +2425,7 @@
         {
           "title": "emmtyper",
           "description": "Predict emm types of Streptococcus pyogenes from genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/emmtyper",
+          "url": "https://bactopia.io/developers/subworkflows/emmtyper",
           "path": "/developers/subworkflows/emmtyper",
           "tags": [
             "streptococcus-pyogenes",
@@ -2439,7 +2439,7 @@
         {
           "title": "fastani",
           "description": "Compute whole-genome Average Nucleotide Identity (ANI).",
-          "url": "https://bactopia.github.io/developers/modules/fastani",
+          "url": "https://bactopia.io/developers/modules/fastani",
           "path": "/developers/modules/fastani",
           "tags": [
             "fastani",
@@ -2455,7 +2455,7 @@
         {
           "title": "fastani",
           "description": "Calculate Average Nucleotide Identity (ANI) between genomes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/fastani",
+          "url": "https://bactopia.io/developers/subworkflows/fastani",
           "path": "/developers/subworkflows/fastani",
           "tags": [
             "ani",
@@ -2470,7 +2470,7 @@
         {
           "title": "gamma",
           "description": "Identification, classification, and annotation of translated gene matches.",
-          "url": "https://bactopia.github.io/developers/modules/gamma",
+          "url": "https://bactopia.io/developers/modules/gamma",
           "path": "/developers/modules/gamma",
           "tags": [
             "gene-finding",
@@ -2486,7 +2486,7 @@
         {
           "title": "gamma",
           "description": "Gene Allele Mutation Microbial Assessment.",
-          "url": "https://bactopia.github.io/developers/subworkflows/gamma",
+          "url": "https://bactopia.io/developers/subworkflows/gamma",
           "path": "/developers/subworkflows/gamma",
           "tags": [
             "gene",
@@ -2501,7 +2501,7 @@
         {
           "title": "genotyphi",
           "description": "Assign genotypes to Salmonella Typhi genomes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/genotyphi",
+          "url": "https://bactopia.io/developers/subworkflows/genotyphi",
           "path": "/developers/subworkflows/genotyphi",
           "tags": [
             "salmonella",
@@ -2515,7 +2515,7 @@
         {
           "title": "genotyphi_parse",
           "description": "Parse Mykrobe results to genotype *Salmonella* Typhi.",
-          "url": "https://bactopia.github.io/developers/modules/genotyphi_parse",
+          "url": "https://bactopia.io/developers/modules/genotyphi_parse",
           "path": "/developers/modules/genotyphi_parse",
           "tags": [
             "bacteria",
@@ -2531,7 +2531,7 @@
         {
           "title": "gigatyper",
           "description": "Run all available MLST schemes for a species against an assembly",
-          "url": "https://bactopia.github.io/developers/modules/gigatyper",
+          "url": "https://bactopia.io/developers/modules/gigatyper",
           "path": "/developers/modules/gigatyper",
           "tags": [
             "mlst",
@@ -2544,7 +2544,7 @@
         {
           "title": "gigatyper",
           "description": "Run all available MLST schemes for a species against an assembly",
-          "url": "https://bactopia.github.io/developers/subworkflows/gigatyper",
+          "url": "https://bactopia.io/developers/subworkflows/gigatyper",
           "path": "/developers/subworkflows/gigatyper",
           "tags": [
             "mlst",
@@ -2557,7 +2557,7 @@
         {
           "title": "gtdb",
           "description": "Taxonomic classification with the Genome Taxonomy Database.",
-          "url": "https://bactopia.github.io/developers/subworkflows/gtdb",
+          "url": "https://bactopia.io/developers/subworkflows/gtdb",
           "path": "/developers/subworkflows/gtdb",
           "tags": [
             "taxonomy",
@@ -2572,7 +2572,7 @@
         {
           "title": "gtdbtk_classifywf",
           "description": "Taxonomic classification of bacterial and archaeal genomes using GTDB-Tk.",
-          "url": "https://bactopia.github.io/developers/modules/gtdbtk_classifywf",
+          "url": "https://bactopia.io/developers/modules/gtdbtk_classifywf",
           "path": "/developers/modules/gtdbtk_classifywf",
           "tags": [
             "taxonomy",
@@ -2589,7 +2589,7 @@
         {
           "title": "gtdbtk_download",
           "description": "Download and configure the GTDB-Tk reference database.",
-          "url": "https://bactopia.github.io/developers/modules/gtdbtk_download",
+          "url": "https://bactopia.io/developers/modules/gtdbtk_download",
           "path": "/developers/modules/gtdbtk_download",
           "tags": [
             "gtdb",
@@ -2606,7 +2606,7 @@
         {
           "title": "gubbins",
           "description": "Detect recombination and construct a recombination-free phylogeny.",
-          "url": "https://bactopia.github.io/developers/modules/gubbins",
+          "url": "https://bactopia.io/developers/modules/gubbins",
           "path": "/developers/modules/gubbins",
           "tags": [
             "bacteria",
@@ -2623,7 +2623,7 @@
         {
           "title": "gubbins",
           "description": "Detect and filter recombination regions in bacterial alignments.",
-          "url": "https://bactopia.github.io/developers/subworkflows/gubbins",
+          "url": "https://bactopia.io/developers/subworkflows/gubbins",
           "path": "/developers/subworkflows/gubbins",
           "tags": [
             "recombination",
@@ -2638,7 +2638,7 @@
         {
           "title": "hicap",
           "description": "Predict *Haemophilus influenzae* capsule serotype.",
-          "url": "https://bactopia.github.io/developers/modules/hicap",
+          "url": "https://bactopia.io/developers/modules/hicap",
           "path": "/developers/modules/hicap",
           "tags": [
             "bacteria",
@@ -2654,7 +2654,7 @@
         {
           "title": "hicap",
           "description": "In silico serotyping of the Haemophilus influenzae capsule locus.",
-          "url": "https://bactopia.github.io/developers/subworkflows/hicap",
+          "url": "https://bactopia.io/developers/subworkflows/hicap",
           "path": "/developers/subworkflows/hicap",
           "tags": [
             "haemophilus",
@@ -2669,7 +2669,7 @@
         {
           "title": "hpsuissero",
           "description": "Predict *Haemophilus parasuis* serotype.",
-          "url": "https://bactopia.github.io/developers/modules/hpsuissero",
+          "url": "https://bactopia.io/developers/modules/hpsuissero",
           "path": "/developers/modules/hpsuissero",
           "tags": [
             "bacteria",
@@ -2685,7 +2685,7 @@
         {
           "title": "hpsuissero",
           "description": "Rapid Haemophilus parasuis serotyping.",
-          "url": "https://bactopia.github.io/developers/subworkflows/hpsuissero",
+          "url": "https://bactopia.io/developers/subworkflows/hpsuissero",
           "path": "/developers/subworkflows/hpsuissero",
           "tags": [
             "haemophilus",
@@ -2699,7 +2699,7 @@
         {
           "title": "iqtree",
           "description": "Efficient phylogenomic inference using Maximum Likelihood.",
-          "url": "https://bactopia.github.io/developers/modules/iqtree",
+          "url": "https://bactopia.io/developers/modules/iqtree",
           "path": "/developers/modules/iqtree",
           "tags": [
             "phylogeny",
@@ -2715,7 +2715,7 @@
         {
           "title": "iqtree",
           "description": "Construct maximum likelihood phylogenetic trees from alignments.",
-          "url": "https://bactopia.github.io/developers/subworkflows/iqtree",
+          "url": "https://bactopia.io/developers/subworkflows/iqtree",
           "path": "/developers/subworkflows/iqtree",
           "tags": [
             "phylogeny",
@@ -2730,7 +2730,7 @@
         {
           "title": "ismapper",
           "description": "Identify insertion sites and orientation of mobile genetic elements.",
-          "url": "https://bactopia.github.io/developers/modules/ismapper",
+          "url": "https://bactopia.io/developers/modules/ismapper",
           "path": "/developers/modules/ismapper",
           "tags": [
             "bacteria",
@@ -2746,7 +2746,7 @@
         {
           "title": "ismapper",
           "description": "Identify transposase insertion sites in bacterial genomes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/ismapper",
+          "url": "https://bactopia.io/developers/subworkflows/ismapper",
           "path": "/developers/subworkflows/ismapper",
           "tags": [
             "insertion",
@@ -2760,7 +2760,7 @@
         {
           "title": "kleborate",
           "description": "Genotyping and screening of *Klebsiella* genome assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/kleborate",
+          "url": "https://bactopia.io/developers/modules/kleborate",
           "path": "/developers/modules/kleborate",
           "tags": [
             "bacteria",
@@ -2779,7 +2779,7 @@
         {
           "title": "kleborate",
           "description": "Genotyping tool for Klebsiella pneumoniae and its related species complex.",
-          "url": "https://bactopia.github.io/developers/subworkflows/kleborate",
+          "url": "https://bactopia.io/developers/subworkflows/kleborate",
           "path": "/developers/subworkflows/kleborate",
           "tags": [
             "klebsiella",
@@ -2794,7 +2794,7 @@
         {
           "title": "kraken2",
           "description": "Taxonomic classification and host filtering of sequence reads.",
-          "url": "https://bactopia.github.io/developers/modules/kraken2",
+          "url": "https://bactopia.io/developers/modules/kraken2",
           "path": "/developers/modules/kraken2",
           "tags": [
             "metagenomics",
@@ -2811,7 +2811,7 @@
         {
           "title": "kraken2",
           "description": "Classify metagenomic reads using Kraken2.",
-          "url": "https://bactopia.github.io/developers/subworkflows/kraken2",
+          "url": "https://bactopia.io/developers/subworkflows/kraken2",
           "path": "/developers/subworkflows/kraken2",
           "tags": [
             "metagenomics",
@@ -2825,7 +2825,7 @@
         {
           "title": "legsta",
           "description": "In silico Sequence Based Typing (SBT) of *Legionella pneumophila*.",
-          "url": "https://bactopia.github.io/developers/modules/legsta",
+          "url": "https://bactopia.io/developers/modules/legsta",
           "path": "/developers/modules/legsta",
           "tags": [
             "bacteria",
@@ -2842,7 +2842,7 @@
         {
           "title": "legsta",
           "description": "In silico Legionella pneumophila Sequence Based Typing.",
-          "url": "https://bactopia.github.io/developers/subworkflows/legsta",
+          "url": "https://bactopia.io/developers/subworkflows/legsta",
           "path": "/developers/subworkflows/legsta",
           "tags": [
             "legionella",
@@ -2857,7 +2857,7 @@
         {
           "title": "lissero",
           "description": "Predict *Listeria monocytogenes* serogroup.",
-          "url": "https://bactopia.github.io/developers/modules/lissero",
+          "url": "https://bactopia.io/developers/modules/lissero",
           "path": "/developers/modules/lissero",
           "tags": [
             "bacteria",
@@ -2874,7 +2874,7 @@
         {
           "title": "lissero",
           "description": "In silico serotype prediction for Listeria monocytogenes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/lissero",
+          "url": "https://bactopia.io/developers/subworkflows/lissero",
           "path": "/developers/subworkflows/lissero",
           "tags": [
             "listeria",
@@ -2888,7 +2888,7 @@
         {
           "title": "mash_dist",
           "description": "Calculate genomic distances using MinHash sketches.",
-          "url": "https://bactopia.github.io/developers/modules/mash_dist",
+          "url": "https://bactopia.io/developers/modules/mash_dist",
           "path": "/developers/modules/mash_dist",
           "tags": [
             "mash",
@@ -2904,7 +2904,7 @@
         {
           "title": "mashdist",
           "description": "Calculate Mash distances between sequences and a reference.",
-          "url": "https://bactopia.github.io/developers/subworkflows/mashdist",
+          "url": "https://bactopia.io/developers/subworkflows/mashdist",
           "path": "/developers/subworkflows/mashdist",
           "tags": [
             "mash",
@@ -2919,7 +2919,7 @@
         {
           "title": "mashtree",
           "description": "Rapid alignment-free phylogenomic tree construction.",
-          "url": "https://bactopia.github.io/developers/modules/mashtree",
+          "url": "https://bactopia.io/developers/modules/mashtree",
           "path": "/developers/modules/mashtree",
           "tags": [
             "phylogeny",
@@ -2937,7 +2937,7 @@
         {
           "title": "mashtree",
           "description": "Create phylogenetic trees using Mash distances.",
-          "url": "https://bactopia.github.io/developers/subworkflows/mashtree",
+          "url": "https://bactopia.io/developers/subworkflows/mashtree",
           "path": "/developers/subworkflows/mashtree",
           "tags": [
             "phylogeny",
@@ -2952,7 +2952,7 @@
         {
           "title": "mcroni",
           "description": "Detect sequence variations in the *mcr-1* colistin resistance gene.",
-          "url": "https://bactopia.github.io/developers/modules/mcroni",
+          "url": "https://bactopia.io/developers/modules/mcroni",
           "path": "/developers/modules/mcroni",
           "tags": [
             "bacteria",
@@ -2969,7 +2969,7 @@
         {
           "title": "mcroni",
           "description": "Scripts for finding and processing promoter variants upstream of mcr-1.",
-          "url": "https://bactopia.github.io/developers/subworkflows/mcroni",
+          "url": "https://bactopia.io/developers/subworkflows/mcroni",
           "path": "/developers/subworkflows/mcroni",
           "tags": [
             "mcr-1",
@@ -2984,7 +2984,7 @@
         {
           "title": "meningotype",
           "description": "Serotyping and finetyping of *Neisseria meningitidis*.",
-          "url": "https://bactopia.github.io/developers/modules/meningotype",
+          "url": "https://bactopia.io/developers/modules/meningotype",
           "path": "/developers/modules/meningotype",
           "tags": [
             "bacteria",
@@ -3002,7 +3002,7 @@
         {
           "title": "meningotype",
           "description": "Predict serotypes of Neisseria meningitidis from genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/meningotype",
+          "url": "https://bactopia.io/developers/subworkflows/meningotype",
           "path": "/developers/subworkflows/meningotype",
           "tags": [
             "neisseria-meningitidis",
@@ -3017,7 +3017,7 @@
         {
           "title": "merlin",
           "description": "MinER assisted species-specific bactopia tool seLectIoN.",
-          "url": "https://bactopia.github.io/developers/subworkflows/merlin",
+          "url": "https://bactopia.io/developers/subworkflows/merlin",
           "path": "/developers/subworkflows/merlin",
           "tags": [
             "species",
@@ -3032,7 +3032,7 @@
         {
           "title": "merlin_dist",
           "description": "Identify species to trigger genus-specific downstream analyses (Merlin).",
-          "url": "https://bactopia.github.io/developers/modules/merlin_dist",
+          "url": "https://bactopia.io/developers/modules/merlin_dist",
           "path": "/developers/modules/merlin_dist",
           "tags": [
             "merlin",
@@ -3048,7 +3048,7 @@
         {
           "title": "merlindist",
           "description": "Identify species from assembly and read data using Mash distances.",
-          "url": "https://bactopia.github.io/developers/subworkflows/merlindist",
+          "url": "https://bactopia.io/developers/subworkflows/merlindist",
           "path": "/developers/subworkflows/merlindist",
           "tags": [
             "species",
@@ -3064,7 +3064,7 @@
         {
           "title": "midas",
           "description": "Species-level profiling from metagenomic data.",
-          "url": "https://bactopia.github.io/developers/subworkflows/midas",
+          "url": "https://bactopia.io/developers/subworkflows/midas",
           "path": "/developers/subworkflows/midas",
           "tags": [
             "metagenomics",
@@ -3079,7 +3079,7 @@
         {
           "title": "midas_download",
           "description": "Download the MIDAS reference database.",
-          "url": "https://bactopia.github.io/developers/modules/midas_download",
+          "url": "https://bactopia.io/developers/modules/midas_download",
           "path": "/developers/modules/midas_download",
           "tags": [
             "midas",
@@ -3094,7 +3094,7 @@
         {
           "title": "midas_species",
           "description": "Estimate bacterial species abundance from metagenomic reads.",
-          "url": "https://bactopia.github.io/developers/modules/midas_species",
+          "url": "https://bactopia.io/developers/modules/midas_species",
           "path": "/developers/modules/midas_species",
           "tags": [
             "metagenomics",
@@ -3110,7 +3110,7 @@
         {
           "title": "mlst",
           "description": "Automatic Multi-Locus Sequence Typing (MLST) of genome assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/mlst",
+          "url": "https://bactopia.io/developers/modules/mlst",
           "path": "/developers/modules/mlst",
           "tags": [
             "bacteria",
@@ -3126,7 +3126,7 @@
         {
           "title": "mlst",
           "description": "Determine multilocus sequence types (MLST) from bacterial assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/mlst",
+          "url": "https://bactopia.io/developers/subworkflows/mlst",
           "path": "/developers/subworkflows/mlst",
           "tags": [
             "mlst",
@@ -3140,7 +3140,7 @@
         {
           "title": "mobsuite",
           "description": "Reconstruct and type plasmids from bacterial genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/mobsuite",
+          "url": "https://bactopia.io/developers/subworkflows/mobsuite",
           "path": "/developers/subworkflows/mobsuite",
           "tags": [
             "plasmid",
@@ -3155,7 +3155,7 @@
         {
           "title": "mobsuite_recon",
           "description": "Reconstruct and type plasmids from a bacterial genome assembly.",
-          "url": "https://bactopia.github.io/developers/modules/mobsuite_recon",
+          "url": "https://bactopia.io/developers/modules/mobsuite_recon",
           "path": "/developers/modules/mobsuite_recon",
           "tags": [
             "bacteria",
@@ -3172,7 +3172,7 @@
         {
           "title": "Modules",
           "description": "All available Bactopia modules",
-          "url": "https://bactopia.github.io/developers/modules",
+          "url": "https://bactopia.io/developers/modules",
           "path": "/developers/modules",
           "tags": [],
           "source_file": "developers/modules/index.mdx"
@@ -3180,7 +3180,7 @@
         {
           "title": "mykrobe",
           "description": "Predict antibiotic resistance from sequence reads.",
-          "url": "https://bactopia.github.io/developers/subworkflows/mykrobe",
+          "url": "https://bactopia.io/developers/subworkflows/mykrobe",
           "path": "/developers/subworkflows/mykrobe",
           "tags": [
             "bacteria",
@@ -3194,7 +3194,7 @@
         {
           "title": "mykrobe_predict",
           "description": "Predict Antimicrobial Resistance (AMR) for supported bacterial species.",
-          "url": "https://bactopia.github.io/developers/modules/mykrobe_predict",
+          "url": "https://bactopia.io/developers/modules/mykrobe_predict",
           "path": "/developers/modules/mykrobe_predict",
           "tags": [
             "amr",
@@ -3211,7 +3211,7 @@
         {
           "title": "ncbigenomedownload",
           "description": "Download assemblies and annotation files from NCBI's Assembly database.",
-          "url": "https://bactopia.github.io/developers/modules/ncbigenomedownload",
+          "url": "https://bactopia.io/developers/modules/ncbigenomedownload",
           "path": "/developers/modules/ncbigenomedownload",
           "tags": [
             "ncbi",
@@ -3228,7 +3228,7 @@
         {
           "title": "ncbigenomedownload",
           "description": "Download bacterial genomes from NCBI's RefSeq database.",
-          "url": "https://bactopia.github.io/developers/subworkflows/ncbigenomedownload",
+          "url": "https://bactopia.io/developers/subworkflows/ncbigenomedownload",
           "path": "/developers/subworkflows/ncbigenomedownload",
           "tags": [
             "download",
@@ -3244,7 +3244,7 @@
         {
           "title": "nf-bactopia Plugin",
           "description": "Developer reference for the nf-bactopia Nextflow plugin -- utility functions used across Bactopia workflows",
-          "url": "https://bactopia.github.io/developers/nf-bactopia",
+          "url": "https://bactopia.io/developers/nf-bactopia",
           "path": "/developers/nf-bactopia",
           "tags": [],
           "source_file": "developers/nf-bactopia/index.mdx"
@@ -3252,7 +3252,7 @@
         {
           "title": "ngmaster",
           "description": "Serotyping and Multi-Antigen Sequence Typing (MAST) of *Neisseria gonorrhoeae*.",
-          "url": "https://bactopia.github.io/developers/modules/ngmaster",
+          "url": "https://bactopia.io/developers/modules/ngmaster",
           "path": "/developers/modules/ngmaster",
           "tags": [
             "bacteria",
@@ -3269,7 +3269,7 @@
         {
           "title": "ngmaster",
           "description": "Perform multi-antigen sequence typing of Neisseria gonorrhoeae from genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/ngmaster",
+          "url": "https://bactopia.io/developers/subworkflows/ngmaster",
           "path": "/developers/subworkflows/ngmaster",
           "tags": [
             "neisseria-gonorrhoeae",
@@ -3284,7 +3284,7 @@
         {
           "title": "nohuman",
           "description": "Remove human reads from sequencing data using nohuman.",
-          "url": "https://bactopia.github.io/developers/subworkflows/nohuman",
+          "url": "https://bactopia.io/developers/subworkflows/nohuman",
           "path": "/developers/subworkflows/nohuman",
           "tags": [
             "human",
@@ -3301,7 +3301,7 @@
         {
           "title": "nohuman_download",
           "description": "Download the nohuman database for human read removal.",
-          "url": "https://bactopia.github.io/developers/modules/nohuman_download",
+          "url": "https://bactopia.io/developers/modules/nohuman_download",
           "path": "/developers/modules/nohuman_download",
           "tags": [
             "bacteria",
@@ -3318,7 +3318,7 @@
         {
           "title": "nohuman_run",
           "description": "Remove human reads from sequencing data.",
-          "url": "https://bactopia.github.io/developers/modules/nohuman_run",
+          "url": "https://bactopia.io/developers/modules/nohuman_run",
           "path": "/developers/modules/nohuman_run",
           "tags": [
             "human",
@@ -3335,7 +3335,7 @@
         {
           "title": "panaroo",
           "description": "Build a pangenome from GFF3 annotations using Panaroo.",
-          "url": "https://bactopia.github.io/developers/subworkflows/panaroo",
+          "url": "https://bactopia.io/developers/subworkflows/panaroo",
           "path": "/developers/subworkflows/panaroo",
           "tags": [
             "pangenome",
@@ -3350,7 +3350,7 @@
         {
           "title": "panaroo_run",
           "description": "Fast and scalable bacterial pangenome analysis using a graph-based approach.",
-          "url": "https://bactopia.github.io/developers/modules/panaroo_run",
+          "url": "https://bactopia.io/developers/modules/panaroo_run",
           "path": "/developers/modules/panaroo_run",
           "tags": [
             "pan-genome",
@@ -3366,7 +3366,7 @@
         {
           "title": "pangenome",
           "description": "Perform pangenome analysis with optional core-genome phylogeny.",
-          "url": "https://bactopia.github.io/developers/subworkflows/pangenome",
+          "url": "https://bactopia.io/developers/subworkflows/pangenome",
           "path": "/developers/subworkflows/pangenome",
           "tags": [
             "alignment",
@@ -3381,7 +3381,7 @@
         {
           "title": "pasty",
           "description": "Predict O-antigen serogroup of Pseudomonas aeruginosa isolates.",
-          "url": "https://bactopia.github.io/developers/modules/pasty",
+          "url": "https://bactopia.io/developers/modules/pasty",
           "path": "/developers/modules/pasty",
           "tags": [
             "bacteria",
@@ -3397,7 +3397,7 @@
         {
           "title": "pasty",
           "description": "Predict serogroups of Pseudomonas aeruginosa from assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/pasty",
+          "url": "https://bactopia.io/developers/subworkflows/pasty",
           "path": "/developers/subworkflows/pasty",
           "tags": [
             "pseudomonas-aeruginosa",
@@ -3412,7 +3412,7 @@
         {
           "title": "pbptyper",
           "description": "Predict Penicillin Binding Protein (PBP) type of *Streptococcus pneumoniae* assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/pbptyper",
+          "url": "https://bactopia.io/developers/modules/pbptyper",
           "path": "/developers/modules/pbptyper",
           "tags": [
             "bacteria",
@@ -3429,7 +3429,7 @@
         {
           "title": "pbptyper",
           "description": "Predict penicillin binding protein (PBP) types of Streptococcus pneumoniae from genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/pbptyper",
+          "url": "https://bactopia.io/developers/subworkflows/pbptyper",
           "path": "/developers/subworkflows/pbptyper",
           "tags": [
             "streptococcus-pneumoniae",
@@ -3443,7 +3443,7 @@
         {
           "title": "phispy",
           "description": "Predict prophage regions integrated into bacterial genomes.",
-          "url": "https://bactopia.github.io/developers/modules/phispy",
+          "url": "https://bactopia.io/developers/modules/phispy",
           "path": "/developers/modules/phispy",
           "tags": [
             "genomics",
@@ -3460,7 +3460,7 @@
         {
           "title": "phispy",
           "description": "Prediction of prophages from bacterial genomes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/phispy",
+          "url": "https://bactopia.io/developers/subworkflows/phispy",
           "path": "/developers/subworkflows/phispy",
           "tags": [
             "prophage",
@@ -3475,7 +3475,7 @@
         {
           "title": "pirate",
           "description": "Pangenome Identification and Reconciliation Analysis Tool for Epidemiology (PIRATE).",
-          "url": "https://bactopia.github.io/developers/modules/pirate",
+          "url": "https://bactopia.io/developers/modules/pirate",
           "path": "/developers/modules/pirate",
           "tags": [
             "pan-genome",
@@ -3491,7 +3491,7 @@
         {
           "title": "pirate",
           "description": "Build a pangenome from GFF3 annotations using PIRATE.",
-          "url": "https://bactopia.github.io/developers/subworkflows/pirate",
+          "url": "https://bactopia.io/developers/subworkflows/pirate",
           "path": "/developers/subworkflows/pirate",
           "tags": [
             "pangenome",
@@ -3506,7 +3506,7 @@
         {
           "title": "plasmidfinder",
           "description": "Identify plasmid replicon types in bacterial sequences and assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/plasmidfinder",
+          "url": "https://bactopia.io/developers/modules/plasmidfinder",
           "path": "/developers/modules/plasmidfinder",
           "tags": [
             "plasmid",
@@ -3522,7 +3522,7 @@
         {
           "title": "plasmidfinder",
           "description": "Identify plasmid replicons in bacterial genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/plasmidfinder",
+          "url": "https://bactopia.io/developers/subworkflows/plasmidfinder",
           "path": "/developers/subworkflows/plasmidfinder",
           "tags": [
             "plasmid",
@@ -3537,7 +3537,7 @@
         {
           "title": "pneumocat",
           "description": "Capsular typing of Streptococcus pneumoniae from Illumina reads.",
-          "url": "https://bactopia.github.io/developers/modules/pneumocat",
+          "url": "https://bactopia.io/developers/modules/pneumocat",
           "path": "/developers/modules/pneumocat",
           "tags": [
             "pneumocat",
@@ -3551,7 +3551,7 @@
         {
           "title": "pneumocat",
           "description": "Perform capsular typing of Streptococcus pneumoniae from NGS data.",
-          "url": "https://bactopia.github.io/developers/subworkflows/pneumocat",
+          "url": "https://bactopia.io/developers/subworkflows/pneumocat",
           "path": "/developers/subworkflows/pneumocat",
           "tags": [
             "streptococcus-pneumoniae",
@@ -3565,7 +3565,7 @@
         {
           "title": "prokka",
           "description": "Annotate prokaryotic genomes.",
-          "url": "https://bactopia.github.io/developers/modules/prokka",
+          "url": "https://bactopia.io/developers/modules/prokka",
           "path": "/developers/modules/prokka",
           "tags": [
             "prokka",
@@ -3581,7 +3581,7 @@
         {
           "title": "prokka",
           "description": "Annotate bacterial genomes with functional information.",
-          "url": "https://bactopia.github.io/developers/subworkflows/prokka",
+          "url": "https://bactopia.io/developers/subworkflows/prokka",
           "path": "/developers/subworkflows/prokka",
           "tags": [
             "bacteria",
@@ -3597,7 +3597,7 @@
         {
           "title": "quast",
           "description": "Quality Assessment Tool for Genome Assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/quast",
+          "url": "https://bactopia.io/developers/modules/quast",
           "path": "/developers/modules/quast",
           "tags": [
             "quast",
@@ -3612,7 +3612,7 @@
         {
           "title": "quast",
           "description": "Evaluate assembly quality using QUAST.",
-          "url": "https://bactopia.github.io/developers/subworkflows/quast",
+          "url": "https://bactopia.io/developers/subworkflows/quast",
           "path": "/developers/subworkflows/quast",
           "tags": [
             "assembly",
@@ -3628,7 +3628,7 @@
         {
           "title": "rgi",
           "description": "Predict antimicrobial resistance from protein or nucleotide data.",
-          "url": "https://bactopia.github.io/developers/subworkflows/rgi",
+          "url": "https://bactopia.io/developers/subworkflows/rgi",
           "path": "/developers/subworkflows/rgi",
           "tags": [
             "bacteria",
@@ -3643,7 +3643,7 @@
         {
           "title": "rgi_heatmap",
           "description": "Create heatmaps of resistance gene presence/absence.",
-          "url": "https://bactopia.github.io/developers/modules/rgi_heatmap",
+          "url": "https://bactopia.io/developers/modules/rgi_heatmap",
           "path": "/developers/modules/rgi_heatmap",
           "tags": [
             "resistance",
@@ -3659,7 +3659,7 @@
         {
           "title": "rgi_main",
           "description": "Predict antibiotic resistance from assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/rgi_main",
+          "url": "https://bactopia.io/developers/modules/rgi_main",
           "path": "/developers/modules/rgi_main",
           "tags": [
             "resistance",
@@ -3674,7 +3674,7 @@
         {
           "title": "roary",
           "description": "Rapid large-scale prokaryote pan genome analysis.",
-          "url": "https://bactopia.github.io/developers/modules/roary",
+          "url": "https://bactopia.io/developers/modules/roary",
           "path": "/developers/modules/roary",
           "tags": [
             "pangenome",
@@ -3689,7 +3689,7 @@
         {
           "title": "roary",
           "description": "Build a pangenome from GFF3 annotations using Roary.",
-          "url": "https://bactopia.github.io/developers/subworkflows/roary",
+          "url": "https://bactopia.io/developers/subworkflows/roary",
           "path": "/developers/subworkflows/roary",
           "tags": [
             "pangenome",
@@ -3704,7 +3704,7 @@
         {
           "title": "sccmec",
           "description": "Identify SCCmec elements in Staphylococcus aureus genomes.",
-          "url": "https://bactopia.github.io/developers/modules/sccmec",
+          "url": "https://bactopia.io/developers/modules/sccmec",
           "path": "/developers/modules/sccmec",
           "tags": [
             "sccmec",
@@ -3719,7 +3719,7 @@
         {
           "title": "sccmec",
           "description": "Identify SCCmec elements in Staphylococcus aureus genomes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/sccmec",
+          "url": "https://bactopia.io/developers/subworkflows/sccmec",
           "path": "/developers/subworkflows/sccmec",
           "tags": [
             "sccmec",
@@ -3734,7 +3734,7 @@
         {
           "title": "scoary",
           "description": "Pan-genome wide association studies.",
-          "url": "https://bactopia.github.io/developers/modules/scoary",
+          "url": "https://bactopia.io/developers/modules/scoary",
           "path": "/developers/modules/scoary",
           "tags": [
             "scoary",
@@ -3750,7 +3750,7 @@
         {
           "title": "scoary",
           "description": "Pan-genome wide association studies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/scoary",
+          "url": "https://bactopia.io/developers/subworkflows/scoary",
           "path": "/developers/subworkflows/scoary",
           "tags": [
             "gwas",
@@ -3765,7 +3765,7 @@
         {
           "title": "scrubber",
           "description": "Remove contaminant sequences from metagenomic data.",
-          "url": "https://bactopia.github.io/developers/subworkflows/scrubber",
+          "url": "https://bactopia.io/developers/subworkflows/scrubber",
           "path": "/developers/subworkflows/scrubber",
           "tags": [
             "metagenomics",
@@ -3779,7 +3779,7 @@
         {
           "title": "seqsero2",
           "description": "Salmonella serotype prediction from genome sequencing data.",
-          "url": "https://bactopia.github.io/developers/modules/seqsero2",
+          "url": "https://bactopia.io/developers/modules/seqsero2",
           "path": "/developers/modules/seqsero2",
           "tags": [
             "salmonella",
@@ -3794,7 +3794,7 @@
         {
           "title": "seqsero2",
           "description": "Predict Salmonella serotypes from genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/seqsero2",
+          "url": "https://bactopia.io/developers/subworkflows/seqsero2",
           "path": "/developers/subworkflows/seqsero2",
           "tags": [
             "salmonella",
@@ -3809,7 +3809,7 @@
         {
           "title": "seroba",
           "description": "k-mer based pipeline to identify the serotype of Streptococcus pneumoniae.",
-          "url": "https://bactopia.github.io/developers/subworkflows/seroba",
+          "url": "https://bactopia.io/developers/subworkflows/seroba",
           "path": "/developers/subworkflows/seroba",
           "tags": [
             "streptococcus",
@@ -3824,7 +3824,7 @@
         {
           "title": "seroba_run",
           "description": "k-mer based Streptococcus pneumoniae serotyping.",
-          "url": "https://bactopia.github.io/developers/modules/seroba_run",
+          "url": "https://bactopia.io/developers/modules/seroba_run",
           "path": "/developers/modules/seroba_run",
           "tags": [
             "streptococcus-pneumoniae",
@@ -3839,7 +3839,7 @@
         {
           "title": "shigapass",
           "description": "Predict Shigella serotypes and differentiate Shigella/EIEC.",
-          "url": "https://bactopia.github.io/developers/modules/shigapass",
+          "url": "https://bactopia.io/developers/modules/shigapass",
           "path": "/developers/modules/shigapass",
           "tags": [
             "shigella",
@@ -3854,7 +3854,7 @@
         {
           "title": "shigapass",
           "description": "Predict serotypes of Shigella from assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/shigapass",
+          "url": "https://bactopia.io/developers/subworkflows/shigapass",
           "path": "/developers/subworkflows/shigapass",
           "tags": [
             "shigella",
@@ -3869,7 +3869,7 @@
         {
           "title": "shigatyper",
           "description": "Shigella serotype from Illumina or Oxford Nanopore reads.",
-          "url": "https://bactopia.github.io/developers/modules/shigatyper",
+          "url": "https://bactopia.io/developers/modules/shigatyper",
           "path": "/developers/modules/shigatyper",
           "tags": [
             "shigella",
@@ -3885,7 +3885,7 @@
         {
           "title": "shigatyper",
           "description": "Predict serotypes of Shigella from reads or assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/shigatyper",
+          "url": "https://bactopia.io/developers/subworkflows/shigatyper",
           "path": "/developers/subworkflows/shigatyper",
           "tags": [
             "shigella",
@@ -3900,7 +3900,7 @@
         {
           "title": "shigeifinder",
           "description": "Shigella and EIEC serotyping from assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/shigeifinder",
+          "url": "https://bactopia.io/developers/modules/shigeifinder",
           "path": "/developers/modules/shigeifinder",
           "tags": [
             "shigella",
@@ -3916,7 +3916,7 @@
         {
           "title": "shigeifinder",
           "description": "Predict serotypes of Shigella and EIEC from assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/shigeifinder",
+          "url": "https://bactopia.io/developers/subworkflows/shigeifinder",
           "path": "/developers/subworkflows/shigeifinder",
           "tags": [
             "shigella",
@@ -3931,7 +3931,7 @@
         {
           "title": "sistr",
           "description": "Serovar prediction of Salmonella assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/sistr",
+          "url": "https://bactopia.io/developers/modules/sistr",
           "path": "/developers/modules/sistr",
           "tags": [
             "salmonella",
@@ -3946,7 +3946,7 @@
         {
           "title": "sistr",
           "description": "Salmonella In Silico Typing Resource command-line tool.",
-          "url": "https://bactopia.github.io/developers/subworkflows/sistr",
+          "url": "https://bactopia.io/developers/subworkflows/sistr",
           "path": "/developers/subworkflows/sistr",
           "tags": [
             "salmonella",
@@ -3961,7 +3961,7 @@
         {
           "title": "snippy_core",
           "description": "Core-SNP alignment from Snippy outputs.",
-          "url": "https://bactopia.github.io/developers/modules/snippy_core",
+          "url": "https://bactopia.io/developers/modules/snippy_core",
           "path": "/developers/modules/snippy_core",
           "tags": [
             "snippy",
@@ -3977,7 +3977,7 @@
         {
           "title": "snippy_core",
           "description": "Generate core-genome SNP alignment from per-sample Snippy outputs.",
-          "url": "https://bactopia.github.io/developers/subworkflows/snippy_core",
+          "url": "https://bactopia.io/developers/subworkflows/snippy_core",
           "path": "/developers/subworkflows/snippy_core",
           "tags": [
             "variant-calling",
@@ -3992,7 +3992,7 @@
         {
           "title": "snippy_run",
           "description": "Rapid haploid variant calling and core genome alignment.",
-          "url": "https://bactopia.github.io/developers/modules/snippy_run",
+          "url": "https://bactopia.io/developers/modules/snippy_run",
           "path": "/developers/modules/snippy_run",
           "tags": [
             "snippy",
@@ -4008,7 +4008,7 @@
         {
           "title": "snippy_run",
           "description": "Call variants against a reference genome using Snippy.",
-          "url": "https://bactopia.github.io/developers/subworkflows/snippy_run",
+          "url": "https://bactopia.io/developers/subworkflows/snippy_run",
           "path": "/developers/subworkflows/snippy_run",
           "tags": [
             "variant-calling",
@@ -4023,7 +4023,7 @@
         {
           "title": "snpdists",
           "description": "Create a SNP distance matrix from a multiple sequence alignment.",
-          "url": "https://bactopia.github.io/developers/modules/snpdists",
+          "url": "https://bactopia.io/developers/modules/snpdists",
           "path": "/developers/modules/snpdists",
           "tags": [
             "snp",
@@ -4038,7 +4038,7 @@
         {
           "title": "snpdists",
           "description": "Calculate pairwise SNP distances from sequence alignments.",
-          "url": "https://bactopia.github.io/developers/subworkflows/snpdists",
+          "url": "https://bactopia.io/developers/subworkflows/snpdists",
           "path": "/developers/subworkflows/snpdists",
           "tags": [
             "snp",
@@ -4053,7 +4053,7 @@
         {
           "title": "spatyper",
           "description": "Finding spa types in Staphylococcus aureus.",
-          "url": "https://bactopia.github.io/developers/modules/spatyper",
+          "url": "https://bactopia.io/developers/modules/spatyper",
           "path": "/developers/modules/spatyper",
           "tags": [
             "staphylococcus-aureus",
@@ -4068,7 +4068,7 @@
         {
           "title": "spatyper",
           "description": "Predict spa types of Staphylococcus aureus from genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/spatyper",
+          "url": "https://bactopia.io/developers/subworkflows/spatyper",
           "path": "/developers/subworkflows/spatyper",
           "tags": [
             "staphylococcus-aureus",
@@ -4082,7 +4082,7 @@
         {
           "title": "srahumanscrubber",
           "description": "Remove human contamination from sequencing reads for SRA submission.",
-          "url": "https://bactopia.github.io/developers/subworkflows/srahumanscrubber",
+          "url": "https://bactopia.io/developers/subworkflows/srahumanscrubber",
           "path": "/developers/subworkflows/srahumanscrubber",
           "tags": [
             "contamination",
@@ -4098,7 +4098,7 @@
         {
           "title": "srahumanscrubber_initdb",
           "description": "Initialize human read removal database for SRA Human Scrubber.",
-          "url": "https://bactopia.github.io/developers/modules/srahumanscrubber_initdb",
+          "url": "https://bactopia.io/developers/modules/srahumanscrubber_initdb",
           "path": "/developers/modules/srahumanscrubber_initdb",
           "tags": [
             "human",
@@ -4113,7 +4113,7 @@
         {
           "title": "srahumanscrubber_scrub",
           "description": "Scrub human reads from FASTQ files.",
-          "url": "https://bactopia.github.io/developers/modules/srahumanscrubber_scrub",
+          "url": "https://bactopia.io/developers/modules/srahumanscrubber_scrub",
           "path": "/developers/modules/srahumanscrubber_scrub",
           "tags": [
             "human",
@@ -4129,7 +4129,7 @@
         {
           "title": "ssuissero",
           "description": "Serotype prediction of Streptococcus suis assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/ssuissero",
+          "url": "https://bactopia.io/developers/modules/ssuissero",
           "path": "/developers/modules/ssuissero",
           "tags": [
             "streptococcus-suis",
@@ -4143,7 +4143,7 @@
         {
           "title": "ssuissero",
           "description": "Predict serotypes of Streptococcus suis from genome assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/ssuissero",
+          "url": "https://bactopia.io/developers/subworkflows/ssuissero",
           "path": "/developers/subworkflows/ssuissero",
           "tags": [
             "streptococcus-suis",
@@ -4158,7 +4158,7 @@
         {
           "title": "staphopiasccmec",
           "description": "Primer based SCCmec typing of S. aureus genomes.",
-          "url": "https://bactopia.github.io/developers/modules/staphopiasccmec",
+          "url": "https://bactopia.io/developers/modules/staphopiasccmec",
           "path": "/developers/modules/staphopiasccmec",
           "tags": [
             "staphylococcus-aureus",
@@ -4173,7 +4173,7 @@
         {
           "title": "staphopiasccmec",
           "description": "Identify SCCmec elements in Staphylococcus aureus genomes using Staphopia method.",
-          "url": "https://bactopia.github.io/developers/subworkflows/staphopiasccmec",
+          "url": "https://bactopia.io/developers/subworkflows/staphopiasccmec",
           "path": "/developers/subworkflows/staphopiasccmec",
           "tags": [
             "sccmec",
@@ -4188,7 +4188,7 @@
         {
           "title": "staphtyper",
           "description": "Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/staphtyper",
+          "url": "https://bactopia.io/developers/subworkflows/staphtyper",
           "path": "/developers/subworkflows/staphtyper",
           "tags": [
             "staphylococcus-aureus",
@@ -4203,7 +4203,7 @@
         {
           "title": "stecfinder",
           "description": "Serotype of Shigatoxin producing E. coli using reads/assemblies.",
-          "url": "https://bactopia.github.io/developers/modules/stecfinder",
+          "url": "https://bactopia.io/developers/modules/stecfinder",
           "path": "/developers/modules/stecfinder",
           "tags": [
             "stec",
@@ -4218,7 +4218,7 @@
         {
           "title": "stecfinder",
           "description": "Identify and serotype Shiga toxin-producing E. coli (STEC) from assemblies.",
-          "url": "https://bactopia.github.io/developers/subworkflows/stecfinder",
+          "url": "https://bactopia.io/developers/subworkflows/stecfinder",
           "path": "/developers/subworkflows/stecfinder",
           "tags": [
             "escherichia-coli",
@@ -4233,7 +4233,7 @@
         {
           "title": "Subworkflows",
           "description": "All available Bactopia subworkflows",
-          "url": "https://bactopia.github.io/developers/subworkflows",
+          "url": "https://bactopia.io/developers/subworkflows",
           "path": "/developers/subworkflows",
           "tags": [],
           "source_file": "developers/subworkflows/index.mdx"
@@ -4241,7 +4241,7 @@
         {
           "title": "sylph",
           "description": "Profile microbial composition using Sylph.",
-          "url": "https://bactopia.github.io/developers/subworkflows/sylph",
+          "url": "https://bactopia.io/developers/subworkflows/sylph",
           "path": "/developers/subworkflows/sylph",
           "tags": [
             "metagenome",
@@ -4257,7 +4257,7 @@
         {
           "title": "sylph_profile",
           "description": "Profile metagenome samples against a database using Sylph.",
-          "url": "https://bactopia.github.io/developers/modules/sylph_profile",
+          "url": "https://bactopia.io/developers/modules/sylph_profile",
           "path": "/developers/modules/sylph_profile",
           "tags": [
             "metagenomics",
@@ -4273,7 +4273,7 @@
         {
           "title": "tblastn",
           "description": "Search protein query sequences against nucleotide database.",
-          "url": "https://bactopia.github.io/developers/subworkflows/tblastn",
+          "url": "https://bactopia.io/developers/subworkflows/tblastn",
           "path": "/developers/subworkflows/tblastn",
           "tags": [
             "blast",
@@ -4288,7 +4288,7 @@
         {
           "title": "tblastx",
           "description": "Translate nucleotide query sequences and search nucleotide database.",
-          "url": "https://bactopia.github.io/developers/subworkflows/tblastx",
+          "url": "https://bactopia.io/developers/subworkflows/tblastx",
           "path": "/developers/subworkflows/tblastx",
           "tags": [
             "blast",
@@ -4303,7 +4303,7 @@
         {
           "title": "tbprofiler",
           "description": "Profiling tool for Mycobacterium tuberculosis to detect resistance and strain type.",
-          "url": "https://bactopia.github.io/developers/subworkflows/tbprofiler",
+          "url": "https://bactopia.io/developers/subworkflows/tbprofiler",
           "path": "/developers/subworkflows/tbprofiler",
           "tags": [
             "mycobacterium",
@@ -4318,7 +4318,7 @@
         {
           "title": "tbprofiler_collate",
           "description": "Collate TB-Profiler results from multiple samples.",
-          "url": "https://bactopia.github.io/developers/modules/tbprofiler_collate",
+          "url": "https://bactopia.io/developers/modules/tbprofiler_collate",
           "path": "/developers/modules/tbprofiler_collate",
           "tags": [
             "tuberculosis",
@@ -4333,7 +4333,7 @@
         {
           "title": "tbprofiler_profile",
           "description": "Detect resistance and lineages of Mycobacterium tuberculosis genomes.",
-          "url": "https://bactopia.github.io/developers/modules/tbprofiler_profile",
+          "url": "https://bactopia.io/developers/modules/tbprofiler_profile",
           "path": "/developers/modules/tbprofiler_profile",
           "tags": [
             "tuberculosis",
@@ -4349,7 +4349,7 @@
         {
           "title": "teton",
           "description": "Perform taxonomic classification and estimate bacterial genome sizes.",
-          "url": "https://bactopia.github.io/developers/subworkflows/teton",
+          "url": "https://bactopia.io/developers/subworkflows/teton",
           "path": "/developers/subworkflows/teton",
           "tags": [
             "metagenomics",
@@ -4374,7 +4374,7 @@
         {
           "title": "Impact & Outreach",
           "description": "Discover how Bactopia is making an impact and giving back to the community.",
-          "url": "https://bactopia.github.io/impact-and-outreach",
+          "url": "https://bactopia.io/impact-and-outreach",
           "path": "/impact-and-outreach",
           "tags": [],
           "source_file": "impact/index.mdx",
@@ -4383,7 +4383,7 @@
         {
           "title": "Acknowledgements",
           "description": "A comprehensive list of datasets and software packages utilized in Bactopia, complete with links and citations.",
-          "url": "https://bactopia.github.io/impact-and-outreach/acknowledgements",
+          "url": "https://bactopia.io/impact-and-outreach/acknowledgements",
           "path": "/impact-and-outreach/acknowledgements",
           "tags": [],
           "source_file": "impact/acknowledgements.md",
@@ -4392,7 +4392,7 @@
         {
           "title": "Citations",
           "description": "Papers that have cited Bactopia",
-          "url": "https://bactopia.github.io/impact-and-outreach/citations",
+          "url": "https://bactopia.io/impact-and-outreach/citations",
           "path": "/impact-and-outreach/citations",
           "tags": [],
           "source_file": "impact/citations.md",
@@ -4401,7 +4401,7 @@
         {
           "title": "Enhancements to OSS",
           "description": "Discover the design principles behind Bactopia's numerous contributions to the bioinformatics community",
-          "url": "https://bactopia.github.io/impact-and-outreach/enhancements",
+          "url": "https://bactopia.io/impact-and-outreach/enhancements",
           "path": "/impact-and-outreach/enhancements",
           "tags": [],
           "source_file": "impact/enhancements.md",
@@ -4410,7 +4410,7 @@
         {
           "title": "Presentations",
           "description": "A curated Collection of Bactopia related Talks and Posters.",
-          "url": "https://bactopia.github.io/impact-and-outreach/presentations",
+          "url": "https://bactopia.io/impact-and-outreach/presentations",
           "path": "/impact-and-outreach/presentations",
           "tags": [],
           "source_file": "impact/presentations.md",
@@ -4428,7 +4428,7 @@
         {
           "title": "Using Bactopia with AllTheBacteria Assemblies",
           "description": "Learn how to use Bactopia to analyze nearly 2,000,000 bacterial assemblies from the AllTheBacteria project.",
-          "url": "https://bactopia.github.io/blog/allthebacteria-tutorial",
+          "url": "https://bactopia.io/blog/allthebacteria-tutorial",
           "path": "/blog/allthebacteria-tutorial",
           "tags": [
             "community",

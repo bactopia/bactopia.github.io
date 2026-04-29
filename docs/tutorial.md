@@ -99,23 +99,57 @@ runs will be much faster.
 Upon completion, you will hopefully be met with text like the following:
 
 ```bash
-    Bactopia Execution Summary
-    ---------------------------
-    Bactopia Version : 4.0.0
-    Nextflow Version : 23.04.1
-    Command Line     : nextflow run /path/to/bactopia/main.nf -w /path/to/work/ -profile test
-    Resumed          : false
-    Completed At     : 2023-09-06T00:21:32.209500355Z
-    Duration         : 4m 36s
-    Success          : true
-    Exit Code        : 0
-    Error Report     : -
-    Launch Dir       : /path/to/tutorial
-
-Completed at: 06-Sep-2023 00:21:33
-Duration    : 4m 36s
+executor >  local (11)
+[skipped  ] DATASETS:DATASETS_MODULE                     [100%] 1 of 1, stored: 1 ✔
+[67/254aed] GATHER:GATHER_MODULE (SRR2838702)            [100%] 1 of 1 ✔
+[48/e17b5c] GATHER:CSVTK_CONCAT (meta)                   [100%] 1 of 1 ✔
+[90/a4499c] QC:QC_MODULE (SRR2838702)                    [100%] 1 of 1 ✔
+[13/caba51] ASSEMBLER:ASSEMBLER_MODULE (SRR2838702)      [100%] 1 of 1 ✔
+[8a/3b2e31] ASSEMBLER:CSVTK_CONCAT (assembly-scan)       [100%] 1 of 1 ✔
+[6b/d0dfa7] SKETCHER:SKETCHER_MODULE (SRR2838702)        [100%] 1 of 1 ✔
+[e0/b1d5b9] PROKKA:PROKKA_MODULE (SRR2838702)            [100%] 1 of 1 ✔
+[2c/900d9e] AMRFINDERPLUS:AMRFINDERPLUS_RUN (SRR2838702) [100%] 1 of 1 ✔
+[12/c2fcd1] AMRFINDERPLUS:CSVTK_CONCAT (amrfinderplus)   [100%] 1 of 1 ✔
+[82/800c26] MLST:MLST_MODULE (SRR2838702)                [100%] 1 of 1 ✔
+[9c/5206fe] MLST:CSVTK_CONCAT (mlst)                     [100%] 1 of 1 ✔
+Completed at: 29-Apr-2026 10:55:13
+Duration    : 3m 29s
 CPU hours   : 0.2
-Succeeded   : 13
+Succeeded   : 11
+
+WARN: Graphviz is required to render the execution DAG in the given format -- See http://www.graphviz.org for more info.
+
+--------------------------------------------------------------------
+
+Bactopia Execution Summary
+-------------------------------
+Workflow         : bactopia
+Bactopia Version : 4.0.0
+Nextflow Version : 26.04.0
+Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none -profile test,docker
+Launch Dir       : /home/rpetit3/bactopia-tutorial
+Profile          : test,docker
+Completed At     : 2026-04-29T10:55:13.036123110-06:00
+Duration         : 3m 29s
+Resumed          : false
+Success          : true
+Merged Results   : bactopia/bactopia-runs/bactopia-20260429-105142
+
+
+Further analyze your samples using Bactopia Tools, with the following command:
+--------------------------------------------------------------------------------
+bactopia -profile docker --bactopia bactopia --wf <REPLACE_WITH_BACTOPIA_TOOL_NAME>
+
+Examples:
+bactopia -profile docker --bactopia bactopia --wf pangenome
+bactopia -profile docker --bactopia bactopia --wf merlin
+bactopia -profile docker --bactopia bactopia --wf sccmec
+
+See the full list of available Bactopia Tools: bactopia --list_wfs
+
+Message of the Day
+-------------------------------
+What cheese can never be yours? Nacho cheese!
 ```
 
 If you see similar text, you are ready to continue!
