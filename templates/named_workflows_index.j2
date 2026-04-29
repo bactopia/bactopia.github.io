@@ -1,0 +1,15 @@
+---
+title: Bactopia Pipelines
+description: Bactopia analysis pipelines
+sidebar_position: 1
+---
+
+# Bactopia Pipelines
+
+Bactopia Pipelines are complete analysis pipelines built from Bactopia's subworkflows and modules. There are {{ total }} pipelines available.
+
+| Pipeline | Description |
+|----------|-------------|
+{% for key in named_keys %}
+| [{{ key }}](/bactopia-pipelines/{{ key }}) | {{ named[key].summary }} |
+{% endfor %}

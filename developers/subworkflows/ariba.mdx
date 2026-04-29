@@ -1,0 +1,94 @@
+---
+title: ariba
+description: "Rapidly identify genes by creating local assemblies from paired-end reads."
+tags:
+  - bacteria
+  - reads
+  - antimicrobial-resistance
+  - virulence
+  - local-assembly
+  - sample-scope
+---
+
+# ariba
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/reads" class="badge badge--primary badge--tag">reads</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/local-assembly" class="badge badge--primary badge--tag">local-assembly</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Rapidly identify genes by creating local assemblies from paired-end reads.
+
+This subworkflow uses [ARIBA](https://github.com/sanger-pathogens/ariba)
+(Antimicrobial Resistance Identification By Assembly) to rapidly identify genes
+in a database by creating local assemblies. It first downloads and prepares an ARIBA database,
+then analyzes paired-end reads to identify genes, and finally aggregates results across all samples.
+
+Uses explicit positional record fields for reads:
+- Input: record(meta, r1, r2, se, lr) where each read slot is Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `r1` | Illumina R1 reads (paired-end) |
+| `r2` | Illumina R2 reads (paired-end) |
+| `se` | Single-end Illumina reads (not supported by ARIBA) |
+| `lr` | Long reads (not supported by ARIBA) |
+
+```
+db: String
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `String` | Database name for ARIBA analysis (e.g., ncbi, card, vfdb, resfinder, argannot) |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `report` | Tab-delimited detailed report of gene detection results |
+| `summary` | Comma-separated condensed summary of detected genes |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [ariba_getref](/developers/modules/ariba_getref) - Download and prepare reference databases for ARIBA analysis.
+- [ariba_run](/developers/modules/ariba_run) - Identify genes by local assembly of reads.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [ariba](/bactopia-tools/ariba) - Gene identification through local assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Ariba](https://github.com/sanger-pathogens/ariba)  
+  Hunt M, Mather AE, Sánchez-Busó L, Page AJ, Parkhill J, Keane JA, Harris SR [ARIBA: rapid antimicrobial resistance genotyping directly from sequencing reads](http://dx.doi.org/10.1099/mgen.0.000131). _Microb Genom_ 3, e000131 (2017)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/ariba)

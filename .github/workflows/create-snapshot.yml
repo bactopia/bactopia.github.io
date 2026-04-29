@@ -1,0 +1,97 @@
+name: Create Version Snapshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v4.0.0)'
+        required: true
+      bactopia_ref:
+        description: 'bactopia/bactopia ref to checkout (branch, tag, or SHA)'
+        required: false
+        default: 'main'
+
+jobs:
+  create-snapshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout docs repo
+        uses: actions/checkout@v4
+
+      - name: Checkout bactopia source repo
+        uses: actions/checkout@v4
+        with:
+          repository: bactopia/bactopia
+          path: bactopia-source
+          ref: ${{ inputs.bactopia_ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Generate docs from bactopia source
+        run: make generate BACTOPIA_REPO=bactopia-source
+        env:
+          BACTOPIA_DEV_PYTHON: python
+
+      - name: Build snapshot with version banner
+        run: npm run build
+        env:
+          DOCS_VERSION: ${{ inputs.version }}
+
+      - name: Report snapshot file count
+        run: |
+          count=$(find build -type f | wc -l)
+          echo "Snapshot file count: $count"
+          echo "SNAPSHOT_FILES=$count" >> "$GITHUB_ENV"
+
+      - name: Push snapshot to orphan branch
+        run: |
+          cd build
+          git init
+          git checkout --orphan "snapshot/${{ inputs.version }}"
+          git add -A
+          git -c user.name="github-actions" -c user.email="github-actions@github.com" \
+            commit -m "Snapshot ${{ inputs.version }} (${{ env.SNAPSHOT_FILES }} files)"
+          git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          git push origin "snapshot/${{ inputs.version }}" --force
+          echo "Pushed snapshot/${{ inputs.version }} (${{ env.SNAPSHOT_FILES }} files)"
+
+      - name: Update snapshots.json on master
+        run: |
+          python3 -c "
+          import json, sys
+          f = 'snapshots.json'
+          d = json.load(open(f))
+          v = '${{ inputs.version }}'
+          n = int('${{ env.SNAPSHOT_FILES }}')
+          # Update existing entry or add new one
+          existing = [s for s in d['snapshots'] if s['version'] == v]
+          if existing:
+              existing[0]['files'] = n
+              existing[0]['active'] = True
+              print(f'Updated {v} (files={n})')
+          else:
+              d['snapshots'].insert(0, {'version': v, 'branch': f'snapshot/{v}', 'files': n, 'active': True})
+              print(f'Added {v} (files={n})')
+          json.dump(d, open(f, 'w'), indent=2)
+          "
+          git add snapshots.json
+          git -c user.name="github-actions" -c user.email="github-actions@github.com" \
+            commit -m "add ${{ inputs.version }} to snapshots.json (${{ env.SNAPSHOT_FILES }} files)"
+          git push

@@ -1,0 +1,22 @@
+---
+title: CLI Reference
+description: Command-line reference for all bactopia-py CLI commands
+slug: /cli
+---
+
+# CLI Reference
+
+Command-line reference for all [bactopia-py](https://github.com/bactopia/bactopia-py) CLI commands (v{{ version }}).
+
+{% for cat_key, cat in categories.items() %}
+## {{ cat.label }}
+
+{{ cat.description }}
+
+| Command | Description |
+|---------|-------------|
+{% for cmd_name in cat.commands %}
+| [`{{ cmd_name }}`](/developers/cli/{{ cmd_name }}) | {{ escape_mdx(commands[cmd_name].help.split('\n')[0] | truncate(100)) }} |
+{% endfor %}
+
+{% endfor %}

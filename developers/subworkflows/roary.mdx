@@ -1,0 +1,71 @@
+---
+title: roary
+description: "Build a pangenome from GFF3 annotations using Roary."
+tags:
+  - pangenome
+  - pan-genome
+  - comparative-genomics
+  - core-genome
+  - alignment
+  - run-scope
+---
+
+# roary
+
+**Tags:** <a href="/developers/tags/pangenome" class="badge badge--primary badge--tag">pangenome</a> <a href="/developers/tags/pan-genome" class="badge badge--primary badge--tag">pan-genome</a> <a href="/developers/tags/comparative-genomics" class="badge badge--primary badge--tag">comparative-genomics</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Build a pangenome from GFF3 annotations using Roary.
+
+This subworkflow creates a pangenome from bacterial genome annotations using [Roary](https://github.com/sanger-pathogens/Roary).
+Roary is a rapid pangenome pipeline that processes large numbers of annotated genomes to produce
+gene presence/absence matrices and core-genome alignments. It is particularly optimized for
+bacterial datasets and can handle hundreds of genomes efficiently.
+
+## Take
+
+```
+gff: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `gff` | Set of GFF3 annotation files representing the genomic annotations for each sample |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+No sample-scope outputs.
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `aln` | Core genome alignment in FASTA format (optional) |
+| `csv` | Gene presence/absence table |
+| `supplemental` | Supplemental files including accessory binary genes and graphs |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [roary](/developers/modules/roary) - Rapid large-scale prokaryote pan genome analysis.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Roary](https://github.com/sanger-pathogens/Roary)  
+  Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691-3693 (2015)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/roary)

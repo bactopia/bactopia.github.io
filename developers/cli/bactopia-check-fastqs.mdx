@@ -1,0 +1,27 @@
+---
+title: bactopia-check-fastqs
+description: "Verify input FASTQs meet minimum requirements."
+---
+
+# bactopia-check-fastqs
+
+Verify input FASTQs meet minimum requirements.
+
+## Usage
+
+```bash
+bactopia-check-fastqs [OPTIONS]
+```
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--version, -V` | BOOL | `false` | Show the version and exit. |
+| `--sample` | STRING |  | Name of the input sample. |
+| `--fq1` | STRING |  | Stats for SE or R1 FASTQ in JSON format. |
+| `--fq2` | STRING |  | Stats for R2 FASTQ in JSON format. |
+| `--min_proportion` | FLOAT | `0.0` | Minimum basepair proportion for R1/R2. |
+| `--min_reads` | INT | `0` | Minimum number of reads. |
+| `--min_basepairs` | INT | `0` | Minimum number of sequenced basepairs. |
+| `--runtype` | STRING | `illumina` | The input technology of the FASTQs. |

@@ -1,0 +1,95 @@
+---
+title: staphtyper
+description: "Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes."
+tags:
+  - staphylococcus-aureus
+  - agr-typing
+  - spa-typing
+  - sccmec
+  - strain-characterization
+  - run-scope
+---
+
+# staphtyper
+
+**Tags:** <a href="/developers/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/developers/tags/agr-typing" class="badge badge--primary badge--tag">agr-typing</a> <a href="/developers/tags/spa-typing" class="badge badge--primary badge--tag">spa-typing</a> <a href="/developers/tags/sccmec" class="badge badge--primary badge--tag">sccmec</a> <a href="/developers/tags/strain-characterization" class="badge badge--primary badge--tag">strain-characterization</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.
+
+This subworkflow performs comprehensive typing of *Staphylococcus aureus* genomes by
+determining the agr locus type using [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE),
+spa repeat type using [spaTyper](https://github.com/HCGB-IGTP/spaTyper), and SCCmec element
+type using SCCmec typing. It combines results from multiple typing methods to provide
+a complete characterization of *S. aureus* strains.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembled contigs in FASTA format |
+
+```
+repeats: Path?
+repeat_order: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `repeats` | `Path?` | Optional spa repeats database for improved spa typing |
+| `repeat_order` | `Path?` | Optional spa repeat order file for improved spa typing |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+No sample-scope outputs.
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Subworkflow Composition
+
+This subworkflow calls the following subworkflows:
+
+- [agrvate](/developers/subworkflows/agrvate) - Identify Staphylococcus aureus agr locus type and operon variants.
+- [spatyper](/developers/subworkflows/spatyper) - Predict spa types of Staphylococcus aureus from genome assemblies.
+- [sccmec](/developers/subworkflows/sccmec) - Identify SCCmec elements in Staphylococcus aureus genomes.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+- [staphtyper](/bactopia-tools/staphtyper) - Comprehensive typing of Staphylococcus aureus genomes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)  
+  Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
+
+- [spaTyper](https://github.com/HCGB-IGTP/spaTyper)  
+  Sanchez-Herrero JF, and Sullivan M [spaTyper: Staphylococcal protein A (spa) characterization pipeline](http://doi.org/10.5281/zenodo.4063625). Zenodo. (2020)
+
+- [sccmec](https://github.com/rpetit3/sccmec)  
+  Petit III RA, Read TD [sccmec: A tool for typing SCCmec cassettes in assemblies](https://github.com/rpetit3/sccmec) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/staphtyper)

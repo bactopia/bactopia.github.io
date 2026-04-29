@@ -1,0 +1,110 @@
+---
+title: checkm_lineagewf
+description: "Assess genome quality using lineage-specific marker sets."
+tags:
+  - quality-control
+  - completeness
+  - contamination
+  - marker-genes
+  - lineage
+  - bacteria
+  - archaea
+  - sample-scope
+---
+
+# checkm_lineagewf
+
+**Tags:** <a href="/developers/tags/quality-control" class="badge badge--primary badge--tag">quality-control</a> <a href="/developers/tags/completeness" class="badge badge--primary badge--tag">completeness</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/marker-genes" class="badge badge--primary badge--tag">marker-genes</a> <a href="/developers/tags/lineage" class="badge badge--primary badge--tag">lineage</a> <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/archaea" class="badge badge--primary badge--tag">archaea</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Assess genome quality using lineage-specific marker sets.
+
+Uses [CheckM](https://github.com/Ecogenomics/CheckM) to estimate the completeness and
+contamination of genome assemblies. It places the genome into a reference tree to select
+an appropriate set of single-copy marker genes, then calculates quality metrics based on
+the recovery of these markers.
+
+:::note[Database Required]
+Requires the CheckM reference database (~275GB uncompressed) to be configured via the
+`CHECKM_DATA_PATH` environment variable or pre-installed in the container.
+:::
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited genome quality report with completeness and contamination estimates |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### CheckM Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--checkm_unique` | integer | `10` | Minimum number of unique phylogenetic markers required to use lineage-specific marker set. |
+| `--checkm_multi` | integer | `10` | Maximum number of multi-copy phylogenetic markers before defaulting to domain-level marker set. |
+| `--checkm_aai_strain` | number | `0.9` | AAI threshold used to identify strain heterogeneity |
+| `--checkm_length` | number | `0.7` | Percent overlap between target and query |
+
+## Used By
+
+### Subworkflows
+
+- [checkm](/developers/subworkflows/checkm) - Assess metagenome bin completeness using CheckM.
+
+### Workflows
+
+- [checkm](/bactopia-tools/checkm) - Assessment of microbial genome assembly quality.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [CheckM](https://github.com/Ecogenomics/CheckM)  
+  Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW [CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes.](http://dx.doi.org/10.1101/gr.186072.114) _Genome Res_ 25, 1043-1055 (2015)
+
+- [pplacer](https://github.com/matsen/pplacer)  
+  Matsen FA, Kodner RB, Armbrust EV [pplacer: linear time maximum-likelihood and Bayesian phylogenetic placement of sequences onto a fixed reference tree.](https://doi.org/10.1186/1471-2105-11-538) _BMC Bioinformatics_ 11, 538 (2010)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/checkm/lineagewf)
+
+## Version
+
+```yaml
+CHECKM_LINEAGEWF:
+    - checkm-genome: 1.2.5
+```

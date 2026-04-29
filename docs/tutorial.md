@@ -2,6 +2,7 @@
 title: Tutorial
 description: >-
     A tutorial to get started with Bactopia using publicly available genomes.
+sidebar_position: 4
 ---
 For this tutorial, we walk through processing *S. aureus* samples associated with cystic
 fibrosis lung infections. These samples are from the publication just below, and are
@@ -20,13 +21,13 @@ The goal of the tutorial is to:
     * [ ] Aggregate results from multiple samples
 * [ ] Use Bactopia Tools to:
     * [ ] Run *S. aureus* specific analyses
-    * [ ] Generate a tree using [Mashtree](bactopia-tools/mashtree.md)
+    * [ ] Generate a tree using [Mashtree](/bactopia-tools/mashtree)
 
 Upon completion of this tutorial, you should be ready to process your own data using Bactopia!
 
 :::warning[Bactopia Should Be Installed]
 This tutorial assumes you have already installed Bactopia. If you have not, please check
-out how to at [Installation](installation.md).
+out how to at [Installation](./installation).
 :::
 
 :::warning[Reach out if you have trouble with this tutorial]
@@ -100,7 +101,7 @@ Upon completion, you will hopefully be met with text like the following:
 ```bash
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/bactopia/main.nf -w /path/to/work/ -profile test
     Resumed          : false
@@ -168,7 +169,7 @@ __*Some time later...*__
 After some time, (_15 minutes on my end_), you will have results available to you
 in `ena-single-sample/SRX4563634/`. Each of these outputs files are documented in detail
 in the __*Workflow Steps*__ section of the documentation. Starting with the
-[Gather Step](bactopia/gather.md)
+the Gather Step
 
 <details>
 <summary>Expected logging information</summary>
@@ -194,7 +195,7 @@ executor >  local (13)
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --accession SRX4563634 --coverage 100 --genome_size 2800000 --outdir ena-single-sample --max_cpus 2
     Resumed          : false
@@ -268,7 +269,7 @@ for samples on SRA/ENA and generate a list of accessions for processing with Bac
 :::tip[Check out the Beginner's Guide for more information on `bactopia search`]
 For now, we are just going to use `bactopia search` without much details on how it works.
 You use `bactopia search` for some fun things, to learn more about it, check out
-[Beginner's Guide -> Accessions](beginners-guide.md#accessions).
+[Beginner's Guide -> Accessions](./beginners-guide#accessions).
 :::
 
 Let's go ahead and give `bactopia search` a try:
@@ -361,7 +362,7 @@ executor >  local (41)
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --accessions bactopia-accessions.txt --coverage 100 --outdir ena-multiple-samples --max_cpus 2
     Resumed          : false
@@ -426,7 +427,7 @@ SRA/ENA above, with a few slight modifications. To process a single sample you c
 
 :::tip[Learn more from the Beginner's Guide]
 To learn more about these parameters, check out the
-[Beginner's Guide -> Single Sample](beginners-guide.md#single-sample) section. Each of these
+[Beginner's Guide -> Single Sample](./beginners-guide#single-sample) section. Each of these
 parameters are described in detail.
 :::
 
@@ -481,7 +482,7 @@ executor >  local (13)
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --r1 fastqs/SRX4563634_R1.fastq.gz --r2 fastqs/SRX4563634_R2.fastq.gz --sample SRX4563634 --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 2
     Resumed          : false
@@ -547,7 +548,7 @@ executor >  local (13)
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /home/robert_petit/temp/bactopia3/tutorial/work/ --se fastqs/SRX4563634-SE.fastq.gz --sample SRX4563634-SE --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 2
     Resumed          : false
@@ -578,7 +579,7 @@ FOFN we need to process multiple samples.
 
 :::tip[Learn more from the Beginner's Guide]
 To learn more about these parameters, check out the
-[Beginner's Guide -> Local Samples](beginners-guide.md#local-samples) section. Each of these
+[Beginner's Guide -> Local Samples](./beginners-guide#local-samples) section. Each of these
 parameters are described in detail.
 :::
 
@@ -606,7 +607,7 @@ SRX4563689      paired-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX45636
 SRX4563690      paired-end      0       UNKNOWN_SPECIES /path/to/fastqs/SRX4563690_R1.fastq.gz        /path/to/fastqs/SRX4563690_R2.fastq.gz
 ```
 
-This command will try to create a FOFN for you. For this turorial, the FASTQ names are pretty straight forward and should produce a correct FOFN (or at least it should! ... hopefully!). If that wasn't the case for you, there are ways to [tweak `bactopia prepare`](beginners-guide.md#bactopia-prepare).
+This command will try to create a FOFN for you. For this turorial, the FASTQ names are pretty straight forward and should produce a correct FOFN (or at least it should! ... hopefully!). If that wasn't the case for you, there are ways to [tweak `bactopia prepare`](./beginners-guide#bactopia-prepare).
 
 Wait! We for got something, in the output above we have `0` for `genome_size` and
 `UNKNOWN_SPECIES` for `species`. We can fix this by using the `--species` and `--genome-size`
@@ -693,7 +694,7 @@ analysis. Here is example logging text you should see:
 
     Bactopia Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --samples samples.txt --coverage 100 --max_cpus 2 --outdir local-multiple-samples
     Resumed          : false
@@ -862,7 +863,7 @@ Finally, we covered the `bactopia summary` command to get a quick overview of yo
     * [x] Aggregate results from multiple samples
 
 __*BUT!*__ We're not done yet! Let's take a look into how we can further process these
-samples using [Bactopia Tools](bactopia-tools/index.md). These are additional pre-made
+samples using [Bactopia Tools](/bactopia-tools/). These are additional pre-made
 workflows that make use of existing Bactopia outputs to dig even deeper in to your studies.
 
 ## Bactopia Tools
@@ -883,7 +884,7 @@ In this section will explore how you can use a few of these. Let's get started!
 ### Species Specific Analyses
 
 All the samples we've processed so far have been from the same species, _Staphylococcus aureus_.
-There is a Bactopia Tool call [staphtyper](bactopia-tools/staphtyper.md) that can be used to
+There is a Bactopia Tool call [staphtyper](/bactopia-tools/staphtyper) that can be used to
 run a few tools specific to _S. aureus_ analysis. Let's run our first Bactopia Tool using the
 samples in `local-multiple-samples`:
 
@@ -907,15 +908,15 @@ Here's the logging information you should see:
 executor >  local (2)
 [9c/31f28f] process > BACTOPIATOOLS:STAPHTYPER:AGRVATE (SRX4563690)                           [100%] 7 of 7 ✔
 [f7/b722d7] process > BACTOPIATOOLS:STAPHTYPER:SPATYPER (SRX4563634)                          [100%] 7 of 7 ✔
-[68/067620] process > BACTOPIATOOLS:STAPHTYPER:STAPHOPIASCCMEC (SRX4563634)                   [100%] 7 of 7 ✔
+[68/067620] process > BACTOPIATOOLS:STAPHTYPER:SCCMEC (SRX4563634)                            [100%] 7 of 7 ✔
 [33/2e5476] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_AGRVATE (agrvate)                 [100%] 1 of 1 ✔
 [b9/a755e3] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_SPATYPER (spatyper)               [100%] 1 of 1 ✔
-[78/6a0552] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_STAPHOPIASCCMEC (staphopiasccmec) [100%] 1 of 1 ✔
+[78/6a0552] process > BACTOPIATOOLS:STAPHTYPER:CSVTK_CONCAT_SCCMEC (sccmec)                   [100%] 1 of 1 ✔
 [c2/694b33] process > BACTOPIATOOLS:CUSTOM_DUMPSOFTWAREVERSIONS (1)                           [100%] 1 of 1 ✔
 
     Bactopia Tools: `staphtyper Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf -w /path/to/work/ --wf staphtyper --bactopia local-multiple-samples/
     Resumed          : false
@@ -933,18 +934,18 @@ these analyses were combined into a single file for easy viewing.
 
 :::tip[Visit `staphtyper` documentation to learn more]
 To learn more about `staphtyper` and the outputs it produces, check out the
-[staphtyper documentation](bactopia-tools/staphtyper.md). It's worth noting,
+[staphtyper documentation](/bactopia-tools/staphtyper). It's worth noting,
 **all** Bactopia Tools will have a similar documentation page.
 :::
 
 * [x] Use Bactopia Tools to:
     * [x] Run *S. aureus* specific analyses
-    * [ ] Generate a tree using [Mashtree](bactopia-tools/mashtree.md)
+    * [ ] Generate a tree using [Mashtree](/bactopia-tools/mashtree)
 
 ### Building a Tree
 
 Now that we've run some _S. aureus_ specific analyses, let's try something a little different.
-Let's build a tree using [Mashtree](bactopia-tools/mashtree.md), which builds the tree using
+Let's build a tree using [Mashtree](/bactopia-tools/mashtree), which builds the tree using
 Mash distances.
 
 For this tutorial, we are using Mashtree, because it is quick, and if you've made it this
@@ -1005,7 +1006,7 @@ executor >  local (2)
 
     Bactopia Tools: `mashtree Execution Summary
     ---------------------------
-    Bactopia Version : 3.0.0
+    Bactopia Version : 4.0.0
     Nextflow Version : 23.04.1
     Command Line     : nextflow run /path/to/main.nf --wf mashtree --bactopia local-multiple-samples/ --run_name tutorial
     Resumed          : false
@@ -1019,7 +1020,7 @@ executor >  local (2)
 
 :::tip[Visit `mashtree` documentation to learn more]
 To learn more about `mashtree` and the outputs it produces, check out the
-[mashtree documentation](bactopia-tools/mashtree.md). Again, each Bactopia
+[mashtree documentation](/bactopia-tools/mashtree). Again, each Bactopia
 Tool will have a similar documentation page.
 :::
 
@@ -1030,7 +1031,7 @@ Bactopia Tools can help make things easier for you.
 
 * [x] Use Bactopia Tools to:
     * [x] Run *S. aureus* specific analyses
-    * [x] Generate a tree using [Mashtree](bactopia-tools/mashtree.md)
+    * [x] Generate a tree using [Mashtree](/bactopia-tools/mashtree)
 
 By this point, you are probably done! Let's finish this!
 
@@ -1047,7 +1048,7 @@ This tutorial has covered a lot! Let's recap what we've done:
     * [x] Aggregate results from multiple samples
 * [x] Use Bactopia Tools to:
     * [x] Run *S. aureus* specific analyses
-    * [x] Generate a tree using [Mashtree](bactopia-tools/mashtree.md)
+    * [x] Generate a tree using [Mashtree](/bactopia-tools/mashtree)
 
 Hopefully you have succeeded (yay! 🎉) and would like to use Bactopia on your own data!
 

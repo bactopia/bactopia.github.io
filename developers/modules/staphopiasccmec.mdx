@@ -1,0 +1,92 @@
+---
+title: staphopiasccmec
+description: "Primer based SCCmec typing of S. aureus genomes."
+tags:
+  - staphylococcus-aureus
+  - sccmec
+  - typing
+  - mrsa
+  - primers
+  - sample-scope
+---
+
+# staphopiasccmec
+
+**Tags:** <a href="/developers/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/developers/tags/sccmec" class="badge badge--primary badge--tag">sccmec</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/mrsa" class="badge badge--primary badge--tag">mrsa</a> <a href="/developers/tags/primers" class="badge badge--primary badge--tag">primers</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Primer based SCCmec typing of S. aureus genomes.
+
+Uses [Staphopia SCCmec](https://github.com/staphopia/staphopia-sccmec) to determine the
+SCCmec type of *Staphylococcus aureus* assemblies. It includes a primer-based approach
+to identify SCCmec types I-XI.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | TSV file with SCCmec typing results |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Staphopia SCCmec Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--staphopiasccmec_hamming` | boolean | `false` | Report the results as hamming distances |
+
+## Used By
+
+### Subworkflows
+
+- [staphopiasccmec](/developers/subworkflows/staphopiasccmec) - Identify SCCmec elements in Staphylococcus aureus genomes using Staphopia method.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [staphopia-sccmec](https://github.com/staphopia/staphopia-sccmec)  
+  Petit III RA, Read TD [_Staphylococcus aureus_ viewed from the perspective of 40,000+ genomes.](http://dx.doi.org/10.7717/peerj.5261) _PeerJ_ 6, e5261 (2018)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/staphopiasccmec)
+
+## Version
+
+```yaml
+STAPHOPIASCCMEC:
+    - staphopia-sccmec: 1.0.0
+```

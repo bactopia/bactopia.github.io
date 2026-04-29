@@ -1,0 +1,78 @@
+---
+title: shigapass
+description: "Predict serotypes of Shigella from assemblies."
+tags:
+  - shigella
+  - serotype
+  - typing
+  - prediction
+  - antigen-genes
+  - sample-scope
+---
+
+# shigapass
+
+**Tags:** <a href="/developers/tags/shigella" class="badge badge--primary badge--tag">shigella</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/antigen-genes" class="badge badge--primary badge--tag">antigen-genes</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predict serotypes of Shigella from assemblies.
+
+This subworkflow uses [ShigaPass](https://github.com/imanyass/ShigaPass) to predict
+serotypes of *Shigella* strains from assembled genomes. It analyzes the presence
+and composition of antigen-encoding genes to classify isolates into their known serotypes.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembled contigs in FASTA format |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | ShigaPass summary results in TSV format |
+| `flex_tsv` | ShigaPass Flex summary results in TSV format |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [shigapass](/developers/modules/shigapass) - Predict Shigella serotypes and differentiate Shigella/EIEC.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [shigapass](/bactopia-tools/shigapass) - Prediction of Shigella serotypes and differentiation from EIEC.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [shigapass](https://github.com/imanyass/ShigaPass)  
+  Yassine I, Hansen EE, Lefèvre S, Ruckly C, Carle I, Lejay-Collin M, Fabre L, Rafei R, Pardos de la Gandara M, Daboussi F, Shahin A, Weill FX [ShigaPass: an in silico tool predicting Shigella serotypes from whole-genome sequencing assemblies.](https://doi.org/10.1099%2Fmgen.0.000961) _Microb Genomics_ 9(3) (2023)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/shigapass)

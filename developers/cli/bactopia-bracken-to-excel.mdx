@@ -1,0 +1,29 @@
+---
+title: bactopia-bracken-to-excel
+description: "Write Bracken abundances to an Excel file."
+---
+
+# bactopia-bracken-to-excel
+
+Write Bracken abundances to an Excel file.
+
+## Usage
+
+```bash
+bactopia-bracken-to-excel PREFIX BRACKEN_ABUNDANCES [OPTIONS]
+```
+
+## Arguments
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+| `PREFIX` | STRING | Yes | Prefix to use for output files. |
+| `BRACKEN_ABUNDANCES` | STRING | Yes | The Bracken output with abundances. |
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--version, -V` | BOOL | `false` | Show the version and exit. |
+| `--limit` | INT | `5` | Limit the result to the top N rows. |
+| `--include_unclassified` | BOOL | `false` | Include results for unclassified reads. |

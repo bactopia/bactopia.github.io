@@ -1,0 +1,627 @@
+---
+title: Full Guide
+sidebar_label: Full Guide
+sidebar_position: 5
+description: "Comprehensive bacterial analysis pipeline for complete genomic characterization."
+tags:
+  - bacteria
+  - assembly
+  - annotation
+  - amr
+  - mlst
+  - genomics
+  - pipeline
+---
+
+# bactopia
+
+**Tags:** <a href="/bactopia-pipelines/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/bactopia-pipelines/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/bactopia-pipelines/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/bactopia-pipelines/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/bactopia-pipelines/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/bactopia-pipelines/tags/genomics" class="badge badge--primary badge--tag">genomics</a> <a href="/bactopia-pipelines/tags/pipeline" class="badge badge--primary badge--tag">pipeline</a> <a href="/bactopia-pipelines/tags/named-workflow" class="badge badge--primary badge--tag">named-workflow</a> 
+
+Comprehensive bacterial analysis pipeline for complete genomic characterization.
+
+This workflow performs end-to-end analysis including quality control, assembly,
+annotation, antimicrobial resistance detection, MLST typing, and optional
+pathogen-specific analysis through Merlin. It processes raw sequencing reads
+and produces a complete genomic characterization suitable for downstream analysis.
+
+## Pipeline Overview
+
+![Bactopia Workflow](/img/bactopia-workflow-main.png)
+
+Looking at the workflow overview above, it might not look like much is happening, but I can
+assure you that a lot is going on. The workflow is broken down into 8 steps, which are:
+
+1. **Gather** - Collect all the data in one place
+2. **QC** - Quality control of the data
+3. **Assembler** - Assemble the reads into contigs
+4. **Annotator** - Annotate the contigs
+5. **Sketcher** - Create a sketch of the contigs, and query databases
+6. **Sequence Typing** - Determine the sequence type of the contigs
+7. **Antibiotic Resistance** - Determine the antibiotic resistance of the contigs and proteins
+8. **Merlin** - Automatically run species-specific tools based on distance
+
+If you are looking for a guide to get started quickly, please check out the
+[Beginner's Guide](beginners-guide.md).
+
+### Step 1 - Gather
+
+The main purpose of the `gather` step is to get all the samples into a single place. This
+includes downloading samples from ENA/SRA or NCBI Assembly. The tools used are:
+
+| Tool | Description |
+|------|-------------|
+| [art](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm) | For simulating error-free reads for an input assembly |
+| [fastq-dl](https://github.com/rpetit3/fastq-dl) | Downloading FASTQ files from ENA/SRA |
+| [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) | Downloading FASTA files from NCBI Assembly |
+
+This `gather` step also does basic QC checks to help prevent downstream failures.
+
+#### Failed Quality Checks
+
+| Filename | Description |
+|----------|-------------|
+| -gzip-error.txt | Sample failed Gzip checks and excluded from further analysis |
+| -low-basepair-proportion-error.txt | Sample failed basepair proportion checks and excluded from further analysis |
+| -low-read-count-error.txt | Sample failed read count checks and excluded from further analysis |
+| -low-sequence-depth-error.txt | Sample failed sequenced basepair checks and excluded from further analysis |
+
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
+
+<details>
+<summary>Example Error: Input FASTQ(s) failed Gzip checks</summary>
+
+If input FASTQ(s) fail to pass Gzip test, the sample will be excluded from
+further analysis.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-gzip-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQs failed Gzip tests. Please check the input FASTQs. Further
+analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Input FASTQs have disproportionate number of reads</summary>
+
+If input FASTQ(s) for a sample have disproportionately different number of reads
+between the two pairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_proportion` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-basepair-proportion-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQs failed to meet the minimum shared basepairs. They
+shared `Y` basepairs, with R1 having `A` bp and R2 having `B` bp. Further
+analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Input FASTQ(s) has too few reads</summary>
+
+If input FASTQ(s) for a sample have less than the minimum required reads, the
+sample will be excluded from further analysis. You can adjust this minimum read
+count using the `--min_reads` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
+minimum `Y` read count. Further analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Input FASTQ(s) has too little sequenced basepairs</summary>
+
+If input FASTQ(s) for a sample fails to meet the minimum number of sequenced
+basepairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_basepairs` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
+required minimum `Y` bp. Further analysis is discontinued._
+
+</details>
+
+### Step 2 - QC
+
+The `qc` module uses a variety of tools to perform quality control on Illumina and
+Oxford Nanopore reads. The tools used are:
+
+| Tool | Technology | Description |
+|------|------------|-------------|
+| [bbtools](https://jgi.doe.gov/data-and-tools/bbtools/) | Illumina | A suite of tools for manipulating reads |
+| [fastp](https://github.com/OpenGene/fastp) | Illumina | A tool designed to provide fast all-in-one preprocessing for FastQ files |
+| [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) | Illumina | A quality control tool for high throughput sequence data |
+| [fastq_scan](https://github.com/rpetit3/fastq-scan) | Nanopore | A tool for quickly scanning FASTQ files |
+| [lighter](https://github.com/mourisl/Lighter) | Illumina | A tool for correcting sequencing errors in Illumina reads |
+| [NanoPlot](https://github.com/wdecoster/NanoPlot) | Nanopore | A tool for plotting long read sequencing data |
+| [nanoq](https://github.com/esteinig/nanoq) | Nanopore | A tool for calculating quality metrics for Oxford Nanopore reads |
+| [porechop](https://github.com/rrwick/Porechop) | Nanopore | A tool for removing adapters from Oxford Nanopore reads |
+| [rasusa](https://github.com/mbhall88/rasusa) | Nanopore | Randomly subsample sequencing reads to a specified coverage |
+
+Similar to the `gather` step, the `qc` step will also stop samples that fail to meet
+basic QC checks from continuing downstream.
+
+#### Failed Quality Checks
+
+| Filename | Description |
+|----------|-------------|
+| .error-fastq.gz | A gzipped FASTQ file of reads that failed QC |
+| -low-read-count-error.txt | Sample failed read count checks and excluded from further analysis |
+| -low-sequence-coverage-error.txt | Sample failed sequenced coverage checks and excluded from further analysis |
+| -low-sequence-depth-error.txt | Sample failed sequenced basepair checks and excluded from further analysis |
+
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
+
+<details>
+<summary>Example Error: After QC, too few reads remain</summary>
+
+If after cleaning reads, a sample has less than the minimum required reads, the
+sample will be excluded from further analysis. You can adjust this minimum read
+count using the `--min_reads` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-read-count-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total reads. This does not exceed the required
+minimum `Y` read count. Further analysis is discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: After QC, too little sequence coverage remains</summary>
+
+If after cleaning reads, a sample has failed to meet the minimum sequence
+coverage required, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_coverage` parameter.
+
+__Note:__ This check is only performed when a genome size is available.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-coverage-error.txt__
+_After QC, &lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not
+exceed the required minimum `Y` bp (`Z`x coverage). Further analysis is
+discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: After QC, too little sequenced basepairs remain</summary>
+
+If after cleaning reads, a sample has failed to meet the minimum number of
+sequenced basepairs, the sample will be excluded from further analysis. You can
+adjust this minimum read count using the `--min_basepairs` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-low-sequence-depth-error.txt__
+_&lt;SAMPLE_NAME&gt; FASTQ(s) contain `X` total basepairs. This does not exceed the
+required minimum `Y` bp. Further analysis is discontinued._
+
+</details>
+
+### Step 3 - Assembler
+
+The `assembler` module uses a variety of assembly tools to create an assembly of
+Illumina and Oxford Nanopore reads. The tools used are:
+
+| Tool | Description |
+|------|-------------|
+| [Dragonflye](https://github.com/rpetit3/dragonflye) | Assembly of Oxford Nanopore reads, as well as hybrid assembly with short-read polishing |
+| [Shovill](https://github.com/tseemann/shovill) | Assembly of Illumina paired-end reads |
+| [Shovill-SE](https://github.com/rpetit3/shovill) | Assembly of Illumina single-end reads |
+| [Unicycler](https://github.com/rrwick/Unicycler) | Hybrid assembly, using short-reads first then long-reads |
+
+Summary statistics for each assembly are generated using [assembly-scan](https://github.com/rpetit3/assembly-scan).
+
+:::tip[Prefer `--short_polish` over `--hybrid` with recent ONT sequencing]
+Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
+assembly works great when you have low-coverage noisy long-reads. However, if you are
+using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
+method is going to yield better results (_and be faster!_) than `--hybrid`.
+:::
+
+#### Failed Quality Checks
+
+| Filename | Description |
+|----------|-------------|
+| -assembly-error.txt | Sample failed assembly checks and excluded from further analysis |
+
+:::info[Poor samples are excluded to prevent downstream failures]
+Samples that fail any of the QC checks will be excluded from further analysis.
+Those samples will generate a `*-error.txt` file with the error message. Excluding
+these samples prevents downstream failures that cause the whole workflow to fail.
+:::
+
+<details>
+<summary>Example Error: Assembled Successfully, but 0 Contigs</summary>
+
+If a sample assembles successfully, but 0 contigs are formed, the sample will be
+excluded from further analysis.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__
+_&lt;SAMPLE_NAME&gt; assembled successfully, but 0 contigs were formed. Please investigate
+&lt;SAMPLE_NAME&gt; to determine a cause (e.g. metagenomic, contaminants, etc...) for this
+outcome. Further assembly-based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+
+</details>
+
+<details>
+<summary>Example Error: Assembled successfully, but poor assembly size</summary>
+
+If your sample assembles successfully, but the assembly size is less than the minimum
+allowed genome size, the sample will be excluded from further analysis. You can
+adjust this minimum size using the `--min_genome_size` parameter.
+
+__Example Text from &lt;SAMPLE_NAME&gt;-assembly-error.txt__
+_&lt;SAMPLE_NAME&gt; assembled size (000 bp) is less than the minimum allowed genome
+size (000 bp). If this is unexpected, please investigate &lt;SAMPLE_NAME&gt; to
+determine a cause (e.g. metagenomic, contaminants, etc...) for the poor assembly.
+Otherwise, adjust the `--min_genome_size` parameter to fit your need. Further
+assembly based analysis of &lt;SAMPLE_NAME&gt; will be discontinued._
+
+</details>
+
+### Step 4 - Annotator
+
+The `annotator` step uses either [Prokka](https://github.com/tseemann/prokka) (default)
+or [Bakta](https://github.com/oschwengers/bakta) (via `--use_bakta`) to annotate
+assembled contigs with functional information including genes, proteins, rRNA, tRNA,
+and other genomic features.
+
+### Step 5 - Sketcher
+
+The `sketcher` module uses [Mash](https://github.com/marbl/Mash) and
+[Sourmash](https://github.com/dib-lab/sourmash) to create sketches and query
+[RefSeq](https://www.ncbi.nlm.nih.gov/refseq/) and [GTDB](https://gtdb.ecogenomic.org/).
+
+### Step 6 - Sequence Typing
+
+The `mlst` step uses [mlst](https://github.com/tseemann/mlst) to scan assemblies against
+[PubMLST](https://pubmlst.org/) typing schemes and determine the sequence type.
+
+### Step 7 - Antibiotic Resistance
+
+The `amrfinderplus` step uses [AMRFinder+](https://github.com/ncbi/amr) to identify
+antimicrobial resistance genes and point mutations from both assembled contigs and
+annotated protein sequences.
+
+### Step 8 - Merlin
+
+The `merlin` step automatically selects and runs species-specific typing tools based on
+Mash distance results from the `sketcher` step. Enable with `--ask_merlin`. See the
+[Pathogen-Specific Analysis](#pathogen-specific-analysis) output section below for the
+full list of supported organisms and tools.
+
+## Usage
+
+Bactopia CLI:
+
+```bash
+bactopia \
+  --input samples.csv \
+  --outdir results/
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia \
+  --input samples.csv \
+  --outdir results/
+```
+
+## Outputs
+
+### Expected Output Files
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   ├── main
+│   │   ├── annotator
+│   │   │   └── prokka
+│   │   │       ├── <SAMPLE_NAME>-blastdb.tar.gz
+│   │   │       ├── <SAMPLE_NAME>.faa.gz
+│   │   │       ├── <SAMPLE_NAME>.ffn.gz
+│   │   │       ├── <SAMPLE_NAME>.fna.gz
+│   │   │       ├── <SAMPLE_NAME>.fsa.gz
+│   │   │       ├── <SAMPLE_NAME>.gbk.gz
+│   │   │       ├── <SAMPLE_NAME>.gff.gz
+│   │   │       ├── <SAMPLE_NAME>.sqn.gz
+│   │   │       ├── <SAMPLE_NAME>.tbl.gz
+│   │   │       ├── <SAMPLE_NAME>.tsv
+│   │   │       ├── <SAMPLE_NAME>.txt
+│   │   │       └── logs
+│   │   │           ├── <SAMPLE_NAME>.err
+│   │   │           ├── <SAMPLE_NAME>.log
+│   │   │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │           └── versions.yml
+│   │   ├── assembler
+│   │   │   ├── <SAMPLE_NAME>.fna.gz
+│   │   │   ├── <SAMPLE_NAME>.tsv
+│   │   │   ├── logs
+│   │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │   │   ├── shovill-se.log
+│   │   │   │   └── versions.yml
+│   │   │   └── supplemental
+│   │   │       └── shovill.corrections
+│   │   ├── gather
+│   │   │   ├── <SAMPLE_NAME>-meta.tsv
+│   │   │   └── logs
+│   │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │       └── versions.yml
+│   │   ├── qc
+│   │   │   ├── <SAMPLE_NAME>_SE.fastq.gz
+│   │   │   ├── logs
+│   │   │   │   ├── <SAMPLE_NAME>-fastp.log
+│   │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │   │   └── versions.yml
+│   │   │   └── supplemental
+│   │   │       ├── <SAMPLE_NAME>.fastp.html
+│   │   │       ├── <SAMPLE_NAME>.fastp.json
+│   │   │       ├── <SAMPLE_NAME>_SE-final.json
+│   │   │       ├── <SAMPLE_NAME>_SE-final_fastqc.html
+│   │   │       ├── <SAMPLE_NAME>_SE-final_fastqc.zip
+│   │   │       ├── <SAMPLE_NAME>_SE-original.json
+│   │   │       ├── <SAMPLE_NAME>_SE-original_fastqc.html
+│   │   │       └── <SAMPLE_NAME>_SE-original_fastqc.zip
+│   │   └── sketcher
+│   │       ├── <SAMPLE_NAME>-k21.msh
+│   │       ├── <SAMPLE_NAME>-k31.msh
+│   │       ├── <SAMPLE_NAME>-mash-refseq88-k21.txt
+│   │       ├── <SAMPLE_NAME>-sourmash-gtdb-rs207-k31.txt
+│   │       ├── <SAMPLE_NAME>.sig
+│   │       └── logs
+│   │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │           └── versions.yml
+│   └── tools
+│       ├── amrfinderplus
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       └── mlst
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── bactopia-<TIMESTAMP>
+        ├── merged-results
+        │   ├── amrfinderplus.tsv
+        │   ├── assembly-scan.tsv
+        │   ├── logs
+        │   │   ├── amrfinderplus-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── assembly-scan-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   ├── meta-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   └── mlst-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   ├── meta.tsv
+        │   └── mlst.tsv
+        └── nf-reports
+            ├── bactopia-dag.dot
+            ├── bactopia-report.html
+            └── bactopia-timeline.html
+```
+
+### Quality Control
+
+| File | Description |
+|------|-------------|
+| `supplemental/*_fastqc.*` | FastQC quality control reports for raw and cleaned reads |
+| `supplemental/*-NanoPlot.*` | NanoPlot reports for Nanopore reads |
+| `supplemental/*.fastp.*` | Fastp quality reports (when applicable) |
+| `supplemental/*_original.json` | Quality metrics for original reads |
+| `supplemental/*_final.json` | Quality metrics for final reads |
+
+### Assembly
+
+| File | Description |
+|------|-------------|
+| `*.fasta` | Assembled genome sequences |
+| `assembly-stats.tsv` | Assembly quality metrics |
+| `merged-assembly-stats.tsv` | Consolidated assembly statistics |
+
+### Annotation
+
+:::note
+Output format depends on chosen annotation tool (Bakta or Prokka)
+:::
+
+| File | Description |
+|------|-------------|
+| `*.gff.gz` | Genome annotation in GFF3 format (compressed) |
+| `*.gbk.gz` | Genome annotation in GenBank format (compressed) |
+| `*.faa.gz` | Protein sequences (compressed) |
+| `*.fna.gz` | Nucleotide sequences from annotation (compressed) |
+| `*.ffn.gz` | Feature nucleotide sequences (compressed) |
+| `annotation.tsv` | Annotation summary tables |
+| `blastdb.*` | BLAST database created from annotation |
+
+### Typing
+
+| File | Description |
+|------|-------------|
+| `mlst.tsv` | MLST sequence type results |
+| `merged-mlst.tsv` | Consolidated MLST results |
+
+### Antimicrobial Resistance
+
+| File | Description |
+|------|-------------|
+| `amrfinderplus.tsv` | AMR gene detection results |
+| `amrfinderplus.mutation.tsv` | AMR point mutation results |
+| `merged-amrfinderplus.tsv` | Consolidated AMR results |
+
+### Comparative Analysis
+
+| File | Description |
+|------|-------------|
+| `*-k21.msh` | Mash sketch files (k=21) |
+| `*-k31.msh` | Mash sketch files (k=31) |
+| `*-mash-refseq88-*.txt` | Mash screening results against RefSeq |
+| `*.sig` | Sourmash signatures |
+| `sourmash-*.txt` | Sourmash classification results |
+
+### Pathogen-Specific Analysis
+
+:::note
+Only created if --ask_merlin is enabled
+:::
+
+| File | Description |
+|------|-------------|
+| `merlin/clermontyping/*` | E. coli phylogroup typing |
+| `merlin/ectyper/*` | Enterotoxigenic E. coli typing |
+| `merlin/shigatyper/*` | Shigella serotype prediction |
+| `merlin/shigapass/*` | Shigella passive surveillance |
+| `merlin/shigeifinder/*` | Shigella and EIEC detection |
+| `merlin/stecfinder/*` | STEC detection and typing |
+| `merlin/emmtyper/*` | S. pyogenes emm typing |
+| `merlin/hicap/*` | H. influenzae capsular typing |
+| `merlin/hpsuissero/*` | H. parasuis serotyping |
+| `merlin/kleborate/*` | Klebsiella species typing |
+| `merlin/staphtyper/*` | S. aureus spa typing |
+| `merlin/agrvate/*` | S. aureus agr typing |
+| `merlin/sccmec/*` | S. aureus SCCmec typing |
+
+### Merged Results
+
+:::note
+Run-level aggregated results from all samples
+:::
+
+| File | Description |
+|------|-------------|
+| `samplesheet.tsv` | Sample metadata and quality metrics |
+
+
+### Audit Trail
+
+Below are files that can assist you in understanding which parameters and program versions were used.
+
+#### Logs
+
+Each process that is executed will have a folder named `logs`. In this folder are helpful
+files for you to review if the need ever arises.
+
+| Extension    | Description |
+|--------------|-------------|
+| .begin       | An empty file used to designate the process started |
+| .err         | Contains STDERR outputs from the process |
+| .log         | Contains both STDERR and STDOUT outputs from the process |
+| .out         | Contains STDOUT outputs from the process |
+| .run         | The script Nextflow uses to stage/unstage files and queue processes based on given profile |
+| .sh          | The script executed by bash for the process  |
+| .trace       | The Nextflow trace report for the process |
+| versions.yml | A YAML formatted file with program versions |
+
+#### Nextflow Reports
+
+These Nextflow reports provide great a great summary of your run. These can be used to optimize
+resource usage and estimate expected costs if using cloud platforms.
+
+| Filename | Description |
+|----------|-------------|
+| bactopia-dag.dot | The Nextflow [DAG visualization](https://docs.seqera.io/nextflow/reports#workflow-diagram) |
+| bactopia-report.html | The Nextflow [Execution Report](https://docs.seqera.io/nextflow/reports#execution-report) |
+| bactopia-timeline.html | The Nextflow [Timeline Report](https://docs.seqera.io/nextflow/reports#execution-timeline) |
+| bactopia-trace.txt | The Nextflow [Trace](https://docs.seqera.io/nextflow/reports#trace-file) report |
+
+## Parameters
+
+### Required Parameters
+
+The following parameters are how you will provide either local or remote samples to be processed by Bactopia.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--samples` | string |  | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
+ |
+| `--r1` | string |  | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) |
+| `--r2` | string |  | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) |
+| `--se` | string |  | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) |
+| `--ont` | string |  | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) |
+| `--hybrid` | boolean | `false` | Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) |
+| `--short_polish` | boolean | `false` | Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) |
+| `--sample` | string |  | Sample name to use for the input sequences
+ |
+| `--accessions` | string |  | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed |
+| `--accession` | string |  | Sample name to use for the input sequences
+ |
+| `--assembly` | string |  | A assembled genome in compressed FASTA format. (requires --sample) |
+| `--check_samples` | boolean | `false` | Validate the input FOFN provided by --samples |
+
+<details>
+<summary>Dataset Parameters</summary>
+
+Define where the pipeline should find input data and save output data.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--species` | string |  | Name of species for species-specific dataset to use |
+| `--ask_merlin` | boolean |  | Ask Merlin to execute species specific Bactopia tools based on Mash distances |
+| `--coverage` | integer | `100` | Reduce samples to a given coverage, requires a genome size |
+| `--genome_size` | integer | `0` | Expected genome size (bp) for all samples, required for read error correction and read subsampling |
+| `--use_bakta` | boolean |  | Use Bakta for annotation, instead of Prokka |
+</details>
+
+<details>
+<summary>Optional Parameters</summary>
+
+These optional parameters can be useful in certain settings.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Base directory to write results to |
+</details>
+
+<details>
+<summary>Nextflow Profile Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+</details>
+
+<details>
+<summary>Helpful Parameters</summary>
+
+Uncommonly used parameters that might be useful.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
+| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
+| `--version` | boolean |  | Display version text. |
+</details>
+
+## Composition
+
+This workflow uses the following subworkflows:
+
+- [amrfinderplus](/developers/subworkflows/amrfinderplus) - Find antimicrobial resistance genes and point mutations.
+- [bactopia_assembler](/developers/subworkflows/bactopia_assembler) - Assemble bacterial genomes using automated assembler selection.
+- [bactopia_datasets](/developers/subworkflows/bactopia_datasets) - Download and provide pre-compiled datasets required by Bactopia.
+- [bactopia_gather](/developers/subworkflows/bactopia_gather) - Search, validate, gather, and standardize input samples.
+- [bactopia_qc](/developers/subworkflows/bactopia_qc) - Perform comprehensive quality control on sequencing reads.
+- [bactopia_sketcher](/developers/subworkflows/bactopia_sketcher) - Create genomic sketches and perform rapid taxonomic classification.
+- [bakta](/developers/subworkflows/bakta) - Rapid bacterial genome annotation.
+- [merlin](/developers/subworkflows/merlin) - MinER assisted species-specific bactopia tool seLectIoN.
+- [mlst](/developers/subworkflows/mlst) - Determine multilocus sequence types (MLST) from bacterial assemblies.
+- [prokka](/developers/subworkflows/prokka) - Annotate bacterial genomes with functional information.
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia)

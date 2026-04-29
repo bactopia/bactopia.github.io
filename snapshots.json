@@ -1,0 +1,40 @@
+{
+  "snapshots": [
+    {
+      "version": "v3.1.0",
+      "branch": "snapshot/v3.1.0",
+      "files": 298,
+      "active": true
+    },
+    {
+      "version": "v3.0.1",
+      "branch": "snapshot/v3.0.1",
+      "files": 290,
+      "active": true
+    },
+    {
+      "version": "v3.0.0",
+      "branch": "snapshot/v3.0.0",
+      "files": 222,
+      "active": true
+    },
+    {
+      "version": "v2.2.0",
+      "branch": "snapshot/v2.2.0",
+      "files": 173,
+      "active": true
+    },
+    {
+      "version": "v2.1.1",
+      "branch": "snapshot/v2.1.1",
+      "files": 167,
+      "active": true
+    },
+    {
+      "version": "v2.1.0",
+      "branch": "snapshot/v2.1.0",
+      "files": 165,
+      "active": true
+    }
+  ]
+}

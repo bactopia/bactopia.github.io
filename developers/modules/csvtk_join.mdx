@@ -1,0 +1,107 @@
+---
+title: csvtk_join
+description: "Join two CSV or TSV files based on common fields."
+tags:
+  - utility
+  - table
+  - join
+  - merge
+  - csv
+  - tsv
+  - csvtk
+  - relational
+  - run-scope
+---
+
+# csvtk_join
+
+**Tags:** <a href="/developers/tags/utility" class="badge badge--primary badge--tag">utility</a> <a href="/developers/tags/table" class="badge badge--primary badge--tag">table</a> <a href="/developers/tags/join" class="badge badge--primary badge--tag">join</a> <a href="/developers/tags/merge" class="badge badge--primary badge--tag">merge</a> <a href="/developers/tags/csv" class="badge badge--primary badge--tag">csv</a> <a href="/developers/tags/tsv" class="badge badge--primary badge--tag">tsv</a> <a href="/developers/tags/csvtk" class="badge badge--primary badge--tag">csvtk</a> <a href="/developers/tags/relational" class="badge badge--primary badge--tag">relational</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Join two CSV or TSV files based on common fields.
+
+Uses [csvtk join](https://github.com/shenwei356/csvtk) to merge two tabular files horizontally
+by matching values in a specified key column (similar to a SQL JOIN). It supports inner, left,
+right, and outer joins via optional arguments.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    csv1: Path,
+    csv2: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `csv1` | `Path` | The first CSV/TSV file (Left table) |
+| `csv2` | `Path` | The second CSV/TSV file (Right table) |
+
+```
+in_format: String
+out_format: String
+key: String
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `in_format` | `String` | Input format string ('csv', 'tsv', or a specific delimiter character) |
+| `out_format` | `String` | Output format string ('csv', 'tsv', or a specific delimiter character) |
+| `key` | `String` | The column name(s) or index(es) to use as the join key (e.g., "sample_id" or "1") |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    csv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `csv` | `Path` | The joined tabular file (*.csv or *.tsv) |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+## Used By
+
+### Subworkflows
+
+- [teton](/developers/subworkflows/teton) - Perform taxonomic classification and estimate bacterial genome sizes.
+
+### Workflows
+
+- [teton](/bactopia-pipelines/teton) - Taxonomic classification and abundance profiling of metagenomic reads.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/csvtk/join)
+
+## Version
+
+```yaml
+CSVTK_JOIN:
+    - csvtk: 0.31.0
+```

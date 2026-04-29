@@ -1,0 +1,97 @@
+---
+title: clermontyping
+description: "Determine the phylogroup of Escherichia coli isolates."
+tags:
+  - bacteria
+  - escherichia-coli
+  - typing
+  - phylotyping
+  - pcr
+  - phylogroup
+  - sample-scope
+---
+
+# clermontyping
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/escherichia-coli" class="badge badge--primary badge--tag">escherichia-coli</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/phylotyping" class="badge badge--primary badge--tag">phylotyping</a> <a href="/developers/tags/pcr" class="badge badge--primary badge--tag">pcr</a> <a href="/developers/tags/phylogroup" class="badge badge--primary badge--tag">phylogroup</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Determine the phylogroup of Escherichia coli isolates.
+
+Uses [ClermonTyping](https://github.com/A-BN/ClermonTyping) to perform in silico PCR
+detection of specific marker genes (arpA, chuA, yjaA, TspE4.C2). This assigns the
+isolate to one of the main *E. coli* phylogroups (A, B1, B2, C, D, E, F, G, or Cryptic).
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited E. coli phylogroup assignment with detected marker genes |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### ClermonTyping Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--clermontyping_threshold` | integer | `0` | Do not use contigs under this size |
+
+## Used By
+
+### Subworkflows
+
+- [clermontyping](/developers/subworkflows/clermontyping) - Predict phylogroups of Escherichia coli from genome assemblies.
+
+### Workflows
+
+- [clermontyping](/bactopia-tools/clermontyping) - In silico phylotyping of Escherichia genus.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClermontTyping](https://github.com/happykhan/ClermonTyping)  
+  Beghain J, Bridier-Nahmias A, Le Nagard H, Denamur E, Clermont O. [ClermonTyping: an easy-to-use and accurate in silico method for Escherichia genus strain phylotyping.](https://doi.org/10.1099/mgen.0.000192) Microbial Genomics, 4(7), e000192. (2018)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/clermontyping)
+
+## Version
+
+```yaml
+CLERMONTYPING:
+    - clermontyping: 24.02
+```

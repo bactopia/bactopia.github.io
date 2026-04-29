@@ -1,0 +1,107 @@
+---
+title: gubbins
+description: "Detect and filter recombination regions in bacterial alignments."
+tags:
+  - recombination
+  - phylogeny
+  - filter
+  - snp
+  - core-genome
+  - run-scope
+---
+
+# gubbins
+
+**Tags:** <a href="/developers/tags/recombination" class="badge badge--primary badge--tag">recombination</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/filter" class="badge badge--primary badge--tag">filter</a> <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Detect and filter recombination regions in bacterial alignments.
+
+This subworkflow uses [Gubbins](https://github.com/nickjcroucher/gubbins) (Globally
+Optimised Bacterial Phylogenomic analysis) to identify recombination regions in
+bacterial core-genome alignments. It iteratively filters out recombination to
+produce a recombination-free phylogeny, then calculates SNP distances from the
+masked alignment. Gubbins is essential for accurate phylogenetic reconstruction
+of recombining bacterial species.
+
+## Take
+
+```
+alignment: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `aln` | Multiple sequence alignment in FASTA format |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+No sample-scope outputs.
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `masked_aln` | Recombination-masked alignment in FASTA format |
+| `fasta` | Concatenated alignment before masking in FASTA format |
+| `gff` | GFF file containing recombination region coordinates |
+| `vcf` | VCF file containing SNPs filtered by Gubbins |
+| `stats` | Summary statistics of the Gubbins analysis |
+| `phylip` | Recombination-masked alignment in PHYLIP format |
+| `embl_predicted` | Recombination predictions in EMBL format |
+| `embl_branch` | Branch-specific recombination in EMBL format |
+| `tree` | Maximum likelihood tree from filtered SNPs in Newick format |
+| `tree_labelled` | Annotated tree with node labels in Newick format |
+| `bootstrap_tree` | Bootstrapped phylogenetic tree in Newick format |
+| `tsv` | Pairwise SNP distances from masked alignment in TSV format |
+
+### Downstream Inputs
+
+The following emissions are meant to be used as inputs to downstream subworkflows.
+
+#### `alignment`
+
+| Output | Description |
+|--------|-------------|
+| `aln` | Recombination-masked alignment for downstream phylogenetic analysis |
+
+## Subworkflow Composition
+
+This subworkflow calls the following subworkflows:
+
+- [snpdists](/developers/subworkflows/snpdists) - Calculate pairwise SNP distances from sequence alignments.
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [gubbins](/developers/modules/gubbins) - Detect recombination and construct a recombination-free phylogeny.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [snippy](/bactopia-tools/snippy) - Rapid haplotype variant calling and core genome alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Gubbins](https://github.com/nickjcroucher/gubbins)  
+  Croucher NJ, Page AJ, Connor TR, Delaney AJ, Keane JA, Bentley SD, Parkhill J, Harris SR [Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins.](https://doi.org/10.1093/nar/gku1196) _Nucleic Acids Research_ 43(3), e15. (2015)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/gubbins)

@@ -2,9 +2,17 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   impact: [
-    'index',
-    'acknowledgements',
-    'citations',
+    {
+      type: 'category',
+      label: 'Impact & Outreach',
+      link: {type: 'doc', id: 'index'},
+      items: [
+        'acknowledgements',
+        'citations',
+        'enhancements',
+        'presentations',
+      ],
+    },
   ],
 };
 

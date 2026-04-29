@@ -2,22 +2,23 @@
 title: Installation
 description: >-
     Learn how Bactopia install and get started using Bactopia for your genomic analyses.
+sidebar_position: 2
 ---
 
-Bactopia includes hundreds of tools in its workflow. As you can imagine installing these
+Bactopia includes hundreds of tools in its workflow. As you can imagine installing all of these
 tools can turn into a very frustrating process. With this in mind, from the onset Bactopia was
 developed to only include programs that available from [Bioconda](https://bioconda.github.io/)
 and [Conda-Forge](https://conda-forge.org/).
 
-## *(Optional)* Install Conda via MambaForge
+## *(Optional)* Install Conda via Miniforge
 
 Conda is an open source package management system and environment management system that runs
 on Windows, Mac OSX, and Linux. By using packages available from Conda, we can streamline the
 installation process for the hundreds of tools that Bactopia uses.
 
 If you do not have Conda installed I recommend installing
-[MambaForge](https://github.com/conda-forge/miniforge#mambaforge), as it comes with Mamba
-pre-installed. You'll want to follow the [MambaForge Install Instructions](https://github.com/conda-forge/miniforge#unix-like-platforms-mac-os--linux)
+[Miniforge](https://github.com/conda-forge/miniforge), as it's maintained by the Conda-Forge community and does not include the `defaults` channel. You'll want to follow the
+[Miniforge Install Instructions](https://github.com/conda-forge/miniforge#unix-like-platforms-macos-linux--wsl)
 for this. This will take a few minutes, but once complete you'll be ready to install
 Bactopia.
 
@@ -26,7 +27,7 @@ Once you have Conda all set up, you are ready to create an environment for
 Bactopia. To do so, you can use the following command:
 
 ```bash
-mamba create -n bactopia -c conda-forge -c bioconda bactopia
+conda create -n bactopia -c conda-forge -c bioconda bactopia
 ```
 
 After a few minutes you will have a new conda environment suitably named *bactopia*.

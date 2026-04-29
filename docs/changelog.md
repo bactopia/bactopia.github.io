@@ -1,8 +1,8 @@
 ---
-title: changelog
+title: Changelog
 description: A full list of Bactopia releases and a description of the changes.
+sidebar_position: 50
 ---
-# Changelog
 
 ## v3.1.0 bactopia/bactopia "Dance Powder" 2024/09/22
 

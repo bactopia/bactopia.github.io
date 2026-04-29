@@ -1,0 +1,116 @@
+---
+title: sylph_profile
+description: "Profile metagenome samples against a database using Sylph."
+tags:
+  - metagenomics
+  - profiling
+  - taxonomy
+  - abundance
+  - ani
+  - sylph
+  - sample-scope
+---
+
+# sylph_profile
+
+**Tags:** <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/profiling" class="badge badge--primary badge--tag">profiling</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/abundance" class="badge badge--primary badge--tag">abundance</a> <a href="/developers/tags/ani" class="badge badge--primary badge--tag">ani</a> <a href="/developers/tags/sylph" class="badge badge--primary badge--tag">sylph</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Profile metagenome samples against a database using Sylph.
+
+Uses [Sylph](https://github.com/bluenote-1/sylph) to profile metagenomic samples for taxonomic
+abundance and containment ANI against a provided database. It is designed to be extremely fast
+and memory-efficient.
+
+Uses explicit positional record fields for reads:
+- Input: record(meta, r1, r2, se, lr) where each read slot is Path?
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `r1` | `Path?` | Illumina R1 reads (paired-end) |
+| `r2` | `Path?` | Illumina R2 reads (paired-end) |
+| `se` | `Path?` | Single-end Illumina reads |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+```
+db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path` | Path to the Sylph database file (*.syldb) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | TSV file with profiling results |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Sylph Profile Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--sylph_db` | string |  | The path to a sylph formatted database |
+| `--sylph_min_ani` | integer | `95` | Minimum adjusted ANI to consider. Smaller than 95 for profile will give inaccurate results. |
+| `--sylph_opts` | string |  | Extra options in quotes for Sylph |
+
+## Used By
+
+### Subworkflows
+
+- [sylph](/developers/subworkflows/sylph) - Profile microbial composition using Sylph.
+
+### Workflows
+
+- [sylph](/bactopia-tools/sylph) - Taxonomic profiling by abundance-corrected MinHash.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Sylph](https://github.com/bluenote-1/sylph)  
+  Shaw J, and Yu YW [Rapid species-level metagenome profiling and containment estimation with sylph.](https://doi.org/10.1038/s41587-024-02412-y) _Nature Biotechnology_ (2024)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/sylph/profile)
+
+## Version
+
+```yaml
+SYLPH_PROFILE:
+    - sylph: 0.9.0
+```

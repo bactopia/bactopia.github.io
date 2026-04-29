@@ -1,0 +1,100 @@
+---
+title: lissero
+description: "Predict *Listeria monocytogenes* serogroup."
+tags:
+  - bacteria
+  - listeria
+  - monocytogenes
+  - serotype
+  - serogroup
+  - typing
+  - pcr
+  - sample-scope
+---
+
+# lissero
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/listeria" class="badge badge--primary badge--tag">listeria</a> <a href="/developers/tags/monocytogenes" class="badge badge--primary badge--tag">monocytogenes</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/serogroup" class="badge badge--primary badge--tag">serogroup</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/pcr" class="badge badge--primary badge--tag">pcr</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predict *Listeria monocytogenes* serogroup.
+
+Uses [LisSero](https://github.com/MDU-PHL/LisSero) to predict the serogroup of
+*L. monocytogenes* isolates. It simulates a PCR assay by detecting specific marker genes
+(lmo1118, lmo0737, ORF2110, ORF2819, prs) to assign the isolate to one of the major
+molecular serogroups (IIa, IIb, IIc, IVb).
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited LisSero results with predicted serogroup and marker gene detection |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### LisSero Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--lissero_min_id` | number | `95.0` | Minimum percent identity to accept a match |
+| `--lissero_min_cov` | number | `95.0` | Minimum coverage of the gene to accept a match |
+
+## Used By
+
+### Subworkflows
+
+- [lissero](/developers/subworkflows/lissero) - In silico serotype prediction for Listeria monocytogenes.
+
+### Workflows
+
+- [lissero](/bactopia-tools/lissero) - Serogroup typing prediction for Listeria monocytogenes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [LisSero](https://github.com/MDU-PHL/LisSero)  
+  Kwong J, Zhang J, Seeman T, Horan, K, Gonçalves da Silva A [LisSero - _In silico_ serotype prediction for _Listeria monocytogenes_](https://github.com/MDU-PHL/LisSero) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/lissero)
+
+## Version
+
+```yaml
+LISSERO:
+    - lissero: 0.4.10
+```

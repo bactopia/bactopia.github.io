@@ -1,0 +1,292 @@
+---
+title: AI Skills
+description: Reference for AI skills that automate Bactopia development tasks
+---
+
+# AI Skills
+
+These 12 skills automate common Bactopia development tasks through AI-assisted
+coding tools. Each skill wraps one or more
+[bactopia-py](/developers/cli) CLI commands with interactive guidance,
+guardrails, and multi-step orchestration. Skills live in the bactopia repo at
+`.claude/skills/` and are invoked with `/skill-name`.
+
+[View skills on GitHub](https://github.com/bactopia/bactopia/tree/main/.claude/skills)
+
+## Overview
+
+| Skill | Category | Description |
+|-------|----------|-------------|
+| [`/add-bactopia-tool`](#add-bactopia-tool) | Scaffolding | Scaffold a complete Bactopia Tool across all three tiers -- module, subworkflow, and workflow. |
+| [`/add-module`](#add-module) | Scaffolding | Scaffold a new Bactopia module from a bioconda/conda-forge package. |
+| [`/add-subworkflow`](#add-subworkflow) | Scaffolding | Scaffold a new Bactopia subworkflow that orchestrates existing modules. |
+| [`/merge-schemas`](#merge-schemas) | Maintenance | Regenerate nextflow.config and nextflow_schema.json for Bactopia workflows. |
+| [`/update-catalog`](#update-catalog) | Maintenance | Regenerate catalog.json and llms.txt. |
+| [`/update-module`](#update-module) | Maintenance | Check for newer versions of tools used in Bactopia modules and apply updates. |
+| [`/review-groovydoc`](#review-groovydoc) | Review &amp; Quality | Review GroovyDoc accuracy across modules and subworkflows. |
+| [`/review-citations`](#review-citations) | Review &amp; Quality | Review citation integrity across data/citations.yml and @citation tags. |
+| [`/review-docs`](#review-docs) | Review &amp; Quality | Review staleness of reference docs under .claude/docs/. |
+| [`/review-tests`](#review-tests) | Review &amp; Quality | Review nf-test run results with grouped error analysis. |
+| [`/run-tests`](#run-tests) | Testing | Run Bactopia nf-tests and produce a timestamped logs directory. |
+| [`/project-status`](#project-status) | Project | Show a live snapshot of project state, coverage, and structural issues. |
+
+## Scaffolding
+
+Skills that create new Bactopia components from bioconda/conda-forge packages.
+
+### `/add-bactopia-tool`
+
+Scaffold a complete Bactopia Tool pipeline from a bioconda/conda-forge package,
+creating all three tiers (module, subworkflow, workflow) in one shot.
+
+**Wraps:** [`bactopia-scaffold`](/developers/cli/bactopia-scaffold)
+
+**When to use:**
+- Add a new analysis tool to Bactopia Tools from a bioconda package
+- Create all three tiers (module, subworkflow, workflow) in one shot
+- Prefer this over `/add-module` or `/add-subworkflow` when the goal is a complete tool
+
+**Examples:**
+```
+/add-bactopia-tool fastp
+/add-bactopia-tool checkm2
+```
+
+**Related skills:** [`/add-module`](#add-module), [`/add-subworkflow`](#add-subworkflow),
+[`/run-tests`](#run-tests), [`/update-catalog`](#update-catalog)
+
+### `/add-module`
+
+Scaffold a complete Bactopia module for a bioconda/conda-forge package, creating
+all required files with GroovyDoc documentation and nf-test tests.
+
+**Wraps:** [`bactopia-scaffold`](/developers/cli/bactopia-scaffold)
+
+**When to use:**
+- Add a new module without the full bactopia-tool scaffolding
+- Create module files (main.nf, module.config, schema.json, tests)
+- Scaffold just the process layer for a tool
+
+**Examples:**
+```
+/add-module snippy
+/add-module fastqc
+```
+
+**Related skills:** [`/add-bactopia-tool`](#add-bactopia-tool), [`/add-subworkflow`](#add-subworkflow)
+
+### `/add-subworkflow`
+
+Scaffold a Bactopia subworkflow that orchestrates one or more existing modules.
+Subworkflows wire modules together, aggregate results, and provide a clean
+interface for workflows.
+
+**Wraps:** [`bactopia-scaffold`](/developers/cli/bactopia-scaffold)
+
+**When to use:**
+- Create a subworkflow to orchestrate existing modules
+- Wire up modules into a reusable analysis unit
+- Add the glue layer between modules and workflows
+
+**Examples:**
+```
+/add-subworkflow snippy
+/add-subworkflow amrfinderplus
+```
+
+**Related skills:** [`/add-bactopia-tool`](#add-bactopia-tool), [`/add-module`](#add-module)
+
+## Maintenance
+
+Skills that keep existing components up to date.
+
+### `/merge-schemas`
+
+Regenerate the `nextflow.config` and `nextflow_schema.json` files for one or more
+Bactopia workflows. Auto-discovers each workflow's output directory from
+`catalog.json` so the caller never hand-computes paths.
+
+**Wraps:** [`bactopia-merge-schemas`](/developers/cli/bactopia-merge-schemas)
+
+**When to use:**
+- Sync workflow configs after module schema changes
+- Rebuild nextflow_schema.json for a specific workflow
+- Regenerate configs after adding or modifying parameters
+
+**Examples:**
+```
+/merge-schemas teton
+/merge-schemas teton and staphopia
+/merge-schemas all tools
+```
+
+**Related skills:** [`/update-module`](#update-module), [`/update-catalog`](#update-catalog)
+
+### `/update-catalog`
+
+Regenerate the machine-readable Bactopia component index (`catalog.json`) and the
+AI-discovery surface (`llms.txt`).
+
+**Wraps:** [`bactopia-catalog`](/developers/cli/bactopia-catalog)
+
+**When to use:**
+- Sync catalog.json after adding or removing components
+- Refresh llms.txt after GroovyDoc edits that affect descriptions
+- Update the component index after tool version bumps
+
+**Examples:**
+```
+/update-catalog
+```
+
+**Related skills:** [`/project-status`](#project-status), [`/merge-schemas`](#merge-schemas)
+
+### `/update-module`
+
+Check for newer versions of bioconda tools used in Bactopia modules and apply
+updates to module.config files.
+
+**Wraps:** [`bactopia-update`](/developers/cli/bactopia-update)
+
+**When to use:**
+- Check if any modules have outdated tool versions
+- Bump container versions to the latest bioconda release
+- Update a specific module's tool version
+
+**Examples:**
+```
+/update-module
+/update-module snippy
+```
+
+**Related skills:** [`/merge-schemas`](#merge-schemas), [`/project-status`](#project-status)
+
+## Review &amp; Quality
+
+Skills that audit documentation, citations, and code quality.
+
+### `/review-groovydoc`
+
+Run bactopia-lint focused on GroovyDoc accuracy rules. Checks @output/@input
+field matching, @modules/@subworkflows lists, citation keys, tag ordering,
+and formatting.
+
+**Wraps:** [`bactopia-lint`](/developers/cli/bactopia-lint)
+
+**When to use:**
+- Validate documentation accuracy across modules and subworkflows
+- Check @output/@input fields match actual channel declarations
+- Audit GroovyDoc after editing module or subworkflow docs
+
+**Examples:**
+```
+/review-groovydoc
+/review-groovydoc snippy
+```
+
+**Related skills:** [`/review-citations`](#review-citations), [`/review-docs`](#review-docs)
+
+### `/review-citations`
+
+Run `bactopia-citations --validate` and present the integrity report. Detects
+orphan citation keys (defined but never referenced) and workflow @citation keys
+that don't resolve to a citations.yml entry.
+
+**Wraps:** [`bactopia-citations`](/developers/cli/bactopia-citations)
+
+**When to use:**
+- Audit citations.yml for orphan or missing entries
+- Validate that workflow @citation tags resolve correctly
+- Clean up unused citations after removing tools
+
+**Examples:**
+```
+/review-citations
+```
+
+**Related skills:** [`/review-groovydoc`](#review-groovydoc), [`/review-docs`](#review-docs)
+
+### `/review-docs`
+
+Run `bactopia-docs --validate` and present the staleness report. Detects
+deprecated patterns and ground-truth violations (stale counts, wrong Nextflow
+version, references to nonexistent commands or lint rule IDs).
+
+**Wraps:** [`bactopia-docs`](/developers/cli/bactopia-docs)
+
+**When to use:**
+- Check reference docs for outdated information after migrations
+- Verify doc claims match current repo state
+- Scan .claude/docs for drift after adding or removing components
+
+**Examples:**
+```
+/review-docs
+```
+
+**Related skills:** [`/review-groovydoc`](#review-groovydoc), [`/review-citations`](#review-citations),
+[`/project-status`](#project-status)
+
+### `/review-tests`
+
+Review nf-test run results and present a diagnostic summary with grouped error
+analysis.
+
+**Wraps:** [`bactopia-review-tests`](/developers/cli/bactopia-review-tests)
+
+**When to use:**
+- Analyze test output after running `/run-tests`
+- Investigate why tests failed with grouped error summaries
+- Review a specific test run by timestamp
+
+**Examples:**
+```
+/review-tests
+/review-tests 20260324_081306
+```
+
+**Related skills:** [`/run-tests`](#run-tests)
+
+## Testing
+
+### `/run-tests`
+
+Run the Bactopia nf-test suite through `bactopia-test` for a specific component
+and produce a timestamped `logs/` directory that `/review-tests` can interpret.
+
+**Wraps:** [`bactopia-test`](/developers/cli/bactopia-test)
+
+**When to use:**
+- Run tests for a specific module, subworkflow, or workflow
+- Validate changes before committing
+- Generate test snapshots for newly scaffolded components
+
+**Examples:**
+```
+/run-tests snippy
+/run-tests abricate module
+/run-tests amrfinderplus subworkflow
+```
+
+**Related skills:** [`/review-tests`](#review-tests)
+
+## Project
+
+### `/project-status`
+
+Show a live snapshot of the Bactopia project state -- component counts, GroovyDoc
+coverage, nf-test coverage, and structural issues.
+
+**Wraps:** [`bactopia-status`](/developers/cli/bactopia-status)
+
+**When to use:**
+- Check overall project state and coverage metrics
+- Find components missing documentation or tests
+- Get a quick summary of what needs attention
+
+**Examples:**
+```
+/project-status
+```
+
+**Related skills:** [`/update-catalog`](#update-catalog), [`/run-tests`](#run-tests)

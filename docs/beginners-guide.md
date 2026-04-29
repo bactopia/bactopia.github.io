@@ -2,6 +2,7 @@
 title: Beginner's Guide
 description: >-
     A beginner's guide to getting started using Bactopia to process your bacterial genomes.
+sidebar_position: 3
 ---
 
 Bactopia is a complete pipeline for the analysis of bacterial genomes, which includes
@@ -23,7 +24,7 @@ Towards the end of this guide, we'll also take a look at some helpful parameters
 are interested in learning more about the full set of parameters available in Bactopia,
 please check out the [Full Guide](full-guide.md) section.
 
-![Bactopia Workflow](assets/bactopia-workflow.png)
+![Bactopia Workflow](/img/bactopia-workflow.png)
 
 ## Gathering Inputs
 
@@ -172,7 +173,7 @@ bactopia \
 Using [Unicycler](https://github.com/rrwick/Unicycler) (`--hybrid`) to create a hybrid
 assembly works great when you have low-coverage noisy long-reads. However, if you are
 using recent ONT sequencing, you likely have high-coverage and using the `--short_polish`
-method is going to yeild better results (_and be faster!_) than `--hybrid`.
+method is going to yield better results (_and be faster!_) than `--hybrid`.
 :::
 
 
@@ -225,7 +226,7 @@ bactopia \
 :::info[Why only Experiment accessions?]
 In the grand scheme of accession hierarchies, Experiment accessions are really the only
 unique ones. For example, a multiple Run accessions can be associated with a single
-Experiment accession. Or, multiple Exeriment accessions can be associated with a single
+Experiment accession. Or, multiple Experiment accessions can be associated with a single
 BioSample accession. So, by using Experiment accessions, you can be confident you are
 getting only the sequences associated with that "_unique_" Experiment.
 :::
@@ -342,7 +343,7 @@ While manually creating the necessary FOFN is possible, it's not recommended. It
 bit tedious and error-prone, so please avoid manually creating your FOFN. Instead, use
 `bactopia prepare` to help accurately generate a FOFN for your samples.
 
-When Bactopia recieves a FOFN, the first thing Bactopia does is verify all input files are
+When Bactopia receives a FOFN, the first thing Bactopia does is verify all input files are
 found and compressed using Gzip. If everything checks out, each sample will then be processed,
 otherwise a list of samples with errors will be output to STDERR. 
 
@@ -516,7 +517,7 @@ by [Submitting and Issue on GitHub](https://github.com/bactopia/bactopia/issues/
 
 ### Accessions
 
-If you started from the top, and made it this far I commend you! Eitherway, above you
+If you started from the top, and made it this far I commend you! Either way, above you
 learned you could use `--accession` to download FASTQs from ENA/SRA or assemblies from
 NCBI Assembly. Then you just learned you could use `--samples` to process as many samples
 as you want. So, it only makes sense that there would be a complement to `--samples` for
@@ -540,7 +541,7 @@ Let's take a look at `bactopia search` and how it can help you.
 #### bactopia search
 
 `bactopia search` has been made to help assist in generating a list of Experiment accessions
-to be procesed by Bactopia (via `--accessions`). You can provide a Taxon ID (e.g. 1280), a
+to be processed by Bactopia (via `--accessions`). You can provide a Taxon ID (e.g. 1280), a
 organism name (e.g. Staphylococcus aureus), a Study accession (e.g. PRJNA480016), a BioSample
 accession (e.g. SAMN01737350), or a Run accession (e.g. SRR578340). This value is then
 queried against ENA's [Data Warehouse API](https://www.ebi.ac.uk/ena/browse/search-rest)),
@@ -567,7 +568,7 @@ to just 5 Experiment accessions. Then multiple files are produced:
 
 | Extension         | Description                                                                    |
 |-------------------|--------------------------------------------------------------------------------|
-| `-metadata.txt`   | A tab-delimted file of all results from the query                              |
+| `-metadata.txt`   | A tab-delimited file of all results from the query                              |
 | `-accessions.txt` | A list of Experiment accessions to be processed                                |
 | `-filtered.txt`   | A list of any Experiment accessions that were filtered out, otherwise an empty |
 | `-search.txt`     | A summary of the completed request                                             |
@@ -790,14 +791,14 @@ Please check the following links for adjustments you be interested in making.
 |---------|-------------|
 | [env](https://www.nextflow.io/docs/latest/config.html#scope-env)     | Set any environment variables that might be required |
 | [params](https://www.nextflow.io/docs/latest/config.html#scope-params)  | Change the default values of command line arguments  |
-| [process](https://www.nextflow.io/docs/latest/config.html#scope-process) | Adjust perprocess configurations such as containers, conda envs, or resource usage |
+| [process](https://www.nextflow.io/docs/latest/config.html#scope-process) | Adjust per-process configurations such as containers, conda envs, or resource usage |
 | [profile](https://www.nextflow.io/docs/latest/config.html#config-profiles) | Create predefined profiles for your [Executor](https://www.nextflow.io/docs/latest/operator.html#filtering-operators) |
 
 There are [many other scopes](https://www.nextflow.io/docs/latest/config.html#config-scopes)
 that you might be interested in checking out.
 
 You are most like going to want to create a custom profile. By doing so you can specify it
-at runtime (`-profile myProfile`) and Nextflow will be excuted based on that profile. Often
+at runtime (`-profile myProfile`) and Nextflow will be executed based on that profile. Often
 times your custom profile will include information on the executor (queues, allocations, paths, etc...).
 
 If you need help please [reach out](https://github.com/bactopia/bactopia/issues/new/choose)!

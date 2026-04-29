@@ -1,0 +1,111 @@
+---
+title: blast_tblastn
+description: "Search a translated nucleotide database using a protein query."
+tags:
+  - blast
+  - tblastn
+  - alignment
+  - translation
+  - protein
+  - dna
+  - search
+  - fasta
+  - sample-scope
+---
+
+# blast_tblastn
+
+**Tags:** <a href="/developers/tags/blast" class="badge badge--primary badge--tag">blast</a> <a href="/developers/tags/tblastn" class="badge badge--primary badge--tag">tblastn</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/translation" class="badge badge--primary badge--tag">translation</a> <a href="/developers/tags/protein" class="badge badge--primary badge--tag">protein</a> <a href="/developers/tags/dna" class="badge badge--primary badge--tag">dna</a> <a href="/developers/tags/search" class="badge badge--primary badge--tag">search</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Search a translated nucleotide database using a protein query.
+
+Uses [TBLASTN](https://blast.ncbi.nlm.nih.gov/Blast.cgi) to align amino acid query sequences
+(FASTA) against a nucleotide BLAST database that has been dynamically translated in all six
+reading frames. This is useful for finding gene homologs in unannotated genomic DNA.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    blastdb: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `blastdb` | `Path` | A compressed tarball containing the nucleotide BLAST database |
+
+```
+query: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `query` | `Path` | FASTA file containing amino acid query sequences |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited protein-to-translated nucleotide alignment results (BLAST outfmt 6) |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### TBLASTN Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--tblastn_query` | string |  | A fasta file containing the query sequences to BLAST against the database |
+| `--tblastn_outfmt` | string | `sseqid qseqid pident qlen slen length nident positive mismatch gapopen gaps qstart qend sstart send evalue bitscore` | The columns to include with -outfmt 6 |
+| `--tblastn_opts` | string |  | Additional options to pass to BLASTN |
+| `--tblastn_qcov_hsp_perc` | integer | `50` | Percent query coverage per hsp |
+| `--tblastn_max_target_seqs` | integer | `2000` | Maximum number of aligned sequences to keep |
+
+## Used By
+
+### Subworkflows
+
+- [tblastn](/developers/subworkflows/tblastn) - Search protein query sequences against nucleotide database.
+
+### Workflows
+
+- [tblastn](/bactopia-tools/tblastn) - Search against translated nucleotide databases using protein queries.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+  Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/blast/tblastn)
+
+## Version
+
+```yaml
+BLAST_TBLASTN:
+    - blast: 2.17.0
+```

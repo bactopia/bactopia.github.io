@@ -1,0 +1,30 @@
+---
+title: bactopia-kraken-bracken-summary
+description: "Update the Bracken abundances with unclassified counts."
+---
+
+# bactopia-kraken-bracken-summary
+
+Update the Bracken abundances with unclassified counts.
+
+## Usage
+
+```bash
+bactopia-kraken-bracken-summary PREFIX KRAKEN2_REPORT BRACKEN_REPORT BRACKEN_ABUNDANCES [OPTIONS]
+```
+
+## Arguments
+
+| Argument | Type | Required | Description |
+|----------|------|----------|-------------|
+| `PREFIX` | STRING | Yes | Prefix to use for output files. |
+| `KRAKEN2_REPORT` | STRING | Yes | The Kraken2 report. |
+| `BRACKEN_REPORT` | STRING | Yes | The Bracken updated Kraken2 report. |
+| `BRACKEN_ABUNDANCES` | STRING | Yes | The Bracken output with abundances. |
+
+## Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--version, -V` | BOOL | `false` | Show the version and exit. |
+| `--max_secondary_percent` | FLOAT | `0.01` | The maximum percent abundance for the secondary species, if exceeded, sample will remain unclassified. |

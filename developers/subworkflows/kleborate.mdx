@@ -1,0 +1,79 @@
+---
+title: kleborate
+description: "Genotyping tool for Klebsiella pneumoniae and its related species complex."
+tags:
+  - klebsiella
+  - pneumoniae
+  - genotyping
+  - virulence
+  - capsule
+  - sample-scope
+---
+
+# kleborate
+
+**Tags:** <a href="/developers/tags/klebsiella" class="badge badge--primary badge--tag">klebsiella</a> <a href="/developers/tags/pneumoniae" class="badge badge--primary badge--tag">pneumoniae</a> <a href="/developers/tags/genotyping" class="badge badge--primary badge--tag">genotyping</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/capsule" class="badge badge--primary badge--tag">capsule</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Genotyping tool for Klebsiella pneumoniae and its related species complex.
+
+This subworkflow performs comprehensive genotyping of Klebsiella pneumoniae
+and related species using [Kleborate](https://github.com/katholt/Kleborate). The tool
+identifies capsular (K) and O-antigen (L) loci, virulence factors, and acquired
+antimicrobial resistance genes, providing a detailed genotype for surveillance
+and epidemiological studies.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `assembly` | Assembly files in FASTA format for Klebsiella genotyping |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | Tab-delimited Kleborate results with species, MLST, virulence, and resistance predictions |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | Aggregated results in CSV format |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [kleborate](/developers/modules/kleborate) - Genotyping and screening of *Klebsiella* genome assemblies.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [kleborate](/bactopia-tools/kleborate) - Comprehensive screening of Klebsiella genomes for virulence and resistance determinants.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Kleborate](https://github.com/katholt/Kleborate)  
+  Lam MMC, Wick RR, Watts, SC, Cerdeira LT, Wyres KL, Holt KE [A genomic surveillance framework and genotyping tool for Klebsiella pneumoniae and its related species complex.](https://doi.org/10.1038/s41467-021-24448-3) _Nat Commun_ 12, 4188 (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/kleborate)

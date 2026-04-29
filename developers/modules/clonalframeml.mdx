@@ -1,0 +1,116 @@
+---
+title: clonalframeml
+description: "Inference of recombination in bacterial genomes."
+tags:
+  - bacteria
+  - recombination
+  - phylogeny
+  - alignment
+  - msa
+  - evolution
+  - run-scope
+---
+
+# clonalframeml
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/recombination" class="badge badge--primary badge--tag">recombination</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/msa" class="badge badge--primary badge--tag">msa</a> <a href="/developers/tags/evolution" class="badge badge--primary badge--tag">evolution</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Inference of recombination in bacterial genomes.
+
+Uses [ClonalFrameML](https://github.com/xavierdidelot/ClonalFrameML) to detect recombination
+events in bacterial genomes. It corrects the phylogenetic tree for recombination and produces
+a "masked" alignment where recombinant regions are removed, allowing for more accurate
+phylogenetic inference.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    aln: Path,
+    nwk: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `aln` | `Path` | Multiple sequence alignment in FASTA format |
+| `nwk` | `Path` | Initial phylogenetic tree in Newick format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    emsim: Path?,
+    em: Path,
+    status: Path,
+    nwk: Path,
+    fasta: Path,
+    pos_ref: Path,
+    masked_aln: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `emsim` | `Path?` | Uncertainty estimation results (if requested) |
+| `em` | `Path` | Final parameter estimates from the EM algorithm |
+| `status` | `Path` | Tab-delimited list of predicted recombination events (importations) |
+| `nwk` | `Path` | The input tree with internal nodes labelled |
+| `fasta` | `Path` | Reconstructed ancestral sequences (*.fasta.gz) |
+| `pos_ref` | `Path` | Position cross-reference table (*.txt.gz) |
+| `masked_aln` | `Path` | The input alignment with recombinant regions masked (*.aln.gz) |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### ClonalFrameML Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--clonalframeml_emsim` | integer | `100` | Number of simulations to estimate uncertainty in the EM results |
+| `--skip_recombination` | boolean | `false` | Skip ClonalFrameML execution in subworkflows |
+
+## Used By
+
+### Subworkflows
+
+- [clonalframeml](/developers/subworkflows/clonalframeml) - Detect and mask recombination events in bacterial phylogenies.
+
+### Workflows
+
+- [pangenome](/bactopia-tools/pangenome) - Pangenome analysis with optional core-genome phylogeny.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)  
+  Didelot X, Wilson DJ [ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.](https://doi.org/10.1371/journal.pcbi.1004041) _PLoS Comput Biol_ 11(2) e1004041 (2015)
+
+- [maskrc-svg](https://github.com/kwongj/maskrc-svg)  
+  Kwong J [maskrc-svg - Masks recombination as detected by ClonalFrameML or Gubbins and draws an SVG.](https://github.com/kwongj/maskrc-svg) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/clonalframeml)
+
+## Version
+
+```yaml
+CLONALFRAMEML:
+    - clonalframeml: 1.12
+```

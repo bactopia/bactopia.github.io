@@ -1,0 +1,105 @@
+---
+title: abricate_run
+description: "Mass screening of contigs for antimicrobial and virulence genes."
+tags:
+  - bacteria
+  - assembly
+  - fasta
+  - antimicrobial-resistance
+  - virulence
+  - plasmid
+  - mobile-genetic-elements
+  - sample-scope
+---
+
+# abricate_run
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/plasmid" class="badge badge--primary badge--tag">plasmid</a> <a href="/developers/tags/mobile-genetic-elements" class="badge badge--primary badge--tag">mobile-genetic-elements</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Mass screening of contigs for antimicrobial and virulence genes.
+
+Screens assemblies for antimicrobial resistance and virulence genes using
+[Abricate](https://github.com/tseemann/abricate). It bundles several databases
+including NCBI, CARD, ResFinder, PlasmidFinder, ARG-ANNOT, and VFDB.
+
+:::note[Database Included]
+Abricate bundles multiple databases including NCBI, CARD, ResFinder, PlasmidFinder,
+ARG-ANNOT, and VFDB.
+:::
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | A tab-delimited report of hits, for full details please see [Abricate - Output](https://github.com/tseemann/abricate#output) |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Abricate Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--abricate_db` | string | `ncbi` | Database to use |
+| `--abricate_minid` | integer | `80` | Minimum DNA percent identity |
+| `--abricate_mincov` | integer | `80` | Minimum DNA percent coverage |
+
+## Used By
+
+### Subworkflows
+
+- [abricate](/developers/subworkflows/abricate) - Mass screening of contigs for antimicrobial and virulence genes.
+
+### Workflows
+
+- [abricate](/bactopia-tools/abricate) - Mass screening of contigs for antimicrobial resistance and virulence genes.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Abricate](https://github.com/tseemann/abricate)  
+  Seemann T [Abricate: mass screening of contigs for antimicrobial and virulence genes](https://github.com/tseemann/abricate) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/abricate/run)
+
+## Version
+
+```yaml
+ABRICATE_RUN:
+    - abricate: 1.4.0
+```

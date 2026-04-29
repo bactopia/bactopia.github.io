@@ -1,0 +1,106 @@
+---
+title: mobsuite_recon
+description: "Reconstruct and type plasmids from a bacterial genome assembly."
+tags:
+  - bacteria
+  - plasmid
+  - reconstruction
+  - mobtyper
+  - replicon
+  - contigs
+  - assembly
+  - sample-scope
+---
+
+# mobsuite_recon
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/plasmid" class="badge badge--primary badge--tag">plasmid</a> <a href="/developers/tags/reconstruction" class="badge badge--primary badge--tag">reconstruction</a> <a href="/developers/tags/mobtyper" class="badge badge--primary badge--tag">mobtyper</a> <a href="/developers/tags/replicon" class="badge badge--primary badge--tag">replicon</a> <a href="/developers/tags/contigs" class="badge badge--primary badge--tag">contigs</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Reconstruct and type plasmids from a bacterial genome assembly.
+
+Uses [MobSuite's mob_recon](https://github.com/phac-nml/mob-suite) to reconstruct plasmids
+by grouping relevant contigs. It then uses the Mob-typer component to classify the plasmids
+based on replicon type, incompatibility group (Inc type), and predicted mobility.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    chromosome: Path,
+    contig_report: Path,
+    txt: Path?,
+    plasmids: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `chromosome` | `Path` | Chromosomal sequences separated from plasmid contigs (gzipped FASTA) |
+| `contig_report` | `Path` | Tab-delimited report assigning each contig to chromosome or plasmid |
+| `txt` | `Path?` | MOB-typer results with replicon type, mobility, and incompatibility group |
+| `plasmids` | `Set<Path?>` | Reconstructed plasmid sequences in gzipped FASTA format |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### MOB-suite Recon Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--mobsuite_max_contig_size` | integer | `310000` | Maximum size of a contig to be considered a plasmid |
+| `--mobsuite_min_contig_size` | integer | `1000` | Minimum length of contigs to classify |
+| `--mobsuite_max_plasmid_size` | integer | `350000` | Maximum size of a reconstructed plasmid |
+
+## Used By
+
+### Subworkflows
+
+- [mobsuite](/developers/subworkflows/mobsuite) - Reconstruct and type plasmids from bacterial genome assemblies.
+
+### Workflows
+
+- [mobsuite](/bactopia-tools/mobsuite) - Reconstruction and annotation of plasmids from bacterial genome assemblies.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.github.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [MOB-suite](https://github.com/phac-nml/mob-suite)  
+  Robertson J, Nash JHE [MOB-suite: software tools for clustering, reconstruction and typing of plasmids from draft assemblies.](https://doi.org/10.1099/mgen.0.000206) _Microbial Genomics_ 4(8). (2018)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mobsuite/recon)
+
+## Version
+
+```yaml
+MOBSUITE_RECON:
+    - mob_suite: 3.1.9
+```

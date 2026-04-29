@@ -1,0 +1,1303 @@
+citations:
+  - authors: "Robert A. Petit, Chayse M. Rowley, Taylor R. Fearing, Stefaan Verwimp, Rob G. Christensen, Jim A. Mildenberger, Joseph M. Reed, Timothy D. Read."
+    title: "camlhmp: a simple framework for building reproducible microbial genome-based typing tools"
+    url: https://doi.org/10.1128/mra.00201-26
+    journal: "Microbiology Resource Announcements"
+    date: 2026-04-20
+
+  - authors: "Noémie Vingadassalon, Jacques-Antoine Hennekinne, Yacine Nia, Sven Maurischat, Maria Borowiak, Brian Byrne, Lionel Kenneth Dygico, L. M. Ciupescu, Hugo Guedes, Gonçalo Almeida, et al."
+    title: "Impact of wet- and dry-lab workflows on genome assembly, typing and enterotoxin gene detection in whole-genome sequencing of foodborne Staphylococcus aureus"
+    url: https://doi.org/10.1016/j.ijfoodmicro.2026.111761
+    journal: "International Journal of Food Microbiology"
+    date: 2026-04-03
+
+  - authors: "Laura Mondéjar, Victoria Ballén, Yaiza Gabasa, Laura Castellsagués, Anna Pinar-Méndez, Carles Vilaró, Belén Galofré, Aida González-Díaz, Sara Martí, Sergi Canyelles i Sanz, et al."
+    title: "Characterizing Aeromonas spp. as a Potential Sentinel Organism for Antimicrobial Resistance Dissemination in Wastewater and Drinking Water Treatment Systems: A Case Study in the Barcelona Metropolitan Area, Spain"
+    url: https://doi.org/10.3390/antibiotics15030301
+    journal: "Antibiotics"
+    date: 2026-03-17
+
+  - authors: "Carla López-Causapé, Matias Bonet, Biel Taltavull, Paola Medina-Retiga, Miquel Àngel Sastre-Femenía, Sara Cortés-Lara, María A. Gomis-Font, Fernando Gómez-Romano, Antonio Oliver."
+    title: "<i>Pa</i> REx: an open-source pipeline for the automated analysis of <i>Pseudomonas aeruginosa</i> resistomes from whole-genome sequences"
+    url: https://doi.org/10.1128/aac.01326-25
+    journal: "Antimicrobial Agents and Chemotherapy"
+    date: 2026-03-16
+
+  - authors: "Gian Carlo González-Carballo, Christopher Mairena-Acuña, Cristian Pérez-Corrales, Javier Alfaro-Camacho, Cristina García-Marín, César Rodríguez."
+    title: "Novel ST557 Streptococcus equi subsp. zooepidemicus lineage associated with a human case of septic arthritis"
+    url: https://doi.org/10.1016/j.ijidoh.2026.100117
+    journal: "IJID One Health"
+    date: 2026-03-16
+
+  - authors: "Guillem López de Egea, Aida González-Díaz, Virginia Aragón, Óscar Cabezón, Gérard Guédon, D. Ortiz Berbel, Irene Cadenas-Jiménez, Johan Espunyes, Marta Planellas, M. Ángeles Domínguez, et al."
+    title: "Macrolide resistance determinants and their associations in streptococci from selected livestock and wildlife species from Catalonia, Northeast Spain"
+    url: https://doi.org/10.1128/spectrum.02567-25
+    journal: "Microbiology Spectrum"
+    date: 2026-03-16
+
+  - authors: "Víctor Fernández-Juárez, Francisco Salvà-Serra, G. Seguí, Alberto J. Martín-Rodríguez."
+    title: "Life in sediments fosters ‘sexual’ speciation in <i>Shewanella baltica</i>"
+    url: https://doi.org/10.64898/2026.03.14.705985
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2026-03-14
+
+  - authors: "mohamed eltorki, Oluwatimilehin O. Ajayi, Jina Seok, Jianling Xie, Francesco A. Rizzuti, Byron M. Berenger, Phillip I. Tarr, Andrew T. Pavia, K. Snedeker, Silviu Grisaru, et al."
+    title: "Shiga Toxin–Producing <i>Escherichia coli</i> Outbreak in Canadian Daycare Centers"
+    url: https://doi.org/10.1001/jamanetworkopen.2026.1278
+    journal: "JAMA Network Open"
+    date: 2026-03-10
+
+  - authors: "Covadonga Pérez-García, Joaquin Llorente, Maria Elena Aguirre Alustuey, Mirella Llamosí, Ruth Gil, Gabriel Laghlali, Farah El-Ayache, Vivian Yan, Michael Schotsaert, Jorge del Diego, et al."
+    title: "Outburst of serotype 4 IPD after COVID-19 is driven by ST15063/GPSC162 lineage associated with high-risk behaviors and greater virulence linked to influenza H3N2 virus coinfection and cigarette smoke"
+    url: https://doi.org/10.64898/2026.02.27.26346872
+    journal: "medRxiv"
+    date: 2026-03-04
+
+  - authors: "Leslie M. Huggins, Rachel B. Sidebottom, William W. Johnson, Kurt Schwalm, Karissa Culbreath, Jesse Young, Meghan Brett, Darrell L. Dinwiddie, Daryl Domman."
+    title: "Genomic analysis of Klebsiella aerogenes circulating in New Mexico"
+    url: https://doi.org/10.1099/mgen.0.001650
+    journal: "Microbial Genomics"
+    date: 2026-02-24
+
+  - authors: "Megan A Phillips, Robert A. Petit, Daniel B. Weissman, Timothy Read."
+    title: "Transition of Staphylococcus aureus tetracycline resistance plasmid pT181 from independent multicopy replicon to predominantly integrated chromosomal element over 65 years"
+    url: https://doi.org/10.7554/elife.109393.1
+    journal: "eLife"
+    date: 2026-02-19
+
+  - authors: "Sebastian Bruno Ulrich Jordi, Isabel Baertschi, Jiaqi Li, Nadia Fasel, Benjamin Misselwitz, Bahtiyar Yilmaz."
+    title: "StrainCascade: An automated, modular workflow for high-throughput long-read bacterial genome reconstruction and characterization"
+    url: https://doi.org/10.64898/2026.02.04.698786
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2026-02-06
+
+  - authors: "Aida González-Díaz, M. Bessa Pinto, Irene Cadenas-Jiménez, Sara Lia Duarte, Carmen Ardanuy, M. Manuela Ribeiro, Sara Martí, Paula Bajanca-Lavado."
+    title: "First identification and molecular characterization of CTX-M-15 extended-spectrum β-lactamase and OXA-9 β-lactamase in <i>Haemophilus influenzae</i> in the Iberian Peninsula"
+    url: https://doi.org/10.1128/aac.01649-25
+    journal: "Antimicrobial Agents and Chemotherapy"
+    date: 2026-01-30
+
+  - authors: "H.A. Alshammari, Ahmed Albarrag, Ihab M. Moussa, Jaffar A. Al-Tawfiq, Sumayh A. Aldakeel, Ali M. Somily."
+    title: "Molecular analysis of carbapenemase-producing Pseudomonas aeruginosa strains in a tertiary care hospital in Riyadh"
+    url: https://doi.org/10.1016/j.jiph.2026.103159
+    journal: "Journal of Infection and Public Health"
+    date: 2026-01-21
+
+  - authors: "Belson Kutambe, Priyanka D. Patel, Kenneth Chizani, Niza Silungwe, Christopher Kukacha, Megan E. Carey, James Meiring, Matthew B. Laurens, Melita A. Gordon, Philip Ashton."
+    title: "Genomic Analysis of <i>Salmonella</i> Typhi from a Typhoid Conjugate Vaccine Trial"
+    url: https://doi.org/10.64898/2026.01.06.25342561
+    journal: "medRxiv"
+    date: 2026-01-11
+
+  - authors: "Dalal M. Alkuraythi, Manal Muhammed Alkhulaifi, Dina A. Altwiley, Mohammed Alarwi, Mohammed I. Mujallad, Mohammad Alshomrani, Takashi Gojobori, Sulaiman M. Alajel."
+    title: "Genomic and epidemiological insights into the emergence and dominance of MRSA clones in Riyadh’s healthcare facilities"
+    url: https://doi.org/10.1038/s41598-025-34001-7
+    journal: "Scientific Reports"
+    date: 2026-01-06
+
+  - authors: "Ismam Ahmed Protic, Md. Nasir Uddin, Andrew Gorzalski, Rashidul Islam, David Alvarez-Ponce."
+    title: "Comparative genomic analyses shed light on the introduction routes of rice-pathogenic Burkholderia gladioli strains into Bangladesh"
+    url: https://doi.org/10.1186/s12864-025-12430-y
+    journal: "BMC Genomics"
+    date: 2026-01-03
+
+  - authors: "Gerald Mboowa, Ivan Sserwadda, Stephen Kanyerezi."
+    title: "rMAP 2.0: a modular, reproducible, and scalable WDL–Cromwell–Docker workflow for genomic analysis of ESKAPEE pathogens"
+    url: https://doi.org/10.1093/bioadv/vbag046
+    journal: "Bioinformatics Advances"
+    date: 2026-01-01
+
+  - authors: "Virudhagiri Elamurugan, Subbiah Thamotharan, Vigneshwar Ramakrishnan."
+    title: "<i>Pa</i> VarDB: a database and web platform for missense variant analysis in <i>Pseudomonas aeruginosa</i> using an end-to-end <i>BVbase</i> pipeline"
+    url: https://doi.org/10.1093/database/baag014
+    journal: "Database"
+    date: 2026-01-01
+
+  - authors: "Shuo Jiang, Peng Gao, Ping Shen, Suying Hou, Chenlu Xiao, Richard Yi Tsun Kao, Ho Pak-Leung, Yonghong xiao, Huiluo Cao."
+    title: "Global emergence and evolution of <i>Staphylococcus aureus</i> clonal complex 59"
+    url: https://doi.org/10.1128/msystems.01492-25
+    journal: "mSystems"
+    date: 2025-12-31
+
+  - authors: "Chantisa Keeratipusana, Weerawat Phuklia, Vanheuang Phommadeechack, Janjira Thaipadungpanit, Vilada Chansamouth, Koukeo Phommasone, Sayaphet Rattanavong, Catrin E. Moore, Matthew T. Robinson, Allen L. Richards, et al."
+    title: "Complete genomes of Rickettsia typhi reveal a clonal population"
+    url: https://doi.org/10.1371/journal.pntd.0013828
+    journal: "PLoS neglected tropical diseases"
+    date: 2025-12-29
+
+  - authors: "Nicholas J. Hathaway, Kathryn Murie, Maxwell Murphy, Alfred Simkin, Jorge Amaya-Romero, Alfred Hubbard, Jessica Briggs, Andrés Aranda-Díaz, Angela M. Early, Amy Wesolowski, et al."
+    title: "The Portable Microhaplotype Object and Tools"
+    url: https://doi.org/10.64898/2025.12.10.693568
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-12-12
+
+  - authors: "Massimiliano S. Tagliamonte, Abhinav Sharma, Alberto Riva, Monika Moir, Marco Salemi, Cheryl Baxter, Túlio de Oliveira, Carla Mavian, Eduan Wilkinson."
+    title: "CholeraSeq: a comprehensive genomic pipeline for cholera surveillance and near real-time outbreak investigation"
+    url: https://doi.org/10.1093/bioinformatics/btaf665
+    journal: "Bioinformatics"
+    date: 2025-12-11
+
+  - authors: "Kaitlin E. Creamer, Gabriel Castro‐Falcón, Ebru İnce, Victoria Vasilat, David Vereau Gorbitz, Alyssa M. Demko, Paul R. Jensen."
+    title: "Taxonomic and biosynthetic diversity of the marine actinomycete <i>Salinispora</i> across spatial scales"
+    url: https://doi.org/10.1128/aem.02171-25
+    journal: "Applied and Environmental Microbiology"
+    date: 2025-12-08
+
+  - authors: "Cheikh Tidiane Houmenou, Cheikh Sokhna, Florence Fenollar, Oleg Mediannikov."
+    title: "Advancements and challenges in bioinformatics tools for microbial genomics in the last decade: Toward the smart integration of bioinformatics tools, digital resources, and emerging technologies for the analysis of complex biological data"
+    url: https://doi.org/10.1016/j.meegid.2025.105859
+    journal: "Infection Genetics and Evolution"
+    date: 2025-11-24
+
+  - authors: "Casey Vieni, Tanner E. Rothstein, Stephen L. Johnson, Audrey N. Schuetz, Andrew P. Norgan, Robin Patel."
+    title: "Whole genome sequence analysis of Helicobacter pylori isolates reveals incomplete characterization of antimicrobial resistance mechanisms"
+    url: https://doi.org/10.1016/j.isci.2025.114077
+    journal: "iScience"
+    date: 2025-11-20
+
+  - authors: "Ismam Ahmed Protic, Mohammed Nasir Uddin, Andrew Gorzalski, Md. Rashidul Islam, David Alvarez‐Ponce."
+    title: "Comparative genomic analyses shed light on the introduction routes of rice-pathogenic <i>Burkholderia gladioli</i> strains into Bangladesh"
+    url: https://doi.org/10.1101/2025.11.17.688954
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-11-18
+
+  - authors: "Alison Yee-Ting Lam, Chun-Hei Lau, Wing-Yin Tam, Chloe Toi-Mei Chan, Tsun-Ming Lok, Lorna Kwai Ping Suen, Lam-Kwong Lee, Elaine Yin-Ying Yeung, Tsz-Kei Lam, Wai-Kam Cheung, et al."
+    title: "Targeted probe capture metagenomics-enabled surveillance of multidrug-resistant organisms and antimicrobial resistance genes in post-handwashing areas of public washrooms"
+    url: https://doi.org/10.1186/s40793-025-00806-2
+    journal: "Environmental Microbiome"
+    date: 2025-11-17
+
+  - authors: "Jonathan Strysko, Tefelo Thela, Andries Feder, Janet Thubuka, Tichaona Machiya, Jack Mkubwa, Kagiso Mochankana, Celda Tiroyakgosi, Kgomotso Kgomanyane, Tlhalefo Dudu Ntereke, et al."
+    title: "Carbapenem-resistant <i>Acinetobacter baumannii</i> at a hospital in Botswana: detecting a protracted outbreak using whole genome sequencing"
+    url: https://doi.org/10.1128/spectrum.01768-25
+    journal: "Microbiology Spectrum"
+    date: 2025-11-17
+
+  - authors: "Clayton W. Hall, Nicholas Waglechner, E C Choi, Patryk Aftanas, Kevin Katz, Christie Vermeiren, Finlay Maguire, Robert Kozak, Xena X. Li."
+    title: "Evaluation of Phenotypic and Genotypic Susceptibility Testing Methods for Newer β-lactam/β-lactamase Inhibitor Combinations in Multidrug Resistant <i>Pseudomonas aeruginosa</i>"
+    url: https://doi.org/10.1093/infdis/jiaf585
+    journal: "The Journal of Infectious Diseases"
+    date: 2025-11-14
+
+  - authors: "Mohammed Alarawi, Musaad A. Altammami, Mohammed H. Abutarboush, Maxat Kulmanov, Dalal M. Alkuraithy, Şenay Kafkas, Robert Radley, Marwa Abdelhakim, Hind Aldakhil, Reema A. Bawazeer, et al."
+    title: "Genomic diversity and antimicrobial resistance of Staphylococcus aureus in Saudi Arabia: a nationwide study using whole-genome sequencing"
+    url: https://doi.org/10.1099/mgen.0.001540
+    journal: "Microbial Genomics"
+    date: 2025-11-12
+
+  - authors: "Mingkwan Yingkajorn, Thunchanok Yaikhan, Worawut Duangsi-Ngoen, Chollachai Klaysubun, Thitaporn Dechathai, Sarunyou Chusri, Kamonnut Singkhamanan, Rattanaruji Pomwised, Monwadee Wonglapsuwan, Komwit Surachat."
+    title: "Phylogenomics and Antimicrobial Resistance of Clinical Bacteroides Isolates from a Tertiary Hospital in Southern Thailand"
+    url: https://doi.org/10.3390/antibiotics14111143
+    journal: "Antibiotics"
+    date: 2025-11-11
+
+  - authors: "Nattarika Chaichana, Jirasa Boonsan, Sirikan Suwannasin, Kamonnut Singkhamanan, Monwadee Wonglapsuwan, Rattanaruji Pomwised, Thunchanok Yaikhan, Chollachai Klaysubun, Siriwimon Konglue, Rusneeta Chema, et al."
+    title: "Genomic insights and functional characterization of Lactiplantibacillus pentosus CLP10 isolated from the traditional fermented Thai stinky beans"
+    url: https://doi.org/10.1016/j.jafr.2025.102509
+    journal: "Journal of Agriculture and Food Research"
+    date: 2025-11-06
+
+  - authors: "Idowu B. Olawoye, David Alexander, Jennifer L. Guthrie."
+    title: "Population structure of Mycobacterium avium subsp. hominissuis provides new insights into genomic evolution"
+    url: https://doi.org/10.1099/mgen.0.001543
+    journal: "Microbial Genomics"
+    date: 2025-11-04
+
+  - authors: "Michael B. Hall, Chenxi Zhou, Lachlan Coin."
+    title: "Genome size estimation from long read overlaps"
+    url: https://doi.org/10.1093/bioinformatics/btaf593
+    journal: "Bioinformatics"
+    date: 2025-11-01
+
+  - authors: "Zachary Foster, Martha A. Sudermann, Camilo H. Parada-Rojas, Logan Blair, Fernanda Iruegas Bocardo, Upasana Dhakal, Ricardo I. Alcalá-Briseño, Hung Phan, Tori R. Schummer, Alexandra J. Weisberg, et al."
+    title: "<i>PathogenSurveillance</i> : an automated pipeline for population genomic analyses and pathogen identification"
+    url: https://doi.org/10.1101/2025.10.31.685798
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-10-31
+
+  - authors: "Camryn M. Bonn-Dunbar, Idowu B. Olawoye, Akanksha Thukral, Jennifer L. Guthrie, Martin J. McGavin."
+    title: "Widespread emergence of <i>Staphylococcus aureus</i> with variant FarR regulators and enhanced resistance to antimicrobial fatty acids within clonal complex CC5, CC8, and CC97 strains from human and bovine hosts"
+    url: https://doi.org/10.1128/spectrum.02278-25
+    journal: "Microbiology Spectrum"
+    date: 2025-10-31
+
+  - authors: "Gillian A.M. Tarr, William Finical, Joshua Rounds, Anna Panek, Kirk Smith."
+    title: "The conundrum of Shiga toxin-producing <i>Escherichia coli</i> O157:H7 persistence: Evidence for locally persistent lineages"
+    url: https://doi.org/10.1101/2025.09.29.679259
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-10-01
+
+  - authors: "Emanuel Becerra Soto, Adam James Oliver, Marcos H. de Moraes."
+    title: "Pandoomain, a scalable pipeline for genomic and protein domain context analysis, reveals widespread PT-TG domain architectural diversity and novel polymorphic toxins"
+    url: https://doi.org/10.1101/2025.10.01.679605
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-10-01
+
+  - authors: "Brittany N. Ross, Emma Evans, Frances L. Diggle, Paul Briaud, Marvin Whiteley."
+    title: "The role of colony morphotype in shaping gene essentiality in <i>Mycobacteroides abscessus</i>"
+    url: https://doi.org/10.1073/pnas.2500719122
+    journal: "Proceedings of the National Academy of Sciences"
+    date: 2025-09-30
+
+  - authors: "Donovan H. Parks, Pierre-Alain Chaumeil, Aaron J. Mussig, Christian Rinke, Maria Chuvochina, Philip Hugenholtz."
+    title: "GTDB release 10: a complete and systematic taxonomy for 715 230 bacterial and 17 245 archaeal genomes"
+    url: https://doi.org/10.1093/nar/gkaf1040
+    journal: "Nucleic Acids Research"
+    date: 2025-09-26
+
+  - authors: "Daniele Smedile, Elena Lavinia Diaconu, Matteo Grelloni, Barbara Middei, Virginia Carfora, Antonio Battisti, Patricia Alba, Alessia Franco."
+    title: "Enteroflow: Automated Pipeline for In Silico Characterization of Enterococcus faecium/faecalis Isolates from Short Reads"
+    url: https://doi.org/10.3390/ijms26199441
+    journal: "International Journal of Molecular Sciences"
+    date: 2025-09-26
+
+  - authors: "Kara K. Tsang, Iana Amke, David M. Aanensen, Jabir Abdulahi, Alexander M. Aiken, Michael A. Bachman, Stephen Baker, Katherine Barry, Gherard Batisti Biffignandi, Emília Maria Medeiros de Andrade Belitardo, et al."
+    title: "Ciprofloxacin resistance in <i>Klebsiella pneumoniae</i> : phenotype prediction from genotype and global distribution of resistance determinants"
+    url: https://doi.org/10.1101/2025.09.24.678318
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-09-25
+
+  - authors: "Harry C. H. Hung, Narender Kumar, Victoria Dyster, Corin Yeats, Benjamin J. Metcalf, Yuan Li, Paulina A. Hawkins, Lesley McGee, Stephen D. Bentley, Stephanie W. Lo."
+    title: "GPS Pipeline: portable, scalable genomic pipeline for Streptococcus pneumoniae surveillance from Global Pneumococcal Sequencing Project"
+    url: https://doi.org/10.1038/s41467-025-64018-5
+    journal: "Nature Communications"
+    date: 2025-09-24
+
+  - authors: "Megan Phillips, Robert A. Petit, Daniel B. Weissman, Timothy D. Read."
+    title: "Transition of <i>Staphylococcus aureus</i> tetracycline resistance plasmid pT181 from independent multicopy replicon to predominantly integrated chromosomal element over 65 years"
+    url: https://doi.org/10.1101/2025.09.14.675889
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-09-15
+
+  - authors: "Michelle Su, Kim L. Hoang, McKenna J. Penley, Michelle H. Davis, Jennifer D. Gresham, Levi T. Morran, Timothy D. Read."
+    title: "Host and antibiotic jointly select for greater virulence in Staphylococcus aureus"
+    url: https://doi.org/10.7554/elife.107936
+    journal: ""
+    date: 2025-09-09
+
+  - authors: "Qiaoxin Zhang, Junle Ren, Siyao Wu, Yadi Tan, Wenliang Wang, Feng Cai, Liqian Zhao, Zhiwei Zhu."
+    title: "Plasmid‐Free CRISPR/Cpf1 Genome Editing With In Vivo T7 RNA Polymerase‐Transcribed CRISPR RNA From Short Double‐Stranded DNA"
+    url: https://doi.org/10.1002/bit.70062
+    journal: "Biotechnology and Bioengineering"
+    date: 2025-09-09
+
+  - authors: "Adesola Olalekan, Sébastien Boutin, Christopher M. Watson, Luiza H. Galarion, Solayide A. Adesida, Bamidele Iwalokun, Olayiwola Popoola, Seraphine Nkie Esemu, Richard A. Adegbola, Dennis Nurjadi."
+    title: "Molecular landscape of methicillin-resistant <i>Staphylococcus aureus</i> strains in clinical infections from hospitals in Lagos, Nigeria"
+    url: https://doi.org/10.1093/jacamr/dlaf161
+    journal: "JAC-Antimicrobial Resistance"
+    date: 2025-09-03
+
+  - authors: "Victoria Ballén, Laura Mondéjar, Yaiza Gabasa, Laura Castellsagués, Manuel Alcalde‐Rico, Anna Pinar-Méndez, Carles Vilaró, Belén Galofré, Sara M. Soto."
+    title: "Integrated metagenomic, culture-based, and whole genome sequencing analyses of antimicrobial resistance in wastewater and drinking water treatment plants in Barcelona, Spain"
+    url: https://doi.org/10.1016/j.ijheh.2025.114664
+    journal: "International Journal of Hygiene and Environmental Health"
+    date: 2025-09-01
+
+  - authors: "Francesca Sivori, Massimo Francalancia, Mauro Truglio, Ilaria Cavallo, Carmelina Pronesti, Giorgia Fabrizio, Ilaria Celesti, Andrea Cazzani, Lorenzo Furzi, Fulvia Pimpinelli, et al."
+    title: "Meropenem/vaborbactam activity against carbapenem-resistant Klebsiella pneumoniae from catheter-related bloodstream infections"
+    url: https://doi.org/10.3389/fcimb.2025.1616353
+    journal: "Frontiers in Cellular and Infection Microbiology"
+    date: 2025-07-31
+
+  - authors: "Margaret Free, Nicole Soper, James C. Slaughter, Andries Feder, Colleen Bianco, Ahmed M. Moustafa, Paul J. Planet, C. Buddy Creech, Isaac Thomsen."
+    title: "Evolution of strain diversity and virulence factor repertoire in pediatric Staphylococcus aureus isolates"
+    url: https://doi.org/10.1371/journal.pone.0326353
+    journal: "PLoS ONE"
+    date: 2025-07-31
+
+  - authors: "Emily A. Felton, Mary-Elizabeth Jobson, Nathanial Torres, Rachel M Washburn, Ariana M. Virgillio, Joshua Alvior, Eleonora Cella, Amorce Lima, Deanna Becker, Suzane Silbert, et al."
+    title: "Emergence of ST3390: A Novel Apigmented MRSA Clone From the CC5 Lineage"
+    url: https://doi.org/10.1093/infdis/jiaf410
+    journal: "The Journal of Infectious Diseases"
+    date: 2025-07-31
+
+  - authors: "Karyn Havas, Roy Edler, Laura Ruesch, Marlee Braun, Peter Ferm, Noelle Noyes, Laura B. Goodman, H.M. Scott, Joel Nerem, Taylor Spronk, et al."
+    title: "Assessment of a program for monitoring antimicrobial purchase and resistance in Escherichia coli and Salmonella enterica on pig farms in the Midwestern United States from May 2020 through October 2023"
+    url: https://doi.org/10.3389/fvets.2025.1586008
+    journal: "Frontiers in Veterinary Science"
+    date: 2025-07-25
+
+  - authors: "Ana Rafaela Kruemmel, Jessica L. Halpin, Victoria Foltz, Janet K. Dykes, Carolina Lúquez."
+    title: "Detection of a streptogramin A O-acetyltransferase gene ( <i>vatD</i> ) in the chromosome of <i>Clostridium botulinum</i> isolated from infants in the United States"
+    url: https://doi.org/10.1128/aem.00090-25
+    journal: "Applied and Environmental Microbiology"
+    date: 2025-07-22
+
+  - authors: "Brooke M. Talbot, Natasia F Jacko, Katrina S. Hofstetter, Tara Alahakoon, Kévin Bouiller, Timothy D. Read, Michael David."
+    title: "Methicillin-Resistant <i>Staphylococcus aureus</i> Bacteremia Relapses Show Diverse Genomic Profiles but Convergence in Bacteremia-Associated Genes"
+    url: https://doi.org/10.1093/infdis/jiaf352
+    journal: "The Journal of Infectious Diseases"
+    date: 2025-07-22
+
+  - authors: "Thunchanok Yaikhan, Mingkwan Yingkajorn, Worawut Duangsi-Ngoen, Ei Phway Thant, Nattarika Chaichana, Sirikan Suwannasin, Kamonnut Singkhamanan, Saranyou Churi, Komwit Surachat."
+    title: "Genomic characterization of a clinical Enterocloster aldenensis strain: First report in Thailand"
+    url: https://doi.org/10.1016/j.meegid.2025.105800
+    journal: "Infection Genetics and Evolution"
+    date: 2025-07-16
+
+  - authors: "Thomas D. Stanton, Marit Andrea Klokkhammer Hetland, Iren H. Löhr, Kathryn E. Holt, Kelly L. Wyres."
+    title: "Fast and accurate in silico antigen typing with Kaptive 3"
+    url: https://doi.org/10.1099/mgen.0.001428
+    journal: "Microbial Genomics"
+    date: 2025-06-24
+
+  - authors: "Martin Larralde, Georg Zeller, Laura M. Carroll."
+    title: "PyOrthoANI, PyFastANI, and Pyskani: a suite of Python libraries for computation of average nucleotide identity"
+    url: https://doi.org/10.1093/nargab/lqaf095
+    journal: "NAR Genomics and Bioinformatics"
+    date: 2025-06-21
+
+  - authors: "Nattarika Chaichana, Sirikan Suwannasin, Jirasa Boonsan, Thunchanok Yaikhan, Chollachai Klaysubun, Kamonnut Singkhamanan, Monwadee Wonglapsuwan, Rattanaruji Pomwised, Siriwimon Konglue, Rusneeta Chema, et al."
+    title: "Genomic Characterization and Safety Evaluation of Enterococcus lactis RB10 Isolated from Goat Feces"
+    url: https://doi.org/10.3390/antibiotics14060612
+    journal: "Antibiotics"
+    date: 2025-06-16
+
+  - authors: "Ahmed Yousef Alhejaili, Ge Zhou, Heba Halawa, Jiayi Huang, Omniya Fallatah, Raneem Hirayban, Sara Iftikhar, Abrar AlAsmari, Mathew Milner, Manuel Banzhaf, et al."
+    title: "Methicillin-resistant Staphylococcus aureus in Saudi Arabia: genomic evidence of recent clonal expansion and plasmid-driven resistance dissemination"
+    url: https://doi.org/10.3389/fmicb.2025.1602985
+    journal: "Frontiers in Microbiology"
+    date: 2025-06-13
+
+  - authors: "Josiah Bennett, Sarah Lohsen, Elizabeth Y. Kim, Pranavi Ravichandran, William K. Blake, Kimberly Workowski, Sarah W. Satola, Matthew H. Collins, Danielle Barrios Steed."
+    title: "A <i>Haemophilus influenzae</i> -associated mycotic aneurysm months after treated bacteremia"
+    url: https://doi.org/10.1128/asmcr.00027-25
+    journal: "ASM Case Reports"
+    date: 2025-06-12
+
+  - authors: "Chantisa Keeratipusana, Weerawat Phuklia, Vanheuang Phommadeechack, Janjira Thaipadungpanit, Vilada Chansamouth, Koukeo Phommasone, Sayaphet Rattanavong, Catrin E. Moore, Matthew T. Robinson, Allen L. Richards, et al."
+    title: "Complete genomes of <i>Rickettsia typhi</i> reveal a clonal population"
+    url: https://doi.org/10.1101/2025.05.25.654783
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-05-27
+
+  - authors: "Sarah Shrum Davis, Paris S. Hamm, Karen Edge, Tim Hanosh, Jessica P. Houston, Anastacia Griego-Fisher, F. Lugo, Nicholas Wenzel, D’Eldra Malone, Carol Bradford, et al."
+    title: "Multidrug-resistant Shigella flexneri outbreak affecting humans and non-human primates in New Mexico, USA"
+    url: https://doi.org/10.1038/s41467-025-59766-3
+    journal: "Nature Communications"
+    date: 2025-05-20
+
+  - authors: "Helena M. B. Seth-Smith, Ashley M. Rooney, Adrian Egli."
+    title: "Strain Typing (Bacterial, Viral, Fungal, and Mycobacterial)"
+    url: https://doi.org/10.1002/9781683674597.ch4
+    journal: ""
+    date: 2025-05-19
+
+  - authors: "Agnetor Mutheo, Carren Bosire, Victor Tunje Jeza, George Githinji, Sammy Wambua."
+    title: "Metagenomic exploration of antimicrobial resistance genes in marine bacteria ecosystem"
+    url: https://doi.org/10.12688/wellcomeopenres.24091.1
+    journal: "Wellcome Open Research"
+    date: 2025-05-19
+
+  - authors: "Xiaobao Xie, Rong Li, Qiang Yu, Qiang Yu, Xue Zhang, Dongbo Chen, Yuchen Li, Feng Xue, Qinghua Yu, Qinghua Yu."
+    title: "The high utilization of human milk oligosaccharides with glycoside hydrolase family exsH gene in Akkermansia species"
+    url: https://doi.org/10.1016/j.carpta.2025.100845
+    journal: "Carbohydrate Polymer Technologies and Applications"
+    date: 2025-05-14
+
+  - authors: "Silvia García-Cobos, Natalia Seco Alberca, Blanca Bravo, Verónica Casquero-García, Eva Ramírez de Arellano, Cristina Calvo, Guillermo Ruíz-Carrascoso, Iker Falces‐Romero, Nieves Larrosa, Belen Viñado-Pérez, et al."
+    title: "Genomic analysis of community-associated methicillin-resistant Staphylococcus aureus (CA-MRSA) causing infections in children—a Spanish multicenter study"
+    url: https://doi.org/10.3389/fmicb.2025.1534840
+    journal: "Frontiers in Microbiology"
+    date: 2025-05-09
+
+  - authors: "Simon Goldie, Laurie C. Lau, Huw Jones, Philip G. Harries, Andrew F. Walls, Rami J. Salib."
+    title: "Identification of Novel Staphylococcus aureus Core and Accessory Virulence Patterns in Chronic Rhinosinusitis"
+    url: https://doi.org/10.3390/ijms26083711
+    journal: "International Journal of Molecular Sciences"
+    date: 2025-04-14
+
+  - authors: "João Vitor Wagner Ordine, E Silva, Lívia S. Zaramela."
+    title: "Global cross-genome comparison of carbohydrate transporters in Staphylococcus aureus with distinct antimicrobial susceptibility profiles"
+    url: https://doi.org/10.1016/j.nexres.2025.100284
+    journal: "Next research."
+    date: 2025-04-01
+
+  - authors: "Aaron Asmus, K. M. Heimer, Kristin Davis, Peter Ferm, K. E. Belk, Randall S. Singer, Timothy J. Johnson, Noelle Noyes."
+    title: "Temporality and Genetic Relatedness of Salmonella in a Pork Processing Facility"
+    url: https://doi.org/10.1016/j.jfp.2025.100500
+    journal: "Journal of Food Protection"
+    date: 2025-03-28
+
+  - authors: "Brooke M. Talbot, Natasia F Jacko, Katrina S. Hofstetter, Tara Alahakoon, Kévin Bouiller, Timothy D. Read, Michael David."
+    title: "Genomic investigation of MRSA bacteremia relapse reveals diverse genomic profiles but convergence in bacteremia-associated genes"
+    url: https://doi.org/10.1101/2025.03.24.25324140
+    journal: "medRxiv"
+    date: 2025-03-28
+
+  - authors: "Alba Frias‐De‐Diego, Manuel Jara, Cristina Lanzas."
+    title: "Influence of Sequencing Technology on Pangenome-Level Analysis and Detection of Antimicrobial Resistance Genes in ESKAPE Pathogens"
+    url: https://doi.org/10.1093/ofid/ofaf183
+    journal: "Open Forum Infectious Diseases"
+    date: 2025-03-26
+
+  - authors: "Brianna J. Bixler, Charlotte J. Royer, Robert A. Petit, Abraham Moller, Samantha Sefton, Stepy Thomas, Amy Tunali, Lauren F. Collins, Monica M. Farley, Sarah W. Satola, et al."
+    title: "Comparative genomic analysis of emerging non-typeable <i>Haemophilus influenzae</i> (NTHi) causing emerging septic arthritis in Atlanta"
+    url: https://doi.org/10.7717/peerj.19081
+    journal: "PeerJ"
+    date: 2025-03-21
+
+  - authors: "Emily A. Felton, Mary-Elizabeth Jobson, Ariana M. Virgillio, Joshua Alvior, Eleonora Cella, Amorce Lima, Deanna Becker, Suzane Silbert, Taj Azarian, Kami Kim, et al."
+    title: "Emergence of ST3390: A non-pigmented HA-MRSA clone with enhanced virulence"
+    url: https://doi.org/10.1101/2025.03.18.643911
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-03-18
+
+  - authors: "Carter N. Abbott, Aditi Dhillon, Sushma Timalsina, Elise Furr, Patrick Vélicitat, Adam Belley, Navaneeth Narayanan, Keith S. Kaye, David S. Weiss."
+    title: "The association between undetected heteroresistance and antibiotic treatment failure in complicated urinary tract infection"
+    url: https://doi.org/10.1101/2025.03.11.25323422
+    journal: "medRxiv"
+    date: 2025-03-13
+
+  - authors: "Kat Steinke, Karina Gravgaard Thomsen, Silje Vermedal Hoegh, Sanne Løkkegaard Larsen, Karina Kubel Vilhelmsen, Thøger Gorm Jensen, Marianne Nielsine Skov, Thomas Vognbjerg Sydenham."
+    title: "RSYD-BASIC: a bioinformatic pipeline for routine sequence analysis and data processing of bacterial isolates for clinical microbiology"
+    url: https://doi.org/10.1099/acmi.0.000646.v6
+    journal: "Access Microbiology"
+    date: 2025-03-01
+
+  - authors: "Daichi Morita, Teruo Kuroda."
+    title: "Recent Antimicrobial Resistance Situation and Mechanisms of Resistance to Key Antimicrobials in Enterotoxigenic &lt;i&gt;Escherichia coli&lt;/i&gt;"
+    url: https://doi.org/10.1248/bpb.b24-00649
+    journal: "Biological and Pharmaceutical Bulletin"
+    date: 2025-02-28
+
+  - authors: "Sirikan Suwannasin, Kamonnut Singkhamanan, Rattanaruji Pomwised, Nattarika Chaichana, Monwadee Wonglapsuwan, Thunchanok Yaikhan, Komwit Surachat."
+    title: "Phenotypic and genomic analysis of Enterococcus avium MC09 pathogenicity isolated from Scylla spp. (mud crab) in a Thai market"
+    url: https://doi.org/10.1016/j.micpath.2025.107415
+    journal: "Microbial Pathogenesis"
+    date: 2025-02-26
+
+  - authors: "Joseph J. Zeppa, Ellen G. Avery, Patryk Aftanas, Erin Choi, Simone Uleckas, Prachi Patel, Nicholas Waglechner, Hubert Jimenez, Christie Vermeiren, Kevin Katz, et al."
+    title: "Comparison of pharyngeal and invasive isolates of <i>Streptococcus pyogenes</i> by whole-genome sequencing in Toronto, Canada"
+    url: https://doi.org/10.1128/spectrum.02141-24
+    journal: "Microbiology Spectrum"
+    date: 2025-02-13
+
+  - authors: "Thomas D. Stanton, Marit Andrea Klokkhammer Hetland, Iren H. Löhr, Kathryn E. Holt, Kelly L. Wyres."
+    title: "Fast and Accurate <i>in silico</i> Antigen Typing with Kaptive 3"
+    url: https://doi.org/10.1101/2025.02.05.636613
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2025-02-08
+
+  - authors: "Ahmed Yousef Alhejaili, Ge Zhou, Heba Halawa, Jiayi Huang, Omniya Fallatah, Raneem Hirayban, Sara Iftikhar, Abrar AlAsmari, Mathew Milner, Manuel Banzhaf, et al."
+    title: "Methicillin-resistant <i>Staphylococcus aureus</i> in Saudi Arabia: genomic evidence of recent clonal expansion and plasmid-driven resistance dissemination"
+    url: https://doi.org/10.1101/2025.01.31.25321315
+    journal: "medRxiv"
+    date: 2025-02-03
+
+  - authors: "Emanuele Nicitra, Morena Terrana, Dafne Bongiorno, Saveria Dodaro, Francesca Greco, Sonia Greco, Nadia Marascio, Maria Vittoria Mauro, Marta Pantanella, Grete Francesca Privitera, et al."
+    title: "Circulation of a Unique Klebsiella pneumoniae Clone, ST147 NDM-1/OXA-48, in Two Diverse Hospitals in Calabria (Italy)"
+    url: https://doi.org/10.3390/antibiotics14020128
+    journal: "Antibiotics"
+    date: 2025-01-26
+
+  - authors: "Christine Marie George, Alves Namunesha, Kelly Endres, Willy Felicien, Presence Sanvura, Jean‐Claude Bisimwa, Jamie Perin, Justin Bengehya, Ghislain Maheshe, Cirhuza Cikomola, et al."
+    title: "Epidemiologic and Genomic Surveillance of <i>Vibrio cholerae</i> and Effectiveness of Single-Dose Oral Cholera Vaccine, Democratic Republic of the Congo"
+    url: https://doi.org/10.3201/eid3102.241777
+    journal: "Emerging infectious diseases"
+    date: 2025-01-17
+
+  - authors: "Gillian A.M. Tarr, Linda Chui, Kim Stanford, Emmanuel W. Bumunang, Rahat Zaheer, Vincent Li, Stephen B. Freedman, Chad Laing, Tim A. McAllister."
+    title: "Persistent cross-species transmission systems dominate Shiga toxin-producing Escherichia coli O157:H7 epidemiology in a high incidence region: A genomic epidemiology study"
+    url: https://doi.org/10.7554/elife.97643.3
+    journal: "eLife"
+    date: 2025-01-17
+
+  - authors: "Timo Saratto, Kerkko Visuri, Jonatan Lehtinen, Irene Ortega-Sanz, Jacob L. Steenwyk, Samuel Sihvonen."
+    title: "Solu: a cloud platform for real-time genomic pathogen surveillance"
+    url: https://doi.org/10.1186/s12859-024-06005-z
+    journal: "BMC Bioinformatics"
+    date: 2025-01-13
+
+  - authors: "Guillem López de Egea, Aída González-Díaz, Randall J. Olsen, Gérard Guédon, Dàmaris Berbel, Inmaculada Grau, Jordi Cámara, Lucía Saiz-Escobedo, Sara Calvo-Silveria, Irene Cadenas-Jiménez, et al."
+    title: "Emergence of invasive Streptococcus dysgalactiae subsp. equisimilis in Spain (2012-2022): genomic insights and clinical correlations"
+    url: https://doi.org/10.1016/j.ijid.2025.107778
+    journal: "International Journal of Infectious Diseases"
+    date: 2025-01-11
+
+  - authors: "Olusola Olagoke, Ammar Aziz, Lucile H Zhu, Timothy D. Read, Deborah Dean."
+    title: "Whole-genome automated assembly pipeline for <i>Chlamydia trachomatis</i> strains from reference, <i>in vitro</i> and clinical samples using the integrated CtGAP pipeline"
+    url: https://doi.org/10.1093/nargab/lqae187
+    journal: "NAR Genomics and Bioinformatics"
+    date: 2025-01-07
+
+  - authors: "Gaetano Maugeri, Maddalena Calvo, Dafne Bongiorno, Dalida Bivona, Giuseppe Migliorisi, Grete Francesca Privitera, Guido Scalia, Stefania Stefani."
+    title: "Sequencing Analysis of Invasive Carbapenem-Resistant Klebsiella pneumoniae Isolates Secondary to Gastrointestinal Colonization"
+    url: https://doi.org/10.3390/microorganisms13010089
+    journal: "Microorganisms"
+    date: 2025-01-05
+
+  - authors: "Christian Zirbes, Andries Feder, Anthony J. Pamatmat, Alyssa R. Bartels, Nicholas J. Pitcher, Alexis L. Rozen, M. Teresi, J. Krogh, Margaret Regan, Erin A. Arnold, et al."
+    title: "Genetic Concordance of <i>Staphylococcus aureus</i> From Oropharyngeal and Sputum Cultures in People With Cystic Fibrosis"
+    url: https://doi.org/10.1002/ppul.27475
+    journal: "Pediatric Pulmonology"
+    date: 2025-01-01
+
+  - authors: "Nattarika Chaichana, Jirasa Boonsan, Sirikan Suwannasin, Kamonnut Singkhamanan, Monwadee Wonglapsuwan, Rattanaruji Pomwised, Thunchanok Yaikhan, Chollachai Klaysubun, Siriwimon Konglue, Rusneeta Chema, et al."
+    title: "Integrative Genomic and Phenotypic Profiling of Lactiplantibacillus pentosus CLP10: A Probiotic Candidate from Traditional Fermented Thai Stinky Beans"
+    url: https://doi.org/10.2139/ssrn.5432733
+    journal: "SSRN Electronic Journal"
+    date: 2025-01-01
+
+  - authors: "Derek Kong Lam, Sree Vadlamudi, Ria Poluru, Ashley Fang, Chujing Zheng, C.H. Lee, Anna Zhang, Yujie Men, Linda Shi."
+    title: "Automation and Comparative Evaluation of the Bactopia Pipeline for Environmental Tracking of Antibiotic Resistance Genes Using Genomic and Visualization Frameworks"
+    url: https://doi.org/10.11159/jbeb.2025.016
+    journal: "Journal of Biomedical Engineering and Biosciences"
+    date: 2025-01-01
+
+  - authors: "Liviu-Iulian Rotaru, Marius Surleac."
+    title: "PeGAS: a versatile bioinformatics pipeline for antimicrobial resistance, virulence and pangenome analysis"
+    url: https://doi.org/10.1093/bioadv/vbaf165
+    journal: "Bioinformatics Advances"
+    date: 2024-12-26
+
+  - authors: "Grete Francesca Privitera, Adriana Antonella Cannata, Floriana Campanile, Salvatore Alaimo, Dafne Bongiorno, Alfredo Pulvirenti."
+    title: "BacExplorer: an integrated platform for <i>de novo</i> bacterial genome annotation"
+    url: https://doi.org/10.1093/bioadv/vbaf281
+    journal: "Bioinformatics Advances"
+    date: 2024-12-26
+
+  - authors: "Mohamed M. H. Abdelbary, Maximilian Hatting, Andrea Dahlhausen, Alexandra Bott, Georg Conrads."
+    title: "Insights into Within-Host Evolution and Dynamics of Oral and Intestinal Streptococci Unveil Niche Adaptation"
+    url: https://doi.org/10.3390/ijms252413507
+    journal: "International Journal of Molecular Sciences"
+    date: 2024-12-17
+
+  - authors: "Christine Marie George, Alves Namunesha, Kelly Endres, Willy Felicien, Presence Sanvura, Jean‐Claude Bisimwa, Jamie Perin, Justin Bengehya, Ghislain Maheshe, Cirhuza Cikomola, et al."
+    title: "Effectiveness of a single dose of oral cholera vaccine: findings from epidemiological and genomic surveillance of <i>Vibrio Cholerae</i> in the Democratic Republic of the Congo (PICHA7 Program)"
+    url: https://doi.org/10.1101/2024.12.16.24318874
+    journal: "medRxiv"
+    date: 2024-12-16
+
+  - authors: "Daichi Morita, Asish K. Mukhopadhyay, Goutam Chowdhury, Fumito Maruyama, Miyuki Kanda, Yuki Yamamoto, Hidetoshi Tahara, Piyali Mukherjee, Mainak Bardhan, Takanori Kumagai, et al."
+    title: "Genomic epidemiology and genetic characteristics of clinical <i>Campylobacter</i> species cocirculating in West Bengal, India, 2019, using whole genome analysis"
+    url: https://doi.org/10.1128/aac.01108-24
+    journal: "Antimicrobial Agents and Chemotherapy"
+    date: 2024-12-04
+
+  - authors: "Tu‐Hsuan Chang, Hung-Jen Tang, Chi‐Chung Chen, Chi-Chung Chen, Chih-Jung Chen, Chih-Jung Chen."
+    title: "Clinical characteristics and genomic changes of recurrent Methicillin‐Resistant Staphylococcus aureus bacteremia"
+    url: https://doi.org/10.1016/j.jmii.2024.11.008
+    journal: "Journal of Microbiology Immunology and Infection"
+    date: 2024-11-30
+
+  - authors: "Harry C. H. Hung, Narender Kumar, Victoria Dyster, Corin Yeats, Benjamin J. Metcalf, Yuan Li, Paulina A. Hawkins, Lesley McGee, Stephen D. Bentley, Stephanie W. Lo."
+    title: "A Portable and Scalable Genomic Analysis Pipeline for <i>Streptococcus pneumoniae</i> Surveillance: GPS Pipeline"
+    url: https://doi.org/10.1101/2024.11.27.625679
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-11-29
+
+  - authors: "Amy Campbell, Chris Hauton, Ronny van Aerle, Jaime Martínez-Urtaza."
+    title: "Eco-Evolutionary Drivers of Vibrio parahaemolyticus Sequence Type 3 Expansion: Retrospective Machine Learning Approach"
+    url: https://doi.org/10.2196/62747
+    journal: "JMIR Bioinformatics and Biotechnology"
+    date: 2024-11-28
+
+  - authors: "Aunchalee Thanwisai, Ricardo A. R. Machado, Aashaq Hussain Bhat, Sacha J. Pidot, Sarunporn Tandhavanant, Chanakan Subkrasae, Wipanee Meesil, Jiranun Ardpairin, Supawan Pansri, Apichat Vitta."
+    title: "Xenorhabdus bharatensis sp. nov., Xenorhabdus entomophaga sp. nov., Xenorhabdus siamensis sp. nov., and Xenorhabdus thailandensis sp. nov. Isolated from Steinernema Entomopathogenic Nematodes"
+    url: https://doi.org/10.1007/s00284-024-03972-7
+    journal: "Current Microbiology"
+    date: 2024-11-25
+
+  - authors: "Ashley M. Alexander, Hui Qi Loo, Lauren C. Askew, Vishnu Raghuram, Timothy D. Read, Joanna B. Goldberg."
+    title: "Intraspecific Diversity of <i>Staphylococcus aureus</i> Populations Isolated from Cystic Fibrosis Respiratory Infections"
+    url: https://doi.org/10.1101/2024.11.16.623925
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-11-16
+
+  - authors: "Amy Campbell, Ronnie G. Gavilán, Chris Hauton, Ronny van Aerle, Jaime Martínez-Urtaza."
+    title: "Identifying gene-level mechanisms of successful dispersal of Vibrio parahaemolyticus during El Niño events"
+    url: https://doi.org/10.1099/mgen.0.001317
+    journal: "Microbial Genomics"
+    date: 2024-11-08
+
+  - authors: "Tamalee Roberts, Clare Ling, Wanitda Watthanaworawit, Chanvoleak Cheav, Amphonesavanh Sengduangphachanh, Joy Silisouk, Jill Hopkins, Koukeo Phommasone, Elizabeth M. Batty, Paul Turner, et al."
+    title: "AmpC β-lactamases detected in Southeast Asian <i>Escherichia coli</i> and <i>Klebsiella pneumoniae</i>"
+    url: https://doi.org/10.1093/jacamr/dlae195
+    journal: "JAC-Antimicrobial Resistance"
+    date: 2024-10-30
+
+  - authors: "Ricardo A. R. Machado, Antoinette P. Malan, Joaquín Abolafia, Jaspher Ewany, Aashaq Hussain Bhat, S. Patricia Stock."
+    title: "Photorhabdus viridis sp. nov. Isolated from Heterorhabditis zealandica Entomopathogenic Nematodes"
+    url: https://doi.org/10.1007/s00284-024-03935-y
+    journal: "Current Microbiology"
+    date: 2024-10-23
+
+  - authors: "Amy Campbell, Ronnie G. Gavilán, Michel A Marín, Chao Yang, Chris Hauton, Ronny van Aerle, Jaime Martínez-Urtaza."
+    title: "Evolutionary dynamics of the successful expansion of pandemic Vibrio parahaemolyticus ST3 in Latin America"
+    url: https://doi.org/10.1038/s41467-024-52159-y
+    journal: "Nature Communications"
+    date: 2024-09-07
+
+  - authors: "Ainhize Maruri-Aransolo, Marta Hernández-García, Raquel Barbero, Malkoa Michelena, María Dolores Pastor‐Vivero, Pedro Mondéjar-López, Amparó Solé, Rafael Cantón, Juan de Dios Caballero-Pérez, GEIFQ study group, et al."
+    title: "Genomic characterization of MRSA recovered from people with cystic fibrosis during two Spanish multicentre studies (2013 and 2021)"
+    url: https://doi.org/10.1093/jacamr/dlae160
+    journal: "JAC-Antimicrobial Resistance"
+    date: 2024-09-03
+
+  - authors: "Dalida Bivona, Emanuele Nicitra, Carmelo Bonomo, Maddalena Calvo, Giuseppe Migliorisi, Marianna Perez, Grete Francesca Privitera, Nicolò Musso, Stefania Stefani, Dafne Bongiorno."
+    title: "Molecular diversity in fusidic acid–resistant Methicillin Susceptible <i>Staphylococcus</i>  <i>aureus</i>"
+    url: https://doi.org/10.1093/jacamr/dlae154
+    journal: "JAC-Antimicrobial Resistance"
+    date: 2024-09-03
+
+  - authors: "Noémie Vingadassalon, Déborah Merda, Arnaud Felten, Virginie Chesnais, Christos Kourtis, Tom Van Nieuwenhuysen, Yacine Nia, Jacques‐Antoine Hennekinne, Marina Cavaiuolo."
+    title: "Epidemiology of Staphylococcus aureus food isolates: Comparison of conventional methods with whole genome sequencing typing methods"
+    url: https://doi.org/10.1016/j.fm.2024.104625
+    journal: "Food Microbiology"
+    date: 2024-09-02
+
+  - authors: "Michelle Su, Kim L. Hoang, McKenna J. Penley, Michelle H. Davis, Jennifer D. Gresham, Levi T. Morran, Timothy Read."
+    title: "Host and antibiotic jointly select for greater virulence in <i>Staphylococcus aureus</i>"
+    url: https://doi.org/10.1101/2024.08.31.610628
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-08-31
+
+  - authors: "Alberto J. Martín‐Rodríguez, Víctor Fernández‐Juárez, Valerie Diane Valeriano, Indiwari Mihindukulasooriya, Livia Ceresnova, Enrique Joffré, Susanne Jensie-Markopoulos, Edward R. B. Moore, Åsa Sjöling."
+    title: "A hotspot of diversity: novel Shewanella species isolated from Baltic Sea sediments delineate a sympatric species complex"
+    url: https://doi.org/10.1099/ijsem.0.006480
+    journal: "INTERNATIONAL JOURNAL OF SYSTEMATIC AND EVOLUTIONARY MICROBIOLOGY"
+    date: 2024-08-16
+
+  - authors: "Duc Quang Le, Tam Nguyen, Canh Hao Nguyen, Tho Huu Ho, Nam S. Vo, Trang Thu Nguyen, Hoang Anh Nguyen, Lê Sỹ Vinh, Thanh Hai Dang, Minh Duc Cao, et al."
+    title: "AMRomics: a scalable workflow to analyze large microbial genome collections"
+    url: https://doi.org/10.1186/s12864-024-10620-8
+    journal: "BMC Genomics"
+    date: 2024-07-22
+
+  - authors: "Carl M. Kobel, Velma T. E. Aho, Ove Øyås, Niels Nørskov‐Lauritsen, Ben J. Woodcroft, Phillip B. Pope."
+    title: "CompareM2 is a genomes-to-report pipeline for comparing microbial genomes"
+    url: https://doi.org/10.1101/2024.07.12.603264
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-07-16
+
+  - authors: "Daryl Domman, Sarah Shrum Davis, Paris S. Hamm, Karen Edge, Tim Hanosh, Jessica P. Houston, Anastacia Griego-Fisher, F. Lugo, Nicholas Wenzel, D’Eldra Malone, et al."
+    title: "Multidrug-resistant Shigella flexneri outbreak associated with a high-mortality spillover event into nonhuman primates"
+    url: https://doi.org/10.21203/rs.3.rs-4682172/v1
+    journal: "Research Square"
+    date: 2024-07-12
+
+  - authors: "Bastian Marquis, Trestan Pillonel, Alessia Carrara, Claire Bertelli."
+    title: "zDB: bacterial comparative genomics made easy"
+    url: https://doi.org/10.1128/msystems.00473-24
+    journal: "mSystems"
+    date: 2024-06-28
+
+  - authors: "Vishnu Raghuram, Robert A. Petit, Zach Karol, R. J. MEHTA, Daniel B. Weissman, Timothy D. Read."
+    title: "Average nucleotide identity-based <i>Staphylococcus aureus</i> strain grouping allows identification of strain-specific genes in the pangenome"
+    url: https://doi.org/10.1128/msystems.00143-24
+    journal: "mSystems"
+    date: 2024-06-27
+
+  - authors: "Ricardo A. R. Machado, Antoinette P. Malan, Anja Boss, Nicholle J. Claasen, Aashaq Hussain Bhat, Joaquín Abolafia."
+    title: "Photorhabdus africana sp. nov. isolated from Heterorhabditis entomopathogenic nematodes"
+    url: https://doi.org/10.1007/s00284-024-03744-3
+    journal: "Current Microbiology"
+    date: 2024-06-23
+
+  - authors: "Lenora Kepler, Manuel Jara, Bejan Mahmud, Gautam Dantas, Erik R. Dubberke, Cristina Lanzas, David A. Rasmussen."
+    title: "Quantifying the genomic determinants of fitness in <i>E. coli</i> ST131 using phylodynamics"
+    url: https://doi.org/10.1101/2024.06.10.598183
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-06-10
+
+  - authors: "Timo J Moilanen, Kerkko Visuri, Jonatan Lehtinen, Irene Ortega-Sanz, Jacob L. Steenwyk, Samuel Sihvonen."
+    title: "Solu – a Cloud Platform for Real-Time Genomic Pathogen Surveillance"
+    url: https://doi.org/10.1101/2024.05.30.596434
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-06-02
+
+  - authors: "Amy Campbell, Chris Hauton, Ronny van Aerle, Jaime Martínez-Urtaza."
+    title: "Eco-Evolutionary Drivers of Vibrio parahaemolyticus Sequence Type 3 Expansion: Retrospective Machine Learning Approach (Preprint)"
+    url: https://doi.org/10.2196/preprints.62747
+    journal: ""
+    date: 2024-05-30
+
+  - authors: "Xuechen Tian, Wee Fei Aaron Teo, Yixin Yang, Linyinxue Dong, Aloysius Wong, Li Chen, Halah Ahmed, Siew Woh Choo, Nicholas S. Jakubovics, Geok Yuan Annie Tan."
+    title: "Genome characterisation and comparative analysis of Schaalia dentiphila sp. nov. and its subspecies, S. dentiphila subsp. denticola subsp. nov., from the human oral cavity"
+    url: https://doi.org/10.1186/s12866-024-03346-w
+    journal: "BMC Microbiology"
+    date: 2024-05-28
+
+  - authors: "Liqin Cheng, Mário S. P. Correia, Shawn M. Higdon, Fabricio Romero García, Ioanna Tsiara, Enrique Joffré, Åsa Sjöling, Fredrik Boulund, Elisabeth Norin, Lars Engstrand, et al."
+    title: "The protective role of commensal gut microbes and their metabolites against bacterial pathogens"
+    url: https://doi.org/10.1080/19490976.2024.2356275
+    journal: "Gut Microbes"
+    date: 2024-05-26
+
+  - authors: "Y-C Huang, C-J Chen, A.-J. Kuo, K.Y. Hwang, C-C Chien, Chia‐Yin Lee, Tai‐Hsi Wu, Wen‐Chien Ko, Po‐Ren Hsueh."
+    title: "Dissemination of meticillin-resistant Staphylococcus aureus sequence type 8 (USA300) in Taiwan"
+    url: https://doi.org/10.1016/j.jhin.2024.04.024
+    journal: "Journal of Hospital Infection"
+    date: 2024-05-21
+
+  - authors: "Duc Quang Le, Son Hoang Nguyen, Tam Nguyen, Canh Hao Nguyen, Tho Huu Ho, Nam S. Vo, Trang Nguyen, Hoang Anh Nguyen, Minh Duc Cao."
+    title: "AMRViz enables seamless genomics analysis and visualization of antimicrobial resistance"
+    url: https://doi.org/10.1186/s12859-024-05792-9
+    journal: "BMC Bioinformatics"
+    date: 2024-05-16
+
+  - authors: "George Bouras, Ghais Houtak, Ryan R. Wick, Vijini Mallawaarachchi, Michael J. Roach, Bhavya Papudeshi, Louise M. Judd, Anna E. Sheppard, Robert A. Edwards, Sarah Vreugde."
+    title: "Hybracter: enabling scalable, automated, complete and accurate bacterial genome assemblies"
+    url: https://doi.org/10.1099/mgen.0.001244
+    journal: "Microbial Genomics"
+    date: 2024-05-08
+
+  - authors: "Katrina S. Hofstetter, Natasia F Jacko, Margot J. Shumaker, Brooke M. Talbot, Robert A. Petit, Timothy D. Read, Michael David."
+    title: "Strain Differences in Bloodstream and Skin Infection: Methicillin-Resistant <i>Staphylococcus aureus</i> Isolated in 2018–2021 in a Single Health System"
+    url: https://doi.org/10.1093/ofid/ofae261
+    journal: "Open Forum Infectious Diseases"
+    date: 2024-05-03
+
+  - authors: "Sverre Branders, Manfred Grabherr, Rafi Ahmad."
+    title: "Real-time Taxonomic Characterization of Long-read Mixed-species Sequencing Samples in Sorted Motif Distance Space: <i>Voyager</i>"
+    url: https://doi.org/10.1101/2024.04.13.589333
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-04-15
+
+  - authors: "Matin Nuhamunada, Omkar S. Mohite, Patrick V. Phaneuf, Bernhard Ø. Palsson, Tilmann Weber."
+    title: "BGCFlow: systematic pangenome workflow for the analysis of biosynthetic gene clusters across large genomic datasets"
+    url: https://doi.org/10.1093/nar/gkae314
+    journal: "Nucleic Acids Research"
+    date: 2024-04-11
+
+  - authors: "Gillian A.M. Tarr, Linda Chui, Kim Stanford, Emmanuel W. Bumunang, Rahat Zaheer, Vincent Li, Stephen B. Freedman, Chad Laing, Tim A. McAllister."
+    title: "Persistent cross-species transmission systems dominate Shiga toxin-producing <i>Escherichia coli</i> O157:H7 epidemiology in a high incidence region: a genomic epidemiology study"
+    url: https://doi.org/10.1101/2024.04.05.588308
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-04-07
+
+  - authors: "Marissa Duckett, Megan Taylor, Claire Bowman, Nic M. Vega."
+    title: "Parallel evolution of alternate morphotypes of <i>Chryseobacterium gleum</i> during experimental evolution with <i>Caenorhabditis elegans</i>"
+    url: https://doi.org/10.1093/femsec/fiae039
+    journal: "FEMS Microbiology Ecology"
+    date: 2024-03-28
+
+  - authors: "Xiaoyan Guo, Zijun Zhang, Qiankun Chen, Leying Wang, Xizhan Xu, Zhenyu Wei, Yang Zhang, Kexin Chen, Zhi­qun Wang, Xinxin Lu, et al."
+    title: "Whole Genome Sequencing Highlights the Pathogenic Profile in <i>Nocardia</i> Keratitis"
+    url: https://doi.org/10.1167/iovs.65.3.26
+    journal: "Investigative Ophthalmology & Visual Science"
+    date: 2024-03-19
+
+  - authors: "Guillermo Reyes, Irma Betancourt, Martha Borbor, Bonny Bayot."
+    title: "Draft genome sequence of <i>Bacillus velezensis</i> strain 3TSA-3, a potential probiotic for Pacific white shrimp <i>Penaeus vannamei</i> postlarvae isolated from commercial hatchery tanks"
+    url: https://doi.org/10.1128/mra.01208-23
+    journal: "Microbiology Resource Announcements"
+    date: 2024-03-19
+
+  - authors: "Ignasi Roca, Kathya Espinoza, Cinthia Irigoin-Lovera, Maria Piquet, Luciano A. Palomino-Kobayashi, Angie K. Castillo, Diego D. Gonzales-DelCarpio, Joaquim Viñes, Laura Muñoz, Barbara Ymaña, et al."
+    title: "Clonal dissemination of Acinetobacter radioresistens among Humboldt penguins (Spheniscus humboldti) inhabiting a barren northern Peruvian island"
+    url: https://doi.org/10.1556/1886.2023.00066
+    journal: "European Journal of Microbiology and Immunology"
+    date: 2024-03-14
+
+  - authors: "Kévin Bouiller, Natasia F Jacko, Margot J. Shumaker, Brooke M. Talbot, Timothy D. Read, Michael David."
+    title: "Factors associated with foreign body infection in methicillin-resistant Staphylococcus aureus bacteremia"
+    url: https://doi.org/10.3389/fimmu.2024.1335867
+    journal: "Frontiers in Immunology"
+    date: 2024-02-16
+
+  - authors: "Leah Cuthbertson, Ulrike Löber, Jonathan Ish-Horowicz, Claire McBrien, Colin Churchward, Jeremy C. Parker, Michael Olanipekun, Conor M. Burke, Aisling McGowan, Gwyneth A. Davies, et al."
+    title: "Genomic attributes of airway commensal bacteria and mucosa"
+    url: https://doi.org/10.1038/s42003-024-05840-3
+    journal: "Communications Biology"
+    date: 2024-02-12
+
+  - authors: "Vishnu Raghuram, Robert A. Petit, Zach Karol, R. J. MEHTA, Daniel B. Weissman, Timothy D. Read."
+    title: "Average Nucleotide Identity based <i>Staphylococcus aureus</i> strain grouping allows identification of strain-specific genes in the pangenome"
+    url: https://doi.org/10.1101/2024.01.29.577756
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2024-02-01
+
+  - authors: "Edwin Sakyi Kyei-Baffour, Kwabena Owusu-Boateng, Abiola Isawumi, Lydia Mosi."
+    title: "Pseudogenomic insights into the evolution of Mycobacterium ulcerans"
+    url: https://doi.org/10.1186/s12864-024-10001-1
+    journal: "BMC Genomics"
+    date: 2024-01-22
+
+  - authors: "Dalal M. Alkuraythi, Manal M. Alkhulaifi, Abdulwahab Z. Binjomah, Mohammed Alarwi, Mohammed I. Mujallad, Saleh Ali Alharbi, Mohammad Alshomrani, Takashi Gojobori, Sulaiman M. Alajel."
+    title: "Comparative genomic analysis of antibiotic resistance and virulence genes in Staphylococcus aureus isolates from patients and retail meat"
+    url: https://doi.org/10.3389/fcimb.2023.1339339
+    journal: "Frontiers in Cellular and Infection Microbiology"
+    date: 2024-01-12
+
+  - authors: "Jelly Vanderwoude, Sheyda Azimi, Timothy D. Read, Stephen P. Diggle."
+    title: "The role of hypermutation and collateral sensitivity in antimicrobial resistance diversity of <i>Pseudomonas aeruginosa</i> populations in cystic fibrosis lung infection"
+    url: https://doi.org/10.1128/mbio.03109-23
+    journal: "mBio"
+    date: 2024-01-03
+
+  - authors: "Adrien Le Meur, Rima Zein-Eddine, Ombeline Lamer, Fiona Hak, Gaëtan Senelle, Jean‐Philippe Vernadet, Samuel O’Donnell, Ricardo C. Rodŕıguez de la Vega, Guislaine Refrégier."
+    title: "Tools for short variant calling and the way to deal with big datasets"
+    url: https://doi.org/10.1016/b978-0-323-99886-4.00007-7
+    journal: "Elsevier eBooks"
+    date: 2024-01-01
+
+  - authors: "Ana Rafaela Kruemmel, Jessica L. Halpin, Victoria Foltz, Janet K. Dykes, Carolina Lúquez."
+    title: "Detection of a Streptogramin A O-acetyltransferase vot(D)-Like Gene in the Chromosome of Clostridium botulinum Isolated From Infants in the United States"
+    url: https://doi.org/10.1016/j.toxicon.2024.107432
+    journal: "Toxicon"
+    date: 2024-01-01
+
+  - authors: "Haley Sanderson, Aaron P. White."
+    title: "Methods for Genomic Epidemiology of Bacterial Pathogens: Example Salmonella"
+    url: https://doi.org/10.1007/978-1-0716-3890-3_2
+    journal: "Methods in molecular biology"
+    date: 2024-01-01
+
+  - authors: "Alina D. Matsvay, V. M. Bezrukov, P.A. Nikolaeva, И.Ф. Стеценко, Varvara Nurmukanova, G.S. Dikaya, Maria A. Gordukova, E. V. Galeeva, German A. Shipulin."
+    title: "Cultivation and molecular characterization of complete genome sequences of M. pneumoniae isolated in Russia"
+    url: https://doi.org/10.36488/cmac.2024.3.274-284
+    journal: "Clinical Microbiology and Antimicrobial Chemotherapy"
+    date: 2024-01-01
+
+  - authors: "Ghadeer Jdeed, Vera V. Morozova, Yuliya Kozlova, Artem Tikunov, Tatyana Ushakova, Alevtina Bardashevа, Andrey D. Manakhov, Maria Mitina, Elena V. Zhirakovskaya, Nina V. Tikunova."
+    title: "StM171, a Stenotrophomonas maltophilia Bacteriophage That Affects Sensitivity to Antibiotics in Host Bacteria and Their Biofilm Formation"
+    url: https://doi.org/10.3390/v15122455
+    journal: "Viruses"
+    date: 2023-12-18
+
+  - authors: "Dalal M. Alkuraythi, Manal M. Alkhulaifi, Abdulwahab Z. Binjomah, Mohammed Alarwi, Hind Aldakhil, Mohammed I. Mujallad, Saleh Ali Alharbi, Mohammad Alshomrani, Saeed Mastour Alshahrani, Takashi Gojobori, et al."
+    title: "Clonal Flux and Spread of Staphylococcus aureus Isolated from Meat and Its Genetic Relatedness to Staphylococcus aureus Isolated from Patients in Saudi Arabia"
+    url: https://doi.org/10.3390/microorganisms11122926
+    journal: "Microorganisms"
+    date: 2023-12-06
+
+  - authors: "Xuechen Tian, Wee Fei Aaron Teo, Wei Yee Wee, Yixin Yang, Halah Ahmed, Nicholas S. Jakubovics, Siew Woh Choo, Geok Yuan Annie Tan."
+    title: "Genome characterization and taxonomy of Actinomyces acetigenes sp. nov., and Actinomyces stomatis sp. nov., previously isolated from the human oral cavity"
+    url: https://doi.org/10.1186/s12864-023-09831-2
+    journal: "BMC Genomics"
+    date: 2023-12-04
+
+  - authors: "Claudio Neidhöfer, Marcel Neuenhoff, Robert Jozić, Brenda Atangcho, Sandra Unsleber, Ulrike Neder, Silke Grumaz, Marijo Parčina."
+    title: "Exploring clonality and virulence gene associations in bloodstream infections using whole-genome sequencing and clinical data"
+    url: https://doi.org/10.3389/fcimb.2023.1274573
+    journal: "Frontiers in Cellular and Infection Microbiology"
+    date: 2023-11-14
+
+  - authors: "Vishnu Raghuram, Jessica J. Gunoskey, Katrina S. Hofstetter, Natasia F Jacko, Margot J. Shumaker, Yi‐Juan Hu, Timothy D. Read, Michael David."
+    title: "Comparison of genomic diversity between single and pooled Staphylococcus aureus colonies isolated from human colonization cultures"
+    url: https://doi.org/10.1099/mgen.0.001111
+    journal: "Microbial Genomics"
+    date: 2023-11-07
+
+  - authors: "Kamalika H. Ubeyratne, Roshan P. Madalagama, Xin Liu, Sujatha Pathirage, Sujeewa Ariyawansa, Matthew K.L. Wong, Hein M. Tun."
+    title: "Phenotypic and genotypic characterization of antibiotic-resistant Salmonella isolated from humans, aquaculture, and poultry in Sri Lanka: A retrospective study"
+    url: https://doi.org/10.1016/j.jiph.2023.10.028
+    journal: "Journal of Infection and Public Health"
+    date: 2023-10-31
+
+  - authors: "Juliette Hayer, Jacques Dainat, Ella Marcy, Anne‐Laure Bañuls."
+    title: "Baargin: a Nextflow workflow for the automatic analysisof bacterial genomics data with a focus on AntimicrobialResistance"
+    url: https://doi.org/10.21105/joss.05397
+    journal: "The Journal of Open Source Software"
+    date: 2023-10-19
+
+  - authors: "Hamza A. Babiker, Amina Al‐Jardani, Saleh Al-Azri, Robert A. Petit, Eltaib Saad, Sarah Al-Mahrouqi, Reham A.H. Mohamed, Salama Al-Hamidhi, Abdullah Balkhair, Najma Al Kharusi, et al."
+    title: "<i>Mycobacterium tuberculosis</i> epidemiology in Oman: whole-genome sequencing uncovers transmission pathways"
+    url: https://doi.org/10.1128/spectrum.02420-23
+    journal: "Microbiology Spectrum"
+    date: 2023-09-28
+
+  - authors: "Felipe Marques de Almeida, Tatiana Amabile de Campos, Γεώργιος Παππάς."
+    title: "Scalable and versatile container-based pipelines for de novo genome assembly and bacterial annotation."
+    url: https://doi.org/10.12688/f1000research.139488.1
+    journal: "F1000Research"
+    date: 2023-09-25
+
+  - authors: "Nicholas J. Pitcher, Andries Feder, Nicholas C. Bolden, Christian Zirbes, Anthony J. Pamatmat, L. Boyken, Jared J. Hill, Alyssa R. Bartels, Andrew L. Thurman, Valérie Reeb, et al."
+    title: "Parallel evolution of linezolid-resistant <i>Staphylococcus aureus</i> in patients with cystic fibrosis"
+    url: https://doi.org/10.1128/spectrum.02084-23
+    journal: "Microbiology Spectrum"
+    date: 2023-09-19
+
+  - authors: "Dan Wang, Jon Palmer, Graham C. Fletcher, Stephen L. W. On, Dragana Gagić, Steve Flint."
+    title: "Efficacy of commercial peroxyacetic acid on Vibrio parahaemolyticus planktonic cells and biofilms on stainless steel and Greenshell™ mussel (Perna canaliculus) surfaces"
+    url: https://doi.org/10.1016/j.ijfoodmicro.2023.110372
+    journal: "International Journal of Food Microbiology"
+    date: 2023-08-29
+
+  - authors: "Ricardo A. R. Machado, Aashaq Hussain Bhat, Carlos Castañeda-Álvarez, Tarique Hassan Askary, Vladimı́r Půža, Sylvie Pagès, Joaquín Abolafia."
+    title: "Xenorhabdus aichiensis sp. nov., Xenorhabdus anantnagensis sp. nov., and Xenorhabdus yunnanensis sp. nov., Isolated from Steinernema Entomopathogenic Nematodes"
+    url: https://doi.org/10.1007/s00284-023-03373-2
+    journal: "Current Microbiology"
+    date: 2023-07-26
+
+  - authors: "Dalal M. Alkuraythi, Manal M. Alkhulaifi, Abdulwahab Z. Binjomah, Mohammed Alarawi, Hind Aldakhil, Mohammed I. Mujallad, Saleh Ali Alharbi, Mohammed Alshomrani, Saeed Mastour Alshahrani, Takashi Gojobori, et al."
+    title: "Genetic characterization and dissemination of <i>Staphylococcus aureus</i> and Staphylococci genus: food and health perspective"
+    url: https://doi.org/10.1101/2023.07.24.550257
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2023-07-24
+
+  - authors: "Irene Ortega-Sanz, José A. Barbero‐Aparicio, Antonio Canepa, Jordi Rovira, Beatriz Melero."
+    title: "CamPype: an open-source workflow for automated bacterial whole-genome sequencing analysis focused on Campylobacter"
+    url: https://doi.org/10.1186/s12859-023-05414-w
+    journal: "BMC Bioinformatics"
+    date: 2023-07-20
+
+  - authors: "Claire K. A. Elek, Teagan L. Brown, Thanh Le-Viet, Rhiannon Evans, David Baker, Andrea Telatin, Sumeet K. Tiwari, Haider Al-Khanaq, Gaëtan Thilliez, Robert A. Kingsley, et al."
+    title: "A hybrid and poly-polish workflow for the complete and accurate assembly of phage genomes: a case study of ten przondoviruses"
+    url: https://doi.org/10.1099/mgen.0.001065
+    journal: "Microbial Genomics"
+    date: 2023-07-18
+
+  - authors: "Kevin Libuit, Emma L. Doughty, James R. Otieno, Frank Ambrosio, Curtis J. Kapsak, Emily Smith, Sage M. Wright, Michelle R. Scribner, Robert A. Petit, Catarina Inês Mendes, et al."
+    title: "Accelerating bioinformatics implementation in public health"
+    url: https://doi.org/10.1099/mgen.0.001051
+    journal: "Microbial Genomics"
+    date: 2023-07-10
+
+  - authors: "Maho Tokuda, Masahiro Yuki, Moriya Ohkuma, Kazuhide Kimbara, Haruo Suzuki, Masaki Shintani."
+    title: "Transconjugant range of PromA plasmids in microbial communities is predicted by sequence similarity with the bacterial host chromosome"
+    url: https://doi.org/10.1099/mgen.0.001043
+    journal: "Microbial Genomics"
+    date: 2023-06-21
+
+  - authors: "Ricardo A. R. Machado, Aashaq Hussain Bhat, Carlos Castañeda-Álvarez, Vladimı́r Půža, Ernesto San‐Blas."
+    title: "Photorhabdus aballayi sp. nov. and Photorhabdus luminescens subsp. venezuelensis subsp. nov., isolated from Heterorhabditis amazonensis entomopathogenic nematodes"
+    url: https://doi.org/10.1099/ijsem.0.005872
+    journal: "INTERNATIONAL JOURNAL OF SYSTEMATIC AND EVOLUTIONARY MICROBIOLOGY"
+    date: 2023-05-12
+
+  - authors: "Nicholas J. Pitcher, Andries Feder, Nicholas C. Bolden, Christian Zirbes, Anthony J. Pamatmat, L. Boyken, Jared J. Hill, Andrew L. Thurman, Valérie Reeb, Harry S. Porterfield, et al."
+    title: "Parallel Evolution of Linezolid Resistant <i>Staphylococcus aureus</i> in Patients with Cystic Fibrosis"
+    url: https://doi.org/10.1101/2023.05.02.539145
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2023-05-02
+
+  - authors: "Ricardo A. R. Machado, Aashaq Hussain Bhat, Patrick Fallet, Ted C. J. Turlings, Joëlle Kajuga, Xun Yan, Stefan Toepfer."
+    title: "Xenorhabdus bovienii subsp. africana subsp. nov., isolated from Steinernema africanum entomopathogenic nematodes"
+    url: https://doi.org/10.1099/ijsem.0.005795
+    journal: "INTERNATIONAL JOURNAL OF SYSTEMATIC AND EVOLUTIONARY MICROBIOLOGY"
+    date: 2023-04-27
+
+  - authors: "Alberto J. Martín‐Rodríguez, Kaisa Thorell, Enrique Joffré, Susanne Jensie-Markopoulos, Edward R. B. Moore, Åsa Sjöling."
+    title: "Shewanella septentrionalis sp. nov. and Shewanella holmiensis sp. nov., isolated from Baltic Sea water and sediments"
+    url: https://doi.org/10.1099/ijsem.0.005767
+    journal: "INTERNATIONAL JOURNAL OF SYSTEMATIC AND EVOLUTIONARY MICROBIOLOGY"
+    date: 2023-04-21
+
+  - authors: "Ekaterina Avershina, Abdolrahman Khezri, Rafi Ahmad."
+    title: "Clinical Diagnostics of Bacterial Infections and Their Resistance to Antibiotics—Current State and Whole Genome Sequencing Implementation Perspectives"
+    url: https://doi.org/10.3390/antibiotics12040781
+    journal: "Antibiotics"
+    date: 2023-04-19
+
+  - authors: "Chalita Chomkatekaew, Janjira Thaipadungpanit, Pasco Hearn, Sona Soeng, Sreymom Pol, Leakhena Neou, Jill Hopkins, Paul Turner, Elizabeth M. Batty."
+    title: "Detection of maternal transmission of resistant Gram-negative bacteria in a Cambodian hospital setting"
+    url: https://doi.org/10.3389/fmicb.2023.1158056
+    journal: "Frontiers in Microbiology"
+    date: 2023-04-14
+
+  - authors: "Michelle Gompelman, Guus T J Wezendonk, Yannick Wouters, Judith Beurskens-Meijerink, Konstantinos C. Fragkos, Farooq Rahman, Jordy P. M. Coolen, Ingrid J.M. van Weerdenburg, Heiman Wertheim, Wietske Kievit, et al."
+    title: "Randomized clinical trial: Long-term Staphylococcus aureus decolonization in patients on home parenteral nutrition"
+    url: https://doi.org/10.1016/j.clnu.2023.03.010
+    journal: "Clinical Nutrition"
+    date: 2023-03-17
+
+  - authors: "Rajnish Kumar, Garima Yadav, Mohammed Kuddus, Ghulam Md Ashraf, Rachana Singh."
+    title: "Unlocking the microbial studies through computational approaches: how far have we reached?"
+    url: https://doi.org/10.1007/s11356-023-26220-0
+    journal: "Environmental Science and Pollution Research"
+    date: 2023-03-15
+
+  - authors: "Ricardo A. R. Machado, Ameni Loulou, Aashaq Hussain Bhat, Maristella Mastore, Céline Terrettaz, Maurizio Francesco Brivio, Sadreddine Kallel."
+    title: "Acinetobacter nematophilus sp. nov., Alcaligenes nematophilus sp. nov., Enterobacter nematophilus sp. nov., and Kaistia nematophila sp. nov., Isolated from Soil-Borne Nematodes and Proposal for the Elevation of Alcaligenes faecalis subsp. faecalis, Alcaligenes faecalis subsp. parafaecalis, and Alcaligenes faecalis subsp. phenolicus to the Species Level"
+    url: https://doi.org/10.3390/taxonomy3010012
+    journal: "Taxonomy"
+    date: 2023-03-09
+
+  - authors: "Eve Beauchemin, Claire Hunter, Corinne F. Maurice."
+    title: "Actively replicating gut bacteria identified by 5-ethynyl-2’-deoxyuridine (EdU) click chemistry and cell sorting"
+    url: https://doi.org/10.1080/19490976.2023.2180317
+    journal: "Gut Microbes"
+    date: 2023-02-23
+
+  - authors: "Ameni Loulou, Maristella Mastore, Sara Caramella, Aashaq Hussain Bhat, Maurizio Francesco Brivio, Ricardo A. R. Machado, Sadreddine Kallel."
+    title: "Entomopathogenic potential of bacteria associated with soil-borne nematodes and insect immune responses to their infection"
+    url: https://doi.org/10.1371/journal.pone.0280675
+    journal: "PLoS ONE"
+    date: 2023-01-23
+
+  - authors: "Daichi Morita, Hiroki Arai, Junko Isobe, Emi Maenishi, Takanori Kumagai, Fumito Maruyama, Teruo Kuroda."
+    title: "Whole-Genome and Plasmid Comparative Analysis of Campylobacter jejuni from Human Patients in Toyama, Japan, from 2015 to 2019"
+    url: https://doi.org/10.1128/spectrum.02659-22
+    journal: "Microbiology Spectrum"
+    date: 2023-01-09
+
+  - authors: "Rahul Jain, Priyanka Bhardwaj, Shweta Guleria, Anita Pandey, Sanjay Kumar."
+    title: "Polyamine metabolizing rhizobacteria Pseudomonas sp. GBPI_506 modulates hormone signaling to enhance lateral roots and nicotine biosynthesis in Nicotiana benthamiana"
+    url: https://doi.org/10.1016/j.plaphy.2023.01.010
+    journal: "Plant Physiology and Biochemistry"
+    date: 2023-01-09
+
+  - authors: "Masato Suzuki, Yusuke Hashimoto, Aki Hirabayashi, Koji Yahara, Mitsunori Yoshida, Hanako Fukano, Yoshihiko Hoshino, Keigo Shibayama, Haruyoshi Tomita."
+    title: "Genomic Epidemiological Analysis of Antimicrobial-Resistant Bacteria with Nanopore Sequencing"
+    url: https://doi.org/10.1007/978-1-0716-2996-3_16
+    journal: "Methods in molecular biology"
+    date: 2023-01-01
+
+  - authors: "Sibasree Hojaisa, Anupam Nath Jha."
+    title: "Databases and Tools for Microbial Genome and Human Microbiome Studies"
+    url: https://doi.org/10.1007/978-981-99-2816-3_3
+    journal: ""
+    date: 2023-01-01
+
+  - authors: "Irene Ortega-Sanz, José A. Barbero‐Aparicio, Antonio Canepa, Jordi Rovira, Beatriz Melero."
+    title: "Additional file 1 of CamPype: an open-source workflow for automated bacterial whole-genome sequencing analysis focused on Campylobacter"
+    url: https://doi.org/10.6084/m9.figshare.23722209
+    journal: "Figshare"
+    date: 2023-01-01
+
+  - authors: "Luc Cornet, Benoit Durieu, Frederik Baert, Elizabet D’hooge, David Colignon, Loïc Meunier, Valérian Lupo, Ilse Cleenwerck, Heide‐Marie Daniel, Leen Rigouts, et al."
+    title: "The GEN-ERA toolbox: unified and reproducible workflows for research in microbial genomics"
+    url: https://doi.org/10.1093/gigascience/giad022
+    journal: "GigaScience"
+    date: 2022-12-28
+
+  - authors: "Ilaria Cavallo, Francesca Sivori, Mauro Truglio, Flavio De Maio, Federica Lucantoni, Giorgia Cardinali, Martina Pontone, Thierry Bernardi, Maurizio Sanguinetti, B. Capitanio, et al."
+    title: "Skin dysbiosis and Cutibacterium acnes biofilm in inflammatory acne lesions of adolescents"
+    url: https://doi.org/10.1038/s41598-022-25436-3
+    journal: "Scientific Reports"
+    date: 2022-12-06
+
+  - authors: "Aitor Atxaerandio-Landa, Ainhoa Arrieta-Gisasola, Lorena Laorden, Joseba Bikandi, Javier Garaizar, Irati Martínez-Malaxetxebarria, Ilargi Martínez-Ballesteros."
+    title: "A Practical Bioinformatics Workflow for Routine Analysis of Bacterial WGS Data"
+    url: https://doi.org/10.3390/microorganisms10122364
+    journal: "Microorganisms"
+    date: 2022-11-29
+
+  - authors: "Poonam Chitale, Alexander Lemenze, Emily C. Fogarty, Avi Shah, Courtney Grady, Aubrey R. Odom-Mabey, W. Evan Johnson, Jason H. Yang, A. Murat Eren, Roland Brosch, et al."
+    title: "A comprehensive update to the Mycobacterium tuberculosis H37Rv reference genome"
+    url: https://doi.org/10.1038/s41467-022-34853-x
+    journal: "Nature Communications"
+    date: 2022-11-18
+
+  - authors: "Dan Wang, Graham C. Fletcher, Stephen L. W. On, Jon Palmer, Dragana Gagić, Steve Flint."
+    title: "Biofilm formation, sodium hypochlorite susceptibility and genetic diversity of Vibrio parahaemolyticus"
+    url: https://doi.org/10.1016/j.ijfoodmicro.2022.110011
+    journal: "International Journal of Food Microbiology"
+    date: 2022-11-07
+
+  - authors: "Priyanka Bhardwaj, Rahul Jain, Sanjay Kumar."
+    title: "Draft Genome Sequence of Endophytic Sphingomonas faeni Strain ALB2, Isolated from the Leaf of a Cold-Desert Medicinal Plant"
+    url: https://doi.org/10.1128/mra.00687-22
+    journal: "Microbiology Resource Announcements"
+    date: 2022-10-13
+
+  - authors: "Jon G. Sanders, Weiwei Yan, Deus Mjungu, Elizabeth V. Lonsdorf, John Hart, Crickette Sanz, David Morgan, Martine Peeters, Beatrice H. Hahn, Andrew H. Moeller."
+    title: "A low-cost genomics workflow enables isolate screening and strain-level analyses within microbiomes"
+    url: https://doi.org/10.1186/s13059-022-02777-w
+    journal: "Genome biology"
+    date: 2022-10-12
+
+  - authors: "Megan Taylor, Lili Janasky, Nic M. Vega."
+    title: "Convergent structure with divergent adaptations in combinatorial microbiome communities"
+    url: https://doi.org/10.1093/femsec/fiac115
+    journal: "FEMS Microbiology Ecology"
+    date: 2022-09-28
+
+  - authors: "Leah Cuthbertson, Ulrike Löber, Jonathan Ish-Horowicz, Claire McBrien, Colin Churchward, Jeremy C. Parker, Michael Olanipekun, Conor M. Burke, Orla O’Carroll, John L. Faul, et al."
+    title: "Genomic and ecologic characteristics of the airway microbial-mucosal complex"
+    url: https://doi.org/10.1101/2022.09.08.507073
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2022-09-08
+
+  - authors: "Ahmed Babiker, Chris Bower, Joseph D. Lutgring, Robert A. Petit, Jessica Howard‐Anderson, Uzma Ansari, Gillian McAllister, Michelle Adamczyk, Erin Breaker, Sarah W. Satola, et al."
+    title: "Clinical and Genomic Epidemiology of <i>mcr-9</i> -Carrying Carbapenem-Resistant <i>Enterobacterales</i> Isolates in Metropolitan Atlanta, 2012 to 2017"
+    url: https://doi.org/10.1128/spectrum.02522-21
+    journal: "Microbiology Spectrum"
+    date: 2022-07-20
+
+  - authors: "Poonam Chitale, Alexander Lemenze, Emily C. Fogarty, Avi Shah, Courtney Grady, Aubrey R. Odom-Mabey, W. Evan Johnson, Jason H. Yang, A. Murat Eren, Roland Brosch, et al."
+    title: "A comprehensive update to the <i>Mycobacterium tuberculosis</i> H37Rv reference genome"
+    url: https://doi.org/10.1101/2022.07.15.500236
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2022-07-16
+
+  - authors: "Daichi Morita, Hiroki Arai, Junko Isobe, Emi Maenishi, Takanori Kumagai, Fumito Maruyama, Teruo Kuroda."
+    title: "Diversity and characteristics of pTet family plasmids revealed by genomic epidemiology of <i>Campylobacter jejuni</i> from human patients in Toyama, Japan from 2015 to 2019"
+    url: https://doi.org/10.1101/2022.06.28.498051
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2022-06-29
+
+  - authors: "Caiyan Wang, Yang Xia, Yunfei Liu, Kang Chen, N. Lu, Di Tian, Hui Lu, Fuhai Han, Jian Xu, Tetsuya Yomo."
+    title: "CleanSeq: A Pipeline for Contamination Detection, Cleanup, and Mutation Verifications from Microbial Genome Sequencing Data"
+    url: https://doi.org/10.3390/app12126209
+    journal: "Applied Sciences"
+    date: 2022-06-18
+
+  - authors: "Felicita Dure, Melise Chaves Silveira, Cláudio Marcos Rocha-de-Souza, Robson Souza Leão, Ivson Cassiano de Oliveira Santos, Rodolpho Mattos Albano, Elizabeth Andrade Marques, Ana Paula D’Alincourt Carvalho-Assef, Fabrício Alves Barbosa da Silva."
+    title: "CABGen: A Web Application for the Bioinformatic Analysis of Bacterial Genomes"
+    url: https://doi.org/10.3389/fmicb.2022.893474
+    journal: "Frontiers in Microbiology"
+    date: 2022-05-27
+
+  - authors: "Brooke M. Talbot, Natasia F Jacko, Robert A. Petit, David A. Pegues, Margot J. Shumaker, Timothy D. Read, Michael David."
+    title: "Unsuspected Clonal Spread of Methicillin-Resistant <i>Staphylococcus aureus</i> Causing Bloodstream Infections in Hospitalized Adults Detected Using Whole Genome Sequencing"
+    url: https://doi.org/10.1093/cid/ciac339
+    journal: "Clinical Infectious Diseases"
+    date: 2022-04-28
+
+  - authors: "Jon G. Sanders, Weiwei Yan, Andrew H. Moeller."
+    title: "Low-cost genomics enable high-throughput isolate screening and strain-level microbiome profiling"
+    url: https://doi.org/10.1101/2022.04.11.487950
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2022-04-11
+
+  - authors: "Audun Sivertsen, Ruben Dyrhovden, Marit Gjerde Tellevik, Torbjørn S. Bruvold, Eirik Nybakken, Dag Harald Skutlaberg, Ingerid Skarstein, Øyvind Kommedal."
+    title: "Escherichia marmotae—a Human Pathogen Easily Misidentified as Escherichia coli"
+    url: https://doi.org/10.1128/spectrum.02035-21
+    journal: "Microbiology Spectrum"
+    date: 2022-04-05
+
+  - authors: "Xinrong Li, Liying Zhu, Xin Wang, Jinjun Li, Biao Tang."
+    title: "Evaluation of IR Biotyper for Lactiplantibacillus plantarum Typing and Its Application Potential in Probiotic Preliminary Screening"
+    url: https://doi.org/10.3389/fmicb.2022.823120
+    journal: "Frontiers in Microbiology"
+    date: 2022-03-24
+
+  - authors: "Vishnu Raghuram, Ashley M. Alexander, Hui Qi Loo, Robert A. Petit, Joanna B. Goldberg, Timothy D. Read."
+    title: "Species-Wide Phylogenomics of the Staphylococcus aureus <i>Agr</i> Operon Revealed Convergent Evolution of Frameshift Mutations"
+    url: https://doi.org/10.1128/spectrum.01334-21
+    journal: "Microbiology Spectrum"
+    date: 2022-01-19
+
+  - authors: "Vincenzo Pennone, José F. Cobo‐Díaz, Miguel Prieto Maradona, Avelino Álvarez‐Ordóñez."
+    title: "Application of genomics and metagenomics to improve food safety based on an enhanced characterisation of antimicrobial resistance"
+    url: https://doi.org/10.1016/j.cofs.2021.12.002
+    journal: "Current Opinion in Food Science"
+    date: 2021-12-16
+
+  - authors: "Georg Conrads, Tim Klomp, Dongmei Deng, Johannes-Simon Wenzler, Andreas Braun, Mohamed M. H. Abdelbary."
+    title: "The Antimicrobial Susceptibility of Porphyromonas gingivalis: Genetic Repertoire, Global Phenotype, and Review of the Literature"
+    url: https://doi.org/10.3390/antibiotics10121438
+    journal: "Antibiotics"
+    date: 2021-11-24
+
+  - authors: "Oliver Schwengers, Lukas Jelonek, Marius Alfred Dieckmann, Sebastian Beyvers, Jochen Blom, Alexander Goesmann."
+    title: "Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification"
+    url: https://doi.org/10.1099/mgen.0.000685
+    journal: "Microbial Genomics"
+    date: 2021-11-05
+
+  - authors: "Karen L. Bell, Robert A. Petit, Anya Cutler, Emily K. Dobbs, J. Michael Macpherson, Timothy D. Read, Kevin S. Burgess, Berry J. Brosi."
+    title: "Comparing whole‐genome shotgun sequencing and DNA metabarcoding approaches for species identification and quantification of pollen species mixtures"
+    url: https://doi.org/10.1002/ece3.8281
+    journal: "Ecology and Evolution"
+    date: 2021-11-01
+
+  - authors: "Oliver Schwengers, Lukas Jelonek, Marius Alfred Dieckmann, Sebastian Beyvers, Jochen Blom, Alexander Goesmann."
+    title: "Bakta: Rapid &amp; standardized annotation of bacterial genomes via alignment-free sequence identification"
+    url: https://doi.org/10.1101/2021.09.02.458689
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2021-09-02
+
+  - authors: "Vishnu Raghuram, Ashley M. Alexander, Hui Qi Loo, Robert A. Petit, Joanna B. Goldberg, Timothy D. Read."
+    title: "Species-wide phylogenomics of the <i>Staphylococcus aureus agr</i> operon reveals convergent evolution of frameshift mutations"
+    url: https://doi.org/10.1101/2021.07.29.454156
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2021-07-30
+
+  - authors: "Samantha L. Goldman, Jon G. Sanders, Weiwei Yan, Anthony Denice, Margaret Cornwall, Kathleen Ivey, Emily N. Taylor, Alex R. Gunderson, Michael J. Sheehan, Deus Mjungu, et al."
+    title: "Culture‐enriched community profiling improves resolution of the vertebrate gut microbiota"
+    url: https://doi.org/10.1111/1755-0998.13456
+    journal: "Molecular Ecology Resources"
+    date: 2021-06-26
+
+  - authors: "Valentine Murigneux, Leah W. Roberts, Brian M. Forde, Minh‐Duy Phan, Nguyen Thi Khanh Nhu, Adam Irwin, Patrick N. A. Harris, David L. Paterson, Mark A. Schembri, David M. Whiley, et al."
+    title: "MicroPIPE: validating an end-to-end workflow for high-quality complete bacterial genome construction"
+    url: https://doi.org/10.1186/s12864-021-07767-z
+    journal: "BMC Genomics"
+    date: 2021-06-25
+
+  - authors: "Natasha Pavlovikj, João Carlos Gomes‐Neto, Jitender S. Deogun, Andrew K. Benson."
+    title: "ProkEvo: an automated, reproducible, and scalable framework for high-throughput bacterial population genomics analyses"
+    url: https://doi.org/10.7717/peerj.11376
+    journal: "PeerJ"
+    date: 2021-05-21
+
+  - authors: ""
+    title: "Peer Review #1 of \"ProkEvo: an automated, reproducible, and scalable framework for high-throughput bacterial population genomics analyses (v0.2)\""
+    url: https://doi.org/10.7287/peerj.11376v0.2/reviews/1
+    journal: ""
+    date: 2021-05-21
+
+  - authors: ""
+    title: "Peer Review #2 of \"ProkEvo: an automated, reproducible, and scalable framework for high-throughput bacterial population genomics analyses (v0.1)\""
+    url: https://doi.org/10.7287/peerj.11376v0.1/reviews/2
+    journal: ""
+    date: 2021-05-21
+
+  - authors: "Natasha Pavlovikj, Joao Gomes-Neto, Jitender Deogun, Andrew Benson, S Quainoo, Jpm Coolen, Saft Van Hijum, M Huynen, Wjg Melchers, W Van Schaik, et al."
+    title: "Peer Review #1 of \"ProkEvo: an automated, reproducible, and scalable framework for high-throughput bacterial population genomics analyses (v0.1)\""
+    url: https://doi.org/10.7287/peerj.11376v0.1/reviews/1
+    journal: ""
+    date: 2021-05-21
+
+  - authors: "Aleksei A. Korzhenkov."
+    title: "ZGA: a flexible pipeline for read processing, de novo assembly and annotation of prokaryotic genomes"
+    url: https://doi.org/10.1101/2021.04.27.441618
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2021-04-28
+
+  - authors: "Carlus Deneke, Holger Brendebach, Laura Uelze, Maria Borowiak, Burkhard Malorny, Simon H. Tausch."
+    title: "Species-Specific Quality Control, Assembly and Contamination Detection in Microbial Isolate Sequences with AQUAMIS"
+    url: https://doi.org/10.3390/genes12050644
+    journal: "Genes"
+    date: 2021-04-26
+
+  - authors: "Ivan Sserwadda, Gerald Mboowa."
+    title: "rMAP: the Rapid Microbial Analysis Pipeline for ESKAPE bacterial group whole-genome sequence data"
+    url: https://doi.org/10.1099/mgen.0.000583
+    journal: "Microbial Genomics"
+    date: 2021-03-24
+
+  - authors: "Grace A. Beggs, Julio C. Ayala, Logan G. Kavanaugh, Timothy D. Read, Grace M. Hooks, Maria A. Schumacher, William M. Shafer, Richard G. Brennan."
+    title: "Structures of <i>Neisseria gonorrhoeae</i> MtrR-operator complexes reveal molecular mechanisms of DNA recognition and antibiotic resistance-conferring clinical mutations"
+    url: https://doi.org/10.1093/nar/gkab213
+    journal: "Nucleic Acids Research"
+    date: 2021-03-17
+
+  - authors: "Marcelle Oliveira de Almeida, Rodrigo Dias de Oliveira Carvalho, Flávia Figueira Aburjaile, Fábio Malcher Miranda, Janaína Canário Cerqueira, Bertram Brenig, Preetam Ghosh, Rommel Thiago Jucá Ramos, Rodrigo Bentes Kato, Siomar de Castro Soares, et al."
+    title: "Characterization of the first vaginal <i>Lactobacillus crispatus</i> genomes isolated in Brazil"
+    url: https://doi.org/10.7717/peerj.11079
+    journal: "PeerJ"
+    date: 2021-03-10
+
+  - authors: "Valentine Murigneux, Leah W. Roberts, Brian M. Forde, Minh‐Duy Phan, Nguyen Thi Khanh Nhu, Adam Irwin, Patrick N. A. Harris, David L. Paterson, Mark A. Schembri, David M. Whiley, et al."
+    title: "MicroPIPE: <i>An end-to-end solution for high-quality complete bacterial genome construction</i>"
+    url: https://doi.org/10.1101/2021.02.02.429319
+    journal: "bioRxiv (Cold Spring Harbor Laboratory)"
+    date: 2021-02-03
+
+  - authors: "Ricardo A. R. Machado, Aashaq Hussain Bhat, Joaquín Abolafia, Arthur Muller, Pamela Bruno, Patrick Fallet, Carla C. M. Arce, Ted C. J. Turlings, Julio S. Bernal, Joëlle Kajuga, et al."
+    title: "Multi-locus phylogenetic analyses uncover species boundaries and reveal the occurrence of two new entomopathogenic nematode species, <i>Heterorhabditis ruandica</i> n. sp. and <i>Heterorhabditis zacatecana</i> n. sp."
+    url: https://doi.org/10.21307/jofnem-2021-089
+    journal: "Journal of Nematology"
+    date: 2021-01-01
+
+  - authors: "Marcelle Oliveira de Almeida, Marcus Vinícius Canário Viana, Janaína Canário Cerqueira, Flávia Figueira Aburjaile, Andrey A. Zamyatnin, Vasco Azevedo, Rodrigo Dias de Oliveira Carvalho."
+    title: "Novel insights in bacterial vaginosis etiology through genomic approaches"
+    url: https://doi.org/10.1590/0001-3765202120200945
+    journal: "Anais da Academia Brasileira de Ciências"
+    date: 2021-01-01
+
+  - authors: "António Lourenço, Kieran Jordan, Olivia McAuliffe."
+    title: "Phylogenomics of Foodborne Pathogens: The Case of Listeria monocytogenes"
+    url: https://doi.org/10.1016/b978-0-12-816395-5.00007-1
+    journal: "Elsevier eBooks"
+    date: 2020-07-01
+
+  - authors: "Xiaojun Zhou, Duanduan Xuan, Shoukui Hu, Jiang Du, Ji Pu, Dong Jin, Fan Zhao, Feifei Yin, Xiuji Cui, Yi Huang, et al."
+    title: "Pelistega ratti sp. nov. from Rattus norvegicus of Hainan island"
+    url: https://doi.org/10.1099/ijsem.0.004733
+    journal: "INTERNATIONAL JOURNAL OF SYSTEMATIC AND EVOLUTIONARY MICROBIOLOGY"
+    date: 2019-06-06
+
+  - authors: "António Lourenço."
+    title: "OBSOLETE: Phylogenomics of Foodborne Pathogens: The Case of Listeria monocytogenes"
+    url: https://doi.org/10.1016/b978-0-08-100596-5.00007-x
+    journal: "Elsevier eBooks"
+    date: 2015-11-30
+
