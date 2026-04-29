@@ -6,7 +6,6 @@ import versionsData from './snapshots.json';
 const docsVersion = process.env.DOCS_VERSION;
 const algoliaAppId = process.env.ALGOLIA_APP_ID;
 const algoliaApiKey = process.env.ALGOLIA_API_KEY;
-const algoliaAskAiId = process.env.ALGOLIA_ASK_AI_ID;
 
 const activeVersions = versionsData.snapshots
   .filter((v) => v.active)
@@ -81,6 +80,7 @@ const config: Config = {
 
   plugins: [
     'docusaurus-plugin-image-zoom',
+    './src/plugins/social-cards.ts',
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -187,7 +187,7 @@ const config: Config = {
         isCloseable: false,
       },
     }),
-    image: 'img/bactopia-small-logo.png',
+    image: 'img/bactopia-logo.png',
     navbar: {
       style: 'primary',
       title: '',
