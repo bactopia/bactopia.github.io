@@ -88,8 +88,10 @@ const config: Config = {
           { label: 'Google Privacy Policy', href: 'https://policies.google.com/privacy' },
         ],
         categories: {
-          necessary: { label: 'Necessary', description: 'Used to remember your cookie preferences.', enabled: true },
+          necessary: { label: 'Necessary', enabled: false },
           analytics: { label: 'Analytics', description: 'Help us understand how visitors use the site.', enabled: false },
+          marketing: { label: 'Marketing', enabled: false },
+          functional: { label: 'Functional', enabled: false },
         },
         googleConsentMode: {
           enabled: true,
