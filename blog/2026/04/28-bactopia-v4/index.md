@@ -29,7 +29,7 @@ code base, almost from scratch (*which is not necessarily a bad thing!*). As you
 image below, v4 of Bactopia changed 2,641 files, with 140k additional lines of code and 55k
 removed lines of code. So, yeah, Bactopia is a bit more fresh now!
 
-![Image 1](./img/image1.png)
+![Bactopia v4 Changes](./img/image1.png)
 
 In version 4 of Bactopia, I’m happy to report that I’m now compliant with the future of Nextflow!
 While Strict Syntax, Static Types,and Record Types aren’t exactly “required”, I think their
@@ -52,7 +52,7 @@ Either way, I will still be very much involved in reviewing any changes made by 
 to briefly mention my stance on the usage of AI to help co-develop Bactopia. I feel a more lengthy
 post is still needed to better demonstrate my process when using LLMs for Bactopia.
 
-![][./img/image2.png]
+![Bactopia's AI Feedback Loop](./img/image2.png)
 
 *I’ll be sure to get that out soon!*
 
@@ -75,7 +75,7 @@ now includes 246 tests. Which test everything (modules, subworkflows, and workfl
 real data from the newly revamped [bactopia-tests](https://github.com/bactopia/bactopia-tests)
 repo.
 
-![][./img/image3.png]
+![Bactopia's Test Suite in Action](./img/image3.png)
 
 I also was able to make the documentation easier to maintain, with the adoption of in-line
 GroovyDoc. Not only that, I moved from [MkDocs Material to Docusaurus](https://github.com/bactopia/bactopia.github.io/pull/9),
