@@ -89,7 +89,7 @@ const config: Config = {
         ],
         categories: {
           necessary: { label: 'Necessary', enabled: false },
-          analytics: { label: 'Analytics', description: 'Help us understand how visitors use the site.', enabled: false },
+          analytics: { label: 'Analytics', description: 'Help us understand how visitors use the site.', enabled: true },
           marketing: { label: 'Marketing', enabled: false },
           functional: { label: 'Functional', enabled: false },
         },
