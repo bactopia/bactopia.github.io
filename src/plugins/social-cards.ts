@@ -78,6 +78,9 @@ export default function socialCardsPlugin(context: LoadContext): Plugin {
 
         if (!title || title === '404') continue;
 
+        const relative = path.relative(outDir, htmlPath);
+        if (/\btags\b/.test(relative) || relative === 'search.html') continue;
+
         const slug = htmlPathToSlug(outDir, htmlPath);
         const cardFilename = `${slug}.png`;
         const cardPath = path.join(cardsDir, cardFilename);
