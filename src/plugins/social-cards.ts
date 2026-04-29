@@ -19,8 +19,14 @@ function extractMeta(html: string): {title: string; description: string} {
   return {title, description};
 }
 
-function routeToSlug(routePath: string): string {
-  const slug = routePath.replace(/^\/|\/$/g, '').replace(/\//g, '--');
+function htmlPathToSlug(outDir: string, htmlPath: string): string {
+  const relative = path.relative(outDir, htmlPath);
+  const withoutExt = relative.replace(/\.html$/, '');
+  const normalized =
+    withoutExt.endsWith('/index') || withoutExt === 'index'
+      ? withoutExt.replace(/\/?index$/, '')
+      : withoutExt;
+  const slug = normalized.replace(/\//g, '--');
   return slug || 'index';
 }
 
@@ -30,8 +36,9 @@ async function findHtmlFiles(dir: string): Promise<string[]> {
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
+      if (entry.name === 'assets' || entry.name === 'img') continue;
       results.push(...(await findHtmlFiles(fullPath)));
-    } else if (entry.name === 'index.html') {
+    } else if (entry.name.endsWith('.html')) {
       results.push(fullPath);
     }
   }
@@ -71,8 +78,7 @@ export default function socialCardsPlugin(context: LoadContext): Plugin {
 
         if (!title || title === '404') continue;
 
-        const relativePath = path.relative(outDir, path.dirname(htmlPath));
-        const slug = routeToSlug(relativePath);
+        const slug = htmlPathToSlug(outDir, htmlPath);
         const cardFilename = `${slug}.png`;
         const cardPath = path.join(cardsDir, cardFilename);
         const cardUrl = `${siteUrl}${baseUrl}img/social-cards/${cardFilename}`;
