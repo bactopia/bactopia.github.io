@@ -337,7 +337,7 @@ const config: Config = {
       algolia: {
         appId: algoliaAppId,
         apiKey: algoliaApiKey,
-        indexName: 'Bactopai Docs',
+        indexName: 'Bactopia Docs',
         contextualSearch: true,
         searchPagePath: 'search',
         askAi: "Bacto-Bot",
