@@ -339,7 +339,7 @@ const config: Config = {
         apiKey: algoliaApiKey,
         indexName: 'Bactopia Docs',
         contextualSearch: true,
-        searchPagePath: 'search',
+        searchPagePath: false,
         askAi: "Bacto-Bot",
       },
     }),
