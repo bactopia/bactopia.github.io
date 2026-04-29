@@ -51,6 +51,10 @@ jobs:
 
       - name: Build Docusaurus site
         run: npm run build
+        env:
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          ALGOLIA_ASK_AI_ID: ${{ secrets.ALGOLIA_ASK_AI_ID }}
 
       - name: Assemble version snapshots from branches
         run: |

@@ -4,6 +4,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 import versionsData from './snapshots.json';
 
 const docsVersion = process.env.DOCS_VERSION;
+const algoliaAppId = process.env.ALGOLIA_APP_ID;
+const algoliaApiKey = process.env.ALGOLIA_API_KEY;
+const algoliaAskAiId = process.env.ALGOLIA_ASK_AI_ID;
 
 const activeVersions = versionsData.snapshots
   .filter((v) => v.active)
@@ -72,17 +75,6 @@ const config: Config = {
 
   themes: [
     '@docusaurus/theme-mermaid',
-    [
-      '@easyops-cn/docusaurus-search-local',
-      {
-        hashed: true,
-        indexBlog: true,
-        indexDocs: true,
-        docsRouteBasePath: ['/', 'bactopia-tools', 'bactopia-pipelines', 'developers', 'impact-and-outreach'],
-        docsDir: ['docs', 'bactopia-tools', 'bactopia-pipelines', 'developers', 'impact'],
-        highlightSearchTermsOnTargetPage: true,
-      },
-    ],
   ],
 
   clientModules: ['./src/gtag-noop.js'],
@@ -341,6 +333,16 @@ const config: Config = {
         dark: 'rgba(50, 50, 50, 0.9)',
       },
     },
+    ...(algoliaAppId && algoliaApiKey && {
+      algolia: {
+        appId: algoliaAppId,
+        apiKey: algoliaApiKey,
+        indexName: 'Bactopai Docs',
+        contextualSearch: true,
+        searchPagePath: 'search',
+        askAi: "Bacto-Bot",
+      },
+    }),
   } satisfies Preset.ThemeConfig,
 };
 
