@@ -23,6 +23,7 @@
     "@mdx-js/react": "^3.0.0",
     "@resvg/resvg-js": "^2.6.2",
     "clsx": "^2.0.0",
+    "docusaurus-plugin-cookie-consent": "^4.5.0",
     "docusaurus-plugin-image-zoom": "^3.0.1",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",

@@ -79,6 +79,25 @@ const config: Config = {
   clientModules: ['./src/gtag-noop.js'],
 
   plugins: [
+    [
+      'docusaurus-plugin-cookie-consent',
+      {
+        title: 'Cookie Consent',
+        description: 'This site uses cookies for analytics to help us understand how the documentation is used, including geographic visitor data.',
+        links: [
+          { label: 'Google Privacy Policy', href: 'https://policies.google.com/privacy' },
+        ],
+        categories: {
+          necessary: { label: 'Necessary', enabled: false },
+          analytics: { label: 'Analytics', description: 'Help us understand how visitors use the site.', enabled: false },
+          marketing: { label: 'Marketing', enabled: false },
+          functional: { label: 'Functional', enabled: false },
+        },
+        googleConsentMode: {
+          enabled: true,
+        },
+      },
+    ],
     'docusaurus-plugin-image-zoom',
     './src/plugins/social-cards.ts',
     [
