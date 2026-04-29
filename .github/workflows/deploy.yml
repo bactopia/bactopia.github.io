@@ -25,7 +25,7 @@ jobs:
         with:
           repository: bactopia/bactopia
           path: bactopia-source
-          ref: ${{ github.event.inputs.bactopia_ref || 'main' }}
+          ref: ${{ github.event.inputs.bactopia_ref || 'dev' }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
