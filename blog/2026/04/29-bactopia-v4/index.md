@@ -63,7 +63,7 @@ rewrite didn’t move the dial much, but that’s a good thing. You might be won
 effort to end up where you started a good thing?!? Well, when you get the opportunity to rewrite
 something, you get to rewrite it based on your current experience and abilities. I’m not the same
 bioinformatician I was over 7 years ago, when Tim and I first released Bactopia. I sometimes wonder:
-_'why did 2017 Robert do it this way?'_ and _'why is 2026 Robert so much more gray!'_
+_'why did 2017 Robert do it this way?'_ and _'why is 2026 Robert so much more gray?!'_
 
 But, to me at
 least, this rewrite provided the opportunity to unload a lot of technical debt past Robert built up
