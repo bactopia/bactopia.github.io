@@ -93,4 +93,4 @@ P.S. As with all major releases, there will be bumps in the road, and I’m sure
 missed something. If you find bugs or a feature I missed, just let me know! Maybe even find
 me on the [Bactopia Slack workspace](/slack/) (_haha which I actually created ages ago!_)
 
-To get started with Bactopia version 4, check out the [installation guide](installation/) and the [tutorial](/tutorial/).
+To get started with Bactopia version 4, check out the [installation guide](/installation/) and the [tutorial](/tutorial/).
