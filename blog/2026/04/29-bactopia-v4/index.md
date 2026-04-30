@@ -8,7 +8,7 @@ description: Learn about the new features and improvements in Bactopia version 4
 ---
 
 Howdy folks! Robert here, developer of Bactopia! It’s been a while, huh? Well it's finally
-here! I’m super excited to announce the release of Bactopia version 4!
+here! I’m super excited to announce the [release of Bactopia version 4](https://github.com/bactopia/bactopia/releases/tag/v4.0.0)!
 
 You might be wondering what’s new in Bactopia? And well the answer is **_a lot_**, but
 also… **_not a lot_**, but in a good way! How can that be? Well, about that…
@@ -91,4 +91,6 @@ of Bactopia. So keep an eye out!_
 
 P.S. As with all major releases, there will be bumps in the road, and I’m sure I may have
 missed something. If you find bugs or a feature I missed, just let me know! Maybe even find
-me on the [Bactopia Slack workspace](https://bactopia.io/slack) (haha which I actually created ages ago!)
+me on the [Bactopia Slack workspace](/slack/) (haha which I actually created ages ago!)
+
+To get started with Bactopia version 4, check out the [installation guide](installation/) and the [tutorial](/tutorial/).
