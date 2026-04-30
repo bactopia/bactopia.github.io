@@ -63,8 +63,10 @@ rewrite didn’t move the dial much, but that’s a good thing. You might be won
 effort to end up where you started a good thing?!? Well, when you get the opportunity to rewrite
 something, you get to rewrite it based on your current experience and abilities. I’m not the same
 bioinformatician I was over 7 years ago, when Tim and I first released Bactopia. I sometimes wonder
-why did 2017 Robert do it this way and why is 2026 Robert so much more gray! But, no, to me at
-least, this rewrite allowed me the chance to unload all this technical debt past Robert built up
+why did 2017 Robert do it this way and why is 2026 Robert so much more gray! 
+
+But, to me at
+least, this rewrite allowed me the chance to unload a lot of technical debt past Robert built up
 over the years. I was able to standardize many pieces of Bactopia, so a module is a module is a
 module is a module, etc…. I also got to move a lot of the non-Nextflow pieces out of my Nextflow
 pipeline and into [bactopia-py](https://github.com/bactopia/bactopia-py) and
