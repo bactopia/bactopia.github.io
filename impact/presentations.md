@@ -22,6 +22,11 @@ Slides: [PDF](https://datasets.bactopia.com/media/2023-bactopia-edlb-workshop.pd
 
 ## Talks
 
+- _How we avoided AI slop in Bactopia (April 2026)_  
+A talked presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Nextflow Summit Boston 2026](https://summit.nextflow.io/2026/boston/overview/). This talk walked through growing pains of utilizing LLMs during the development of Bactopia, as well as the steps to ensure effective usage of LLMs in the future.  
+Video: _coming soon!_  
+Slides: [PDF](https://datasets.bactopia.io/media/2026-rp3-bactopia-nf-summit.pdf)
+
 - _Bactopia - Enhancing and expanding the Bactopia framework (October 2024)_  
 A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [ASM Conference on Rapid Applied Microbial Next-Generation Sequencing and Bioinformatic Pipelines (ASMNGS)](https://asm.org/events/asm-ngs/home). This talk highlighted how Bactopia has evolved from an end-to-end pipeline to more of a framework to rapidly adapt to user needs.  
 Slides: [PDF](https://datasets.bactopia.com/media/2024-asmngs-bactopia.pdf)  
@@ -76,11 +81,11 @@ Slides: [Web](https://bit.ly/3lQpZKo), [PDF](https://datasets.bactopia.com/media
 
 - _Expanding Bactopia as a framework for bacterial, fungal, and metagenomic analysis (September 2024)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [AMD Days 2024](https://www.aphl.org/programs/infectious_disease/Pages/AMD-Days.aspx) conference outlining the latest changes in Bactopia, including new named workflows and AllTheBacteria support.  
-Slides: [PDF](https://datasets.bactopia.com/media/2024-amddays-bactopia.pdf) 
+Slides: [PDF](https://datasets.bactopia.com/media/2024-amddays-bactopia.pdf)
 
 - _Expanding Bactopia as a framework for bacterial, fungal, and metagenomic analysis (May 2024)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Sequencing to Function: Analysis and Applications for the Future](https://www.lanl.gov/conferences/sequencing-finishing-analysis-future/index.php) conference outlining the latest changes in Bactopia, including new named workflows and AllTheBacteria support.  
-Slides: [PDF](https://datasets.bactopia.com/media/2024-aphl-bactopia.pdf) 
+Slides: [PDF](https://datasets.bactopia.com/media/2024-aphl-bactopia.pdf)
 
 - _Expanding Bactopia as a framework for bacterial, fungal, and metagenomic analysis (May 2024)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [APHL 2024](https://www.aphl.org/conferences/annualmeeting/Pages/default.aspx) conference outlining the latest changes in Bactopia, including new named workflows and AllTheBacteria support.  
