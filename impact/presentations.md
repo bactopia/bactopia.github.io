@@ -22,7 +22,7 @@ Slides: [PDF](https://datasets.bactopia.com/media/2023-bactopia-edlb-workshop.pd
 
 ## Talks
 
-- _How we avoided AI slop in Bactopia (April 2026)_. 
+- _How we avoided AI slop in Bactopia (April 2026)_  
 A talked presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Nextflow Summit Boston 2026](https://summit.nextflow.io/2026/boston/overview/). This talk walked through growing pains of utilizing LLMs during the development of Bactopia, as well as the steps to ensure effective usage of LLMs in the future.  
 Video: _coming soon!_  
 Slides: [PDF](https://datasets.bactopia.io/media/2026-rp3-bactopia-nf-summit.pdf)
