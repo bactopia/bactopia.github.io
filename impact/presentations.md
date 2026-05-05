@@ -74,7 +74,7 @@ Slides: [Web](https://bit.ly/3lQpZKo), [PDF](https://datasets.bactopia.io/media/
 
 ## Posters
 
-_Bactopia v4: A Scalable Bacterial Genome Surveillance Pipeline (May 2026)_  
+- _Bactopia v4: A Scalable Bacterial Genome Surveillance Pipeline (May 2026)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [APHL 2026](https://www.aphl.org/conferences/annualmeeting/Pages/default.aspx) outlining the latest changes in Bactopia.  
 Slides: [PDF](https://datasets.bactopia.io/media/2026-bactopia-poster.pdf)
 
