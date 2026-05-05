@@ -22,6 +22,11 @@ Slides: [PDF](https://datasets.bactopia.io/media/2023-bactopia-edlb-workshop.pdf
 
 ## Talks
 
+- _How we avoided AI slop in Bactopia (April 2026)_  
+A talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Nextflow Summit Boston 2026](https://summit.nextflow.io/2026/boston/overview/). This talk walked through growing pains of utilizing LLMs during the development of Bactopia, as well as the steps to ensure effective usage of LLMs in the future.  
+Video: _coming soon!_  
+Slides: [PDF](https://datasets.bactopia.io/media/2026-rp3-bactopia-nf-summit.pdf)
+
 - _Bactopia - Enhancing and expanding the Bactopia framework (October 2024)_  
 A brief talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at [ASM Conference on Rapid Applied Microbial Next-Generation Sequencing and Bioinformatic Pipelines (ASMNGS)](https://asm.org/events/asm-ngs/home). This talk highlighted how Bactopia has evolved from an end-to-end pipeline to more of a framework to rapidly adapt to user needs.  
 Slides: [PDF](https://datasets.bactopia.io/media/2024-asmngs-bactopia.pdf)  
