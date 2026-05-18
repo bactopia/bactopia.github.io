@@ -1,3 +1,9 @@
 {
-  "docs/quick-start.md": "4f3cb2f82fbdcf6b923120203f6e602b"
+  "developers/cli/bactopia-docs.mdx": "45341fa6d3aeb175ca1c83c13e7eb728",
+  "docs/beginners-guide.md": "f7e0df66b8cc86ed30627b62929e9900",
+  "docs/full-guide.mdx": "c6a81691556575ff199f86e02b07910f",
+  "docs/index.mdx": "23f8e9f9cc9da71241658146e5d6748e",
+  "docs/installation.md": "785f5a379c6a426cb935645bb18e1469",
+  "docs/quick-start.md": "4f3cb2f82fbdcf6b923120203f6e602b",
+  "docs/tutorial.md": "c7ce6c22a782ecfeb5333cca45434241"
 }

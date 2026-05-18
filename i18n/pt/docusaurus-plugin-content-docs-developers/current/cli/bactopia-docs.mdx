@@ -1,0 +1,61 @@
+---
+title: bactopia-docs
+description: "Valida a desatualização de documentos de referência em um repositório Bactopia."
+---
+
+# bactopia-docs
+
+Valida a desatualização de documentos de referência em um repositório Bactopia.
+
+Duas verificações são executadas em cada arquivo .md sob [b]--docs-path[/b]:
+
+[b]Padrões obsoletos (D0xx)[/b]: correspondências de regex com entradas de
+[b]--patterns-file[/b] — frases removidas por migrações anteriores
+(ex.: ``flattenPaths``, o formato de emissão de 4 canais).
+
+[b]Asserções de verdade absoluta (D1xx)[/b]: contagens (D101-D103), versão do Nextflow
+(D104), referências de CLI do bactopia-py (D105), IDs de regras de lint
+(D106), alvos de links markdown (D108).
+
+Suprima uma regra em uma única linha com
+``<!-- bactopia-docs: ignore D0xx -->`` (ou uma lista separada por vírgulas).
+
+Encerra com 1 se alguma falha (FAIL) for encontrada.
+
+
+## Uso
+
+```bash
+bactopia-docs [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path, -b` | STRING |  | Diretório onde o repositório Bactopia está armazenado |
+
+## Opções de Validação
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--docs-path` | STRING | `.claude/docs` | Diretório de documentação relativo a --bactopia-path |
+| `--patterns-file` | STRING | `data/docs-patterns.yml` | YAML de padrões obsoletos relativo a --bactopia-path |
+| `--bactopia-py-path` | PATH |  | Caminho para o repositório bactopia-py (para verificações de CLI D105 / regras de lint D106). Padrão: &lt;bactopia-path&gt;/../bactopia-py |
+| `--skip-path-check` | BOOL | `false` | Ignorar a resolução de alvos de links markdown D108 |
+| `--validate` | BOOL | `false` | Executar validação (ação padrão; flag aceita para paridade com bactopia-citations) |
+
+## Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--json` | BOOL | `false` | Emitir resultados como JSON |
+| `--plain-text, -p` | BOOL | `false` | Desativar formatação rica |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Imprimir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |
