@@ -13,6 +13,14 @@ BASE_DELAY = 2.0
 MAX_CONTINUATIONS = 5
 DEFAULT_PARALLEL = 10
 
+# Pricing per million tokens (USD)
+PRICING = {
+    "claude-sonnet-4-6": {"input": 3.00, "output": 15.00},
+    "claude-sonnet-4-5-20241022": {"input": 3.00, "output": 15.00},
+    "claude-haiku-4-5-20251001": {"input": 0.80, "output": 4.00},
+    "claude-opus-4-6": {"input": 15.00, "output": 75.00},
+}
+
 # Paths
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
 I18N_DIR = REPO_ROOT / "i18n"

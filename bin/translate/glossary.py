@@ -14,6 +14,15 @@ import yaml
 
 from .config import TRANSLATIONS_DATA_DIR
 
+_CODE_REGION_RE = re.compile(
+    r"(`{3,})[^\n]*\n.*?\1"  # fenced code blocks (``` or longer)
+    r"|"
+    r"`[^`\n]+`",            # inline code spans
+    re.DOTALL,
+)
+
+_PLACEHOLDER = "\x00CODE_{}\x00"
+
 
 @lru_cache(maxsize=8)
 def load_glossary(locale: str) -> dict:
@@ -24,8 +33,26 @@ def load_glossary(locale: str) -> dict:
     return yaml.safe_load(path.read_text()) or {}
 
 
+def _protect_code(text: str) -> tuple[str, list[str]]:
+    """Replace code spans/fences with placeholders."""
+    regions: list[str] = []
+
+    def _replace(m: re.Match) -> str:
+        regions.append(m.group(0))
+        return _PLACEHOLDER.format(len(regions) - 1)
+
+    return _CODE_REGION_RE.sub(_replace, text), regions
+
+
+def _restore_code(text: str, regions: list[str]) -> str:
+    """Restore placeholders back to original code."""
+    for i, original in enumerate(regions):
+        text = text.replace(_PLACEHOLDER.format(i), original)
+    return text
+
+
 def apply_glossary(text: str, locale: str) -> str:
-    """Apply glossary term enforcement to translated text."""
+    """Apply glossary term enforcement to translated text (skips code regions)."""
     glossary = load_glossary(locale)
     if not glossary:
         return text
@@ -85,7 +112,9 @@ def fix_unclosed_fences(text: str) -> str:
 
 def postprocess(text: str, locale: str) -> str:
     """Run all post-processing steps on translated text."""
+    text, regions = _protect_code(text)
     text = apply_glossary(text, locale)
     text = fix_admonitions(text, locale)
+    text = _restore_code(text, regions)
     text = fix_unclosed_fences(text)
     return text

@@ -32,17 +32,25 @@ class TranslationResult:
     continuations: int
 
 
+def _extract_text(response: anthropic.types.Message) -> str:
+    """Extract text from all text content blocks in a response."""
+    return "".join(
+        block.text for block in response.content if hasattr(block, "text")
+    )
+
+
 async def _call_once(
     client: anthropic.AsyncAnthropic,
     system: str,
     messages: list[dict],
     label: str = "",
+    model: str = MODEL,
 ) -> anthropic.types.Message:
     """Single API call with jittered exponential backoff on transient errors."""
     for attempt in range(MAX_RETRIES):
         try:
             return await client.messages.create(
-                model=MODEL,
+                model=model,
                 max_tokens=MAX_TOKENS,
                 system=[{
                     "type": "text",
@@ -71,6 +79,7 @@ async def call_claude_async(
     system: str,
     client: anthropic.AsyncAnthropic | None = None,
     label: str = "",
+    model: str = MODEL,
 ) -> TranslationResult:
     """Send a translation prompt to Claude and return the result.
 
@@ -87,17 +96,17 @@ async def call_claude_async(
         full_text = ""
         continuations = 0
 
-        response = await _call_once(client, system, messages, label)
-        full_text += response.content[0].text
+        response = await _call_once(client, system, messages, label, model)
+        full_text += _extract_text(response)
         total_input += response.usage.input_tokens
         total_output += response.usage.output_tokens
 
         while response.stop_reason == "max_tokens" and continuations < MAX_CONTINUATIONS:
             continuations += 1
-            messages.append({"role": "assistant", "content": response.content[0].text})
+            messages.append({"role": "assistant", "content": response.content})
             messages.append({"role": "user", "content": "Continue exactly where you left off."})
-            response = await _call_once(client, system, messages, label)
-            full_text += response.content[0].text
+            response = await _call_once(client, system, messages, label, model)
+            full_text += _extract_text(response)
             total_input += response.usage.input_tokens
             total_output += response.usage.output_tokens
 

@@ -6,7 +6,7 @@ https://github.com/nextflow-io/training/blob/master/TRANSLATING.md
 ### Tone and Style
 
 - Use **Brazilian Portuguese** spelling conventions (e.g., "arquivo" not "ficheiro").
-- Use informal "voce" form consistently.
+- Use informal "você" form consistently.
 - Write in a clear, direct style appropriate for technical documentation.
 
 ### Key Term Translations
@@ -21,30 +21,30 @@ Use these translations consistently throughout:
 | reads | reads |
 | contig | contig |
 | scaffold | scaffold |
-| annotation | anotacao |
-| antimicrobial resistance | resistencia antimicrobiana |
-| virulence | virulencia |
+| annotation | anotação |
+| antimicrobial resistance | resistência antimicrobiana |
+| virulence | virulência |
 | serotype | sorotipo |
-| sequence type | tipo de sequencia |
+| sequence type | tipo de sequência |
 | quality control | controle de qualidade |
 | trimming | trimagem |
 | mapping | mapeamento |
 | variant calling | chamada de variantes |
-| phylogenetics | filogenetica |
+| phylogenetics | filogenética |
 | pan-genome | pan-genoma |
-| reference genome | genoma de referencia |
+| reference genome | genoma de referência |
 | sample | amostra |
 | input | entrada |
-| output | saida |
-| parameter | parametro |
-| module | modulo |
+| output | saída |
+| parameter | parâmetro |
+| module | módulo |
 | subworkflow | subworkflow |
 | tool | ferramenta |
-| installation | instalacao |
-| quick start | inicio rapido |
+| installation | instalação |
+| quick start | início rápido |
 | tutorial | tutorial |
 | developer | desenvolvedor |
-| citation | citacao |
+| citation | citação |
 | acknowledgement | agradecimento |
 | usage | uso |
 
@@ -64,7 +64,7 @@ These terms should NEVER be translated, even in prose:
 |---------|-----------|
 | Note | Nota |
 | Tip | Dica |
-| Info | Informacao |
+| Info | Informação |
 | Warning | Aviso |
 | Danger | Perigo |
 | Caution | Cuidado |

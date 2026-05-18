@@ -7,25 +7,25 @@
 # Terms to enforce (case-insensitive source -> exact target)
 terms:
   - source: "antimicrobial resistance"
-    target: "resistencia antimicrobiana"
+    target: "resistência antimicrobiana"
   - source: "quality control"
     target: "controle de qualidade"
   - source: "reference genome"
-    target: "genoma de referencia"
+    target: "genoma de referência"
   - source: "variant calling"
     target: "chamada de variantes"
   - source: "sequence type"
-    target: "tipo de sequencia"
+    target: "tipo de sequência"
   - source: "pan-genome"
     target: "pan-genoma"
   - source: "Quick Start"
-    target: "Inicio Rapido"
+    target: "Início Rápido"
 
 # Admonition title translations (Docusaurus :::keyword[Title] syntax)
 admonition_titles:
   note: "Nota"
   tip: "Dica"
-  info: "Informacao"
+  info: "Informação"
   warning: "Aviso"
   danger: "Perigo"
   caution: "Cuidado"

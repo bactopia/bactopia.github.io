@@ -5,8 +5,17 @@ https://github.com/nextflow-io/training/tree/master/_scripts/translate
 """
 
 import re
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
+
+from .glossary import _CODE_REGION_RE, load_glossary
+
+
+def _normalize(text: str) -> str:
+    """Strip accents and lowercase for fuzzy comparison."""
+    nfkd = unicodedata.normalize("NFKD", text)
+    return "".join(c for c in nfkd if not unicodedata.combining(c)).lower()
 
 
 @dataclass
@@ -19,7 +28,12 @@ class VerifyResult:
         return len(self.issues) == 0
 
 
-def verify_file(en_path: Path, lang_path: Path) -> VerifyResult:
+def _strip_code_regions(text: str) -> str:
+    """Remove fenced code blocks and inline code spans from text."""
+    return _CODE_REGION_RE.sub("", text)
+
+
+def verify_file(en_path: Path, lang_path: Path, locale: str = "") -> VerifyResult:
     """Run structural checks on a translated file."""
     result = VerifyResult(path=lang_path)
 
@@ -40,6 +54,9 @@ def verify_file(en_path: Path, lang_path: Path) -> VerifyResult:
     _check_admonitions(en_text, lang_text, result)
     _check_length_ratio(en_text, lang_text, result)
     _check_jsx_components(en_text, lang_text, result)
+    if locale:
+        _check_never_translate(en_text, lang_text, locale, result)
+        _check_glossary_terms(en_text, lang_text, locale, result)
 
     return result
 
@@ -61,20 +78,24 @@ def _check_code_blocks(en_text: str, lang_text: str, result: VerifyResult) -> No
 
 
 def _check_headers(en_text: str, lang_text: str, result: VerifyResult) -> None:
-    """Verify header counts match."""
+    """Verify header counts match (outside code blocks)."""
     header_re = re.compile(r"^#{1,6}\s", re.MULTILINE)
-    en_count = len(header_re.findall(en_text))
-    lang_count = len(header_re.findall(lang_text))
+    en_prose = _strip_code_regions(en_text)
+    lang_prose = _strip_code_regions(lang_text)
+    en_count = len(header_re.findall(en_prose))
+    lang_count = len(header_re.findall(lang_prose))
     if en_count != lang_count:
         result.issues.append(f"header count mismatch: en={en_count} lang={lang_count}")
 
 
 def _check_admonitions(en_text: str, lang_text: str, result: VerifyResult) -> None:
-    """Verify admonition counts match and keywords are in English."""
+    """Verify admonition counts match and keywords are in English (outside code blocks)."""
     admonition_re = re.compile(r"^:::(\w+)", re.MULTILINE)
+    en_prose = _strip_code_regions(en_text)
+    lang_prose = _strip_code_regions(lang_text)
 
-    en_matches = admonition_re.findall(en_text)
-    lang_matches = admonition_re.findall(lang_text)
+    en_matches = admonition_re.findall(en_prose)
+    lang_matches = admonition_re.findall(lang_prose)
 
     if len(en_matches) != len(lang_matches):
         result.issues.append(
@@ -108,3 +129,50 @@ def _check_jsx_components(en_text: str, lang_text: str, result: VerifyResult) ->
     missing = en_imports - lang_imports
     if missing:
         result.issues.append(f"missing JSX imports: {missing}")
+
+
+def _check_never_translate(
+    en_text: str, lang_text: str, locale: str, result: VerifyResult
+) -> None:
+    """Verify never_translate terms appear in translation at similar frequency."""
+    glossary = load_glossary(locale)
+    never = glossary.get("never_translate", [])
+    if not never:
+        return
+
+    en_prose = _strip_code_regions(en_text)
+    lang_prose = _strip_code_regions(lang_text)
+
+    for term in never:
+        pattern = re.compile(r"\b" + re.escape(term) + r"\b", re.IGNORECASE)
+        en_count = len(pattern.findall(en_prose))
+        if en_count == 0:
+            continue
+        lang_count = len(pattern.findall(lang_prose))
+        if lang_count == 0:
+            result.issues.append(f"never_translate term '{term}' missing from translation (en={en_count})")
+
+
+def _check_glossary_terms(
+    en_text: str, lang_text: str, locale: str, result: VerifyResult
+) -> None:
+    """Verify glossary target terms appear where source terms were used."""
+    glossary = load_glossary(locale)
+    terms = glossary.get("terms", [])
+    if not terms:
+        return
+
+    lang_prose_norm = " ".join(_normalize(_strip_code_regions(lang_text)).split())
+    en_prose_lower = " ".join(_strip_code_regions(en_text).lower().split())
+
+    for entry in terms:
+        source = entry.get("source", "")
+        target = entry.get("target", "")
+        if not source or not target:
+            continue
+        if en_prose_lower.count(source.lower()) == 0:
+            continue
+        if _normalize(target) not in lang_prose_norm:
+            result.issues.append(
+                f"glossary term '{source}' -> '{target}' not found in translation"
+            )
