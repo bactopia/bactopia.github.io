@@ -57,7 +57,7 @@ const config: Config = {
 
   markdown: {
     format: 'detect',
-    mermaid: true,
+
     parseFrontMatter: async (params) => {
       const result = await params.defaultParseFrontMatter(params);
       if (result.frontMatter.tags === null || result.frontMatter.tags === undefined) {
@@ -71,10 +71,6 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
-  themes: [
-    '@docusaurus/theme-mermaid',
-  ],
 
   clientModules: ['./src/gtag-noop.js'],
 
