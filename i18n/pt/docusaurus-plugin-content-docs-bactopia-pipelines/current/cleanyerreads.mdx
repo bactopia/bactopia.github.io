@@ -1,0 +1,440 @@
+---
+title: cleanyerreads
+description: "Controle de qualidade e remoção opcional de reads do hospedeiro a partir de reads de sequenciamento brutos."
+tags:
+  - reads
+  - quality-control
+  - trimming
+  - filtering
+  - host-removal
+  - preprocessing
+  - named-workflow
+---
+
+# cleanyerreads
+
+**Tags:** <a href="/bactopia-pipelines/tags/reads" class="badge badge--primary badge--tag">reads</a> <a href="/bactopia-pipelines/tags/quality-control" class="badge badge--primary badge--tag">quality-control</a> <a href="/bactopia-pipelines/tags/trimming" class="badge badge--primary badge--tag">trimming</a> <a href="/bactopia-pipelines/tags/filtering" class="badge badge--primary badge--tag">filtering</a> <a href="/bactopia-pipelines/tags/host-removal" class="badge badge--primary badge--tag">host-removal</a> <a href="/bactopia-pipelines/tags/preprocessing" class="badge badge--primary badge--tag">preprocessing</a> <a href="/bactopia-pipelines/tags/named-workflow" class="badge badge--primary badge--tag">named-workflow</a> 
+
+Controle de qualidade e remoção opcional de reads do hospedeiro a partir de reads de sequenciamento brutos.
+
+Este fluxo de trabalho realiza um controle de qualidade abrangente dos reads, incluindo trimagem,
+remoção de adaptadores, filtragem por qualidade e, opcionalmente, remove contaminação do hospedeiro
+utilizando [deacon](https://github.com/bede/deacon), [nohuman](https://github.com/mbhall88/nohuman),
+ou [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber).
+Ele processa reads de sequenciamento brutos para produzir reads limpos e de alta qualidade,
+prontos para análises subsequentes.
+
+## Uso
+
+CLI do clean-yer-reads:
+
+```bash
+clean-yer-reads \
+  --input samples.csv \
+  --outdir results/
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/cleanyerreads/main.nf \
+  --input samples.csv \
+  --outdir results/
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   ├── main
+│   │   ├── gather
+│   │   │   ├── <SAMPLE_NAME>-meta.tsv
+│   │   │   └── logs
+│   │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │   │       └── versions.yml
+│   │   └── qc
+│   │       ├── <SAMPLE_NAME>_SE.fastq.gz
+│   │       ├── logs
+│   │       │   ├── <SAMPLE_NAME>-fastp.log
+│   │       │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│   │       │   └── versions.yml
+│   │       └── supplemental
+│   │           ├── <SAMPLE_NAME>.fastp.html
+│   │           ├── <SAMPLE_NAME>.fastp.json
+│   │           ├── <SAMPLE_NAME>_SE-final.json
+│   │           ├── <SAMPLE_NAME>_SE-final_fastqc.html
+│   │           ├── <SAMPLE_NAME>_SE-final_fastqc.zip
+│   │           ├── <SAMPLE_NAME>_SE-original.json
+│   │           ├── <SAMPLE_NAME>_SE-original_fastqc.html
+│   │           └── <SAMPLE_NAME>_SE-original_fastqc.zip
+│   └── tools
+│       └── srahumanscrubber
+│           ├── <SAMPLE_NAME>.scrub.report.tsv
+│           ├── <SAMPLE_NAME>.scrubbed.fastq.gz
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── cleanyerreads-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   ├── meta-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   └── scrubber-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   ├── meta.tsv
+        │   └── scrubber.tsv
+        └── nf-reports
+            ├── cleanyerreads-dag.dot
+            ├── cleanyerreads-report.html
+            └── cleanyerreads-timeline.html
+```
+
+### Relatórios de Controle de Qualidade
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `supplemental/*_fastqc.*` | Relatórios FastQC para reads brutos e limpos |
+| `supplemental/*-NanoPlot.*` | Relatórios NanoPlot para reads Nanopore |
+| `supplemental/*.fastp.*` | Relatórios de qualidade do Fastp (quando aplicável) |
+| `supplemental/*_original.json` | Métricas de qualidade dos reads originais |
+| `supplemental/*_final.json` | Métricas de qualidade dos reads finais |
+
+### Reads Limpos
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.fastq.gz` | Reads com controle de qualidade aplicado e trimados |
+| `*.unclassified.fastq.gz` | Reads descontaminados do hospedeiro (se o scrubber estiver habilitado) |
+
+### Descontaminação do Hospedeiro
+
+:::note[Nota]
+Criado apenas quando a remoção do hospedeiro está habilitada
+:::
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.kraken2.report.txt` | Relatório de classificação do Kraken2 |
+| `*.scrub.report.tsv` | Relatório de contaminação humana |
+
+
+### Trilha de Auditoria
+
+Abaixo estão os arquivos que podem ajudar você a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nesta pasta estão arquivos úteis
+para revisão caso necessário.
+
+| Extensão    | Descrição |
+|-------------|-----------|
+| .begin       | Um arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/desfazer arquivos e enfileirar processos com base no perfil definido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Um arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Estes relatórios do Nextflow fornecem um excelente resumo da sua execução. Podem ser usados para otimizar
+o uso de recursos e estimar custos esperados ao utilizar plataformas em nuvem.
+
+| Nome do arquivo | Descrição |
+|-----------------|-----------|
+| cleanyerreads-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| cleanyerreads-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| cleanyerreads-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| cleanyerreads-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Os parâmetros a seguir são a forma de fornecer amostras locais ou remotas para serem processadas pelo Bactopia.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--samples` | string |  | Um FOFN (via bactopia prepare) com nomes de amostras e caminhos para FASTQ/FASTAs a processar |
+| `--r1` | string |  | Primeiro conjunto de reads Illumina paired-end FASTQ comprimidos (gzip) (requer --r2 e --sample) |
+| `--r2` | string |  | Segundo conjunto de reads Illumina paired-end FASTQ comprimidos (gzip) (requer --r1 e --sample) |
+| `--se` | string |  | Reads Illumina single-end FASTQ comprimidos (gzip) (requer --sample) |
+| `--ont` | string |  | Reads Oxford Nanopore FASTQ comprimidos (gzip) (requer --sample) |
+| `--hybrid` | boolean | `false` | Criar montagem híbrida usando Unicycler. (requer --r1, --r2, --ont e --sample) |
+| `--short_polish` | boolean | `false` | Criar montagem híbrida a partir de montagem de long-reads com polimento por short reads. (requer --r1, --r2, --ont e --sample) |
+| `--sample` | string |  | Nome da amostra a ser usado para as sequências de entrada |
+| `--accessions` | string |  | Um arquivo contendo acessões de Experimentos ENA/SRA ou acessões de montagens NCBI a serem processadas |
+| `--accession` | string |  | Nome da amostra a ser usado para as sequências de entrada |
+| `--assembly` | string |  | Um genoma montado em formato FASTA comprimido. (requer --sample) |
+| `--check_samples` | boolean | `false` | Validar o FOFN de entrada fornecido por --samples |
+
+### Parâmetros de Gather
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--skip_fastq_check` | boolean |  | Pular verificações de requisitos mínimos para FASTQs de entrada |
+| `--min_basepairs` | integer | `2241820` | A quantidade mínima de pares de bases necessária para continuar as análises subsequentes. |
+| `--min_reads` | integer | `7472` | A quantidade mínima de reads necessária para continuar as análises subsequentes. |
+| `--min_coverage` | integer | `10` | A cobertura mínima necessária para continuar as análises subsequentes. |
+| `--min_proportion` | number | `0.5` | A proporção mínima de pares de bases para reads paired-end continuar as análises subsequentes. |
+| `--min_genome_size` | integer | `100000` | O tamanho mínimo estimado do genoma permitido para a sequência de entrada continuar as análises subsequentes. |
+| `--max_genome_size` | integer | `18040666` | O tamanho máximo estimado do genoma permitido para a sequência de entrada continuar as análises subsequentes. |
+| `--attempts` | integer | `3` | Número máximo de tentativas de download |
+| `--use_ena` | boolean |  | Baixar FASTQs do ENA |
+| `--no_cache` | boolean |  | Pular o cache do arquivo de resumo de montagem do ncbi-genome-download |
+
+### Parâmetros do csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+### Parâmetros de QC
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--use_bbmap` | boolean |  | Reads Illumina serão submetidos ao controle de qualidade usando BBMap |
+| `--use_porechop` | boolean | `false` | Usar Porechop para remover adaptadores de reads ONT |
+| `--skip_qc` | boolean |  | A etapa de QC será ignorada e será assumido que as sequências de entrada já passaram pelo QC. |
+| `--skip_qc_plots` | boolean |  | A criação de gráficos de QC pelo FastQC ou Nanoplot será ignorada |
+| `--skip_error_correction` | boolean |  | A correção de erros de reads pelo FLASH será ignorada. |
+| `--adapters` | string |  | Um arquivo FASTA contendo adaptadores a serem removidos |
+| `--adapter_k` | integer | `23` | Comprimento do kmer usado para encontrar adaptadores. |
+| `--phix` | string |  | Genoma de referência do phiX174 a ser removido |
+| `--phix_k` | integer | `31` | Comprimento do kmer usado para encontrar phiX174. |
+| `--ktrim` | string | `r` | Trimar reads para remover bases correspondentes a kmers de referência (opções: `f`, `r`, `l`) |
+| `--mink` | integer | `11` | Procurar kmers mais curtos nas pontas dos reads até este comprimento, durante k-trimagem ou mascaramento. |
+| `--hdist` | integer | `1` | Distância máxima de Hamming para kmers de referência (apenas substituições) |
+| `--tpe` | string | `t` | Durante a k-trimagem pela direita, trimar ambos os reads para o comprimento mínimo de qualquer um deles (opções: `f`, `t`) |
+| `--tbo` | string | `t` | Trimar adaptadores com base na região de sobreposição dos reads paired (opções: `f`, `t`) |
+| `--qtrim` | string | `rl` | Trimar extremidades dos reads para remover bases com qualidade abaixo de trimq. (opções: `rl`, `f`, `r`, `l`, `w`) |
+| `--trimq` | integer | `6` | Regiões com qualidade média ABAIXO deste valor serão trimadas se qtrim estiver definido como diferente de f |
+| `--maq` | integer | `10` | Reads com qualidade média (após trimagem) abaixo deste valor serão descartados |
+| `--minlength` | integer | `35` | Reads mais curtos que este valor após a trimagem serão descartados |
+| `--ftm` | integer | `5` | Se positivo, trimar o comprimento pela direita para ser igual a zero, módulo este número |
+| `--tossjunk` | string | `t` | Descartar reads com caracteres inválidos como bases (opções: `f`, `t`) |
+| `--ain` | string | `f` | Ao detectar nomes de pares, permitir nomes idênticos (opções: `f`, `t`) |
+| `--qout` | string | `33` | Offset PHRED a ser usado para FASTQs de saída (opções: `33`, `64`) |
+| `--maxcor` | integer | `1` | Número máximo de correções dentro de uma janela de 20bp |
+| `--sampleseed` | integer | `42` | Definir um número positivo para usar como semente do gerador de números aleatórios para amostragem |
+| `--ont_minlength` | integer | `1000` | Reads ONT mais curtos que este valor serão descartados |
+| `--ont_minqual` | integer | `0` | Filtro de qualidade média mínima dos reads ONT |
+| `--porechop_opts` | string |  | Opções extras do Porechop entre aspas |
+| `--nanoplot_opts` | string |  | Opções extras do NanoPlot entre aspas |
+| `--bbduk_opts` | string |  | Opções extras do BBDuk entre aspas |
+| `--fastp_opts` | string |  | Opções extras do fastp entre aspas |
+
+### Parâmetros do SRA Human Scrubber
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--use_srascrubber` | boolean | `false` | Usar SRAHumanScrubber para remover reads humanos |
+
+### Parâmetros de Download do Nohuman
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nohuman_db` | string |  | Caminho para o banco de dados do nohuman ou diretório para baixá-lo |
+| `--nohuman_db_version` | string |  | Versão do banco de dados a ser baixada (padrão: versão mais recente do HPRC) |
+| `--nohuman_save_as_tarball` | boolean | `false` | Salvar o banco de dados do nohuman como um tarball |
+| `--download_nohuman` | boolean | `false` | Baixar o banco de dados do nohuman para o caminho indicado em --nohuman_db |
+
+### Parâmetros de Execução do Nohuman
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nohuman_db` | string |  | Caminho para o diretório ou tarball do banco de dados do nohuman |
+| `--nohuman_confidence` | number | `0.0` | Pontuação mínima de confiança do Kraken2 para classificação (0.0-1.0) |
+| `--nohuman_human` | boolean | `false` | Inverter saída para manter apenas reads humanos em vez de removê-los |
+| `--nohuman_save_report` | boolean | `false` | Salvar o relatório de classificação do Kraken2 |
+
+### Parâmetros de Download do Deacon
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--deacon_index_name` | string | `panhuman-1` | Nome do índice pré-construído do deacon a ser baixado |
+| `--download_deacon` | boolean | `false` | Baixar o índice do deacon para o cache de datasets |
+| `--use_deacon` | boolean | `false` | Usar deacon para filtragem de reads do hospedeiro |
+
+### Parâmetros de Filtragem do Deacon
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--deacon_abs_threshold` | integer | `2` | Número mínimo absoluto de hits de minimizador para uma correspondência |
+| `--deacon_db` | string |  | Caminho para um índice deacon pré-existente (.idx) para filtragem de reads do hospedeiro |
+| `--deacon_deplete` | boolean | `true` | Descartar sequências correspondentes em vez de mantê-las |
+| `--deacon_opts` | string |  | Opções adicionais do deacon filter não cobertas por outros parâmetros |
+| `--deacon_prefix_length` | integer | `0` | Pesquisar apenas os primeiros N nucleotídeos por sequência (0 para todos) |
+| `--deacon_rel_threshold` | number | `0.01` | Proporção relativa mínima (0.0-1.0) de hits de minimizador para uma correspondência |
+
+<details>
+<summary>Parâmetros de Dataset</summary>
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--species` | string |  | Nome da espécie para usar o dataset espécie-específico |
+| `--ask_merlin` | boolean |  | Pedir ao Merlin para executar ferramentas Bactopia espécie-específicas com base nas distâncias Mash |
+| `--coverage` | integer | `100` | Reduzir amostras para uma cobertura determinada, requer um tamanho de genoma |
+| `--genome_size` | integer | `0` | Tamanho esperado do genoma (bp) para todas as amostras, necessário para correção de erros de reads e subamostramento de reads |
+| `--use_bakta` | boolean |  | Usar Bakta para anotação, em vez de Prokka |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Estes parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Jobs</summary>
+
+Define o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Quantidade máxima de tempo que pode ser solicitada para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras a serem baixadas simultaneamente |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e irá sobrescrever variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow irá sobrescrever arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID do commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome da configuração institucional. |
+| `--config_profile_description` | string |  | Descrição da configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato da configuração institucional. |
+| `--config_profile_url` | string |  | Link de URL da configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para ambientes Conda |
+| `--registry` | string | `quay.io` | Registro de onde baixar os containers Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity para uso com Singularity, forçar o fluxo de trabalho a baixar e converter containers Docker. |
+| `--force_rebuild` | boolean | `false` | Forçar a sobrescrita de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) da(s) fila(s) separados por vírgula a serem usados por um agendador de jobs (ex: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais a serem passadas ao executor. (ex: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais a serem passadas ao Apptainer, Docker ou Singularity. (ex: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente usados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Imprimir o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Booleano que indica se os parâmetros devem ser validados em relação ao schema em tempo de execução |
+| `--help` | boolean |  | Exibir texto de ajuda. |
+| `--wf` | string | `bactopia` | Especificar qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Listar os fluxos de trabalho e Bactopia Tools disponíveis para usar com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostrar todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibir texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [bactopia_gather](/developers/subworkflows/bactopia_gather) - Pesquisar, validar, reunir e padronizar amostras de entrada.
+- [bactopia_qc](/developers/subworkflows/bactopia_qc) - Realizar controle de qualidade abrangente em reads de sequenciamento.
+- [scrubber](/developers/subworkflows/scrubber) - Remover sequências contaminantes de dados metagenômicos.
+
+## Citações
+
+Se você usar este fluxo de trabalho em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BBTools](https://jgi.doe.gov/data-and-tools/bbtools/)  
+  Bushnell B [BBMap short read aligner, and other bioinformatic tools.](http://sourceforge.net/projects/bbmap/) (Link)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
+
+- [fastp](https://github.com/OpenGene/fastp)  
+  Chen S, Zhou Y, Chen Y, and Gu J [fastp: an ultra-fast all-in-one FASTQ preprocessor.](https://doi.org/10.1093/bioinformatics/bty560) _Bioinformatics_, 34(17), i884-i890. (2018)
+
+- [FastQC](https://github.com/s-andrews/FastQC)  
+  Andrews S [FastQC: a controle de qualidade tool for high throughput sequence data.](http://www.bioinformatics.babraham.ac.uk/projects/fastqc) (WebLink)
+
+- [fastq-scan](https://github.com/rpetit3/fastq-scan)  
+  Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+- [Lighter](https://github.com/mourisl/Lighter)  
+  Song L, Florea L, Langmead B [Lighter: Fast and Memory-efficient Sequencing Error Correction without Counting](https://doi.org/10.1186/s13059-014-0509-9). _Genome Biol._ 15(11):509 (2014)
+
+- [NanoPlot](https://github.com/wdecoster/NanoPlot)  
+  De Coster W, D'Hert S, Schultz DT, Cruts M, Van Broeckhoven C [NanoPack: visualizing and processing long-read sequencing data](https://doi.org/10.1093/bioinformatics/bty149) _Bioinformatics_ Volume 34, Issue 15 (2018)
+
+- [Nanoq](https://github.com/esteinig/nanoq)  
+  Steinig E [Nanoq: Minimal but speedy controle de qualidade for nanopore reads in Rust](https://github.com/esteinig/nanoq) (GitHub)
+
+- [Porechop](https://github.com/rrwick/Porechop)  
+  Wick RR, Judd LM, Gorrie CL, Holt KE. [Completing bacterial genome assemblies with multiplex MinION sequencing.](https://doi.org/10.1099/mgen.0.000132) _Microb Genom._ 3(10):e000132 (2017)
+
+- [Rasusa](https://github.com/mbhall88/rasusa)  
+  Hall MB [Rasusa: Randomly subsample sequencing reads to a specified coverage.](https://doi.org/10.5281/zenodo.3731394) (2019).
+
+- [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber)  
+  Katz KS, Shutov O, Lapoint R, Kimelman M, Brister JR, and O'Sullivan C [STAT: a fast, scalable, MinHash-based k-mer tool to assess Sequence Read Archive next-generation sequence submissions.](https://doi.org/10.1186/s13059-021-02490-0) _Genome Biology_, 22(1), 270 (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/cleanyerreads)

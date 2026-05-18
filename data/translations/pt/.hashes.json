@@ -304,5 +304,10 @@
   "docs/index.mdx": "23f8e9f9cc9da71241658146e5d6748e",
   "docs/installation.md": "785f5a379c6a426cb935645bb18e1469",
   "docs/quick-start.md": "4f3cb2f82fbdcf6b923120203f6e602b",
-  "docs/tutorial.md": "c7ce6c22a782ecfeb5333cca45434241"
+  "docs/tutorial.md": "c7ce6c22a782ecfeb5333cca45434241",
+  "impact/acknowledgements.md": "fd48abeec19bc628bb29365055713e9c",
+  "impact/citations.md": "91e4c33d741aefa8d5c59c92aacb276d",
+  "impact/enhancements.md": "24707ff1662443310612f603b7cf24f6",
+  "impact/index.mdx": "4b44134fa91eaad3753a980dddca6eeb",
+  "impact/presentations.md": "093d67f167b025b006bb1c97e4ee1fe7"
 }
