@@ -101,9 +101,13 @@ def find_changed_files(
 def remove_orphaned(locale: str, files: list[TranslationFile]) -> list[Path]:
     """Find translated files that no longer have an English source."""
     en_targets = {f.lang_path for f in files}
+    active_plugins = {f.plugin_id for f in files}
     orphaned = []
 
-    for _plugin_id, cfg in PLUGIN_MAP.items():
+    for plugin_id, cfg in PLUGIN_MAP.items():
+        if plugin_id not in active_plugins:
+            continue
+
         i18n_subdir = cfg["i18n_subdir"]
         target_base = I18N_DIR / locale / i18n_subdir
         if cfg.get("versioned", True):

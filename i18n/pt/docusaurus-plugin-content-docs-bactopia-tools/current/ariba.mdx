@@ -1,0 +1,290 @@
+---
+title: ariba
+description: "Identificação de genes por meio de montagens locais."
+tags:
+  - fastq
+  - assembly
+  - resistance
+  - virulence
+  - gene-detection
+  - bactopia-tool
+---
+
+# ariba
+
+**Tags:** <a href="/bactopia-tools/tags/fastq" class="badge badge--primary badge--tag">fastq</a> <a href="/bactopia-tools/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/bactopia-tools/tags/resistance" class="badge badge--primary badge--tag">resistance</a> <a href="/bactopia-tools/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/bactopia-tools/tags/gene-detection" class="badge badge--primary badge--tag">gene-detection</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Identificação de genes por meio de montagens locais.
+
+Esta Bactopia Tool utiliza o [ARIBA](https://github.com/sanger-pathogens/ariba) para
+identificar rapidamente genes em um banco de dados, criando montagens locais a partir
+de dados de reads curtos. O ARIBA realiza montagem baseada em referência e chamada de
+variantes para detecção de genes.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf ariba \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/ariba/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── ariba
+│           └── card
+│               ├── <SAMPLE_NAME>-report.tsv
+│               ├── <SAMPLE_NAME>-summary.csv
+│               ├── logs
+│               │   └── card
+│               │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               │       └── versions.yml
+│               └── supplemental
+│                   ├── assembled_genes.fa.gz
+│                   ├── assembled_seqs.fa.gz
+│                   ├── assemblies.fa.gz
+│                   ├── debug.report.tsv
+│                   ├── log.clusters.gz
+│                   └── version_info.txt
+└── bactopia-runs
+    └── ariba-card-<TIMESTAMP>
+        ├── merged-results
+        │   ├── card-report.tsv
+        │   ├── card-summary.csv
+        │   └── logs
+        │       ├── card-report-concat
+        │       │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       │   └── versions.yml
+        │       └── card-summary-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── ariba-dag.dot
+            ├── ariba-report.html
+            └── ariba-timeline.html
+```
+
+### Resultados por Amostra
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*-report.tsv` | Relatório de detecção de genes para cada amostra |
+| `*-summary.csv` | Resumo dos resultados de detecção de genes |
+| `assembled_genes.fa.gz` | Genes montados em formato FASTA comprimido |
+| `assembled_seqs.fa.gz` | Sequências montadas que correspondem às referências |
+| `assemblies.fa.gz` | Montagens locais brutas |
+| `debug.report.tsv` | Relatório detalhado incluindo mutações sinônimas |
+| `log.clusters.gz` | Arquivo de log da análise |
+| `version_info.txt` | Informações de versão do ARIBA e suas dependências |
+
+### Resultados Consolidados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `ariba-report.tsv` | Relatórios de detecção de genes consolidados de todas as amostras |
+| `ariba-summary.csv` | Resumos consolidados de todas as amostras |
+
+
+### Trilha de Auditoria
+
+Abaixo estão os arquivos que podem ajudar a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta há arquivos úteis
+para consulta, caso necessário.
+
+| Extensão     | Descrição |
+|--------------|-----------|
+| .begin       | Arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/desfazer o staging de arquivos e enfileirar processos com base no perfil definido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um ótimo resumo da sua execução. Eles podem ser
+usados para otimizar o uso de recursos e estimar custos esperados ao utilizar plataformas
+em nuvem.
+
+| Nome do arquivo | Descrição |
+|-----------------|-----------|
+| ariba-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| ariba-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| ariba-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| ariba-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do Bactopia a serem usados como entradas |
+
+### Parâmetros de Execução do Ariba
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--ariba_db` | string |  | Um banco de dados para consultar; se não estiver disponível, será baixado no caminho indicado por --datasets_cache (opções: `argannot`, `card`, `ncbi`, `megares`, `plasmidfinder`, `resfinder`, `srst2_argannot`, `vfdb_core`, `vfdb_full`, `virulencefinder`) |
+| `--ariba_nucmer_min_id` | integer | `90` | Identidade mínima de alinhamento (delta-filter -i) |
+| `--ariba_nucmer_min_len` | integer | `20` | Comprimento mínimo de alinhamento (delta-filter -i) |
+| `--ariba_nucmer_breaklen` | integer | `200` | Valor a ser usado para -breaklen ao executar o nucmer |
+| `--ariba_assembly_cov` | integer | `50` | Cobertura de reads alvo ao amostrar reads para montagem |
+| `--ariba_min_scaff_depth` | integer | `10` | Número mínimo de pares de reads necessários como evidência para ligação de scaffold entre dois contigs |
+| `--ariba_spades_options` | string |  | Opções extras a serem passadas ao montador Spades |
+| `--ariba_assembled_threshold` | number | `0.95` | Se a proporção do gene montado (independentemente de quantos contigs) for ao menos este valor, então a flag gene_assembled é definida |
+| `--ariba_gene_nt_extend` | integer | `30` | Número máximo de nucleotídeos para estender as extremidades das correspondências de genes em busca de códons de início/parada |
+| `--ariba_unique_threshold` | number | `0.03` | Se a proporção de bases no gene montadas mais de uma vez for &lt;= este valor, então a flag unique_contig é definida |
+| `--ariba_no_clean` | boolean |  | Não remover os arquivos intermediários criados pelo Ariba. |
+
+### Parâmetros do csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use estes parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a serem incluídas na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a serem excluídas da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Estes parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os conjuntos de dados |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Jobs</summary>
+
+Define o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras para baixar ao mesmo tempo |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que substituirá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter os logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID de commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para os ambientes Conda |
+| `--registry` | string | `quay.io` | Registro de onde baixar os contêineres Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os conjuntos de dados baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity, força o fluxo de trabalho a baixar e converter contêineres Docker. |
+| `--force_rebuild` | boolean | `false` | Força a substituição de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) de fila(s) separados por vírgula a serem usados por um agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais a serem passadas ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais a serem passadas ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros pouco usados que podem ser úteis em algumas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibe o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os conjuntos de dados antes da execução. |
+| `--validate_params` | boolean | `true` | Define se os parâmetros devem ser validados em relação ao schema em tempo de execução |
+| `--help` | boolean |  | Exibe o texto de ajuda. |
+| `--wf` | string | `bactopia` | Especifica qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Lista os fluxos de trabalho e Bactopia Tools disponíveis para uso com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostra todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um atalho para --help --show_hidden_params |
+| `--version` | boolean |  | Exibe o texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [ariba](/developers/subworkflows/ariba) - Identifica rapidamente genes criando montagens locais a partir de reads pareados.
+
+## Citações
+
+Se você usar este fluxo de trabalho em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Ariba](https://github.com/sanger-pathogens/ariba)  
+  Hunt M, Mather AE, Sánchez-Busó L, Page AJ, Parkhill J, Keane JA, Harris SR [ARIBA: rapid resistencia antimicrobiana genotyping directly from sequencing reads](http://dx.doi.org/10.1099/mgen.0.000131). _Microb Genom_ 3, e000131 (2017)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/ariba)
