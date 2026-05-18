@@ -36,11 +36,11 @@ tools:
       description: "A fork of Shovill that includes support for single end reads"
 
     - tool: "staphopia-sccmec"
-      tool_url: "https://github.com/rpetit3/vcf-annotator"
+      tool_url: "https://github.com/staphopia/staphopia-sccmec"
       description: "A standalone version of Staphopia’s SCCmec typing method"
 
     - tool: "vcf-annotator"
-      tool_url: "https://github.com/staphopia/staphopia-sccmec"
+      tool_url: "https://github.com/rpetit3/vcf-annotator"
       description: "Add biological annotations to variants in a given VCF file"
 
 conda_submissions:
