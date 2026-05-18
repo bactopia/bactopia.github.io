@@ -24,6 +24,8 @@ bactopia-search [OPTIONS]
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `--exact-taxon` | BOOL | `false` | Exclude Taxon ID descendants |
+| `--provider` | CHOICE (ena, sra) | `ena` | Provider to query first, falls back to the other |
+| `--only-provider` | BOOL | `false` | Only query the given --provider, skip fallback |
 | `--limit, -l` | INT | `1000000` | Maximum number of results (per query) to return |
 | `--accession-limit, -al` | INT | `5000` | Maximum number of accessions to query at once |
 | `--biosample-subset` | INT | `0` | If a BioSample has multiple Experiments, maximum number to randomly select (0 = disabled) |

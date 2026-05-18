@@ -86,6 +86,21 @@ record (
 
 ## Parameters
 
+### Gather Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--skip_fastq_check` | boolean |  | Skip minimum requirement checks for input FASTQs |
+| `--min_basepairs` | integer | `2241820` | The minimum amount of basepairs required to continue downstream analyses. |
+| `--min_reads` | integer | `7472` | The minimum amount of reads required to continue downstream analyses. |
+| `--min_coverage` | integer | `10` | The minimum amount of coverage required to continue downstream analyses. |
+| `--min_proportion` | number | `0.5` | The minimum proportion of basepairs for paired-end reads to continue downstream analyses. |
+| `--min_genome_size` | integer | `100000` | The minimum estimated genome size allowed for the input sequence to continue downstream analyses. |
+| `--max_genome_size` | integer | `18040666` | The maximum estimated genome size allowed for the input sequence to continue downstream analyses. |
+| `--attempts` | integer | `3` | Maximum times to attempt downloads |
+| `--use_ena` | boolean |  | Download FASTQs from ENA |
+| `--no_cache` | boolean |  | Skip caching the assembly summary file from ncbi-genome-download |
+
 ## Used By
 
 ### Subworkflows
@@ -103,7 +118,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm)  
@@ -129,5 +144,5 @@ If you use this in your analysis, please cite the following.
 
 ```yaml
 BACTOPIA_GATHER:
-    - bactopia-gather: 1.0.5
+    - bactopia-gather: 1.0.6
 ```

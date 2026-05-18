@@ -256,6 +256,9 @@ Define where the pipeline should find input data and save output data.
 | `--accession` | string |  | An NCBI Assembly accession to be downloaded |
 | `--accessions` | string |  | An file of NCBI Assembly accessions (one per line) to be downloaded |
 | `--format` | string | `fasta` | Comma separated list of formats to download |
+| `--section` | string | `refseq` | NCBI section to download |
+| `--assembly_level` | string | `complete` | Comma separated list of assembly levels to download |
+| `--kingdom` | string | `bacteria` | Comma separated list of formats to download |
 | `--limit` | string |  | Limit the number of assemblies to download |
 | `--keep_downloads` | boolean | `false` | Save downloaded files into the bactopia-runs folder |
 
@@ -263,9 +266,14 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--prokka_proteins` | string | `${projectDir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
+| `--prokka_proteins` | string |  | FASTA file of trusted proteins to first annotate from |
 | `--prokka_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--prokka_compliant` | boolean | `false` | Force Genbank/ENA/DDJB compliance |
+| `--prokka_centre` | string | `Bactopia` | Sequencing centre ID |
 | `--prokka_coverage` | integer | `80` | Minimum coverage on query protein |
+| `--prokka_evalue` | string | `1e-09` | Similarity e-value cut-off |
+| `--prokka_opts` | string |  | Extra Prokka options in quotes. |
+| `--prokka_debug` | boolean | `false` | Enable debug mode for Prokka |
 
 ### PIRATE Parameters
 
@@ -275,20 +283,33 @@ Define where the pipeline should find input data and save output data.
 | `--pirate_steps` | string | `50,60,70,80,90,95,98` | Percent identity thresholds to use for pangenome construction |
 | `--pirate_features` | string | `CDS` | Comma-delimited features to use for pangenome construction |
 | `--pirate_para_off` | boolean | `false` | Switch off paralog identification |
+| `--pirate_z` | boolean | `false` | Retain all PIRATE intermediate files |
+| `--pirate_pan_opt` | string |  | Additional arguments to pass to pangenome construction. |
 
 ### Roary Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--roary_use_prank` | boolean | `false` | Use PRANK instead of MAFFT for core gene |
 | `--use_roary` | boolean | `false` | Use Roary instead of PIRATE in the 'pangenome' subworkflow |
+| `--roary_i` | integer | `95` | Minimum percentage identity for blastp |
 | `--roary_cd` | integer | `99` | Percentage of isolates a gene must be in to be core |
+| `--roary_g` | integer | `50000` | Maximum number of clusters |
 | `--roary_s` | boolean | `false` | Do not split paralogs |
 | `--roary_ap` | boolean | `false` | Allow paralogs in core alignment |
+| `--roary_iv` | number | `1.5` | MCL inflation value |
 
 ### Panaroo Run Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--panaroo_mode` | string | `strict` | The stringency mode at which to run panaroo (choices: `strict`, `moderate`, `sensitive`) |
+| `--panaroo_alignment` | string | `core` | Output alignments of core genes or all genes (choices: `core`, `pan`) |
+| `--panaroo_aligner` | string | `mafft` | Aligner to use for core/pan genome alignment (choices: `mafft`, `prank`, `clustal`) |
+| `--panaroo_core_threshold` | number | `0.95` | Core-genome sample threshold |
+| `--panaroo_threshold` | number | `0.98` | Sequence identity threshold |
+| `--panaroo_family_threshold` | number | `0.7` | Protein family sequence identity threshold |
+| `--panaroo_len_dif_percent` | number | `0.98` | Length difference cutoff |
 | `--panaroo_merge_paralogs` | boolean | `false` | Do not split paralogs |
 | `--panaroo_opts` | string |  | Additional options to pass to panaroo |
 
@@ -297,12 +318,16 @@ Define where the pipeline should find input data and save output data.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--snpdists_a` | boolean | `false` | Count all differences not just [AGTC] |
+| `--snpdists_b` | boolean | `false` | Keep top left corner cell |
+| `--snpdists_csv` | boolean | `false` | Output CSV instead of TSV |
+| `--snpdists_k` | boolean | `false` | Keep case, don't uppercase all letters |
 
 ### ClonalFrameML Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--clonalframeml_emsim` | integer | `100` | Number of simulations to estimate uncertainty in the EM results |
+| `--clonalframeml_opts` | string |  | Extra ClonalFrameML options in quotes |
 | `--skip_recombination` | boolean | `false` | Skip ClonalFrameML execution in subworkflows |
 
 ### IQ-TREE Parameters
@@ -313,6 +338,7 @@ Define where the pipeline should find input data and save output data.
 | `--iqtree_bb` | integer | `1000` | Ultrafast bootstrap replicates |
 | `--iqtree_alrt` | integer | `1000` | SH-like approximate likelihood ratio test replicates |
 | `--iqtree_asr` | boolean | `false` | Ancestral state reconstruction by empirical Bayes |
+| `--iqtree_opts` | string |  | Extra IQ-TREE options in quotes. |
 | `--skip_phylogeny` | boolean | `false` | Skip IQ-TREE execution in subworkflows |
 
 ### Scoary Parameters
@@ -320,7 +346,10 @@ Define where the pipeline should find input data and save output data.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--scoary_traits` | string |  | Input trait table (CSV) to test for associations |
+| `--scoary_p_value_cutoff` | number | `0.05` | For statistical tests, genes with higher p-values will not be reported |
+| `--scoary_correction` | string | `I` | Apply the indicated filtration measure. (choices: `I`, `B`, `BH`, `PW`, `EPW`, `P`) |
 | `--scoary_permute` | integer | `0` | Perform N number of permutations of the significant results post-analysis |
+| `--scoary_start_col` | integer | `15` | On which column in the gene presence/absence file do individual strain info start |
 
 <details>
 <summary>Filtering Parameters</summary>
@@ -341,6 +370,52 @@ These optional parameters can be useful in certain settings.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
+| `--skip_compression` | boolean | `false` | Output files will not be compressed |
+| `--datasets` | string |  | The path to cache datasets to |
+| `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
+</details>
+
+<details>
+<summary>Max Job Request Parameters</summary>
+
+Set the top limit for requested resources for any single job.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--max_retry` | integer | `3` | Maximum times to retry a process before allowing it to fail. |
+| `--max_cpus` | integer | `4` | Maximum number of CPUs that can be requested for any single job. |
+| `--max_memory` | string | `128.GB` | Maximum amount of memory that can be requested for any single job. |
+| `--max_time` | string | `240.h` | Maximum amount of time that can be requested for any single job. |
+| `--max_downloads` | integer | `3` | Maximum number of samples to download at a time |
+</details>
+
+<details>
+<summary>Nextflow Configuration Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
+| `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
+| `--cleanup_workdir` | boolean | `false` | After Bactopia is successfully executed, the `work` directory will be deleted. |
+</details>
+
+<details>
+<summary>Institutional config options</summary>
+
+Parameters used to describe centralized config profiles. These should not be edited.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
+| `--config_profile_name` | string |  | Institutional config name. |
+| `--config_profile_description` | string |  | Institutional config description. |
+| `--config_profile_contact` | string |  | Institutional config contact information. |
+| `--config_profile_url` | string |  | Institutional config URL link. |
 </details>
 
 <details>
@@ -350,7 +425,16 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
+| `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
+| `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Additional options to pass to Apptainer, Docker, or Singularity. (e.g. Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | All intermediate files created on worker nodes of will be transferred to the head node. |
 </details>
 
 <details>
@@ -360,8 +444,14 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
+| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
+| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
+| `--help` | boolean |  | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
 | `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
 | `--help_all` | boolean |  | An alias for --help --show_hidden_params |
 | `--version` | boolean |  | Display version text. |
 </details>
@@ -381,7 +471,7 @@ This workflow uses the following subworkflows:
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)  

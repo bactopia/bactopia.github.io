@@ -138,9 +138,28 @@ Define where the pipeline should find input data and save output data.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--kraken2_db` | string |  | The a single tarball or path to a Kraken2 formatted database |
+| `--kraken2_quick_mode` | boolean | `false` | Quick operation (use first hit or hits) |
 | `--kraken2_confidence` | number | `0.0` | Confidence score threshold between 0 and 1 |
+| `--kraken2_minimum_base_quality` | integer | `0` | Minimum base quality used in classification |
 | `--kraken2_use_mpa_style` | boolean | `false` | Format report output like Kraken 1's kraken-mpa-report |
 | `--kraken2_report_zero_counts` | boolean | `false` | Report counts for ALL taxa, even if counts are zero |
+| `--kraken2_report_minimizer_data` | boolean | `false` | Include minimizer and distinct minimizer count information in report |
+| `--kraken2_use_names` | boolean | `false` | Print scientific names instead of just taxids |
+| `--kraken2_memory_mapping` | boolean | `false` | Avoid loading database into RAM |
+| `--kraken2_minimum_hit_groups` | integer | `2` | Minimum number of hit groups needed to make a call |
+| `--kraken2_keep_filtered_reads` | boolean | `false` | Keep the classified and unclassified FASTQs produced by Kraken2 |
+| `--kraken2_keep_raw_output` | boolean | `false` | Keep the STDOUT file produced from Kraken2 |
+| `--bracken_read_length` | integer | `0` | Read length to get all classifications for (0 = determine at runtime) |
+| `--bracken_level` | string | `S` | Level to estimate abundance at |
+| `--bracken_threshold` | integer | `0` | Reads required PRIOR to abundance estimation to perform re-estimation |
+| `--bracken_max_secondary_percent` | number | `0.01` | The maximum percent abundance for the secondary species, if exceeded, sample will remain unclassified |
+| `--bracken_skip_krona` | boolean | `false` | Skip the creation of a Krona report |
+
+### csvtk concat Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
 
 <details>
 <summary>Filtering Parameters</summary>
@@ -161,6 +180,52 @@ These optional parameters can be useful in certain settings.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
+| `--skip_compression` | boolean | `false` | Output files will not be compressed |
+| `--datasets` | string |  | The path to cache datasets to |
+| `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
+</details>
+
+<details>
+<summary>Max Job Request Parameters</summary>
+
+Set the top limit for requested resources for any single job.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--max_retry` | integer | `3` | Maximum times to retry a process before allowing it to fail. |
+| `--max_cpus` | integer | `4` | Maximum number of CPUs that can be requested for any single job. |
+| `--max_memory` | string | `128.GB` | Maximum amount of memory that can be requested for any single job. |
+| `--max_time` | string | `240.h` | Maximum amount of time that can be requested for any single job. |
+| `--max_downloads` | integer | `3` | Maximum number of samples to download at a time |
+</details>
+
+<details>
+<summary>Nextflow Configuration Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
+| `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
+| `--cleanup_workdir` | boolean | `false` | After Bactopia is successfully executed, the `work` directory will be deleted. |
+</details>
+
+<details>
+<summary>Institutional config options</summary>
+
+Parameters used to describe centralized config profiles. These should not be edited.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
+| `--config_profile_name` | string |  | Institutional config name. |
+| `--config_profile_description` | string |  | Institutional config description. |
+| `--config_profile_contact` | string |  | Institutional config contact information. |
+| `--config_profile_url` | string |  | Institutional config URL link. |
 </details>
 
 <details>
@@ -170,7 +235,16 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
+| `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
+| `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Additional options to pass to Apptainer, Docker, or Singularity. (e.g. Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | All intermediate files created on worker nodes of will be transferred to the head node. |
 </details>
 
 <details>
@@ -180,8 +254,14 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
+| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
+| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
+| `--help` | boolean |  | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
 | `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
 | `--help_all` | boolean |  | An alias for --help --show_hidden_params |
 | `--version` | boolean |  | Display version text. |
 </details>
@@ -196,7 +276,7 @@ This workflow uses the following subworkflows:
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Bracken](https://github.com/jenniferlu717/Bracken)  

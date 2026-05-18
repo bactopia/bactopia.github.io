@@ -90,6 +90,9 @@ record (
 | `--accession` | string |  | An NCBI Assembly accession to be downloaded |
 | `--accessions` | string |  | An file of NCBI Assembly accessions (one per line) to be downloaded |
 | `--format` | string | `fasta` | Comma separated list of formats to download |
+| `--section` | string | `refseq` | NCBI section to download |
+| `--assembly_level` | string | `complete` | Comma separated list of assembly levels to download |
+| `--kingdom` | string | `bacteria` | Comma separated list of formats to download |
 | `--limit` | string |  | Limit the number of assemblies to download |
 | `--keep_downloads` | boolean | `false` | Save downloaded files into the bactopia-runs folder |
 
@@ -110,7 +113,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  

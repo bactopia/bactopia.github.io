@@ -112,6 +112,20 @@ record (
 | `--bakta_proteins` | string |  | FASTA file of trusted proteins to first annotate from |
 | `--bakta_prodigal_tf` | string |  | Training file to use for Prodigal |
 | `--bakta_replicons` | string |  | Replicon information table (tsv/csv) |
+| `--bakta_min_contig_length` | integer | `1` | Minimum contig size to annotate |
+| `--bakta_keep_contig_headers` | boolean | `false` | Keep original contig headers |
+| `--bakta_compliant` | boolean | `false` | Force Genbank/ENA/DDJB compliance |
+| `--bakta_skip_trna` | boolean | `false` | Skip tRNA detection & annotation |
+| `--bakta_skip_tmrna` | boolean | `false` | Skip tmRNA detection & annotation |
+| `--bakta_skip_rrna` | boolean | `false` | Skip rRNA detection & annotation |
+| `--bakta_skip_ncrna` | boolean | `false` | Skip ncRNA detection & annotation |
+| `--bakta_skip_ncrna_region` | boolean | `false` | Skip ncRNA region detection & annotation |
+| `--bakta_skip_crispr` | boolean | `false` | Skip CRISPR array detection & annotation |
+| `--bakta_skip_cds` | boolean | `false` | Skip CDS detection & annotation |
+| `--bakta_skip_sorf` | boolean | `false` | Skip sORF detection & annotation |
+| `--bakta_skip_gap` | boolean | `false` | Skip gap detection & annotation |
+| `--bakta_skip_ori` | boolean | `false` | Skip oriC/oriT detection & annotation |
+| `--bakta_opts` | string |  | Extra Bakta options in quotes. Example: '--gram +' |
 
 ## Used By
 
@@ -129,7 +143,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Bakta](https://github.com/oschwengers/bakta)  

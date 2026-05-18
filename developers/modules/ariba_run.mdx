@@ -79,7 +79,14 @@ record (
 | `--ariba_db` | string |  | A database to query, if unavailable it will be downloaded to the path given by --datasets_cache (choices: `argannot`, `card`, `ncbi`, `megares`, `plasmidfinder`, `resfinder`, `srst2_argannot`, `vfdb_core`, `vfdb_full`, `virulencefinder`) |
 | `--ariba_nucmer_min_id` | integer | `90` | Minimum alignment identity (delta-filter -i) |
 | `--ariba_nucmer_min_len` | integer | `20` | Minimum alignment identity (delta-filter -i) |
+| `--ariba_nucmer_breaklen` | integer | `200` | Value to use for -breaklen when running nucmer |
 | `--ariba_assembly_cov` | integer | `50` | Target read coverage when sampling reads for assembly |
+| `--ariba_min_scaff_depth` | integer | `10` | Minimum number of read pairs needed as evidence for scaffold link between two contigs |
+| `--ariba_spades_options` | string |  | Extra options to pass to Spades assembler |
+| `--ariba_assembled_threshold` | number | `0.95` | If proportion of gene assembled (regardless of into how many contigs) is at least this value then the flag gene_assembled is set |
+| `--ariba_gene_nt_extend` | integer | `30` | Max number of nucleotides to extend ends of gene matches to look for start/stop codons |
+| `--ariba_unique_threshold` | number | `0.03` | If proportion of bases in gene assembled more than once is &lt;= this value, then the flag unique_contig is set |
+| `--ariba_no_clean` | boolean |  | Do not clean up intermediate files created by Ariba. |
 
 ## Used By
 
@@ -95,7 +102,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Ariba](https://github.com/sanger-pathogens/ariba)  

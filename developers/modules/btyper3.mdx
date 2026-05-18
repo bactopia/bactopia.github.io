@@ -66,7 +66,10 @@ record (
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--btyper3_virulence_identity` | integer | `70` | Minimum percent amino acid/nucleotide identity threshold for a virulence gene to be considered present |
+| `--btyper3_virulence_coverage` | integer | `80` | Minimum percent coverage threshold for a virulence gene to be considered present |
 | `--btyper3_identity` | integer | `50` | Minimum percent amino acid identity threshold for a Bt toxin gene to be considered present |
+| `--btyper3_coverage` | integer | `70` | Minimum percent coverage threshold for a Bt toxin gene to be considered present |
+| `--btyper3_overlap` | number | `0.7` | Specify maximum proportion of overlap for overlapping Bt toxin genes to be considered separate genes |
 | `--btyper3_opts` | string |  | Additional options to pass to BTyper3 |
 
 ## Used By
@@ -83,7 +86,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [BTyper3](https://github.com/lmc297/BTyper3)  

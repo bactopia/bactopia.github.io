@@ -83,7 +83,15 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--amrfinderplus_ident_min` | number | `-1` | Minimum proportion of identical amino acids in alignment for hit (0..1) |
+| `--amrfinderplus_coverage_min` | number | `0.5` | Minimum coverage of the reference protein (0..1) |
+| `--amrfinderplus_organism` | string |  | Taxonomy group to run additional screens against |
+| `--amrfinderplus_translation_table` | integer | `11` | NCBI genetic code for translated BLAST |
+| `--amrfinderplus_noplus` | boolean | `false` | Disable running AMRFinder+ with the --plus option |
+| `--amrfinderplus_report_common` | boolean | `false` | Report proteins common to a taxonomy group |
+| `--amrfinderplus_report_all_equal` | boolean | `false` | Report all equally-scoring BLAST and HMM matches |
 | `--amrfinderplus_opts` | string |  | Extra AMRFinder+ options in quotes. |
+| `--amrfinderplus_db` | string |  | A custom AMRFinder+ database to use, either a tarball or a folder |
 
 ## Used By
 
@@ -101,7 +109,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [AMRFinderPlus](https://github.com/ncbi/amr)  

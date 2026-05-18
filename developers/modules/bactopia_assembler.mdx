@@ -89,6 +89,36 @@ record (
 
 ## Parameters
 
+### Assembler Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--shovill_assembler` | string | `skesa` | Assembler to be used by Shovill (choices: `skesa`, `megahit`, `spades`, `velvet`) |
+| `--dragonflye_assembler` | string | `flye` | Assembler to be used by Dragonflye (choices: `flye`, `miniasm`, `raven`) |
+| `--use_unicycler` | boolean |  | Use unicycler for paired end assembly |
+| `--min_contig_len` | integer | `500` | Minimum contig length &lt;0=AUTO&gt; |
+| `--min_contig_cov` | integer | `2` | Minimum contig coverage &lt;0=AUTO&gt; |
+| `--contig_namefmt` | string |  | Format of contig FASTA IDs in 'printf' style |
+| `--shovill_opts` | string |  | Extra assembler options in quotes for Shovill |
+| `--shovill_kmers` | string |  | K-mers to use &lt;blank=AUTO&gt; |
+| `--dragonflye_opts` | string |  | Extra assembler options in quotes for Dragonflye |
+| `--trim` | boolean |  | Enable adaptor trimming |
+| `--no_stitch` | boolean |  | Disable read stitching for paired-end reads |
+| `--no_corr` | boolean |  | Disable post-assembly correction |
+| `--unicycler_mode` | string | `normal` | Bridging mode used by Unicycler (choices: `conservative`, `normal`, `bold`) |
+| `--min_component_size` | integer | `1000` | Graph dead ends smaller than this size (bp) will be removed from the final graph |
+| `--min_dead_end_size` | integer | `1000` | Graph dead ends smaller than this size (bp) will be removed from the final graph |
+| `--nanohq` | boolean | `false` | For Flye, use '--nano-hq' instead of --nano-raw |
+| `--medaka_model` | string |  | The model to use for Medaka polishing |
+| `--medaka_rounds` | integer | `0` | The number of Medaka polishing rounds to conduct |
+| `--racon_rounds` | integer | `1` | The number of Racon polishing rounds to conduct |
+| `--no_polish` | boolean |  | Skip the assembly polishing step |
+| `--no_miniasm` | boolean |  | Skip miniasm+Racon bridging |
+| `--no_rotate` | boolean |  | Do not rotate completed replicons to start at a standard gene |
+| `--reassemble` | boolean | `false` | If reads were simulated, they will be used to create a new assembly. |
+| `--polypolish_rounds` | integer | `1` | Number of polishing rounds to conduct with Polypolish for short read polishing |
+| `--pilon_rounds` | integer | `0` | Number of polishing rounds to conduct with Pilon for short read polishing |
+
 ## Used By
 
 ### Subworkflows
@@ -104,7 +134,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [any2fasta](https://github.com/tseemann/any2fasta)  

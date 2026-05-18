@@ -79,6 +79,10 @@ record (
 | `--tbprofiler_call_whole_genome` | boolean | `false` | Call whole genome |
 | `--tbprofiler_mapper` | string | `bwa` | Mapping tool to use. If you are using nanopore data it will default to minimap2 (choices: `bwa`, `minimap2`, `bowtie2`, `bwa-mem2`) |
 | `--tbprofiler_caller` | string | `freebayes` | Variant calling tool to use (choices: `bcftools`, `gatk`, `freebayes`) |
+| `--tbprofiler_calling_params` | string |  | Extra variant caller options in quotes |
+| `--tbprofiler_suspect` | boolean | `false` | Use the suspect suite of tools to add ML predictions |
+| `--tbprofiler_no_flagstat` | boolean | `false` | Don't collect flagstats |
+| `--tbprofiler_no_delly` | boolean | `false` | Don't run delly |
 | `--tbprofiler_opts` | string |  | Extra options in quotes for TBProfiler |
 
 ## Used By
@@ -95,7 +99,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [TBProfiler](https://github.com/jodyphelan/TBProfiler)  

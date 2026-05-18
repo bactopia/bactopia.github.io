@@ -70,10 +70,13 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--mashtree_trunclength` | integer | `250` | How many characters to keep in a filename |
 | `--mashtree_sortorder` | string | `ABC` | For neighbor-joining, the sort order can make a difference. (choices: `ABC`, `random`, `input-order`) |
 | `--mashtree_genomesize` | integer | `5000000` | Genome size of the input samples |
 | `--mashtree_mindepth` | integer | `5` | If mindepth is zero, then it will be chosen in a smart but slower method, to discard lower-abundance kmers. |
 | `--mashtree_kmerlength` | integer | `21` | Hashes will be based on strings of this many nucleotides |
+| `--mashtree_sketchsize` | integer | `10000` | Each sketch will have at most this many non-redundant min-hashes |
+| `--mashtree_save_sketches` | boolean | `false` | Save sketches created during the process |
 
 ## Used By
 
@@ -89,7 +92,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Mashtree](https://github.com/lskatz/mashtree)  

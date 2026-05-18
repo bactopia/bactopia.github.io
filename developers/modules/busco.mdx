@@ -66,6 +66,12 @@ record (
 | `--busco_lineage` | string | `bacteria_odb10` | Specify the name of the BUSCO lineage to be used |
 | `--busco_evalue` | string | `1e-03` | E-value cutoff for BLAST searches. Allowed formats, 0.001 or 1e-03 |
 | `--busco_limit` | integer | `3` | Total candidate regions to consider per BUSCO |
+| `--busco_metaeuk_parameters` | string |  | Additional Metaeuk first-pass arguments contained within a single pair of quotation marks, separated by commas |
+| `--busco_metaeuk_rerun_parameters` | string |  | Additional Metaeuk second-pass arguments contained within a single pair of quotation marks, separated by commas |
+| `--busco_use_augustus` | boolean | `false` | Use augustus gene predictor for eukaryote runs |
+| `--busco_augustus_parameters` | string |  | Additional Augustus arguments contained within a single pair of quotation marks, separated by commas |
+| `--busco_augustus_species` | string |  | Specify a species for Augustus training |
+| `--busco_augustus_long` | boolean | `false` | Optimization Augustus self-training mode |
 
 ## Used By
 
@@ -81,7 +87,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [BUSCO](https://gitlab.com/ezlab/busco)  

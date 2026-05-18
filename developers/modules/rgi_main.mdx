@@ -65,6 +65,12 @@ record (
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--rgi_use_diamond` | boolean | `false` | Use DIAMOND for alignments instead of BLAST |
+| `--rgi_include_loose` | boolean | `false` | Include loose hits in addition to strict and perfect hits |
+| `--rgi_exclude_nudge` | boolean | `false` | Exclude hits nudged from loose to strict hits |
+| `--rgi_frequency` | boolean | `false` | Represent samples based on resistance profile |
+| `--rgi_category` | string |  | Organize resistance genes based on a category (choices: `drug_class`, `resistance_mechanism`, `gene_family`) |
+| `--rgi_cluster` | string |  | Use SciPy's hierarchical clustering algorithm to cluster rows (AMR genes) or columns (samples) (choices: `samples`, `genes`, `both`) |
+| `--rgi_display` | string | `plain` | Specify display options for categories (choices: `plain`, `fill`, `text`) |
 
 ## Used By
 
@@ -80,7 +86,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi)  

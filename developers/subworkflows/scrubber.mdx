@@ -15,10 +15,10 @@ tags:
 
 Remove contaminant sequences from metagenomic data.
 
-This subworkflow removes human and other contaminant sequences from metagenomic reads using either
-the [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber) or [nohuman](https://github.com/mbhall88/nohuman)
-with the HPRC human database. It provides flexible contamination removal with detailed reporting
-and aggregates results across multiple samples.
+This subworkflow removes human and other contaminant sequences from metagenomic reads using
+[deacon](https://github.com/bede/deacon) (default), [nohuman](https://github.com/mbhall88/nohuman),
+or the [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber). It provides flexible
+contamination removal with detailed reporting and aggregates results across multiple samples.
 
 ## Take
 
@@ -36,17 +36,23 @@ reads: Channel<Record>
 
 ```
 use_srascrubber: Boolean
+use_nohuman: Boolean
 nohuman_db: Path?
 download_nohuman: Boolean
 nohuman_save_as_tarball: Boolean
+deacon_db: Path?
+download_deacon: Boolean
 ```
 
 | Name | Type | Description |
 |------|------|-------------|
-| `use_srascrubber` | `Boolean` | Boolean flag to choose between SRA Human Scrubber (true) or nohuman (false) for decontamination. |
-| `nohuman_db` | `Path?` | Path to nohuman database directory or tarball (used when use_srascrubber is false) |
+| `use_srascrubber` | `Boolean` | Boolean flag to use SRA Human Scrubber for decontamination |
+| `use_nohuman` | `Boolean` | Boolean flag to use nohuman for decontamination |
+| `nohuman_db` | `Path?` | Path to nohuman database directory or tarball (used when use_nohuman is true) |
 | `download_nohuman` | `Boolean` | Boolean flag to download the nohuman database instead of using the provided path |
 | `nohuman_save_as_tarball` | `Boolean` | Boolean flag to save downloaded nohuman database as tarball |
+| `deacon_db` | `Path?` | Path to deacon minimizer index file (.idx) (used when deacon is selected) |
+| `download_deacon` | `Boolean` | Boolean flag to download the deacon index instead of using the provided path |
 
 ## Emit
 
@@ -105,6 +111,7 @@ The following emissions are meant to be used as inputs to downstream subworkflow
 
 This subworkflow calls the following subworkflows:
 
+- [deacon](/developers/subworkflows/deacon) - Remove host reads from sequencing data using deacon.
 - [srahumanscrubber](/developers/subworkflows/srahumanscrubber) - Remove human contamination from sequencing reads for SRA submission.
 - [nohuman](/developers/subworkflows/nohuman) - Remove human reads from sequencing data using nohuman.
 
@@ -125,8 +132,11 @@ This subworkflow is used by the following workflows:
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
 
 - [Kraken2](https://github.com/DerrickWood/kraken2)  
   Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)

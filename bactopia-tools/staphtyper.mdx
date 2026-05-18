@@ -6,13 +6,14 @@ tags:
   - agr
   - spa
   - sccmec
+  - surveillance
   - typing
   - bactopia-tool
 ---
 
 # staphtyper
 
-**Tags:** <a href="/bactopia-tools/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/bactopia-tools/tags/agr" class="badge badge--primary badge--tag">agr</a> <a href="/bactopia-tools/tags/spa" class="badge badge--primary badge--tag">spa</a> <a href="/bactopia-tools/tags/sccmec" class="badge badge--primary badge--tag">sccmec</a> <a href="/bactopia-tools/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+**Tags:** <a href="/bactopia-tools/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/bactopia-tools/tags/agr" class="badge badge--primary badge--tag">agr</a> <a href="/bactopia-tools/tags/spa" class="badge badge--primary badge--tag">spa</a> <a href="/bactopia-tools/tags/sccmec" class="badge badge--primary badge--tag">sccmec</a> <a href="/bactopia-tools/tags/surveillance" class="badge badge--primary badge--tag">surveillance</a> <a href="/bactopia-tools/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
 
 Comprehensive typing of Staphylococcus aureus genomes.
 
@@ -21,6 +22,7 @@ _Staphylococcus aureus_ features. Currently `staphtyper` includes:
 1. [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE) - agr locus type and operon variants
 2. [spaTyper](https://github.com/HCGB-IGTP/spaTyper) - spa type
 3. [sccmec](https://github.com/rpetit3/sccmec) - SCCmec type
+4. [StaphSCAN](https://github.com/riccabolla/StaphSCAN) - genome-based surveillance
 
 ## Usage
 
@@ -64,7 +66,12 @@ nextflow run bactopia/bactopia/workflows/bactopia-tools/staphtyper/main.nf \
 │       │   └── logs
 │       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
 │       │       └── versions.yml
-│       └── spatyper
+│       ├── spatyper
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       └── staphscan
 │           ├── <SAMPLE_NAME>.tsv
 │           └── logs
 │               ├── nf.command.{begin,err,log,out,run,sh,trace}
@@ -80,11 +87,15 @@ nextflow run bactopia/bactopia/workflows/bactopia-tools/staphtyper/main.nf \
         │   │   ├── sccmec-concat
         │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
         │   │   │   └── versions.yml
-        │   │   └── spatyper-concat
+        │   │   ├── spatyper-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   └── staphscan-concat
         │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
         │   │       └── versions.yml
         │   ├── sccmec.tsv
-        │   └── spatyper.tsv
+        │   ├── spatyper.tsv
+        │   └── staphscan.tsv
         └── nf-reports
             ├── staphtyper-dag.dot
             ├── staphtyper-report.html
@@ -150,10 +161,18 @@ Define where the pipeline should find input data and save output data.
 |-----------|------|---------|-------------|
 | `--agrvate_typing_only` | boolean | `false` | agr typing only. Skips agr operon extraction and frameshift detection |
 
+### csvtk concat Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
+
 ### spaTyper Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--spatyper_repeats` | string |  | List of spa repeats |
+| `--spatyper_repeat_order` | string |  | List spa types and order of repeats |
 | `--spatyper_do_enrich` | boolean | `false` | Do PCR product enrichment |
 
 ### sccmec Parameters
@@ -164,6 +183,13 @@ Define where the pipeline should find input data and save output data.
 | `--sccmec_min_targets_coverage` | integer | `80` | Minimum percent coverage to count a target hit |
 | `--sccmec_min_regions_pident` | integer | `85` | Minimum percent identity to count a region hit |
 | `--sccmec_min_regions_coverage` | integer | `93` | Minimum percent coverage to count a region hit |
+
+### StaphSCAN Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--staphscan_modules` | string |  | Comma-separated list of modules to run |
+| `--staphscan_db_mlst` | string |  | Path or tarball to custom MLST database |
 
 <details>
 <summary>Filtering Parameters</summary>
@@ -184,6 +210,52 @@ These optional parameters can be useful in certain settings.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
+| `--skip_compression` | boolean | `false` | Output files will not be compressed |
+| `--datasets` | string |  | The path to cache datasets to |
+| `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
+</details>
+
+<details>
+<summary>Max Job Request Parameters</summary>
+
+Set the top limit for requested resources for any single job.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--max_retry` | integer | `3` | Maximum times to retry a process before allowing it to fail. |
+| `--max_cpus` | integer | `4` | Maximum number of CPUs that can be requested for any single job. |
+| `--max_memory` | string | `128.GB` | Maximum amount of memory that can be requested for any single job. |
+| `--max_time` | string | `240.h` | Maximum amount of time that can be requested for any single job. |
+| `--max_downloads` | integer | `3` | Maximum number of samples to download at a time |
+</details>
+
+<details>
+<summary>Nextflow Configuration Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
+| `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
+| `--cleanup_workdir` | boolean | `false` | After Bactopia is successfully executed, the `work` directory will be deleted. |
+</details>
+
+<details>
+<summary>Institutional config options</summary>
+
+Parameters used to describe centralized config profiles. These should not be edited.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
+| `--config_profile_name` | string |  | Institutional config name. |
+| `--config_profile_description` | string |  | Institutional config description. |
+| `--config_profile_contact` | string |  | Institutional config contact information. |
+| `--config_profile_url` | string |  | Institutional config URL link. |
 </details>
 
 <details>
@@ -193,7 +265,16 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
+| `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
+| `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Additional options to pass to Apptainer, Docker, or Singularity. (e.g. Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | All intermediate files created on worker nodes of will be transferred to the head node. |
 </details>
 
 <details>
@@ -203,8 +284,14 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
+| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
+| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
+| `--help` | boolean |  | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
 | `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
 | `--help_all` | boolean |  | An alias for --help --show_hidden_params |
 | `--version` | boolean |  | Display version text. |
 </details>
@@ -213,23 +300,26 @@ Uncommonly used parameters that might be useful.
 
 This workflow uses the following subworkflows:
 
-- [staphtyper](/developers/subworkflows/staphtyper) - Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.
+- [staphtyper](/developers/subworkflows/staphtyper) - Determine the agr, spa, SCCmec types and perform genome-based surveillance for _Staphylococcus aureus_ genomes.
 
 ## Citations
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)  
   Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
 
+- [sccmec](https://github.com/rpetit3/sccmec)  
+  Petit III RA, Read TD [sccmec: A tool for typing SCCmec cassettes in assemblies](https://github.com/rpetit3/sccmec) (GitHub)
+
 - [spaTyper](https://github.com/HCGB-IGTP/spaTyper)  
   Sanchez-Herrero JF, and Sullivan M [spaTyper: Staphylococcal protein A (spa) characterization pipeline](http://doi.org/10.5281/zenodo.4063625). Zenodo. (2020)
 
-- [sccmec](https://github.com/rpetit3/sccmec)  
-  Petit III RA, Read TD [sccmec: A tool for typing SCCmec cassettes in assemblies](https://github.com/rpetit3/sccmec) (GitHub)
+- [StaphSCAN](https://github.com/riccabolla/StaphSCAN)  
+  Bollini R [StaphSCAN (v0.3.0).](https://github.com/riccabolla/StaphSCAN) Zenodo (2026)
 
 ## Source
 

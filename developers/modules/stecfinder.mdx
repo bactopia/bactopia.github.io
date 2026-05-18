@@ -73,6 +73,14 @@ record (
 | `--stecfinder_hits` | boolean | `false` | Show detailed gene search results |
 | `--stecfinder_cutoff` | number | `10.0` | Minimum read coverage for gene to be called |
 | `--stecfinder_length` | number | `50.0` | Percentage of gene length needed for positive call |
+| `--stecfinder_ipah_length` | number | `10.0` | Percentage of ipaH gene length needed for positive gene call |
+| `--stecfinder_ipah_depth` | number | `1.0` | Minimum depth for positive ipaH gene call (requires --stecfinder_use_reads) |
+| `--stecfinder_stx_length` | number | `10.0` | Percentage of stx gene length needed for positive gene call |
+| `--stecfinder_stx_depth` | number | `1.0` | Minimum depth for positive stx gene call (requires --stecfinder_use_reads) |
+| `--stecfinder_o_length` | number | `60.0` | Percentage of wz_ gene length needed for positive call |
+| `--stecfinder_o_depth` | number | `1.0` | Minimum depth for positive qz_ gene call (requires --stecfinder_use_reads) |
+| `--stecfinder_h_length` | number | `60.0` | Percentage of fliC gene length needed for positive call |
+| `--stecfinder_h_depth` | number | `1.0` | Minimum depth for positive fliC gene call (requires --stecfinder_use_reads) |
 
 ## Used By
 
@@ -88,7 +96,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [STECFinder](https://github.com/LanLab/STECFinder)  

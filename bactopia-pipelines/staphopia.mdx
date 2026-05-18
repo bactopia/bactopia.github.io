@@ -22,7 +22,8 @@ Comprehensive analysis pipeline for Staphylococcus aureus isolates.
 This workflow performs complete bacterial analysis including quality control,
 assembly, annotation, antimicrobial resistance detection, MLST typing,
 and Staphylococcus-specific analysis using [Spatyper](https://github.com/HCGB-IGTP/spaTyper),
-[AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE), and [SCCmecFinder](https://github.com/rpetit3/sccmec).
+[AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE), [SCCmecFinder](https://github.com/rpetit3/sccmec),
+and [StaphSCAN](https://github.com/riccabolla/StaphSCAN).
 It processes raw sequencing reads and produces a comprehensive genomic characterization for S. aureus isolates.
 
 ## Usage
@@ -79,6 +80,7 @@ nextflow run bactopia/bactopia/workflows/staphopia/main.nf \
 │   │   │   └── supplemental
 │   │   │       ├── flash.hist
 │   │   │       ├── flash.histogram
+│   │   │       ├── illumina.txt
 │   │   │       └── shovill.corrections
 │   │   ├── gather
 │   │   │   ├── <SAMPLE_NAME>-meta.tsv
@@ -147,7 +149,12 @@ nextflow run bactopia/bactopia/workflows/staphopia/main.nf \
 │       │   └── logs
 │       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
 │       │       └── versions.yml
-│       └── spatyper
+│       ├── spatyper
+│       │   ├── <SAMPLE_NAME>.tsv
+│       │   └── logs
+│       │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+│       │       └── versions.yml
+│       └── staphscan
 │           ├── <SAMPLE_NAME>.tsv
 │           └── logs
 │               ├── nf.command.{begin,err,log,out,run,sh,trace}
@@ -177,13 +184,17 @@ nextflow run bactopia/bactopia/workflows/staphopia/main.nf \
         │   │   ├── sccmec-concat
         │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
         │   │   │   └── versions.yml
-        │   │   └── spatyper-concat
+        │   │   ├── spatyper-concat
+        │   │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   │   └── versions.yml
+        │   │   └── staphscan-concat
         │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
         │   │       └── versions.yml
         │   ├── meta.tsv
         │   ├── mlst.tsv
         │   ├── sccmec.tsv
-        │   └── spatyper.tsv
+        │   ├── spatyper.tsv
+        │   └── staphscan.tsv
         └── nf-reports
             ├── staphopia-dag.dot
             ├── staphopia-report.html
@@ -314,6 +325,200 @@ The following parameters are how you will provide either local or remote samples
 | `--assembly` | string |  | A assembled genome in compressed FASTA format. (requires --sample) |
 | `--check_samples` | boolean | `false` | Validate the input FOFN provided by --samples |
 
+### AMRFinder+ Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--amrfinderplus_ident_min` | number | `-1` | Minimum proportion of identical amino acids in alignment for hit (0..1) |
+| `--amrfinderplus_coverage_min` | number | `0.5` | Minimum coverage of the reference protein (0..1) |
+| `--amrfinderplus_organism` | string |  | Taxonomy group to run additional screens against |
+| `--amrfinderplus_translation_table` | integer | `11` | NCBI genetic code for translated BLAST |
+| `--amrfinderplus_noplus` | boolean | `false` | Disable running AMRFinder+ with the --plus option |
+| `--amrfinderplus_report_common` | boolean | `false` | Report proteins common to a taxonomy group |
+| `--amrfinderplus_report_all_equal` | boolean | `false` | Report all equally-scoring BLAST and HMM matches |
+| `--amrfinderplus_opts` | string |  | Extra AMRFinder+ options in quotes. |
+| `--amrfinderplus_db` | string |  | A custom AMRFinder+ database to use, either a tarball or a folder |
+
+### csvtk concat Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
+
+### Assembler Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--shovill_assembler` | string | `skesa` | Assembler to be used by Shovill (choices: `skesa`, `megahit`, `spades`, `velvet`) |
+| `--dragonflye_assembler` | string | `flye` | Assembler to be used by Dragonflye (choices: `flye`, `miniasm`, `raven`) |
+| `--use_unicycler` | boolean |  | Use unicycler for paired end assembly |
+| `--min_contig_len` | integer | `500` | Minimum contig length &lt;0=AUTO&gt; |
+| `--min_contig_cov` | integer | `2` | Minimum contig coverage &lt;0=AUTO&gt; |
+| `--contig_namefmt` | string |  | Format of contig FASTA IDs in 'printf' style |
+| `--shovill_opts` | string |  | Extra assembler options in quotes for Shovill |
+| `--shovill_kmers` | string |  | K-mers to use &lt;blank=AUTO&gt; |
+| `--dragonflye_opts` | string |  | Extra assembler options in quotes for Dragonflye |
+| `--trim` | boolean |  | Enable adaptor trimming |
+| `--no_stitch` | boolean |  | Disable read stitching for paired-end reads |
+| `--no_corr` | boolean |  | Disable post-assembly correction |
+| `--unicycler_mode` | string | `normal` | Bridging mode used by Unicycler (choices: `conservative`, `normal`, `bold`) |
+| `--min_component_size` | integer | `1000` | Graph dead ends smaller than this size (bp) will be removed from the final graph |
+| `--min_dead_end_size` | integer | `1000` | Graph dead ends smaller than this size (bp) will be removed from the final graph |
+| `--nanohq` | boolean | `false` | For Flye, use '--nano-hq' instead of --nano-raw |
+| `--medaka_model` | string |  | The model to use for Medaka polishing |
+| `--medaka_rounds` | integer | `0` | The number of Medaka polishing rounds to conduct |
+| `--racon_rounds` | integer | `1` | The number of Racon polishing rounds to conduct |
+| `--no_polish` | boolean |  | Skip the assembly polishing step |
+| `--no_miniasm` | boolean |  | Skip miniasm+Racon bridging |
+| `--no_rotate` | boolean |  | Do not rotate completed replicons to start at a standard gene |
+| `--reassemble` | boolean | `false` | If reads were simulated, they will be used to create a new assembly. |
+| `--polypolish_rounds` | integer | `1` | Number of polishing rounds to conduct with Polypolish for short read polishing |
+| `--pilon_rounds` | integer | `0` | Number of polishing rounds to conduct with Pilon for short read polishing |
+
+### Gather Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--skip_fastq_check` | boolean |  | Skip minimum requirement checks for input FASTQs |
+| `--min_basepairs` | integer | `2241820` | The minimum amount of basepairs required to continue downstream analyses. |
+| `--min_reads` | integer | `7472` | The minimum amount of reads required to continue downstream analyses. |
+| `--min_coverage` | integer | `10` | The minimum amount of coverage required to continue downstream analyses. |
+| `--min_proportion` | number | `0.5` | The minimum proportion of basepairs for paired-end reads to continue downstream analyses. |
+| `--min_genome_size` | integer | `100000` | The minimum estimated genome size allowed for the input sequence to continue downstream analyses. |
+| `--max_genome_size` | integer | `18040666` | The maximum estimated genome size allowed for the input sequence to continue downstream analyses. |
+| `--attempts` | integer | `3` | Maximum times to attempt downloads |
+| `--use_ena` | boolean |  | Download FASTQs from ENA |
+| `--no_cache` | boolean |  | Skip caching the assembly summary file from ncbi-genome-download |
+
+### Sketcher Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--sketch_size` | integer | `10000` | Sketch size. Each sketch will have at most this many non-redundant min-hashes. |
+| `--sourmash_scale` | integer | `10000` | Choose number of hashes as 1 in FRACTION of input k-mers |
+| `--no_winner_take_all` | boolean |  | Disable winner-takes-all strategy for identity estimates |
+| `--screen_i` | number | `0.8` | Minimum identity to report. |
+
+### MLST Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--mlst_scheme` | string |  | Don't autodetect, force this scheme on all inputs |
+| `--mlst_minid` | integer | `95` | Minimum DNA percent identity of full allele to consider 'similar' |
+| `--mlst_mincov` | integer | `10` | Minimum DNA percent coverage to report partial allele at all |
+| `--mlst_minscore` | integer | `50` | Minimum score out of 100 to match a scheme |
+| `--mlst_nopath` | boolean | `false` | Strip filename paths from FILE column |
+| `--mlst_db` | string |  | A custom MLST database to use, either a tarball or a directory |
+
+### QC Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--use_bbmap` | boolean |  | Illumina reads will be QC'd using BBMap |
+| `--use_porechop` | boolean | `false` | Use Porechop to remove adapters from ONT reads |
+| `--skip_qc` | boolean |  | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. |
+| `--skip_qc_plots` | boolean |  | QC Plot creation by FastQC or Nanoplot will be skipped |
+| `--skip_error_correction` | boolean |  | FLASH error correction of reads will be skipped. |
+| `--adapters` | string |  | A FASTA file containing adapters to remove |
+| `--adapter_k` | integer | `23` | Kmer length used for finding adapters. |
+| `--phix` | string |  | phiX174 reference genome to remove |
+| `--phix_k` | integer | `31` | Kmer length used for finding phiX174. |
+| `--ktrim` | string | `r` | Trim reads to remove bases matching reference kmers (choices: `f`, `r`, `l`) |
+| `--mink` | integer | `11` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. |
+| `--hdist` | integer | `1` | Maximum Hamming distance for ref kmers (subs only) |
+| `--tpe` | string | `t` | When kmer right-trimming, trim both reads to the minimum length of either (choices: `f`, `t`) |
+| `--tbo` | string | `t` | Trim adapters based on where paired reads overlap (choices: `f`, `t`) |
+| `--qtrim` | string | `rl` | Trim read ends to remove bases with quality below trimq. (choices: `rl`, `f`, `r`, `l`, `w`) |
+| `--trimq` | integer | `6` | Regions with average quality BELOW this will be trimmed if qtrim is set to something other than f |
+| `--maq` | integer | `10` | Reads with average quality (after trimming) below this will be discarded |
+| `--minlength` | integer | `35` | Reads shorter than this after trimming will be discarded |
+| `--ftm` | integer | `5` | If positive, right-trim length to be equal to zero, modulo this number |
+| `--tossjunk` | string | `t` | Discard reads with invalid characters as bases (choices: `f`, `t`) |
+| `--ain` | string | `f` | When detecting pair names, allow identical names (choices: `f`, `t`) |
+| `--qout` | string | `33` | PHRED offset to use for output FASTQs (choices: `33`, `64`) |
+| `--maxcor` | integer | `1` | Max number of corrections within a 20bp window |
+| `--sampleseed` | integer | `42` | Set to a positive number to use as the random number generator seed for sampling |
+| `--ont_minlength` | integer | `1000` | ONT Reads shorter than this will be discarded |
+| `--ont_minqual` | integer | `0` | Minimum average read quality filter of ONT reads |
+| `--porechop_opts` | string |  | Extra Porechop options in quotes |
+| `--nanoplot_opts` | string |  | Extra NanoPlot options in quotes |
+| `--bbduk_opts` | string |  | Extra BBDuk options in quotes |
+| `--fastp_opts` | string |  | Extra fastp options in quotes |
+
+### Bakta Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bakta_db` | string |  | Tarball or path to the Bakta database |
+| `--bakta_db_type` | string | `full` | Which Bakta DB to download 'full' (~30GB) or 'light' (~2GB) (choices: `full`, `light`) |
+| `--bakta_save_as_tarball` | boolean | `false` | Save the Bakta database as a tarball |
+| `--download_bakta` | boolean | `false` | Download the Bakta database to the path given by --bakta_db |
+
+### Bakta Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--bakta_proteins` | string |  | FASTA file of trusted proteins to first annotate from |
+| `--bakta_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--bakta_replicons` | string |  | Replicon information table (tsv/csv) |
+| `--bakta_min_contig_length` | integer | `1` | Minimum contig size to annotate |
+| `--bakta_keep_contig_headers` | boolean | `false` | Keep original contig headers |
+| `--bakta_compliant` | boolean | `false` | Force Genbank/ENA/DDJB compliance |
+| `--bakta_skip_trna` | boolean | `false` | Skip tRNA detection & annotation |
+| `--bakta_skip_tmrna` | boolean | `false` | Skip tmRNA detection & annotation |
+| `--bakta_skip_rrna` | boolean | `false` | Skip rRNA detection & annotation |
+| `--bakta_skip_ncrna` | boolean | `false` | Skip ncRNA detection & annotation |
+| `--bakta_skip_ncrna_region` | boolean | `false` | Skip ncRNA region detection & annotation |
+| `--bakta_skip_crispr` | boolean | `false` | Skip CRISPR array detection & annotation |
+| `--bakta_skip_cds` | boolean | `false` | Skip CDS detection & annotation |
+| `--bakta_skip_sorf` | boolean | `false` | Skip sORF detection & annotation |
+| `--bakta_skip_gap` | boolean | `false` | Skip gap detection & annotation |
+| `--bakta_skip_ori` | boolean | `false` | Skip oriC/oriT detection & annotation |
+| `--bakta_opts` | string |  | Extra Bakta options in quotes. Example: '--gram +' |
+
+### Prokka Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--prokka_proteins` | string | `${projectDir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
+| `--prokka_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--prokka_compliant` | boolean | `false` | Force Genbank/ENA/DDJB compliance |
+| `--prokka_centre` | string | `Bactopia` | Sequencing centre ID |
+| `--prokka_coverage` | integer | `80` | Minimum coverage on query protein |
+| `--prokka_evalue` | string | `1e-09` | Similarity e-value cut-off |
+| `--prokka_opts` | string |  | Extra Prokka options in quotes. |
+| `--prokka_debug` | boolean | `false` | Enable debug mode for Prokka |
+
+### AgrVATE Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--agrvate_typing_only` | boolean | `false` | agr typing only. Skips agr operon extraction and frameshift detection |
+
+### spaTyper Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--spatyper_repeats` | string |  | List of spa repeats |
+| `--spatyper_repeat_order` | string |  | List spa types and order of repeats |
+| `--spatyper_do_enrich` | boolean | `false` | Do PCR product enrichment |
+
+### sccmec Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--sccmec_min_targets_pident` | integer | `90` | Minimum percent identity to count a target hit |
+| `--sccmec_min_targets_coverage` | integer | `80` | Minimum percent coverage to count a target hit |
+| `--sccmec_min_regions_pident` | integer | `85` | Minimum percent identity to count a region hit |
+| `--sccmec_min_regions_coverage` | integer | `93` | Minimum percent coverage to count a region hit |
+
+### StaphSCAN Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--staphscan_modules` | string |  | Comma-separated list of modules to run |
+| `--staphscan_db_mlst` | string |  | Path or tarball to custom MLST database |
+
 <details>
 <summary>Dataset Parameters</summary>
 
@@ -336,6 +541,52 @@ These optional parameters can be useful in certain settings.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
+| `--skip_compression` | boolean | `false` | Output files will not be compressed |
+| `--datasets` | string |  | The path to cache datasets to |
+| `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
+</details>
+
+<details>
+<summary>Max Job Request Parameters</summary>
+
+Set the top limit for requested resources for any single job.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--max_retry` | integer | `3` | Maximum times to retry a process before allowing it to fail. |
+| `--max_cpus` | integer | `4` | Maximum number of CPUs that can be requested for any single job. |
+| `--max_memory` | string | `128.GB` | Maximum amount of memory that can be requested for any single job. |
+| `--max_time` | string | `240.h` | Maximum amount of time that can be requested for any single job. |
+| `--max_downloads` | integer | `3` | Maximum number of samples to download at a time |
+</details>
+
+<details>
+<summary>Nextflow Configuration Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
+| `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
+| `--cleanup_workdir` | boolean | `false` | After Bactopia is successfully executed, the `work` directory will be deleted. |
+</details>
+
+<details>
+<summary>Institutional config options</summary>
+
+Parameters used to describe centralized config profiles. These should not be edited.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
+| `--config_profile_name` | string |  | Institutional config name. |
+| `--config_profile_description` | string |  | Institutional config description. |
+| `--config_profile_contact` | string |  | Institutional config contact information. |
+| `--config_profile_url` | string |  | Institutional config URL link. |
 </details>
 
 <details>
@@ -345,7 +596,16 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
+| `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
+| `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Additional options to pass to Apptainer, Docker, or Singularity. (e.g. Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | All intermediate files created on worker nodes of will be transferred to the head node. |
 </details>
 
 <details>
@@ -355,8 +615,14 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
+| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
+| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
+| `--help` | boolean |  | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
 | `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
 | `--help_all` | boolean |  | An alias for --help --show_hidden_params |
 | `--version` | boolean |  | Display version text. |
 </details>
@@ -374,13 +640,13 @@ This workflow uses the following subworkflows:
 - [bakta](/developers/subworkflows/bakta) - Rapid bacterial genome annotation.
 - [mlst](/developers/subworkflows/mlst) - Determine multilocus sequence types (MLST) from bacterial assemblies.
 - [prokka](/developers/subworkflows/prokka) - Annotate bacterial genomes with functional information.
-- [staphtyper](/developers/subworkflows/staphtyper) - Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.
+- [staphtyper](/developers/subworkflows/staphtyper) - Determine the agr, spa, SCCmec types and perform genome-based surveillance for _Staphylococcus aureus_ genomes.
 
 ## Citations
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Staphopia](https://staphopia.emory.edu)  

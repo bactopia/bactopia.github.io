@@ -64,16 +64,16 @@ def build_module_context(mod, data):
     )
 
     # Parameters
-    params_parts = []
+    params_tables = []
     params = mod.get('params', {})
-    if params:
-        params_parts.append('## Parameters')
-        params_parts.append('')
-        for group_key, group in params.items():
-            table = render_param_table(group)
-            if table:
-                params_parts.append(table)
-    params_section = '\n'.join(params_parts)
+    for group_key, group in params.items():
+        table = render_param_table(group)
+        if table:
+            params_tables.append(table)
+    if params_tables:
+        params_section = '## Parameters\n\n' + '\n'.join(params_tables)
+    else:
+        params_section = ''
 
     # Used By
     used_by_parts = []

@@ -95,9 +95,16 @@ record (
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--kraken2_db` | string |  | The a single tarball or path to a Kraken2 formatted database |
+| `--kraken2_quick_mode` | boolean | `false` | Quick operation (use first hit or hits) |
 | `--kraken2_confidence` | number | `0.0` | Confidence score threshold between 0 and 1 |
+| `--kraken2_minimum_base_quality` | integer | `0` | Minimum base quality used in classification |
 | `--kraken2_use_mpa_style` | boolean | `false` | Format report output like Kraken 1's kraken-mpa-report |
 | `--kraken2_report_zero_counts` | boolean | `false` | Report counts for ALL taxa, even if counts are zero |
+| `--kraken2_report_minimizer_data` | boolean | `false` | Include minimizer and distinct minimizer count information in report |
+| `--kraken2_use_names` | boolean | `false` | Print scientific names instead of just taxids |
+| `--kraken2_memory_mapping` | boolean | `false` | Avoid loading database into RAM |
+| `--kraken2_minimum_hit_groups` | integer | `2` | Minimum number of hit groups needed to make a call |
+| `--kraken2_keep_filtered_reads` | boolean | `false` | Keep the classified and unclassified FASTQs produced by Kraken2 |
 
 ## Used By
 
@@ -113,7 +120,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Kraken2](https://github.com/DerrickWood/kraken2)  
@@ -127,5 +134,5 @@ If you use this in your analysis, please cite the following.
 
 ```yaml
 KRAKEN2:
-    - bactopia-teton: 1.1.3
+    - bactopia-teton: 1.1.4
 ```

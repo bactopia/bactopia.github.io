@@ -84,6 +84,15 @@ record (
 
 ## Parameters
 
+### Sketcher Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--sketch_size` | integer | `10000` | Sketch size. Each sketch will have at most this many non-redundant min-hashes. |
+| `--sourmash_scale` | integer | `10000` | Choose number of hashes as 1 in FRACTION of input k-mers |
+| `--no_winner_take_all` | boolean |  | Disable winner-takes-all strategy for identity estimates |
+| `--screen_i` | number | `0.8` | Minimum identity to report. |
+
 ## Used By
 
 ### Subworkflows
@@ -99,7 +108,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Mash](https://github.com/marbl/Mash)  

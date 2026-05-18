@@ -42,7 +42,7 @@ def format_default(value):
 def render_param_table(group, include_heading=True):
     """Render a parameter group as a markdown table."""
     props = group.get('properties', {})
-    visible = {k: v for k, v in props.items() if not v.get('hidden', False)}
+    visible = props
     if not visible:
         return ''
 

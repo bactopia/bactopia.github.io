@@ -118,8 +118,13 @@ record (
 | `--reference` | string |  | Reference genome in GenBank format |
 | `--snippy_mapqual` | integer | `60` | Minimum read mapping quality to consider |
 | `--snippy_basequal` | integer | `13` | Minimum base quality to consider |
+| `--snippy_mincov` | integer | `10` | Minimum site depth to for calling alleles |
+| `--snippy_minfrac` | integer | `0` | Minimum proportion for variant evidence (0=AUTO) |
+| `--snippy_minqual` | integer | `100` | Minimum QUALITY in VCF column 6 |
+| `--snippy_maxsoft` | integer | `10` | Maximum soft clipping to allow |
 | `--snippy_bwaopt` | string |  | Extra BWA MEM options, eg. -x pacbio |
 | `--snippy_fbopt` | string |  | Extra Freebayes options, eg. --theta 1E-6 --read-snp-limit 2 |
+| `--snippy_remove_bam` | boolean | `false` | Delete BAM files after variant calling |
 | `--snippy_opts` | string |  | Extra options in quotes for Snippy |
 
 ## Used By
@@ -136,7 +141,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Snippy](https://github.com/tseemann/snippy)  

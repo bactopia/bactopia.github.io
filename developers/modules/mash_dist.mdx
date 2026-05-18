@@ -72,7 +72,15 @@ record (
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--mash_sketch` | string |  | The reference sequence as a Mash Sketch (.msh file) |
+| `--mash_seed` | integer | `42` | Seed to provide to the hash function |
+| `--mash_table` | boolean | `false` |  Table output (fields will be blank if they do not meet the p-value threshold) |
+| `--mash_m` | integer | `1` | Minimum copies of each k-mer required to pass noise filter for reads |
+| `--mash_w` | number | `0.01` | Probability threshold for warning about low k-mer size. |
+| `--mash_max_p` | number | `1.0` | Maximum p-value to report. |
+| `--mash_max_dist` | number | `1.0` | Maximum distance to report. |
+| `--merlin_dist` | number | `0.1` | Maximum distance to report when using Merlin . |
 | `--full_merlin` | boolean | `false` | Go full Merlin and run all species-specific tools, no matter the Mash distance |
+| `--mash_use_fastqs` | boolean | `false` | Query with FASTQs instead of the assemblies |
 
 ## Used By
 
@@ -88,7 +96,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Mash](https://github.com/marbl/Mash)  

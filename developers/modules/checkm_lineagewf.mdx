@@ -74,6 +74,15 @@ record (
 | `--checkm_multi` | integer | `10` | Maximum number of multi-copy phylogenetic markers before defaulting to domain-level marker set. |
 | `--checkm_aai_strain` | number | `0.9` | AAI threshold used to identify strain heterogeneity |
 | `--checkm_length` | number | `0.7` | Percent overlap between target and query |
+| `--checkm_full_tree` | boolean |  | Use the full tree (requires ~40GB of memory) for determining lineage of each bin. |
+| `--checkm_ignore_thresholds` | boolean |  | Ignore model-specific score thresholds |
+| `--checkm_ali` | boolean |  | Generate HMMER alignment file for each bin |
+| `--checkm_nt` | boolean |  | Generate nucleotide gene sequences for each bin |
+| `--checkm_force_domain` | boolean |  | Use domain-level sets for all bins |
+| `--checkm_no_refinement` | boolean |  | Do not perform lineage-specific marker set refinement |
+| `--checkm_individual_markers` | boolean |  | Treat marker as independent |
+| `--checkm_skip_adj_correction` | boolean |  | Do not exclude adjacent marker genes when estimating contamination |
+| `--checkm_skip_pseudogene_correction` | boolean |  | Skip identification and filtering of pseudogene |
 
 ## Used By
 
@@ -89,7 +98,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [CheckM](https://github.com/Ecogenomics/CheckM)  
