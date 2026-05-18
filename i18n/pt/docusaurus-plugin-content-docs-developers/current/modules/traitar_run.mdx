@@ -1,0 +1,101 @@
+---
+title: traitar_run
+description: "Prever características fenotípicas a partir de genomas microbianos."
+tags:
+  - phenotype
+  - traits
+  - pfam
+  - sample-scope
+---
+
+# traitar_run
+
+**Tags:** <a href="/developers/tags/phenotype" class="badge badge--primary badge--tag">phenotype</a> <a href="/developers/tags/traits" class="badge badge--primary badge--tag">traits</a> <a href="/developers/tags/pfam" class="badge badge--primary badge--tag">pfam</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever características fenotípicas a partir de genomas microbianos.
+
+Utiliza o [Traitar](https://github.com/nick-youngblut/traitar3/) para prever características
+fenotípicas a partir de sequências de nucleotídeos. O Traitar anota famílias de proteínas
+usando Pfam e aplica modelos de aprendizado de máquina para prever 67 características
+microbianas diversas.
+
+:::note[Banco de Dados Necessário]
+Requer um diretório com banco de dados Pfam (baixado via `traitar pfam` ou pelo módulo de download).
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | Arquivo HMM Pfam-A para o Traitar |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    majority_tsv: Path,
+    single_tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `majority_tsv` | `Path` | Previsões combinadas de características fenotípicas por votação majoritária |
+| `single_tsv` | `Path` | Previsões combinadas de características fenotípicas por votação individual |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Usado Por
+
+### Subworkflows
+
+- [traitar](/developers/subworkflows/traitar) - Prever características fenotípicas a partir de genomas microbianos
+
+### Workflows
+
+- [traitar](/bactopia-tools/traitar) - Prever características fenotípicas a partir de genomas microbianos
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Traitar](https://github.com/nick-youngblut/traitar3/)  
+  Weimann A, Mooren K, Frank J, Pope PB, Gronow S, So AP [From genomes to phenotypes: Traitar, the microbial trait analyzer.](https://doi.org/10.1128/mSystems.00101-16) _mSystems_ 1(6), e00101-16 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/traitar/run)
+
+## Versão
+
+```yaml
+TRAITAR_RUN:
+    - traitar: 3.0.1
+```

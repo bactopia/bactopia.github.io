@@ -1,0 +1,70 @@
+---
+title: snpdists
+description: "Calcular distâncias SNP pairwise a partir de alinhamentos de sequências."
+tags:
+  - snp
+  - distance
+  - alignment
+  - phylogeny
+  - core-genome
+  - run-scope
+---
+
+# snpdists
+
+**Tags:** <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/distance" class="badge badge--primary badge--tag">distance</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Calcular distâncias SNP pairwise a partir de alinhamentos de sequências.
+
+Este subworkflow utiliza o [snp-dists](https://github.com/tseemann/snp-dists) para calcular
+matrizes de distância SNP pairwise a partir de alinhamentos de múltiplas sequências. Ele lê um
+arquivo de alinhamento (tipicamente um alinhamento de core-genome) e calcula o número
+de diferenças de SNP entre cada par de sequências, produzindo uma matriz de distâncias
+útil para análises filogenéticas e epidemiológicas.
+
+## Take
+
+```
+alignment: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `aln` | Alinhamento de múltiplas sequências em formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+Nenhuma saída de escopo de amostra.
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Matriz de distância SNP pairwise em formato TSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [snpdists](/developers/modules/snpdists) - Cria uma matriz de distância SNP a partir de um alinhamento de múltiplas sequências.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/snpdists)

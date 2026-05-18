@@ -1,0 +1,122 @@
+---
+title: sylph_profile
+description: "Perfil de amostras metagenômicas contra um banco de dados usando Sylph."
+tags:
+  - metagenomics
+  - profiling
+  - taxonomy
+  - abundance
+  - ani
+  - sylph
+  - sample-scope
+---
+
+# sylph_profile
+
+**Tags:** <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/profiling" class="badge badge--primary badge--tag">profiling</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/abundance" class="badge badge--primary badge--tag">abundance</a> <a href="/developers/tags/ani" class="badge badge--primary badge--tag">ani</a> <a href="/developers/tags/sylph" class="badge badge--primary badge--tag">sylph</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Perfil de amostras metagenômicas contra um banco de dados usando Sylph.
+
+Utiliza o [Sylph](https://github.com/bluenote-1/sylph) para perfilar amostras metagenômicas quanto à
+abundância taxonômica e ANI de contenção contra um banco de dados fornecido. Foi projetado para ser
+extremamente rápido e eficiente em termos de memória.
+
+Utiliza campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `r1` | `Path?` | Reads Illumina R1 (paired-end) |
+| `r2` | `Path?` | Reads Illumina R2 (paired-end) |
+| `se` | `Path?` | Reads Illumina single-end |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | Caminho para o arquivo de banco de dados Sylph (*.syldb) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `tsv` | `Path` | Arquivo TSV com os resultados do perfil |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Sylph Profile
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--sylph_db` | string |  | Caminho para um banco de dados formatado pelo Sylph |
+| `--sylph_k` | integer | `31` | Tamanho do k-mer para sketching |
+| `--sylph_min_spacing` | integer | `30` | Espaçamento mínimo entre k-mers selecionados nos genomas do banco de dados |
+| `--sylph_subsample_rate` | integer | `200` | Taxa de subamostragem para sketching |
+| `--sylph_min_ani` | integer | `95` | ANI ajustado mínimo a considerar. Valores menores que 95 para o perfil produzirão resultados imprecisos. |
+| `--sylph_min_kmers` | integer | `50` | Excluir genomas com menos do que este número de k-mers amostrados |
+| `--sylph_min_correct` | integer | `3` | Multiplicidade mínima de k-mer necessária para correção de cobertura. Valores maiores oferecem mais precisão, mas menor sensibilidade |
+| `--sylph_estimate_unknown` | boolean | `false` | Estimar a cobertura real e escalar a abundância de sequências no `profile` pela porcentagem estimada de sequências desconhecidas |
+| `--sylph_opts` | string |  | Opções extras entre aspas para o Sylph |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [sylph](/developers/subworkflows/sylph) - Perfilar a composição microbiana usando Sylph.
+
+### Workflows
+
+- [sylph](/bactopia-tools/sylph) - Perfil taxonômico por MinHash corrigido por abundância.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Sylph](https://github.com/bluenote-1/sylph)  
+  Shaw J, and Yu YW [Rapid species-level metagenome profiling and containment estimation with sylph.](https://doi.org/10.1038/s41587-024-02412-y) _Nature Biotechnology_ (2024)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/sylph/profile)
+
+## Versão
+
+```yaml
+SYLPH_PROFILE:
+    - sylph: 0.9.0
+```

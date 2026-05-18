@@ -1,0 +1,80 @@
+---
+title: traitar_download
+description: "Baixe o banco de dados Pfam necessário pelo Traitar."
+tags:
+  - phenotype
+  - traits
+  - pfam
+  - database
+  - download
+  - run-scope
+---
+
+# traitar_download
+
+**Tags:** <a href="/developers/tags/phenotype" class="badge badge--primary badge--tag">phenotype</a> <a href="/developers/tags/traits" class="badge badge--primary badge--tag">traits</a> <a href="/developers/tags/pfam" class="badge badge--primary badge--tag">pfam</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Baixe o banco de dados Pfam necessário pelo Traitar.
+
+Obtém o banco de dados Pfam pré-compilado exigido pelo [Traitar](https://github.com/nick-youngblut/traitar3/)
+para predição de fenótipos microbianos. O banco de dados contém modelos HMM do Pfam utilizados para
+anotação de famílias de proteínas durante a predição de características.
+
+:::note[Conexão com a Internet e Espaço em Disco Necessários]
+Este processo requer uma conexão ativa com a internet e espaço em disco significativo
+para armazenar os arquivos do banco de dados Pfam (~1,2 GB).
+:::
+
+## Saídas
+
+```
+record (
+    db: Path,
+    logs: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `db` | `Path` | O arquivo HMM Pfam-A para o Traitar |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+
+## Parâmetros
+
+### Parâmetros de Download do Traitar
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--traitar_db` | string |  | Caminho para um banco de dados do Traitar (deve conter o arquivo Pfam-A.hmm) |
+| `--download_traitar` | boolean | `false` | Baixa o banco de dados Pfam para o caminho especificado em --traitar_db |
+
+## Usado Por
+
+### Subworkflows
+
+- [traitar](/developers/subworkflows/traitar) - Prediz características fenotípicas a partir de genomas microbianos
+
+### Workflows
+
+- [traitar](/bactopia-tools/traitar) - Prediz características fenotípicas a partir de genomas microbianos
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Traitar](https://github.com/nick-youngblut/traitar3/)  
+  Weimann A, Mooren K, Frank J, Pope PB, Gronow S, So AP [From genomes to phenotypes: Traitar, the microbial trait analyzer.](https://doi.org/10.1128/mSystems.00101-16) _mSystems_ 1(6), e00101-16 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/traitar/download)
+
+## Versão
+
+```yaml
+TRAITAR_DOWNLOAD:
+    - traitar: 3.0.1
+```

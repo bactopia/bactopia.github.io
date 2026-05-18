@@ -1,0 +1,88 @@
+---
+title: traitar
+description: "Prever características fenotípicas a partir de genomas microbianos"
+tags:
+  - phenotype
+  - traits
+  - pfam
+  - sample-scope
+---
+
+# traitar
+
+**Tags:** <a href="/developers/tags/phenotype" class="badge badge--primary badge--tag">phenotype</a> <a href="/developers/tags/traits" class="badge badge--primary badge--tag">traits</a> <a href="/developers/tags/pfam" class="badge badge--primary badge--tag">pfam</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever características fenotípicas a partir de genomas microbianos
+
+Este subworkflow utiliza o [Traitar](https://github.com/nick-youngblut/traitar3/) para prever características fenotípicas a partir de genomas microbianos.
+Ele pode baixar e preparar o banco de dados Pfam sob demanda ou utilizar um banco de dados pré-existente.
+Processa cada amostra individualmente e agrega os resultados em
+um único relatório consolidado.
+
+## Take
+
+```
+fna: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `fna` | Contigs montados no formato FASTA |
+
+```
+database: Path?
+download_traitar: Boolean
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-------------|
+| `database` | `Path?` | Arquivo HMM Pfam-A pré-existente opcional |
+| `download_traitar` | `Boolean` | Flag booleano para acionar o download automático do banco de dados |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `majority_tsv` | Previsões de características fenotípicas combinadas por votação majoritária |
+| `single_tsv` | Previsões de características fenotípicas combinadas por voto único |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Arquivos TSV mesclados com resultados de votação majoritária e voto único do traitar de todas as amostras |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [traitar_download](/developers/modules/traitar_download) - Baixa o banco de dados Pfam necessário pelo Traitar.
+- [traitar_run](/developers/modules/traitar_run) - Prevê características fenotípicas a partir de genomas microbianos.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [traitar](/bactopia-tools/traitar) - Prever características fenotípicas a partir de genomas microbianos
+
+## Citações
+
+Se você utilizar este fluxo de trabalho em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Traitar](https://github.com/nick-youngblut/traitar3/)  
+  Weimann A, Mooren K, Frank J, Pope PB, Gronow S, So AP [From genomes to phenotypes: Traitar, the microbial trait analyzer.](https://doi.org/10.1128/mSystems.00101-16) _mSystems_ 1(6), e00101-16 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/traitar)

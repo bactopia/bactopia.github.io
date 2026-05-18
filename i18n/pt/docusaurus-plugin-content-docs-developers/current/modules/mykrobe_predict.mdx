@@ -1,0 +1,127 @@
+---
+title: mykrobe_predict
+description: "Prever Resistência Antimicrobiana (AMR) para espécies bacterianas suportadas."
+tags:
+  - amr
+  - resistance
+  - susceptibility
+  - k-mer
+  - fastq
+  - bam
+  - mykrobe
+  - sample-scope
+---
+
+# mykrobe_predict
+
+**Tags:** <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/resistance" class="badge badge--primary badge--tag">resistance</a> <a href="/developers/tags/susceptibility" class="badge badge--primary badge--tag">susceptibility</a> <a href="/developers/tags/k-mer" class="badge badge--primary badge--tag">k-mer</a> <a href="/developers/tags/fastq" class="badge badge--primary badge--tag">fastq</a> <a href="/developers/tags/bam" class="badge badge--primary badge--tag">bam</a> <a href="/developers/tags/mykrobe" class="badge badge--primary badge--tag">mykrobe</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever Resistência Antimicrobiana (AMR) para espécies bacterianas suportadas.
+
+Utiliza o [Mykrobe](https://github.com/mykrobe/mykrobe) para prever rapidamente resistência e suscetibilidade
+com base em reads curtos (FASTQ) ou reads alinhados (BAM). Ele mapeia k-mers das sequências de entrada
+contra um banco de dados curado de marcadores de resistência para espécies como *M. tuberculosis* e *S. aureus*.
+
+Utiliza campos de registro posicional explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `r1` | `Path?` | Reads R1 Illumina (paired-end) |
+| `r2` | `Path?` | Reads R2 Illumina (paired-end) |
+| `se` | `Path?` | Reads Illumina single-end |
+| `lr` | `Path?` | Reads longos (ONT/PacBio) |
+
+```
+species: String
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `species` | `String` | A espécie alvo para a qual realizar a predição de AMR (ex.: "tb" ou "staph") |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    csv: Path,
+    json: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `csv` | `Path` | Predições de AMR em formato CSV legível por máquina |
+| `json` | `Path` | Resultados detalhados de predição de AMR em formato JSON |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Mykrobe
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--mykrobe_species` | string |  | Painel de espécies a utilizar (opções: `sonnei`, `staph`, `tb`, `typhi`) |
+| `--mykrobe_kmer` | integer | `21` | Comprimento do k-mer |
+| `--mykrobe_min_depth` | integer | `1` | Profundidade mínima |
+| `--mykrobe_model` | string | `kmer_count` | Modelo de genótipo utilizado (opções: `kmer_count`, `median_depth`) |
+| `--mykrobe_report_all_calls` | boolean | `false` | Reportar todas as chamadas |
+| `--mykrobe_opts` | string |  | Opções extras do Mykrobe entre aspas |
+
+## Usado Por
+
+### Subworkflows
+
+- [genotyphi](/developers/subworkflows/genotyphi) - Atribuir genótipos a genomas de Salmonella Typhi.
+- [mykrobe](/developers/subworkflows/mykrobe) - Prever resistência a antibióticos a partir de reads de sequenciamento.
+
+### Workflows
+
+- [genotyphi](/bactopia-tools/genotyphi) - Genotipagem de Salmonella Typhi com atribuição de linhagem.
+- [mykrobe](/bactopia-tools/mykrobe) - Detecção de resistência antimicrobiana para espécies bacterianas específicas.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mykrobe](https://github.com/Mykrobe-tools/mykrobe)  
+  Hunt M, Bradley P, Lapierre SG, Heys S, Thomsit M, Hall MB, Malone KM, Wintringer P, Walker TM, Cirillo DM, Comas I, Farhat MR, Fowler P, Gardy J, Ismail N, Kohl TA, Mathys V, Merker M, Niemann S, Omar SV, Sintchenko V, Smith G, Supply P, Tahseen S, Wilcox M, Arandjelovic I, Peto TEA, Crook, DW, Iqbal Z [Antibiotic resistance prediction for Mycobacterium tuberculosis from genome sequence data with Mykrobe](https://doi.org/10.12688/wellcomeopenres.15603.1) _Wellcome Open Research_ 4, 191. (2019)
+
+- [McCortex](https://github.com/mcveanlab/mccortex)  
+  Turner I, Garimella KV, Iqbal Z, McVean G [Integrating long-range connectivity information into de Bruijn graphs.](http://dx.doi.org/10.1093/bioinformatics/bty157) _Bioinformatics_ 34, 2556-2565 (2018)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mykrobe/predict)
+
+## Versão
+
+```yaml
+MYKROBE_PREDICT:
+    - mykrobe: 0.13.0
+```

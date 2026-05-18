@@ -1,0 +1,79 @@
+---
+title: pbptyper
+description: "Prever os tipos de proteína de ligação à penicilina (PBP) de Streptococcus pneumoniae a partir de montagens de genoma."
+tags:
+  - streptococcus-pneumoniae
+  - pbp-typing
+  - penicillin
+  - antimicrobial-resistance
+  - sample-scope
+---
+
+# pbptyper
+
+**Tags:** <a href="/developers/tags/streptococcus-pneumoniae" class="badge badge--primary badge--tag">streptococcus-pneumoniae</a> <a href="/developers/tags/pbp-typing" class="badge badge--primary badge--tag">pbp-typing</a> <a href="/developers/tags/penicillin" class="badge badge--primary badge--tag">penicillin</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever os tipos de proteína de ligação à penicilina (PBP) de Streptococcus pneumoniae a partir de montagens de genoma.
+
+Este subworkflow utiliza o [pbptyper](https://github.com/rpetit3/pbptyper) para prever
+os tipos de proteína de ligação à penicilina (PBP) e a suscetibilidade antimicrobiana
+de cepas de *Streptococcus pneumoniae* a partir de genomas montados. Ele processa cada amostra
+individualmente e agrega os resultados em um único relatório consolidado.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Contigs montados no formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Um arquivo de resumo delimitado por tabulação com o tipo PBP previsto para cada gene |
+| `blast` | Um arquivo delimitado por tabulação com os hits brutos do TBLASTN usados para identificação de genes |
+| `details` | Resultados detalhados de tipagem PBP para cada gene analisado |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [pbptyper](/developers/modules/pbptyper) - Prever o tipo de Proteína de Ligação à Penicilina (PBP) de montagens de *Streptococcus pneumoniae*.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenar múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [pbptyper](/bactopia-tools/pbptyper) - Tipagem de Proteína de Ligação à Penicilina (PBP) para Streptococcus pneumoniae.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [pbptyper](https://github.com/rpetit3/pbptyper)  
+  Petit III RA [pbptyper: In silico Penicillin Binding Protein (PBP) typer for _Streptococcus pneumoniae_ assemblies](https://github.com/rpetit3/pbptyper) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/pbptyper)

@@ -1,0 +1,39 @@
+---
+title: bactopia-status
+description: "Mostra um instantâneo do estado do projeto Bactopia."
+---
+
+# bactopia-status
+
+Mostra um instantâneo do estado do projeto Bactopia.
+
+Relata contagens de componentes, cobertura do GroovyDoc, cobertura do nf-test,
+arquivos obrigatórios ausentes e problemas estruturais.
+
+
+## Uso
+
+```bash
+bactopia-status [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--json` | BOOL | `false` | Saída em formato JSON |
+| `--pretty` | BOOL | `false` | Formata a saída JSON de forma legível (implica --json) |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibe texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

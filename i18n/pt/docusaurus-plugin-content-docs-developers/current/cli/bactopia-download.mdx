@@ -1,0 +1,50 @@
+---
+title: bactopia-download
+description: "Constrói ambientes Bactopia para uso com Nextflow."
+---
+
+# bactopia-download
+
+Constrói ambientes Bactopia para uso com Nextflow.
+
+## Uso
+
+```bash
+bactopia-download UNKNOWN [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `UNKNOWN` | UNPROCESSED | Não |  |
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Opções Relacionadas à Construção
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--envtype` | CHOICE (conda, docker, singularity, all) | `conda` | O tipo de ambiente a ser construído |
+| `--wf` | STRING | `bactopia` | Constrói um ambiente para o fluxo de trabalho especificado |
+| `--build-all` | BOOL | `false` | Constrói todos os ambientes para os fluxos de trabalho do Bactopia |
+| `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Diretório para criar ambientes Conda (a variável de ambiente NXF_CONDA_CACHEDIR tem precedência) |
+| `--use-conda` | BOOL | `false` | Usa Conda para construir ambientes Conda em vez do Mamba |
+| `--registry` | STRING | `quay.io` | Registro de onde baixar os containers Docker |
+| `--singularity_cache` | STRING | `/home/rpetit3/.bactopia/singularity` | Diretório para baixar imagens Singularity (a variável de ambiente NXF_SINGULARITY_CACHEDIR tem precedência) |
+| `--singularity_pull_docker_container` | BOOL | `false` | Força a conversão de containers Docker, em vez de baixar imagens Singularity diretamente |
+| `--force_rebuild` | BOOL | `false` | Força a substituição de ambientes pré-construídos existentes |
+| `--max_retry` | INT | `3` | Número máximo de tentativas para criar o ambiente Conda. (Padrão: 3) |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--dry-run` | BOOL | `false` | Exibe os ambientes que seriam construídos, sem construí-los |
+| `--verbose` | BOOL | `false` | Imprime texto relacionado à depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

@@ -1,0 +1,50 @@
+---
+title: bactopia-lint
+description: "Verifica os componentes do pipeline Bactopia em relação às diretrizes de estilo."
+---
+
+# bactopia-lint
+
+Verifica os componentes do pipeline Bactopia em relação às diretrizes de estilo.
+
+Verifica módulos, subworkflows e workflows quanto à conformidade com os padrões de GroovyDoc, estruturais e de configuração do Bactopia.
+
+
+## Uso
+
+```bash
+bactopia-lint [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Opções de Escopo
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--modules, --no-modules` | BOOL | `true` | Verificar módulos (padrão: ativado) |
+| `--subworkflows, --no-subworkflows` | BOOL | `true` | Verificar subworkflows (padrão: ativado) |
+| `--workflows, --no-workflows` | BOOL | `true` | Verificar workflows (padrão: ativado) |
+| `--module` | STRING |  | Verificar um único módulo pelo nome (ex.: 'mlst', 'bakta/run') |
+| `--subworkflow` | STRING |  | Verificar um único subworkflow pelo nome (ex.: 'mlst') |
+| `--workflow` | STRING |  | Verificar um único workflow pelo nome (ex.: 'mlst', 'bactopia-tools/mlst') |
+
+## Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `-q, --quiet` | BOOL | `false` | Exibir apenas componentes com avisos ou falhas |
+| `--json` | BOOL | `false` | Gerar saída em formato JSON |
+| `--pretty` | BOOL | `false` | Formatar a saída JSON de forma legível (implica --json) |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |

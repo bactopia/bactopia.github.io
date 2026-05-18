@@ -1,0 +1,86 @@
+---
+title: mlst
+description: "Determine multilocus tipo de sequencias (MLST) from bacterial assemblies."
+tags:
+  - mlst
+  - sequence-typing
+  - pubmlst
+  - bacteria
+  - sample-scope
+---
+
+# mlst
+
+**Tags:** <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/sequence-typing" class="badge badge--primary badge--tag">sequence-typing</a> <a href="/developers/tags/pubmlst" class="badge badge--primary badge--tag">pubmlst</a> <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Determina tipos de sequência multilocus (MLST) a partir de montagens bacterianas.
+
+Este subworkflow utiliza o [mlst](https://github.com/tseemann/mlst) para varrer
+contigs montados contra esquemas de tipagem PubMLST e determinar tipos de sequência (STs). Ele processa
+cada amostra individualmente e agrega os resultados em um único relatório consolidado.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `assembly` | Contigs montados no formato FASTA |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-------------|
+| `db` | `Path` | Banco de dados PubMLST a ser usado para tipagem MLST |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Um resumo delimitado por tabulação contendo a Amostra, Esquema, ST e IDs de Alelos |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Um arquivo TSV mesclado com resultados do mlst de todas as amostras |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [mlst](/developers/modules/mlst) - Tipagem de Sequência Multi-Locus (MLST) automática de montagens de genomas.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [mlst](/bactopia-tools/mlst) - Chamada automática de Tipo de Sequência Multi-Locus (MLST) a partir de contigs montados.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline de análise abrangente para isolados de *Staphylococcus aureus*.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [mlst](https://github.com/tseemann/mlst)  
+  Seemann T [mlst: scan contig files against PubMLST typing schemes](https://github.com/tseemann/mlst) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/mlst)

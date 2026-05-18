@@ -1,0 +1,164 @@
+---
+title: bactopia-scaffold
+description: "Estruture componentes do Bactopia a partir de pacotes bioconda/conda-forge."
+---
+
+# bactopia-scaffold
+
+Estruture componentes do Bactopia a partir de pacotes bioconda/conda-forge.
+
+## Uso
+
+```bash
+bactopia-scaffold COMMAND [OPTIONS]
+```
+
+## Subcomandos
+
+| Comando | Descrição |
+|---------|-----------|
+| [`bactopia-scaffold lookup`](#lookup) | Busca informações de pacotes no Anaconda e verifica componentes existentes. |
+| [`bactopia-scaffold module`](#module) | Gera arquivos de modulo a partir de uma configuração de design. |
+| [`bactopia-scaffold subworkflow`](#subworkflow) | Gera arquivos de subworkflow a partir de uma configuração de design. |
+| [`bactopia-scaffold test-data`](#test-data) | Descobre caminhos de dados de teste a partir de testes de modulos existentes. |
+| [`bactopia-scaffold tool`](#tool) | Gera os três níveis (modulo + subworkflow + workflow) para uma bactopia-tool. |
+
+---
+
+### lookup
+
+Busca informações de pacotes no Anaconda e verifica componentes existentes.
+
+```bash
+bactopia-scaffold lookup PACKAGE [OPTIONS]
+```
+
+#### Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `PACKAGE` | STRING | Sim |  |
+
+#### Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+#### Opções de Consulta
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--channel` | STRING |  | Força um canal específico (bioconda ou conda-forge). Padrão: tenta bioconda primeiro, depois conda-forge |
+| `--max-retry` | INT | `3` | Número máximo de tentativas para consultas à API. (Padrão: 3) |
+
+#### Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--json` | BOOL | `false` | Exibe JSON simples |
+| `--pretty` | BOOL | `false` | Exibe JSON formatado |
+
+#### Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibe texto de depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+
+---
+
+### module
+
+Gera arquivos de modulo a partir de uma configuração de design.
+
+```bash
+bactopia-scaffold module [OPTIONS]
+```
+
+#### Opções
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--config` | PATH |  | Arquivo de configuração de design em JSON |
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+| `--dry-run` | BOOL | `false` | Mostra o que seria criado sem gravar os arquivos |
+| `--json` | BOOL | `false` | Exibe JSON simples |
+| `--pretty` | BOOL | `false` | Exibe JSON formatado |
+| `--verbose` | BOOL | `false` | Exibe texto de depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+
+---
+
+### subworkflow
+
+Gera arquivos de subworkflow a partir de uma configuração de design.
+
+```bash
+bactopia-scaffold subworkflow [OPTIONS]
+```
+
+#### Opções
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--config` | PATH |  | Arquivo de configuração de design em JSON |
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+| `--dry-run` | BOOL | `false` | Mostra o que seria criado sem gravar os arquivos |
+| `--json` | BOOL | `false` | Exibe JSON simples |
+| `--pretty` | BOOL | `false` | Exibe JSON formatado |
+| `--verbose` | BOOL | `false` | Exibe texto de depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+
+---
+
+### test-data
+
+Descobre caminhos de dados de teste a partir de testes de modulos existentes.
+
+```bash
+bactopia-scaffold test-data [OPTIONS]
+```
+
+#### Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--input-type` | CHOICE (assembly, assembly_reads, genbank, gff, proteins, reads) |  | Tipo de entrada a ser pesquisado nos testes existentes |
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+#### Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--json` | BOOL | `false` | Exibe JSON simples |
+| `--pretty` | BOOL | `false` | Exibe JSON formatado |
+
+#### Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibe texto de depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+
+---
+
+### tool
+
+Gera os três níveis (modulo + subworkflow + workflow) para uma bactopia-tool.
+
+```bash
+bactopia-scaffold tool [OPTIONS]
+```
+
+#### Opções
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--config` | PATH |  | Arquivo de configuração de design em JSON |
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+| `--dry-run` | BOOL | `false` | Mostra o que seria criado sem gravar os arquivos |
+| `--json` | BOOL | `false` | Exibe JSON simples |
+| `--pretty` | BOOL | `false` | Exibe JSON formatado |
+| `--verbose` | BOOL | `false` | Exibe texto de depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |

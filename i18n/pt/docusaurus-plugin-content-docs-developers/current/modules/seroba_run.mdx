@@ -1,0 +1,102 @@
+---
+title: seroba_run
+description: "Sorotipagem de Streptococcus pneumoniae baseada em k-mer."
+tags:
+  - streptococcus-pneumoniae
+  - serotype
+  - k-mer
+  - prediction
+  - seroba
+  - sample-scope
+---
+
+# seroba_run
+
+**Tags:** <a href="/developers/tags/streptococcus-pneumoniae" class="badge badge--primary badge--tag">streptococcus-pneumoniae</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/k-mer" class="badge badge--primary badge--tag">k-mer</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/seroba" class="badge badge--primary badge--tag">seroba</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Sorotipagem de *Streptococcus pneumoniae* baseada em k-mer.
+
+Utiliza o [SeroBA](https://github.com/sanger-pathogens/seroba) para identificar o sorotipo de
+*Streptococcus pneumoniae* a partir de reads paired-end Illumina usando uma abordagem baseada em k-mer.
+
+:::note[Banco de Dados Necessário]
+Requer que o banco de dados do SeroBA seja configurado com `seroba createDBs` antes da execução.
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path,
+    r2: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `r1` | `Path` | Reads R1 Illumina (paired-end) |
+| `r2` | `Path` | Reads R2 Illumina (paired-end) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados da predição de sorotipo com o sorotipo previsto e confiança em formato TSV |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do SeroBA
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--seroba_noclean` | boolean | `false` | Não remover arquivos intermediários |
+| `--seroba_coverage` | integer | `20` | Limite para cobertura de k-mer da sequência de referência |
+
+## Usado Por
+
+### Subworkflows
+
+- [seroba](/developers/subworkflows/seroba) - Pipeline baseado em k-mer para identificar o sorotipo de Streptococcus pneumoniae.
+
+### Workflows
+
+- [seroba](/bactopia-tools/seroba) - Sorotipagem de Streptococcus pneumoniae a partir de reads paired-end Illumina.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Seroba](https://github.com/sanger-pathogens/seroba)  
+  Epping L, van Tonder AJ, Gladstone RA, The Global Pneumococcal Sequencing Consortium, Bentley SD, Page AJ, Keane JA [SeroBA: rapid high-throughput serotyping of Streptococcus pneumoniae from whole genome sequence data.](https://doi.org/10.1099/mgen.0.000186) _Microbial Genomics_, 4(7) (2018)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/seroba/run)
+
+## Versão
+
+```yaml
+SEROBA_RUN:
+    - seroba: 1.0.2
+```

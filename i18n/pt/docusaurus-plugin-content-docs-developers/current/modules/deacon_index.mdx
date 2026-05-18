@@ -1,0 +1,81 @@
+---
+title: deacon_index
+description: "Construir um índice minimizer do deacon a partir de um genoma de referência FASTA."
+tags:
+  - host
+  - decontamination
+  - depletion
+  - index
+  - minimizer
+  - reference
+  - deacon
+  - run-scope
+---
+
+# deacon_index
+
+**Tags:** <a href="/developers/tags/host" class="badge badge--primary badge--tag">host</a> <a href="/developers/tags/decontamination" class="badge badge--primary badge--tag">decontamination</a> <a href="/developers/tags/depletion" class="badge badge--primary badge--tag">depletion</a> <a href="/developers/tags/index" class="badge badge--primary badge--tag">index</a> <a href="/developers/tags/minimizer" class="badge badge--primary badge--tag">minimizer</a> <a href="/developers/tags/reference" class="badge badge--primary badge--tag">reference</a> <a href="/developers/tags/deacon" class="badge badge--primary badge--tag">deacon</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Construir um índice minimizer do deacon a partir de um genoma de referência FASTA.
+
+Usa o [deacon](https://github.com/bede/deacon) para construir um índice minimizer a partir de um genoma
+de referência no formato FASTA. O índice resultante é utilizado pelo módulo de filtro do deacon para remover
+contaminação de hospedeiro das reads de sequenciamento via comparação de minimizers acelerada por SIMD.
+
+:::note[Construção Única]
+Este processo constrói um índice minimizer a partir de um FASTA de referência. O índice é armazenado
+em cache via storeDir e só precisa ser construído uma vez por genoma de referência.
+:::
+
+## Entradas
+
+```
+reference: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `reference` | `Path` | Genoma de referência no formato FASTA para construir o índice minimizer |
+
+## Saídas
+
+```
+record (
+    db: Path,
+    logs: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `db` | `Path` | O arquivo de índice minimizer do deacon construído |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+
+## Parâmetros
+
+### Parâmetros do Índice Deacon
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--deacon_reference` | string |  | Caminho para um arquivo FASTA de genoma de referência para construir o índice do deacon |
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/deacon/index)
+
+## Versão
+
+```yaml
+DEACON_INDEX:
+    - bactopia-teton: 1.1.4
+```

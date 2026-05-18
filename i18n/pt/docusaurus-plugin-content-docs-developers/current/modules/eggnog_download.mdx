@@ -1,0 +1,90 @@
+---
+title: eggnog_download
+description: "Baixe o banco de dados eggNOG para anotação funcional."
+tags:
+  - eggnog
+  - database
+  - download
+  - annotation
+  - functional
+  - orthology
+  - sample-scope
+---
+
+# eggnog_download
+
+**Tags:** <a href="/developers/tags/eggnog" class="badge badge--primary badge--tag">eggnog</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/functional" class="badge badge--primary badge--tag">functional</a> <a href="/developers/tags/orthology" class="badge badge--primary badge--tag">orthology</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Baixe o banco de dados eggNOG para anotação funcional.
+
+Obtém os dados de ortologia pré-computados e o banco de dados Diamond necessários pelo
+[eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper). Isso inclui o extenso
+banco de dados de proteínas e as informações taxonômicas necessárias para uma atribuição
+precisa de ortólogos.
+
+:::note[Conexão com a Internet e Espaço em Disco Necessários]
+Este processo requer uma conexão ativa com a internet e espaço em disco significativo (frequentemente &gt;50GB)
+para armazenar os arquivos de banco de dados descomprimidos.
+:::
+
+## Saídas
+
+```
+record (
+    db: Path?,
+    db_tarball: Path?,
+    logs: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `db` | `Path?` | O diretório do banco de dados eggNOG (banco de dados Diamond e informações taxonômicas) |
+| `db_tarball` | `Path?` | Um tarball comprimido do banco de dados (se solicitado via parâmetros) |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+
+## Parâmetros
+
+### Parâmetros do eggNOG Downloader
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--eggnog_db` | string |  | Tarball ou caminho para os bancos de dados eggNOG |
+| `--download_eggnog` | boolean | `false` | Necessário ao baixar o banco de dados eggNOG mais recente; irá sobrescrever os bancos de dados existentes. |
+| `--eggnog_save_as_tarball` | string |  | Salva o banco de dados eggNOG como um único tarball |
+| `--eggnog_skip_diamond` | boolean | `false` | Não instala o banco de dados Diamond |
+| `--eggnog_install_mmseq` | boolean | `false` | Instala o banco de dados MMseqs2 |
+| `--eggnog_install_pfam` | boolean | `false` | Instala o banco de dados Pfam, necessário para anotação de novo ou realinhamento |
+| `--eggnog_install_hmm` | boolean | `false` | Instala o banco de dados HMMER especificado com --hmmer_taxid |
+| `--eggnog_hmmer_taxid` | integer | `2` | ID taxonômico do banco de dados HMM do eggNOG a ser baixado |
+
+## Usado Por
+
+### Subworkflows
+
+- [eggnog](/developers/subworkflows/eggnog) - Anotação funcional por meio de atribuição de ortologia.
+
+### Workflows
+
+- [eggnog](/bactopia-tools/eggnog) - Anotação funcional de proteínas usando grupos ortólogos e filogenias.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)  
+  Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115-2122 (2017)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/eggnog/download)
+
+## Versão
+
+```yaml
+EGGNOG_DOWNLOAD:
+    - eggnog-mapper: 2.1.13
+```

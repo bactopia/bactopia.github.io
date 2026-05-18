@@ -1,0 +1,94 @@
+---
+title: sylph
+description: "Perfil de composição microbiana usando Sylph."
+tags:
+  - metagenome
+  - profiling
+  - composition
+  - abundance
+  - kmer
+  - taxonomic
+  - sample-scope
+---
+
+# sylph
+
+**Tags:** <a href="/developers/tags/metagenome" class="badge badge--primary badge--tag">metagenome</a> <a href="/developers/tags/profiling" class="badge badge--primary badge--tag">profiling</a> <a href="/developers/tags/composition" class="badge badge--primary badge--tag">composition</a> <a href="/developers/tags/abundance" class="badge badge--primary badge--tag">abundance</a> <a href="/developers/tags/kmer" class="badge badge--primary badge--tag">kmer</a> <a href="/developers/tags/taxonomic" class="badge badge--primary badge--tag">taxonomic</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Perfil de composição microbiana usando Sylph.
+
+Este subworkflow estima a composição microbiana diretamente a partir de reads de sequenciamento usando
+[Sylph](https://github.com/xiaoli-dong/sylph). Ele fornece estimativas de abundância rápidas e precisas
+comparando assinaturas de k-mer contra um banco de dados de genomas de referência. Sylph pode
+processar reads curtos e longos, oferecendo perfis taxonômicos do nível de espécie ao de linhagem
+com estimativas de confiança para cada identificação.
+
+Usa campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads Illumina R1 (paired-end) |
+| `r2` | Reads Illumina R2 (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Reads longos (ONT/PacBio) |
+
+```
+database: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database` | `Path` | Caminho para o diretório do banco de dados de referência do Sylph, contendo assinaturas de k-mer pré-computadas de genomas de referência para classificação taxonômica. |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Arquivo TSV com resultados do perfil |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados de perfil agregados em formato CSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [sylph_profile](/developers/modules/sylph_profile) - Perfil de amostras de metagenoma contra um banco de dados usando Sylph.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [sylph](/bactopia-tools/sylph) - Perfil taxonômico por MinHash corrigido por abundância.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Sylph](https://github.com/bluenote-1/sylph)  
+  Shaw J, and Yu YW [Rapid species-level metagenome profiling and containment estimation with sylph.](https://doi.org/10.1038/s41587-024-02412-y) _Nature Biotechnology_ (2024)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/sylph)

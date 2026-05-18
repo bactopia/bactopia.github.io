@@ -1,0 +1,111 @@
+---
+title: spatyper
+description: "Encontrando tipos spa em Staphylococcus aureus."
+tags:
+  - staphylococcus-aureus
+  - spa-typing
+  - repeat
+  - mrsa
+  - typing
+  - sample-scope
+---
+
+# spatyper
+
+**Tags:** <a href="/developers/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/developers/tags/spa-typing" class="badge badge--primary badge--tag">spa-typing</a> <a href="/developers/tags/repeat" class="badge badge--primary badge--tag">repeat</a> <a href="/developers/tags/mrsa" class="badge badge--primary badge--tag">mrsa</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Encontrando tipos spa em Staphylococcus aureus.
+
+Utiliza o [spaTyper](https://github.com/HCGB-IGTP/spaTyper) para determinar o tipo *spa*
+de genomas de *Staphylococcus aureus*, identificando as repetições na região X polimórfica
+do gene da proteína A (*spa*).
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Record Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+```
+repeats: Path?
+repeat_order: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `repeats` | `Path?` | Arquivo personalizado de sequências de repetição |
+| `repeat_order` | `Path?` | Arquivo personalizado de ordem de repetição |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `tsv` | `Path` | Resultados da tipagem spa em formato TSV |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do spaTyper
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--spatyper_repeats` | string |  | Lista de repetições spa |
+| `--spatyper_repeat_order` | string |  | Lista de tipos spa e ordem das repetições |
+| `--spatyper_do_enrich` | boolean | `false` | Realizar enriquecimento do produto de PCR |
+
+## Usado Por
+
+### Subworkflows
+
+- [spatyper](/developers/subworkflows/spatyper) - Prediz tipos spa de Staphylococcus aureus a partir de montagens de genoma.
+
+### Workflows
+
+- [spatyper](/bactopia-tools/spatyper) - Tipagem spa de montagens de Staphylococcus aureus.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [spaTyper](https://github.com/HCGB-IGTP/spaTyper)  
+  Sanchez-Herrero JF, and Sullivan M [spaTyper: Staphylococcal protein A (spa) characterization pipeline](http://doi.org/10.5281/zenodo.4063625). Zenodo. (2020)
+
+- [spaTyper Database](https://cge.food.dtu.dk/services/spatyper/)  
+  Harmsen D, Claus H, Witte W, Rothgänger J, Claus H, Turnwald D, and Vogel U [Typing of methicillin-resistant _Staphylococcus aureus_ in a university hospital setting using a novel software for spa-repeat determination and database management.](https://doi.org/10.1128/jcm.41.12.5442-5448.2003) _J. Clin. Microbiol._ 41:5442-5448 (2003)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/spatyper)
+
+## Versão
+
+```yaml
+SPATYPER:
+    - spatyper: 0.3.3
+```

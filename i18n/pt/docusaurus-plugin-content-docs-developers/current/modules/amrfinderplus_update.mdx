@@ -1,0 +1,61 @@
+---
+title: amrfinderplus_update
+description: "Baixe e indexe o banco de dados mais recente do AMRFinder+."
+tags:
+  - bacteria
+  - database
+  - antimicrobial-resistance
+  - update
+  - download
+  - ncbi
+  - sample-scope
+---
+
+# amrfinderplus_update
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/update" class="badge badge--primary badge--tag">update</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/ncbi" class="badge badge--primary badge--tag">ncbi</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Baixe e indexe o banco de dados mais recente do AMRFinder+.
+
+Obtém os bancos de dados mais recentes do [AMRFinder+](https://github.com/ncbi/amr) a partir do NCBI,
+indexa-os e os empacota em um arquivo tarball.
+
+:::note[Manutenção Interna]
+Este processo é utilizado principalmente de forma interna pelo Bactopia para construir e atualizar os
+conjuntos de dados integrados.
+:::
+
+## Saídas
+
+```
+record (
+    db: Path,
+    logs: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `db` | `Path` | Um tarball comprimido do banco de dados mais recente do AMRFinder+ |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AMRFinderPlus](https://github.com/ncbi/amr)  
+  Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using resistencia antimicrobiana Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/amrfinderplus/update)
+
+## Versão
+
+```yaml
+AMRFINDERPLUS_UPDATE:
+    - ncbi-amrfinderplus: 4.2.7
+```

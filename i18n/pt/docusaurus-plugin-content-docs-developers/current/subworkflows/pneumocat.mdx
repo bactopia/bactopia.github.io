@@ -1,0 +1,81 @@
+---
+title: pneumocat
+description: "Realizar tipagem capsular de Streptococcus pneumoniae a partir de dados NGS."
+tags:
+  - streptococcus-pneumoniae
+  - serotype
+  - capsular-typing
+  - typing
+  - sample-scope
+---
+
+# pneumocat
+
+**Tags:** <a href="/developers/tags/streptococcus-pneumoniae" class="badge badge--primary badge--tag">streptococcus-pneumoniae</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/capsular-typing" class="badge badge--primary badge--tag">capsular-typing</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Realizar tipagem capsular de Streptococcus pneumoniae a partir de dados NGS.
+
+Este subworkflow utiliza o [PneumoCaT](https://github.com/ukhsa-collaboration/PneumoCaT) para
+identificar loci capsulares específicos de sorotipo e determinar sorotipos a partir de dados de
+sequenciamento de nova geração. Ele fornece determinação abrangente de sorotipos, incluindo
+estatísticas de cobertura e pontuações de confiança para cada amostra.
+
+Utiliza campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads Illumina R1 (pareados) |
+| `r2` | Reads Illumina R2 (pareados) |
+| `se` | Reads Illumina de extremidade única (não suportado pelo PneumoCaT) |
+| `lr` | Reads longas (não suportadas pelo PneumoCaT) |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `xml` | Os arquivos de resultado do PneumoCaT em formato XML |
+| `txt` | Um arquivo contendo as informações de cobertura dos genes |
+
+#### `run_outputs`
+
+Nenhuma saída de escopo de execução.
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [pneumocat](/developers/modules/pneumocat) - Tipagem capsular de Streptococcus pneumoniae a partir de reads Illumina.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [pneumocat](/bactopia-tools/pneumocat) - Atribuição de sorotipo capsular a Streptococcus pneumoniae a partir de reads de sequenciamento.
+
+## Citações
+
+Se você utilizar este recurso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PneumoCaT](https://github.com/ukhsa-collaboration/PneumoCaT)  
+  Kapatai G, Sheppard CL, Al-Shahib A, Litt DJ, Underwood AP, Harrison TG, and Fry NK [Whole genome sequencing of Streptococcus pneumoniae: development, evaluation and verification of targets for serogroup and serotype prediction using an automated pipeline.](https://doi.org/10.7717/peerj.2477) PeerJ, 4, e2477. (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/pneumocat)

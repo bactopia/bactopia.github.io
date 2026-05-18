@@ -1,0 +1,121 @@
+---
+title: ismapper
+description: "Identificar sítios de inserção e orientação de elementos genéticos móveis."
+tags:
+  - bacteria
+  - mobile-elements
+  - insertion-sequences
+  - mapping
+  - structural-variation
+  - ismapper
+  - sample-scope
+---
+
+# ismapper
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/mobile-elements" class="badge badge--primary badge--tag">mobile-elements</a> <a href="/developers/tags/insertion-sequences" class="badge badge--primary badge--tag">insertion-sequences</a> <a href="/developers/tags/mapping" class="badge badge--primary badge--tag">mapping</a> <a href="/developers/tags/structural-variation" class="badge badge--primary badge--tag">structural-variation</a> <a href="/developers/tags/ismapper" class="badge badge--primary badge--tag">ismapper</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identificar sítios de inserção e orientação de elementos genéticos móveis.
+
+Utiliza o [ISMapper](https://github.com/jhawkey/IS_mapper) para identificar a posição e orientação
+de sequências de inserção (IS) específicas em um genoma bacteriano. O processo funciona mapeando reads
+paired-end para uma biblioteca de consultas de IS e um genoma de referência, determinando onde os
+elementos IS estão localizados em relação às coordenadas da referência.
+
+Utiliza campos de registro posicionais explícitos para os reads:
+- Entrada: record(meta, r1, r2) onde cada slot de read é um Path
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path,
+    r2: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da amostra |
+| `r1` | `Path` | Reads Illumina R1 (paired-end) |
+| `r2` | `Path` | Reads Illumina R2 (paired-end) |
+
+```
+reference: Path
+query: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `reference` | `Path` | Genoma de referência no formato GenBank (*.gbk) para mapeamento dos sítios de inserção |
+| `query` | `Path` | Arquivo FASTA contendo as sequências de inserção a serem pesquisadas |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do ISMapper
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--reference` | string |  | Genoma de referência para tipagem no formato GenBank |
+| `--insertions` | string |  | Arquivo multifasta com a(s) sequência(s) de inserção a serem mapeadas |
+| `--ismapper_min_clip` | integer | `10` | Tamanho mínimo para a região softclipped ser extraída do mapeamento inicial |
+| `--ismapper_max_clip` | integer | `30` | Tamanho máximo para regiões softclipped serem incluídas |
+| `--ismapper_cutoff` | integer | `6` | Profundidade mínima para a região mapeada ser mantida no arquivo bed |
+| `--ismapper_novel_gap_size` | integer | `15` | Distância em pares de bases entre os flancos esquerdo e direito para ser considerado um hit novo |
+| `--ismapper_min_range` | number | `0.9` | Percentual mínimo do tamanho do gap para ser considerado um hit conhecido |
+| `--ismapper_max_range` | number | `1.1` | Percentual máximo do tamanho do gap para ser considerado um hit conhecido |
+| `--ismapper_merging` | integer | `100` | Valor para a fusão de hits esquerdo e direito em arquivos bed para simplificar o cálculo das regiões mais próximas e de interseção |
+| `--ismapper_all` | boolean | `false` | Ativa o relatório de todos os alinhamentos para o bwa |
+| `--ismapper_minqual` | integer | `30` | Pontuação de qualidade de mapeamento para o bwa |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [ismapper](/developers/subworkflows/ismapper) - Identificar sítios de inserção de transposase em genomas bacterianos.
+
+### Workflows
+
+- [ismapper](/bactopia-tools/ismapper) - Identificar posições de sequências de inserção em genomas bacterianos.
+
+## Citações
+
+Se você utilizar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ISMapper](https://github.com/jhawkey/IS_mapper)  
+  Hawkey J, Hamidian M, Wick RR, Edwards DJ, Billman-Jacobe H, Hall RM, Holt KE [ISMapper: identifying transposase insertion sites in bacterial genomes from short read sequence data](http://dx.doi.org/10.1186/s12864-015-1860-2). _BMC Genomics_ 16, 667 (2015)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ismapper)
+
+## Versão
+
+```yaml
+ISMAPPER:
+    - ismapper: 2.0.2
+```

@@ -1,0 +1,71 @@
+---
+title: pirate
+description: "Construa um pan-genoma a partir de anotações GFF3 usando PIRATE."
+tags:
+  - pangenome
+  - pan-genoma
+  - comparative-genomics
+  - core-genome
+  - alignment
+  - run-scope
+---
+
+# pirate
+
+**Tags:** <a href="/developers/tags/pangenome" class="badge badge--primary badge--tag">pangenome</a> <a href="/developers/tags/pan-genoma" class="badge badge--primary badge--tag">pan-genoma</a> <a href="/developers/tags/comparative-genomics" class="badge badge--primary badge--tag">comparative-genomics</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Construa um pan-genoma a partir de anotações GFF3 usando PIRATE.
+
+Este subworkflow cria um pan-genoma a partir de anotações de genomas bacterianos usando [PIRATE](https://github.com/SionBayliss/PIRATE).
+PIRATE é uma caixa de ferramentas de pan-genoma escalável que agrupa genes ortólogos em múltiplos limiares de identidade.
+É particularmente útil para conjuntos de dados altamente diversos, pois consegue lidar com famílias gênicas divergentes
+e oferece opções flexíveis de agrupamento para diferentes necessidades analíticas.
+
+## Entrada
+
+```
+gff: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `gff` | Conjunto de arquivos de anotação GFF3 representando as anotações genômicas de cada amostra |
+
+## Saída
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+Nenhuma saída no escopo de amostra.
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `aln` | Alinhamento do genoma core no formato FASTA (opcional) |
+| `csv` | Matriz de presença/ausência de genes no formato CSV |
+| `supplemental` | Diretório contendo arquivos intermediários do PIRATE e saídas detalhadas |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [pirate](/developers/modules/pirate) - Pangenome Identification and Reconciliation Analysis Tool for Epidemiology (PIRATE).
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PIRATE](http://github.com/SionBayliss/PIRATE)  
+  Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ [PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) _Gigascience_ 8 (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/pirate)

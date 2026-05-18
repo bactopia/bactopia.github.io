@@ -1,0 +1,28 @@
+---
+title: bactopia-scrubber-summary
+description: "Crie um relatório de antes e depois da remoção de reads humanos."
+---
+
+# bactopia-scrubber-summary
+
+Crie um relatório de antes e depois da remoção de reads humanos.
+
+## Uso
+
+```bash
+bactopia-scrubber-summary SAMPLE ORIGINAL SCRUBBED [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `SAMPLE` | STRING | Sim | Nome da amostra de entrada. |
+| `ORIGINAL` | STRING | Sim | Estatísticas do FASTQ original em formato JSON. |
+| `SCRUBBED` | STRING | Sim | Estatísticas do FASTQ processado em formato JSON. |
+
+## Opções
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

@@ -1,0 +1,94 @@
+---
+title: checkm2
+description: "Avalie a completude de bins de metagenoma usando CheckM2."
+tags:
+  - metagenome
+  - bin
+  - completeness
+  - contamination
+  - mag
+  - quality
+  - machine-learning
+  - sample-scope
+---
+
+# checkm2
+
+**Tags:** <a href="/developers/tags/metagenome" class="badge badge--primary badge--tag">metagenome</a> <a href="/developers/tags/bin" class="badge badge--primary badge--tag">bin</a> <a href="/developers/tags/completeness" class="badge badge--primary badge--tag">completeness</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/mag" class="badge badge--primary badge--tag">mag</a> <a href="/developers/tags/quality" class="badge badge--primary badge--tag">quality</a> <a href="/developers/tags/machine-learning" class="badge badge--primary badge--tag">machine-learning</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Avalie a completude de bins de metagenoma usando CheckM2.
+
+Este subworkflow avalia a qualidade e completude de genomas montados a partir de metagenomas
+(MAGs) usando o [CheckM2](https://github.com/chklovski/CheckM2). Ele fornece uma avaliação
+aprimorada por meio de modelos de aprendizado de máquina treinados em genomas de referência
+de alta qualidade, oferecendo estimativas mais precisas de completude e contaminação. O
+fluxo de trabalho pode baixar automaticamente o banco de dados necessário ou utilizar um
+caminho fornecido pelo usuário.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Bins de genomas montados a partir de metagenomas para avaliação. Cada registro contém metadados |
+
+```
+database: Path
+download_checkm2: Boolean
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database` | `Path` | Caminho para o diretório do banco de dados do CheckM2. Se `download_checkm2` for verdadeiro, este pode ser um valor temporário, pois o banco de dados será baixado automaticamente. |
+| `download_checkm2` | `Boolean` | Flag booleano para baixar automaticamente o banco de dados do CheckM2 se não estiver disponível. Quando verdadeiro, baixa o banco de dados de referência necessário antes da predição. |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregações de arquivos de saída que serão publicados no fluxo de trabalho principal.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Relatório delimitado por tabulação com métricas de qualidade (Completude, Contaminação) |
+| `supplemental` | Diretório contendo arquivos intermediários de proteínas e alinhamentos Diamond |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [checkm2_predict](/developers/modules/checkm2_predict) - Avalia a qualidade do genoma usando aprendizado de máquina.
+- [checkm2_download](/developers/modules/checkm2_download) - Baixa o banco de dados pré-treinado do CheckM2.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [checkm2](/bactopia-tools/checkm2) - Avaliação baseada em aprendizado de máquina da qualidade de montagem de genomas microbianos.
+
+## Citações
+
+Se você usar este fluxo de trabalho em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [CheckM2](https://github.com/chklovski/CheckM2)  
+  Chklovksi A [Rapid assessment of genome bin quality using machine learning](https://github.com/chklovski/CheckM2) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/checkm2)

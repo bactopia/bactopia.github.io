@@ -76,8 +76,16 @@ def fix_admonitions(text: str, locale: str) -> str:
     return admonition_re.sub(_fix_match, text)
 
 
+def fix_unclosed_fences(text: str) -> str:
+    """Append a closing ``` if the translation has an odd number of fences."""
+    if text.count("```") % 2 != 0:
+        text = text.rstrip() + "\n```\n"
+    return text
+
+
 def postprocess(text: str, locale: str) -> str:
     """Run all post-processing steps on translated text."""
     text = apply_glossary(text, locale)
     text = fix_admonitions(text, locale)
+    text = fix_unclosed_fences(text)
     return text

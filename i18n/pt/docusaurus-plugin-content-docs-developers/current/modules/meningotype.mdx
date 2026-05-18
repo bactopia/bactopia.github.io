@@ -1,0 +1,105 @@
+---
+title: meningotype
+description: "Sorotipagem e tipagem fina de *Neisseria meningitidis*."
+tags:
+  - bacteria
+  - neisseria-meningitidis
+  - serotype
+  - serogroup
+  - finetyping
+  - pora
+  - feta
+  - capsule
+  - sample-scope
+---
+
+# meningotype
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/neisseria-meningitidis" class="badge badge--primary badge--tag">neisseria-meningitidis</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/serogroup" class="badge badge--primary badge--tag">serogroup</a> <a href="/developers/tags/finetyping" class="badge badge--primary badge--tag">finetyping</a> <a href="/developers/tags/pora" class="badge badge--primary badge--tag">pora</a> <a href="/developers/tags/feta" class="badge badge--primary badge--tag">feta</a> <a href="/developers/tags/capsule" class="badge badge--primary badge--tag">capsule</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Sorotipagem e tipagem fina de *Neisseria meningitidis*.
+
+Utiliza o [Meningotype](https://github.com/MDU-PHL/meningotype) para prever o sorogrupo (cápsula),
+as regiões variáveis de PorA e as regiões variáveis de FetA em montagens de *N. meningitidis*. Isso fornece
+um perfil abrangente de tipagem molecular (por exemplo, B:P1.7-2,4:F1-5) utilizado em vigilância epidemiológica.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados do meningotype em formato delimitado por tabulação com predições de sorogrupo, PorA e FetA |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (por exemplo, .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do meningotype
+
+Você pode usar estes parâmetros para ajustar sua análise com o meningotype
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--meningotype_finetype` | boolean | `false` | realizar tipagem fina de porA e fetA |
+| `--meningotype_porB` | boolean | `false` | realizar tipagem de sequência porB (NEIS2020) |
+| `--meningotype_bast` | boolean | `false` | realizar tipagem de sequência de antígeno Bexsero (BAST) |
+| `--meningotype_mlst` | boolean | `false` | realizar MLST |
+| `--meningotype_all` | boolean | `false` | realizar tipagem MLST, porA, fetA, porB e BAST |
+
+## Usado Por
+
+### Subworkflows
+
+- [meningotype](/developers/subworkflows/meningotype) - Predizer sorotipos de Neisseria meningitidis a partir de montagens de genoma.
+
+### Workflows
+
+- [meningotype](/bactopia-tools/meningotype) - Tipagem abrangente de Neisseria meningitidis.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [meningotype](https://github.com/MDU-PHL/meningotype)  
+  Kwong JC, Gonçalves da Silva A, Stinear TP, Howden BP, & Seemann T [meningotype: in silico typing for _Neisseria meningitidis_.](https://github.com/MDU-PHL/meningotype) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/meningotype)
+
+## Versão
+
+```yaml
+MENINGOTYPE:
+    - meningotype: 0.8.6b
+```

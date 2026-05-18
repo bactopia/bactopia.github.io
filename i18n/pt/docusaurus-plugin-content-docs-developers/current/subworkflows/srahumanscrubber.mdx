@@ -1,0 +1,79 @@
+---
+title: srahumanscrubber
+description: "Remova contaminação humana de reads de sequenciamento para submissão ao SRA."
+tags:
+  - contamination
+  - human
+  - scrub
+  - sra
+  - sequencing
+  - fastq
+  - sample-scope
+---
+
+# srahumanscrubber
+
+**Tags:** <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/human" class="badge badge--primary badge--tag">human</a> <a href="/developers/tags/scrub" class="badge badge--primary badge--tag">scrub</a> <a href="/developers/tags/sra" class="badge badge--primary badge--tag">sra</a> <a href="/developers/tags/sequencing" class="badge badge--primary badge--tag">sequencing</a> <a href="/developers/tags/fastq" class="badge badge--primary badge--tag">fastq</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Remova contaminação humana de reads de sequenciamento para submissão ao SRA.
+
+Este subworkflow utiliza o [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber) para identificar
+e remover reads humanos dos dados de sequenciamento. Ele primeiro inicializa um banco de dados de referência humana
+e em seguida realiza a limpeza dos reads de entrada para garantir que atendam aos requisitos de submissão ao SRA.
+
+Utiliza campos posicionais explícitos do registro para os reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `r1` | Reads Illumina R1 (paired-end) |
+| `r2` | Reads Illumina R2 (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Long reads (ONT/PacBio) |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `special_meta` | Groovy Record com nome para agregação downstream |
+| `scrubbed` | Arquivos FASTQ limpos com reads humanos removidos |
+| `scrubbed_extra` | Arquivos de espaço reservado para compatibilidade do pipeline |
+| `scrub_report` | Relatório com estatísticas da limpeza |
+
+#### `run_outputs`
+
+Nenhuma saída de escopo de execução.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [srahumanscrubber_initdb](/developers/modules/srahumanscrubber_initdb) - Inicializa o banco de dados de remoção de reads humanos para o SRA Human Scrubber.
+- [srahumanscrubber_scrub](/developers/modules/srahumanscrubber_scrub) - Realiza a limpeza de reads humanos de arquivos FASTQ.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber)  
+  Katz KS, Shutov O, Lapoint R, Kimelman M, Brister JR, and O'Sullivan C [STAT: a fast, scalable, MinHash-based k-mer tool to assess Sequence Read Archive next-generation sequence submissions.](https://doi.org/10.1186/s13059-021-02490-0) _Genome Biology_, 22(1), 270 (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/srahumanscrubber)

@@ -1,0 +1,109 @@
+---
+title: snippy_core
+description: "Gera alinhamento de SNPs do genoma core a partir das saídas por amostra do Snippy."
+tags:
+  - variant-calling
+  - core-genome
+  - snp
+  - alignment
+  - phylogenetics
+  - run-scope
+---
+
+# snippy_core
+
+**Tags:** <a href="/developers/tags/variant-calling" class="badge badge--primary badge--tag">variant-calling</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/phylogenetics" class="badge badge--primary badge--tag">phylogenetics</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Gera alinhamento de SNPs do genoma core a partir das saídas por amostra do Snippy.
+
+Este subworkflow agrega chamadas de variantes individuais do Snippy para produzir um
+alinhamento do genoma core usando [snippy-core](https://github.com/tseemann/snippy). Ele identifica
+SNPs core presentes em todas as amostras, gera um alinhamento limpo adequado para análise
+filogenética e calcula distâncias de SNPs par a par usando snp-dists. A saída pode ser
+usada diretamente com ferramentas de construção de árvores como IQ-TREE, RAxML ou Gubbins.
+
+## Take
+
+```
+alignments: Channel<Record>
+```
+
+```
+reference: Path
+mask: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `alignments` | `` | Channel contendo arquivos FASTA alinhados por amostra e VCFs das execuções do Snippy |
+| `reference` | `Path` | Genoma de referência no formato GenBank ou FASTA usado para chamada de variantes |
+| `mask` | `Path?` | Arquivo BED opcional de regiões a mascarar do alinhamento core (por exemplo, regiões recombinantes ou regiões repetidas) |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no workflow de entrada.
+
+#### `sample_outputs`
+
+Sem saídas no escopo de amostra.
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `aln` | Alinhamento de SNPs core no formato FASTA (apenas sítios polimórficos) |
+| `full_aln` | Alinhamento core completo incluindo sítios monomórficos |
+| `clean_full_aln` | Alinhamento completo limpo com sítios constantes para inferência filogenética |
+| `tab` | SNPs core no formato TAB |
+| `vcf` | SNPs core no formato VCF |
+| `txt` | Estatísticas resumidas do core (número de SNPs, tamanho do genoma core) |
+| `samples` | Lista de amostras incluídas no alinhamento core |
+| `supplemental` | Alinhamentos individuais por amostra e arquivos intermediários |
+| `tsv` | Matriz de distâncias de SNPs par a par do snp-dists |
+
+### Entradas para Etapas Seguintes
+
+As emissões a seguir são destinadas a serem usadas como entradas para subworkflows posteriores.
+
+#### `alignment`
+
+| Saída | Descrição |
+|-------|-----------|
+| `aln` | Alinhamento de SNPs core para análise filogenética posterior |
+
+## Composição do Subworkflow
+
+Este subworkflow chama os seguintes subworkflows:
+
+- [snpdists](/developers/subworkflows/snpdists) - Calcula distâncias de SNPs par a par a partir de alinhamentos de sequências.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [snippy_core](/developers/modules/snippy_core) - Alinhamento de SNPs core a partir das saídas do Snippy.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes workflows:
+
+- [snippy](/bactopia-tools/snippy) - Chamada rápida de variantes haplotípicas e alinhamento do genoma core.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Snippy](https://github.com/tseemann/snippy)  
+  Seemann T [Snippy: fast bacterial chamada de variantes from NGS reads](https://github.com/tseemann/snippy) (GitHub)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/snippy/core)

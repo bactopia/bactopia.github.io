@@ -1,0 +1,31 @@
+---
+title: bactopia-mask-consensus
+description: "Consenso Snippy (subs) com mascaramento de cobertura."
+---
+
+# bactopia-mask-consensus
+
+Consenso Snippy (subs) com mascaramento de cobertura.
+
+## Uso
+
+```bash
+bactopia-mask-consensus SAMPLE REFERENCE FASTA VCF COVERAGE [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `SAMPLE` | STRING | Sim | Nome da amostra de entrada. |
+| `REFERENCE` | STRING | Sim | O número de acesso da montagem de referência. |
+| `FASTA` | STRING | Sim | O arquivo FASTA de consenso. |
+| `VCF` | STRING | Sim | O arquivo VCF com as substituições chamadas. |
+| `COVERAGE` | STRING | Sim | O arquivo de cobertura por base. |
+
+## Opções
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |
+| `--mincov` | INT | `10` | Cobertura mínima necessária para não mascarar. |

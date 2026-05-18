@@ -1,0 +1,107 @@
+---
+title: gubbins
+description: "Detectar e filtrar regiões de recombinação em alinhamentos bacterianos."
+tags:
+  - recombination
+  - phylogeny
+  - filter
+  - snp
+  - core-genome
+  - run-scope
+---
+
+# gubbins
+
+**Tags:** <a href="/developers/tags/recombination" class="badge badge--primary badge--tag">recombination</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/filter" class="badge badge--primary badge--tag">filter</a> <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Detectar e filtrar regiões de recombinação em alinhamentos bacterianos.
+
+Este subworkflow utiliza o [Gubbins](https://github.com/nickjcroucher/gubbins) (Globally
+Optimised Bacterial Phylogenomic analysis) para identificar regiões de recombinação em
+alinhamentos de genoma central bacteriano. Ele filtra iterativamente a recombinação para
+produzir uma filogenia livre de recombinação e, em seguida, calcula distâncias de SNP a partir do
+alinhamento mascarado. O Gubbins é essencial para a reconstrução filogenética precisa
+de espécies bacterianas recombinantes.
+
+## Take
+
+```
+alignment: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `aln` | Alinhamento de múltiplas sequências no formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+Nenhuma saída no escopo de amostra.
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `masked_aln` | Alinhamento mascarado para recombinação no formato FASTA |
+| `fasta` | Alinhamento concatenado antes do mascaramento no formato FASTA |
+| `gff` | Arquivo GFF contendo coordenadas das regiões de recombinação |
+| `vcf` | Arquivo VCF contendo SNPs filtrados pelo Gubbins |
+| `stats` | Estatísticas resumidas da análise do Gubbins |
+| `phylip` | Alinhamento mascarado para recombinação no formato PHYLIP |
+| `embl_predicted` | Predições de recombinação no formato EMBL |
+| `embl_branch` | Recombinação específica de ramo no formato EMBL |
+| `tree` | Árvore de máxima verossimilhança a partir dos SNPs filtrados no formato Newick |
+| `tree_labelled` | Árvore anotada com rótulos de nós no formato Newick |
+| `bootstrap_tree` | Árvore filogenética com bootstrap no formato Newick |
+| `tsv` | Distâncias de SNP pareadas a partir do alinhamento mascarado no formato TSV |
+
+### Entradas para Subworkflows Posteriores
+
+As emissões a seguir são destinadas a serem utilizadas como entradas para subworkflows posteriores.
+
+#### `alignment`
+
+| Saída | Descrição |
+|-------|-----------|
+| `aln` | Alinhamento mascarado para recombinação para análise filogenética posterior |
+
+## Composição do Subworkflow
+
+Este subworkflow chama os seguintes subworkflows:
+
+- [snpdists](/developers/subworkflows/snpdists) - Calcular distâncias de SNP pareadas a partir de alinhamentos de sequências.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [gubbins](/developers/modules/gubbins) - Detectar recombinação e construir uma filogenia livre de recombinação.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [snippy](/bactopia-tools/snippy) - Chamada rápida de variantes de haplótipos e alinhamento de genoma central.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Gubbins](https://github.com/nickjcroucher/gubbins)  
+  Croucher NJ, Page AJ, Connor TR, Delaney AJ, Keane JA, Bentley SD, Parkhill J, Harris SR [Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins.](https://doi.org/10.1093/nar/gku1196) _Nucleic Acids Research_ 43(3), e15. (2015)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/gubbins)

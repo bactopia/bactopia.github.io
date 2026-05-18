@@ -1,0 +1,80 @@
+---
+title: mcroni
+description: "Scripts para encontrar e processar variantes de promotor upstream de mcr-1."
+tags:
+  - mcr-1
+  - colistin
+  - resistance
+  - promoter
+  - variant
+  - sample-scope
+---
+
+# mcroni
+
+**Tags:** <a href="/developers/tags/mcr-1" class="badge badge--primary badge--tag">mcr-1</a> <a href="/developers/tags/colistin" class="badge badge--primary badge--tag">colistin</a> <a href="/developers/tags/resistance" class="badge badge--primary badge--tag">resistance</a> <a href="/developers/tags/promoter" class="badge badge--primary badge--tag">promoter</a> <a href="/developers/tags/variant" class="badge badge--primary badge--tag">variant</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Scripts para encontrar e processar variantes de promotor upstream de mcr-1.
+
+Este subworkflow identifica e caracteriza variantes de promotor upstream do
+gene de resistência à colistina mcr-1 usando [mcroni](https://github.com/liampshaw/mcroni).
+A ferramenta busca mutações na região promotora que podem afetar os níveis de expressão
+do mcr-1, o que é importante para entender a regulação da
+resistência à colistina mediada por plasmídeo.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem no formato FASTA para análise do promotor de mcr-1 |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Resultados de variação do gene mcr-1 delimitados por tabulação |
+| `fa` | Sequência do gene mcr-1 extraída no formato FASTA (opcional) |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [mcroni](/developers/modules/mcroni) - Detecta variações de sequência no gene de resistência à colistina *mcr-1*.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [mcroni](/bactopia-tools/mcroni) - Análise de variação de sequência de genes mcr-1 (resistência à colistina mobilizada).
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [mcroni](https://github.com/liampshaw/mcroni)  
+  Shaw L [mcroni: Scripts for finding and processing promoter variants upstream of mcr-1](https://github.com/liampshaw/mcroni) (GitHub)
+
+## Código-Fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/mcroni)

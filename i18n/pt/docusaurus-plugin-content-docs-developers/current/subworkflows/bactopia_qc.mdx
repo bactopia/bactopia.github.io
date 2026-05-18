@@ -1,0 +1,144 @@
+---
+title: bactopia_qc
+description: "Realize controle de qualidade abrangente em reads de sequenciamento."
+tags:
+  - quality-control
+  - adapters
+  - error-correction
+  - subsampling
+  - fastq
+  - illumina
+  - nanopore
+  - fastp
+  - bbduk
+  - nanoq
+  - sample-scope
+---
+
+# bactopia_qc
+
+**Tags:** <a href="/developers/tags/quality-control" class="badge badge--primary badge--tag">quality-control</a> <a href="/developers/tags/adapters" class="badge badge--primary badge--tag">adapters</a> <a href="/developers/tags/error-correction" class="badge badge--primary badge--tag">error-correction</a> <a href="/developers/tags/subsampling" class="badge badge--primary badge--tag">subsampling</a> <a href="/developers/tags/fastq" class="badge badge--primary badge--tag">fastq</a> <a href="/developers/tags/illumina" class="badge badge--primary badge--tag">illumina</a> <a href="/developers/tags/nanopore" class="badge badge--primary badge--tag">nanopore</a> <a href="/developers/tags/fastp" class="badge badge--primary badge--tag">fastp</a> <a href="/developers/tags/bbduk" class="badge badge--primary badge--tag">bbduk</a> <a href="/developers/tags/nanoq" class="badge badge--primary badge--tag">nanoq</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Realize controle de qualidade abrangente em reads de sequenciamento.
+
+Este subworkflow processa reads de sequenciamento brutas por meio de um pipeline completo de controle de qualidade.
+Ele se adapta a diferentes tipos de reads:
+- **Illumina:** Remoção de adaptadores/PhiX ([Fastp](https://github.com/OpenGene/fastp) ou
+  [BBDuk](https://jgi.doe.gov/data-and-tools/software-tools/bbtools/)), Correção de erros
+  ([Lighter](https://github.com/mourisl/Lighter)) e Subsampling ([Rasusa](https://github.com/mbhall88/rasusa))
+- **Nanopore:** Remoção de adaptadores ([Porechop](https://github.com/rrwick/Porechop)), Filtragem por qualidade
+  ([Nanoq](https://github.com/esteinig/nanoq)) e Subsampling ([Rasusa](https://github.com/mbhall88/rasusa))
+- **Híbrido:** Processa reads curtas e longas por meio de seus respectivos pipelines
+- **Montagem:** Passa reads simuladas a partir de montagens
+
+Gera métricas de qualidade usando [fastq-scan](https://github.com/rpetit3/fastq-scan) e relatórios de qualidade opcionais usando [FastQC](https://github.com/s-andrews/FastQC) (Illumina) e
+[NanoPlot](https://github.com/wdecoster/NanoPlot) (ONT).
+
+## Entrada
+
+```
+samples: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Groovy Record contendo informações da amostra (deve incluir `runtype`, `genome_size`, `species`) |
+| `r1` | Reads R1 Illumina (pareadas - sentido direto) |
+| `r2` | Reads R2 Illumina (pareadas - sentido reverso) |
+| `se` | Reads Illumina de extremidade única |
+| `lr` | Reads longas (ONT) |
+| `assembly` | Arquivo de montagem (FASTA) para simulações baseadas em montagem |
+
+```
+adapters: Path?
+phix: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `adapters` | `Path?` | Sequências de adaptadores opcionais no formato FASTA para remoção das reads Illumina |
+| `phix` | `Path?` | Sequências PhiX opcionais no formato FASTA para remoção das reads Illumina |
+
+## Saída
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `reads_grouped` | Todos os FASTQs de saída para publicação |
+| `supplemental` | Relatórios de QC (FastQC/NanoPlot), métricas JSON e FASTQs de erro caso o QC falhe |
+| `error` | Mensagens de erro capturadas caso o QC falhe (ex.: reads vazias após trimagem) |
+
+#### `run_outputs`
+
+Sem saídas de escopo de execução.
+
+### Entradas para Etapas Posteriores
+
+As emissões a seguir são destinadas ao uso como entradas para subworkflows posteriores.
+
+#### `reads`
+
+| Saída | Descrição |
+|-------|-----------|
+| `r1` | Reads R1 Illumina filtradas por QC |
+| `r2` | Reads R2 Illumina filtradas por QC |
+| `se` | Reads de extremidade única filtradas por QC |
+| `lr` | Reads longas filtradas por QC |
+| `fna` | Arquivo de montagem (repassado para amostras baseadas em montagem) |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [bactopia_qc](/developers/modules/bactopia_qc) - Controle de qualidade automatizado, correção de erros e subsampling de reads.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [cleanyerreads](/bactopia-pipelines/cleanyerreads) - Controle de qualidade e remoção opcional de reads do hospedeiro a partir de reads brutas de sequenciamento.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline de análise abrangente para isolados de *Staphylococcus aureus*.
+
+## Citações
+
+Se você usar este subworkflow em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BBTools](https://jgi.doe.gov/data-and-tools/bbtools/)  
+  Bushnell B [BBMap short read aligner, and other bioinformatic tools.](http://sourceforge.net/projects/bbmap/) (Link)
+
+- [fastp](https://github.com/OpenGene/fastp)  
+  Chen S, Zhou Y, Chen Y, and Gu J [fastp: an ultra-fast all-in-one FASTQ preprocessor.](https://doi.org/10.1093/bioinformatics/bty560) _Bioinformatics_, 34(17), i884-i890. (2018)
+
+- [FastQC](https://github.com/s-andrews/FastQC)  
+  Andrews S [FastQC: a controle de qualidade tool for high throughput sequence data.](http://www.bioinformatics.babraham.ac.uk/projects/fastqc) (WebLink)
+
+- [fastq-scan](https://github.com/rpetit3/fastq-scan)  
+  Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
+
+- [Lighter](https://github.com/mourisl/Lighter)  
+  Song L, Florea L, Langmead B [Lighter: Fast and Memory-efficient Sequencing Error Correction without Counting](https://doi.org/10.1186/s13059-014-0509-9). _Genome Biol._ 15(11):509 (2014)
+
+- [NanoPlot](https://github.com/wdecoster/NanoPlot)  
+  De Coster W, D'Hert S, Schultz DT, Cruts M, Van Broeckhoven C [NanoPack: visualizing and processing long-read sequencing data](https://doi.org/10.1093/bioinformatics/bty149) _Bioinformatics_ Volume 34, Issue 15 (2018)
+
+- [Nanoq](https://github.com/esteinig/nanoq)  
+  Steinig E [Nanoq: Minimal but speedy controle de qualidade for nanopore reads in Rust](https://github.com/esteinig/nanoq) (GitHub)
+
+- [Porechop](https://github.com/rrwick/Porechop)  
+  Wick RR, Judd LM, Gorrie CL, Holt KE. [Completing bacterial genome assemblies with multiplex MinION sequencing.](https://doi.org/10.1099/mgen.0.000132) _Microb Genom._ 3(10):e000132 (2017)
+
+- [Rasusa](https://github.com/mbhall88/rasusa)  
+  Hall MB [Rasusa: Randomly subsample sequencing reads to a specified coverage.](https://doi.org/10.5281/zenodo.3731394) (2019).
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/bactopia/qc)

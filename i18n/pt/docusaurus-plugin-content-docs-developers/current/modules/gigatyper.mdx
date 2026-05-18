@@ -1,0 +1,92 @@
+---
+title: gigatyper
+description: "Execute todos os esquemas MLST disponíveis para uma espécie em uma montagem"
+tags:
+  - mlst
+  - typing
+  - multi-scheme
+  - sample-scope
+---
+
+# gigatyper
+
+**Tags:** <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/multi-scheme" class="badge badge--primary badge--tag">multi-scheme</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Execute todos os esquemas MLST disponíveis para uma espécie em uma montagem
+
+Utiliza o [GigaTyper](https://github.com/rpetit3/gigatyper) para executar todos os esquemas MLST disponíveis para uma espécie em uma montagem.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados MLST de todos os esquemas |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do GigaTyper
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--gigatyper_species` | string |  | Forçar uma espécie específica para seleção de esquema |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [gigatyper](/developers/subworkflows/gigatyper) - Execute todos os esquemas MLST disponíveis para uma espécie em uma montagem
+
+### Workflows
+
+- [gigatyper](/bactopia-tools/gigatyper) - Execute todos os esquemas MLST disponíveis para uma espécie em uma montagem
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [GigaTyper](https://github.com/rpetit3/gigatyper)  
+  Petit III RA, Fearing T, Groves E [GigaTyper: Why choose one scheme when you can flex them all?](https://github.com/rpetit3/gigatyper) (GitHub)
+
+## Fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/gigatyper)
+
+## Versão
+
+```yaml
+GIGATYPER:
+    - gigatyper: 1.0.0
+```

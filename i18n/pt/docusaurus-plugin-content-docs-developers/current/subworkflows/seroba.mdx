@@ -1,0 +1,82 @@
+---
+title: seroba
+description: "Pipeline baseado em k-mer para identificar o sorotipo de Streptococcus pneumoniae."
+tags:
+  - streptococcus
+  - pneumoniae
+  - serotype
+  - k-mer
+  - capsular
+  - sample-scope
+---
+
+# seroba
+
+**Tags:** <a href="/developers/tags/streptococcus" class="badge badge--primary badge--tag">streptococcus</a> <a href="/developers/tags/pneumoniae" class="badge badge--primary badge--tag">pneumoniae</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/k-mer" class="badge badge--primary badge--tag">k-mer</a> <a href="/developers/tags/capsular" class="badge badge--primary badge--tag">capsular</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Pipeline baseado em k-mer para identificar o sorotipo de Streptococcus pneumoniae.
+
+Este subworkflow realiza a sorotipagem de Streptococcus pneumoniae a partir de reads
+de sequenciamento de nova geração Illumina, utilizando o [Seroba](https://github.com/sanger-pathogens/seroba).
+A ferramenta usa uma abordagem baseada em k-mer para classificar rapidamente isolados
+pneumocócicos em seus respectivos sorotipos com base no locus de síntese de polissacarídeo capsular.
+
+## Entrada
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads R1 Illumina (paired-end) |
+| `r2` | Reads R2 Illumina (paired-end) |
+| `se` | Reads Illumina de extremidade única |
+| `lr` | Reads longas (ONT/PacBio) |
+
+## Saída
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no workflow de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resultados de predição de sorotipo com o sorotipo previsto e confiança no formato TSV |
+| `txt` | Informações detalhadas sobre o sorogrupo previsto e correspondências de alelos |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [seroba_run](/developers/modules/seroba_run) - Sorotipagem de Streptococcus pneumoniae baseada em k-mer.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes workflows:
+
+- [seroba](/bactopia-tools/seroba) - Sorotipagem de Streptococcus pneumoniae a partir de reads paired-end Illumina.
+
+## Citações
+
+Se você usar este subworkflow em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Seroba](https://github.com/sanger-pathogens/seroba)  
+  Epping L, van Tonder AJ, Gladstone RA, The Global Pneumococcal Sequencing Consortium, Bentley SD, Page AJ, Keane JA [SeroBA: rapid high-throughput serotyping of Streptococcus pneumoniae from whole genome sequence data.](https://doi.org/10.1099/mgen.0.000186) _Microbial Genomics_, 4(7) (2018)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/seroba)

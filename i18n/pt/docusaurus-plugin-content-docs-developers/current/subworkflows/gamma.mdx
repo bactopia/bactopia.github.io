@@ -1,0 +1,89 @@
+---
+title: gamma
+description: "Gene Allele Mutation Microbial Assessment."
+tags:
+  - gene
+  - allele
+  - mutation
+  - variant
+  - antimicrobial-resistance
+  - sample-scope
+---
+
+# gamma
+
+**Tags:** <a href="/developers/tags/gene" class="badge badge--primary badge--tag">gene</a> <a href="/developers/tags/allele" class="badge badge--primary badge--tag">allele</a> <a href="/developers/tags/mutation" class="badge badge--primary badge--tag">mutation</a> <a href="/developers/tags/variant" class="badge badge--primary badge--tag">variant</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Gene Allele Mutation Microbial Assessment.
+
+Este subworkflow realiza a identificação, classificação e anotação rápida de
+correspondências de genes traduzidos a partir de dados de sequenciamento usando o [GAMMA](https://github.com/rastanton/GAMMA).
+A ferramenta rastreia as sequências de entrada contra um banco de dados de proteínas para identificar
+variantes de genes, mutações e tipos de alelos, fornecendo anotação e classificação detalhadas.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem no formato FASTA para identificação de alelos de genes |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-------------|
+| `db` | `Path` | Arquivo de banco de dados de proteínas para comparação de sequências (obrigatório) |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `gamma` | Arquivo de saída principal do GAMMA contendo correspondências de genes anotadas |
+| `psl` | Detalhes brutos do alinhamento no formato PSL |
+| `gff` | Correspondências de genes no formato GFF3 |
+| `fasta` | Sequências nucleotídicas extraídas dos genes correspondentes |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [gamma](/developers/modules/gamma) - Identificação, classificação e anotação de correspondências de genes traduzidos.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [gamma](/bactopia-tools/gamma) - Identificação, classificação e anotação de correspondências de genes traduzidos.
+
+## Citações
+
+Se você usar este subworkflow em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [GAMMA](https://github.com/rastanton/GAMMA)  
+  Stanton RA, Vlachos N, Halpin AL [GAMMA: a tool for the rapid identification, classification, and annotation of translated gene matches from sequencing data.](https://doi.org/10.1093/bioinformatics/btab607) _Bioinformatics_ (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/gamma)
