@@ -81,7 +81,13 @@ record (
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--sylph_db` | string |  | The path to a sylph formatted database |
+| `--sylph_k` | integer | `31` | K-mer size for sketching |
+| `--sylph_min_spacing` | integer | `30` | Minimum spacing between selected k-mers on the database genomes |
+| `--sylph_subsample_rate` | integer | `200` | Subsample rate for sketching |
 | `--sylph_min_ani` | integer | `95` | Minimum adjusted ANI to consider. Smaller than 95 for profile will give inaccurate results. |
+| `--sylph_min_kmers` | integer | `50` | Exclude genomes with less than this number of sampled k-mers |
+| `--sylph_min_correct` | integer | `3` | Minimum k-mer multiplicity needed for coverage correction. Higher values gives more precision but lower sensitivity |
+| `--sylph_estimate_unknown` | boolean | `false` | Estimate true coverage and scale sequence abundance in `profile` by estimated unknown sequence percentage |
 | `--sylph_opts` | string |  | Extra options in quotes for Sylph |
 
 ## Used By
@@ -98,7 +104,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Sylph](https://github.com/bluenote-1/sylph)  

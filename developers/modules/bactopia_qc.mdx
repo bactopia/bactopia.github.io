@@ -106,6 +106,41 @@ record (
 
 ## Parameters
 
+### QC Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--use_bbmap` | boolean |  | Illumina reads will be QC'd using BBMap |
+| `--use_porechop` | boolean | `false` | Use Porechop to remove adapters from ONT reads |
+| `--skip_qc` | boolean |  | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. |
+| `--skip_qc_plots` | boolean |  | QC Plot creation by FastQC or Nanoplot will be skipped |
+| `--skip_error_correction` | boolean |  | FLASH error correction of reads will be skipped. |
+| `--adapters` | string |  | A FASTA file containing adapters to remove |
+| `--adapter_k` | integer | `23` | Kmer length used for finding adapters. |
+| `--phix` | string |  | phiX174 reference genome to remove |
+| `--phix_k` | integer | `31` | Kmer length used for finding phiX174. |
+| `--ktrim` | string | `r` | Trim reads to remove bases matching reference kmers (choices: `f`, `r`, `l`) |
+| `--mink` | integer | `11` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. |
+| `--hdist` | integer | `1` | Maximum Hamming distance for ref kmers (subs only) |
+| `--tpe` | string | `t` | When kmer right-trimming, trim both reads to the minimum length of either (choices: `f`, `t`) |
+| `--tbo` | string | `t` | Trim adapters based on where paired reads overlap (choices: `f`, `t`) |
+| `--qtrim` | string | `rl` | Trim read ends to remove bases with quality below trimq. (choices: `rl`, `f`, `r`, `l`, `w`) |
+| `--trimq` | integer | `6` | Regions with average quality BELOW this will be trimmed if qtrim is set to something other than f |
+| `--maq` | integer | `10` | Reads with average quality (after trimming) below this will be discarded |
+| `--minlength` | integer | `35` | Reads shorter than this after trimming will be discarded |
+| `--ftm` | integer | `5` | If positive, right-trim length to be equal to zero, modulo this number |
+| `--tossjunk` | string | `t` | Discard reads with invalid characters as bases (choices: `f`, `t`) |
+| `--ain` | string | `f` | When detecting pair names, allow identical names (choices: `f`, `t`) |
+| `--qout` | string | `33` | PHRED offset to use for output FASTQs (choices: `33`, `64`) |
+| `--maxcor` | integer | `1` | Max number of corrections within a 20bp window |
+| `--sampleseed` | integer | `42` | Set to a positive number to use as the random number generator seed for sampling |
+| `--ont_minlength` | integer | `1000` | ONT Reads shorter than this will be discarded |
+| `--ont_minqual` | integer | `0` | Minimum average read quality filter of ONT reads |
+| `--porechop_opts` | string |  | Extra Porechop options in quotes |
+| `--nanoplot_opts` | string |  | Extra NanoPlot options in quotes |
+| `--bbduk_opts` | string |  | Extra BBDuk options in quotes |
+| `--fastp_opts` | string |  | Extra fastp options in quotes |
+
 ## Used By
 
 ### Subworkflows
@@ -122,7 +157,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [BBTools](https://jgi.doe.gov/data-and-tools/bbtools/)  

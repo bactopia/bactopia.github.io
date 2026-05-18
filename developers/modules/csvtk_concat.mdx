@@ -70,6 +70,12 @@ record (
 
 ## Parameters
 
+### csvtk concat Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
+
 ## Used By
 
 ### Subworkflows
@@ -127,11 +133,13 @@ record (
 - [spatyper](/developers/subworkflows/spatyper) - Predict spa types of Staphylococcus aureus from genome assemblies.
 - [ssuissero](/developers/subworkflows/ssuissero) - Predict serotypes of Streptococcus suis from genome assemblies.
 - [staphopiasccmec](/developers/subworkflows/staphopiasccmec) - Identify SCCmec elements in Staphylococcus aureus genomes using Staphopia method.
+- [staphscan](/developers/subworkflows/staphscan) - Genome-based surveillance analysis of Staphylococcus aureus.
 - [stecfinder](/developers/subworkflows/stecfinder) - Identify and serotype Shiga toxin-producing E. coli (STEC) from assemblies.
 - [sylph](/developers/subworkflows/sylph) - Profile microbial composition using Sylph.
 - [tblastn](/developers/subworkflows/tblastn) - Search protein query sequences against nucleotide database.
 - [tblastx](/developers/subworkflows/tblastx) - Translate nucleotide query sequences and search nucleotide database.
 - [teton](/developers/subworkflows/teton) - Perform taxonomic classification and estimate bacterial genome sizes.
+- [traitar](/developers/subworkflows/traitar) - Predict phenotypic traits from microbial genomes
 
 ### Workflows
 
@@ -188,17 +196,19 @@ record (
 - [spatyper](/bactopia-tools/spatyper) - spa typing of Staphylococcus aureus assemblies.
 - [ssuissero](/bactopia-tools/ssuissero) - Serotype prediction of Streptococcus suis assemblies.
 - [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
+- [staphscan](/bactopia-tools/staphscan) - Genome-based surveillance analysis of Staphylococcus aureus.
 - [stecfinder](/bactopia-tools/stecfinder) - Serotype identification of Shiga toxin-producing E. coli.
 - [sylph](/bactopia-tools/sylph) - Taxonomic profiling by abundance-corrected MinHash.
 - [tblastn](/bactopia-tools/tblastn) - Search against translated nucleotide databases using protein queries.
 - [tblastx](/bactopia-tools/tblastx) - Search against translated nucleotide databases using translated nucleotide queries.
 - [teton](/bactopia-pipelines/teton) - Taxonomic classification and abundance profiling of metagenomic reads.
+- [traitar](/bactopia-tools/traitar) - Predict phenotypic traits from microbial genomes
 
 ## Citations
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [csvtk](https://bioinf.shenwei.me/csvtk/)  

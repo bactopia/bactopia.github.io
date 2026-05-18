@@ -76,6 +76,13 @@ record (
 | `--emmtyper_blastdb` | string |  | Path to custom EMM BLAST DB. |
 | `--emmtyper_cluster_distance` | integer | `500` | Distance between cluster of matches to consider as different clusters |
 | `--emmtyper_percid` | integer | `95` | Minimal percent identity of sequence |
+| `--emmtyper_culling_limit` | integer | `5` | Total hits to return in a position |
+| `--emmtyper_mismatch` | integer | `5` | Threshold for number of mismatch to allow in BLAST hit |
+| `--emmtyper_align_diff` | integer | `5` | Threshold for difference between alignment length and subject length in BLAST |
+| `--emmtyper_gap` | integer | `2` | Threshold gap to allow in BLAST hit |
+| `--emmtyper_min_perfect` | integer | `15` | Minimum size of perfect match at 3 primer end |
+| `--emmtyper_min_good` | integer | `15` | Minimum size where there must be 2 matches for each mismatch |
+| `--emmtyper_max_size` | integer | `2000` | Maximum size of PCR product |
 
 ## Used By
 
@@ -91,7 +98,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [emmtyper](https://github.com/MDU-PHL/emmtyper)  

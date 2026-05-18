@@ -70,6 +70,13 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--panaroo_mode` | string | `strict` | The stringency mode at which to run panaroo (choices: `strict`, `moderate`, `sensitive`) |
+| `--panaroo_alignment` | string | `core` | Output alignments of core genes or all genes (choices: `core`, `pan`) |
+| `--panaroo_aligner` | string | `mafft` | Aligner to use for core/pan genome alignment (choices: `mafft`, `prank`, `clustal`) |
+| `--panaroo_core_threshold` | number | `0.95` | Core-genome sample threshold |
+| `--panaroo_threshold` | number | `0.98` | Sequence identity threshold |
+| `--panaroo_family_threshold` | number | `0.7` | Protein family sequence identity threshold |
+| `--panaroo_len_dif_percent` | number | `0.98` | Length difference cutoff |
 | `--panaroo_merge_paralogs` | boolean | `false` | Do not split paralogs |
 | `--panaroo_opts` | string |  | Additional options to pass to panaroo |
 
@@ -83,7 +90,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [Panaroo](https://github.com/gtonkinhill/panaroo)  

@@ -16,11 +16,11 @@ tags:
 Removal of human and contaminant sequences from metagenomic reads.
 
 This Bactopia Tool removes human and other contaminant sequences from metagenomic reads using
-either [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber) or
-[nohuman](https://github.com/mbhall88/nohuman) with the HPRC human database. The tool provides flexible contamination removal
-with detailed reporting of read classification and filtering statistics. It processes paired-end
-or single-end reads, producing cleaned FASTQ files with human sequences removed and comprehensive
-reports documenting the decontamination process.
+[deacon](https://github.com/bede/deacon) (default), [nohuman](https://github.com/mbhall88/nohuman),
+or [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber). The tool provides flexible
+contamination removal with detailed reporting of read classification and filtering statistics.
+It processes paired-end or single-end reads, producing cleaned FASTQ files with human sequences
+removed and comprehensive reports documenting the decontamination process.
 
 ## Usage
 
@@ -46,7 +46,8 @@ nextflow run bactopia/bactopia/workflows/bactopia-tools/scrubber/main.nf \
 <BACTOPIA_DIR>
 ├── <SAMPLE_NAME>
 │   └── tools
-│       └── nohuman
+│       └── scrubber-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.deacon.json
 │           ├── <SAMPLE_NAME>.scrub.report.tsv
 │           ├── <SAMPLE_NAME>_R1.scrubbed.fastq.gz
 │           ├── <SAMPLE_NAME>_R2.scrubbed.fastq.gz
@@ -123,6 +124,12 @@ Define where the pipeline should find input data and save output data.
 |-----------|------|---------|-------------|
 | `--bactopia` | string |  | The path to bactopia results to use as inputs |
 
+### csvtk concat Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
+
 ### SRA Human Scrubber Parameters
 
 | Parameter | Type | Default | Description |
@@ -147,6 +154,25 @@ Define where the pipeline should find input data and save output data.
 | `--nohuman_human` | boolean | `false` | Invert output to keep only human reads instead of removing them |
 | `--nohuman_save_report` | boolean | `false` | Save the Kraken2 classification report |
 
+### Deacon Fetch Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--deacon_index_name` | string | `panhuman-1` | Name of the pre-built deacon index to fetch |
+| `--download_deacon` | boolean | `false` | Download the deacon index to the datasets cache |
+| `--use_deacon` | boolean | `false` | Use deacon for host read filtering |
+
+### Deacon Filter Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--deacon_abs_threshold` | integer | `2` | Minimum absolute number of minimizer hits for a match |
+| `--deacon_db` | string |  | Path to a pre-existing deacon index (.idx) for host read filtering |
+| `--deacon_deplete` | boolean | `true` | Discard matching sequences instead of keeping them |
+| `--deacon_opts` | string |  | Additional deacon filter options not covered by other parameters |
+| `--deacon_prefix_length` | integer | `0` | Search only the first N nucleotides per sequence (0 for all) |
+| `--deacon_rel_threshold` | number | `0.01` | Minimum relative proportion (0.0-1.0) of minimizer hits for a match |
+
 <details>
 <summary>Filtering Parameters</summary>
 
@@ -166,6 +192,52 @@ These optional parameters can be useful in certain settings.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
+| `--skip_compression` | boolean | `false` | Output files will not be compressed |
+| `--datasets` | string |  | The path to cache datasets to |
+| `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
+</details>
+
+<details>
+<summary>Max Job Request Parameters</summary>
+
+Set the top limit for requested resources for any single job.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--max_retry` | integer | `3` | Maximum times to retry a process before allowing it to fail. |
+| `--max_cpus` | integer | `4` | Maximum number of CPUs that can be requested for any single job. |
+| `--max_memory` | string | `128.GB` | Maximum amount of memory that can be requested for any single job. |
+| `--max_time` | string | `240.h` | Maximum amount of time that can be requested for any single job. |
+| `--max_downloads` | integer | `3` | Maximum number of samples to download at a time |
+</details>
+
+<details>
+<summary>Nextflow Configuration Parameters</summary>
+
+Parameters to fine-tune your Nextflow setup.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
+| `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
+| `--cleanup_workdir` | boolean | `false` | After Bactopia is successfully executed, the `work` directory will be deleted. |
+</details>
+
+<details>
+<summary>Institutional config options</summary>
+
+Parameters used to describe centralized config profiles. These should not be edited.
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
+| `--config_profile_name` | string |  | Institutional config name. |
+| `--config_profile_description` | string |  | Institutional config description. |
+| `--config_profile_contact` | string |  | Institutional config contact information. |
+| `--config_profile_url` | string |  | Institutional config URL link. |
 </details>
 
 <details>
@@ -175,7 +247,16 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
+| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
+| `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
+| `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Additional options to pass to Apptainer, Docker, or Singularity. (e.g. Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | All intermediate files created on worker nodes of will be transferred to the head node. |
 </details>
 
 <details>
@@ -185,8 +266,14 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
+| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
+| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
+| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
+| `--help` | boolean |  | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
 | `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
 | `--help_all` | boolean |  | An alias for --help --show_hidden_params |
 | `--version` | boolean |  | Display version text. |
 </details>
@@ -201,8 +288,11 @@ This workflow uses the following subworkflows:
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
 
 - [Kraken2](https://github.com/DerrickWood/kraken2)  
   Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)

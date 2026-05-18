@@ -43,15 +43,24 @@ reads: Channel<Record>
 ```
 db: Path?
 use_srascrubber: Boolean
+use_nohuman: Boolean
 nohuman_db: Path?
 download_nohuman: Boolean
 nohuman_save_as_tarball: Boolean
+deacon_db: Path?
+download_deacon: Boolean
 ```
 
 | Name | Type | Description |
 |------|------|-------------|
 | `db` | `Path?` | Optional Kraken2 database path for taxonomic classification |
 | `use_srascrubber` | `Boolean` | Boolean flag to use SRA scrubber for host read removal |
+| `use_nohuman` | `Boolean` | Boolean flag to use nohuman for host read removal |
+| `nohuman_db` | `Path?` | Path to nohuman database directory or tarball |
+| `download_nohuman` | `Boolean` | Boolean flag to download the nohuman database |
+| `nohuman_save_as_tarball` | `Boolean` | Boolean flag to save downloaded nohuman database as tarball |
+| `deacon_db` | `Path?` | Path to deacon minimizer index file (.idx) |
+| `download_deacon` | `Boolean` | Boolean flag to download the deacon index |
 
 ## Emit
 
@@ -92,8 +101,11 @@ This subworkflow is used by the following workflows:
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
 
 - [Kraken2](https://github.com/DerrickWood/kraken2)  
   Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)

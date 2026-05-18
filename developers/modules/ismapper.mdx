@@ -79,6 +79,15 @@ record (
 |-----------|------|---------|-------------|
 | `--reference` | string |  | Reference genome for typing against in GenBank format |
 | `--insertions` | string |  | Multifasta file with insertion sequence(s) to be mapped to |
+| `--ismapper_min_clip` | integer | `10` | Minimum size for softclipped region to be extracted from initial mapping |
+| `--ismapper_max_clip` | integer | `30` | Maximum size for softclipped regions to be included |
+| `--ismapper_cutoff` | integer | `6` | Minimum depth for mapped region to be kept in bed file |
+| `--ismapper_novel_gap_size` | integer | `15` | Distance in base pairs between left and right flanks to be called a novel hit |
+| `--ismapper_min_range` | number | `0.9` | Minimum percent size of the gap to be called a known hit |
+| `--ismapper_max_range` | number | `1.1` | Maximum percent size of the gap to be called a known hit |
+| `--ismapper_merging` | integer | `100` | Value for merging left and right hits in bed files together to simply calculation of closest and intersecting regions |
+| `--ismapper_all` | boolean | `false` | Switch on all alignment reporting for bwa |
+| `--ismapper_minqual` | integer | `30` | Mapping quality score for bwa |
 
 ## Used By
 
@@ -94,7 +103,7 @@ record (
 
 If you use this in your analysis, please cite the following.
 
-- [Bactopia](https://bactopia.github.io/)  
+- [Bactopia](https://bactopia.io/)  
   Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
 
 - [ISMapper](https://github.com/jhawkey/IS_mapper)  
