@@ -649,7 +649,7 @@ parâmetros `--r1`/`--r2` (paired-end), `--se` (single-end) e `--sample`.
 
 :::tip[Saiba mais no Guia do Iniciante]
 Para saber mais sobre esses parâmetros, consulte a seção
-[Guia do Iniciante -> Amostra Única](./beginners-guide#single-sample). Cada um desses
+[Guia do Iniciante -> Amostra Única](./beginners-guide#amostra-única). Cada um desses
 parâmetros está descrito em detalhes.
 :::
 
@@ -848,7 +848,7 @@ FOFN necessário para processar múltiplas amostras.
 
 :::tip[Saiba mais no Guia do Iniciante]
 Para saber mais sobre esses parâmetros, consulte a seção
-[Guia do Iniciante -> Amostras Locais](./beginners-guide#local-samples). Cada um desses
+[Guia do Iniciante -> Amostras Locais](./beginners-guide#amostras-locais). Cada um desses
 parâmetros está descrito em detalhes.
 :::
 
