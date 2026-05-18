@@ -22,7 +22,7 @@ seguir fornecerá alguns exemplos de cada uma dessas entradas aceitas, incluindo
 
 Ao final deste guia, também vamos dar uma olhada em alguns parâmetros úteis. Se você
 estiver interessado em aprender mais sobre o conjunto completo de parâmetros disponíveis
-no Bactopia, consulte a seção [Guia Completo](full-guide.md).
+no Bactopia, consulte a seção [Guia Completo](./full-guide.mdx).
 
 ![Bactopia Workflow](/img/bactopia-workflow.png)
 
