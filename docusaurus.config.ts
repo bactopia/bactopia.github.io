@@ -72,7 +72,7 @@ const config: Config = {
     locales: ['en', 'pt'],
     localeConfigs: {
       en: { label: 'English', direction: 'ltr' },
-      pt: { label: 'Portugues', direction: 'ltr' },
+      pt: { label: 'Português', direction: 'ltr' },
     },
   },
 
