@@ -69,7 +69,11 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'pt'],
+    localeConfigs: {
+      en: { label: 'English', direction: 'ltr' },
+      pt: { label: 'Portugues', direction: 'ltr' },
+    },
   },
 
   clientModules: ['./src/gtag-noop.js'],
@@ -259,6 +263,10 @@ const config: Config = {
               target: '_blank',
             },
           ],
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
         },
         {
           type: 'search',
