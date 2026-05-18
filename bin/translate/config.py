@@ -26,26 +26,37 @@ PLUGIN_MAP = {
         "source": REPO_ROOT / "docs",
         "i18n_subdir": "docusaurus-plugin-content-docs",
         "extensions": [".md", ".mdx"],
+        "versioned": True,
     },
     "bactopia-tools": {
         "source": REPO_ROOT / "bactopia-tools",
         "i18n_subdir": "docusaurus-plugin-content-docs-bactopia-tools",
         "extensions": [".md", ".mdx"],
+        "versioned": True,
     },
     "bactopia-pipelines": {
         "source": REPO_ROOT / "bactopia-pipelines",
         "i18n_subdir": "docusaurus-plugin-content-docs-bactopia-pipelines",
         "extensions": [".md", ".mdx"],
+        "versioned": True,
     },
     "developers": {
         "source": REPO_ROOT / "developers",
         "i18n_subdir": "docusaurus-plugin-content-docs-developers",
         "extensions": [".md", ".mdx"],
+        "versioned": True,
     },
     "impact": {
         "source": REPO_ROOT / "impact",
         "i18n_subdir": "docusaurus-plugin-content-docs-impact",
         "extensions": [".md", ".mdx"],
+        "versioned": True,
+    },
+    "blog": {
+        "source": REPO_ROOT / "blog",
+        "i18n_subdir": "docusaurus-plugin-content-blog",
+        "extensions": [".md", ".mdx"],
+        "versioned": False,
     },
 }
 

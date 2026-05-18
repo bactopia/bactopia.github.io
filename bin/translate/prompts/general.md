@@ -10,7 +10,7 @@ maintaining perfect structural fidelity.
 ## Core Rules
 
 1. Translate all prose, descriptions, and explanatory text naturally -- not word-for-word.
-2. Maintain the same technical tone: clear, direct, professional.
+2. Maintain the same tone as the original: clear, friendly, and approachable.
 3. Preserve the EXACT file structure: frontmatter, headings, paragraphs, lists, tables.
 
 ## What to NEVER translate

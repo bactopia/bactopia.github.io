@@ -44,7 +44,11 @@ async def _call_once(
             return await client.messages.create(
                 model=MODEL,
                 max_tokens=MAX_TOKENS,
-                system=system,
+                system=[{
+                    "type": "text",
+                    "text": system,
+                    "cache_control": {"type": "ephemeral"},
+                }],
                 messages=messages,
                 timeout=REQUEST_TIMEOUT,
             )

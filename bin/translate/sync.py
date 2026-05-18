@@ -50,7 +50,9 @@ def discover_files(locale: str) -> list[TranslationFile]:
         source_dir = cfg["source"]
         i18n_subdir = cfg["i18n_subdir"]
         extensions = cfg["extensions"]
-        target_base = I18N_DIR / locale / i18n_subdir / "current"
+        target_base = I18N_DIR / locale / i18n_subdir
+        if cfg.get("versioned", True):
+            target_base = target_base / "current"
 
         if not source_dir.exists():
             continue
@@ -103,7 +105,9 @@ def remove_orphaned(locale: str, files: list[TranslationFile]) -> list[Path]:
 
     for _plugin_id, cfg in PLUGIN_MAP.items():
         i18n_subdir = cfg["i18n_subdir"]
-        target_base = I18N_DIR / locale / i18n_subdir / "current"
+        target_base = I18N_DIR / locale / i18n_subdir
+        if cfg.get("versioned", True):
+            target_base = target_base / "current"
 
         if not target_base.exists():
             continue
