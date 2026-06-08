@@ -1,0 +1,115 @@
+---
+title: checkm2_predict
+description: "Avalie a qualidade do genoma usando aprendizado de máquina."
+tags:
+  - quality-control
+  - completeness
+  - contamination
+  - machine-learning
+  - bacteria
+  - archaea
+  - sample-scope
+---
+
+# checkm2_predict
+
+**Tags:** <a href="/developers/tags/quality-control" class="badge badge--primary badge--tag">quality-control</a> <a href="/developers/tags/completeness" class="badge badge--primary badge--tag">completeness</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/machine-learning" class="badge badge--primary badge--tag">machine-learning</a> <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/archaea" class="badge badge--primary badge--tag">archaea</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Avalie a qualidade do genoma usando aprendizado de máquina.
+
+Utiliza o [CheckM2](https://github.com/chklovski/CheckM2) para prever a completude e
+a contaminação de montagens de genomas. Ao contrário do CheckM original, ele usa um modelo
+de aprendizado de máquina de gradient boost para prever a qualidade sem depender de conjuntos
+de marcadores específicos de linhagem, tornando-o mais preciso para genomas novos ou reduzidos.
+
+:::note[Banco de Dados Necessário]
+Requer que o banco de dados do CheckM2 (arquivo de banco de dados Diamond) esteja disponível.
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | O arquivo de banco de dados do CheckM2 (*.dmnd) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `tsv` | `Path` | Relatório delimitado por tabulação com métricas de qualidade (Completude, Contaminação) |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Um arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do CheckM2
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--checkm2_lowmem` | boolean |  | Modo de baixa memória. Reduz o tamanho do bloco do DIAMOND para diminuir significativamente o uso de RAM, em troca de um tempo de execução maior |
+| `--checkm2_general` | boolean |  | Força o uso do modelo geral de previsão de qualidade (gradient boost) |
+| `--checkm2_specific` | boolean |  | Força o uso do modelo específico de previsão de qualidade (rede neural) |
+| `--checkm2_allmodels` | boolean |  | Gera a previsão de qualidade de ambos os modelos para cada genoma |
+| `--checkm2_genes` | boolean |  | Trata os arquivos de entrada como arquivos de proteínas. [Padrão: False] |
+| `--checkm2_opts` | string |  | Opções adicionais para passar ao CheckM2 |
+
+## Usado Por
+
+### Subworkflows
+
+- [checkm2](/developers/subworkflows/checkm2) - Avalia a completude de bins de metagenoma usando CheckM2.
+
+### Workflows
+
+- [checkm2](/bactopia-tools/checkm2) - Avaliação baseada em aprendizado de máquina da qualidade de montagens de genomas microbianos.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [CheckM2](https://github.com/chklovski/CheckM2)  
+  Chklovksi A [Rapid assessment of genome bin quality using machine learning](https://github.com/chklovski/CheckM2) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/checkm2/predict)
+
+## Versão
+
+```yaml
+CHECKM2_PREDICT:
+    - checkm2: 1.1.0
+```

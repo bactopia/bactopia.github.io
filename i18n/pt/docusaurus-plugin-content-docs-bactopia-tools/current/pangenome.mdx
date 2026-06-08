@@ -1,0 +1,509 @@
+---
+title: pangenome
+description: "Análise de pan-genoma com filogenia do genoma-core opcional."
+tags:
+  - alignment
+  - core-genome
+  - pan-genoma
+  - phylogeny
+  - comparative-genomics
+  - bactopia-tool
+---
+
+# pangenome
+
+**Tags:** <a href="/bactopia-tools/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/bactopia-tools/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/bactopia-tools/tags/pan-genoma" class="badge badge--primary badge--tag">pan-genoma</a> <a href="/bactopia-tools/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/bactopia-tools/tags/comparative-genomics" class="badge badge--primary badge--tag">comparative-genomics</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Análise de pan-genoma com filogenia do genoma-core opcional.
+
+Esta Bactopia Tool cria um pan-genoma a partir de arquivos de anotação GFF3 utilizando uma
+de três ferramentas: [Panaroo](https://github.com/gtonkinhill/panaroo) (padrão),
+[PIRATE](https://github.com/SionBayliss/PIRATE), ou
+[Roary](https://github.com/sanger-pathogens/roary). Ela gera alinhamentos do genoma-core
+e matrizes de presença/ausência de genes, seguidos de cálculos de distância SNP.
+Você pode complementar seu pan-genoma com genomas completos usando os parâmetros --species ou
+--accessions, que baixam genomas do RefSeq e os anotam com
+Prokka. Uma filogenia baseada no alinhamento do genoma-core é criada pelo IQ-Tree, com
+mascaramento opcional de recombinação usando ClonalFrameML. Por fim, estudos de associação
+em escala de pan-genoma podem ser realizados usando Scoary.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf pangenome \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/pangenome/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+└── <SAMPLE_NAME>
+    └── pangenome-<TIMESTAMP>
+        ├── clonalframeml
+        │   ├── core-genome.ML_sequence.fasta.gz
+        │   ├── core-genome.em.txt
+        │   ├── core-genome.emsim.txt
+        │   ├── core-genome.importation_status.txt
+        │   ├── core-genome.labelled_tree.newick
+        │   ├── core-genome.position_cross_reference.txt.gz
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        ├── core-genome.distance.tsv
+        ├── core-genome.masked.aln.gz
+        ├── core-genome.masked.distance.tsv
+        ├── core-genome.treefile
+        ├── iqtree
+        │   ├── core-genome.alninfo.gz
+        │   ├── core-genome.bionj
+        │   ├── core-genome.ckp.gz
+        │   ├── core-genome.contree
+        │   ├── core-genome.iqtree
+        │   ├── core-genome.log
+        │   ├── core-genome.mldist
+        │   ├── core-genome.splits.nex
+        │   ├── core-genome.ufboot
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        ├── iqtree-fast
+        │   ├── logs
+        │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   └── versions.yml
+        │   ├── roary.bionj
+        │   ├── roary.ckp.gz
+        │   ├── roary.iqtree
+        │   ├── roary.log
+        │   ├── roary.mldist
+        │   ├── roary.model.gz
+        │   └── roary.treefile
+        ├── nf-reports
+        │   ├── pangenome-dag.dot
+        │   ├── pangenome-report.html
+        │   └── pangenome-timeline.html
+        ├── roary
+        │   ├── accessory.header.embl
+        │   ├── accessory.tab
+        │   ├── accessory_binary_genes.fa.gz
+        │   ├── accessory_binary_genes.fa.newick
+        │   ├── accessory_graph.dot
+        │   ├── blast_identity_frequency.Rtab
+        │   ├── clustered_proteins
+        │   ├── core_accessory.header.embl
+        │   ├── core_accessory.tab
+        │   ├── core_accessory_graph.dot
+        │   ├── core_alignment_header.embl
+        │   ├── core_gene_alignment.aln.gz
+        │   ├── gene_presence_absence.Rtab
+        │   ├── gene_presence_absence.csv
+        │   ├── logs
+        │   │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │   └── versions.yml
+        │   ├── number_of_conserved_genes.Rtab
+        │   ├── number_of_genes_in_pan_genome.Rtab
+        │   ├── number_of_new_genes.Rtab
+        │   ├── number_of_unique_genes.Rtab
+        │   ├── pan_genome_reference.fa.gz
+        │   └── summary_statistics.txt
+        ├── roary.aln.gz
+        ├── scoary
+        │   ├── Bogus_trait.results.csv
+        │   ├── Tetracycline_resistance.results.csv
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       ├── scoary.log
+        │       └── versions.yml
+        ├── snpdists
+        │   └── logs
+        │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │       └── versions.yml
+        └── snpdists-masked
+            └── logs
+                ├── nf.command.{begin,err,log,out,run,sh,trace}
+                └── versions.yml
+```
+
+### Resultados do Pan-genoma
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.aln` | Arquivo de alinhamento do genoma-core contendo genes presentes em todos os genomas de entrada |
+| `*.csv` | Matriz de presença/ausência de genes mostrando quais genes estão presentes em cada genoma |
+| `*.tsv` | Matriz de distância SNP entre todas as amostras |
+
+### Resultados da Filogenia
+
+:::note[Nota]
+Criado apenas se --skip_phylogeny não estiver habilitado
+:::
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.treefile` | Árvore filogenética de máxima verossimilhança no formato Newick |
+| `*.iqtree` | Relatório de análise IQ-Tree com seleção de modelo e valores de suporte |
+| `*.log` | Log de execução do IQ-Tree |
+
+### Análise de Recombinação
+
+:::note[Nota]
+Criado apenas se --skip_recombination não estiver habilitado
+:::
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.masked.aln` | Alinhamento do genoma-core com regiões de recombinação mascaradas |
+
+### Análise de Associação
+
+:::note[Nota]
+Criado apenas se --scoary_traits for especificado
+:::
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `scoary/*` | Resultados e gráficos da análise de associação do Scoary |
+
+### Resultados do Panaroo
+
+:::note[Nota]
+Criado apenas quando Panaroo é selecionado como ferramenta de pan-genoma
+:::
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `panaroo/*` | Arquivos de saída específicos do Panaroo, incluindo grafo e estatísticas |
+
+### Resultados do PIRATE
+
+:::note[Nota]
+Criado apenas quando PIRATE é selecionado como ferramenta de pan-genoma
+:::
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `pirate/*` | Arquivos de saída específicos do PIRATE, incluindo famílias e clusters de genes |
+
+### Resultados do Roary
+
+:::note[Nota]
+Criado apenas quando Roary é selecionado como ferramenta de pan-genoma
+:::
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `roary/*` | Arquivos de saída específicos do Roary, incluindo matrizes de presença/ausência de genes |
+
+
+### Trilha de Auditoria
+
+Abaixo estão os arquivos que podem ajudá-lo a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta há arquivos úteis
+para revisar caso necessário.
+
+| Extensão    | Descrição |
+|-------------|-----------|
+| .begin       | Arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/remover arquivos e enfileirar processos com base no perfil fornecido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um excelente resumo da sua execução. Eles podem ser usados para otimizar
+o uso de recursos e estimar custos esperados ao usar plataformas em nuvem.
+
+| Nome do arquivo | Descrição |
+|-----------------|-----------|
+| pangenome-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| pangenome-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| pangenome-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| pangenome-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do Bactopia a serem usados como entrada |
+
+### Parâmetros de Download de Genomas do NCBI
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--species` | string |  | Nome da espécie para baixar montagens |
+| `--accession` | string |  | Um número de acesso de montagem do NCBI a ser baixado |
+| `--accessions` | string |  | Um arquivo de números de acesso de montagem do NCBI (um por linha) a serem baixados |
+| `--format` | string | `fasta` | Lista de formatos separada por vírgulas para baixar |
+| `--section` | string | `refseq` | Seção do NCBI para baixar |
+| `--assembly_level` | string | `complete` | Lista de níveis de montagem separada por vírgulas para baixar |
+| `--kingdom` | string | `bacteria` | Lista de formatos separada por vírgulas para baixar |
+| `--limit` | string |  | Limitar o número de montagens a serem baixadas |
+| `--keep_downloads` | boolean | `false` | Salvar arquivos baixados na pasta bactopia-runs |
+
+### Parâmetros do Prokka
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--prokka_proteins` | string |  | Arquivo FASTA de proteínas confiáveis para anotar primeiro |
+| `--prokka_prodigal_tf` | string |  | Arquivo de treinamento a ser usado pelo Prodigal |
+| `--prokka_compliant` | boolean | `false` | Forçar conformidade com Genbank/ENA/DDJB |
+| `--prokka_centre` | string | `Bactopia` | ID do centro de sequenciamento |
+| `--prokka_coverage` | integer | `80` | Cobertura mínima na proteína de consulta |
+| `--prokka_evalue` | string | `1e-09` | Corte de e-value de similaridade |
+| `--prokka_opts` | string |  | Opções extras do Prokka entre aspas. |
+| `--prokka_debug` | boolean | `false` | Habilitar modo de depuração para Prokka |
+
+### Parâmetros do PIRATE
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--use_pirate` | boolean | `false` | Usar PIRATE em vez de Panaroo no subworkflow 'pangenome' |
+| `--pirate_steps` | string | `50,60,70,80,90,95,98` | Limiares de identidade percentual para construção do pan-genoma |
+| `--pirate_features` | string | `CDS` | Características delimitadas por vírgulas para construção do pan-genoma |
+| `--pirate_para_off` | boolean | `false` | Desativar identificação de parálogos |
+| `--pirate_z` | boolean | `false` | Manter todos os arquivos intermediários do PIRATE |
+| `--pirate_pan_opt` | string |  | Argumentos adicionais para a construção do pan-genoma. |
+
+### Parâmetros do Roary
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--roary_use_prank` | boolean | `false` | Usar PRANK em vez de MAFFT para gene core |
+| `--use_roary` | boolean | `false` | Usar Roary em vez de PIRATE no subworkflow 'pangenome' |
+| `--roary_i` | integer | `95` | Percentual mínimo de identidade para blastp |
+| `--roary_cd` | integer | `99` | Percentual de isolados em que um gene deve estar para ser core |
+| `--roary_g` | integer | `50000` | Número máximo de clusters |
+| `--roary_s` | boolean | `false` | Não dividir parálogos |
+| `--roary_ap` | boolean | `false` | Permitir parálogos no alinhamento core |
+| `--roary_iv` | number | `1.5` | Valor de inflação MCL |
+
+### Parâmetros de Execução do Panaroo
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--panaroo_mode` | string | `strict` | O modo de rigorosidade para executar o Panaroo (opções: `strict`, `moderate`, `sensitive`) |
+| `--panaroo_alignment` | string | `core` | Saída de alinhamentos de genes core ou todos os genes (opções: `core`, `pan`) |
+| `--panaroo_aligner` | string | `mafft` | Alinhador a ser usado para alinhamento do genoma core/pan (opções: `mafft`, `prank`, `clustal`) |
+| `--panaroo_core_threshold` | number | `0.95` | Limiar de amostras do genoma-core |
+| `--panaroo_threshold` | number | `0.98` | Limiar de identidade de sequência |
+| `--panaroo_family_threshold` | number | `0.7` | Limiar de identidade de sequência de família de proteínas |
+| `--panaroo_len_dif_percent` | number | `0.98` | Corte de diferença de comprimento |
+| `--panaroo_merge_paralogs` | boolean | `false` | Não dividir parálogos |
+| `--panaroo_opts` | string |  | Opções adicionais para passar ao Panaroo |
+
+### Parâmetros do SNP-Dists
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--snpdists_a` | boolean | `false` | Contar todas as diferenças, não apenas [AGTC] |
+| `--snpdists_b` | boolean | `false` | Manter a célula do canto superior esquerdo |
+| `--snpdists_csv` | boolean | `false` | Gerar CSV em vez de TSV |
+| `--snpdists_k` | boolean | `false` | Manter capitalização, não converter todas as letras para maiúsculas |
+
+### Parâmetros do ClonalFrameML
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--clonalframeml_emsim` | integer | `100` | Número de simulações para estimar a incerteza nos resultados do EM |
+| `--clonalframeml_opts` | string |  | Opções extras do ClonalFrameML entre aspas |
+| `--skip_recombination` | boolean | `false` | Ignorar execução do ClonalFrameML nos subworkflows |
+
+### Parâmetros do IQ-TREE
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--iqtree_model` | string | `HKY` | Nome do modelo de substituição |
+| `--iqtree_bb` | integer | `1000` | Réplicas de bootstrap ultrafast |
+| `--iqtree_alrt` | integer | `1000` | Réplicas do teste de razão de verossimilhança aproximado semelhante ao SH |
+| `--iqtree_asr` | boolean | `false` | Reconstrução de estado ancestral por Bayes empírico |
+| `--iqtree_opts` | string |  | Opções extras do IQ-TREE entre aspas. |
+| `--skip_phylogeny` | boolean | `false` | Ignorar execução do IQ-TREE nos subworkflows |
+
+### Parâmetros do Scoary
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--scoary_traits` | string |  | Tabela de características de entrada (CSV) para testar associações |
+| `--scoary_p_value_cutoff` | number | `0.05` | Para testes estatísticos, genes com p-valores maiores não serão reportados |
+| `--scoary_correction` | string | `I` | Aplicar a medida de filtragem indicada. (opções: `I`, `B`, `BH`, `PW`, `EPW`, `P`) |
+| `--scoary_permute` | integer | `0` | Realizar N permutações dos resultados significativos pós-análise |
+| `--scoary_start_col` | integer | `15` | Em qual coluna do arquivo de presença/ausência de genes começam as informações de cada isolado |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use estes parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a incluir na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a excluir da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Estes parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Jobs</summary>
+
+Define o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras a baixar simultaneamente |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar sua configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e substituirá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter os logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow irá sobrescrever arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID de commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar sua configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para ambientes Conda |
+| `--registry` | string | `quay.io` | Registro de onde baixar os contêineres Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity, forçar o fluxo de trabalho a baixar e converter contêineres Docker. |
+| `--force_rebuild` | boolean | `false` | Forçar a substituição de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) da(s) fila(s) separados por vírgula a serem usados por um agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais para passar ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais para passar ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente usados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibir o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Se deve validar os parâmetros contra o esquema em tempo de execução |
+| `--help` | boolean |  | Exibir texto de ajuda. |
+| `--wf` | string | `bactopia` | Especificar qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Listar os fluxos de trabalho e Bactopia Tools disponíveis para usar com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostrar todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibir texto de versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [clonalframeml](/developers/subworkflows/clonalframeml) - Detectar e mascarar eventos de recombinação em filogenias bacterianas.
+- [iqtree](/developers/subworkflows/iqtree) - Construir árvores filogenéticas de máxima verossimilhança a partir de alinhamentos.
+- [ncbigenomedownload](/developers/subworkflows/ncbigenomedownload) - Baixar genomas bacterianos do banco de dados RefSeq do NCBI.
+- [pangenome](/developers/subworkflows/pangenome) - Realizar análise de pan-genoma com filogenia do genoma-core opcional.
+- [prokka](/developers/subworkflows/prokka) - Anotar genomas bacterianos com informações funcionais.
+- [scoary](/developers/subworkflows/scoary) - Estudos de associação em escala de pan-genoma.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)  
+  Didelot X, Wilson DJ [ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.](https://doi.org/10.1371/journal.pcbi.1004041) _PLoS Comput Biol_ 11(2) e1004041 (2015)
+
+- [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
+  Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
+
+- [ModelFinder](https://github.com/Cibiv/IQ-TREE)  
+  Kalyaanamoorthy S, Minh BQ, Wong TKF, von Haeseler A, Jermiin LS [ModelFinder - Fast model selection for accurate phylogenetic estimates.](https://doi.org/10.1038/nmeth.4285) _Nat. Methods_ 14:587-589 (2017)
+
+- [UFBoot2](https://github.com/Cibiv/IQ-TREE)  
+  Hoang DT, Chernomor O, von Haeseler A, Minh BQ, Vinh LS [UFBoot2: Improving the ultrafast bootstrap approximation.](https://doi.org/10.1093/molbev/msx281) _Mol. Biol. Evol._ 35:518-522 (2018)
+
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+
+- [Panaroo](https://github.com/gtonkinhill/panaroo)  
+  Tonkin-Hill G, MacAlasdair N, Ruis C, Weimann A, Horesh G, Lees JA, Gladstone RA, Lo S, Beaudoin C, Floto RA, Frost SDW, Corander J, Bentley SD, Parkhill J [Producing polished prokaryotic pangenomes with the Panaroo pipeline.](https://doi.org/10.1186/s13059-020-02090-4) _Genome Biology_ 21(1), 180. (2020)
+
+- [PIRATE](http://github.com/SionBayliss/PIRATE)  
+  Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ [PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) _Gigascience_ 8 (2019)
+
+- [Prokka](https://github.com/tseemann/prokka)  
+  Seemann T [Prokka: rapid prokaryotic genome annotation](http://dx.doi.org/10.1093/bioinformatics/btu153) _Bioinformatics_ 30, 2068-2069 (2014)
+
+- [Roary](https://github.com/sanger-pathogens/Roary)  
+  Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691-3693 (2015)
+
+- [Scoary](https://github.com/AdmiralenOla/Scoary)  
+  Brynildsrud O, Bohlin J, Scheffer L, Eldholm V [Rapid scoring of genes in microbial pan-genoma-wide association studies with Scoary.](https://doi.org/10.1186/s13059-016-1108-8) _Genome Biol._ 17:238 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/pangenome)

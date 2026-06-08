@@ -1,0 +1,78 @@
+---
+title: shigapass
+description: "Prever sorotipos de Shigella a partir de montagens."
+tags:
+  - shigella
+  - serotype
+  - typing
+  - prediction
+  - antigen-genes
+  - sample-scope
+---
+
+# shigapass
+
+**Tags:** <a href="/developers/tags/shigella" class="badge badge--primary badge--tag">shigella</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/antigen-genes" class="badge badge--primary badge--tag">antigen-genes</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever sorotipos de Shigella a partir de montagens.
+
+Este subworkflow utiliza o [ShigaPass](https://github.com/imanyass/ShigaPass) para prever
+sorotipos de cepas de *Shigella* a partir de genomas montados. Ele analisa a presença
+e composição de genes codificadores de antígenos para classificar isolados em seus sorotipos conhecidos.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Contigs montados em formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Resultados resumidos do ShigaPass em formato TSV |
+| `flex_tsv` | Resultados resumidos do ShigaPass Flex em formato TSV |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [shigapass](/developers/modules/shigapass) - Prever sorotipos de Shigella e diferenciar Shigella/EIEC.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenar múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [shigapass](/bactopia-tools/shigapass) - Predição de sorotipos de Shigella e diferenciação de EIEC.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [shigapass](https://github.com/imanyass/ShigaPass)  
+  Yassine I, Hansen EE, Lefèvre S, Ruckly C, Carle I, Lejay-Collin M, Fabre L, Rafei R, Pardos de la Gandara M, Daboussi F, Shahin A, Weill FX [ShigaPass: an in silico tool predicting Shigella serotypes from whole-genome sequencing assemblies.](https://doi.org/10.1099%2Fmgen.0.000961) _Microb Genomics_ 9(3) (2023)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/shigapass)

@@ -1,0 +1,78 @@
+---
+title: btyper3
+description: "Classificação taxonômica in silico de genomas do grupo Bacillus cereus."
+tags:
+  - bacillus
+  - cereus
+  - taxonomy
+  - typing
+  - toxin-genes
+  - sample-scope
+---
+
+# btyper3
+
+**Tags:** <a href="/developers/tags/bacillus" class="badge badge--primary badge--tag">bacillus</a> <a href="/developers/tags/cereus" class="badge badge--primary badge--tag">cereus</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/toxin-genes" class="badge badge--primary badge--tag">toxin-genes</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Classificação taxonômica in silico de genomas do grupo Bacillus cereus.
+
+Este subworkflow realiza a classificação taxonômica de genomas do grupo Bacillus cereus
+utilizando o [BTyper3](https://github.com/lmc297/BTyper3), que fornece uma classificação
+abrangente incluindo espécie, linhagem e detecção de genes de toxinas.
+Os resultados de amostras individuais são agregados em um arquivo de resumo combinado.
+
+## Entrada
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem no formato FASTA para classificação do grupo Bacillus cereus |
+
+## Saída
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregações de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resultados de tipagem e classificação do BTyper3 em formato delimitado por tabulação |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow utiliza os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [btyper3](/developers/modules/btyper3) - Tipagem e caracterização in silico de genomas do grupo *Bacillus cereus*.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [btyper3](/bactopia-tools/btyper3) - Classificação taxonômica de isolados do grupo Bacillus cereus.
+
+## Citações
+
+Se você utilizar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BTyper3](https://github.com/lmc297/BTyper3)  
+  Carroll LM, Cheng RA, Kovac J [No Assembly Required: Using BTyper3 to Assess the Congruency of a Proposed Taxonomic Framework for the Bacillus cereus Group With Historical Typing Methods.](https://doi.org/10.3389/fmicb.2020.580691) _Frontiers in Microbiology_, 11, 580691. (2020)
+
+## Fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/btyper3)

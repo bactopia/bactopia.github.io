@@ -1,0 +1,92 @@
+---
+title: tbprofiler
+description: "Ferramenta de perfilamento para Mycobacterium tuberculosis para detectar resistência e tipo de linhagem."
+tags:
+  - mycobacterium
+  - tuberculosis
+  - drug-resistance
+  - lineage
+  - variants
+  - sample-scope
+---
+
+# tbprofiler
+
+**Tags:** <a href="/developers/tags/mycobacterium" class="badge badge--primary badge--tag">mycobacterium</a> <a href="/developers/tags/tuberculosis" class="badge badge--primary badge--tag">tuberculosis</a> <a href="/developers/tags/drug-resistance" class="badge badge--primary badge--tag">drug-resistance</a> <a href="/developers/tags/lineage" class="badge badge--primary badge--tag">lineage</a> <a href="/developers/tags/variants" class="badge badge--primary badge--tag">variants</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Ferramenta de perfilamento para Mycobacterium tuberculosis para detectar resistência e tipo de linhagem.
+
+Este subworkflow realiza o perfilamento abrangente de Mycobacterium tuberculosis
+a partir de reads de sequenciamento usando o [TBProfiler](https://github.com/jodyphelan/TBProfiler).
+A ferramenta detecta mutações de resistência a drogas, determina a linhagem e o tipo de cepa,
+e fornece resultados detalhados de chamada de variantes. Ela combina resultados
+individuais de amostras com análise em nível populacional para estudos de vigilância e epidemiologia.
+
+Usa campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `r1` | Reads R1 Illumina (paired-end) |
+| `r2` | Reads R2 Illumina (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Long reads (ONT/PacBio) |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `bam` | Arquivo BAM alinhado |
+| `csv` | Resultados no formato CSV |
+| `json` | Arquivo de resultados JSON comprimido |
+| `txt` | Resultados no formato de texto |
+| `vcf` | Arquivo VCF comprimido com variantes |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados principais consolidados no formato CSV |
+| `variants_csv` | Variantes consolidadas no formato CSV |
+| `variants_txt` | Variantes consolidadas no formato de texto |
+| `itol` | Arquivos no formato iTOL para visualização |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [tbprofiler_profile](/developers/modules/tbprofiler_profile) - Detecta resistência e linhagens de genomas de Mycobacterium tuberculosis.
+- [tbprofiler_collate](/developers/modules/tbprofiler_collate) - Consolida resultados do TB-Profiler de múltiplas amostras.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [tbprofiler](/bactopia-tools/tbprofiler) - Detecção de resistência antimicrobiana e tipagem de linhagem de Mycobacterium tuberculosis.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [TBProfiler](https://github.com/jodyphelan/TBProfiler)  
+  Phelan JE, O'Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O'Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/tbprofiler)

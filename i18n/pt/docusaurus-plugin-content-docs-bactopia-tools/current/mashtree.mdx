@@ -1,0 +1,262 @@
+---
+title: mashtree
+description: "Construção rápida de árvores filogenéticas usando distâncias Mash."
+tags:
+  - phylogeny
+  - tree
+  - mash
+  - distance
+  - comparative-genomics
+  - bactopia-tool
+---
+
+# mashtree
+
+**Tags:** <a href="/bactopia-tools/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/bactopia-tools/tags/tree" class="badge badge--primary badge--tag">tree</a> <a href="/bactopia-tools/tags/mash" class="badge badge--primary badge--tag">mash</a> <a href="/bactopia-tools/tags/distance" class="badge badge--primary badge--tag">distance</a> <a href="/bactopia-tools/tags/comparative-genomics" class="badge badge--primary badge--tag">comparative-genomics</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Construção rápida de árvores filogenéticas usando distâncias Mash.
+
+Esta Bactopia Tool utiliza o [Mashtree](https://github.com/lskatz/mashtree) para criar uma árvore filogenética
+das amostras usando distâncias [Mash](https://github.com/marbl/Mash). É possível incluir genomas de referência
+do RefSeq realizando o download com NCBI genome download.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf mashtree \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/mashtree/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+└── <SAMPLE_NAME>
+    └── mashtree-<TIMESTAMP>
+        ├── logs
+        │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   └── versions.yml
+        ├── mashtree.dnd
+        ├── mashtree.tsv
+        └── nf-reports
+            ├── mashtree-dag.dot
+            ├── mashtree-report.html
+            └── mashtree-timeline.html
+```
+
+### Análise Filogenética
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `mashtree.dnd` | Arquivo de árvore no formato Newick |
+| `mashtree.tsv` | Matriz de distâncias delimitada por tabulação |
+
+### Resultados Consolidados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `mashtree-summary.tsv` | Resumo consolidado de todos os resultados do Mashtree |
+
+
+### Trilha de Auditoria
+
+A seguir estão os arquivos que podem ajudá-lo a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta há arquivos úteis para você revisar caso necessário.
+
+| Extensão     | Descrição |
+|--------------|-----------|
+| .begin       | Um arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/remover arquivos e enfileirar processos com base no perfil definido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Um arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um excelente resumo da sua execução. Podem ser usados para otimizar o uso de recursos e estimar custos esperados ao utilizar plataformas em nuvem.
+
+| Nome do arquivo | Descrição |
+|-----------------|-----------|
+| mashtree-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| mashtree-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| mashtree-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| mashtree-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Defina onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do bactopia a serem usados como entradas |
+
+### Parâmetros do Mashtree
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--mashtree_trunclength` | integer | `250` | Quantos caracteres manter no nome de um arquivo |
+| `--mashtree_sortorder` | string | `ABC` | Para neighbor-joining, a ordem de classificação pode fazer diferença. (opções: `ABC`, `random`, `input-order`) |
+| `--mashtree_genomesize` | integer | `5000000` | Tamanho do genoma das amostras de entrada |
+| `--mashtree_mindepth` | integer | `5` | Se mindepth for zero, será escolhido de forma inteligente porém mais lenta, para descartar kmers de menor abundância. |
+| `--mashtree_kmerlength` | integer | `21` | Os hashes serão baseados em sequências com esse número de nucleotídeos |
+| `--mashtree_sketchsize` | integer | `10000` | Cada sketch terá no máximo esse número de min-hashes não redundantes |
+| `--mashtree_save_sketches` | boolean | `false` | Salvar os sketches criados durante o processo |
+
+### Parâmetros do NCBI Genome Download
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--species` | string |  | Nome da espécie para download das montagens |
+| `--accession` | string |  | Um número de acesso NCBI Assembly para download |
+| `--accessions` | string |  | Um arquivo de números de acesso NCBI Assembly (um por linha) para download |
+| `--format` | string | `fasta` | Lista de formatos para download separada por vírgulas |
+| `--section` | string | `refseq` | Seção do NCBI para download |
+| `--assembly_level` | string | `complete` | Lista de níveis de montagem para download separada por vírgulas |
+| `--kingdom` | string | `bacteria` | Lista de formatos para download separada por vírgulas |
+| `--limit` | string |  | Limitar o número de montagens para download |
+| `--keep_downloads` | boolean | `false` | Salvar arquivos baixados na pasta bactopia-runs |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use esses parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a incluir na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a excluir da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Esses parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Jobs</summary>
+
+Defina o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras para download simultâneo |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que substituirá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter os logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID do commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome da configuração institucional. |
+| `--config_profile_description` | string |  | Descrição da configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato da configuração institucional. |
+| `--config_profile_url` | string |  | Link de URL da configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para ambientes Conda |
+| `--registry` | string | `quay.io` | Registro do qual extrair contêineres Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity para uso com Singularity, força o fluxo de trabalho a extrair e converter contêineres Docker. |
+| `--force_rebuild` | boolean | `false` | Forçar a sobrescrita de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) da(s) fila(s) separados por vírgula a serem usados por um agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais para passar ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais para passar ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente usados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibir o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Booleano que indica se os parâmetros devem ser validados em relação ao esquema em tempo de execução |
+| `--help` | boolean |  | Exibir texto de ajuda. |
+| `--wf` | string | `bactopia` | Especificar qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Listar os fluxos de trabalho e Bactopia Tools disponíveis para uso com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostrar todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibir texto de versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [mashtree](/developers/subworkflows/mashtree) - Criar árvores filogenéticas usando distâncias Mash.
+- [ncbigenomedownload](/developers/subworkflows/ncbigenomedownload) - Baixar genomas bacterianos do banco de dados RefSeq do NCBI.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mashtree](https://github.com/lskatz/mashtree)  
+  Katz LS, Griswold T, Morrison S, Caravas J, Zhang S, den Bakker HC, Deng X, Carleton HA [Mashtree: a rapid comparison of whole genome sequence files.](https://doi.org/10.21105/joss.01762) _Journal of Open Source Software_, 4(44), 1762 (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/mashtree)

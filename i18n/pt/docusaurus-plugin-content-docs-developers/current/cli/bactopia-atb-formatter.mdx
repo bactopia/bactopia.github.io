@@ -1,0 +1,37 @@
+---
+title: bactopia-atb-formatter
+description: "Reestruture montagens do All-the-Bacteria para permitir o uso com Bactopia Tools"
+---
+
+# bactopia-atb-formatter
+
+Reestruture montagens do All-the-Bacteria para permitir o uso com Bactopia Tools
+
+## Uso
+
+```bash
+bactopia-atb-formatter [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--path, -p` | STRING |  | Diretório onde as montagens do ATB estão armazenadas |
+
+## Opções de Estrutura de Diretório do Bactopia
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-dir, -b` | STRING | `bactopia` | O caminho onde você deseja criar a estrutura do Bactopia |
+| `--publish-mode, -m` | CHOICE (symlink, copy) | `symlink` | Especifica como as montagens serão salvas no diretório do Bactopia |
+| `--recursive, -r` | BOOL | `false` | Percorre recursivamente o caminho fornecido |
+| `--extension, -e` | STRING | `.fa` | A extensão dos arquivos FASTA |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Imprime texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão impressos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

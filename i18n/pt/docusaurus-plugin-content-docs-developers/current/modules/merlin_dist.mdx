@@ -1,0 +1,156 @@
+---
+title: merlin_dist
+description: "Identificar espécies para acionar análises downstream específicas por gênero (Merlin)."
+tags:
+  - merlin
+  - mash
+  - routing
+  - logic
+  - genus-specific
+  - automation
+  - sample-scope
+---
+
+# merlin_dist
+
+**Tags:** <a href="/developers/tags/merlin" class="badge badge--primary badge--tag">merlin</a> <a href="/developers/tags/mash" class="badge badge--primary badge--tag">mash</a> <a href="/developers/tags/routing" class="badge badge--primary badge--tag">routing</a> <a href="/developers/tags/logic" class="badge badge--primary badge--tag">logic</a> <a href="/developers/tags/genus-specific" class="badge badge--primary badge--tag">genus-specific</a> <a href="/developers/tags/automation" class="badge badge--primary badge--tag">automation</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identificar espécies para acionar análises downstream específicas por gênero (Merlin).
+
+Este é um processo especializado para o fluxo de trabalho [Merlin](https://bactopia.io/bactopia-tools/merlin/).
+Ele executa `mash dist` contra um banco de dados de referência e analisa os resultados para detectar
+gêneros específicos (ex.: *Salmonella*, *Staphylococcus*). Com base no gênero detectado, ele
+direciona os dados para canais específicos a fim de acionar ferramentas direcionadas (ex.: a detecção de *Salmonella* aciona o Sistr).
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+| `r1` | `Path?` | Reads Illumina R1 (paired-end) |
+| `r2` | `Path?` | Reads Illumina R2 (paired-end) |
+| `se` | `Path?` | Reads Illumina single-end |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+```
+reference: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `reference` | `Path` | O banco de dados Mash de referência para triagem |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    fna: Path,
+    r1: Path,
+    r2: Path,
+    se: Path,
+    lr: Path,
+    escherichia: Path?,
+    haemophilus: Path?,
+    klebsiella: Path?,
+    legionella: Path?,
+    listeria: Path?,
+    mycobacterium: Path?,
+    neisseria: Path?,
+    pseudomonas: Path?,
+    salmonella: Path?,
+    staphylococcus: Path?,
+    streptococcus: Path?,
+    genus: Set<Path?>,
+    dist: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `fna` | `Path` | Passagem dos contigs montados |
+| `r1` | `Path` | Passagem dos reads Illumina R1 |
+| `r2` | `Path` | Passagem dos reads Illumina R2 |
+| `se` | `Path` | Passagem dos reads single-end |
+| `lr` | `Path` | Passagem dos long reads |
+| `escherichia` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Escherichia |
+| `haemophilus` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Haemophilus |
+| `klebsiella` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Klebsiella |
+| `legionella` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Legionella |
+| `listeria` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Listeria |
+| `mycobacterium` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Mycobacterium |
+| `neisseria` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Neisseria |
+| `pseudomonas` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Pseudomonas |
+| `salmonella` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Salmonella |
+| `staphylococcus` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Staphylococcus |
+| `streptococcus` | `Path?` | Arquivo marcador condicional que aciona ferramentas de análise de Streptococcus |
+| `genus` | `Set<Path?>` | Arquivo marcador indicando o gênero detectado |
+| `dist` | `Path` | Resultados brutos de distância Mash |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com versões dos programas |
+
+## Parâmetros
+
+### Parâmetros mashdist
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--mash_sketch` | string |  | A sequência de referência como um Mash Sketch (arquivo .msh) |
+| `--mash_seed` | integer | `42` | Semente fornecida à função de hash |
+| `--mash_table` | boolean | `false` | Saída em tabela (campos ficarão em branco se não atingirem o limiar de p-valor) |
+| `--mash_m` | integer | `1` | Número mínimo de cópias de cada k-mer necessário para passar no filtro de ruído para reads |
+| `--mash_w` | number | `0.01` | Limiar de probabilidade para aviso sobre tamanho de k-mer baixo. |
+| `--mash_max_p` | number | `1.0` | Valor de p máximo a reportar. |
+| `--mash_max_dist` | number | `1.0` | Distância máxima a reportar. |
+| `--merlin_dist` | number | `0.1` | Distância máxima a reportar ao usar o Merlin. |
+| `--full_merlin` | boolean | `false` | Executar o Merlin completo e rodar todas as ferramentas específicas por espécie, independentemente da distância Mash |
+| `--mash_use_fastqs` | boolean | `false` | Consultar com FASTQs em vez das montagens |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [merlindist](/developers/subworkflows/merlindist) - Identificar espécies a partir de dados de montagem e reads usando distâncias Mash.
+
+## Citações
+
+Se você usar isso em sua análise, cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+- [NCBI RefSeq Database](https://www.ncbi.nlm.nih.gov/refseq/)  
+  O'Leary NA, Wright MW, Brister JR, Ciufo S, Haddad D, McVeigh R, Rajput B, Robbertse B, Smith-White B, Ako-Adjei D, Astashyn A, Badretdin A, Bao Y, Blinkova O0, Brover V, Chetvernin V, Choi J, Cox E, Ermolaeva O, Farrell CM, Goldfarb T, Gupta T, Haft D, Hatcher E, Hlavina W, Joardar VS, Kodali VK, Li W, Maglott D, Masterson P, McGarvey KM, Murphy MR, O'Neill K, Pujar S, Rangwala SH, Rausch D, Riddick LD, Schoch C, Shkeda A, Storz SS, Sun H, Thibaud-Nissen F, Tolstoy I, Tully RE, Vatsan AR, Wallin C, Webb D, Wu W, Landrum MJ, Kimchi A, Tatusova T, DiCuccio M, Kitts P, Murphy TD, Pruitt KD [Reference sequence (RefSeq) database at NCBI: current status, taxonomic expansion, and functional annotation.](https://doi.org/10.1093/nar/gkv1189) _Nucleic Acids Res._ 44, D733-45 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/merlin/dist)
+
+## Versão
+
+```yaml
+MERLIN_DIST:
+    - mash: 2.3
+```

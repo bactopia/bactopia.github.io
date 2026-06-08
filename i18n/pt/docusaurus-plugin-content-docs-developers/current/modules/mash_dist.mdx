@@ -1,0 +1,115 @@
+---
+title: mash_dist
+description: "Calcule distâncias genômicas usando sketches MinHash."
+tags:
+  - mash
+  - distance
+  - minhash
+  - ani
+  - comparison
+  - taxonomy
+  - sample-scope
+---
+
+# mash_dist
+
+**Tags:** <a href="/developers/tags/mash" class="badge badge--primary badge--tag">mash</a> <a href="/developers/tags/distance" class="badge badge--primary badge--tag">distance</a> <a href="/developers/tags/minhash" class="badge badge--primary badge--tag">minhash</a> <a href="/developers/tags/ani" class="badge badge--primary badge--tag">ani</a> <a href="/developers/tags/comparison" class="badge badge--primary badge--tag">comparison</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Calcule distâncias genômicas usando sketches MinHash.
+
+Usa o [Mash](https://github.com/marbl/Mash) para calcular a distância entre sequências
+de consulta e um banco de dados de referência. Utiliza sketches MinHash para estimar
+rapidamente o índice de Jaccard, fornecendo uma aproximação rápida da Identidade
+Nucleotídica Média (ANI).
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Arquivo FASTA, FASTQ ou sketch Mash a ser consultado |
+
+```
+reference: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `reference` | `Path` | O arquivo de referência (FASTA, FASTQ ou sketch Mash) para comparação |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    dist: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `dist` | `Path` | Resumo delimitado por tabulação das distâncias Mash e valores-p |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com versões dos programas |
+
+## Parâmetros
+
+### Parâmetros mashdist
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--mash_sketch` | string |  | A sequência de referência como um Mash Sketch (arquivo .msh) |
+| `--mash_seed` | integer | `42` | Semente fornecida à função de hash |
+| `--mash_table` | boolean | `false` | Saída em formato de tabela (campos ficarão em branco se não atenderem ao limiar do valor-p) |
+| `--mash_m` | integer | `1` | Número mínimo de cópias de cada k-mer necessário para passar no filtro de ruído para reads |
+| `--mash_w` | number | `0.01` | Limiar de probabilidade para aviso sobre tamanho baixo de k-mer |
+| `--mash_max_p` | number | `1.0` | Valor-p máximo a ser reportado |
+| `--mash_max_dist` | number | `1.0` | Distância máxima a ser reportada |
+| `--merlin_dist` | number | `0.1` | Distância máxima a ser reportada ao usar Merlin |
+| `--full_merlin` | boolean | `false` | Ativa o Merlin completo e executa todas as ferramentas específicas de espécie, independentemente da distância Mash |
+| `--mash_use_fastqs` | boolean | `false` | Consultar com FASTQs em vez das montagens |
+
+## Usado Por
+
+### Subworkflows
+
+- [mashdist](/developers/subworkflows/mashdist) - Calcula distâncias Mash entre sequências e uma referência.
+
+### Workflows
+
+- [mashdist](/bactopia-tools/mashdist) - Calcula distâncias Mash entre sequências e genomas de referência.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mash/dist)
+
+## Versão
+
+```yaml
+MASH_DIST:
+    - mash: 2.3
+```

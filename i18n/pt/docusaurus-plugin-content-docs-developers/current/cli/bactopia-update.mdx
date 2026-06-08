@@ -1,0 +1,48 @@
+---
+title: bactopia-update
+description: "Verifica se os módulos usados pelas Bactopia Tools possuem versões mais recentes disponíveis"
+---
+
+# bactopia-update
+
+Verifica se os módulos usados pelas Bactopia Tools possuem versões mais recentes disponíveis
+
+## Uso
+
+```bash
+bactopia-update UNKNOWN [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `UNKNOWN` | UNPROCESSED | Não |  |
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Opções de Módulo
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--module` | STRING |  | Verifica apenas um módulo específico para atualizações (ex.: 'fastp') |
+| `--max_retry` | INT | `3` | Número máximo de tentativas para consultas à API. (Padrão: 3) |
+
+## Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--json` | BOOL | `false` | Gera saída em JSON simples |
+| `--pretty` | BOOL | `false` | Gera saída em JSON formatado |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibe texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

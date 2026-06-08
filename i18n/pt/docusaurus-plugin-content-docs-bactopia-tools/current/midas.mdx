@@ -1,0 +1,270 @@
+---
+title: midas
+description: "Estime a abundância de espécies a partir de amostras metagenômicas."
+tags:
+  - metagenomics
+  - species-abundance
+  - profiling
+  - midas
+  - bactopia-tool
+---
+
+# midas
+
+**Tags:** <a href="/bactopia-tools/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/bactopia-tools/tags/species-abundance" class="badge badge--primary badge--tag">species-abundance</a> <a href="/bactopia-tools/tags/profiling" class="badge badge--primary badge--tag">profiling</a> <a href="/bactopia-tools/tags/midas" class="badge badge--primary badge--tag">midas</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Estime a abundância de espécies a partir de amostras metagenômicas.
+
+Esta Bactopia Tool utiliza o [MIDAS](https://github.com/snayfach/MIDAS) para estimar
+a abundância de espécies bacterianas em amostras metagenômicas. O MIDAS utiliza um banco de dados
+com mais de 30.000 genomas de referência para um perfil de espécies preciso.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf midas \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/midas/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── midas-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.midas.abundances.txt
+│           ├── <SAMPLE_NAME>.midas.adjusted.abundances.txt
+│           ├── <SAMPLE_NAME>.midas.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── midas-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── midas-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── midas.tsv
+        └── nf-reports
+            ├── midas-dag.dot
+            ├── midas-report.html
+            └── midas-timeline.html
+```
+
+### Abundância de Espécies
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.tsv` | Perfis de abundância de espécies |
+| `*-species.tsv` | Abundância no nível de espécie |
+| `*-genes.tsv` | Abundância no nível de gene |
+
+### Resultados Mesclados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `midas.tsv` | Arquivo TSV mesclado contendo os resultados do MIDAS de todas as amostras |
+
+
+### Trilha de Auditoria
+
+Abaixo estão os arquivos que podem ajudar você a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta estão arquivos úteis
+para você revisar caso necessário.
+
+| Extensão | Descrição |
+|----------|-----------|
+| .begin | Um arquivo vazio usado para indicar que o processo foi iniciado |
+| .err | Contém as saídas STDERR do processo |
+| .log | Contém as saídas STDERR e STDOUT do processo |
+| .out | Contém as saídas STDOUT do processo |
+| .run | O script que o Nextflow usa para preparar/remover arquivos e enfileirar processos com base no perfil definido |
+| .sh | O script executado pelo bash para o processo |
+| .trace | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Um arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um excelente resumo da sua execução. Podem ser usados para otimizar
+o uso de recursos e estimar os custos esperados ao utilizar plataformas em nuvem.
+
+| Nome do arquivo | Descrição |
+|-----------------|-----------|
+| midas-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| midas-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| midas-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| midas-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Defina onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do Bactopia a serem usados como entradas |
+
+### Parâmetros de Download do Banco de Dados MIDAS
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--midas_db` | string |  | Um único tarball ou caminho para um banco de dados no formato MIDAS |
+| `--midas_save_as_tarball` | boolean | `false` | Salva o banco de dados MIDAS como um tarball |
+| `--download_midas` | boolean | `false` | Faz o download do banco de dados MIDAS para o caminho definido em --midas_db |
+
+### Parâmetros de Espécies do MIDAS
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--midas_word_size` | integer | `28` | Tamanho da palavra para a busca BLAST |
+| `--midas_aln_cov` | number | `0.75` | Descarta reads com cobertura de alinhamento &lt; ALN_COV |
+| `--midas_opts` | string |  | Opções extras do MIDAS |
+| `--midas_debug` | boolean | `false` | Mantém todos os arquivos temporários criados pelo MIDAS |
+
+### Parâmetros csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use estes parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a serem incluídas na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a serem excluídas da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Estes parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Jobs</summary>
+
+Defina o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras para baixar ao mesmo tempo |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar sua configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que sobrescreverá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter os logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será deletado. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID do commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | Link URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar sua configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para os ambientes Conda |
+| `--registry` | string | `quay.io` | Registro de onde serão baixados os contêineres Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity, força o fluxo de trabalho a baixar e converter contêineres Docker. |
+| `--force_rebuild` | boolean | `false` | Força a sobrescrita de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) separados por vírgula da(s) fila(s) a serem usadas por um agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais a serem passadas ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais a serem passadas ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente usados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibe o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Define se os parâmetros devem ser validados em relação ao esquema em tempo de execução |
+| `--help` | boolean |  | Exibe o texto de ajuda. |
+| `--wf` | string | `bactopia` | Especifica qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Lista os fluxos de trabalho e Bactopia Tools disponíveis para uso com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostra todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibe o texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [midas](/developers/subworkflows/midas) - Perfil no nível de espécie a partir de dados metagenômicos.
+
+## Citações
+
+Se você usar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [MIDAS](https://github.com/snayfach/MIDAS)  
+  Nayfach S, Rodriguez-Mueller B, Garud N, and Pollard KS [An integrated metagenomics pipeline for strain profiling reveals novel patterns of bacterial transmission and biogeography.](https://doi.org/10.1101/gr.201863.115) _Genome Research_, 26(11), 1612-1625. (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/midas)

@@ -1,0 +1,86 @@
+---
+title: blastx
+description: "Traduz sequências nucleotídicas e pesquisa em banco de dados de proteínas."
+tags:
+  - blast
+  - protein
+  - translation
+  - alignment
+  - database
+  - sample-scope
+---
+
+# blastx
+
+**Tags:** <a href="/developers/tags/blast" class="badge badge--primary badge--tag">blast</a> <a href="/developers/tags/protein" class="badge badge--primary badge--tag">protein</a> <a href="/developers/tags/translation" class="badge badge--primary badge--tag">translation</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Traduz sequências nucleotídicas e pesquisa em banco de dados de proteínas.
+
+Este subworkflow utiliza o [BLASTX](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROGRAM=blastx)
+do pacote NCBI BLAST+ para traduzir sequências nucleotídicas nos seis quadros de leitura
+e pesquisá-las contra um banco de dados de proteínas. Ele processa cada montagem individualmente
+e agrega os resultados em um único relatório consolidado.
+
+## Take
+
+```
+blastdb: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `blastdb` | Um arquivo tarball comprimido contendo o banco de dados BLAST |
+
+```
+query: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-------------|
+| `query` | `Path` | Caminho para o banco de dados de proteínas BLAST para pesquisa de sequências traduzidas |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Um resumo delimitado por tabulação dos alinhamentos (BLAST outfmt 6 padrão) |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [blast_blastx](/developers/modules/blast_blastx) - Pesquisa um banco de dados de proteínas usando uma consulta nucleotídica traduzida.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [blastx](/bactopia-tools/blastx) - Pesquisa contra bancos de dados BLAST de proteínas usando consultas nucleotídicas traduzidas.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+  Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/blastx)

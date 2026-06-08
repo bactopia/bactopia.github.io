@@ -1,0 +1,80 @@
+---
+title: iqtree
+description: "Construir árvores filogenéticas de máxima verossimilhança a partir de alinhamentos."
+tags:
+  - phylogeny
+  - maximum-likelihood
+  - tree
+  - bootstrap
+  - model-selection
+  - run-scope
+---
+
+# iqtree
+
+**Tags:** <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/maximum-likelihood" class="badge badge--primary badge--tag">maximum-likelihood</a> <a href="/developers/tags/tree" class="badge badge--primary badge--tag">tree</a> <a href="/developers/tags/bootstrap" class="badge badge--primary badge--tag">bootstrap</a> <a href="/developers/tags/model-selection" class="badge badge--primary badge--tag">model-selection</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Construir árvores filogenéticas de máxima verossimilhança a partir de alinhamentos.
+
+Este subworkflow utiliza o [IQ-TREE](https://github.com/Cibiv/IQ-TREE) para construir
+árvores filogenéticas de máxima verossimilhança a partir de alinhamentos de múltiplas
+sequências. O IQ-TREE implementa algoritmos estocásticos rápidos e eficazes para
+inferência filogenética, incluindo seleção automática de modelos via ModelFinder. Ele
+produz árvores filogenéticas com suporte de bootstrap e diversos arquivos suplementares
+para visualização e análise de árvores.
+
+## Take
+
+```
+alignment: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `aln` | Alinhamento de múltiplas sequências no formato FASTA |
+
+## Emit
+
+### Published
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho principal.
+
+#### `sample_outputs`
+
+Nenhuma saída no escopo de amostra.
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `aln` | Alinhamento de múltiplas sequências de entrada (repassado) |
+| `nwk` | Árvore filogenética de máxima verossimilhança no formato Newick |
+| `supplemental` | Relatório detalhado, matriz de distâncias e parâmetros do modelo |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [iqtree](/developers/modules/iqtree) - Inferência filogenômica eficiente usando Máxima Verossimilhança.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [pangenome](/bactopia-tools/pangenome) - Análise de pan-genoma com filogenia opcional do genoma core.
+- [snippy](/bactopia-tools/snippy) - Chamada rápida de variantes por haplótipo e alinhamento do genoma core.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
+  Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
+
+## Source
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/iqtree)

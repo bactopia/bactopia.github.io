@@ -1,0 +1,107 @@
+---
+title: mobsuite_recon
+description: "Reconstruir e tipar plasmídeos a partir de uma montagem de genoma bacteriano."
+tags:
+  - bacteria
+  - plasmid
+  - reconstruction
+  - mobtyper
+  - replicon
+  - contigs
+  - assembly
+  - sample-scope
+---
+
+# mobsuite_recon
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/plasmid" class="badge badge--primary badge--tag">plasmid</a> <a href="/developers/tags/reconstruction" class="badge badge--primary badge--tag">reconstruction</a> <a href="/developers/tags/mobtyper" class="badge badge--primary badge--tag">mobtyper</a> <a href="/developers/tags/replicon" class="badge badge--primary badge--tag">replicon</a> <a href="/developers/tags/contigs" class="badge badge--primary badge--tag">contigs</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Reconstruir e tipar plasmídeos a partir de uma montagem de genoma bacteriano.
+
+Utiliza o [MobSuite's mob_recon](https://github.com/phac-nml/mob-suite) para reconstruir plasmídeos
+agrupando contigs relevantes. Em seguida, usa o componente Mob-typer para classificar os plasmídeos
+com base no tipo de replicon, grupo de incompatibilidade (tipo Inc) e mobilidade prevista.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    chromosome: Path,
+    contig_report: Path,
+    txt: Path?,
+    plasmids: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `chromosome` | `Path` | Sequências cromossômicas separadas dos contigs de plasmídeo (FASTA comprimido) |
+| `contig_report` | `Path` | Relatório delimitado por tabulação atribuindo cada contig ao cromossomo ou plasmídeo |
+| `txt` | `Path?` | Resultados do MOB-typer com tipo de replicon, mobilidade e grupo de incompatibilidade |
+| `plasmids` | `Set<Path?>` | Sequências de plasmídeos reconstruídas em formato FASTA comprimido |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do MOB-suite Recon
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--mobsuite_max_contig_size` | inteiro | `310000` | Tamanho máximo de um contig para ser considerado um plasmídeo |
+| `--mobsuite_min_contig_size` | inteiro | `1000` | Comprimento mínimo dos contigs para classificação |
+| `--mobsuite_max_plasmid_size` | inteiro | `350000` | Tamanho máximo de um plasmídeo reconstruído |
+| `--mobsuite_opts` | string |  | Opções extras do MOB-suite entre aspas. Exemplo: '--min_mob_evalue 0.001' |
+
+## Usado Por
+
+### Subworkflows
+
+- [mobsuite](/developers/subworkflows/mobsuite) - Reconstruir e tipar plasmídeos a partir de montagens de genomas bacterianos.
+
+### Workflows
+
+- [mobsuite](/bactopia-tools/mobsuite) - Reconstrução e anotação de plasmídeos a partir de montagens de genomas bacterianos.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [MOB-suite](https://github.com/phac-nml/mob-suite)  
+  Robertson J, Nash JHE [MOB-suite: software tools for clustering, reconstruction and typing of plasmids from draft assemblies.](https://doi.org/10.1099/mgen.0.000206) _Microbial Genomics_ 4(8). (2018)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mobsuite/recon)
+
+## Versão
+
+```yaml
+MOBSUITE_RECON:
+    - mob_suite: 3.1.9
+```

@@ -1,0 +1,42 @@
+---
+title: bactopia-merge-schemas
+description: "Constrói um Nextflow Schema e/ou Nextflow config para um fluxo de trabalho específico."
+---
+
+# bactopia-merge-schemas
+
+Constrói um Nextflow Schema e/ou Nextflow config para um fluxo de trabalho específico.
+
+## Uso
+
+```bash
+bactopia-merge-schemas UNKNOWN [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `UNKNOWN` | UNPROCESSED | Não |  |
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+| `--wf` | STRING |  | O fluxo de trabalho para o qual criar um nextflow_schema.json |
+
+## Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--outdir` | PATH | `.` | Diretório para gravação dos arquivos de saída |
+| `--force` | BOOL | `false` | Sobrescrever arquivos de saída existentes |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |

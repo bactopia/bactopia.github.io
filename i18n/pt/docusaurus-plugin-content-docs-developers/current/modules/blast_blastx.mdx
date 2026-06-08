@@ -1,0 +1,111 @@
+---
+title: blast_blastx
+description: "Pesquise um banco de dados de proteínas usando uma consulta de nucleotídeos traduzida."
+tags:
+  - blast
+  - blastx
+  - alignment
+  - translation
+  - protein
+  - dna
+  - search
+  - fasta
+  - sample-scope
+---
+
+# blast_blastx
+
+**Tags:** <a href="/developers/tags/blast" class="badge badge--primary badge--tag">blast</a> <a href="/developers/tags/blastx" class="badge badge--primary badge--tag">blastx</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/translation" class="badge badge--primary badge--tag">translation</a> <a href="/developers/tags/protein" class="badge badge--primary badge--tag">protein</a> <a href="/developers/tags/dna" class="badge badge--primary badge--tag">dna</a> <a href="/developers/tags/search" class="badge badge--primary badge--tag">search</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Pesquise um banco de dados de proteínas usando uma consulta de nucleotídeos traduzida.
+
+Utiliza o [BLASTX](https://blast.ncbi.nlm.nih.gov/Blast.cgi) para traduzir sequências de nucleotídeos
+(FASTA) nos seis quadros de leitura e alinhá-las contra um banco de dados de proteínas BLAST. Isso é útil
+para identificar potenciais regiões codificantes em DNA não anotado.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    blastdb: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `blastdb` | `Path` | Um tarball comprimido contendo o banco de dados de proteínas BLAST |
+
+```
+query: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `query` | `Path` | Arquivo FASTA contendo sequências de nucleotídeos para consulta |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados de alinhamento nucleotídeo-proteína traduzido em formato delimitado por tabulação (BLAST outfmt 6) |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do BLASTX
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--blastx_query` | string |  | Um arquivo FASTA contendo as sequências de consulta para alinhar contra o banco de dados |
+| `--blastx_outfmt` | string | `sseqid qseqid pident qlen slen length nident positive mismatch gapopen gaps qstart qend sstart send evalue bitscore` | As colunas a incluir com -outfmt 6 |
+| `--blastx_opts` | string |  | Opções adicionais a serem passadas ao BLASTN |
+| `--blastx_qcov_hsp_perc` | integer | `50` | Percentual de cobertura da consulta por hsp |
+| `--blastx_max_target_seqs` | integer | `2000` | Número máximo de sequências alinhadas a manter |
+
+## Usado Por
+
+### Subworkflows
+
+- [blastx](/developers/subworkflows/blastx) - Traduz sequências de nucleotídeos e pesquisa banco de dados de proteínas.
+
+### Workflows
+
+- [blastx](/bactopia-tools/blastx) - Pesquisa em bancos de dados de proteínas BLAST usando consultas de nucleotídeos traduzidas.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+  Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/blast/blastx)
+
+## Versão
+
+```yaml
+BLAST_BLASTX:
+    - blast: 2.17.0
+```

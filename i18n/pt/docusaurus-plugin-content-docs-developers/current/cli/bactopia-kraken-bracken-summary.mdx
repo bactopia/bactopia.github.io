@@ -1,0 +1,30 @@
+---
+title: bactopia-kraken-bracken-summary
+description: "Atualiza as abundâncias do Bracken com contagens não classificadas."
+---
+
+# bactopia-kraken-bracken-summary
+
+Atualiza as abundâncias do Bracken com contagens não classificadas.
+
+## Uso
+
+```bash
+bactopia-kraken-bracken-summary PREFIX KRAKEN2_REPORT BRACKEN_REPORT BRACKEN_ABUNDANCES [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `PREFIX` | STRING | Sim | Prefixo a ser usado para os arquivos de saída. |
+| `KRAKEN2_REPORT` | STRING | Sim | O relatório do Kraken2. |
+| `BRACKEN_REPORT` | STRING | Sim | O relatório do Kraken2 atualizado pelo Bracken. |
+| `BRACKEN_ABUNDANCES` | STRING | Sim | A saída do Bracken com as abundâncias. |
+
+## Opções
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |
+| `--max_secondary_percent` | FLOAT | `0.01` | A porcentagem máxima de abundância para a espécie secundária; se excedida, a amostra permanecerá não classificada. |

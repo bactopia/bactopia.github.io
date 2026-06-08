@@ -1,0 +1,116 @@
+---
+title: Modules
+description: All available Bactopia modules
+slug: /modules
+---
+
+# Modules
+
+Bactopia inclui 104 módulos -- processos individuais que executam tarefas específicas de análise. Você também pode [navegar por tag](/developers/tags).
+
+| Módulo | Descrição |
+|--------|-----------|
+| [abricate_run](/developers/modules/abricate_run) | Triagem em massa de contigs para genes de resistência antimicrobiana e virulência. |
+| [abricate_summary](/developers/modules/abricate_summary) | Resumir os resultados da triagem do Abricate. |
+| [abritamr_run](/developers/modules/abritamr_run) | Detectar genes de resistência antimicrobiana e virulência. |
+| [agrvate](/developers/modules/agrvate) | Determinar o tipo de locus agr e variantes do operon em *Staphylococcus aureus*. |
+| [amrfinderplus_run](/developers/modules/amrfinderplus_run) | Identificar genes de resistência antimicrobiana e virulência em sequências de genes ou proteínas. |
+| [amrfinderplus_update](/developers/modules/amrfinderplus_update) | Baixar e indexar o banco de dados mais recente do AMRFinder+. |
+| [ariba_getref](/developers/modules/ariba_getref) | Baixar e preparar bancos de dados de referência para análise com ARIBA. |
+| [ariba_run](/developers/modules/ariba_run) | Identificar genes por montagem local de reads. |
+| [bactopia_assembler](/developers/modules/bactopia_assembler) | Montar genomas bacterianos usando estratégias de reads curtos, reads longos ou híbrida. |
+| [bactopia_datasets](/developers/modules/bactopia_datasets) | Baixar conjuntos de dados pré-compilados exigidos pelo Bactopia. |
+| [bactopia_gather](/developers/modules/bactopia_gather) | Buscar, validar, reunir ou simular amostras de entrada. |
+| [bactopia_qc](/developers/modules/bactopia_qc) | Controle de qualidade automatizado, correção de erros e subamostragem de reads. |
+| [bactopia_sketcher](/developers/modules/bactopia_sketcher) | Criar esboços genômicos e realizar classificação taxonômica rápida. |
+| [bactopia_teton](/developers/modules/bactopia_teton) | Prever o tamanho do genoma e encaminhar amostras com base na classificação taxonômica. |
+| [bakta_download](/developers/modules/bakta_download) | Baixar o banco de dados de anotação do Bakta. |
+| [bakta_run](/developers/modules/bakta_run) | Anotação rápida e padronizada de genomas bacterianos e plasmídeos. |
+| [blast_blastn](/developers/modules/blast_blastn) | Pesquisar um banco de dados de nucleotídeos usando uma consulta de nucleotídeos. |
+| [blast_blastp](/developers/modules/blast_blastp) | Pesquisar um banco de dados de proteínas usando uma consulta de proteínas. |
+| [blast_blastx](/developers/modules/blast_blastx) | Pesquisar um banco de dados de proteínas usando uma consulta de nucleotídeos traduzida. |
+| [blast_tblastn](/developers/modules/blast_tblastn) | Pesquisar um banco de dados de nucleotídeos traduzido usando uma consulta de proteínas. |
+| [blast_tblastx](/developers/modules/blast_tblastx) | Pesquisar um banco de dados de nucleotídeos traduzido usando uma consulta de nucleotídeos traduzida. |
+| [bracken](/developers/modules/bracken) | Classificação taxonômica e estimativa de abundância. |
+| [btyper3](/developers/modules/btyper3) | Tipagem e caracterização in silico de genomas do grupo *Bacillus cereus*. |
+| [busco](/developers/modules/busco) | Avaliar a completude da montagem do genoma usando ortólogos de cópia única. |
+| [checkm2_download](/developers/modules/checkm2_download) | Baixar o banco de dados pré-treinado do CheckM2. |
+| [checkm2_predict](/developers/modules/checkm2_predict) | Avaliar a qualidade do genoma usando aprendizado de máquina. |
+| [checkm_lineagewf](/developers/modules/checkm_lineagewf) | Avaliar a qualidade do genoma usando conjuntos de marcadores específicos de linhagem. |
+| [clermontyping](/developers/modules/clermontyping) | Determinar o filogrupo de isolados de *Escherichia coli*. |
+| [clonalframeml](/developers/modules/clonalframeml) | Inferência de recombinação em genomas bacterianos. |
+| [csvtk_concat](/developers/modules/csvtk_concat) | Concatenar múltiplos arquivos CSV ou TSV em uma única tabela. |
+| [csvtk_join](/developers/modules/csvtk_join) | Unir dois arquivos CSV ou TSV com base em campos comuns. |
+| [deacon_fetch](/developers/modules/deacon_fetch) | Obter um índice deacon pré-construído para filtragem de reads do hospedeiro. |
+| [deacon_filter](/developers/modules/deacon_filter) | Filtrar reads do hospedeiro de dados de sequenciamento usando comparação baseada em minimizadores. |
+| [deacon_index](/developers/modules/deacon_index) | Construir um índice de minimizadores deacon a partir de um genoma de referência FASTA. |
+| [defensefinder_run](/developers/modules/defensefinder_run) | Detectar sistemas de defesa anti-fago usando perfis HMM. |
+| [defensefinder_update](/developers/modules/defensefinder_update) | Baixar e empacotar os bancos de dados de modelos DefenseFinder e CasFinder. |
+| [ectyper](/developers/modules/ectyper) | Prever o sorotipo de *Escherichia coli* (antígenos O e H). |
+| [eggnog_download](/developers/modules/eggnog_download) | Baixar o banco de dados eggNOG para anotação funcional. |
+| [eggnog_mapper](/developers/modules/eggnog_mapper) | Anotação funcional de proteínas usando dados de ortologia eggNOG. |
+| [emmtyper](/developers/modules/emmtyper) | Tipagem *emm* de montagens de *Streptococcus pyogenes* (Streptococcus do Grupo A). |
+| [fastani](/developers/modules/fastani) | Calcular a Identidade Nucleotídica Média (ANI) de genomas completos. |
+| [gamma](/developers/modules/gamma) | Identificação, classificação e anotação de correspondências de genes traduzidos. |
+| [genotyphi_parse](/developers/modules/genotyphi_parse) | Analisar resultados do Mykrobe para genotipar *Salmonella* Typhi. |
+| [gigatyper](/developers/modules/gigatyper) | Executar todos os esquemas MLST disponíveis para uma espécie contra uma montagem. |
+| [gtdbtk_classifywf](/developers/modules/gtdbtk_classifywf) | Classificação taxonômica de genomas bacterianos e arqueais usando GTDB-Tk. |
+| [gtdbtk_download](/developers/modules/gtdbtk_download) | Baixar e configurar o banco de dados de referência do GTDB-Tk. |
+| [gubbins](/developers/modules/gubbins) | Detectar recombinação e construir uma filogenia livre de recombinação. |
+| [hicap](/developers/modules/hicap) | Prever o sorotipo capsular de *Haemophilus influenzae*. |
+| [hpsuissero](/developers/modules/hpsuissero) | Prever o sorotipo de *Haemophilus parasuis*. |
+| [iqtree](/developers/modules/iqtree) | Inferência filogenômica eficiente usando Máxima Verossimilhança. |
+| [ismapper](/developers/modules/ismapper) | Identificar sítios de inserção e orientação de elementos genéticos móveis. |
+| [kleborate](/developers/modules/kleborate) | Genotipagem e triagem de montagens de genomas de *Klebsiella*. |
+| [kraken2](/developers/modules/kraken2) | Classificação taxonômica e filtragem do hospedeiro de reads de sequenciamento. |
+| [legsta](/developers/modules/legsta) | Tipagem Baseada em Sequência (SBT) in silico de *Legionella pneumophila*. |
+| [lissero](/developers/modules/lissero) | Prever o sorogrupo de *Listeria monocytogenes*. |
+| [mash_dist](/developers/modules/mash_dist) | Calcular distâncias genômicas usando esboços MinHash. |
+| [mashtree](/developers/modules/mashtree) | Construção rápida de árvore filogenômica sem alinhamento. |
+| [mcroni](/developers/modules/mcroni) | Detectar variações de sequência no gene de resistência à colistina *mcr-1*. |
+| [meningotype](/developers/modules/meningotype) | Sorotipagem e finotyping de *Neisseria meningitidis*. |
+| [merlin_dist](/developers/modules/merlin_dist) | Identificar espécies para acionar análises posteriores específicas do gênero (Merlin). |
+| [midas_download](/developers/modules/midas_download) | Baixar o banco de dados de referência MIDAS. |
+| [midas_species](/developers/modules/midas_species) | Estimar a abundância de espécies bacterianas a partir de reads metagenômicos. |
+| [mlst](/developers/modules/mlst) | Tipagem por Sequência Multi-Locus (MLST) automática de montagens de genomas. |
+| [mobsuite_recon](/developers/modules/mobsuite_recon) | Reconstruir e tipar plasmídeos a partir de uma montagem de genoma bacteriano. |
+| [mykrobe_predict](/developers/modules/mykrobe_predict) | Prever Resistência Antimicrobiana (AMR) para espécies bacterianas suportadas. |
+| [ncbigenomedownload](/developers/modules/ncbigenomedownload) | Baixar montagens e arquivos de anotação do banco de dados Assembly do NCBI. |
+| [ngmaster](/developers/modules/ngmaster) | Sorotipagem e Tipagem por Sequência Multi-Antígeno (MAST) de *Neisseria gonorrhoeae*. |
+| [nohuman_download](/developers/modules/nohuman_download) | Baixar o banco de dados nohuman para remoção de reads humanos. |
+| [nohuman_run](/developers/modules/nohuman_run) | Remover reads humanos de dados de sequenciamento. |
+| [panaroo_run](/developers/modules/panaroo_run) | Análise rápida e escalável de pan-genoma bacteriano usando abordagem baseada em grafos. |
+| [pasty](/developers/modules/pasty) | Prever o sorogrupo do antígeno O de isolados de *Pseudomonas aeruginosa*. |
+| [pbptyper](/developers/modules/pbptyper) | Prever o tipo de Proteína Ligante de Penicilina (PBP) de montagens de *Streptococcus pneumoniae*. |
+| [phispy](/developers/modules/phispy) | Prever regiões de profago integradas em genomas bacterianos. |
+| [pirate](/developers/modules/pirate) | Ferramenta de Identificação e Reconciliação de Pangenoma para Epidemiologia (PIRATE). |
+| [plasmidfinder](/developers/modules/plasmidfinder) | Identificar tipos de replicons plasmidiais em sequências bacterianas e montagens. |
+| [pneumocat](/developers/modules/pneumocat) | Tipagem capsular de *Streptococcus pneumoniae* a partir de reads Illumina. |
+| [prokka](/developers/modules/prokka) | Anotar genomas procarióticos. |
+| [quast](/developers/modules/quast) | Ferramenta de Avaliação de Qualidade para Montagens de Genomas. |
+| [rgi_heatmap](/developers/modules/rgi_heatmap) | Criar mapas de calor de presença/ausência de genes de resistência. |
+| [rgi_main](/developers/modules/rgi_main) | Prever resistência a antibióticos a partir de montagens. |
+| [roary](/developers/modules/roary) | Análise rápida de pan-genoma procariótico em larga escala. |
+| [sccmec](/developers/modules/sccmec) | Identificar elementos SCCmec em genomas de *Staphylococcus aureus*. |
+| [scoary](/developers/modules/scoary) | Estudos de associação pan-genômica ampla. |
+| [seqsero2](/developers/modules/seqsero2) | Predição de sorotipo de *Salmonella* a partir de dados de sequenciamento genômico. |
+| [seroba_run](/developers/modules/seroba_run) | Sorotipagem de *Streptococcus pneumoniae* baseada em k-mer. |
+| [shigapass](/developers/modules/shigapass) | Prever sorotipos de *Shigella* e diferenciar *Shigella*/EIEC. |
+| [shigatyper](/developers/modules/shigatyper) | Sorotipo de *Shigella* a partir de reads Illumina ou Oxford Nanopore. |
+| [shigeifinder](/developers/modules/shigeifinder) | Sorotipagem de *Shigella* e EIEC a partir de montagens. |
+| [sistr](/developers/modules/sistr) | Predição de sorovar de montagens de *Salmonella*. |
+| [snippy_core](/developers/modules/snippy_core) | Alinhamento de SNPs do core a partir de saídas do Snippy. |
+| [snippy_run](/developers/modules/snippy_run) | Chamada rápida de variantes haploides e alinhamento do genoma core. |
+| [snpdists](/developers/modules/snpdists) | Criar uma matriz de distâncias de SNP a partir de um alinhamento de múltiplas sequências. |
+| [spatyper](/developers/modules/spatyper) | Identificar tipos spa em *Staphylococcus aureus*. |
+| [srahumanscrubber_initdb](/developers/modules/srahumanscrubber_initdb) | Inicializar o banco de dados de remoção de reads humanos para o SRA Human Scrubber. |
+| [srahumanscrubber_scrub](/developers/modules/srahumanscrubber_scrub) | Remover reads humanos de arquivos FASTQ. |
+| [ssuissero](/developers/modules/ssuissero) | Predição de sorotipo de montagens de *Streptococcus suis*. |
+| [staphopiasccmec](/developers/modules/staphopiasccmec) | Tipagem SCCmec baseada em primers de genomas de *S. aureus*. |
+| [staphscan](/developers/modules/staphscan) | Análise de vigilância baseada em genoma de *Staphylococcus aureus*. |
+| [stecfinder](/developers/modules/stecfinder) | Sorotipo de *E. coli* produtora de Shiga toxina usando reads/montagens. |
+| [sylph_profile](/developers/modules/sylph_profile) | Perfilar amostras de metagenoma contra um banco de dados usando Sylph. |
+| [tbprofiler_collate](/developers/modules/tbprofiler_collate) | Consolidar resultados do TB-Profiler de múltiplas amostras. |
+| [tbprofiler_profile](/developers/modules/tbprofiler_profile) | Detectar resistência e linhagens de genomas de *Mycobacterium tuberculosis*. |
+| [traitar_download](/developers/modules/traitar_download) | Baixar o banco de dados Pfam exigido pelo Traitar. |
+| [traitar_run](/developers/modules/traitar_run) | Prever características fenotípicas a partir de genomas microbianos. |

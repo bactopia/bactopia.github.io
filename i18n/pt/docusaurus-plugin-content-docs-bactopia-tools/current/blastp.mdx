@@ -1,0 +1,261 @@
+---
+title: blastp
+description: "Pesquise em bancos de dados de proteínas BLAST usando consultas de proteínas."
+tags:
+  - fasta
+  - blast
+  - alignment
+  - protein
+  - similarity
+  - bactopia-tool
+---
+
+# blastp
+
+**Tags:** <a href="/bactopia-tools/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/bactopia-tools/tags/blast" class="badge badge--primary badge--tag">blast</a> <a href="/bactopia-tools/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/bactopia-tools/tags/protein" class="badge badge--primary badge--tag">protein</a> <a href="/bactopia-tools/tags/similarity" class="badge badge--primary badge--tag">similarity</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Pesquise em bancos de dados de proteínas BLAST usando consultas de proteínas.
+
+Esta Bactopia Tool utiliza o [BLASTP](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=Blastdocs)
+para consultar sequências de proteínas em bancos de dados de proteínas para busca de similaridade de sequências.
+O BLASTP compara uma consulta de proteína com um banco de dados de proteínas para encontrar sequências similares.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf blastp \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/blastp/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── blastp-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.blastp.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── blastp-<TIMESTAMP>
+        ├── merged-results
+        │   ├── blastp.tsv
+        │   └── logs
+        │       └── blastp-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── blastp-dag.dot
+            ├── blastp-report.html
+            └── blastp-timeline.html
+```
+
+### Resultados por Amostra
+
+| Arquivo | Descrição |
+|------|-------------|
+| `*.blastp.tsv` | Resultados de alinhamento BLASTP em formato tabular |
+| `*.blastp.html` | Relatório HTML interativo dos resultados BLASTP |
+
+### Resultados Consolidados
+
+| Arquivo | Descrição |
+|------|-------------|
+| `blastp.tsv` | Resultados BLASTP consolidados de todas as amostras |
+
+
+### Trilha de Auditoria
+
+Abaixo estão os arquivos que podem ajudar você a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta estão arquivos úteis
+para você revisar caso necessário.
+
+| Extensão    | Descrição |
+|--------------|-------------|
+| .begin       | Um arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/remover arquivos e enfileirar processos com base no perfil definido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Um arquivo formatado em YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um ótimo resumo da sua execução. Eles podem ser usados para otimizar
+o uso de recursos e estimar custos esperados ao utilizar plataformas de nuvem.
+
+| Nome do arquivo | Descrição |
+|----------|-------------|
+| blastp-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| blastp-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| blastp-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| blastp-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Defina onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--bactopia` | string |  | O caminho para os resultados do bactopia a serem usados como entradas |
+
+### Parâmetros BLASTP
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--blastp_query` | string |  | Um arquivo fasta contendo as sequências de consulta para executar BLAST contra o banco de dados |
+| `--blastp_outfmt` | string | `sseqid qseqid pident qlen slen length nident positive mismatch gapopen gaps qstart qend sstart send evalue bitscore` | As colunas a incluir com -outfmt 6 |
+| `--blastp_opts` | string |  | Opções adicionais para passar ao BLASTN |
+| `--blastp_qcov_hsp_perc` | integer | `50` | Percentual de cobertura da consulta por hsp |
+| `--blastp_max_target_seqs` | integer | `2000` | Número máximo de sequências alinhadas a manter |
+
+### Parâmetros csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use estes parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a incluir na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a excluir da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Estes parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Jobs</summary>
+
+Defina o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras para baixar ao mesmo tempo |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e sobrescreverá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter os logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--custom_config_version` | string | `master` | ID do commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | Link de URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para os ambientes Conda |
+| `--registry` | string | `quay.io` | Registro de onde baixar os containers Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity para uso com Singularity, força o fluxo de trabalho a baixar e converter containers Docker. |
+| `--force_rebuild` | boolean | `false` | Força a sobrescrita de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) separados por vírgula da(s) fila(s) a serem usadas por um agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais para passar ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais para passar ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente utilizados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--monochrome_logs` | boolean |  | Não utilizar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibir o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Booleano que indica se os parâmetros devem ser validados contra o esquema em tempo de execução |
+| `--help` | boolean |  | Exibir texto de ajuda. |
+| `--wf` | string | `bactopia` | Especificar qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Listar os fluxos de trabalho e Bactopia Tools disponíveis para usar com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostrar todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibir texto de versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho usa os seguintes subworkflows:
+
+- [blastp](/developers/subworkflows/blastp) - Pesquisa sequências de proteínas em banco de dados de proteínas.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+  Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/blastp)

@@ -1,0 +1,106 @@
+---
+title: plasmidfinder
+description: "Identifique tipos de replicons de plasmídeos em sequências bacterianas e montagens."
+tags:
+  - plasmid
+  - replicon
+  - typing
+  - identification
+  - mobility
+  - amr
+  - sample-scope
+---
+
+# plasmidfinder
+
+**Tags:** <a href="/developers/tags/plasmid" class="badge badge--primary badge--tag">plasmid</a> <a href="/developers/tags/replicon" class="badge badge--primary badge--tag">replicon</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/identification" class="badge badge--primary badge--tag">identification</a> <a href="/developers/tags/mobility" class="badge badge--primary badge--tag">mobility</a> <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identifique tipos de replicons de plasmídeos em sequências bacterianas e montagens.
+
+Utiliza o [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder/src/master/)
+para identificar tipos de plasmídeos (tipagem por replicon), consultando a montagem do genoma em um banco de dados
+de sequências de plasmídeos. Esta é uma etapa fundamental para compreender a mobilidade de genes de resistência e virulência.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    json: Path,
+    txt: Path,
+    tsv: Path,
+    genome_seq: Path,
+    plasmid_seq: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `json` | `Path` | Resultados do PlasmidFinder em formato JSON |
+| `txt` | `Path` | Resultados do PlasmidFinder em formato de texto |
+| `tsv` | `Path` | Resultados do PlasmidFinder delimitados por tabulação com informações de tipagem por replicon |
+| `genome_seq` | `Path` | Sequências FASTA dos hits de plasmídeos encontrados no genoma (comprimidas com gzip) |
+| `plasmid_seq` | `Path` | Sequências de plasmídeos de referência correspondentes (comprimidas com gzip) |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do PlasmidFinder
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--plasmidfinder_mincov` | number | `0.6` | Cobertura mínima percentual para ser considerado um hit |
+| `--plasmidfinder_threshold` | number | `0.9` | Limiar mínimo de identidade |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [plasmidfinder](/developers/subworkflows/plasmidfinder) - Identificar replicons de plasmídeos em montagens de genomas bacterianos.
+
+### Workflows
+
+- [plasmidfinder](/bactopia-tools/plasmidfinder) - Bactopia Tool: Plasmidfinder.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PlasmidFinder](https://bitbucket.org/genomicepidemiology/plasmidfinder)  
+  Carattoli A, Zankari E, García-Fernández A, Voldby Larsen M, Lund O, Villa L, Møller Aarestrup F, Hasman H [In silico detection and typing of plasmids using PlasmidFinder and plasmid multilocus sequence typing.](https://doi.org/10.1128/AAC.02412-14) _Antimicrobial Agents and Chemotherapy_ 58(7), 3895-3903. (2014)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/plasmidfinder)
+
+## Versão
+
+```yaml
+PLASMIDFINDER:
+    - plasmidfinder: 2.1.6
+```

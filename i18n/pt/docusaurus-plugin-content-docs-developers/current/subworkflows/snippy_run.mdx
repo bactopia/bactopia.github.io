@@ -1,0 +1,118 @@
+---
+title: snippy_run
+description: "Chamar variantes contra um genoma de referência usando Snippy."
+tags:
+  - variant-calling
+  - snp
+  - reference-mapping
+  - phylogenetics
+  - outbreak
+  - sample-scope
+---
+
+# snippy_run
+
+**Tags:** <a href="/developers/tags/variant-calling" class="badge badge--primary badge--tag">variant-calling</a> <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/reference-mapping" class="badge badge--primary badge--tag">reference-mapping</a> <a href="/developers/tags/phylogenetics" class="badge badge--primary badge--tag">phylogenetics</a> <a href="/developers/tags/outbreak" class="badge badge--primary badge--tag">outbreak</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Chamar variantes contra um genoma de referência usando Snippy.
+
+Este subworkflow realiza chamada de variantes haploides de forma rápida a partir de reads
+de sequências bacterianas usando [Snippy](https://github.com/tseemann/snippy). Ele mapeia
+reads para um genoma de referência, identifica SNPs e indels, e gera sequências consenso.
+A ferramenta produz múltiplos formatos de saída, incluindo VCF, FASTA alinhado e variantes
+anotadas para análise filogenética downstream com snippy-core.
+
+Usa campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads Illumina R1 (paired-end) |
+| `r2` | Reads Illumina R2 (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Reads longos (ONT/PacBio) |
+
+```
+reference: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `reference` | `Path` | Genoma de referência no formato GenBank (preferido, para anotação) ou formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `aligned_fa` | Uma versão da referência com - nas posições de cobertura zero |
+| `vcf` | As variantes anotadas finais em formato VCF |
+| `aligned_fa_error` | Arquivo FASTA alinhado gerado durante estado de erro |
+| `vcf_error` | Arquivo VCF gerado durante estado de erro |
+| `error` | Arquivo de texto com log de erro |
+| `annotated_vcf` | Arquivo VCF anotado |
+| `bam` | Os alinhamentos em formato BAM (inclui não mapeados/multimapeados) |
+| `bai` | Índice para o arquivo BAM |
+| `bed` | As variantes em formato BED |
+| `consensus_fa` | Genoma de referência com todas as variantes instanciadas |
+| `consensus_subs_fa` | Genoma de referência com apenas variantes de substituição instanciadas |
+| `consensus_subs_masked_fa` | Genoma de referência com substituições instanciadas e baixa cobertura mascarada |
+| `coverage` | Informações de profundidade de cobertura por base |
+| `csv` | Um resumo das variantes separado por vírgulas |
+| `filt_vcf` | As chamadas de variantes filtradas do Freebayes |
+| `gff` | As variantes em formato GFF3 |
+| `html` | Um resumo HTML das variantes |
+| `raw_vcf` | As chamadas de variantes não filtradas do Freebayes |
+| `subs_vcf` | VCF contendo apenas variantes de substituição |
+| `tab` | Um resumo simples de todas as variantes separado por tabulação |
+| `txt` | Lista colunar separada por tabulação com estatísticas de alinhamento |
+
+#### `run_outputs`
+
+Sem saídas no escopo de execução.
+
+### Entradas Downstream
+
+As emissões a seguir são destinadas a serem usadas como entradas para subworkflows downstream.
+
+#### `variants`
+
+VCFs por amostra e FAs alinhados filtrados para incluir apenas amostras com dados de variantes
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [snippy_run](/developers/modules/snippy_run) - Chamada de variantes haploides rápida e alinhamento do genoma core.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [snippy](/bactopia-tools/snippy) - Chamada de variantes haplóides rápida e alinhamento do genoma core.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Snippy](https://github.com/tseemann/snippy)  
+  Seemann T [Snippy: fast bacterial chamada de variantes from NGS reads](https://github.com/tseemann/snippy) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/snippy/run)

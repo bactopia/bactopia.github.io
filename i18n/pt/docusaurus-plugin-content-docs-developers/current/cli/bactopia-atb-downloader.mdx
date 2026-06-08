@@ -1,0 +1,48 @@
+---
+title: bactopia-atb-downloader
+description: "Baixe montagens do All-the-Bacteria com base em uma consulta de entrada"
+---
+
+# bactopia-atb-downloader
+
+Baixe montagens do All-the-Bacteria com base em uma consulta de entrada
+
+## Uso
+
+```bash
+bactopia-atb-downloader [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--query, -q` | STRING |  | O nome da espécie, taxid ou acesso para consultar e baixar |
+
+## Opções de Download do ATB
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--outdir, -o` | STRING | `./atb-assemblies` | Diretório para baixar as montagens do ATB |
+| `--atb-file-list-url, -a` | STRING | `https://osf.io/download/4yv85/` | A URL para a lista de arquivos do ATB |
+| `--dry-run, -d` | BOOL | `false` | Não baixa nenhum arquivo, apenas mostra o que seria baixado |
+| `--progress, -p` | BOOL | `false` | Exibe a barra de progresso do download |
+| `--cpus` | INT | `4` | O número total de CPUs a usar para download e compressão |
+| `--uncompressed, -u` | BOOL | `false` | Não comprime os arquivos baixados |
+| `--remove-archives, -r` | BOOL | `false` | Remove os arquivos tar.xz baixados após a extração das amostras |
+
+## Opções da API do NCBI
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--ncbi-api-key, -k` | STRING |  | A chave de API a ser usada para a API do NCBI |
+| `--chunk-size, -c` | INT | `200` | O tamanho dos blocos para dividir a lista |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--force` | BOOL | `false` | Sobrescreve arquivos existentes |
+| `--verbose` | BOOL | `false` | Imprime texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

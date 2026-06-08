@@ -1,0 +1,236 @@
+---
+title: Plugin nf-bactopia
+description: Referência para desenvolvedores do plugin Nextflow nf-bactopia -- funções utilitárias usadas nos fluxos de trabalho do Bactopia
+---
+
+# Plugin nf-bactopia
+
+O plugin Nextflow [nf-bactopia](https://github.com/bactopia/nf-bactopia) fornece
+funções utilitárias que lidam com coleta de entradas, validação de parâmetros, agregação
+de saídas e operações de canais em todos os fluxos de trabalho do Bactopia. Em vez de
+duplicar essa lógica em cada arquivo de fluxo de trabalho, o plugin a centraliza para
+que subworkflows e módulos possam se concentrar em suas tarefas de análise.
+
+## Instalação e Configuração
+
+Declare o plugin no seu `nextflow.config`:
+
+```groovy
+plugins {
+    id 'nf-bactopia@2.0.3'
+}
+```
+
+Em seguida, importe as funções nos seus scripts Nextflow:
+
+```groovy
+include { gather         } from 'plugin/nf-bactopia'
+include { gatherCsvtk    } from 'plugin/nf-bactopia'
+include { filterWithData } from 'plugin/nf-bactopia'
+```
+
+**Requisito:** Nextflow >= 26.03.1-edge
+
+## Manipulação de Entradas
+
+Essas funções são executadas na inicialização do pipeline para validar parâmetros e
+coletar as entradas de amostras em estruturas de canais padronizadas.
+
+### validateParameters
+
+Verifica todos os parâmetros do pipeline em relação ao esquema JSON, identificando
+incompatibilidades de tipo, valores obrigatórios ausentes e combinações inválidas antes
+que qualquer processo seja executado. Passe `false` para o pipeline principal do
+Bactopia e `true` para Bactopia Tools independentes.
+
+```groovy
+include { validateParameters } from 'plugin/nf-bactopia'
+
+// No subworkflow BACTOPIA_INIT
+def validation = validateParameters(false)
+if (validation.hasErrors) {
+    log.info(validation.error)
+    error(" ")
+} else {
+    log.info(validation.logs)
+}
+```
+
+Retorna um mapa com os campos `hasErrors`, `error`, `logs` e `data`.
+
+### bactopiaInputs
+
+Coleta e organiza as entradas de amostras (FASTQs do SRA/ENA, arquivos locais,
+montagens) em uma lista padronizada de registros de amostras. É chamada após
+`validateParameters` no pipeline principal, usando o resultado da validação para
+determinar o tipo de execução.
+
+```groovy
+include { bactopiaInputs } from 'plugin/nf-bactopia'
+
+def collectedInputs = bactopiaInputs(validation.data)
+if (collectedInputs.hasErrors) {
+    log.info(collectedInputs.error)
+    error(" ")
+} else {
+    log.info(collectedInputs.logs)
+}
+
+// Converter para canal de registros
+def ch_samples = channel.fromList(collectedInputs.samples.collect { sample ->
+    record(
+        meta:      sample.meta,
+        r1_files:  sample.r1.collect { fastq -> file(fastq) }.toSet(),
+        r2_files:  sample.r2.collect { fastq -> file(fastq) }.toSet(),
+        se_files:  sample.se.collect { fastq -> file(fastq) }.toSet(),
+        lr_files:  sample.lr.collect { fastq -> file(fastq) }.toSet(),
+        fna_files: sample.assembly.collect { fna -> file(fna) }.toSet()
+    )
+})
+```
+
+### bactopiaToolInputs
+
+O equivalente de `bactopiaInputs` para Bactopia Tools independentes. Em vez de coletar
+entradas brutas, lê de um diretório de execução anterior do Bactopia e constrói canais
+para montagens, proteínas, GFFs, bancos de dados BLAST e outras saídas necessárias
+pelas ferramentas.
+
+```groovy
+include { bactopiaToolInputs } from 'plugin/nf-bactopia'
+
+def collectedInputs = bactopiaToolInputs()
+// Retorna amostras com: meta, fna, faa, gff, r1, r2, se, lr, blastdb, etc.
+```
+
+## Agregação de Saídas
+
+Essas funções coletam saídas por amostra em estruturas agregadas para mesclagem ou
+análise downstream. São as funções do plugin mais utilizadas -- praticamente todo
+subworkflow usa pelo menos uma delas.
+
+### gather
+
+Coleta um único campo de todos os registros de amostras em um Set, mantendo o nome
+original do campo. Usado quando um processo downstream precisa das saídas de todas as
+amostras juntas (por exemplo, para construir um heatmap a partir de resultados JSON
+individuais).
+
+```groovy
+include { gather } from 'plugin/nf-bactopia'
+
+// Coletar todas as saídas JSON do RGI para geração de heatmap
+ch_rgi_heatmap = RGI_HEATMAP(gather(ch_rgi_main, 'json', [name: 'rgi']))
+```
+
+O mapa `meta` deve conter uma chave `name`, e todas as chaves são repassadas para a saída.
+
+### gatherCsvtk
+
+Agrega um único campo e o renomeia para `csv`, preparando-o como entrada para
+`CSVTK_CONCAT`. Este é o padrão de agregação mais comum -- usado sempre que resultados
+TSV/CSV por amostra precisam ser concatenados em um único relatório consolidado.
+
+```groovy
+include { gatherCsvtk } from 'plugin/nf-bactopia'
+
+// Mesclar todos os relatórios de AMR por amostra em um único arquivo
+ch_csvtk_concat = CSVTK_CONCAT(
+    gatherCsvtk(ch_amrfinderplus_run, 'report', [name: 'amrfinderplus']),
+    'tsv',
+    'tsv'
+)
+```
+
+Você pode passar argumentos extras pelo mapa meta:
+
+```groovy
+// Para ferramentas que não incluem cabeçalhos em sua saída
+gatherCsvtk(ch_emmtyper, 'tsv', [name: 'emmtyper', args: '--no-header-row'])
+```
+
+### gatherFields
+
+Agrega múltiplos campos com mapeamento explícito de renomeação. Usado quando um processo
+precisa de entradas agregadas com nomes diferentes dos originais, como renomear `fna`
+para `query` em uma ferramenta de comparação.
+
+```groovy
+include { gatherFields } from 'plugin/nf-bactopia'
+
+// Agregar montagens e renomear 'fna' para 'query' para o FastANI
+gatherFields(query, [fna: 'query'], [name: 'fastani'])
+```
+
+## Operações de Canais
+
+### filterWithData
+
+Filtra registros em que todos os campos especificados são nulos. Necessário porque
+algumas amostras podem não ter certos tipos de dados (por exemplo, uma amostra com
+apenas long reads não possui arquivos `r1`/`r2`), e passar caminhos nulos para um
+processo causaria falha.
+
+```groovy
+include { filterWithData } from 'plugin/nf-bactopia'
+
+// Executar Seroba apenas em amostras com reads pareados
+ch_seroba_run = SEROBA_RUN(filterWithData(reads, ['r1', 'r2']))
+
+// Filtrar amostras com qualquer tipo de read disponível
+scrubbed = filterWithData(ch_sample_outputs, ['r1', 'r2', 'se', 'lr'])
+```
+
+### combineWith
+
+Cria um produto cartesiano entre um canal agregado e um canal com múltiplos itens,
+mesclando cada item no mapa agregado sob um nome de campo especificado. Substitui o
+qualificador de entrada `each` do Nextflow, que foi descontinuado.
+
+```groovy
+include { combineWith  } from 'plugin/nf-bactopia'
+include { gatherFields } from 'plugin/nf-bactopia'
+
+// Combinar montagens de consulta agregadas com cada genoma de referência
+ch_fastani = FASTANI_MODULE(
+    combineWith(
+        gatherFields(query, [fna: 'query'], [name: 'fastani']),
+        ch_ref,
+        'reference'
+    )
+)
+```
+
+### formatSamples
+
+Adapta os tamanhos das tuplas com base na disponibilidade dos dados. Recebe um canal
+de tuplas com 4 elementos e os reduz para 1, 2 ou 3 elementos dependendo do parâmetro
+`dataTypes`.
+
+```groovy
+include { formatSamples } from 'plugin/nf-bactopia'
+
+// Reduzir para apenas [meta, inputs] (dataTypes=1)
+ch_trimmed = formatSamples(ch_samples, 1)
+```
+
+## Logging
+
+### collectNextflowLogs
+
+Expande o campo `nf_logs` de cada registro em tuplas individuais `[meta, file]`
+adequadas para publicação. Usado nos blocos `publish` do fluxo de trabalho para gravar
+logs de execução do Nextflow junto com as saídas das amostras.
+
+```groovy
+include { collectNextflowLogs } from 'plugin/nf-bactopia'
+
+publish:
+sample_nf_logs = collectNextflowLogs(ch_amrfinderplus.sample_outputs)
+run_nf_logs = collectNextflowLogs(ch_amrfinderplus.run_outputs)
+```
+
+## Links
+
+- [Nextflow Plugin Registry](https://registry.nextflow.io/plugins/nf-bactopia)
+- [Código-fonte no GitHub](https://github.com/bactopia/nf-bactopia)

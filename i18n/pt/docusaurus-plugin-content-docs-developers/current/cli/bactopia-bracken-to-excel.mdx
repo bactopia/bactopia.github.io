@@ -1,0 +1,29 @@
+---
+title: bactopia-bracken-to-excel
+description: "Escreve as abundâncias do Bracken em um arquivo Excel."
+---
+
+# bactopia-bracken-to-excel
+
+Escreve as abundâncias do Bracken em um arquivo Excel.
+
+## Uso
+
+```bash
+bactopia-bracken-to-excel PREFIX BRACKEN_ABUNDANCES [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `PREFIX` | STRING | Sim | Prefixo a ser usado para os arquivos de saída. |
+| `BRACKEN_ABUNDANCES` | STRING | Sim | A saída do Bracken com as abundâncias. |
+
+## Opções
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |
+| `--limit` | INT | `5` | Limita o resultado às N primeiras linhas. |
+| `--include_unclassified` | BOOL | `false` | Inclui resultados para reads não classificadas. |

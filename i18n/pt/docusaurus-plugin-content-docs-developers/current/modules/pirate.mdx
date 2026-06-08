@@ -1,0 +1,101 @@
+---
+title: pirate
+description: "Pangenome Identification and Reconciliation Analysis Tool for Epidemiology (PIRATE)."
+tags:
+  - pan-genoma
+  - orthologs
+  - core-genome
+  - gene-presence-absence
+  - epidemiology
+  - annotation
+  - run-scope
+---
+
+# pirate
+
+**Tags:** <a href="/developers/tags/pan-genoma" class="badge badge--primary badge--tag">pan-genoma</a> <a href="/developers/tags/orthologs" class="badge badge--primary badge--tag">orthologs</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/gene-presence-absence" class="badge badge--primary badge--tag">gene-presence-absence</a> <a href="/developers/tags/epidemiology" class="badge badge--primary badge--tag">epidemiology</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Pangenome Identification and Reconciliation Analysis Tool for Epidemiology (PIRATE).
+
+Utiliza o [PIRATE](https://github.com/SionBayliss/PIRATE) para construir o pan-genoma de
+uma coleção de isolados bacterianos. Ele agrupa genes ortólogos e gera o alinhamento do
+genoma core e uma matriz de presença/ausência de genes, compatível com ferramentas de
+análise downstream como Scoary para testes de associação.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    gff: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `gff` | `Set<Path>` | Uma lista de arquivos de genoma anotados no formato GFF3 |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    aln: Path?,
+    csv: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `aln` | `Path?` | O alinhamento do genoma core (*core-genome.aln.gz), adequado para construção de árvores filogenéticas |
+| `csv` | `Path?` | Matriz de presença/ausência de genes no formato CSV, compatível com Scoary |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Um arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do PIRATE
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--use_pirate` | boolean | `false` | Usar PIRATE em vez de panaroo no subworkflow 'pangenome' |
+| `--pirate_steps` | string | `50,60,70,80,90,95,98` | Limites de identidade percentual a serem usados na construção do pan-genoma |
+| `--pirate_features` | string | `CDS` | Recursos delimitados por vírgula a serem usados na construção do pan-genoma |
+| `--pirate_para_off` | boolean | `false` | Desativar a identificação de parálogos |
+| `--pirate_z` | boolean | `false` | Manter todos os arquivos intermediários do PIRATE |
+| `--pirate_pan_opt` | string |  | Argumentos adicionais a serem passados para a construção do pan-genoma. |
+
+## Usado Por
+
+### Subworkflows
+
+- [pirate](/developers/subworkflows/pirate) - Constrói um pan-genoma a partir de anotações GFF3 usando PIRATE.
+
+## Citações
+
+Se você usar esta ferramenta em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PIRATE](http://github.com/SionBayliss/PIRATE)  
+  Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ [PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) _Gigascience_ 8 (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/pirate)
+
+## Versão
+
+```yaml
+PIRATE:
+    - pirate: 1.0.5
+```

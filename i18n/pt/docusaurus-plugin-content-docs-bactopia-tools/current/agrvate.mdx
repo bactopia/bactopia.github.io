@@ -1,0 +1,260 @@
+---
+title: agrvate
+description: "Identificação rápida do tipo de locus agr de Staphylococcus aureus e variantes do operon agr."
+tags:
+  - staphylococcus-aureus
+  - agr
+  - typing
+  - virulence
+  - bactopia-tool
+---
+
+# agrvate
+
+**Tags:** <a href="/bactopia-tools/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/bactopia-tools/tags/agr" class="badge badge--primary badge--tag">agr</a> <a href="/bactopia-tools/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/bactopia-tools/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Identificação rápida do tipo de locus agr de Staphylococcus aureus e variantes do operon agr.
+
+Esta Bactopia Tool utiliza o [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE) para identificar
+rapidamente o tipo de locus _agr_ e detectar variantes do operon agr em montagens de _Staphylococcus aureus_.
+O sistema agr é um regulador chave de quorum-sensing da virulência em S. aureus.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf agrvate \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/agrvate/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── agrvate-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           ├── logs
+│           │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│           │   └── versions.yml
+│           └── supplemental
+│               ├── <SAMPLE_NAME>-agr_gp.tab
+│               ├── <SAMPLE_NAME>-blastn_log.txt
+│               └── <SAMPLE_NAME>.fna-error-report.tab
+└── bactopia-runs
+    └── agrvate-<TIMESTAMP>
+        ├── merged-results
+        │   ├── agrvate.tsv
+        │   └── logs
+        │       └── agrvate-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── agrvate-dag.dot
+            ├── agrvate-report.html
+            └── agrvate-timeline.html
+```
+
+### Resultados por Amostra
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.tsv` | Resultados da tipagem do locus Agr em formato TSV |
+| `supplemental/*` | Arquivos de saída suplementares incluindo análise detalhada do agr |
+
+### Resultados Combinados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `agrvate.tsv` | Resultados combinados da tipagem agr de todas as amostras |
+
+
+### Trilha de Auditoria
+
+Abaixo estão os arquivos que podem ajudá-lo a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta há arquivos úteis
+para você revisar caso necessário.
+
+| Extensão     | Descrição |
+|--------------|-----------|
+| .begin       | Um arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/remover arquivos e enfileirar processos com base no perfil fornecido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Um arquivo formatado em YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um ótimo resumo da sua execução. Eles podem ser usados para otimizar
+o uso de recursos e estimar os custos esperados ao utilizar plataformas em nuvem.
+
+| Nome do Arquivo | Descrição |
+|-----------------|-----------|
+| agrvate-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| agrvate-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| agrvate-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| agrvate-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do Bactopia a serem usados como entrada |
+
+### Parâmetros do AgrVATE
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--agrvate_typing_only` | boolean | `false` | Apenas tipagem agr. Ignora a extração do operon agr e a detecção de frameshift |
+
+### Parâmetros do csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use estes parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a incluir na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a excluir da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Estes parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para gravar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar datasets em cache |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Limite Máximo de Recursos</summary>
+
+Define o limite máximo de recursos solicitados para qualquer processo individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer processo individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer processo individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer processo individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras para baixar simultaneamente |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que sobrescreverá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter os logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID de commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | Link de URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para ambientes Conda |
+| `--registry` | string | `quay.io` | Registro de onde baixar os contêineres Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente as imagens Singularity, força o fluxo de trabalho a baixar e converter contêineres Docker. |
+| `--force_rebuild` | boolean | `false` | Força a sobrescrita de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) da(s) fila(s) separados por vírgula a serem usados por um agendador de tarefas (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais para passar ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais para passar ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente usados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibe o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Indica se os parâmetros devem ser validados em relação ao esquema em tempo de execução |
+| `--help` | boolean |  | Exibe o texto de ajuda. |
+| `--wf` | string | `bactopia` | Especifica qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Lista os fluxos de trabalho e Bactopia Tools disponíveis para uso com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostra todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibe o texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [agrvate](/developers/subworkflows/agrvate) - Identifica o tipo de locus agr e variantes do operon em Staphylococcus aureus.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)  
+  Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/agrvate)

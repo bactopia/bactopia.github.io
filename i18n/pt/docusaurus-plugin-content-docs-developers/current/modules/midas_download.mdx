@@ -1,0 +1,83 @@
+---
+title: midas_download
+description: "Baixar o banco de dados de referência do MIDAS."
+tags:
+  - midas
+  - download
+  - database
+  - metagenomics
+  - species
+  - run-scope
+---
+
+# midas_download
+
+**Tags:** <a href="/developers/tags/midas" class="badge badge--primary badge--tag">midas</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/species" class="badge badge--primary badge--tag">species</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Baixar o banco de dados de referência do MIDAS.
+
+Obtém o banco de dados pré-compilado necessário pelo [MIDAS](https://github.com/snayfach/MIDAS)
+para perfilamento de espécies metagenômicas. O banco de dados contém genomas de referência da
+coleção UHGG usados para identificação de espécies e estimativa de abundância.
+
+:::note[Internet e Armazenamento Necessários]
+Este processo requer uma conexão ativa com a internet e espaço em disco significativo
+para armazenar os arquivos do banco de dados (~3,3 GB comprimido, ~7 GB descomprimido).
+:::
+
+## Saídas
+
+```
+record (
+    db: Path?,
+    db_tarball: Path?,
+    logs: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `db` | `Path?` | O diretório do banco de dados do MIDAS contendo dados de genomas de referência |
+| `db_tarball` | `Path?` | Um tarball comprimido do banco de dados (se solicitado via parâmetros) |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+
+## Parâmetros
+
+### Parâmetros de Download do Banco de Dados MIDAS
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--midas_db` | string |  | Um único tarball ou caminho para um banco de dados formatado para o MIDAS |
+| `--midas_save_as_tarball` | boolean | `false` | Salvar o banco de dados do MIDAS como um tarball |
+| `--download_midas` | boolean | `false` | Baixar o banco de dados do MIDAS para o caminho fornecido por --midas_db |
+
+## Usado Por
+
+### Subworkflows
+
+- [midas](/developers/subworkflows/midas) - Perfilamento em nível de espécie a partir de dados metagenômicos.
+
+### Workflows
+
+- [midas](/bactopia-tools/midas) - Estimar abundâncias de espécies a partir de amostras metagenômicas.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [MIDAS](https://github.com/snayfach/MIDAS)  
+  Nayfach S, Rodriguez-Mueller B, Garud N, and Pollard KS [An integrated metagenomics pipeline for strain profiling reveals novel patterns of bacterial transmission and biogeography.](https://doi.org/10.1101/gr.201863.115) _Genome Research_, 26(11), 1612-1625. (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/midas/download)
+
+## Versão
+
+```yaml
+MIDAS_DOWNLOAD:
+    - gnu-wget: 1.18
+```

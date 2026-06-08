@@ -1,0 +1,118 @@
+---
+title: hicap
+description: "Prever sorotipo de cápsula de *Haemophilus influenzae*."
+tags:
+  - bacteria
+  - haemophilus-influenzae
+  - serotype
+  - capsule
+  - typing
+  - nthi
+  - sample-scope
+---
+
+# hicap
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/haemophilus-influenzae" class="badge badge--primary badge--tag">haemophilus-influenzae</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/capsule" class="badge badge--primary badge--tag">capsule</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/nthi" class="badge badge--primary badge--tag">nthi</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever sorotipo de cápsula de *Haemophilus influenzae*.
+
+Utiliza o [hicap](https://github.com/scwatts/hicap) para identificar o locus capsular em
+montagens de genomas de *H. influenzae*. Ele prevê o sorotipo (a, b, c, d, e, f ou Não-Tipável/NTHi) e
+pode opcionalmente gerar visualizações da estrutura do locus.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados em formato FASTA |
+
+```
+database_dir: Path?
+model_fp: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database_dir` | `Path?` | Caminho para um diretório de banco de dados de referência personalizado do hicap |
+| `model_fp` | `Path?` | Caminho para um arquivo de modelo de treinamento personalizado do Prodigal |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    gbff: Path?,
+    svg: Path?,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `gbff` | `Path?` | Arquivo GenBank contendo a região do locus capsular anotada |
+| `svg` | `Path?` | Visualização SVG do arranjo de genes do locus capsular |
+| `tsv` | `Path` | Resumo delimitado por tabulação do sorotipo previsto e cobertura do locus |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do hicap
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--hicap_database_dir` | string |  | Diretório contendo o banco de dados do locus |
+| `--hicap_model_fp` | string |  | Caminho para o modelo do Prodigal |
+| `--hicap_full_sequence` | boolean | `false` | Escreve a sequência de entrada completa no arquivo GenBank em vez de apenas a região ao redor do locus e incluindo-o |
+| `--hicap_debug` | boolean | `false` | O hicap imprimirá mensagens de depuração |
+| `--hicap_gene_coverage` | number | `0.8` | Percentual mínimo de cobertura para considerar um único gene completo |
+| `--hicap_gene_identity` | number | `0.7` | Percentual mínimo de identidade para considerar um único gene completo |
+| `--hicap_broken_gene_length` | integer | `60` | Comprimento mínimo para considerar um gene quebrado |
+| `--hicap_broken_gene_identity` | number | `0.8` | Percentual mínimo de identidade para considerar um gene quebrado |
+
+## Usado Por
+
+### Subworkflows
+
+- [hicap](/developers/subworkflows/hicap) - Sorotipagem in silico do locus capsular de Haemophilus influenzae.
+
+### Workflows
+
+- [hicap](/bactopia-tools/hicap) - Identificar sorotipo e estrutura do locus cap em montagens de Haemophilus influenzae.
+
+## Citações
+
+Se você usar isso em sua análise, cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [hicap](https://github.com/scwatts/hicap)  
+  Watts SC, Holt KE [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) _Journal of Clinical Microbiology_ JCM.00190-19 (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/hicap)
+
+## Versão
+
+```yaml
+HICAP:
+    - hicap: 1.0.4
+```

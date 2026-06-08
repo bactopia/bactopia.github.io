@@ -1,0 +1,102 @@
+---
+title: sistr
+description: "Predição de sorovar de montagens de Salmonella."
+tags:
+  - salmonella
+  - serotype
+  - cgmlst
+  - typing
+  - prediction
+  - sample-scope
+---
+
+# sistr
+
+**Tags:** <a href="/developers/tags/salmonella" class="badge badge--primary badge--tag">salmonella</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/cgmlst" class="badge badge--primary badge--tag">cgmlst</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predição de sorovar de montagens de Salmonella.
+
+Utiliza o [SISTR](https://github.com/phac-nml/sistr_cmd) (Salmonella In Silico Typing Resource) para
+predizer sorovares de *Salmonella* a partir de montagens de genomas rascunho usando tipagem por
+sequência Multi-Locus do genoma central (cgMLST).
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    allele_fasta: Path,
+    allele_json: Path,
+    cgmlst_csv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados de predição do SISTR em formato TSV |
+| `allele_fasta` | `Path` | Alelos novos em formato FASTA |
+| `allele_json` | `Path` | Alelos em formato JSON |
+| `cgmlst_csv` | `Path` | Perfil cgMLST em formato CSV |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do SISTR
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--sistr_full_cgmlst` | boolean | `false` | Utiliza o conjunto completo de alelos cgMLST, que pode incluir alelos altamente similares |
+
+## Usado Por
+
+### Subworkflows
+
+- [sistr](/developers/subworkflows/sistr) - Ferramenta de linha de comando do Salmonella In Silico Typing Resource.
+
+### Workflows
+
+- [sistr](/bactopia-tools/sistr) - Predição de sorovar de Salmonella enterica a partir de montagens.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SISTR](https://github.com/phac-nml/sistr_cmd)  
+  Yoshida CE, Kruczkiewicz P, Laing CR, Lingohr EJ, Gannon VPJ, Nash JHE, Taboada EN [The Salmonella In Silico Typing Resource (SISTR): An Open Web-Accessible Tool for Rapidly Typing and Subtyping Draft Salmonella Genome Assemblies.](https://doi.org/10.1371/journal.pone.0147101) _PloS One_, 11(1), e0147101. (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/sistr)
+
+## Versão
+
+```yaml
+SISTR:
+    - sistr_cmd: 1.1.3
+```

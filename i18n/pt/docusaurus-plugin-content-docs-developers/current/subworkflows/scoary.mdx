@@ -1,0 +1,82 @@
+---
+title: scoary
+description: "Estudos de associação pan-genômica ampla."
+tags:
+  - gwas
+  - association
+  - pan-genoma
+  - traits
+  - statistical
+  - run-scope
+---
+
+# scoary
+
+**Tags:** <a href="/developers/tags/gwas" class="badge badge--primary badge--tag">gwas</a> <a href="/developers/tags/association" class="badge badge--primary badge--tag">association</a> <a href="/developers/tags/pan-genoma" class="badge badge--primary badge--tag">pan-genoma</a> <a href="/developers/tags/traits" class="badge badge--primary badge--tag">traits</a> <a href="/developers/tags/statistical" class="badge badge--primary badge--tag">statistical</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Estudos de associação pan-genômica ampla.
+
+Este subworkflow realiza estudos de associação genômica ampla (GWAS) em dados de pan-genoma
+utilizando o [Scoary](https://github.com/AdmiralenOla/Scoary). A ferramenta identifica genes
+associados a características binárias, como patogenicidade, especificidade de hospedeiro ou
+resistência a antibióticos. Ele calcula associações estatísticas entre presença/ausência de genes
+e características fenotípicas em múltiplos isolados bacterianos.
+
+## Entrada
+
+```
+csv: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `csv` | Matriz de presença/ausência de genes da análise de pan-genoma em formato CSV |
+
+```
+traits: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `traits` | `Path?` | Arquivo de características contendo características fenotípicas binárias para cada isolado (opcional) |
+
+## Saída
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+Nenhuma saída no escopo de amostra.
+
+#### `run_outputs`
+
+Nenhuma saída no escopo de execução.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [scoary](/developers/modules/scoary) - Estudos de associação pan-genômica ampla.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [pangenome](/bactopia-tools/pangenome) - Análise de pan-genoma com filogenia opcional do genoma central.
+
+## Citações
+
+Se você utilizar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Scoary](https://github.com/AdmiralenOla/Scoary)  
+  Brynildsrud O, Bohlin J, Scheffer L, Eldholm V [Rapid scoring of genes in microbial pan-genoma-wide association studies with Scoary.](https://doi.org/10.1186/s13059-016-1108-8) _Genome Biol._ 17:238 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/scoary)

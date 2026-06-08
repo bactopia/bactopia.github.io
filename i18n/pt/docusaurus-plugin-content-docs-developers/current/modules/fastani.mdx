@@ -1,0 +1,103 @@
+---
+title: fastani
+description: "Calcula a Identidade Nucleotídica Média (ANI) de genomas completos."
+tags:
+  - fastani
+  - ani
+  - average-nucleotide-identity
+  - taxonomy
+  - genomic-distance
+  - comparison
+  - run-scope
+---
+
+# fastani
+
+**Tags:** <a href="/developers/tags/fastani" class="badge badge--primary badge--tag">fastani</a> <a href="/developers/tags/ani" class="badge badge--primary badge--tag">ani</a> <a href="/developers/tags/average-nucleotide-identity" class="badge badge--primary badge--tag">average-nucleotide-identity</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/genomic-distance" class="badge badge--primary badge--tag">genomic-distance</a> <a href="/developers/tags/comparison" class="badge badge--primary badge--tag">comparison</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Calcula a Identidade Nucleotídica Média (ANI) de genomas completos.
+
+Usa o [FastANI](https://github.com/ParBLiSS/FastANI) para realizar o cálculo de ANI sem alinhamento
+entre os genomas de consulta de entrada e um genoma de referência. Este é o método padrão
+para definição de espécies (tipicamente &gt;95% de ANI) e é muito mais rápido do que as abordagens tradicionais baseadas em BLAST.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    query: Set<Path>,
+    reference: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `query` | `Set<Path>` | Um ou mais contigs montados no formato FASTA (genomas de consulta) |
+| `reference` | `Path` | A montagem do genoma de referência no formato FASTA para comparação |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resumo delimitado por tabulação dos scores de ANI, fragmentos correspondentes e fragmentos totais |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Um arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do fastANI
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--fastani_reference` | string |  | Caminho para o genoma de referência no formato FASTA |
+| `--fastani_kmer` | integer | `16` | Tamanho do kmer (&lt;= 16) para cálculo do ANI |
+| `--fastani_min_fraction` | number | `0.2` | Fração mínima do genoma que deve ser compartilhada para considerar o ANI confiável. |
+| `--fastani_frag_len` | integer | `3000` | Comprimento do fragmento |
+| `--fastani_skip_pairwise` | boolean | `false` | Usar apenas montagens do RefSeq ou locais para cálculos de ANI |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [fastani](/developers/subworkflows/fastani) - Calcula a Identidade Nucleotídica Média (ANI) entre genomas.
+
+### Workflows
+
+- [fastani](/bactopia-tools/fastani) - Cálculo rápido e sem alinhamento da Identidade Nucleotídica Média de genomas completos.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [FastANI](https://github.com/ParBLiSS/FastANI)  
+  Jain C, Rodriguez-R LM, Phillippy AM, Konstantinidis KT, Aluru S [High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries.](http://dx.doi.org/10.1038/s41467-018-07641-9) _Nat. Commun._ 9, 5114 (2018)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/fastani)
+
+## Versão
+
+```yaml
+FASTANI:
+    - fastani: 1.34
+```

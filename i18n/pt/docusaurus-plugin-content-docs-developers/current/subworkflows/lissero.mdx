@@ -1,0 +1,78 @@
+---
+title: lissero
+description: "Predição de sorotipo in silico para Listeria monocytogenes."
+tags:
+  - listeria
+  - monocytogenes
+  - serotype
+  - outbreak
+  - sample-scope
+---
+
+# lissero
+
+**Tags:** <a href="/developers/tags/listeria" class="badge badge--primary badge--tag">listeria</a> <a href="/developers/tags/monocytogenes" class="badge badge--primary badge--tag">monocytogenes</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/outbreak" class="badge badge--primary badge--tag">outbreak</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predição de sorotipo in silico para Listeria monocytogenes.
+
+Este subworkflow realiza a predição de sorotipo para Listeria monocytogenes
+utilizando [LisSero](https://github.com/MDU-PHL/LisSero), que identifica marcadores
+específicos de sorotipo em montagens de genomas. A ferramenta fornece classificação
+rápida nos principais sorotipos de L. monocytogenes, o que é importante para
+investigação e rastreamento de surtos.
+
+## Entrada
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem no formato FASTA para predição de sorotipo de L. monocytogenes |
+
+## Saída
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resultados do LisSero delimitados por tabulação com sorogrupo predito e detecção de genes marcadores |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [lissero](/developers/modules/lissero) - Prediz o sorogrupo de *Listeria monocytogenes*.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [lissero](/bactopia-tools/lissero) - Predição de tipagem de sorogrupo para Listeria monocytogenes.
+
+## Citações
+
+Se você usar este subworkflow em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [LisSero](https://github.com/MDU-PHL/LisSero)  
+  Kwong J, Zhang J, Seeman T, Horan, K, Gonçalves da Silva A [LisSero - _In silico_ serotype prediction for _Listeria monocytogenes_](https://github.com/MDU-PHL/LisSero) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/lissero)

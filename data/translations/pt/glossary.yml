@@ -1,0 +1,45 @@
+# Portuguese glossary for deterministic post-processing.
+# Applied AFTER LLM translation to enforce term consistency.
+#
+# Adapted from the Nextflow Training project:
+# https://github.com/nextflow-io/training/blob/master/TRANSLATING.md
+
+# Terms to enforce (case-insensitive source -> exact target)
+terms:
+  - source: "antimicrobial resistance"
+    target: "resistência antimicrobiana"
+  - source: "quality control"
+    target: "controle de qualidade"
+  - source: "reference genome"
+    target: "genoma de referência"
+  - source: "variant calling"
+    target: "chamada de variantes"
+  - source: "sequence type"
+    target: "tipo de sequência"
+  - source: "pan-genome"
+    target: "pan-genoma"
+  - source: "Quick Start"
+    target: "Início Rápido"
+
+# Admonition title translations (Docusaurus :::keyword[Title] syntax)
+admonition_titles:
+  note: "Nota"
+  tip: "Dica"
+  info: "Informação"
+  warning: "Aviso"
+  danger: "Perigo"
+  caution: "Cuidado"
+
+# Terms that must NEVER be translated
+never_translate:
+  - "Bactopia"
+  - "Nextflow"
+  - "nf-core"
+  - "Conda"
+  - "Bioconda"
+  - "Docker"
+  - "Singularity"
+  - "Apptainer"
+  - "GitHub"
+  - "Slack"
+  - "Cloudflare"

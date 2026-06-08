@@ -1,0 +1,69 @@
+---
+title: bactopia-test
+description: "Execute suítes nf-test para componentes do Bactopia."
+---
+
+# bactopia-test
+
+Execute suítes nf-test para componentes do Bactopia.
+
+Descobre e executa arquivos nf-test em módulos, subworkflows e
+workflows. Os resultados são classificados por status e exibidos como uma tabela
+resumida. Os logs por teste são salvos em um diretório logs/.
+
+
+## Uso
+
+```bash
+bactopia-test [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+| `--test-data` | STRING |  | Diretório contendo os dados do bactopia-tests (define a variável de ambiente BACTOPIA_TESTS). Obrigatório a menos que --cleanup seja usado |
+
+## Limpeza
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--cleanup` | BOOL | `false` | Encontra e remove todos os arquivos temporários .nf-test/, depois encerra (nenhum teste é executado) |
+| `--dry-run` | BOOL | `false` | Com --cleanup, lista o que seria removido sem excluir |
+| `--keep` | BOOL | `false` | Mantém os diretórios .nf-test/ e os logs após a conclusão dos testes (útil para depuração) |
+
+## Seleção de Testes
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--tier` | CHOICE (modules, subworkflows, workflows, all) | `all` | Qual nível de componente testar |
+| `--include` | STRING |  | Lista de nomes de componentes separados por vírgula para incluir |
+| `--exclude` | STRING |  | Lista de nomes de componentes separados por vírgula para excluir |
+
+## Opções de Execução
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--profile` | CHOICE (docker, singularity, conda) | `docker` | Perfil Nextflow a ser usado nos testes |
+| `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Diretório onde os ambientes Conda são armazenados (a variável de ambiente NXF_CONDA_CACHEDIR tem precedência) |
+| `--singularity_cache` | STRING | `/home/rpetit3/.bactopia/singularity` | Diretório onde as imagens Singularity são armazenadas (a variável de ambiente NXF_SINGULARITY_CACHEDIR tem precedência) |
+| `--generate` | BOOL | `false` | Modo de geração: exclui snapshots e executa duas vezes para verificar a reprodutibilidade |
+| `--jobs` | INT | `64` | Número de workers de teste paralelos |
+| `--fail-fast` | BOOL | `false` | Para na primeira falha de teste em vez de continuar |
+| `--timeout` | INT | `90` | Tempo limite por teste em minutos. Cada subprocesso nf-test é encerrado após esse período. Defina como 0 para desativar |
+
+## Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--outdir` | STRING | `.` | Diretório onde a pasta logs/ será criada |
+| `--json` | BOOL | `false` | Exibe os resultados em formato JSON |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibe texto relacionado à depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

@@ -12,3 +12,4 @@ Thumbs.db
 data/bactopia.json
 data/cli.json
 TODO.md
+__pycache__/

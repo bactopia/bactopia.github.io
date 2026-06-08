@@ -1,0 +1,54 @@
+---
+title: bactopia-review-tests
+description: "Revise resultados de nf-test com análise agrupada de erros e verificações de tempo."
+---
+
+# bactopia-review-tests
+
+Revise resultados de nf-test com análise agrupada de erros e verificações de tempo.
+
+Analisa logs de execução de testes, classifica falhas por padrão de erro
+e opcionalmente verifica durações em relação às linhas de base esperadas.
+
+
+## Uso
+
+```bash
+bactopia-review-tests [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Seleção de Execução
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--run` | STRING |  | Timestamp específico de execução de teste (YYYYMMDD_HHMMSS). Padrão: mais recente |
+| `--logs-dir` | STRING |  | Diretório contendo os logs de execução de testes. Padrão: &#123;bactopia-path&#125;/logs |
+
+## Opções de Tempo
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--baselines` | STRING |  | Caminho para o arquivo JSON de linha de base de tempos de teste. Padrão: &#123;bactopia-path&#125;/conf/test-times.json |
+| `--tolerance` | FLOAT | `2.0` | Fator de tolerância para detecção de anomalias de tempo |
+| `--update-baselines` | BOOL | `false` | Escrever/atualizar o arquivo de linhas de base a partir dos resultados da execução atual |
+
+## Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--json` | BOOL | `false` | Saída em formato JSON |
+| `--pretty` | BOOL | `false` | Formatar saída JSON de forma legível (implica --json) |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |

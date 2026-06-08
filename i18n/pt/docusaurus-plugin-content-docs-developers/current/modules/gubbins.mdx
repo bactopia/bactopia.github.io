@@ -1,0 +1,105 @@
+---
+title: gubbins
+description: "Detectar recombinação e construir uma filogenia livre de recombinação."
+tags:
+  - bacteria
+  - recombination
+  - phylogeny
+  - alignment
+  - msa
+  - evolution
+  - snp
+  - run-scope
+---
+
+# gubbins
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/recombination" class="badge badge--primary badge--tag">recombination</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/msa" class="badge badge--primary badge--tag">msa</a> <a href="/developers/tags/evolution" class="badge badge--primary badge--tag">evolution</a> <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Detectar recombinação e construir uma filogenia livre de recombinação.
+
+Utiliza o [Gubbins](https://github.com/nickjcroucher/gubbins) (Genealogies Unbiased By recomBinations In Nucleotide Sequences)
+para identificar e mascarar iterativamente regiões recombinantes em um alinhamento de múltiplas sequências. Ele gera
+uma árvore filogenética baseada apenas em mutações pontuais herdadas verticalmente.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    aln: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `aln` | `Path` | Alinhamento de múltiplas sequências no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    masked_aln: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `masked_aln` | `Path` | O alinhamento de entrada com regiões recombinantes mascaradas (*.masked.aln.gz) |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Gubbins
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--gubbins_iterations` | inteiro | `5` | Número máximo de iterações |
+| `--gubbins_min_snps` | inteiro | `3` | Mínimo de SNPs para identificar um bloco de recombinação |
+| `--gubbins_min_window_size` | inteiro | `100` | Tamanho mínimo da janela |
+| `--gubbins_max_window_size` | inteiro | `10000` | Tamanho máximo da janela |
+| `--gubbins_filter_percentage` | número | `25.0` | Filtrar taxa com mais do que essa porcentagem de lacunas |
+| `--gubbins_remove_identical_sequences` | booleano | `false` | Remover sequências idênticas |
+| `--gubbins_opts` | string |  | Opções extras do Gubbins entre aspas |
+| `--skip_recombination` | booleano | `false` | Pular a execução do Gubbins em subworkflows |
+
+## Usado Por
+
+### Subworkflows
+
+- [gubbins](/developers/subworkflows/gubbins) - Detectar e filtrar regiões de recombinação em alinhamentos bacterianos.
+
+### Workflows
+
+- [snippy](/bactopia-tools/snippy) - Chamada rápida de variantes por haplótipo e alinhamento do genoma core.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Gubbins](https://github.com/nickjcroucher/gubbins)  
+  Croucher NJ, Page AJ, Connor TR, Delaney AJ, Keane JA, Bentley SD, Parkhill J, Harris SR [Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins.](https://doi.org/10.1093/nar/gku1196) _Nucleic Acids Research_ 43(3), e15. (2015)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/gubbins)
+
+## Versão
+
+```yaml
+GUBBINS:
+    - gubbins: 3.4.3
+```

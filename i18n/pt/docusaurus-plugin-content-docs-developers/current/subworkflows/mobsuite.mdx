@@ -1,0 +1,81 @@
+---
+title: mobsuite
+description: "Reconstrua e classifique plasmídeos a partir de montagens de genomas bacterianos."
+tags:
+  - plasmid
+  - reconstruction
+  - typing
+  - mobilome
+  - bacterial-genome
+  - sample-scope
+---
+
+# mobsuite
+
+**Tags:** <a href="/developers/tags/plasmid" class="badge badge--primary badge--tag">plasmid</a> <a href="/developers/tags/reconstruction" class="badge badge--primary badge--tag">reconstruction</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/mobilome" class="badge badge--primary badge--tag">mobilome</a> <a href="/developers/tags/bacterial-genome" class="badge badge--primary badge--tag">bacterial-genome</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Reconstrua e classifique plasmídeos a partir de montagens de genomas bacterianos.
+
+Este subworkflow usa o [MOB-suite](https://github.com/phac-nml/mob-suite) para reconstruir
+e classificar plasmídeos a partir de montagens de genomas em rascunho. Ele separa sequências
+de plasmídeos das cromossômicas, determina os tipos de replicon dos plasmídeos usando o banco
+de dados do MOB-suite e fornece relatórios completos sobre o conteúdo e a organização dos plasmídeos.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Contigs montados no formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `chromosome` | Sequências cromossômicas separadas dos contigs de plasmídeos (FASTA comprimido) |
+| `contig_report` | Relatório delimitado por tabulação que atribui cada contig ao cromossomo ou plasmídeo |
+| `txt` | Resultados do MOB-typer com tipo de replicon, mobilidade e grupo de incompatibilidade (opcional) |
+| `plasmids` | Sequências de plasmídeos reconstruídas no formato FASTA comprimido (opcional) |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [mobsuite_recon](/developers/modules/mobsuite_recon) - Reconstrói e classifica plasmídeos a partir de uma montagem de genoma bacteriano.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [mobsuite](/bactopia-tools/mobsuite) - Reconstrução e anotação de plasmídeos a partir de montagens de genomas bacterianos.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [MOB-suite](https://github.com/phac-nml/mob-suite)  
+  Robertson J, Nash JHE [MOB-suite: software tools for clustering, reconstruction and typing of plasmids from draft assemblies.](https://doi.org/10.1099/mgen.0.000206) _Microbial Genomics_ 4(8). (2018)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/mobsuite)

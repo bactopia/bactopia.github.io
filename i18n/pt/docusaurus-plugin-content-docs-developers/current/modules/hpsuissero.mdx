@@ -1,0 +1,89 @@
+---
+title: hpsuissero
+description: "Prever o sorotipo de *Haemophilus parasuis*."
+tags:
+  - bacteria
+  - haemophilus-parasuis
+  - glaesserella-parasuis
+  - serotype
+  - typing
+  - capsule
+  - sample-scope
+---
+
+# hpsuissero
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/haemophilus-parasuis" class="badge badge--primary badge--tag">haemophilus-parasuis</a> <a href="/developers/tags/glaesserella-parasuis" class="badge badge--primary badge--tag">glaesserella-parasuis</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/capsule" class="badge badge--primary badge--tag">capsule</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever o sorotipo de *Haemophilus parasuis*.
+
+Utiliza o [HPSuisSero](https://github.com/Abraham-L/HPSuisSero) para prever o sorotipo de
+montagens de *Haemophilus parasuis* (sin. *Glaesserella parasuis*). Ele detecta marcadores
+específicos de loci de cápsula para atribuir um dos sorovares conhecidos.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados da predição de sorotipo de Haemophilus parasuis em formato delimitado por tabulação |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [hpsuissero](/developers/subworkflows/hpsuissero) - Sorotipagem rápida de Haemophilus parasuis.
+
+### Workflows
+
+- [hpsuissero](/bactopia-tools/hpsuissero) - Predição de sorotipo de montagens de Haemophilus parasuis.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [HpsuisSero](https://github.com/jimmyliu1326/HpsuisSero)  
+  Lui J [HpsuisSero: Rapid _Haemophilus parasuis_ serotyping](https://github.com/jimmyliu1326/HpsuisSero) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/hpsuissero)
+
+## Versão
+
+```yaml
+HPSUISSERO:
+    - hpsuissero: 1.0.1
+```

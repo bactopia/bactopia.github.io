@@ -1,0 +1,107 @@
+---
+title: sccmec
+description: "Identifica elementos SCCmec em genomas de Staphylococcus aureus."
+tags:
+  - sccmec
+  - staphylococcus-aureus
+  - mrsa
+  - antimicrobial-resistance
+  - typing
+  - sample-scope
+---
+
+# sccmec
+
+**Tags:** <a href="/developers/tags/sccmec" class="badge badge--primary badge--tag">sccmec</a> <a href="/developers/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/developers/tags/mrsa" class="badge badge--primary badge--tag">mrsa</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identifica elementos SCCmec em genomas de Staphylococcus aureus.
+
+Utiliza o [SCCmec](https://github.com/rpetit3/sccmec) para identificar o elemento
+Staphylococcal Cassette Chromosome mec (SCCmec) em montagens de *Staphylococcus aureus*.
+O tipo é previsto com base na presença de complexos gênicos específicos de *mec* e *ccr*.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    targets: Path,
+    target_details: Path,
+    regions: Path,
+    regions_details: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Arquivo principal de resultados com a tipagem SCCmec |
+| `targets` | `Path` | Resultados BLAST para sequências-alvo |
+| `target_details` | `Path` | Resultados detalhados para correspondências de alvos |
+| `regions` | `Path` | Resultados BLAST para regiões SCCmec |
+| `regions_details` | `Path` | Resultados detalhados para correspondências de regiões SCCmec |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do sccmec
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--sccmec_min_targets_pident` | inteiro | `90` | Identidade percentual mínima para contar um hit de alvo |
+| `--sccmec_min_targets_coverage` | inteiro | `80` | Cobertura percentual mínima para contar um hit de alvo |
+| `--sccmec_min_regions_pident` | inteiro | `85` | Identidade percentual mínima para contar um hit de região |
+| `--sccmec_min_regions_coverage` | inteiro | `93` | Cobertura percentual mínima para contar um hit de região |
+
+## Usado Por
+
+### Subworkflows
+
+- [sccmec](/developers/subworkflows/sccmec) - Identifica elementos SCCmec em genomas de Staphylococcus aureus.
+
+### Workflows
+
+- [sccmec](/bactopia-tools/sccmec) - Tipagem de cassetes SCCmec em montagens de Staphylococcus aureus.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [sccmec](https://github.com/rpetit3/sccmec)  
+  Petit III RA, Read TD [sccmec: A tool for typing SCCmec cassettes in assemblies](https://github.com/rpetit3/sccmec) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/sccmec)
+
+## Versão
+
+```yaml
+SCCMEC:
+    - sccmec: 1.2.0
+```

@@ -1,0 +1,82 @@
+---
+title: stecfinder
+description: "Identificar e sorotipificar E. coli produtora de toxina Shiga (STEC) a partir de montagens."
+tags:
+  - escherichia-coli
+  - stec
+  - serotype
+  - virulence-genes
+  - shiga-toxin
+  - sample-scope
+---
+
+# stecfinder
+
+**Tags:** <a href="/developers/tags/escherichia-coli" class="badge badge--primary badge--tag">escherichia-coli</a> <a href="/developers/tags/stec" class="badge badge--primary badge--tag">stec</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/virulence-genes" class="badge badge--primary badge--tag">virulence-genes</a> <a href="/developers/tags/shiga-toxin" class="badge badge--primary badge--tag">shiga-toxin</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identificar e sorotipificar *E. coli* produtora de toxina Shiga (STEC) a partir de montagens.
+
+Este subworkflow utiliza o [STECFinder](https://github.com/LanLab/STECFinder) para identificar
+e sorotipificar cepas de *E. coli* produtoras de toxina Shiga (STEC) usando marcadores
+genômicos específicos de cluster. Ele examina montagens em busca de genes de virulência e
+marcadores de sorotipo para classificar isolados de STEC em seus sorotipos conhecidos.
+
+## Take
+
+```
+seqs: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `fna` | Contigs montados no formato FASTA |
+| `r1` | Reads R1 Illumina (paired-end) |
+| `r2` | Reads R2 Illumina (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Long reads (ONT/PacBio) |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho principal.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Arquivo TSV com os resultados dos marcadores genéticos STEC |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados STEC consolidados de todas as amostras |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [stecfinder](/developers/modules/stecfinder) - Sorotipificação de *E. coli* produtora de toxina Shiga usando reads/montagens.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenação de múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [stecfinder](/bactopia-tools/stecfinder) - Identificação de sorotipo de *E. coli* produtora de toxina Shiga.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [STECFinder](https://github.com/LanLab/STECFinder)  
+  Zhang X, Payne M, Kaur S, and Lan R [Improved Genomic Identification, Clustering, and Serotyping of Shiga Toxin-Producing Escherichia coli Using Cluster/Serotype-Specific Gene Markers.](https://doi.org/10.3389/fcimb.2021.772574) _Frontiers in Cellular and Infection Microbiology_, 11, 772574. (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/stecfinder)

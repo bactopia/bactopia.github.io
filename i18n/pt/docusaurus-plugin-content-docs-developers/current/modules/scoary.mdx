@@ -1,0 +1,107 @@
+---
+title: scoary
+description: "Estudos de associação pan-genômica ampla."
+tags:
+  - scoary
+  - pangenome
+  - gwas
+  - association
+  - bacteria
+  - roary
+  - run-scope
+---
+
+# scoary
+
+**Tags:** <a href="/developers/tags/scoary" class="badge badge--primary badge--tag">scoary</a> <a href="/developers/tags/pangenome" class="badge badge--primary badge--tag">pangenome</a> <a href="/developers/tags/gwas" class="badge badge--primary badge--tag">gwas</a> <a href="/developers/tags/association" class="badge badge--primary badge--tag">association</a> <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/roary" class="badge badge--primary badge--tag">roary</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Estudos de associação pan-genômica ampla.
+
+Utiliza o [Scoary](https://github.com/AdmiralenOla/Scoary) para pontuar os componentes do pan-genoma
+em relação a associações com características (fenótipos) especificadas. Foi desenvolvido para funcionar com a
+saída de presença/ausência de genes do Roary.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    csv: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `csv` | `Path` | Arquivo CSV de presença/ausência de genes (tipicamente gerado pelo Roary) |
+
+```
+traits: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `traits` | `Path` | Arquivo CSV contendo informações de características das amostras |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Scoary
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--scoary_traits` | string |  | Tabela de características de entrada (CSV) para testar associações |
+| `--scoary_p_value_cutoff` | number | `0.05` | Para testes estatísticos, genes com valores de p maiores não serão reportados |
+| `--scoary_correction` | string | `I` | Aplica a medida de filtragem indicada. (opções: `I`, `B`, `BH`, `PW`, `EPW`, `P`) |
+| `--scoary_permute` | integer | `0` | Realiza N permutações dos resultados significativos após a análise |
+| `--scoary_start_col` | integer | `15` | Em qual coluna do arquivo de presença/ausência de genes as informações individuais de cada cepa começam |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [scoary](/developers/subworkflows/scoary) - Estudos de associação pan-genômica ampla.
+
+### Workflows
+
+- [pangenome](/bactopia-tools/pangenome) - Análise de pan-genoma com filogenia opcional do core-genoma.
+
+## Citações
+
+Se você utilizar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Scoary](https://github.com/AdmiralenOla/Scoary)  
+  Brynildsrud O, Bohlin J, Scheffer L, Eldholm V [Rapid scoring of genes in microbial pan-genoma-wide association studies with Scoary.](https://doi.org/10.1186/s13059-016-1108-8) _Genome Biol._ 17:238 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/scoary)
+
+## Versão
+
+```yaml
+SCOARY:
+    - scoary: 1.6.16
+```

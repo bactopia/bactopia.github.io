@@ -1,0 +1,320 @@
+---
+title: checkm
+description: "Avaliação da qualidade da montagem de genomas microbianos."
+tags:
+  - assembly-quality
+  - microbial-genomes
+  - completeness
+  - contamination
+  - bactopia-tool
+---
+
+# checkm
+
+**Tags:** <a href="/bactopia-tools/tags/assembly-quality" class="badge badge--primary badge--tag">assembly-quality</a> <a href="/bactopia-tools/tags/microbial-genomes" class="badge badge--primary badge--tag">microbial-genomes</a> <a href="/bactopia-tools/tags/completeness" class="badge badge--primary badge--tag">completeness</a> <a href="/bactopia-tools/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Avaliação da qualidade da montagem de genomas microbianos.
+
+Esta Bactopia Tool utiliza o [CheckM](https://github.com/Ecogenomics/CheckM) para avaliar a qualidade
+de genomas microbianos recuperados de isolados, células únicas e metagenomas, usando
+um conjunto de genes marcadores específicos de linhagem.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf checkm \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/checkm/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── checkm-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           ├── logs
+│           │   ├── checkm.log
+│           │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│           │   └── versions.yml
+│           └── supplemental
+│               ├── <SAMPLE_NAME>-genes.aln
+│               ├── bins
+│               │   └── <SAMPLE_NAME>
+│               │       ├── genes.faa.gz
+│               │       ├── genes.gff
+│               │       ├── hmmer.analyze.txt.gz
+│               │       └── hmmer.tree.txt
+│               ├── lineage.ms
+│               └── storage
+│                   ├── aai_qa
+│                   ├── bin_stats.analyze.tsv
+│                   ├── bin_stats.tree.tsv
+│                   ├── bin_stats_ext.tsv
+│                   ├── checkm_hmm_info.pkl.gz
+│                   ├── marker_gene_stats.tsv
+│                   ├── phylo_hmm_info.pkl.gz
+│                   └── tree
+│                       ├── PF00164.20.masked.faa.gz
+│                       ├── PF00177.16.masked.faa.gz
+│                       ├── PF00181.18.masked.faa.gz
+│                       ├── PF00189.15.masked.faa.gz
+│                       ├── PF00203.16.masked.faa.gz
+│                       ├── PF00237.14.masked.faa.gz
+│                       ├── PF00238.14.masked.faa.gz
+│                       ├── PF00252.13.masked.faa.gz
+│                       ├── PF00276.15.masked.faa.gz
+│                       ├── PF00281.14.masked.faa.gz
+│                       ├── PF00333.15.masked.faa.gz
+│                       ├── PF00366.15.masked.faa.gz
+│                       ├── PF00410.14.masked.faa.gz
+│                       ├── PF00411.14.masked.faa.gz
+│                       ├── PF00562.23.masked.faa.gz
+│                       ├── PF00623.15.masked.faa.gz
+│                       ├── PF00673.16.masked.faa.gz
+│                       ├── PF00831.18.masked.faa.gz
+│                       ├── PF00861.17.masked.faa.gz
+│                       ├── PF03719.10.masked.faa.gz
+│                       ├── PF03947.13.masked.faa.gz
+│                       ├── PF04560.15.masked.faa.gz
+│                       ├── PF04561.9.masked.faa.gz
+│                       ├── PF04565.11.masked.faa.gz
+│                       ├── PF04997.7.masked.faa.gz
+│                       ├── PF11987.3.masked.faa.gz
+│                       ├── concatenated.fasta.gz
+│                       ├── concatenated.pplacer.json
+│                       ├── concatenated.tre
+│                       └── pplacer.out
+└── bactopia-runs
+    └── checkm-<TIMESTAMP>
+        ├── merged-results
+        │   ├── checkm.tsv
+        │   └── logs
+        │       └── checkm-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── checkm-dag.dot
+            ├── checkm-report.html
+            └── checkm-timeline.html
+```
+
+### Avaliação de Qualidade
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.genes.aln` | Alinhamento de genes com múltiplas cópias e sua identidade AAI |
+| `*.results.txt` | Resultados finais do fluxo de trabalho `lineage_wf` do CheckM |
+| `lineage.ms` | Arquivo de saída descrevendo o conjunto de marcadores para cada bin |
+| `bins/**` | Diretório com entradas para processamento pelo CheckM |
+| `storage/**` | Diretório com resultados intermediários do processamento pelo CheckM |
+
+### Resultados Consolidados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `checkm.tsv` | Arquivo TSV consolidado com os resultados do CheckM de todas as amostras |
+
+
+### Trilha de Auditoria
+
+Abaixo estão os arquivos que podem ajudar a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta estão arquivos úteis
+para revisão caso seja necessário.
+
+| Extensão     | Descrição |
+|--------------|-----------|
+| .begin       | Arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/desfazer arquivos e enfileirar processos com base no perfil definido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um excelente resumo da sua execução. Podem ser usados para otimizar
+o uso de recursos e estimar custos esperados em plataformas de nuvem.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| checkm-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| checkm-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| checkm-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| checkm-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do Bactopia a serem usados como entradas |
+
+### Parâmetros do CheckM
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--checkm_unique` | integer | `10` | Número mínimo de marcadores filogenéticos únicos necessários para usar o conjunto de marcadores específico de linhagem. |
+| `--checkm_multi` | integer | `10` | Número máximo de marcadores filogenéticos com múltiplas cópias antes de usar o conjunto de marcadores em nível de domínio. |
+| `--checkm_aai_strain` | number | `0.9` | Limiar AAI usado para identificar heterogeneidade de linhagem |
+| `--checkm_length` | number | `0.7` | Percentual de sobreposição entre alvo e consulta |
+| `--checkm_full_tree` | boolean |  | Usar a árvore completa (requer ~40 GB de memória) para determinar a linhagem de cada bin. |
+| `--checkm_ignore_thresholds` | boolean |  | Ignorar os limiares de pontuação específicos do modelo |
+| `--checkm_ali` | boolean |  | Gerar arquivo de alinhamento HMMER para cada bin |
+| `--checkm_nt` | boolean |  | Gerar sequências de genes em nucleotídeos para cada bin |
+| `--checkm_force_domain` | boolean |  | Usar conjuntos em nível de domínio para todos os bins |
+| `--checkm_no_refinement` | boolean |  | Não realizar o refinamento do conjunto de marcadores específico de linhagem |
+| `--checkm_individual_markers` | boolean |  | Tratar marcadores como independentes |
+| `--checkm_skip_adj_correction` | boolean |  | Não excluir genes marcadores adjacentes ao estimar contaminação |
+| `--checkm_skip_pseudogene_correction` | boolean |  | Ignorar a identificação e filtragem de pseudogenes |
+
+### Parâmetros do csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use esses parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a incluir na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a excluir da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Esses parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Jobs</summary>
+
+Define o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras a baixar simultaneamente |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que sobrescreverá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter os logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID de commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para ambientes Conda |
+| `--registry` | string | `quay.io` | Registro de onde baixar os containers Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente as imagens Singularity, força o fluxo de trabalho a baixar e converter containers Docker. |
+| `--force_rebuild` | boolean | `false` | Forçar a sobrescrita de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) de fila(s) separados por vírgula a serem usados por um agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais a serem passadas ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais a serem passadas ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente usados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibir o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Define se os parâmetros devem ser validados em relação ao esquema em tempo de execução |
+| `--help` | boolean |  | Exibir texto de ajuda. |
+| `--wf` | string | `bactopia` | Especificar qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Listar os fluxos de trabalho e Bactopia Tools disponíveis para uso com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostrar todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibir texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [checkm](/developers/subworkflows/checkm) - Avalia a completude de bins de metagenoma usando CheckM.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [CheckM](https://github.com/Ecogenomics/CheckM)  
+  Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW [CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes.](http://dx.doi.org/10.1101/gr.186072.114) _Genome Res_ 25, 1043-1055 (2015)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/checkm)

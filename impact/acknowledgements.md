@@ -54,6 +54,16 @@ this I'm very grateful to the nf-core community! Thank you!
 
 Ewels P, Peltzer A, Fillinger S, Patel H, Alneberg J, Wilm A, Garcia MU, Di Tommaso P, Nahnsen S [The nf-core framework for community-curated bioinformatics pipelines.](https://dx.doi.org/10.1038/s41587-020-0439-x) _Nat Biotechnol._ (2020)
 
+## Translating
+
+The translation tooling and prompts used to translate the Bactopia documentation
+were adapted from the [Nextflow Training](https://github.com/nextflow-io/training)
+project's translation system
+([TRANSLATING.md](https://github.com/nextflow-io/training/blob/master/TRANSLATING.md)).
+All translations are generated and maintained by AI using
+[Claude](https://www.anthropic.com/claude) from Anthropic. Thank you to the
+Nextflow team for making their translation infrastructure openly available!
+
 ## Public Datasets
 
 Below is a list of 17 public datasets that could have potentially

@@ -1,0 +1,98 @@
+---
+title: eggnog
+description: "Anotação funcional por meio de atribuição de ortologia."
+tags:
+  - functional
+  - annotation
+  - orthology
+  - eggnog
+  - protein-domains
+  - sample-scope
+---
+
+# eggnog
+
+**Tags:** <a href="/developers/tags/functional" class="badge badge--primary badge--tag">functional</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/orthology" class="badge badge--primary badge--tag">orthology</a> <a href="/developers/tags/eggnog" class="badge badge--primary badge--tag">eggnog</a> <a href="/developers/tags/protein-domains" class="badge badge--primary badge--tag">protein-domains</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Anotação funcional por meio de atribuição de ortologia.
+
+Este subworkflow realiza anotação funcional em escala genômica usando o
+[eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper), que fornece anotação
+funcional rápida por meio de atribuição de ortologia. Ele pode, opcionalmente, fazer
+o download do banco de dados eggNOG caso não seja fornecido. O pipeline prediz ortólogos,
+categorias funcionais e diversos formatos de anotação, incluindo GFF, Excel e relatórios
+detalhados.
+
+## Take
+
+```
+proteins: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `proteins` | Sequências de proteínas no formato FASTA para anotação funcional |
+
+```
+database: Path?
+download_eggnog: Boolean
+save_as_tarball: Boolean
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database` | `Path?` | Caminho para o banco de dados eggNOG pré-baixado (opcional) |
+| `download_eggnog` | `Boolean` | Flag booleano para acionar o download do banco de dados, caso não seja fornecido |
+| `save_as_tarball` | `Boolean` | Flag booleano para salvar o banco de dados baixado como tarball |
+
+## Emit
+
+### Published
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no workflow de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `hits` | Hits brutos de busca (Diamond/MMseqs2) contra o banco de dados eggNOG |
+| `seed_orthologs` | Lista de ortólogos semente identificados usados para transferência de anotação |
+| `annotations` | Arquivo de anotação principal delimitado por tabulação (COGs, KEGG, GO, etc.) |
+| `xlsx` | Formato Excel do arquivo de anotações |
+| `orthologs` | Lista de ortólogos refinados (opcional) |
+| `genepred` | Sequências gênicas preditas (opcional) |
+| `gff` | Anotações no formato GFF (opcional) |
+| `no_anno` | Arquivo FASTA de sequências que não puderam ser anotadas (opcional) |
+| `pfam` | Hits brutos de domínios PFAM (opcional) |
+
+#### `run_outputs`
+
+Nenhuma saída de escopo de execução.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [eggnog_download](/developers/modules/eggnog_download) - Faz o download do banco de dados eggNOG para anotação funcional.
+- [eggnog_mapper](/developers/modules/eggnog_mapper) - Anotação funcional de proteínas usando dados de ortologia do eggNOG.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes workflows:
+
+- [eggnog](/bactopia-tools/eggnog) - Anotação funcional de proteínas usando grupos ortólogos e filogenias.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)  
+  Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115-2122 (2017)
+
+## Source
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/eggnog)

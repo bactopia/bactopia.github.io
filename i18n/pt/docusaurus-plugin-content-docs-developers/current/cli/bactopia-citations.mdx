@@ -1,0 +1,44 @@
+---
+title: bactopia-citations
+description: "Imprime ou valida citações usadas no Bactopia."
+---
+
+# bactopia-citations
+
+Imprime ou valida citações usadas no Bactopia.
+
+O modo padrão imprime a lista completa de citações (ou uma entrada com --name).
+Use --validate para escanear o repositório em busca de chaves órfãs (definidas mas
+nunca referenciadas) e chaves @citation de workflows que não correspondem a
+uma entrada em citations.yml. As chaves @citation de módulos e subworkflows são
+validadas pelo bactopia-lint (regras M035 e S019).
+
+
+## Uso
+
+```bash
+bactopia-citations [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path, -b` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Opções de Saída
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--name, -n` | STRING |  | Imprime apenas a citação que corresponde ao nome fornecido |
+| `--plain-text, -p` | BOOL | `false` | Desativa a formatação rica |
+| `--validate` | BOOL | `false` | Valida a integridade das citações: chaves órfãs + referências @citation de workflows |
+| `--json` | BOOL | `false` | Emite os resultados da validação em JSON (use com --validate) |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Imprime texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

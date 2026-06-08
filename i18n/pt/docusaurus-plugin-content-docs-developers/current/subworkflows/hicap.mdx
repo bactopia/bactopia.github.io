@@ -1,0 +1,90 @@
+---
+title: hicap
+description: "Sorotipagem in silico do locus capsular de Haemophilus influenzae."
+tags:
+  - haemophilus
+  - influenzae
+  - serotype
+  - capsule
+  - cap-locus
+  - sample-scope
+---
+
+# hicap
+
+**Tags:** <a href="/developers/tags/haemophilus" class="badge badge--primary badge--tag">haemophilus</a> <a href="/developers/tags/influenzae" class="badge badge--primary badge--tag">influenzae</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/capsule" class="badge badge--primary badge--tag">capsule</a> <a href="/developers/tags/cap-locus" class="badge badge--primary badge--tag">cap-locus</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Sorotipagem in silico do locus capsular de Haemophilus influenzae.
+
+Este subworkflow realiza a sorotipagem de *Haemophilus influenzae* por meio da análise
+do locus capsular utilizando o [hicap](https://github.com/scwatts/hicap). A ferramenta
+identifica o tipo capsular e produz anotações detalhadas do locus cap,
+incluindo representação gráfica em formato SVG e anotação em formato GenBank.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem em formato FASTA para predição do sorotipo de H. influenzae |
+
+```
+database_dir: Path?
+model_fp: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database_dir` | `Path?` | Diretório contendo os arquivos do banco de dados de referência do hicap (opcional) |
+| `model_fp` | `Path?` | Caminho para o arquivo de modelo HMM para detecção aprimorada (opcional) |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `gbff` | Arquivo GenBank contendo a região do locus capsular anotada (opcional) |
+| `svg` | Visualização SVG do arranjo de genes do locus capsular (opcional) |
+| `tsv` | Resumo delimitado por tabulação do sorotipo previsto e cobertura do locus |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [hicap](/developers/modules/hicap) - Prediz o sorotipo capsular de *Haemophilus influenzae*.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [hicap](/bactopia-tools/hicap) - Identifica o sorotipo e a estrutura do locus cap em montagens de Haemophilus influenzae.
+
+## Citações
+
+Se você usar este subworkflow em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [hicap](https://github.com/scwatts/hicap)  
+  Watts SC, Holt KE [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) _Journal of Clinical Microbiology_ JCM.00190-19 (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/hicap)
