@@ -47,6 +47,11 @@ Use these translations consistently throughout:
 | citation | citação |
 | acknowledgement | agradecimento |
 | usage | uso |
+| accession | identificador|
+| WGS | SGC |
+| whole genome sequencing | sequenciamento de genoma completo |
+| 
+
 
 ### Terms to keep in English
 

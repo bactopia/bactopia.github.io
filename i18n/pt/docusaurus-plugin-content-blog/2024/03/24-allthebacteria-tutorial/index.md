@@ -15,13 +15,13 @@ analisar essas montagens de forma integrada com as [Bactopia Tools](/bactopia-to
 
 ## AllTheBacteria
 
-O [Grupo de Zamin Iqbal](https://www.ebi.ac.uk/research/iqbal/), que nos trouxe as [661 mil montagens bacterianas](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001421),
+O [Grupo de Zamin Iqbal](https://www.ebi.ac.uk/research/iqbal/), nos trouxe as [661 mil montagens bacterianas](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001421),
 foi ainda mais longe com o [AllTheBacteria](https://www.biorxiv.org/content/10.1101/2024.03.08.584059v1).
 Como alguém que já foi encarregado de montar "todos os genomas de _Staphylococcus aureus_" (_embora fossem apenas
 cerca de 700 amostras em 2010!_), isso é realmente um feito impressionante e um recurso valioso para a comunidade!
 Com as montagens mais recentes, a coleção agora conta com quase 2.000.000 de montagens bacterianas!
 
-Semelhante aos métodos anteriores, a versão mais recente do AllTheBacteria usa [Shovill](https://github.com/tseemann/shovill)
+Semelhante aos métodos anteriores, a versão mais recente do AllTheBacteria usa o programa [Shovill](https://github.com/tseemann/shovill)
 para montagem. Além disso, cada montagem tem métricas básicas calculadas, passa por estimativa de abundância taxonômica
 e tem sketches disponibilizados. Para mais detalhes sobre este projeto,
 consulte:
@@ -43,7 +43,7 @@ agilizaria bastante uma série de análises downstream das montagens do AllTheBa
 permitiria que pesquisadores chegassem rapidamente à ciência por trás dessas montagens.
 
 Para ter uma ideia, atualmente existem 38 Bactopia Tools que utilizam montagens como entradas.
-Em outras palavras, cada uma dessas ferramentas seria fácil de executar nas 2.000.000 montagens do AllTheBacteria.
+Em outras palavras, cada uma dessas ferramentas seria fácil de executar para analisar as 2.000.000 montagens do AllTheBacteria.
 
 <details>
 <summary>Expanda para ver a lista de Bactopia Tools</summary>

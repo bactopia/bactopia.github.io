@@ -63,6 +63,7 @@ project's translation system
 All translations are generated and maintained by AI using
 [Claude](https://www.anthropic.com/claude) from Anthropic. Thank you to the
 Nextflow team for making their translation infrastructure openly available!
+The portuguese translation was revised by a native portuguese speaker (@Mxrcon)
 
 ## Public Datasets
 
