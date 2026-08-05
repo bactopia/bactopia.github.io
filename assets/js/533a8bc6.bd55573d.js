@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbactopia_docs=self.webpackChunkbactopia_docs||[]).push([["14359"],{11187(a){a.exports=JSON.parse('{"metadata":{"permalink":"/v4.0.0/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"News, tutorials, and updates from the Bactopia project.","blogTitle":"Bactopia Blog"}}')}}]);

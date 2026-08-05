@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbactopia_docs=self.webpackChunkbactopia_docs||[]).push([["81668"],{86569(e,s,a){a.r(s),a.d(s,{default:()=>n});var c=a(74848);a(96540);var r=a(34164),t=a(34308),u=a(88287),o=a(22831),d=a(1819);function n(e){return(0,c.jsx)(t.e3,{className:(0,r.A)(u.G.wrapper.docsPages),children:(0,c.jsx)(d.A,{children:(0,o.v)(e.route.routes)})})}}}]);

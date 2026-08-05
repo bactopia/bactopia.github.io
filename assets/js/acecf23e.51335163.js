@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbactopia_docs=self.webpackChunkbactopia_docs||[]).push([["93220"],{1912(a){a.exports=JSON.parse('{"blogBasePath":"/v4.0.0/blog","blogTitle":"Bactopia Blog","authorsListPath":"/v4.0.0/blog/authors"}')}}]);

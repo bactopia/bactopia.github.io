@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbactopia_docs=self.webpackChunkbactopia_docs||[]).push([["38126"],{37749(s){s.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"bactopia-pipelines"}')}}]);

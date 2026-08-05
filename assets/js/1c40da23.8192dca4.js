@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbactopia_docs=self.webpackChunkbactopia_docs||[]).push([["63936"],{77082(t){t.exports=JSON.parse('{"authors":[{"name":"Robert A. Petit III","description":"The primary developer of Bactopia","avatar":"https://avatars.githubusercontent.com/u/5334269","slug":"rpetit3","url":"https://www.robertpetit.com/","key":"rpetit3","page":null,"count":2}]}')}}]);

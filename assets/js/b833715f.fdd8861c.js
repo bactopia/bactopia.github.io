@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbactopia_docs=self.webpackChunkbactopia_docs||[]).push([["43027"],{77511(a){a.exports=JSON.parse('{"tags":[{"label":"community","permalink":"/v4.0.0/blog/tags/community","count":2},{"label":"release","permalink":"/v4.0.0/blog/tags/release","count":1},{"label":"tutorial","permalink":"/v4.0.0/blog/tags/tutorial","count":1}]}')}}]);

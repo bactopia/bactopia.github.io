@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://bactopia.io/v4.0.0/blog</id>
+    <title>Bactopia Blog</title>
+    <updated>2026-04-29T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://bactopia.io/v4.0.0/blog"/>
+    <subtitle>News, tutorials, and updates from the Bactopia project.</subtitle>
+    <icon>https://bactopia.io/v4.0.0/img/favicon.ico</icon>
+    <rights>Copyright 2026 Robert A. Petit III</rights>
+    <entry>
+        <title type="html"><![CDATA[Bactopia v4 Updates and Improvements]]></title>
+        <id>https://bactopia.io/v4.0.0/blog/bactopia-v4-updates</id>
+        <link href="https://bactopia.io/v4.0.0/blog/bactopia-v4-updates"/>
+        <updated>2026-04-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn about the new features and improvements in Bactopia version 4.]]></summary>
+        <content type="html"><![CDATA[<p>Howdy folks! Robert here, developer of Bactopia! It’s been a while, huh? Well it's finally
+here! I’m super excited to announce the <a href="https://github.com/bactopia/bactopia/releases/tag/v4.0.0" target="_blank" rel="noopener noreferrer" class="">release of Bactopia version 4</a>!</p>
+<p>You might be wondering what’s new in Bactopia? And the answer is <strong><em>a lot</em></strong>, but
+also… <strong><em>not a lot</em></strong>, but in a good way! How can that be? Well, about that…</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bactopia-is-all-strict-static-and-records-now">Bactopia is all Strict, Static and Records now!<a href="https://bactopia.io/v4.0.0/blog/bactopia-v4-updates#bactopia-is-all-strict-static-and-records-now" class="hash-link" aria-label="Direct link to Bactopia is all Strict, Static and Records now!" title="Direct link to Bactopia is all Strict, Static and Records now!" translate="no">​</a></h2>
+<p>Over the last year <a href="https://nextflow.io/" target="_blank" rel="noopener noreferrer" class="">Nextflow</a> (the engine that Bactopia is based on)
+has undergone a significant metamorphosis, with the <a href="https://seqera.io/blog/nextflow-25-10-plugin-registry/" target="_blank" rel="noopener noreferrer" class="">introduction of Strict Syntax and Static Types in v25</a>,
+and <a href="https://github.com/nextflow-io/nextflow/releases/tag/v26.04.0" target="_blank" rel="noopener noreferrer" class="">now Record Types in v26</a>. Haha
+if you’ve ever looked at the Bactopia code base, you would have quickly seen that it was
+the least strict thing. Bactopia took advantage of many things in Nextflow that weren’t really
+the intended purpose (e.g. <a href="https://github.com/bactopia/bactopia/blob/4b075af96da522222bb075d4b65927d1ba3de9c2/workflows/bactopia-tools.nf" target="_blank" rel="noopener noreferrer" class="">launching 60+ workflows from a single workflow…</a>).</p>
+<p>So, to answer your first question: <em>how did Bactopia change a lot, without changing a lot?</em></p>
+<p>Well, in order to implement strict syntax, static types, and record types, I had to essentially rewrite the
+code base, almost from scratch (<em>which again is not necessarily a bad thing!</em>). As you can see in the
+image below, v4 of Bactopia changed 2,641 files, with 140k additional lines of code and 55k
+removed lines of code. It's true! Check out the <a href="https://github.com/bactopia/bactopia/blob/master/CHANGELOG.md#v400-bactopiabactopia-cream-puff-20260429" target="_blank" rel="noopener noreferrer" class="">CHANGELOG</a>!</p>
+<p><img decoding="async" loading="lazy" alt="Bactopia v4 Changes" src="https://bactopia.io/v4.0.0/assets/images/image1-bd78ef7f86efa32520b41cc789eb75fc.png" width="1224" height="196" class="img_ev3q"></p>
+<p>In version 4 of Bactopia, I’m happy to report that I’m now compliant with the future of Nextflow! Which as a side-effect, means Bactopia should now play much nicer both locally and in the cloud.</p>
+<p>While Strict Syntax, Static Types, and Record Types aren’t exactly “required”, I think their
+adoption has put Bactopia in a much better place than it was before. Cheers to the folks at
+<a href="https://seqera.io/" target="_blank" rel="noopener noreferrer" class="">Seqera</a> (<em>who maintain Nextflow</em>) for getting that implemented!</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="co-development-with-ai">Co-development with AI<a href="https://bactopia.io/v4.0.0/blog/bactopia-v4-updates#co-development-with-ai" class="hash-link" aria-label="Direct link to Co-development with AI" title="Direct link to Co-development with AI" translate="no">​</a></h2>
+<p>[can you write a message about the usage of llms in Bactopia] Haha, just kidding, it's still me
+writing this post! But, on a more serious note, <strong><em>going forward Bactopia will be utilizing AI in
+the future developments and maintenance</em></strong>. I’m the only developer and maintainer of Bactopia, so I
+have to balance what I can, to avoid burnout going forward. However, my usage of AI is not without a
+lot of thought. There won’t be any AI agents getting unrestricted access to do what it wants with
+Bactopia. Trust me, Bactopia is something I care about deeply, and I plan to continue maintaining ownership of it.</p>
+<p>I’ve made extensive efforts to ensure there are specific guardrails for AI to follow, as well as
+ways for me to verify those guardrails are being followed. With the introduction of strict syntax, static types, and
+record types, I was able to incorporate numerous patterns that are well suited to LLMs and these
+guardrails I’ve set up. At the end of the day, I will still be very much involved in reviewing any changes
+made by LLMs and pushing Bactopia forward. I just wanted to briefly state my stance on the usage of AI and LLMs to help co-develop Bactopia.</p>
+<p><img decoding="async" loading="lazy" alt="Bactopia&amp;#39;s AI Feedback Loop" src="https://bactopia.io/v4.0.0/assets/images/image2-fbc69505c81cefd26e93518b09fd4a80.png" width="1852" height="1152" class="img_ev3q"></p>
+<p>I feel a more lengthy post is still needed to demonstrate my process when using LLMs for
+Bactopia. <em>I’ll be sure to get that out soon!</em></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bactopia-is-easier-to-support-now">Bactopia is easier to support now<a href="https://bactopia.io/v4.0.0/blog/bactopia-v4-updates#bactopia-is-easier-to-support-now" class="hash-link" aria-label="Direct link to Bactopia is easier to support now" title="Direct link to Bactopia is easier to support now" translate="no">​</a></h2>
+<p>With that out of the way, I mentioned I spent a lot of time rewriting Bactopia, and turns out the
+rewrite didn’t move the dial much, but that’s a good thing. You might be wondering, <em>how is all this
+effort to end up where you started a good thing?!?</em> Well, when you get the opportunity to rewrite
+something, you get to rewrite it based on your current experience and abilities. I’m not the same
+bioinformatician I was over 7 years ago, when Tim and I first released Bactopia. I sometimes wonder:
+<em>'why did 2017 Robert do it this way?'</em> and <em>'why is 2026 Robert so much more gray?!'</em></p>
+<p>But, to me at
+least, this rewrite provided the opportunity to unload a lot of technical debt past Robert built up
+over the years. I was able to standardize many pieces of Bactopia, so a module is a module is a
+module is a module, etc…. I also got to move a lot of the non-Nextflow pieces out of the Bactopia Nextflow
+pipeline and into <a href="https://github.com/bactopia/bactopia-py" target="_blank" rel="noopener noreferrer" class="">bactopia-py</a> and
+<a href="https://github.com/bactopia/nf-bactopia" target="_blank" rel="noopener noreferrer" class="">nf-bactopia</a>.</p>
+<p>While pytest still worked, I was able to transition to <a href="https://www.nf-test.com/" target="_blank" rel="noopener noreferrer" class="">nf-test</a> for
+all Nextflow files, not just the subworkflows. With this transition, at the moment, Bactopia
+now includes 246 tests, which test everything (modules, subworkflows, and workflows) using
+real data from the revamped <a href="https://github.com/bactopia/bactopia-tests" target="_blank" rel="noopener noreferrer" class="">bactopia-tests</a>
+repo.</p>
+<p><img decoding="async" loading="lazy" alt="Bactopia&amp;#39;s Test Suite in Action" src="https://bactopia.io/v4.0.0/assets/images/image3-0b50f9c2d71f27ad1081132a2db22583.png" width="1812" height="882" class="img_ev3q"></p>
+<p>I was also able to make the documentation built from of in-line
+GroovyDoc. Not only that, I moved from <a href="https://github.com/bactopia/bactopia.github.io/pull/9" target="_blank" rel="noopener noreferrer" class="">MkDocs Material to Docusaurus</a>,
+and even got this new fancy address! I personally think it will be much easier to maintain,
+and am very curious to get your opinions and feedback!</p>
+<p>All this, to say:</p>
+<p><em>If you are a user of Bactopia, what you need to take away is, I now find Bactopia much easier
+to build and maintain. Tim and I are in the kitchen cooking up some fun things for the future
+of Bactopia. So keep an eye out!</em></p>
+<p>P.S. As with all major releases, there will be bumps in the road, and I’m sure I may have
+missed something. If you find bugs or a feature I missed, just let me know! Maybe even find
+me on the <a href="https://bactopia.io/slack/" target="_blank" rel="noopener noreferrer" class="">Bactopia Slack workspace</a>
+(<em>haha which I actually created ages ago!</em>)</p>
+<p>To get started with Bactopia version 4, check out the <a class="" href="https://bactopia.io/v4.0.0/installation">installation guide</a> and the <a class="" href="https://bactopia.io/v4.0.0/tutorial">tutorial</a>.</p>]]></content>
+        <author>
+            <name>Robert A. Petit III</name>
+            <uri>https://www.robertpetit.com/</uri>
+        </author>
+        <category label="community" term="community"/>
+        <category label="release" term="release"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Using Bactopia with AllTheBacteria Assemblies]]></title>
+        <id>https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial</id>
+        <link href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial"/>
+        <updated>2024-03-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Learn how to use Bactopia to analyze nearly 2,000,000 bacterial assemblies from the AllTheBacteria project.]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://github.com/iqbal-lab-org/AllTheBacteria" target="_blank" rel="noopener noreferrer" class="">AllTheBacteria</a> (ATB) is a collection
+of nearly 2,000,000 bacterial assemblies. In this post you'll learn how to use Bactopia to
+seamlessly analyze these assemblies with the available <a class="" href="https://bactopia.io/v4.0.0/bactopia-tools">Bactopia Tools</a>.</p>
+<!-- -->
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="allthebacteria">AllTheBacteria<a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#allthebacteria" class="hash-link" aria-label="Direct link to AllTheBacteria" title="Direct link to AllTheBacteria" translate="no">​</a></h2>
+<p><a href="https://www.ebi.ac.uk/research/iqbal/" target="_blank" rel="noopener noreferrer" class="">Zamin Iqbal's Group</a>, who brought us <a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001421" target="_blank" rel="noopener noreferrer" class="">661k bacterial assemblies</a>,
+has now taken it a step further with <a href="https://www.biorxiv.org/content/10.1101/2024.03.08.584059v1" target="_blank" rel="noopener noreferrer" class="">AllTheBacteria</a>.
+As someone once tasked with assembling "all the <em>Staphylococcus aureus</em> genomes" (<em>although, it was only
+about 700 samples in 2010!</em>), this is truly an impressive feat, and a valuable community resource!
+With the latest assemblies, the collection is now nearly 2,000,000 bacterial assemblies!</p>
+<p>Similar to their previous methods, the latest version of AllTheBacteria uses <a href="https://github.com/tseemann/shovill" target="_blank" rel="noopener noreferrer" class="">Shovill</a>
+for assembly. In addition, each assembly has basic metrics calculated, undergoes taxonomic
+abundance estimation, and has sketches made available. For more details about this project,
+please see:</p>
+<ul>
+<li class="">Preprint: <em><a href="https://www.biorxiv.org/content/10.1101/2024.03.08.584059v1" target="_blank" rel="noopener noreferrer" class="">AllTheBacteria - all bacterial genomes assembled, available and searchable</a></em></li>
+<li class="">GitHub: <a href="https://github.com/iqbal-lab-org/AllTheBacteria" target="_blank" rel="noopener noreferrer" class="">AllTheBacteria</a></li>
+</ul>
+<p>Since Zamin revealed the latest updates on AllTheBacteria, I've been wondering: <em>How could Bactopia
+users take advantage these assemblies? Especially, through available <a class="" href="https://bactopia.io/v4.0.0/bactopia-tools">Bactopia Tools</a>?</em></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-bactopia-tools">Why Bactopia Tools?<a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#why-bactopia-tools" class="hash-link" aria-label="Direct link to Why Bactopia Tools?" title="Direct link to Why Bactopia Tools?" translate="no">​</a></h2>
+<p>The really nice thing about Bactopia Tools is they make it super easy to run <a class="" href="https://bactopia.io/v4.0.0/bactopia-tools">60 additional analyses</a>
+on your genomes. It's really as simple as adding <code>--wf &lt;tool&gt;</code> to your Bactopia command, then Bactopia
+will then handle the rest for you, including container selection and audit trails.</p>
+<p>Obviously, I'm a bit biased here, but utilizing Bactopia Tools in this situation would
+greatly streamline a lot of downstream analyses of AllTheBacteria assemblies. I think this
+would allow researchers to quickly get to the science behind these assemblies.</p>
+<p>To give you an idea, there are currently 38 Bactopia Tools that use assemblies as inputs.
+In other words, each of these tools would be easy to run on the 2,000,000 AllTheBacteria
+assemblies.</p>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>Expand to see the list of Bactopia Tools</summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>Each of the tools listed below accepts a single assembly as input.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Tool</th><th>Description</th></tr></thead><tbody><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/bakta">bakta</a></td><td>Rapid annotation of bacterial genomes &amp; plasmids</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/fastani">fastani</a></td><td>Fast alignment-free computation of whole-genome Average Nucleotide Identity (ANI)</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/gtdb">gtdb</a></td><td>Identify marker genes and assign taxonomic classifications</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/mashtree">mashtree</a></td><td>Create a trees using Mash distances</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/abricate">abricate</a></td><td>Mass screening of contigs for antimicrobial and virulence genes</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/abritamr">abritamr</a></td><td>A NATA accredited tool for reporting the presence of antimicrobial resistance genes</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/agrvate">agrvate</a></td><td>Rapid identification of Staphylococcus aureus agr locus type and agr operon variants</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/amrfinderplus">amrfinderplus</a></td><td>Identify antimicrobial resistance in genes or proteins</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/btyper3">btyper3</a></td><td>Taxonomic classification of Bacillus cereus group isolates</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/busco">busco</a></td><td>Assembly completeness based on evolutionarily informed expectations</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/checkm">checkm</a></td><td>Assess the assembly quality of your microbial samples</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/ectyper">ectyper</a></td><td>In-silico prediction of Escherichia coli serotype</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/emmtyper">emmtyper</a></td><td>emm-typing of Streptococcus pyogenes assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/gamma">gamma</a></td><td>Identification, classification, and annotation of translated gene matches</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/hicap">hicap</a></td><td>Identify cap locus serotype and structure in your Haemophilus influenzae assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/hpsuissero">hpsuissero</a></td><td>Rapid Haemophilus parasuis Serotyping of assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/kleborate">kleborate</a></td><td>Screen for MLST, sub-species, and other Klebsiella related genes of interest</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/legsta">legsta</a></td><td>Typing of Legionella pneumophila assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/lissero">lissero</a></td><td>Serogroup typing prediction for Listeria monocytogenes</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/mashdist">mashdist</a></td><td>Calculate Mash distances between sequences</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/mcroni">mcroni</a></td><td>Sequence variation in mobilized colistin resistance (mcr-1) genes</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/meningotype">meningotype</a></td><td>Serotyping of Neisseria meningitidis</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/mlst">mlst</a></td><td>Scan contig files against PubMLST typing schemes</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/mobsuite">mobsuite</a></td><td>Reconstruct and annotate plasmids in bacterial assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/pasty">pasty</a></td><td>Serogrouping of Pseudomonas aeruginosa isolates</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/pbptyper">pbptyper</a></td><td>Penicillin Binding Protein (PBP) typer for Streptococcus pneumoniae</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/phispy">phispy</a></td><td>Predict prophages in bacterial genomes</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/plasmidfinder">plasmidfinder</a></td><td>Plasmid identification from assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/prokka">prokka</a></td><td>Whole genome annotation of small genomes (bacterial, archeal, viral)</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/quast">quast</a></td><td>Assess the quality of assembled contigs</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/rgi">rgi</a></td><td>Predict antibiotic resistance from assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/seqsero2">seqsero2</a></td><td>Salmonella serotype prediction from reads or assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/shigeifinder">shigeifinder</a></td><td>Shigella and EIEC serotyping from assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/sistr">sistr</a></td><td>Serovar prediction of Salmonella assemblies</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/spatyper">spatyper</a></td><td>Computational method for finding spa types in Staphylococcus aureus</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/stecfinder">stecfinder</a></td><td>Serotyping Shigella toxin producing Escherichia coli genomes</td></tr><tr><td><a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/ssuissero">ssuissero</a></td><td>Rapid Streptococcus suis Serotyping of assemblies</td></tr></tbody></table></div></div>
+</div></div></details>
+<div class="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>Bactopia Tools require samples processed with Bactopia</div><div class="admonitionContent_BuS1"><p>One of the key features of Bactopia Tools, is they utilize Bactopia outputs to rapidly
+identify and begin analysis. AllTheBacteria assemblies were not processed by Bactopia,
+so they aren't compatible with Bactopia Tools. But, no worries, with a little work we
+can make this a possibility!</p></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="bactopia-atb-formatter"><code>bactopia atb-formatter</code><a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#bactopia-atb-formatter" class="hash-link" aria-label="Direct link to bactopia-atb-formatter" title="Direct link to bactopia-atb-formatter" translate="no">​</a></h2>
+<p>Bactopia already allows assemblies as inputs, but I didn't want users to have to go through the
+full Bactopia pipeline to use the Bactopia Tools. Instead, I wanted to make a quick and easy way
+for users to go directly to using Bactopia Tools. To accomplish this, I created a new Bactopia
+command called <a href="https://github.com/bactopia/bactopia-py?tab=readme-ov-file#all-the-bacteria-atb" target="_blank" rel="noopener noreferrer" class="">atb-formatter</a>
+(<em>AllTheBacteria Formatter</em>). With <code>atb-formatter</code>, the necessary Bactopia output directory
+structure will be created from a directory of _AllTheBacteria assemblies.</p>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>AllTheBacteria assemblies can be used with Bactopia Tools!</div></div>
+<p>That's cool and all, but let's actually demonstrate the usage of <code>atb-formatter</code> on some
+<em>Legionella pneumophila</em> assemblies from AllTheBacteria.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-usage-for-legionella-pneumophila">Example Usage for <em>Legionella pneumophila</em><a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#example-usage-for-legionella-pneumophila" class="hash-link" aria-label="Direct link to example-usage-for-legionella-pneumophila" title="Direct link to example-usage-for-legionella-pneumophila" translate="no">​</a></h2>
+<p>To demonstrate the usage of <code>bactopia atb-formatter</code>, I will use assemblies for
+<em>Legionella pneumophila</em> from AllTheBacteria and run <a href="https://github.com/tseemann/legsta" target="_blank" rel="noopener noreferrer" class="">legsta</a>,
+a typing tool for <em>L. pneumophila</em> assemblies, written by <a href="https://www.doherty.edu.au/people/associate-professor-torsten-seemann" target="_blank" rel="noopener noreferrer" class="">Torsten Seeman</a>,
+To be specific, I will run legsta from the available <a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/legsta">Bactopia Tool</a>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getting-setup">Getting Setup<a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#getting-setup" class="hash-link" aria-label="Direct link to Getting Setup" title="Direct link to Getting Setup" translate="no">​</a></h3>
+<p>Before we get started, you'll need to have Bactopia installed. If you haven't done this yet,
+please see the <a class="" href="https://bactopia.io/v4.0.0/installation">installation instructions</a>.</p>
+<p>You will also want to make sure you are using at least version 3.0.1 of Bactopia, as this is
+the first release to have the <code>atb-formatter</code> command.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">bactopia </span><span class="token parameter variable" style="color:#36acaa">--version</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">bactopia </span><span class="token number" style="color:#36acaa">3.0</span><span class="token plain">.1</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="download-the-assemblies">Download the Assemblies<a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#download-the-assemblies" class="hash-link" aria-label="Direct link to Download the Assemblies" title="Direct link to Download the Assemblies" translate="no">​</a></h3>
+<p>First I will download the <em>L. pneumophila</em> assemblies from AllTheBacteria, then extract
+them into a folder called <code>legionella-assemblies</code>. Easy enough!</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token function" style="color:#d73a49">mkdir</span><span class="token plain"> atb-legionella</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token builtin class-name">cd</span><span class="token plain"> atb-legionella</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Download the assemblies</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">wget</span><span class="token plain"> https://ftp.ebi.ac.uk/pub/databases/AllTheBacteria/Releases/0.1/assembly/legionella_pneumophila__01.asm.tar.xz</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">wget</span><span class="token plain"> https://ftp.ebi.ac.uk/pub/databases/AllTheBacteria/Releases/0.1/assembly/legionella_pneumophila__02.asm.tar.xz</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Extract the assemblies</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">mkdir</span><span class="token plain"> legionella-assemblies</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">tar</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">-C</span><span class="token plain"> legionella-assemblies </span><span class="token parameter variable" style="color:#36acaa">-xJf</span><span class="token plain"> legionella_pneumophila__01.asm.tar.xz</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token function" style="color:#d73a49">tar</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">-C</span><span class="token plain"> legionella-assemblies </span><span class="token parameter variable" style="color:#36acaa">-xJf</span><span class="token plain"> legionella_pneumophila__02.asm.tar.xz</span><br></div></code></pre></div></div>
+<p>At the time of writing this, there were 5,393 <em>L. pneumophila</em> assemblies available from
+AllTheBacteria. While its not <em>Salmonella enterica</em> with it's hundreds of thousands of assemblies,
+it's a great number to demonstrate the usage of <code>bactopia atb-formatter</code>.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-the-bactopia-directory-structure">Create the Bactopia Directory Structure<a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#create-the-bactopia-directory-structure" class="hash-link" aria-label="Direct link to Create the Bactopia Directory Structure" title="Direct link to Create the Bactopia Directory Structure" translate="no">​</a></h3>
+<p>With the assemblies extracted, now I need to create the required Bactopia directory to make
+use of Bactopia Tools. For this, I used <code>bactopia atb-formatter</code>, which creates a sample folder
+for each assembly that matches the BioSample accession.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Create the Bactopia directory structure</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">bactopia atb-formatter </span><span class="token parameter variable" style="color:#36acaa">--path</span><span class="token plain"> legionella-assemblies </span><span class="token parameter variable" style="color:#36acaa">--recursive</span><br></div></code></pre></div></div>
+<details class="details_lb9f alert alert--info details_b_Ee" data-collapsed="true"><summary>A few notes about <code>bactopia atb-formatter</code></summary><div><div class="collapsibleContent_i85q">
+<!-- -->
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>Please note the usage of <code>--recursive</code> here, this will traverse the <code>legionella-assemblies</code> directory
+to find all assemblies contained. At this point, the <code>bactopia</code> directory structure has been
+created for 5,393 assemblies and is ready for use with Bactopia Tools.</p><p>Also, by default the assemblies are not copied into the Bactopia directory structure, but
+instead symbolic links are created. This is to save disk space, but if you would like to
+copy the assemblies, you can use the <code>--publish-mode</code> parameter to change this behavior</p></div></div>
+</div></div></details>
+<p>After running the above command, you should see something like the following:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token number" style="color:#36acaa">2024</span><span class="token plain">-03-22 </span><span class="token number" style="color:#36acaa">14</span><span class="token plain">:30:07:root:INFO - Setting up Bactopia directory structure </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">use </span><span class="token parameter variable" style="color:#36acaa">--verbose</span><span class="token plain"> to see </span><span class="token function" style="color:#d73a49">more</span><span class="token plain"> details</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token number" style="color:#36acaa">2024</span><span class="token plain">-03-22 </span><span class="token number" style="color:#36acaa">14</span><span class="token plain">:30:08:root:INFO - Bactopia directory structure created at bactopia</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token number" style="color:#36acaa">2024</span><span class="token plain">-03-22 </span><span class="token number" style="color:#36acaa">14</span><span class="token plain">:30:08:root:INFO - Total assemblies processed: </span><span class="token number" style="color:#36acaa">5393</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="use-bactopia-to-run-legsta">Use Bactopia to run Legsta<a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#use-bactopia-to-run-legsta" class="hash-link" aria-label="Direct link to Use Bactopia to run Legsta" title="Direct link to Use Bactopia to run Legsta" translate="no">​</a></h3>
+<p>Fancy! Now we have all the assemblies sym-linked into a Bactopia directory structure. It's
+time to let Bactopia Tools shine! To do this, I will run the
+<a class="" href="https://bactopia.io/v4.0.0/bactopia-tools/legsta">legsta Bactopia Tool</a> and demonstrate
+how seamless it is to type 5,393 assemblies.</p>
+<p>With a simple addition of <code>--wf legsta</code> and pointing to the Bactopia directory, <code>legsta</code> will
+be executed on all 5,393 assemblies! It really is that simple!</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Run legsta</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">bactopia </span><span class="token parameter variable" style="color:#36acaa">--wf</span><span class="token plain"> legsta </span><span class="token parameter variable" style="color:#36acaa">-profile</span><span class="token plain"> singularity</span><br></div></code></pre></div></div>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>Please use Docker or Singularity for these analyses</div><div class="admonitionContent_BuS1"><p>I'm a big supporter of Conda, but for reproducibility, it is recommended to use Docker or
+Singularity with Bactopia Tools. Conda environments can change depending on when they are
+installed, however the containers will always be the same.</p></div></div>
+<p>After some time, the <code>legsta</code> tool will complete for all 5,393 assemblies, and you should be
+met with something like the following:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">5d/d04297</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> process </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> BACTOPIATOOLS:LEGSTA:LEGSTA_MODULE </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">SAMN29911258</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">100</span><span class="token plain">%</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5393</span><span class="token plain"> of </span><span class="token number" style="color:#36acaa">5393</span><span class="token plain"> ✔</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">71</span><span class="token plain">/c63bf7</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> process </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> BACTOPIATOOLS:LEGSTA:CSVTK_CONCAT </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">legsta</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">100</span><span class="token plain">%</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> of </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> ✔</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">16</span><span class="token plain">/833262</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> process </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> BACTOPIATOOLS:CUSTOM_DUMPSOFTWAREVERSIONS </span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain">     </span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">100</span><span class="token plain">%</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> of </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> ✔</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Bactopia Tools: `legsta Execution Summary</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ---------------------------</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Bactopia Version </span><span class="token builtin class-name">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3.0</span><span class="token plain">.1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Nextflow Version </span><span class="token builtin class-name">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">23.10</span><span class="token plain">.1</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Command Line     </span><span class="token builtin class-name">:</span><span class="token plain"> nextflow run /home/rpetit3/bactopia/main.nf </span><span class="token parameter variable" style="color:#36acaa">--wf</span><span class="token plain"> legsta </span><span class="token punctuation" style="color:#393A34">\</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                                    </span><span class="token parameter variable" style="color:#36acaa">--bactopia</span><span class="token plain"> bactopia/ </span><span class="token parameter variable" style="color:#36acaa">-profile</span><span class="token plain"> singularity</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Resumed          </span><span class="token builtin class-name">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">false</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Completed At     </span><span class="token builtin class-name">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2024</span><span class="token plain">-03-22T15:09:54.959834620-06:00</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Duration         </span><span class="token builtin class-name">:</span><span class="token plain"> 32m 51s</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Success          </span><span class="token builtin class-name">:</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">true</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Exit Code        </span><span class="token builtin class-name">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Error Report     </span><span class="token builtin class-name">:</span><span class="token plain"> -</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    Launch Dir       </span><span class="token builtin class-name">:</span><span class="token plain"> /home/rpetit3/test-legsta</span><br></div></code></pre></div></div>
+<p>This took about 30 minutes on my laptop, but it was incredibly simple to run <code>legsta</code> on
+all 5,393 <em>L. pneumophila</em> assemblies.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="results-of-typing">Results of Typing<a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#results-of-typing" class="hash-link" aria-label="Direct link to Results of Typing" title="Direct link to Results of Typing" translate="no">​</a></h3>
+<p>Here's the fun part, typing results for all 5,393 <em>L. pneumophila</em> assemblies! Another nice
+thing about the Bactopia Tools in that in most cases it will merge all the results at the end
+leaving you with just a single file to review.</p>
+<p>To share the results of this analysis, I've uploaded the results to Google Drive and made
+them available from this link: <a href="https://docs.google.com/spreadsheets/d/1NjkXEstWq5PMP0CLmO392HTjC8UuW-JPQIXpqsZ30nU/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="">Bactopia - Legsta Results from AllTheBacteria</a></p>
+<p>From this Google Sheet, you can make a copy or export the results as a CSV file.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conclusion">Conclusion<a href="https://bactopia.io/v4.0.0/blog/allthebacteria-tutorial#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion" translate="no">​</a></h2>
+<p>In this post, I demonstrated how in just a few steps you can make use of Bactopia Tools to
+rapidly and seamlessly start analyzing the 2,000,000 bacterial assemblies from AllTheBacteria.
+If you are planning to do your own downstream analyses on these assemblies, I hope this post
+has convinced you that Bactopia can make this process much easier.</p>
+<p>If you have any questions or ideas for additional Bactopia Tools, please feel free to reach
+out to me!</p>
+<p><strong>Also! This the first ever blog post for Bactopia!</strong></p>]]></content>
+        <author>
+            <name>Robert A. Petit III</name>
+            <uri>https://www.robertpetit.com/</uri>
+        </author>
+        <category label="community" term="community"/>
+        <category label="tutorial" term="tutorial"/>
+    </entry>
+</feed>
