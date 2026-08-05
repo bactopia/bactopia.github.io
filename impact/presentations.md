@@ -22,9 +22,14 @@ Slides: [PDF](https://datasets.bactopia.io/media/2023-bactopia-edlb-workshop.pdf
 
 ## Talks
 
+- _Bactopia: a Flexible Pipeline for Complete Analysis of Bacterial Genomes (June 2026)_  
+A talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the
+[Centre for Pathogen Genomics Bioinformatics Seminar](https://biomedicalsciences.unimelb.edu.au/departments/microbiology-Immunology/research/centre-for-pathogen-genomics). This talk provided a full overview of Bactopia. Including the main pipeline, Bactopia Tools, and the external libraries (e.g. bactopia-py, nf-bactopia). A look into LLM usage in Bactopia was also provided.  
+Slides: [PDF](https://datasets.bactopia.io/media/2026-rp3-cpg-binfies-bactopia.pdf)
+
 - _How we avoided AI slop in Bactopia (April 2026)_  
 A talk presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [Nextflow Summit Boston 2026](https://summit.nextflow.io/2026/boston/overview/). This talk walked through growing pains of utilizing LLMs during the development of Bactopia, as well as the steps to ensure effective usage of LLMs in the future.  
-Video: _coming soon!_  
+Video: [YouTube](https://www.youtube.com/watch?v=m_AwgTzVBqY)  
 Slides: [PDF](https://datasets.bactopia.io/media/2026-rp3-bactopia-nf-summit.pdf)
 
 - _Bactopia - Enhancing and expanding the Bactopia framework (October 2024)_  
@@ -78,6 +83,10 @@ The talk presented by [Dr. Timothy Read](https://twitter.com/tdread_emory) at NI
 Slides: [Web](https://bit.ly/3lQpZKo), [PDF](https://datasets.bactopia.io/media/2020-niaid-bactopia-staphopia.pdf)  
 
 ## Posters
+
+- _Bactopia v4: A Scalable Bacterial Genome Surveillance Pipeline (May 2026)_  
+A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [SFA²F 2026](https://www.sfafmeeting.org/) outlining the latest changes in Bactopia.  
+Slides: [PDF](https://datasets.bactopia.io/media/2026-bactopia-poster.pdf)
 
 - _Bactopia v4: A Scalable Bacterial Genome Surveillance Pipeline (May 2026)_  
 A poster presented by [Dr. Robert A Petit III](https://www.robertpetit.com) at the [APHL 2026](https://www.aphl.org/conferences/annualmeeting/Pages/default.aspx) outlining the latest changes in Bactopia.  

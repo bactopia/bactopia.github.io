@@ -474,7 +474,7 @@ def build_source_url(path):
     path = path.rstrip('/')
     if path == '.':
         return 'https://github.com/bactopia/bactopia'
-    return f'https://github.com/bactopia/bactopia/tree/main/{path}'
+    return f'https://github.com/bactopia/bactopia/tree/master/{path}'
 
 
 def parse_output_tree(snap_path):

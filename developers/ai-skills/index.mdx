@@ -9,9 +9,9 @@ These 12 skills automate common Bactopia development tasks through AI-assisted
 coding tools. Each skill wraps one or more
 [bactopia-py](/developers/cli) CLI commands with interactive guidance,
 guardrails, and multi-step orchestration. Skills live in the bactopia repo at
-`.claude/skills/` and are invoked with `/skill-name`.
+`.agents/skills/` and are invoked with `/skill-name`.
 
-[View skills on GitHub](https://github.com/bactopia/bactopia/tree/main/.claude/skills)
+[View skills on GitHub](https://github.com/bactopia/bactopia/tree/master/.agents/skills)
 
 ## Overview
 
@@ -25,7 +25,7 @@ guardrails, and multi-step orchestration. Skills live in the bactopia repo at
 | [`/update-module`](#update-module) | Maintenance | Check for newer versions of tools used in Bactopia modules and apply updates. |
 | [`/review-groovydoc`](#review-groovydoc) | Review &amp; Quality | Review GroovyDoc accuracy across modules and subworkflows. |
 | [`/review-citations`](#review-citations) | Review &amp; Quality | Review citation integrity across data/citations.yml and @citation tags. |
-| [`/review-docs`](#review-docs) | Review &amp; Quality | Review staleness of reference docs under .claude/docs/. |
+| [`/review-docs`](#review-docs) | Review &amp; Quality | Review staleness of reference docs under .agents/docs/. |
 | [`/review-tests`](#review-tests) | Review &amp; Quality | Review nf-test run results with grouped error analysis. |
 | [`/run-tests`](#run-tests) | Testing | Run Bactopia nf-tests and produce a timestamped logs directory. |
 | [`/project-status`](#project-status) | Project | Show a live snapshot of project state, coverage, and structural issues. |
@@ -217,7 +217,7 @@ version, references to nonexistent commands or lint rule IDs).
 **When to use:**
 - Check reference docs for outdated information after migrations
 - Verify doc claims match current repo state
-- Scan .claude/docs for drift after adding or removing components
+- Scan .agents/docs for drift after adding or removing components
 
 **Examples:**
 ```
