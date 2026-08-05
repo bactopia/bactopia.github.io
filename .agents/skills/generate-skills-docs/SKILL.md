@@ -14,7 +14,7 @@ description: >-
 
 Regenerate the AI Skills reference page (`developers/ai-skills/index.mdx`) from the
 SKILL.md files in the bactopia repo. This skill combines a deterministic Python
-parser for structured extraction with Claude's ability to synthesize
+parser for structured extraction with an AI coding agent's ability to synthesize
 natural-language content (when-to-use bullets, examples, related skills).
 
 ## Steps
@@ -24,10 +24,11 @@ natural-language content (when-to-use bullets, examples, related skills).
 Run `bin/generate-skills.py` to extract structured metadata from all SKILL.md files:
 
 ```bash
-python bin/generate-skills.py /home/rpetit3/repos/bactopia/bactopia/.claude/skills --json
+python bin/generate-skills.py ../bactopia/.agents/skills --json
 ```
 
-If the user provides a different bactopia repo path, substitute it. The script outputs
+This assumes the bactopia repo is checked out as a sibling directory. If the user
+provides a different bactopia repo path, substitute it. The script outputs
 JSON with this shape per skill:
 
 ```json
@@ -94,9 +95,9 @@ Follow this outline exactly:
 Write 2-3 sentences explaining:
 - These skills automate common Bactopia development tasks through AI-assisted coding tools
 - Each skill wraps one or more bactopia-py CLI commands with interactive guidance
-- Skills live in the bactopia repo at `.claude/skills/` and are invoked with `/skill-name`
+- Skills live in the bactopia repo at `.agents/skills/` and are invoked with `/skill-name`
 
-Include a link: `[View skills on GitHub](https://github.com/bactopia/bactopia/tree/main/.claude/skills)`
+Include a link: `[View skills on GitHub](https://github.com/bactopia/bactopia/tree/master/.agents/skills)`
 
 #### Overview table
 
