@@ -58,9 +58,10 @@ Data files in `data/`:
 
 ## Environment
 
-- Node.js >= 18 for Docusaurus
-- Python environment with the packages in `requirements.txt` for generation scripts
-- Set `BACTOPIA_DEV_PYTHON` to that environment's Python (the `Makefile` default is machine-specific)
+- Use the `bactopia-dev` conda environment -- it provides Node.js (>= 18) for
+  Docusaurus and Python with the packages in `requirements.txt` for generation scripts
+- Prepend it to PATH: `export PATH="$HOME/.conda/envs/bactopia-dev/bin:$PATH"`
+- `BACTOPIA_DEV_PYTHON` in the `Makefile` points at this environment's Python
 
 ## Commands
 
