@@ -1,6 +1,12 @@
 {
   "snapshots": [
     {
+      "version": "v4.0.0",
+      "branch": "snapshot/v4.0.0",
+      "files": 2119,
+      "active": true
+    },
+    {
       "version": "v3.1.0",
       "branch": "snapshot/v3.1.0",
       "files": 298,
