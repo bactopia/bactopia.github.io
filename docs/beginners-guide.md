@@ -248,7 +248,7 @@ If you can process assemblies, and seamlessly download FASTQs from ENA/SRA, it o
 sense that you could also process assemblies from NCBI Assembly! Similar to downloading
 FASTQs from ENA/SRA, you can provide an *NCBI Assembly* accession using `--accession`. These
 accessions are the ones that start with `GCF` or `GCA`. When provided an NCBI Assembly
-accession Bactopia will use [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)
+accession Bactopia will use [genome-dl](https://github.com/rpetit3/genome-dl)
 to go fetch the associated assembly and process it just like a local assembly.
 
 :::info[Use --accession to process an NCBI Assembly accession]

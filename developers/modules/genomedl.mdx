@@ -1,0 +1,146 @@
+---
+title: genomedl
+description: "Download genome assemblies and annotation files from NCBI Datasets."
+tags:
+  - ncbi
+  - datasets
+  - download
+  - genome
+  - assembly
+  - fasta
+  - utility
+  - run-scope
+---
+
+# genomedl
+
+**Tags:** <a href="/developers/tags/ncbi" class="badge badge--primary badge--tag">ncbi</a> <a href="/developers/tags/datasets" class="badge badge--primary badge--tag">datasets</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/utility" class="badge badge--primary badge--tag">utility</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Download genome assemblies and annotation files from NCBI Datasets.
+
+Uses [genome-dl](https://github.com/rpetit3/genome-dl) to query the NCBI Datasets v2 REST API
+for assembly metadata, then download the requested file formats directly from the NCBI FTP
+site. Accessions are resolved to their latest version before download, and species queries
+are subsampled to the first `--limit` assemblies in NCBI relevance order (reference first).
+
+:::note[Internet Required]
+Queries the NCBI Datasets v2 REST API and downloads from the NCBI FTP site. Setting the
+`NCBI_API_KEY` environment variable raises the API rate limit from 5 to 10 requests per second.
+:::
+
+:::note[Species Downloads Are Capped]
+`--limit` defaults to 100 so a broad `--species` cannot accidentally pull the tens of
+thousands of assemblies NCBI holds for common taxa. Raise it, or use `--limit 0` for no
+limit, only when that is genuinely intended.
+:::
+
+## Inputs
+
+```
+accessions: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `accessions` | `Path?` | A path to a text file containing a list of NCBI Assembly accessions (one per line) |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    fna: Set<Path?>,
+    gbff: Set<Path?>,
+    wgs_gbk: Set<Path?>,
+    gff: Set<Path?>,
+    gtf: Set<Path?>,
+    faa: Set<Path?>,
+    gpff: Set<Path?>,
+    cds: Set<Path?>,
+    translated_cds: Set<Path?>,
+    rna: Set<Path?>,
+    features: Set<Path?>,
+    report: Set<Path?>,
+    stats: Set<Path?>,
+    metadata: Set<Path?>,
+    summary: Set<Path?>,
+    json: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `fna` | `Set<Path?>` | FASTA format of the genomic nucleotide sequence(s) (*.fna.gz) |
+| `gbff` | `Set<Path?>` | GenBank format of the genomic sequence(s) (*.gbff.gz) |
+| `wgs_gbk` | `Set<Path?>` | GenBank flat file format of the WGS master (*.wgsmaster.gbff.gz) |
+| `gff` | `Set<Path?>` | Annotation of the genomic sequence(s) in GFF3 format (*.gff.gz) |
+| `gtf` | `Set<Path?>` | Annotation of the genomic sequence(s) in GTF format (*.gtf.gz) |
+| `faa` | `Set<Path?>` | FASTA format of the accessioned protein products (*.faa.gz) |
+| `gpff` | `Set<Path?>` | GenPept format of the accessioned protein products (*.gpff.gz) |
+| `cds` | `Set<Path?>` | FASTA format of the nucleotide sequences corresponding to all CDS features |
+| `translated_cds` | `Set<Path?>` | FASTA format of the protein sequences corresponding to all CDS features |
+| `rna` | `Set<Path?>` | FASTA format of the nucleotide sequences corresponding to all RNA features |
+| `features` | `Set<Path?>` | Tab-delimited text file reporting locations and attributes for a subset of features |
+| `report` | `Set<Path?>` | Tab-delimited text file reporting assembly unit names, roles, and relationships |
+| `stats` | `Set<Path?>` | Tab-delimited text file reporting assembly statistics |
+| `metadata` | `Set<Path?>` | Tab-delimited NCBI Datasets metadata for each downloaded assembly |
+| `summary` | `Set<Path?>` | Human-readable run summary of the version, parameters, and results |
+| `json` | `Set<Path?>` | Machine-readable run report of the parameters, results, and per-assembly metadata |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### genome-dl Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--species` | string | - | Name of the species to download assemblies |
+| `--accession` | string | - | An NCBI Assembly accession to be downloaded |
+| `--accessions` | string | - | An file of NCBI Assembly accessions (one per line) to be downloaded |
+| `--format` | string | `fasta` | Comma separated list of formats to download |
+| `--section` | string | `refseq` | NCBI section to download |
+| `--assembly_level` | string | `complete` | Comma separated list of assembly levels to download |
+| `--limit` | integer | `100` | Limit the number of assemblies to download |
+| `--genomedl_allow_outdated` | boolean | `false` | Download an explicitly requested outdated accession version instead of erroring |
+
+## Used By
+
+### Subworkflows
+
+- [genomedl](/developers/subworkflows/genomedl) - Download genome assemblies from NCBI Datasets.
+
+### Workflows
+
+- [fastani](/bactopia-tools/fastani) - Fast alignment-free computation of whole-genome Average Nucleotide Identity.
+- [mashtree](/bactopia-tools/mashtree) - Rapid phylogenetic tree construction using Mash distances.
+- [pangenome](/bactopia-tools/pangenome) - Pangenome analysis with optional core-genome phylogeny.
+- [snippy](/bactopia-tools/snippy) - Rapid haplotype variant calling and core genome alignment.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [genome-dl](https://github.com/rpetit3/genome-dl)  
+  Petit III RA [genome-dl: Download genomes from NCBI Datasets](https://github.com/rpetit3/genome-dl) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/genomedl)
+
+## Version
+
+```yaml
+GENOMEDL:
+    - genome-dl: 1.0.0
+```

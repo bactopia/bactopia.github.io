@@ -48,9 +48,9 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--eggnog_db` | string |  | Tarball or path to eggNOG databases |
+| `--eggnog_db` | string | - | Tarball or path to eggNOG databases |
 | `--download_eggnog` | boolean | `false` | Required if downloading latest eggNOG database, will overwrite existing databases. |
-| `--eggnog_save_as_tarball` | string |  | Save the eggNOG database as a single tarball |
+| `--eggnog_save_as_tarball` | boolean | `false` | Save the eggNOG database as a single tarball |
 | `--eggnog_skip_diamond` | boolean | `false` | Do not install the diamond database |
 | `--eggnog_install_mmseq` | boolean | `false` | Install the MMseqs2 database |
 | `--eggnog_install_pfam` | boolean | `false` | Install the Pfam database, required for de novo annotation or realignment |
@@ -79,11 +79,11 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/eggnog/download)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/eggnog/download)
 
 ## Version
 
 ```yaml
 EGGNOG_DOWNLOAD:
-    - eggnog-mapper: 2.1.13
+    - eggnog-mapper: 2.1.15
 ```

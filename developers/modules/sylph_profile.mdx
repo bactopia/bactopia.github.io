@@ -80,7 +80,7 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--sylph_db` | string |  | The path to a sylph formatted database |
+| `--sylph_db` | string | - | The path to a sylph formatted database |
 | `--sylph_k` | integer | `31` | K-mer size for sketching |
 | `--sylph_min_spacing` | integer | `30` | Minimum spacing between selected k-mers on the database genomes |
 | `--sylph_subsample_rate` | integer | `200` | Subsample rate for sketching |
@@ -88,7 +88,7 @@ record (
 | `--sylph_min_kmers` | integer | `50` | Exclude genomes with less than this number of sampled k-mers |
 | `--sylph_min_correct` | integer | `3` | Minimum k-mer multiplicity needed for coverage correction. Higher values gives more precision but lower sensitivity |
 | `--sylph_estimate_unknown` | boolean | `false` | Estimate true coverage and scale sequence abundance in `profile` by estimated unknown sequence percentage |
-| `--sylph_opts` | string |  | Extra options in quotes for Sylph |
+| `--sylph_opts` | string | - | Extra options in quotes for Sylph |
 
 ## Used By
 
@@ -112,7 +112,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/sylph/profile)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/sylph/profile)
 
 ## Version
 

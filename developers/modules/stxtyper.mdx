@@ -1,0 +1,86 @@
+---
+title: stxtyper
+description: "Identify and type Stx operons from assembled genomic sequences"
+tags:
+  - stx
+  - shiga-toxin
+  - typing
+  - stec
+  - virulence
+  - sample-scope
+---
+
+# stxtyper
+
+**Tags:** <a href="/developers/tags/stx" class="badge badge--primary badge--tag">stx</a> <a href="/developers/tags/shiga-toxin" class="badge badge--primary badge--tag">shiga-toxin</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/stec" class="badge badge--primary badge--tag">stec</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identify and type Stx operons from assembled genomic sequences
+
+Uses [StxTyper](https://github.com/ncbi/stxtyper) to identify and type stx operons from assembled genomic sequences.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Tab-delimited Stx operon typing results |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Used By
+
+### Subworkflows
+
+- [stxtyper](/developers/subworkflows/stxtyper) - Identify and type Stx operons from assembled genomic sequences
+
+### Workflows
+
+- [stxtyper](/bactopia-tools/stxtyper) - Identify and type Stx operons from assembled genomic sequences
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [StxTyper](https://github.com/ncbi/stxtyper)  
+  Feldgarden M, Brover V, Gonzalez-Escalona N, Frrat JG, Haendiges J, Haft DH, Hoffmann M, Pettengill JB, Prasad AB, Tillman GE, Tyson GH, Klimke W [AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance, stress response, and virulence.](https://doi.org/10.1038/s41598-021-91456-0) _Scientific Reports_ 11, 12728 (2021)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/stxtyper)
+
+## Version
+
+```yaml
+STXTYPER:
+    - ncbi-stxtyper: 1.0.45
+```

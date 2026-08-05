@@ -82,11 +82,11 @@ record (
 | `--ariba_nucmer_breaklen` | integer | `200` | Value to use for -breaklen when running nucmer |
 | `--ariba_assembly_cov` | integer | `50` | Target read coverage when sampling reads for assembly |
 | `--ariba_min_scaff_depth` | integer | `10` | Minimum number of read pairs needed as evidence for scaffold link between two contigs |
-| `--ariba_spades_options` | string |  | Extra options to pass to Spades assembler |
+| `--ariba_spades_options` | string | - | Extra options to pass to Spades assembler |
 | `--ariba_assembled_threshold` | number | `0.95` | If proportion of gene assembled (regardless of into how many contigs) is at least this value then the flag gene_assembled is set |
 | `--ariba_gene_nt_extend` | integer | `30` | Max number of nucleotides to extend ends of gene matches to look for start/stop codons |
 | `--ariba_unique_threshold` | number | `0.03` | If proportion of bases in gene assembled more than once is &lt;= this value, then the flag unique_contig is set |
-| `--ariba_no_clean` | boolean |  | Do not clean up intermediate files created by Ariba. |
+| `--ariba_no_clean` | boolean | `false` | Do not clean up intermediate files created by Ariba. |
 
 ## Used By
 
@@ -110,7 +110,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ariba/run)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/ariba/run)
 
 ## Version
 

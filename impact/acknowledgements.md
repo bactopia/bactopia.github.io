@@ -9,7 +9,7 @@ sidebar_position: 2
 # Acknowledgements
 
 Bactopia is truly a case of *"standing upon the shoulders of giants"*. Bactopia
-currently integrates more than 159 datasets and software packages. Nearly
+currently integrates more than 160 datasets and software packages. Nearly
 every component utilized in Bactopia, from the workflow to the datasets to the
 software packages and even the framework of this site, was created by others
 and made freely accessible to the public.
@@ -122,7 +122,7 @@ Jolley KA, Bray JE, Maiden MCJ [Open-access bacterial population genomics: BIGSd
 
 ## Software Included In Bactopia
 
-Below are 141 software packages used (directly and indirectly) by
+Below are 142 software packages used (directly and indirectly) by
 Bactopia. A link to the software page as well as the citation (if available)
 have been included.
 
@@ -298,161 +298,161 @@ Garrison E, Marth G [Haplotype-based variant detection from short-read sequencin
 Gene Allele Mutation Microbial Assessment<br/>
 Stanton RA, Vlachos N, Halpin AL [GAMMA: a tool for the rapid identification, classification, and annotation of translated gene matches from sequencing data.](https://doi.org/10.1093/bioinformatics/btab607) _Bioinformatics_ (2021)
 
-44: **[GenoTyphi](https://github.com/katholt/genotyphi)**<br/>
+44: **[genome-dl](https://github.com/rpetit3/genome-dl)**<br/>
+Download genome assemblies from NCBI Datasets.<br/>
+Petit III RA [genome-dl: Download genomes from NCBI Datasets](https://github.com/rpetit3/genome-dl) (GitHub)
+
+45: **[GenoTyphi](https://github.com/katholt/genotyphi)**<br/>
 Assign genotypes to Salmonella Typhi genomes based on Mykrobe results<br/>
 Wong VK, Baker S, Connor TR, Pickard D, Page AJ, Dave J, Murphy N, Holliman R, Sefton A, Millar M, Dyson ZA, Dougan G, Holt KE, & International Typhoid Consortium. [An extended genotyping framework for Salmonella enterica serovar Typhi, the cause of human typhoid](https://doi.org/10.1038/ncomms12827) _Nature Communications_ 7, 12827. (2016)
 
-45: **[GigaTyper](https://github.com/rpetit3/gigatyper)**<br/>
+46: **[GigaTyper](https://github.com/rpetit3/gigatyper)**<br/>
 Run all available MLST schemes for a species against an assembly<br/>
 Petit III RA, Fearing T, Groves E [GigaTyper: Why choose one scheme when you can flex them all?](https://github.com/rpetit3/gigatyper) (GitHub)
 
-46: **[GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)**<br/>
+47: **[GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)**<br/>
 A toolkit for assigning objective taxonomic classifications to bacterial and archaeal genomes<br/>
 Chaumeil PA, Mussig AJ, Hugenholtz P, Parks DH [GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database.](https://doi.org/10.1093/bioinformatics/btz848) _Bioinformatics_ (2019)
 
-47: **[Gubbins](https://github.com/nickjcroucher/gubbins)**<br/>
+48: **[Gubbins](https://github.com/nickjcroucher/gubbins)**<br/>
 Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences<br/>
 Croucher NJ, Page AJ, Connor TR, Delaney AJ, Keane JA, Bentley SD, Parkhill J, Harris SR [Rapid phylogenetic analysis of large samples of recombinant bacterial whole genome sequences using Gubbins.](https://doi.org/10.1093/nar/gku1196) _Nucleic Acids Research_ 43(3), e15. (2015)
 
-48: **[hicap](https://github.com/scwatts/hicap)**<br/>
+49: **[hicap](https://github.com/scwatts/hicap)**<br/>
 in silico typing of the _H. influenzae_ cap locus<br/>
 Watts SC, Holt KE [hicap: in silico serotyping of the Haemophilus influenzae capsule locus.](https://doi.org/10.1128/JCM.00190-19) _Journal of Clinical Microbiology_ JCM.00190-19 (2019)
 
-49: **[HMMER](http://hmmer.org/)**<br/>
+50: **[HMMER](http://hmmer.org/)**<br/>
 Biosequence analysis using profile hidden Markov models<br/>
 Eddy SR [Accelerated Profile HMM Searches.](https://doi.org/10.1371/journal.pcbi.1002195) _PLoS Comput. Biol._ 7, e1002195 (2011)
 
-50: **[HpsuisSero](https://github.com/jimmyliu1326/HpsuisSero)**<br/>
+51: **[HpsuisSero](https://github.com/jimmyliu1326/HpsuisSero)**<br/>
 Rapid _Haemophilus parasuis_ serotyping<br/>
 Lui J [HpsuisSero: Rapid _Haemophilus parasuis_ serotyping](https://github.com/jimmyliu1326/HpsuisSero) (GitHub)
 
-51: **[Infernal](http://eddylab.org/infernal/)**<br/>
+52: **[Infernal](http://eddylab.org/infernal/)**<br/>
 Searches DNA sequence databases for RNA structure and sequence similarities<br/>
 Nawrocki EP, Eddy SR [Infernal 1.1: 100-fold faster RNA homology searches.](https://doi.org/10.1093/bioinformatics/btt509) _Bioinformatics_ 29(22), 2933-2935 (2013)
 
-52: **[IQ-TREE](https://github.com/Cibiv/IQ-TREE)**<br/>
+53: **[IQ-TREE](https://github.com/Cibiv/IQ-TREE)**<br/>
 Efficient phylogenomic software by maximum likelihood<br/>
 Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
 
-53: **[ModelFinder](https://github.com/Cibiv/IQ-TREE)**<br/>
+54: **[ModelFinder](https://github.com/Cibiv/IQ-TREE)**<br/>
 Used for automatic model selection<br/>
 Kalyaanamoorthy S, Minh BQ, Wong TKF, von Haeseler A, Jermiin LS [ModelFinder - Fast model selection for accurate phylogenetic estimates.](https://doi.org/10.1038/nmeth.4285) _Nat. Methods_ 14:587-589 (2017)
 
-54: **[UFBoot2](https://github.com/Cibiv/IQ-TREE)**<br/>
+55: **[UFBoot2](https://github.com/Cibiv/IQ-TREE)**<br/>
 Used to conduct ultrafast bootstrapping<br/>
 Hoang DT, Chernomor O, von Haeseler A, Minh BQ, Vinh LS [UFBoot2: Improving the ultrafast bootstrap approximation.](https://doi.org/10.1093/molbev/msx281) _Mol. Biol. Evol._ 35:518-522 (2018)
 
-55: **[ISMapper](https://github.com/jhawkey/IS_mapper)**<br/>
+56: **[ISMapper](https://github.com/jhawkey/IS_mapper)**<br/>
 IS mapping software<br/>
 Hawkey J, Hamidian M, Wick RR, Edwards DJ, Billman-Jacobe H, Hall RM, Holt KE [ISMapper: identifying transposase insertion sites in bacterial genomes from short read sequence data](http://dx.doi.org/10.1186/s12864-015-1860-2). _BMC Genomics_ 16, 667 (2015)
 
-56: **[Kaptive](https://github.com/katholt/Kaptive)**<br/>
+57: **[Kaptive](https://github.com/katholt/Kaptive)**<br/>
 Surface polysaccharide loci for _Klebsiella pneumoniae_ species complex and _Acinetobacter baumannii_ genomes<br/>
 Wyres KL, Wick RR, Gorrie C, Jenney A, Follador R, Thomson NR, Holt KE [Identification of Klebsiella capsule synthesis loci from whole genome data.](https://doi.org/10.1099/mgen.0.000102) _Microbial genomics_ 2(12) (2016)
 
-57: **[Kleborate](https://github.com/katholt/Kleborate)**<br/>
+58: **[Kleborate](https://github.com/katholt/Kleborate)**<br/>
 Genotyping tool for _Klebsiella pneumoniae_ and its related species complex<br/>
 Lam MMC, Wick RR, Watts, SC, Cerdeira LT, Wyres KL, Holt KE [A genomic surveillance framework and genotyping tool for Klebsiella pneumoniae and its related species complex.](https://doi.org/10.1038/s41467-021-24448-3) _Nat Commun_ 12, 4188 (2021)
 
-58: **[Kraken2](https://github.com/DerrickWood/kraken2)**<br/>
+59: **[Kraken2](https://github.com/DerrickWood/kraken2)**<br/>
 The second version of the Kraken taxonomic sequence classification system<br/>
 Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
 
-59: **[Krona](https://github.com/marbl/Krona)**<br/>
+60: **[Krona](https://github.com/marbl/Krona)**<br/>
 Interactively explore metagenomes and more from a web browser<br/>
 Ondov BD, Bergman NH, and Phillippy AM [Interactive metagenomic visualization in a Web browser.](https://doi.org/10.1186/1471-2105-12-385) _BMC Bioinformatics_, 12, 385. (2011)
 
-60: **[legsta](https://github.com/tseemann/legsta)**<br/>
+61: **[legsta](https://github.com/tseemann/legsta)**<br/>
 In silico Legionella pneumophila Sequence Based Typing<br/>
 Seemann T [legsta: In silico Legionella pneumophila Sequence Based Typing](https://github.com/tseemann/legsta) (GitHub)
 
-61: **[Lighter](https://github.com/mourisl/Lighter)**<br/>
+62: **[Lighter](https://github.com/mourisl/Lighter)**<br/>
 Fast and memory-efficient sequencing error corrector<br/>
 Song L, Florea L, Langmead B [Lighter: Fast and Memory-efficient Sequencing Error Correction without Counting](https://doi.org/10.1186/s13059-014-0509-9). _Genome Biol._ 15(11):509 (2014)
 
-62: **[LisSero](https://github.com/MDU-PHL/LisSero)**<br/>
+63: **[LisSero](https://github.com/MDU-PHL/LisSero)**<br/>
 _In silico_ serotype prediction for _Listeria monocytogenes_<br/>
 Kwong J, Zhang J, Seeman T, Horan, K, Gonçalves da Silva A [LisSero - _In silico_ serotype prediction for _Listeria monocytogenes_](https://github.com/MDU-PHL/LisSero) (GitHub)
 
-63: **[MAFFT](https://mafft.cbrc.jp/alignment/software/)**<br/>
+64: **[MAFFT](https://mafft.cbrc.jp/alignment/software/)**<br/>
 Multiple alignment program for amino acid or nucleotide sequences<br/>
 Katoh K, Standley DM [MAFFT multiple sequence alignment software version 7: improvements in performance and usability.](https://doi.org/10.1093/molbev/mst010) _Mol. Biol. Evol._ 30, 772-780 (2013)
 
-64: **[Mash](https://github.com/marbl/Mash)**<br/>
+65: **[Mash](https://github.com/marbl/Mash)**<br/>
 Fast genome and metagenome distance estimation using MinHash<br/>
 Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
 
-65: **[Mash Screen](https://github.com/marbl/Mash)**<br/>
+66: **[Mash Screen](https://github.com/marbl/Mash)**<br/>
 High-throughput sequence containment estimation<br/>
 Ondov BD, Starrett GJ, Sappington A, Kostic A, Koren S, Buck CB, Phillippy AM [Mash Screen: high-throughput sequence containment estimation for genome discovery](https://doi.org/10.1186/s13059-019-1841-x) _Genome Biol_ 20, 232 (2019)
 
-66: **[Mashtree](https://github.com/lskatz/mashtree)**<br/>
+67: **[Mashtree](https://github.com/lskatz/mashtree)**<br/>
 Create a tree using Mash distances<br/>
 Katz LS, Griswold T, Morrison S, Caravas J, Zhang S, den Bakker HC, Deng X, Carleton HA [Mashtree: a rapid comparison of whole genome sequence files.](https://doi.org/10.21105/joss.01762) _Journal of Open Source Software_, 4(44), 1762 (2019)
 
-67: **[maskrc-svg](https://github.com/kwongj/maskrc-svg)**<br/>
+68: **[maskrc-svg](https://github.com/kwongj/maskrc-svg)**<br/>
 Masks recombination as detected by ClonalFrameML or Gubbins<br/>
 Kwong J [maskrc-svg - Masks recombination as detected by ClonalFrameML or Gubbins and draws an SVG.](https://github.com/kwongj/maskrc-svg) (GitHub)
 
-68: **[McCortex](https://github.com/mcveanlab/mccortex)**<br/>
+69: **[McCortex](https://github.com/mcveanlab/mccortex)**<br/>
 De novo genome assembly and multisample variant calling<br/>
 Turner I, Garimella KV, Iqbal Z, McVean G [Integrating long-range connectivity information into de Bruijn graphs.](http://dx.doi.org/10.1093/bioinformatics/bty157) _Bioinformatics_ 34, 2556-2565 (2018)
 
-69: **[mcroni](https://github.com/liampshaw/mcroni)**<br/>
+70: **[mcroni](https://github.com/liampshaw/mcroni)**<br/>
 Scripts for finding and processing promoter variants upstream of mcr-1<br/>
 Shaw L [mcroni: Scripts for finding and processing promoter variants upstream of mcr-1](https://github.com/liampshaw/mcroni) (GitHub)
 
-70: **[Medaka](https://github.com/nanoporetech/medaka)**<br/>
+71: **[Medaka](https://github.com/nanoporetech/medaka)**<br/>
 Sequence correction provided by ONT Research<br/>
 ONT Research [Medaka: Sequence correction provided by ONT Research](https://github.com/nanoporetech/medaka) (GitHub)
 
-71: **[meningotype](https://github.com/MDU-PHL/meningotype)**<br/>
+72: **[meningotype](https://github.com/MDU-PHL/meningotype)**<br/>
 In silico serotyping, finetyping and Bexsero antigen sequence typing of _Neisseria meningitidis_<br/>
 Kwong JC, Gonçalves da Silva A, Stinear TP, Howden BP, & Seemann T [meningotype: in silico typing for _Neisseria meningitidis_.](https://github.com/MDU-PHL/meningotype) (GitHub)
 
-72: **[MEGAHIT](https://github.com/voutcn/megahit)**<br/>
+73: **[MEGAHIT](https://github.com/voutcn/megahit)**<br/>
 Ultra-fast and memory-efficient (meta-)genome assembler<br/>
 Li D, Liu C-M, Luo R, Sadakane K, Lam T-W [MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph.](https://doi.org/10.1093/bioinformatics/btv033) _Bioinformatics_ 31.10 1674-1676 (2015)
 
-73: **[mlst](https://github.com/tseemann/mlst)**<br/>
+74: **[mlst](https://github.com/tseemann/mlst)**<br/>
 Scan contig files against PubMLST typing schemes<br/>
 Seemann T [mlst: scan contig files against PubMLST typing schemes](https://github.com/tseemann/mlst) (GitHub)
 
-74: **[MIDAS](https://github.com/snayfach/MIDAS)**<br/>
+75: **[MIDAS](https://github.com/snayfach/MIDAS)**<br/>
 An integrated pipeline for estimating strain-level genomic variation from metagenomic data<br/>
 Nayfach S, Rodriguez-Mueller B, Garud N, and Pollard KS [An integrated metagenomics pipeline for strain profiling reveals novel patterns of bacterial transmission and biogeography.](https://doi.org/10.1101/gr.201863.115) _Genome Research_, 26(11), 1612-1625. (2016)
 
-75: **[MinCED](https://github.com/ctSkennerton/minced)**<br/>
+76: **[MinCED](https://github.com/ctSkennerton/minced)**<br/>
 Mining CRISPRs in Environmental Datasets<br/>
 Skennerton C [MinCED: Mining CRISPRs in Environmental Datasets](https://github.com/ctSkennerton/minced) (GitHub)
 
-76: **[Miniasm](https://github.com/lh3/miniasm)**<br/>
+77: **[Miniasm](https://github.com/lh3/miniasm)**<br/>
 Ultrafast de novo assembly for long noisy reads (though having no consensus step)<br/>
 Li H [Miniasm: Ultrafast de novo assembly for long noisy reads](https://github.com/lh3/miniasm) (GitHub)
 
-77: **[Minimap2](https://github.com/lh3/minimap2)**<br/>
+78: **[Minimap2](https://github.com/lh3/minimap2)**<br/>
 A versatile pairwise aligner for genomic and spliced nucleotide sequences<br/>
 Li H [Minimap2: pairwise alignment for nucleotide sequences.](https://doi.org/10.1093/bioinformatics/bty191) _Bioinformatics_ 34:3094-3100 (2018)
 
-78: **[MOB-suite](https://github.com/phac-nml/mob-suite)**<br/>
+79: **[MOB-suite](https://github.com/phac-nml/mob-suite)**<br/>
 Software tools for clustering, reconstruction and typing of plasmids from draft assemblies<br/>
 Robertson J, Nash JHE [MOB-suite: software tools for clustering, reconstruction and typing of plasmids from draft assemblies.](https://doi.org/10.1099/mgen.0.000206) _Microbial Genomics_ 4(8). (2018)
 
-79: **[Mykrobe](https://github.com/Mykrobe-tools/mykrobe)**<br/>
+80: **[Mykrobe](https://github.com/Mykrobe-tools/mykrobe)**<br/>
 Antibiotic resistance prediction in minutes<br/>
 Hunt M, Bradley P, Lapierre SG, Heys S, Thomsit M, Hall MB, Malone KM, Wintringer P, Walker TM, Cirillo DM, Comas I, Farhat MR, Fowler P, Gardy J, Ismail N, Kohl TA, Mathys V, Merker M, Niemann S, Omar SV, Sintchenko V, Smith G, Supply P, Tahseen S, Wilcox M, Arandjelovic I, Peto TEA, Crook, DW, Iqbal Z [Antibiotic resistance prediction for Mycobacterium tuberculosis from genome sequence data with Mykrobe](https://doi.org/10.12688/wellcomeopenres.15603.1) _Wellcome Open Research_ 4, 191. (2019)
 
-80: **[NanoPlot](https://github.com/wdecoster/NanoPlot)**<br/>
+81: **[NanoPlot](https://github.com/wdecoster/NanoPlot)**<br/>
 Plotting scripts for long read sequencing data<br/>
 De Coster W, D'Hert S, Schultz DT, Cruts M, Van Broeckhoven C [NanoPack: visualizing and processing long-read sequencing data](https://doi.org/10.1093/bioinformatics/bty149) _Bioinformatics_ Volume 34, Issue 15 (2018)
 
-81: **[Nanoq](https://github.com/esteinig/nanoq)**<br/>
+82: **[Nanoq](https://github.com/esteinig/nanoq)**<br/>
 Minimal but speedy quality control for nanopore reads in Rust<br/>
 Steinig E [Nanoq: Minimal but speedy quality control for nanopore reads in Rust](https://github.com/esteinig/nanoq) (GitHub)
-
-82: **[ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)**<br/>
-Scripts to download genomes from the NCBI FTP servers<br/>
-Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
 
 83: **[Nextflow](https://github.com/nextflow-io/nextflow)**<br/>
 A DSL for data-driven computational pipelines.<br/>
@@ -658,35 +658,39 @@ Petit III RA, Read TD [_Staphylococcus aureus_ viewed from the perspective of 40
 Clustering and Serotyping of Shigatoxin producing _E. coli_ (STEC) using genomic cluster specific markers<br/>
 Zhang X, Payne M, Kaur S, and Lan R [Improved Genomic Identification, Clustering, and Serotyping of Shiga Toxin-Producing Escherichia coli Using Cluster/Serotype-Specific Gene Markers.](https://doi.org/10.3389/fcimb.2021.772574) _Frontiers in Cellular and Infection Microbiology_, 11, 772574. (2021)
 
-134: **[Sylph](https://github.com/bluenote-1/sylph)**<br/>
+134: **[StxTyper](https://github.com/ncbi/stxtyper)**<br/>
+Identify and type Stx operons from assembled genomic sequences<br/>
+Feldgarden M, Brover V, Gonzalez-Escalona N, Frrat JG, Haendiges J, Haft DH, Hoffmann M, Pettengill JB, Prasad AB, Tillman GE, Tyson GH, Klimke W [AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance, stress response, and virulence.](https://doi.org/10.1038/s41598-021-91456-0) _Scientific Reports_ 11, 12728 (2021)
+
+135: **[Sylph](https://github.com/bluenote-1/sylph)**<br/>
 Ultrafast taxonomic profiling and containment estimation for metagenomic data<br/>
 Shaw J, and Yu YW [Rapid species-level metagenome profiling and containment estimation with sylph.](https://doi.org/10.1038/s41587-024-02412-y) _Nature Biotechnology_ (2024)
 
-135: **[TBProfiler](https://github.com/jodyphelan/TBProfiler)**<br/>
+136: **[TBProfiler](https://github.com/jodyphelan/TBProfiler)**<br/>
 Profiling tool for _Mycobacterium tuberculosis_ to detect resistance and strain type<br/>
 Phelan JE, O'Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O'Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
 
-136: **[Traitar](https://github.com/nick-youngblut/traitar3/)**<br/>
+137: **[Traitar](https://github.com/nick-youngblut/traitar3/)**<br/>
 Predict phenotypic traits from microbial genomes<br/>
 Weimann A, Mooren K, Frank J, Pope PB, Gronow S, So AP [From genomes to phenotypes: Traitar, the microbial trait analyzer.](https://doi.org/10.1128/mSystems.00101-16) _mSystems_ 1(6), e00101-16 (2016)
 
-137: **[Unicycler](https://github.com/rrwick/Unicycler)**<br/>
+138: **[Unicycler](https://github.com/rrwick/Unicycler)**<br/>
 Hybrid assembly pipeline for bacterial genomes<br/>
 Wick RR, Judd LM, Gorrie CL, Holt KE [Unicycler: Resolving bacterial genome assemblies from short and long sequencing reads.](http://dx.doi.org/10.1371/journal.pcbi.1005595) _PLoS Comput. Biol._ 13, e1005595 (2017)
 
-138: **[VCF-Annotator](https://github.com/rpetit3/vcf-annotator)**<br/>
+139: **[VCF-Annotator](https://github.com/rpetit3/vcf-annotator)**<br/>
 Add biological annotations to variants in a VCF file.<br/>
 Petit III RA [VCF-Annotator: Add biological annotations to variants in a VCF file.](https://github.com/rpetit3/vcf-annotator) (GitHub)
 
-139: **[Vcflib](https://github.com/vcflib/vcflib)**<br/>
+140: **[Vcflib](https://github.com/vcflib/vcflib)**<br/>
 a simple C++ library for parsing and manipulating VCF files<br/>
 Garrison E [Vcflib: A C++ library for parsing and manipulating VCF files](https://github.com/vcflib/vcflib) (GitHub)
 
-140: **[Velvet](https://github.com/dzerbino/velvet)**<br/>
+141: **[Velvet](https://github.com/dzerbino/velvet)**<br/>
 Short read de novo assembler using de Bruijn graphs<br/>
 Zerbino DR, Birney E [Velvet: algorithms for de novo short read assembly using de Bruijn graphs.](http://www.genome.org/cgi/doi/10.1101/gr.074492.107) _Genome research_ 18.5 821-829 (2008)
 
-141: **[vt](https://github.com/atks/vt)**<br/>
+142: **[vt](https://github.com/atks/vt)**<br/>
 A tool set for short variant discovery in genetic sequence data.<br/>
 Tan A, Abecasis GR, Kang HM [Unified representation of genetic variants.](https://doi.org/10.1093/bioinformatics/btv112) _Bioinformatics_ 31(13), 2202-2204 (2015)
 

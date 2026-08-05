@@ -25,16 +25,16 @@ bactopia-catalog [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+| `--bactopia-path` | STRING | - | Directory where Bactopia repository is stored |
 
 ## Output Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `-o, --output` | STRING |  | Output path for catalog.json (default: stdout) |
+| `-o, --output` | STRING | - | Output path for catalog.json (default: stdout) |
 | `--pretty` | BOOL | `false` | Pretty-print JSON output |
-| `--llms-output` | PATH |  | Also render llms.txt to this path. Uses the bundled template at bactopia/templates/bactopia/llms.txt.j2 unless --llms-template is provided |
-| `--llms-template` | PATH |  | Jinja2 template for llms.txt. Defaults to the template bundled inside bactopia-py |
+| `--llms-output` | PATH | - | Also render llms.txt to this path. Uses the bundled template at bactopia/templates/bactopia/llms.txt.j2 unless --llms-template is provided |
+| `--llms-template` | PATH | - | Jinja2 template for llms.txt. Defaults to the template bundled inside bactopia-py |
 
 ## Additional Options
 

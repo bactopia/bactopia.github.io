@@ -65,11 +65,11 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--fastani_reference` | string |  | Path to reference genome in FASTA format |
+| `--fastani_reference` | string | - | Path to reference genome in FASTA format |
 | `--fastani_kmer` | integer | `16` | kmer size (&lt;= 16) for ANI calculation  |
 | `--fastani_min_fraction` | number | `0.2` | Minimum fraction of genome that must be shared for trusting ANI. |
 | `--fastani_frag_len` | integer | `3000` | fragment length |
-| `--fastani_skip_pairwise` | boolean | `false` | Only use RefSeq or local assemblies for ANI calculations |
+| `--fastani_pairwise` | boolean | `false` | Add every sample to the reference set, comparing each sample against every other sample in addition to any other references |
 
 ## Used By
 
@@ -93,7 +93,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/fastani)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/fastani)
 
 ## Version
 

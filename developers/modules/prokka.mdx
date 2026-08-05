@@ -92,8 +92,8 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--prokka_proteins` | string | `${projectDir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
-| `--prokka_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--prokka_proteins` | string | `${params.bactopia_dir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
+| `--prokka_prodigal_tf` | string | - | Training file to use for Prodigal |
 | `--prokka_compliant` | boolean | `false` | Force Genbank/ENA/DDJB compliance |
 | `--prokka_centre` | string | `Bactopia` | Sequencing centre ID |
 | `--prokka_coverage` | integer | `80` | Minimum coverage on query protein |
@@ -156,7 +156,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/prokka)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/prokka)
 
 ## Version
 

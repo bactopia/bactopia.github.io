@@ -52,7 +52,7 @@ includes downloading samples from ENA/SRA or NCBI Assembly. The tools used are:
 |------|-------------|
 | [art](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm) | For simulating error-free reads for an input assembly |
 | [fastq-dl](https://github.com/rpetit3/fastq-dl) | Downloading FASTQ files from ENA/SRA |
-| [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) | Downloading FASTA files from NCBI Assembly |
+| [genome-dl](https://github.com/rpetit3/genome-dl) | Downloading FASTA files from NCBI Assembly |
 
 This `gather` step also does basic QC checks to help prevent downstream failures.
 
@@ -545,20 +545,20 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--samples` | string |  | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
+| `--samples` | string | - | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
  |
-| `--r1` | string |  | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) |
-| `--r2` | string |  | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) |
-| `--se` | string |  | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) |
-| `--ont` | string |  | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) |
+| `--r1` | string | - | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) |
+| `--r2` | string | - | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) |
+| `--se` | string | - | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) |
+| `--ont` | string | - | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) |
 | `--hybrid` | boolean | `false` | Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) |
 | `--short_polish` | boolean | `false` | Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) |
-| `--sample` | string |  | Sample name to use for the input sequences
+| `--sample` | string | - | Sample name to use for the input sequences
  |
-| `--accessions` | string |  | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed |
-| `--accession` | string |  | Sample name to use for the input sequences
+| `--accessions` | string | - | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed |
+| `--accession` | string | - | Sample name to use for the input sequences
  |
-| `--assembly` | string |  | A assembled genome in compressed FASTA format. (requires --sample) |
+| `--assembly` | string | - | A assembled genome in compressed FASTA format. (requires --sample) |
 | `--check_samples` | boolean | `false` | Validate the input FOFN provided by --samples |
 
 ### AMRFinder+ Parameters
@@ -567,19 +567,19 @@ The following parameters are how you will provide either local or remote samples
 |-----------|------|---------|-------------|
 | `--amrfinderplus_ident_min` | number | `-1` | Minimum proportion of identical amino acids in alignment for hit (0..1) |
 | `--amrfinderplus_coverage_min` | number | `0.5` | Minimum coverage of the reference protein (0..1) |
-| `--amrfinderplus_organism` | string |  | Taxonomy group to run additional screens against |
+| `--amrfinderplus_organism` | string | - | Taxonomy group to run additional screens against |
 | `--amrfinderplus_translation_table` | integer | `11` | NCBI genetic code for translated BLAST |
 | `--amrfinderplus_noplus` | boolean | `false` | Disable running AMRFinder+ with the --plus option |
 | `--amrfinderplus_report_common` | boolean | `false` | Report proteins common to a taxonomy group |
 | `--amrfinderplus_report_all_equal` | boolean | `false` | Report all equally-scoring BLAST and HMM matches |
-| `--amrfinderplus_opts` | string |  | Extra AMRFinder+ options in quotes. |
-| `--amrfinderplus_db` | string |  | A custom AMRFinder+ database to use, either a tarball or a folder |
+| `--amrfinderplus_opts` | string | - | Extra AMRFinder+ options in quotes. |
+| `--amrfinderplus_db` | string | - | A custom AMRFinder+ database to use, either a tarball or a folder |
 
 ### csvtk concat Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
+| `--csvtk_concat_opts` | string | - | Extra csvtk concat options in quotes |
 
 ### Assembler Parameters
 
@@ -587,26 +587,26 @@ The following parameters are how you will provide either local or remote samples
 |-----------|------|---------|-------------|
 | `--shovill_assembler` | string | `skesa` | Assembler to be used by Shovill (choices: `skesa`, `megahit`, `spades`, `velvet`) |
 | `--dragonflye_assembler` | string | `flye` | Assembler to be used by Dragonflye (choices: `flye`, `miniasm`, `raven`) |
-| `--use_unicycler` | boolean |  | Use unicycler for paired end assembly |
+| `--use_unicycler` | boolean | `false` | Use unicycler for paired end assembly |
 | `--min_contig_len` | integer | `500` | Minimum contig length &lt;0=AUTO&gt; |
 | `--min_contig_cov` | integer | `2` | Minimum contig coverage &lt;0=AUTO&gt; |
-| `--contig_namefmt` | string |  | Format of contig FASTA IDs in 'printf' style |
-| `--shovill_opts` | string |  | Extra assembler options in quotes for Shovill |
-| `--shovill_kmers` | string |  | K-mers to use &lt;blank=AUTO&gt; |
-| `--dragonflye_opts` | string |  | Extra assembler options in quotes for Dragonflye |
-| `--trim` | boolean |  | Enable adaptor trimming |
-| `--no_stitch` | boolean |  | Disable read stitching for paired-end reads |
-| `--no_corr` | boolean |  | Disable post-assembly correction |
+| `--contig_namefmt` | string | - | Format of contig FASTA IDs in 'printf' style |
+| `--shovill_opts` | string | - | Extra assembler options in quotes for Shovill |
+| `--shovill_kmers` | string | - | K-mers to use &lt;blank=AUTO&gt; |
+| `--dragonflye_opts` | string | - | Extra assembler options in quotes for Dragonflye |
+| `--trim` | boolean | - | Enable adaptor trimming |
+| `--no_stitch` | boolean | - | Disable read stitching for paired-end reads |
+| `--no_corr` | boolean | - | Disable post-assembly correction |
 | `--unicycler_mode` | string | `normal` | Bridging mode used by Unicycler (choices: `conservative`, `normal`, `bold`) |
 | `--min_component_size` | integer | `1000` | Graph dead ends smaller than this size (bp) will be removed from the final graph |
 | `--min_dead_end_size` | integer | `1000` | Graph dead ends smaller than this size (bp) will be removed from the final graph |
 | `--nanohq` | boolean | `false` | For Flye, use '--nano-hq' instead of --nano-raw |
-| `--medaka_model` | string |  | The model to use for Medaka polishing |
+| `--medaka_model` | string | - | The model to use for Medaka polishing |
 | `--medaka_rounds` | integer | `0` | The number of Medaka polishing rounds to conduct |
 | `--racon_rounds` | integer | `1` | The number of Racon polishing rounds to conduct |
-| `--no_polish` | boolean |  | Skip the assembly polishing step |
-| `--no_miniasm` | boolean |  | Skip miniasm+Racon bridging |
-| `--no_rotate` | boolean |  | Do not rotate completed replicons to start at a standard gene |
+| `--no_polish` | boolean | `false` | Skip the assembly polishing step |
+| `--no_miniasm` | boolean | `false` | Skip miniasm+Racon bridging |
+| `--no_rotate` | boolean | `false` | Do not rotate completed replicons to start at a standard gene |
 | `--reassemble` | boolean | `false` | If reads were simulated, they will be used to create a new assembly. |
 | `--polypolish_rounds` | integer | `1` | Number of polishing rounds to conduct with Polypolish for short read polishing |
 | `--pilon_rounds` | integer | `0` | Number of polishing rounds to conduct with Pilon for short read polishing |
@@ -615,7 +615,7 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--skip_fastq_check` | boolean |  | Skip minimum requirement checks for input FASTQs |
+| `--skip_fastq_check` | boolean | `false` | Skip minimum requirement checks for input FASTQs |
 | `--min_basepairs` | integer | `2241820` | The minimum amount of basepairs required to continue downstream analyses. |
 | `--min_reads` | integer | `7472` | The minimum amount of reads required to continue downstream analyses. |
 | `--min_coverage` | integer | `10` | The minimum amount of coverage required to continue downstream analyses. |
@@ -623,8 +623,7 @@ The following parameters are how you will provide either local or remote samples
 | `--min_genome_size` | integer | `100000` | The minimum estimated genome size allowed for the input sequence to continue downstream analyses. |
 | `--max_genome_size` | integer | `18040666` | The maximum estimated genome size allowed for the input sequence to continue downstream analyses. |
 | `--attempts` | integer | `3` | Maximum times to attempt downloads |
-| `--use_ena` | boolean |  | Download FASTQs from ENA |
-| `--no_cache` | boolean |  | Skip caching the assembly summary file from ncbi-genome-download |
+| `--use_ena` | boolean | `false` | Download FASTQs from ENA |
 
 ### Sketcher Parameters
 
@@ -632,7 +631,7 @@ The following parameters are how you will provide either local or remote samples
 |-----------|------|---------|-------------|
 | `--sketch_size` | integer | `10000` | Sketch size. Each sketch will have at most this many non-redundant min-hashes. |
 | `--sourmash_scale` | integer | `10000` | Choose number of hashes as 1 in FRACTION of input k-mers |
-| `--no_winner_take_all` | boolean |  | Disable winner-takes-all strategy for identity estimates |
+| `--no_winner_take_all` | boolean | `false` | Disable winner-takes-all strategy for identity estimates |
 | `--screen_i` | number | `0.8` | Minimum identity to report. |
 
 ### MLST Parameters
@@ -644,20 +643,20 @@ The following parameters are how you will provide either local or remote samples
 | `--mlst_mincov` | integer | `10` | Minimum DNA percent coverage to report partial allele at all |
 | `--mlst_minscore` | integer | `50` | Minimum score out of 100 to match a scheme |
 | `--mlst_nopath` | boolean | `false` | Strip filename paths from FILE column |
-| `--mlst_db` | string |  | A custom MLST database to use, either a tarball or a directory |
+| `--mlst_db` | string | - | A custom MLST database to use, either a tarball or a directory |
 
 ### QC Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--use_bbmap` | boolean |  | Illumina reads will be QC'd using BBMap |
+| `--use_bbmap` | boolean | `false` | Illumina reads will be QC'd using BBMap |
 | `--use_porechop` | boolean | `false` | Use Porechop to remove adapters from ONT reads |
-| `--skip_qc` | boolean |  | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. |
-| `--skip_qc_plots` | boolean |  | QC Plot creation by FastQC or Nanoplot will be skipped |
-| `--skip_error_correction` | boolean |  | FLASH error correction of reads will be skipped. |
-| `--adapters` | string |  | A FASTA file containing adapters to remove |
+| `--skip_qc` | boolean | `false` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. |
+| `--skip_qc_plots` | boolean | `false` | QC Plot creation by FastQC or Nanoplot will be skipped |
+| `--skip_error_correction` | boolean | `false` | FLASH error correction of reads will be skipped. |
+| `--adapters` | string | - | A FASTA file containing adapters to remove |
 | `--adapter_k` | integer | `23` | Kmer length used for finding adapters. |
-| `--phix` | string |  | phiX174 reference genome to remove |
+| `--phix` | string | - | phiX174 reference genome to remove |
 | `--phix_k` | integer | `31` | Kmer length used for finding phiX174. |
 | `--ktrim` | string | `r` | Trim reads to remove bases matching reference kmers (choices: `f`, `r`, `l`) |
 | `--mink` | integer | `11` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. |
@@ -676,16 +675,16 @@ The following parameters are how you will provide either local or remote samples
 | `--sampleseed` | integer | `42` | Set to a positive number to use as the random number generator seed for sampling |
 | `--ont_minlength` | integer | `1000` | ONT Reads shorter than this will be discarded |
 | `--ont_minqual` | integer | `0` | Minimum average read quality filter of ONT reads |
-| `--porechop_opts` | string |  | Extra Porechop options in quotes |
-| `--nanoplot_opts` | string |  | Extra NanoPlot options in quotes |
-| `--bbduk_opts` | string |  | Extra BBDuk options in quotes |
-| `--fastp_opts` | string |  | Extra fastp options in quotes |
+| `--porechop_opts` | string | - | Extra Porechop options in quotes |
+| `--nanoplot_opts` | string | - | Extra NanoPlot options in quotes |
+| `--bbduk_opts` | string | - | Extra BBDuk options in quotes |
+| `--fastp_opts` | string | - | Extra fastp options in quotes |
 
 ### Bakta Download Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--bakta_db` | string |  | Tarball or path to the Bakta database |
+| `--bakta_db` | string | - | Tarball or path to the Bakta database |
 | `--bakta_db_type` | string | `full` | Which Bakta DB to download 'full' (~30GB) or 'light' (~2GB) (choices: `full`, `light`) |
 | `--bakta_save_as_tarball` | boolean | `false` | Save the Bakta database as a tarball |
 | `--download_bakta` | boolean | `false` | Download the Bakta database to the path given by --bakta_db |
@@ -694,9 +693,9 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--bakta_proteins` | string |  | FASTA file of trusted proteins to first annotate from |
-| `--bakta_prodigal_tf` | string |  | Training file to use for Prodigal |
-| `--bakta_replicons` | string |  | Replicon information table (tsv/csv) |
+| `--bakta_proteins` | string | - | FASTA file of trusted proteins to first annotate from |
+| `--bakta_prodigal_tf` | string | - | Training file to use for Prodigal |
+| `--bakta_replicons` | string | - | Replicon information table (tsv/csv) |
 | `--bakta_min_contig_length` | integer | `1` | Minimum contig size to annotate |
 | `--bakta_keep_contig_headers` | boolean | `false` | Keep original contig headers |
 | `--bakta_compliant` | boolean | `false` | Force Genbank/ENA/DDJB compliance |
@@ -716,8 +715,8 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--prokka_proteins` | string | `${projectDir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
-| `--prokka_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--prokka_proteins` | string | `${params.bactopia_dir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
+| `--prokka_prodigal_tf` | string | - | Training file to use for Prodigal |
 | `--prokka_compliant` | boolean | `false` | Force Genbank/ENA/DDJB compliance |
 | `--prokka_centre` | string | `Bactopia` | Sequencing centre ID |
 | `--prokka_coverage` | integer | `80` | Minimum coverage on query protein |
@@ -729,7 +728,7 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--mash_sketch` | string |  | The reference sequence as a Mash Sketch (.msh file) |
+| `--mash_sketch` | string | - | The reference sequence as a Mash Sketch (.msh file) |
 | `--mash_seed` | integer | `42` | Seed to provide to the hash function |
 | `--mash_table` | boolean | `false` |  Table output (fields will be blank if they do not meet the p-value threshold) |
 | `--mash_m` | integer | `1` | Minimum copies of each k-mer required to pass noise filter for reads |
@@ -762,7 +761,7 @@ The following parameters are how you will provide either local or remote samples
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--emmtyper_wf` | string | `blast` | Workflow for emmtyper to use. (choices: `blast`, `pcr`) |
-| `--emmtyper_blastdb` | string |  | Path to custom EMM BLAST DB. |
+| `--emmtyper_blastdb` | string | - | Path to custom EMM BLAST DB. |
 | `--emmtyper_cluster_distance` | integer | `500` | Distance between cluster of matches to consider as different clusters |
 | `--emmtyper_percid` | integer | `95` | Minimal percent identity of sequence |
 | `--emmtyper_culling_limit` | integer | `5` | Total hits to return in a position |
@@ -777,8 +776,8 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--hicap_database_dir` | string |  | Directory containing locus database |
-| `--hicap_model_fp` | string |  | Path to prodigal model |
+| `--hicap_database_dir` | string | - | Directory containing locus database |
+| `--hicap_model_fp` | string | - | Path to prodigal model |
 | `--hicap_full_sequence` | boolean | `false` | Write the full input sequence out to the genbank file rather than just the region surrounding and including the locus |
 | `--hicap_debug` | boolean | `false` | hicap will print debug messages |
 | `--hicap_gene_coverage` | number | `0.8` | Minimum percentage coverage to consider a single gene complete |
@@ -795,7 +794,7 @@ The following parameters are how you will provide either local or remote samples
 | `--mykrobe_min_depth` | integer | `1` | Minimum depth |
 | `--mykrobe_model` | string | `kmer_count` | Genotype model used. (choices: `kmer_count`, `median_depth`) |
 | `--mykrobe_report_all_calls` | boolean | `false` | Report all calls |
-| `--mykrobe_opts` | string |  | Extra Mykrobe options in quotes |
+| `--mykrobe_opts` | string | - | Extra Mykrobe options in quotes |
 
 ### GenoTyphi Parameters
 
@@ -805,14 +804,14 @@ The following parameters are how you will provide either local or remote samples
 | `--genotyphi_min_depth` | integer | `1` | Minimum depth |
 | `--genotyphi_model` | string | `kmer_count` | Genotype model used. (choices: `kmer_count`, `median_depth`) |
 | `--genotyphi_report_all_calls` | boolean | `false` | Report all calls |
-| `--genotyphi_mykrobe_opts` | string |  | Extra Mykrobe options in quotes |
+| `--genotyphi_mykrobe_opts` | string | - | Extra Mykrobe options in quotes |
 
 ### Kleborate Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--kleborate_preset` | string | `kpsc` | Preset module to use for Kleborate (choices: `kpsc`, `kosc`, `escherichia`) |
-| `--kleborate_opts` | string |  | Extra options in quotes for Kleborate |
+| `--kleborate_opts` | string | - | Extra options in quotes for Kleborate |
 
 ### legsta Parameters
 
@@ -878,8 +877,8 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--spatyper_repeats` | string |  | List of spa repeats |
-| `--spatyper_repeat_order` | string |  | List spa types and order of repeats |
+| `--spatyper_repeats` | string | - | List of spa repeats |
+| `--spatyper_repeat_order` | string | - | List spa types and order of repeats |
 | `--spatyper_do_enrich` | boolean | `false` | Do PCR product enrichment |
 
 ### sccmec Parameters
@@ -890,6 +889,13 @@ The following parameters are how you will provide either local or remote samples
 | `--sccmec_min_targets_coverage` | integer | `80` | Minimum percent coverage to count a target hit |
 | `--sccmec_min_regions_pident` | integer | `85` | Minimum percent identity to count a region hit |
 | `--sccmec_min_regions_coverage` | integer | `93` | Minimum percent coverage to count a region hit |
+
+### StaphSCAN Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--staphscan_modules` | string |  | Comma-separated list of modules to run |
+| `--staphscan_db_mlst` | string | - | Path or tarball to custom MLST database |
 
 ### STECFinder Parameters
 
@@ -915,11 +921,11 @@ The following parameters are how you will provide either local or remote samples
 | `--tbprofiler_call_whole_genome` | boolean | `false` | Call whole genome |
 | `--tbprofiler_mapper` | string | `bwa` | Mapping tool to use. If you are using nanopore data it will default to minimap2 (choices: `bwa`, `minimap2`, `bowtie2`, `bwa-mem2`) |
 | `--tbprofiler_caller` | string | `freebayes` | Variant calling tool to use (choices: `bcftools`, `gatk`, `freebayes`) |
-| `--tbprofiler_calling_params` | string |  | Extra variant caller options in quotes |
+| `--tbprofiler_calling_params` | string | - | Extra variant caller options in quotes |
 | `--tbprofiler_suspect` | boolean | `false` | Use the suspect suite of tools to add ML predictions |
 | `--tbprofiler_no_flagstat` | boolean | `false` | Don't collect flagstats |
 | `--tbprofiler_no_delly` | boolean | `false` | Don't run delly |
-| `--tbprofiler_opts` | string |  | Extra options in quotes for TBProfiler |
+| `--tbprofiler_opts` | string | - | Extra options in quotes for TBProfiler |
 
 ### TB-Profiler Collate Parameters
 
@@ -937,11 +943,11 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--species` | string |  | Name of species for species-specific dataset to use |
-| `--ask_merlin` | boolean |  | Ask Merlin to execute species specific Bactopia tools based on Mash distances |
+| `--species` | string | - | Name of species for species-specific dataset to use |
+| `--ask_merlin` | boolean | - | Ask Merlin to execute species specific Bactopia tools based on Mash distances |
 | `--coverage` | integer | `100` | Reduce samples to a given coverage, requires a genome size |
 | `--genome_size` | integer | `0` | Expected genome size (bp) for all samples, required for read error correction and read subsampling |
-| `--use_bakta` | boolean |  | Use Bakta for annotation, instead of Prokka |
+| `--use_bakta` | boolean | - | Use Bakta for annotation, instead of Prokka |
 </details>
 
 <details>
@@ -953,7 +959,7 @@ These optional parameters can be useful in certain settings.
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
 | `--skip_compression` | boolean | `false` | Output files will not be compressed |
-| `--datasets` | string |  | The path to cache datasets to |
+| `--datasets` | string | - | The path to cache datasets to |
 | `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
 </details>
 
@@ -978,7 +984,7 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--nfconfig` | string | - | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
 | `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
 | `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
 | `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
@@ -994,10 +1000,10 @@ Parameters used to describe centralized config profiles. These should not be edi
 |-----------|------|---------|-------------|
 | `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
 | `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
-| `--config_profile_name` | string |  | Institutional config name. |
-| `--config_profile_description` | string |  | Institutional config description. |
-| `--config_profile_contact` | string |  | Institutional config contact information. |
-| `--config_profile_url` | string |  | Institutional config URL link. |
+| `--config_profile_name` | string | - | Institutional config name. |
+| `--config_profile_description` | string | - | Institutional config description. |
+| `--config_profile_contact` | string | - | Institutional config contact information. |
+| `--config_profile_url` | string | - | Institutional config URL link. |
 </details>
 
 <details>
@@ -1007,11 +1013,11 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--condadir` | string | - | Directory to Nextflow should use for Conda environments |
 | `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
-| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
-| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--singularity_cache` | string | - | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean | - | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
 | `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
 | `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
 | `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
@@ -1026,16 +1032,15 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
-| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--monochrome_logs` | boolean | - | Do not use coloured log outputs. |
+| `--nfdir` | boolean | - | Print directory Nextflow has pulled Bactopia to |
 | `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
-| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
-| `--help` | boolean |  | Display help text. |
+| `--help` | boolean | - | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
-| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
-| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
-| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
-| `--version` | boolean |  | Display version text. |
+| `--list_wfs` | boolean | - | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean | - | Show all params when using `--help` |
+| `--help_all` | boolean | - | An alias for --help --show_hidden_params |
+| `--version` | boolean | - | Display version text. |
 </details>
 
 ## Composition

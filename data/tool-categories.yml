@@ -28,6 +28,7 @@ categories:
       - gamma
       - phispy
       - prokka
+      - traitar
 
   - name: Assembly Quality
     description: >-
@@ -124,5 +125,7 @@ categories:
       - sistr
       - spatyper
       - ssuissero
+      - staphscan
       - staphtyper
       - stecfinder
+      - stxtyper

@@ -113,13 +113,13 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+| `--bactopia` | string | - | The path to bactopia results to use as inputs |
 
 ### csvtk concat Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
+| `--csvtk_concat_opts` | string | - | Extra csvtk concat options in quotes |
 
 <details>
 <summary>Filtering Parameters</summary>
@@ -128,8 +128,8 @@ Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
-| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+| `--include` | string | - | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string | - | A text file containing sample names (one per line) to exclude from the analysis |
 </details>
 
 <details>
@@ -141,7 +141,7 @@ These optional parameters can be useful in certain settings.
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
 | `--skip_compression` | boolean | `false` | Output files will not be compressed |
-| `--datasets` | string |  | The path to cache datasets to |
+| `--datasets` | string | - | The path to cache datasets to |
 | `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
 </details>
 
@@ -166,7 +166,7 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--nfconfig` | string | - | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
 | `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
 | `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
 | `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
@@ -182,10 +182,10 @@ Parameters used to describe centralized config profiles. These should not be edi
 |-----------|------|---------|-------------|
 | `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
 | `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
-| `--config_profile_name` | string |  | Institutional config name. |
-| `--config_profile_description` | string |  | Institutional config description. |
-| `--config_profile_contact` | string |  | Institutional config contact information. |
-| `--config_profile_url` | string |  | Institutional config URL link. |
+| `--config_profile_name` | string | - | Institutional config name. |
+| `--config_profile_description` | string | - | Institutional config description. |
+| `--config_profile_contact` | string | - | Institutional config contact information. |
+| `--config_profile_url` | string | - | Institutional config URL link. |
 </details>
 
 <details>
@@ -195,11 +195,11 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--condadir` | string | - | Directory to Nextflow should use for Conda environments |
 | `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
-| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
-| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--singularity_cache` | string | - | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean | - | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
 | `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
 | `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
 | `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
@@ -214,16 +214,15 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
-| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--monochrome_logs` | boolean | - | Do not use coloured log outputs. |
+| `--nfdir` | boolean | - | Print directory Nextflow has pulled Bactopia to |
 | `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
-| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
-| `--help` | boolean |  | Display help text. |
+| `--help` | boolean | - | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
-| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
-| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
-| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
-| `--version` | boolean |  | Display version text. |
+| `--list_wfs` | boolean | - | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean | - | Show all params when using `--help` |
+| `--help_all` | boolean | - | An alias for --help --show_hidden_params |
+| `--version` | boolean | - | Display version text. |
 </details>
 
 ## Composition
@@ -244,4 +243,4 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/hpsuissero)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/workflows/bactopia-tools/hpsuissero)

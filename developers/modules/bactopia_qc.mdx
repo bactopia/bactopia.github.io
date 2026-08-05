@@ -110,14 +110,14 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--use_bbmap` | boolean |  | Illumina reads will be QC'd using BBMap |
+| `--use_bbmap` | boolean | `false` | Illumina reads will be QC'd using BBMap |
 | `--use_porechop` | boolean | `false` | Use Porechop to remove adapters from ONT reads |
-| `--skip_qc` | boolean |  | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. |
-| `--skip_qc_plots` | boolean |  | QC Plot creation by FastQC or Nanoplot will be skipped |
-| `--skip_error_correction` | boolean |  | FLASH error correction of reads will be skipped. |
-| `--adapters` | string |  | A FASTA file containing adapters to remove |
+| `--skip_qc` | boolean | `false` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. |
+| `--skip_qc_plots` | boolean | `false` | QC Plot creation by FastQC or Nanoplot will be skipped |
+| `--skip_error_correction` | boolean | `false` | FLASH error correction of reads will be skipped. |
+| `--adapters` | string | - | A FASTA file containing adapters to remove |
 | `--adapter_k` | integer | `23` | Kmer length used for finding adapters. |
-| `--phix` | string |  | phiX174 reference genome to remove |
+| `--phix` | string | - | phiX174 reference genome to remove |
 | `--phix_k` | integer | `31` | Kmer length used for finding phiX174. |
 | `--ktrim` | string | `r` | Trim reads to remove bases matching reference kmers (choices: `f`, `r`, `l`) |
 | `--mink` | integer | `11` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. |
@@ -136,10 +136,10 @@ record (
 | `--sampleseed` | integer | `42` | Set to a positive number to use as the random number generator seed for sampling |
 | `--ont_minlength` | integer | `1000` | ONT Reads shorter than this will be discarded |
 | `--ont_minqual` | integer | `0` | Minimum average read quality filter of ONT reads |
-| `--porechop_opts` | string |  | Extra Porechop options in quotes |
-| `--nanoplot_opts` | string |  | Extra NanoPlot options in quotes |
-| `--bbduk_opts` | string |  | Extra BBDuk options in quotes |
-| `--fastp_opts` | string |  | Extra fastp options in quotes |
+| `--porechop_opts` | string | - | Extra Porechop options in quotes |
+| `--nanoplot_opts` | string | - | Extra NanoPlot options in quotes |
+| `--bbduk_opts` | string | - | Extra BBDuk options in quotes |
+| `--fastp_opts` | string | - | Extra fastp options in quotes |
 
 ## Used By
 
@@ -189,7 +189,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/qc)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/bactopia/qc)
 
 ## Version
 

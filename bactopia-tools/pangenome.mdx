@@ -22,8 +22,8 @@ tools: [Panaroo](https://github.com/gtonkinhill/panaroo) (default),
 [Roary](https://github.com/sanger-pathogens/roary). It generates core-genome alignments
 and gene presence/absence matrices, followed by SNP distance calculations.
 You can supplement your pangenome with completed genomes using the --species or
---accessions parameters, which downloads genomes from RefSeq and annotates them with
-Prokka. A phylogeny based on the core-genome alignment is created by IQ-Tree, with
+--accessions parameters, which downloads genomes from NCBI with genome-dl and annotates
+them with Prokka. A phylogeny based on the core-genome alignment is created by IQ-Tree, with
 optional recombination masking using ClonalFrameML. Finally, pan-genome wide
 association studies can be conducted using Scoary.
 
@@ -246,28 +246,27 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+| `--bactopia` | string | - | The path to bactopia results to use as inputs |
 
-### NCBI Genome Download Parameters
+### genome-dl Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--species` | string |  | Name of the species to download assemblies |
-| `--accession` | string |  | An NCBI Assembly accession to be downloaded |
-| `--accessions` | string |  | An file of NCBI Assembly accessions (one per line) to be downloaded |
+| `--species` | string | - | Name of the species to download assemblies |
+| `--accession` | string | - | An NCBI Assembly accession to be downloaded |
+| `--accessions` | string | - | An file of NCBI Assembly accessions (one per line) to be downloaded |
 | `--format` | string | `fasta` | Comma separated list of formats to download |
 | `--section` | string | `refseq` | NCBI section to download |
 | `--assembly_level` | string | `complete` | Comma separated list of assembly levels to download |
-| `--kingdom` | string | `bacteria` | Comma separated list of formats to download |
-| `--limit` | string |  | Limit the number of assemblies to download |
-| `--keep_downloads` | boolean | `false` | Save downloaded files into the bactopia-runs folder |
+| `--limit` | integer | `100` | Limit the number of assemblies to download |
+| `--genomedl_allow_outdated` | boolean | `false` | Download an explicitly requested outdated accession version instead of erroring |
 
 ### Prokka Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--prokka_proteins` | string |  | FASTA file of trusted proteins to first annotate from |
-| `--prokka_prodigal_tf` | string |  | Training file to use for Prodigal |
+| `--prokka_proteins` | string | `${params.bactopia_dir}/data/proteins.faa` | FASTA file of trusted proteins to first annotate from |
+| `--prokka_prodigal_tf` | string | - | Training file to use for Prodigal |
 | `--prokka_compliant` | boolean | `false` | Force Genbank/ENA/DDJB compliance |
 | `--prokka_centre` | string | `Bactopia` | Sequencing centre ID |
 | `--prokka_coverage` | integer | `80` | Minimum coverage on query protein |
@@ -284,7 +283,7 @@ Define where the pipeline should find input data and save output data.
 | `--pirate_features` | string | `CDS` | Comma-delimited features to use for pangenome construction |
 | `--pirate_para_off` | boolean | `false` | Switch off paralog identification |
 | `--pirate_z` | boolean | `false` | Retain all PIRATE intermediate files |
-| `--pirate_pan_opt` | string |  | Additional arguments to pass to pangenome construction. |
+| `--pirate_pan_opt` | string | - | Additional arguments to pass to pangenome construction. |
 
 ### Roary Parameters
 
@@ -327,7 +326,7 @@ Define where the pipeline should find input data and save output data.
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--clonalframeml_emsim` | integer | `100` | Number of simulations to estimate uncertainty in the EM results |
-| `--clonalframeml_opts` | string |  | Extra ClonalFrameML options in quotes |
+| `--clonalframeml_opts` | string | - | Extra ClonalFrameML options in quotes |
 | `--skip_recombination` | boolean | `false` | Skip ClonalFrameML execution in subworkflows |
 
 ### IQ-TREE Parameters
@@ -338,14 +337,14 @@ Define where the pipeline should find input data and save output data.
 | `--iqtree_bb` | integer | `1000` | Ultrafast bootstrap replicates |
 | `--iqtree_alrt` | integer | `1000` | SH-like approximate likelihood ratio test replicates |
 | `--iqtree_asr` | boolean | `false` | Ancestral state reconstruction by empirical Bayes |
-| `--iqtree_opts` | string |  | Extra IQ-TREE options in quotes. |
+| `--iqtree_opts` | string | - | Extra IQ-TREE options in quotes. |
 | `--skip_phylogeny` | boolean | `false` | Skip IQ-TREE execution in subworkflows |
 
 ### Scoary Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--scoary_traits` | string |  | Input trait table (CSV) to test for associations |
+| `--scoary_traits` | string | - | Input trait table (CSV) to test for associations |
 | `--scoary_p_value_cutoff` | number | `0.05` | For statistical tests, genes with higher p-values will not be reported |
 | `--scoary_correction` | string | `I` | Apply the indicated filtration measure. (choices: `I`, `B`, `BH`, `PW`, `EPW`, `P`) |
 | `--scoary_permute` | integer | `0` | Perform N number of permutations of the significant results post-analysis |
@@ -358,8 +357,8 @@ Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
-| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+| `--include` | string | - | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string | - | A text file containing sample names (one per line) to exclude from the analysis |
 </details>
 
 <details>
@@ -371,7 +370,7 @@ These optional parameters can be useful in certain settings.
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
 | `--skip_compression` | boolean | `false` | Output files will not be compressed |
-| `--datasets` | string |  | The path to cache datasets to |
+| `--datasets` | string | - | The path to cache datasets to |
 | `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
 </details>
 
@@ -396,7 +395,7 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--nfconfig` | string | - | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
 | `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
 | `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
 | `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
@@ -412,10 +411,10 @@ Parameters used to describe centralized config profiles. These should not be edi
 |-----------|------|---------|-------------|
 | `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
 | `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
-| `--config_profile_name` | string |  | Institutional config name. |
-| `--config_profile_description` | string |  | Institutional config description. |
-| `--config_profile_contact` | string |  | Institutional config contact information. |
-| `--config_profile_url` | string |  | Institutional config URL link. |
+| `--config_profile_name` | string | - | Institutional config name. |
+| `--config_profile_description` | string | - | Institutional config description. |
+| `--config_profile_contact` | string | - | Institutional config contact information. |
+| `--config_profile_url` | string | - | Institutional config URL link. |
 </details>
 
 <details>
@@ -425,11 +424,11 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--condadir` | string | - | Directory to Nextflow should use for Conda environments |
 | `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
-| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
-| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--singularity_cache` | string | - | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean | - | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
 | `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
 | `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
 | `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
@@ -444,16 +443,15 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
-| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--monochrome_logs` | boolean | - | Do not use coloured log outputs. |
+| `--nfdir` | boolean | - | Print directory Nextflow has pulled Bactopia to |
 | `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
-| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
-| `--help` | boolean |  | Display help text. |
+| `--help` | boolean | - | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
-| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
-| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
-| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
-| `--version` | boolean |  | Display version text. |
+| `--list_wfs` | boolean | - | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean | - | Show all params when using `--help` |
+| `--help_all` | boolean | - | An alias for --help --show_hidden_params |
+| `--version` | boolean | - | Display version text. |
 </details>
 
 ## Composition
@@ -461,8 +459,8 @@ Uncommonly used parameters that might be useful.
 This workflow uses the following subworkflows:
 
 - [clonalframeml](/developers/subworkflows/clonalframeml) - Detect and mask recombination events in bacterial phylogenies.
+- [genomedl](/developers/subworkflows/genomedl) - Download genome assemblies from NCBI Datasets.
 - [iqtree](/developers/subworkflows/iqtree) - Construct maximum likelihood phylogenetic trees from alignments.
-- [ncbigenomedownload](/developers/subworkflows/ncbigenomedownload) - Download bacterial genomes from NCBI's RefSeq database.
 - [pangenome](/developers/subworkflows/pangenome) - Perform pangenome analysis with optional core-genome phylogeny.
 - [prokka](/developers/subworkflows/prokka) - Annotate bacterial genomes with functional information.
 - [scoary](/developers/subworkflows/scoary) - Pan-genome wide association studies.
@@ -477,6 +475,9 @@ If you use this in your analysis, please cite the following.
 - [ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)  
   Didelot X, Wilson DJ [ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.](https://doi.org/10.1371/journal.pcbi.1004041) _PLoS Comput Biol_ 11(2) e1004041 (2015)
 
+- [genome-dl](https://github.com/rpetit3/genome-dl)  
+  Petit III RA [genome-dl: Download genomes from NCBI Datasets](https://github.com/rpetit3/genome-dl) (GitHub)
+
 - [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
   Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
 
@@ -485,9 +486,6 @@ If you use this in your analysis, please cite the following.
 
 - [UFBoot2](https://github.com/Cibiv/IQ-TREE)  
   Hoang DT, Chernomor O, von Haeseler A, Minh BQ, Vinh LS [UFBoot2: Improving the ultrafast bootstrap approximation.](https://doi.org/10.1093/molbev/msx281) _Mol. Biol. Evol._ 35:518-522 (2018)
-
-- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
-  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
 
 - [Panaroo](https://github.com/gtonkinhill/panaroo)  
   Tonkin-Hill G, MacAlasdair N, Ruis C, Weimann A, Horesh G, Lees JA, Gladstone RA, Lo S, Beaudoin C, Floto RA, Frost SDW, Corander J, Bentley SD, Parkhill J [Producing polished prokaryotic pangenomes with the Panaroo pipeline.](https://doi.org/10.1186/s13059-020-02090-4) _Genome Biology_ 21(1), 180. (2020)
@@ -506,4 +504,4 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/pangenome)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/workflows/bactopia-tools/pangenome)

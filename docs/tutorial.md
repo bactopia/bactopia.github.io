@@ -124,7 +124,7 @@ WARN: Graphviz is required to render the execution DAG in the given format -- Se
 Bactopia Execution Summary
 -------------------------------
 Workflow         : bactopia
-Bactopia Version : 4.0.0
+Bactopia Version : 4.1.0
 Nextflow Version : 26.04.0
 Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none -profile test,docker
 Launch Dir       : /home/rpetit3/bactopia-tutorial
@@ -236,7 +236,7 @@ WARN: Graphviz is required to render the execution DAG in the given format -- Se
 Bactopia Execution Summary
 -------------------------------
 Workflow         : bactopia
-Bactopia Version : 4.0.0
+Bactopia Version : 4.1.0
 Nextflow Version : 26.04.0
 Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --accession SRX4563634 --coverage 100 --genome_size 2800000 --max_cpus 2 --outdir ena-single-sample -profile docker
 Launch Dir       : /home/rpetit3/bactopia-tutorial
@@ -568,7 +568,7 @@ WARN: Graphviz is required to render the execution DAG in the given format -- Se
 Bactopia Execution Summary
 -------------------------------
 Workflow         : bactopia
-Bactopia Version : 4.0.0
+Bactopia Version : 4.1.0
 Nextflow Version : 26.04.0
 Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --accessions bactopia-accessions.txt --coverage 100 --outdir ena-multiple-samples --max_cpus 4 -profile docker
 Launch Dir       : /home/rpetit3/bactopia-tutorial
@@ -711,7 +711,7 @@ WARN: Graphviz is required to render the execution DAG in the given format -- Se
 Bactopia Execution Summary
 -------------------------------
 Workflow         : bactopia
-Bactopia Version : 4.0.0
+Bactopia Version : 4.1.0
 Nextflow Version : 26.04.0
 Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --r1 fastqs/SRX4563634_R1.fastq.gz --r2 fastqs/SRX4563634_R2.fastq.gz --sample SRX4563634 --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 4 -profile docker
 Launch Dir       : /home/rpetit3/bactopia-tutorial
@@ -800,7 +800,7 @@ WARN: Graphviz is required to render the execution DAG in the given format -- Se
 Bactopia Execution Summary
 -------------------------------
 Workflow         : bactopia
-Bactopia Version : 4.0.0
+Bactopia Version : 4.1.0
 Nextflow Version : 26.04.0
 Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --se fastqs/SRX4563634-SE.fastq.gz --sample SRX4563634-SE --coverage 100 --genome_size 2800000 --outdir local-single-sample --max_cpus 2 -profile docker
 Launch Dir       : /home/rpetit3/bactopia-tutorial
@@ -970,7 +970,7 @@ WARN: Graphviz is required to render the execution DAG in the given format -- Se
 Bactopia Execution Summary
 -------------------------------
 Workflow         : bactopia
-Bactopia Version : 4.0.0
+Bactopia Version : 4.1.0
 Nextflow Version : 26.04.0
 Command Line     : nextflow run /path/to/bactopia/env/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --samples samples.txt --coverage 100 --max_cpus 2 --outdir local-multiple-samples -profile docker
 Launch Dir       : /home/rpetit3/bactopia-tutorial
@@ -1218,7 +1218,7 @@ WARN: Graphviz is required to render the execution DAG in the given format -- Se
 Bactopia Tool Execution Summary
 -------------------------------
 Workflow         : staphtyper
-Bactopia Version : 4.0.0
+Bactopia Version : 4.1.0
 Nextflow Version : 26.04.0
 Command Line     : nextflow run /path/to/bactopia/env/workflows/bactopia-tools/staphtyper/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --wf staphtyper --bactopia local-multiple-samples/ -profile docker
 Launch Dir       : /home/rpetit3/bactopia-tutorial
@@ -1318,7 +1318,7 @@ WARN: Graphviz is required to render the execution DAG in the given format -- Se
 Bactopia Tool Execution Summary
 -------------------------------
 Workflow         : mashtree
-Bactopia Version : 4.0.0
+Bactopia Version : 4.1.0
 Nextflow Version : 26.04.0
 Command Line     : nextflow run /path/to/bactopia/env/workflows/bactopia-tools/mashtree/main.nf -w /home/rpetit3/bactopia-tutorial/work/ -output-format none --wf mashtree --bactopia local-multiple-samples/ --exclude exclude.txt -profile docker
 Launch Dir       : /home/rpetit3/bactopia-tutorial

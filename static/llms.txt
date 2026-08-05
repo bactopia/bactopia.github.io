@@ -83,6 +83,7 @@ Additional analysis workflows that run specific tools on existing Bactopia resul
 - [staphscan](https://bactopia.io/bactopia-tools/staphscan): Genome-based surveillance analysis of Staphylococcus aureus.
 - [staphtyper](https://bactopia.io/bactopia-tools/staphtyper): Comprehensive typing of Staphylococcus aureus genomes.
 - [stecfinder](https://bactopia.io/bactopia-tools/stecfinder): Serotype identification of Shiga toxin-producing E.
+- [stxtyper](https://bactopia.io/bactopia-tools/stxtyper): Identify and type Stx operons from assembled genomic sequences
 - [sylph](https://bactopia.io/bactopia-tools/sylph): Taxonomic profiling by abundance-corrected MinHash.
 - [tblastn](https://bactopia.io/bactopia-tools/tblastn): Search against translated nucleotide databases using protein queries.
 - [tblastx](https://bactopia.io/bactopia-tools/tblastx): Search against translated nucleotide databases using translated nucleotide queries.
@@ -143,7 +144,7 @@ Developer reference for CLI commands, subworkflows, modules, and AI skills.
 - [bactopia-status](https://bactopia.io/developers/cli/bactopia-status): Show a snapshot of the Bactopia project state.
 - [bactopia-summary](https://bactopia.io/developers/cli/bactopia-summary): Generate a summary table from the Bactopia results.
 - [bactopia-sysinfo](https://bactopia.io/developers/cli/bactopia-sysinfo): Auto-detect host RAM and CPUs, emit Nextflow CLI fragments for local profiles.
-- [bactopia-test](https://bactopia.io/developers/cli/bactopia-test): Run nf-test suites for Bactopia components.
+- [bactopia-test](https://bactopia.io/developers/cli/bactopia-test): Run the nf-test profile matrix for Bactopia components.
 - [bactopia-teton-prepare](https://bactopia.io/developers/cli/bactopia-teton-prepare): Prepare sample sheets for downstream analysis in the Teton workflow.
 - [bactopia-update](https://bactopia.io/developers/cli/bactopia-update): Check if modules used by Bactopia Tools have newer versions available
 - [bactopia-workflows](https://bactopia.io/developers/cli/bactopia-workflows): Output the path to a Bactopia workflow main.nf file.
@@ -205,6 +206,8 @@ Developer reference for CLI commands, subworkflows, modules, and AI skills.
 - [fastani](https://bactopia.io/developers/subworkflows/fastani): Calculate Average Nucleotide Identity (ANI) between genomes.
 - [gamma](https://bactopia.io/developers/modules/gamma): Identification, classification, and annotation of translated gene matches.
 - [gamma](https://bactopia.io/developers/subworkflows/gamma): Gene Allele Mutation Microbial Assessment.
+- [genomedl](https://bactopia.io/developers/modules/genomedl): Download genome assemblies and annotation files from NCBI Datasets.
+- [genomedl](https://bactopia.io/developers/subworkflows/genomedl): Download genome assemblies from NCBI Datasets.
 - [genotyphi](https://bactopia.io/developers/subworkflows/genotyphi): Assign genotypes to Salmonella Typhi genomes.
 - [genotyphi_parse](https://bactopia.io/developers/modules/genotyphi_parse): Parse Mykrobe results to genotype *Salmonella* Typhi.
 - [gigatyper](https://bactopia.io/developers/modules/gigatyper): Run all available MLST schemes for a species against an assembly
@@ -320,6 +323,8 @@ Developer reference for CLI commands, subworkflows, modules, and AI skills.
 - [staphtyper](https://bactopia.io/developers/subworkflows/staphtyper): Determine the agr, spa, SCCmec types and perform genome-based surveillance for _Staphylococcus aureus_ genomes.
 - [stecfinder](https://bactopia.io/developers/modules/stecfinder): Serotype of Shigatoxin producing E.
 - [stecfinder](https://bactopia.io/developers/subworkflows/stecfinder): Identify and serotype Shiga toxin-producing E.
+- [stxtyper](https://bactopia.io/developers/modules/stxtyper): Identify and type Stx operons from assembled genomic sequences
+- [stxtyper](https://bactopia.io/developers/subworkflows/stxtyper): Identify and type Stx operons from assembled genomic sequences
 - [Subworkflows](https://bactopia.io/developers/subworkflows): All available Bactopia subworkflows
 - [sylph](https://bactopia.io/developers/subworkflows/sylph): Profile microbial composition using Sylph.
 - [sylph_profile](https://bactopia.io/developers/modules/sylph_profile): Profile metagenome samples against a database using Sylph.

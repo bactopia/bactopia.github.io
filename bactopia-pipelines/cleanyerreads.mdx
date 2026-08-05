@@ -164,27 +164,27 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--samples` | string |  | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
+| `--samples` | string | - | A FOFN (via bactopia prepare) with sample names and paths to FASTQ/FASTAs to process
  |
-| `--r1` | string |  | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) |
-| `--r2` | string |  | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) |
-| `--se` | string |  | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) |
-| `--ont` | string |  | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) |
+| `--r1` | string | - | First set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r2 and --sample) |
+| `--r2` | string | - | Second set of compressed (gzip) Illumina paired-end FASTQ reads (requires --r1 and --sample) |
+| `--se` | string | - | Compressed (gzip) Illumina single-end FASTQ reads  (requires --sample) |
+| `--ont` | string | - | Compressed (gzip) Oxford Nanopore FASTQ reads  (requires --sample) |
 | `--hybrid` | boolean | `false` | Create hybrid assembly using Unicycler.  (requires --r1, --r2, --ont and --sample) |
 | `--short_polish` | boolean | `false` | Create hybrid assembly from long-read assembly and short read polishing.  (requires --r1, --r2, --ont and --sample) |
-| `--sample` | string |  | Sample name to use for the input sequences
+| `--sample` | string | - | Sample name to use for the input sequences
  |
-| `--accessions` | string |  | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed |
-| `--accession` | string |  | Sample name to use for the input sequences
+| `--accessions` | string | - | A file containing ENA/SRA Experiment accessions or NCBI Assembly accessions to processed |
+| `--accession` | string | - | Sample name to use for the input sequences
  |
-| `--assembly` | string |  | A assembled genome in compressed FASTA format. (requires --sample) |
+| `--assembly` | string | - | A assembled genome in compressed FASTA format. (requires --sample) |
 | `--check_samples` | boolean | `false` | Validate the input FOFN provided by --samples |
 
 ### Gather Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--skip_fastq_check` | boolean |  | Skip minimum requirement checks for input FASTQs |
+| `--skip_fastq_check` | boolean | `false` | Skip minimum requirement checks for input FASTQs |
 | `--min_basepairs` | integer | `2241820` | The minimum amount of basepairs required to continue downstream analyses. |
 | `--min_reads` | integer | `7472` | The minimum amount of reads required to continue downstream analyses. |
 | `--min_coverage` | integer | `10` | The minimum amount of coverage required to continue downstream analyses. |
@@ -192,27 +192,26 @@ The following parameters are how you will provide either local or remote samples
 | `--min_genome_size` | integer | `100000` | The minimum estimated genome size allowed for the input sequence to continue downstream analyses. |
 | `--max_genome_size` | integer | `18040666` | The maximum estimated genome size allowed for the input sequence to continue downstream analyses. |
 | `--attempts` | integer | `3` | Maximum times to attempt downloads |
-| `--use_ena` | boolean |  | Download FASTQs from ENA |
-| `--no_cache` | boolean |  | Skip caching the assembly summary file from ncbi-genome-download |
+| `--use_ena` | boolean | `false` | Download FASTQs from ENA |
 
 ### csvtk concat Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
+| `--csvtk_concat_opts` | string | - | Extra csvtk concat options in quotes |
 
 ### QC Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--use_bbmap` | boolean |  | Illumina reads will be QC'd using BBMap |
+| `--use_bbmap` | boolean | `false` | Illumina reads will be QC'd using BBMap |
 | `--use_porechop` | boolean | `false` | Use Porechop to remove adapters from ONT reads |
-| `--skip_qc` | boolean |  | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. |
-| `--skip_qc_plots` | boolean |  | QC Plot creation by FastQC or Nanoplot will be skipped |
-| `--skip_error_correction` | boolean |  | FLASH error correction of reads will be skipped. |
-| `--adapters` | string |  | A FASTA file containing adapters to remove |
+| `--skip_qc` | boolean | `false` | The QC step will be skipped and it will be assumed the inputs sequences have already been QCed. |
+| `--skip_qc_plots` | boolean | `false` | QC Plot creation by FastQC or Nanoplot will be skipped |
+| `--skip_error_correction` | boolean | `false` | FLASH error correction of reads will be skipped. |
+| `--adapters` | string | - | A FASTA file containing adapters to remove |
 | `--adapter_k` | integer | `23` | Kmer length used for finding adapters. |
-| `--phix` | string |  | phiX174 reference genome to remove |
+| `--phix` | string | - | phiX174 reference genome to remove |
 | `--phix_k` | integer | `31` | Kmer length used for finding phiX174. |
 | `--ktrim` | string | `r` | Trim reads to remove bases matching reference kmers (choices: `f`, `r`, `l`) |
 | `--mink` | integer | `11` | Look for shorter kmers at read tips down to this length, when k-trimming or masking. |
@@ -231,10 +230,10 @@ The following parameters are how you will provide either local or remote samples
 | `--sampleseed` | integer | `42` | Set to a positive number to use as the random number generator seed for sampling |
 | `--ont_minlength` | integer | `1000` | ONT Reads shorter than this will be discarded |
 | `--ont_minqual` | integer | `0` | Minimum average read quality filter of ONT reads |
-| `--porechop_opts` | string |  | Extra Porechop options in quotes |
-| `--nanoplot_opts` | string |  | Extra NanoPlot options in quotes |
-| `--bbduk_opts` | string |  | Extra BBDuk options in quotes |
-| `--fastp_opts` | string |  | Extra fastp options in quotes |
+| `--porechop_opts` | string | - | Extra Porechop options in quotes |
+| `--nanoplot_opts` | string | - | Extra NanoPlot options in quotes |
+| `--bbduk_opts` | string | - | Extra BBDuk options in quotes |
+| `--fastp_opts` | string | - | Extra fastp options in quotes |
 
 ### SRA Human Scrubber Parameters
 
@@ -246,7 +245,7 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--nohuman_db` | string |  | Path to the nohuman database or directory to download it to |
+| `--nohuman_db` | string | - | Path to the nohuman database or directory to download it to |
 | `--nohuman_db_version` | string |  | Database version to download (default: latest HPRC release) |
 | `--nohuman_save_as_tarball` | boolean | `false` | Save the nohuman database as a tarball |
 | `--download_nohuman` | boolean | `false` | Download the nohuman database to the path given by --nohuman_db |
@@ -255,7 +254,7 @@ The following parameters are how you will provide either local or remote samples
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--nohuman_db` | string |  | Path to the nohuman database directory or tarball |
+| `--nohuman_db` | string | - | Path to the nohuman database directory or tarball |
 | `--nohuman_confidence` | number | `0.0` | Kraken2 minimum confidence score for classification (0.0-1.0) |
 | `--nohuman_human` | boolean | `false` | Invert output to keep only human reads instead of removing them |
 | `--nohuman_save_report` | boolean | `false` | Save the Kraken2 classification report |
@@ -286,11 +285,11 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--species` | string |  | Name of species for species-specific dataset to use |
-| `--ask_merlin` | boolean |  | Ask Merlin to execute species specific Bactopia tools based on Mash distances |
+| `--species` | string | - | Name of species for species-specific dataset to use |
+| `--ask_merlin` | boolean | - | Ask Merlin to execute species specific Bactopia tools based on Mash distances |
 | `--coverage` | integer | `100` | Reduce samples to a given coverage, requires a genome size |
 | `--genome_size` | integer | `0` | Expected genome size (bp) for all samples, required for read error correction and read subsampling |
-| `--use_bakta` | boolean |  | Use Bakta for annotation, instead of Prokka |
+| `--use_bakta` | boolean | - | Use Bakta for annotation, instead of Prokka |
 </details>
 
 <details>
@@ -302,7 +301,7 @@ These optional parameters can be useful in certain settings.
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
 | `--skip_compression` | boolean | `false` | Output files will not be compressed |
-| `--datasets` | string |  | The path to cache datasets to |
+| `--datasets` | string | - | The path to cache datasets to |
 | `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
 </details>
 
@@ -327,7 +326,7 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--nfconfig` | string | - | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
 | `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
 | `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
 | `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
@@ -343,10 +342,10 @@ Parameters used to describe centralized config profiles. These should not be edi
 |-----------|------|---------|-------------|
 | `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
 | `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
-| `--config_profile_name` | string |  | Institutional config name. |
-| `--config_profile_description` | string |  | Institutional config description. |
-| `--config_profile_contact` | string |  | Institutional config contact information. |
-| `--config_profile_url` | string |  | Institutional config URL link. |
+| `--config_profile_name` | string | - | Institutional config name. |
+| `--config_profile_description` | string | - | Institutional config description. |
+| `--config_profile_contact` | string | - | Institutional config contact information. |
+| `--config_profile_url` | string | - | Institutional config URL link. |
 </details>
 
 <details>
@@ -356,11 +355,11 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--condadir` | string | - | Directory to Nextflow should use for Conda environments |
 | `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
-| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
-| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--singularity_cache` | string | - | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean | - | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
 | `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
 | `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
 | `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
@@ -375,16 +374,15 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
-| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--monochrome_logs` | boolean | - | Do not use coloured log outputs. |
+| `--nfdir` | boolean | - | Print directory Nextflow has pulled Bactopia to |
 | `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
-| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
-| `--help` | boolean |  | Display help text. |
+| `--help` | boolean | - | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
-| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
-| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
-| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
-| `--version` | boolean |  | Display version text. |
+| `--list_wfs` | boolean | - | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean | - | Show all params when using `--help` |
+| `--help_all` | boolean | - | An alias for --help --show_hidden_params |
+| `--version` | boolean | - | Display version text. |
 </details>
 
 ## Composition
@@ -440,4 +438,4 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/cleanyerreads)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/workflows/cleanyerreads)

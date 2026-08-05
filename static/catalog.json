@@ -4,8 +4,8 @@
     "url": "https://bactopia.io",
     "tagline": "An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes."
   },
-  "generated": "2026-08-05T04:22:02Z",
-  "total_pages": 318,
+  "generated": "2026-08-05T17:05:52Z",
+  "total_pages": 323,
   "sections": [
     {
       "key": "bactopia",
@@ -92,7 +92,7 @@
       "title": "Bactopia Tools",
       "route_base": "/bactopia-tools",
       "description": "Additional analysis workflows that run specific tools on existing Bactopia results.",
-      "page_count": 70,
+      "page_count": 71,
       "pages": [
         {
           "title": "Bactopia Tools",
@@ -1030,6 +1030,21 @@
           "source_file": "bactopia-tools/stecfinder.mdx"
         },
         {
+          "title": "stxtyper",
+          "description": "Identify and type Stx operons from assembled genomic sequences",
+          "url": "https://bactopia.io/bactopia-tools/stxtyper",
+          "path": "/bactopia-tools/stxtyper",
+          "tags": [
+            "stx",
+            "shiga-toxin",
+            "typing",
+            "stec",
+            "virulence",
+            "bactopia-tool"
+          ],
+          "source_file": "bactopia-tools/stxtyper.mdx"
+        },
+        {
           "title": "sylph",
           "description": "Taxonomic profiling by abundance-corrected MinHash.",
           "url": "https://bactopia.io/bactopia-tools/sylph",
@@ -1177,7 +1192,7 @@
       "title": "Developers",
       "route_base": "/developers",
       "description": "Developer reference for CLI commands, subworkflows, modules, and AI skills.",
-      "page_count": 230,
+      "page_count": 234,
       "pages": [
         {
           "title": "Developers",
@@ -1609,7 +1624,7 @@
         },
         {
           "title": "bactopia-test",
-          "description": "Run nf-test suites for Bactopia components.",
+          "description": "Run the nf-test profile matrix for Bactopia components.",
           "url": "https://bactopia.io/developers/cli/bactopia-test",
           "path": "/developers/cli/bactopia-test",
           "tags": [],
@@ -2598,6 +2613,39 @@
             "sample-scope"
           ],
           "source_file": "developers/subworkflows/gamma.mdx"
+        },
+        {
+          "title": "genomedl",
+          "description": "Download genome assemblies and annotation files from NCBI Datasets.",
+          "url": "https://bactopia.io/developers/modules/genomedl",
+          "path": "/developers/modules/genomedl",
+          "tags": [
+            "ncbi",
+            "datasets",
+            "download",
+            "genome",
+            "assembly",
+            "fasta",
+            "utility",
+            "run-scope"
+          ],
+          "source_file": "developers/modules/genomedl.mdx"
+        },
+        {
+          "title": "genomedl",
+          "description": "Download genome assemblies from NCBI Datasets.",
+          "url": "https://bactopia.io/developers/subworkflows/genomedl",
+          "path": "/developers/subworkflows/genomedl",
+          "tags": [
+            "download",
+            "ncbi",
+            "datasets",
+            "genome",
+            "assembly",
+            "refseq",
+            "sample-scope"
+          ],
+          "source_file": "developers/subworkflows/genomedl.mdx"
         },
         {
           "title": "genotyphi",
@@ -4365,6 +4413,36 @@
             "sample-scope"
           ],
           "source_file": "developers/subworkflows/stecfinder.mdx"
+        },
+        {
+          "title": "stxtyper",
+          "description": "Identify and type Stx operons from assembled genomic sequences",
+          "url": "https://bactopia.io/developers/modules/stxtyper",
+          "path": "/developers/modules/stxtyper",
+          "tags": [
+            "stx",
+            "shiga-toxin",
+            "typing",
+            "stec",
+            "virulence",
+            "sample-scope"
+          ],
+          "source_file": "developers/modules/stxtyper.mdx"
+        },
+        {
+          "title": "stxtyper",
+          "description": "Identify and type Stx operons from assembled genomic sequences",
+          "url": "https://bactopia.io/developers/subworkflows/stxtyper",
+          "path": "/developers/subworkflows/stxtyper",
+          "tags": [
+            "stx",
+            "shiga-toxin",
+            "typing",
+            "stec",
+            "virulence",
+            "sample-scope"
+          ],
+          "source_file": "developers/subworkflows/stxtyper.mdx"
         },
         {
           "title": "Subworkflows",

@@ -160,7 +160,7 @@ const config: Config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: 'v4.0.0',
+              label: 'v4.1.0',
               path: '',
               badge: false,
             },

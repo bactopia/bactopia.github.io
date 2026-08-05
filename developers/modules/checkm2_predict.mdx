@@ -76,12 +76,12 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--checkm2_lowmem` | boolean |  | Low memory mode. Reduces DIAMOND blocksize to significantly reduce RAM usage at the expense of longer runtime |
-| `--checkm2_general` | boolean |  | Force the use of the general quality prediction model (gradient boost) |
-| `--checkm2_specific` | boolean |  | Force the use of the specific quality prediction model (neural network) |
-| `--checkm2_allmodels` | boolean |  | Output quality prediction for both models for each genome. |
-| `--checkm2_genes` | boolean |  | Treat input files as protein files. [Default: False] |
-| `--checkm2_opts` | string |  | Additional options to pass to CheckM2 |
+| `--checkm2_lowmem` | boolean | - | Low memory mode. Reduces DIAMOND blocksize to significantly reduce RAM usage at the expense of longer runtime |
+| `--checkm2_general` | boolean | - | Force the use of the general quality prediction model (gradient boost) |
+| `--checkm2_specific` | boolean | - | Force the use of the specific quality prediction model (neural network) |
+| `--checkm2_allmodels` | boolean | - | Output quality prediction for both models for each genome. |
+| `--checkm2_genes` | boolean | - | Treat input files as protein files. [Default: False] |
+| `--checkm2_opts` | string | - | Additional options to pass to CheckM2 |
 
 ## Used By
 
@@ -105,7 +105,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/checkm2/predict)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/checkm2/predict)
 
 ## Version
 

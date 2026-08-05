@@ -74,7 +74,7 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--csvtk_concat_opts` | string |  | Extra csvtk concat options in quotes |
+| `--csvtk_concat_opts` | string | - | Extra csvtk concat options in quotes |
 
 ## Used By
 
@@ -135,6 +135,7 @@ record (
 - [staphopiasccmec](/developers/subworkflows/staphopiasccmec) - Identify SCCmec elements in Staphylococcus aureus genomes using Staphopia method.
 - [staphscan](/developers/subworkflows/staphscan) - Genome-based surveillance analysis of Staphylococcus aureus.
 - [stecfinder](/developers/subworkflows/stecfinder) - Identify and serotype Shiga toxin-producing E. coli (STEC) from assemblies.
+- [stxtyper](/developers/subworkflows/stxtyper) - Identify and type Stx operons from assembled genomic sequences
 - [sylph](/developers/subworkflows/sylph) - Profile microbial composition using Sylph.
 - [tblastn](/developers/subworkflows/tblastn) - Search protein query sequences against nucleotide database.
 - [tblastx](/developers/subworkflows/tblastx) - Translate nucleotide query sequences and search nucleotide database.
@@ -198,6 +199,7 @@ record (
 - [staphopia](/bactopia-pipelines/staphopia) - Comprehensive analysis pipeline for Staphylococcus aureus isolates.
 - [staphscan](/bactopia-tools/staphscan) - Genome-based surveillance analysis of Staphylococcus aureus.
 - [stecfinder](/bactopia-tools/stecfinder) - Serotype identification of Shiga toxin-producing E. coli.
+- [stxtyper](/bactopia-tools/stxtyper) - Identify and type Stx operons from assembled genomic sequences
 - [sylph](/bactopia-tools/sylph) - Taxonomic profiling by abundance-corrected MinHash.
 - [tblastn](/bactopia-tools/tblastn) - Search against translated nucleotide databases using protein queries.
 - [tblastx](/bactopia-tools/tblastx) - Search against translated nucleotide databases using translated nucleotide queries.
@@ -216,7 +218,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/csvtk/concat)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/csvtk/concat)
 
 ## Version
 

@@ -1,15 +1,17 @@
 ---
 title: bactopia-test
-description: "Run nf-test suites for Bactopia components."
+description: "Run the nf-test profile matrix for Bactopia components."
 ---
 
 # bactopia-test
 
-Run nf-test suites for Bactopia components.
+Run the nf-test profile matrix for Bactopia components.
 
-Discovers and executes nf-test files across modules, subworkflows, and
-workflows. Results are classified by status and displayed as a summary
-table. Per-test logs are saved to a logs/ directory.
+Each component is tested against docker, conda, singularity_galaxy, and
+singularity_pull. Docker validates (or generates) the snapshot; the other
+profiles validate against it so runtime drift is surfaced without rewriting
+any tests. Environments are pre-built serially before the parallel test
+phase. Per-profile logs and work directories are kept under logs/.
 
 
 ## Usage
@@ -22,36 +24,37 @@ bactopia-test [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--bactopia-path` | STRING |  | Directory where the Bactopia repository is stored |
-| `--test-data` | STRING |  | Directory containing bactopia-tests data (sets BACTOPIA_TESTS env). Required unless --cleanup |
+| `--bactopia-path` | STRING | - | Directory where the Bactopia repository is stored |
+| `--test-data` | STRING | - | Directory containing bactopia-tests data (sets BACTOPIA_TESTS env). Required unless --cleanup |
 
 ## Cleanup
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--cleanup` | BOOL | `false` | Find and remove all .nf-test/ temp files, then exit (no tests run) |
+| `--cleanup` | BOOL | `false` | Remove .nf-test/ temp files under modules/subworkflows/workflows/tests, then exit (no tests run) |
 | `--dry-run` | BOOL | `false` | With --cleanup, list what would be removed without deleting |
-| `--keep` | BOOL | `false` | Keep .nf-test/ directories and logs after tests pass (useful for debugging) |
 
 ## Test Selection
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `--tier` | CHOICE (modules, subworkflows, workflows, all) | `all` | Which component tier to test |
-| `--include` | STRING |  | Comma-separated list of component names to include |
-| `--exclude` | STRING |  | Comma-separated list of component names to exclude |
+| `--include` | STRING | - | Comma-separated list of component names to include |
+| `--exclude` | STRING | - | Comma-separated list of component names to exclude |
 
 ## Execution Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--profile` | CHOICE (docker, singularity, conda) | `docker` | Nextflow profile to use for tests |
-| `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Directory where Conda environments are stored (NXF_CONDA_CACHEDIR env variable takes precedence) |
-| `--singularity_cache` | STRING | `/home/rpetit3/.bactopia/singularity` | Directory where Singularity images are stored (NXF_SINGULARITY_CACHEDIR env variable takes precedence) |
-| `--generate` | BOOL | `false` | Generate mode: delete snapshots and run twice to verify reproducibility |
-| `--jobs` | INT | `64` | Number of parallel test workers |
-| `--fail-fast` | BOOL | `false` | Stop on the first test failure instead of continuing |
-| `--timeout` | INT | `90` | Per-test timeout in minutes. Each nf-test subprocess is killed after this duration. Set to 0 to disable |
+| `--cachedir` | STRING | `/home/rpetit3/.bactopia` | Cache directory holding conda/ and singularity/ subdirectories for pre-built environments |
+| `--generate` | BOOL | `false` | Force regeneration of the docker snapshot (otherwise the committed snapshot is validated; a missing snapshot is always generated) |
+| `--force-rebuild` | BOOL | `false` | Force a rebuild of existing Conda environments and Singularity images |
+| `--max-retry` | INT | `3` | Maximum build retries per environment during the build phase |
+| `--jobs` | INT | `32` | Number of components tested in parallel (profiles within a component run sequentially). Tune to the test host; the default 32 suits a large box |
+| `--fail-fast` | BOOL | `false` | Stop on the first component with any failing profile instead of continuing |
+| `--timeout` | INT | `90` | Per-run timeout in minutes. Each nf-test subprocess is killed after this duration. Set to 0 to disable |
+| `--times` | STRING | - | Path to test-times baseline JSON (expected_seconds per component). Default: &#123;bactopia-path&#125;/conf/test-times.json. Enables per-component timeouts and longest-first ordering. |
+| `-tm, --timeout-multiplier` | INTRANGE | `4` | Per-component timeout = min(expected_seconds * this, --timeout). Only applied when a test-times file is available. |
 
 ## Output Options
 

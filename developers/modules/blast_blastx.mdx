@@ -73,9 +73,9 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--blastx_query` | string |  | A fasta file containing the query sequences to BLAST against the database |
+| `--blastx_query` | string | - | A fasta file containing the query sequences to BLAST against the database |
 | `--blastx_outfmt` | string | `sseqid qseqid pident qlen slen length nident positive mismatch gapopen gaps qstart qend sstart send evalue bitscore` | The columns to include with -outfmt 6 |
-| `--blastx_opts` | string |  | Additional options to pass to BLASTN |
+| `--blastx_opts` | string | - | Additional options to pass to BLASTN |
 | `--blastx_qcov_hsp_perc` | integer | `50` | Percent query coverage per hsp |
 | `--blastx_max_target_seqs` | integer | `2000` | Maximum number of aligned sequences to keep |
 
@@ -101,7 +101,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/blast/blastx)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/blast/blastx)
 
 ## Version
 

@@ -66,7 +66,7 @@ record (
     results: Set<Path>,
     logs: Set<Path?>,
     nf_logs: Set<Path>,
-    versions: Set<Path?>
+    versions: Set<Path>
 )
 ```
 
@@ -82,7 +82,7 @@ record (
 | `results` | `Set<Path>` | All output files to be published |
 | `logs` | `Set<Path?>` | Optional program specific log files |
 | `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
-| `versions` | `Set<Path?>` | A YAML formatted file with program versions |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
 
 ## Parameters
 
@@ -90,7 +90,7 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--skip_fastq_check` | boolean |  | Skip minimum requirement checks for input FASTQs |
+| `--skip_fastq_check` | boolean | `false` | Skip minimum requirement checks for input FASTQs |
 | `--min_basepairs` | integer | `2241820` | The minimum amount of basepairs required to continue downstream analyses. |
 | `--min_reads` | integer | `7472` | The minimum amount of reads required to continue downstream analyses. |
 | `--min_coverage` | integer | `10` | The minimum amount of coverage required to continue downstream analyses. |
@@ -98,8 +98,7 @@ record (
 | `--min_genome_size` | integer | `100000` | The minimum estimated genome size allowed for the input sequence to continue downstream analyses. |
 | `--max_genome_size` | integer | `18040666` | The maximum estimated genome size allowed for the input sequence to continue downstream analyses. |
 | `--attempts` | integer | `3` | Maximum times to attempt downloads |
-| `--use_ena` | boolean |  | Download FASTQs from ENA |
-| `--no_cache` | boolean |  | Skip caching the assembly summary file from ncbi-genome-download |
+| `--use_ena` | boolean | `false` | Download FASTQs from ENA |
 
 ## Used By
 
@@ -130,19 +129,19 @@ If you use this in your analysis, please cite the following.
 - [fastq-scan](https://github.com/rpetit3/fastq-scan)  
   Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
 
-- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
-  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+- [genome-dl](https://github.com/rpetit3/genome-dl)  
+  Petit III RA [genome-dl: Download genomes from NCBI Datasets](https://github.com/rpetit3/genome-dl) (GitHub)
 
 - [Pigz](https://zlib.net/pigz/)  
   Adler M. [pigz: A parallel implementation of gzip for modern multi-processor, multi-core machines.](https://zlib.net/pigz/) _Jet Propulsion Laboratory_ (2015)
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/gather)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/bactopia/gather)
 
 ## Version
 
 ```yaml
 BACTOPIA_GATHER:
-    - bactopia-gather: 1.0.6
+    - bactopia-gather: 1.2.0
 ```

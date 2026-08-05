@@ -33,15 +33,15 @@ bactopia-docs [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--bactopia-path, -b` | STRING |  | Directory where Bactopia repository is stored |
+| `--bactopia-path, -b` | STRING | - | Directory where Bactopia repository is stored |
 
 ## Validation Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--docs-path` | STRING | `.claude/docs` | Docs directory relative to --bactopia-path |
+| `--docs-path` | STRING | `.agents/docs` | Docs directory relative to --bactopia-path |
 | `--patterns-file` | STRING | `data/docs-patterns.yml` | Deprecated-patterns YAML relative to --bactopia-path |
-| `--bactopia-py-path` | PATH |  | Path to bactopia-py repo (for D105 CLI / D106 lint-rule checks). Defaults to &lt;bactopia-path&gt;/../bactopia-py |
+| `--bactopia-py-path` | PATH | - | Path to bactopia-py repo (for D105 CLI / D106 lint-rule checks). Defaults to &lt;bactopia-path&gt;/../bactopia-py |
 | `--skip-path-check` | BOOL | `false` | Skip D108 markdown-link target resolution |
 | `--validate` | BOOL | `false` | Run validation (default action; flag is accepted for parity with bactopia-citations) |
 

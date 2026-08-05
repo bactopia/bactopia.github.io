@@ -73,9 +73,9 @@ record (
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--tblastn_query` | string |  | A fasta file containing the query sequences to BLAST against the database |
+| `--tblastn_query` | string | - | A fasta file containing the query sequences to BLAST against the database |
 | `--tblastn_outfmt` | string | `sseqid qseqid pident qlen slen length nident positive mismatch gapopen gaps qstart qend sstart send evalue bitscore` | The columns to include with -outfmt 6 |
-| `--tblastn_opts` | string |  | Additional options to pass to BLASTN |
+| `--tblastn_opts` | string | - | Additional options to pass to BLASTN |
 | `--tblastn_qcov_hsp_perc` | integer | `50` | Percent query coverage per hsp |
 | `--tblastn_max_target_seqs` | integer | `2000` | Maximum number of aligned sequences to keep |
 | `--tblastn_use_genes` | boolean | `false` | Blast against genes sequences instead of contigs |
@@ -102,7 +102,7 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/blast/tblastn)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/blast/tblastn)
 
 ## Version
 

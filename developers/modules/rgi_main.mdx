@@ -66,7 +66,7 @@ record (
 |-----------|------|---------|-------------|
 | `--rgi_use_diamond` | boolean | `false` | Use DIAMOND for alignments instead of BLAST |
 | `--rgi_include_loose` | boolean | `false` | Include loose hits in addition to strict and perfect hits |
-| `--rgi_exclude_nudge` | boolean | `false` | Exclude hits nudged from loose to strict hits |
+| `--rgi_include_nudge` | boolean | `false` | Include hits nudged from loose to strict hits |
 | `--rgi_frequency` | boolean | `false` | Represent samples based on resistance profile |
 | `--rgi_category` | string |  | Organize resistance genes based on a category (choices: `drug_class`, `resistance_mechanism`, `gene_family`) |
 | `--rgi_cluster` | string |  | Use SciPy's hierarchical clustering algorithm to cluster rows (AMR genes) or columns (samples) (choices: `samples`, `genes`, `both`) |
@@ -97,11 +97,11 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/rgi/main)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/rgi/main)
 
 ## Version
 
 ```yaml
 RGI_MAIN:
-    - rgi: 6.0.5
+    - rgi: 6.0.8
 ```

@@ -5,13 +5,13 @@ description: Reference for AI skills that automate Bactopia development tasks
 
 # AI Skills
 
-These 12 skills automate common Bactopia development tasks through AI-assisted
+These 15 skills automate common Bactopia development tasks through AI-assisted
 coding tools. Each skill wraps one or more
 [bactopia-py](/developers/cli) CLI commands with interactive guidance,
 guardrails, and multi-step orchestration. Skills live in the bactopia repo at
 `.agents/skills/` and are invoked with `/skill-name`.
 
-[View skills on GitHub](https://github.com/bactopia/bactopia/tree/master/.agents/skills)
+[View skills on GitHub](https://github.com/bactopia/bactopia/tree/main/.agents/skills)
 
 ## Overview
 
@@ -21,7 +21,9 @@ guardrails, and multi-step orchestration. Skills live in the bactopia repo at
 | [`/add-module`](#add-module) | Scaffolding | Scaffold a new Bactopia module from a bioconda/conda-forge package. |
 | [`/add-subworkflow`](#add-subworkflow) | Scaffolding | Scaffold a new Bactopia subworkflow that orchestrates existing modules. |
 | [`/merge-schemas`](#merge-schemas) | Maintenance | Regenerate nextflow.config and nextflow_schema.json for Bactopia workflows. |
+| [`/bump-versions`](#bump-versions) | Maintenance | Propagate the Bactopia and nf-bactopia versions declared in versions.yml into the hand-maintained files that carry a literal version. |
 | [`/update-catalog`](#update-catalog) | Maintenance | Regenerate catalog.json and llms.txt. |
+| [`/update-datasets`](#update-datasets) | Maintenance | Build and publish Bactopia's version-pinned datasets to Cloudflare R2. |
 | [`/update-module`](#update-module) | Maintenance | Check for newer versions of tools used in Bactopia modules and apply updates. |
 | [`/review-groovydoc`](#review-groovydoc) | Review &amp; Quality | Review GroovyDoc accuracy across modules and subworkflows. |
 | [`/review-citations`](#review-citations) | Review &amp; Quality | Review citation integrity across data/citations.yml and @citation tags. |
@@ -29,6 +31,7 @@ guardrails, and multi-step orchestration. Skills live in the bactopia repo at
 | [`/review-tests`](#review-tests) | Review &amp; Quality | Review nf-test run results with grouped error analysis. |
 | [`/run-tests`](#run-tests) | Testing | Run Bactopia nf-tests and produce a timestamped logs directory. |
 | [`/project-status`](#project-status) | Project | Show a live snapshot of project state, coverage, and structural issues. |
+| [`/release-checklist`](#release-checklist) | Project | Audit whether Bactopia is ready for a version release and produce a GO / NO-GO recommendation report. |
 
 ## Scaffolding
 
@@ -100,6 +103,28 @@ interface for workflows.
 
 Skills that keep existing components up to date.
 
+### `/bump-versions`
+
+`versions.yml` at the repo root is the single source of truth for the pipeline
+version (`bactopia`) and the plugin pin (`nf-bactopia`). This skill copies those
+two values into every hand-maintained file that repeats them
+(`conf/test_base.config`, `CITATION.cff`, `bin/bactopia`, `data/conda/meta.yaml`),
+so bactopia-lint's V001 version-consistency check goes green.
+
+**Wraps:** [`bactopia-merge-schemas`](/developers/cli/bactopia-merge-schemas)
+
+**When to use:**
+- Propagate versions.yml edits to the rest of the repo
+- Bump or set the release version across version-bearing files
+- Fix a V001 version-consistency lint failure
+
+**Examples:**
+```
+/bump-versions
+```
+
+**Related skills:** [`/merge-schemas`](#merge-schemas), [`/update-catalog`](#update-catalog)
+
 ### `/merge-schemas`
 
 Regenerate the `nextflow.config` and `nextflow_schema.json` files for one or more
@@ -140,6 +165,25 @@ AI-discovery surface (`llms.txt`).
 ```
 
 **Related skills:** [`/project-status`](#project-status), [`/merge-schemas`](#merge-schemas)
+
+### `/update-datasets`
+
+Build and publish Bactopia's version-pinned datasets to Cloudflare R2. Currently
+implements the AMRFinder+ database: it verifies the amrfinderplus module is at
+the latest bioconda version, rebuilds `amrfinderplus.tar.gz` inside the module's
+pinned container, and (after confirmation) uploads it via rclone.
+
+**When to use:**
+- Rebuild and publish the AMRFinder+ database bundle
+- Refresh the version-pinned datasets for a release
+- Upload a rebuilt dataset to Cloudflare R2
+
+**Examples:**
+```
+/update-datasets
+```
+
+**Related skills:** [`/update-module`](#update-module), [`/release-checklist`](#release-checklist)
 
 ### `/update-module`
 
@@ -290,3 +334,22 @@ coverage, nf-test coverage, and structural issues.
 ```
 
 **Related skills:** [`/update-catalog`](#update-catalog), [`/run-tests`](#run-tests)
+
+### `/release-checklist`
+
+Audit whether Bactopia is ready to cut a version release and produce a GO /
+NO-GO recommendation report. This is a multi-repo, audit-only skill: it reads
+`bactopia`, `bactopia-py`, `nf-bactopia`, and this docs site, plus GitHub
+issues, and never commits, pushes, tags, or regenerates tracked files.
+
+**When to use:**
+- Check release readiness before tagging a new version
+- Run a pre-release audit of version consistency, tests, and docs
+- Triage open issues and CHANGELOG completeness before shipping
+
+**Examples:**
+```
+/release-checklist
+```
+
+**Related skills:** [`/project-status`](#project-status), [`/bump-versions`](#bump-versions)

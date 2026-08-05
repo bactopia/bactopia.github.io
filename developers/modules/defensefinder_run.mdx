@@ -89,8 +89,8 @@ record (
 |-----------|------|---------|-------------|
 | `--defensefinder_coverage` | number | `0.4` | Minimal percentage of coverage for each profiles |
 | `--defensefinder_dbtype` | string | `ordered_replicon` | The macsyfinder --db-type option (choices: `ordered_replicon`, `gembase`, `unordered`) |
-| `--defensefinder_preserveraw` | boolean |  | Preserve raw MacsyFinder outputs alongside Defense Finder results inside the output directory |
-| `--defensefinder_nocutga` | boolean |  | Advanced! Run macsyfinder in no-cut-ga mode. The validity of the genes and systems found is not guaranteed! |
+| `--defensefinder_preserveraw` | boolean | `false` | Preserve raw MacsyFinder outputs alongside Defense Finder results inside the output directory |
+| `--defensefinder_nocutga` | boolean | `false` | Advanced! Run macsyfinder in no-cut-ga mode. The validity of the genes and systems found is not guaranteed! |
 
 ## Used By
 
@@ -114,11 +114,11 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/defensefinder/run)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/modules/defensefinder/run)
 
 ## Version
 
 ```yaml
 DEFENSEFINDER_RUN:
-    - defense-finder: 2.0.1
+    - defense-finder: 3.0.0
 ```

@@ -23,13 +23,13 @@ bactopia-download UNKNOWN [OPTIONS]
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--bactopia-path` | STRING |  | Directory where Bactopia repository is stored |
+| `--bactopia-path` | STRING | - | Directory where Bactopia repository is stored |
 
 ## Build Related Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `--envtype` | CHOICE (conda, docker, singularity, all) | `conda` | The type of environment to build |
+| `--envtype` | CHOICE (conda, docker, singularity, apptainer, all) | `conda` | The type of environment to build |
 | `--wf` | STRING | `bactopia` | Build a environment for a the given workflow |
 | `--build-all` | BOOL | `false` | Builds all environments for Bactopia workflows |
 | `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Directory to create Conda environments (NXF_CONDA_CACHEDIR env variable takes precedence) |

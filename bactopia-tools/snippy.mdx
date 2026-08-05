@@ -352,46 +352,45 @@ Define where the pipeline should find input data and save output data.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--bactopia` | string |  | The path to bactopia results to use as inputs |
+| `--bactopia` | string | - | The path to bactopia results to use as inputs |
 
-### NCBI Genome Download Parameters
+### genome-dl Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--species` | string |  | Name of the species to download assemblies |
-| `--accession` | string |  | An NCBI Assembly accession to be downloaded |
-| `--accessions` | string |  | An file of NCBI Assembly accessions (one per line) to be downloaded |
+| `--species` | string | - | Name of the species to download assemblies |
+| `--accession` | string | - | An NCBI Assembly accession to be downloaded |
+| `--accessions` | string | - | An file of NCBI Assembly accessions (one per line) to be downloaded |
 | `--format` | string | `fasta` | Comma separated list of formats to download |
 | `--section` | string | `refseq` | NCBI section to download |
 | `--assembly_level` | string | `complete` | Comma separated list of assembly levels to download |
-| `--kingdom` | string | `bacteria` | Comma separated list of formats to download |
-| `--limit` | string |  | Limit the number of assemblies to download |
-| `--keep_downloads` | boolean | `false` | Save downloaded files into the bactopia-runs folder |
+| `--limit` | integer | `100` | Limit the number of assemblies to download |
+| `--genomedl_allow_outdated` | boolean | `false` | Download an explicitly requested outdated accession version instead of erroring |
 
 ### Snippy Run Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--reference` | string |  | Reference genome in GenBank format |
+| `--reference` | string | - | Reference genome in GenBank format |
 | `--snippy_mapqual` | integer | `60` | Minimum read mapping quality to consider |
 | `--snippy_basequal` | integer | `13` | Minimum base quality to consider |
 | `--snippy_mincov` | integer | `10` | Minimum site depth to for calling alleles |
 | `--snippy_minfrac` | integer | `0` | Minimum proportion for variant evidence (0=AUTO) |
 | `--snippy_minqual` | integer | `100` | Minimum QUALITY in VCF column 6 |
 | `--snippy_maxsoft` | integer | `10` | Maximum soft clipping to allow |
-| `--snippy_bwaopt` | string |  | Extra BWA MEM options, eg. -x pacbio |
-| `--snippy_fbopt` | string |  | Extra Freebayes options, eg. --theta 1E-6 --read-snp-limit 2 |
+| `--snippy_bwaopt` | string | - | Extra BWA MEM options, eg. -x pacbio |
+| `--snippy_fbopt` | string | - | Extra Freebayes options, eg. --theta 1E-6 --read-snp-limit 2 |
 | `--snippy_remove_bam` | boolean | `false` | Delete BAM files after variant calling |
-| `--snippy_opts` | string |  | Extra options in quotes for Snippy |
+| `--snippy_opts` | string | - | Extra options in quotes for Snippy |
 
 ### Snippy-Core Parameters
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
 | `--snippy_core_maxhap` | integer | `100` | Largest haplotype to decompose |
-| `--snippy_core_mask` | string |  | BED file of sites to mask |
+| `--snippy_core_mask` | string | - | BED file of sites to mask |
 | `--snippy_core_mask_char` | string | `X` | Masking character |
-| `--snippy_core_opts` | string |  | Extra options in quotes for snippy-core |
+| `--snippy_core_opts` | string | - | Extra options in quotes for snippy-core |
 
 ### SNP-Dists Parameters
 
@@ -412,7 +411,7 @@ Define where the pipeline should find input data and save output data.
 | `--gubbins_max_window_size` | integer | `10000` | Maximum window size |
 | `--gubbins_filter_percentage` | number | `25.0` | Filter out taxa with more than this percentage of gaps |
 | `--gubbins_remove_identical_sequences` | boolean | `false` | Remove identical sequences |
-| `--gubbins_opts` | string |  | Extra Gubbins options in quotes |
+| `--gubbins_opts` | string | - | Extra Gubbins options in quotes |
 | `--skip_recombination` | boolean | `false` | Skip Gubbins execution in subworkflows |
 
 ### IQ-TREE Parameters
@@ -423,7 +422,7 @@ Define where the pipeline should find input data and save output data.
 | `--iqtree_bb` | integer | `1000` | Ultrafast bootstrap replicates |
 | `--iqtree_alrt` | integer | `1000` | SH-like approximate likelihood ratio test replicates |
 | `--iqtree_asr` | boolean | `false` | Ancestral state reconstruction by empirical Bayes |
-| `--iqtree_opts` | string |  | Extra IQ-TREE options in quotes. |
+| `--iqtree_opts` | string | - | Extra IQ-TREE options in quotes. |
 | `--skip_phylogeny` | boolean | `false` | Skip IQ-TREE execution in subworkflows |
 
 <details>
@@ -433,8 +432,8 @@ Use these parameters to specify which samples to include or exclude.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--include` | string |  | A text file containing sample names (one per line) to include from the analysis |
-| `--exclude` | string |  | A text file containing sample names (one per line) to exclude from the analysis |
+| `--include` | string | - | A text file containing sample names (one per line) to include from the analysis |
+| `--exclude` | string | - | A text file containing sample names (one per line) to exclude from the analysis |
 </details>
 
 <details>
@@ -446,7 +445,7 @@ These optional parameters can be useful in certain settings.
 |-----------|------|---------|-------------|
 | `--outdir` | string | `bactopia` | Base directory to write results to |
 | `--skip_compression` | boolean | `false` | Output files will not be compressed |
-| `--datasets` | string |  | The path to cache datasets to |
+| `--datasets` | string | - | The path to cache datasets to |
 | `--keep_all_files` | boolean | `false` | Keeps all analysis files created |
 </details>
 
@@ -471,7 +470,7 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--nfconfig` | string |  | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
+| `--nfconfig` | string | - | A Nextflow compatible config file for custom profiles, loaded last and will overwrite existing variables if set. |
 | `--publish_dir_mode` | string | `copy` | Method used to save pipeline results to output directory. (choices: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
 | `--infodir` | string | `${params.outdir}/pipeline_info` | Directory to keep pipeline Nextflow logs and reports. |
 | `--force` | boolean | `false` | Nextflow will overwrite existing output files. |
@@ -487,10 +486,10 @@ Parameters used to describe centralized config profiles. These should not be edi
 |-----------|------|---------|-------------|
 | `--custom_config_version` | string | `master` | Git commit id for Institutional configs. |
 | `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Base directory for Institutional configs. |
-| `--config_profile_name` | string |  | Institutional config name. |
-| `--config_profile_description` | string |  | Institutional config description. |
-| `--config_profile_contact` | string |  | Institutional config contact information. |
-| `--config_profile_url` | string |  | Institutional config URL link. |
+| `--config_profile_name` | string | - | Institutional config name. |
+| `--config_profile_description` | string | - | Institutional config description. |
+| `--config_profile_contact` | string | - | Institutional config contact information. |
+| `--config_profile_url` | string | - | Institutional config URL link. |
 </details>
 
 <details>
@@ -500,11 +499,11 @@ Parameters to fine-tune your Nextflow setup.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--condadir` | string |  | Directory to Nextflow should use for Conda environments |
+| `--condadir` | string | - | Directory to Nextflow should use for Conda environments |
 | `--registry` | string | `quay.io` | Registry to pull Docker containers from. |
 | `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Directory where downloaded datasets should be stored. |
-| `--singularity_cache` | string |  | Directory where remote Singularity images are stored. |
-| `--singularity_pull_docker_container` | boolean |  | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
+| `--singularity_cache` | string | - | Directory where remote Singularity images are stored. |
+| `--singularity_pull_docker_container` | boolean | - | Instead of directly downloading Singularity images for use with Singularity, force the workflow to pull and convert Docker containers instead. |
 | `--force_rebuild` | boolean | `false` | Force overwrite of existing pre-built environments. |
 | `--queue` | string | `general,high-memory` | Comma-separated name of the queue(s) to be used by a job scheduler (e.g. AWS Batch or SLURM) |
 | `--cluster_opts` | string |  | Additional options to pass to the executor. (e.g. SLURM: '--account=my_acct_name' |
@@ -519,25 +518,24 @@ Uncommonly used parameters that might be useful.
 
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
-| `--monochrome_logs` | boolean |  | Do not use coloured log outputs. |
-| `--nfdir` | boolean |  | Print directory Nextflow has pulled Bactopia to |
+| `--monochrome_logs` | boolean | - | Do not use coloured log outputs. |
+| `--nfdir` | boolean | - | Print directory Nextflow has pulled Bactopia to |
 | `--sleep_time` | integer | `5` | The amount of time (seconds) Nextflow will wait after setting up datasets before execution. |
-| `--validate_params` | boolean | `true` | Boolean whether to validate parameters against the schema at runtime |
-| `--help` | boolean |  | Display help text. |
+| `--help` | boolean | - | Display help text. |
 | `--wf` | string | `bactopia` | Specify which workflow or Bactopia Tool to execute |
-| `--list_wfs` | boolean |  | List the available workflows and Bactopia Tools to use with '--wf' |
-| `--show_hidden_params` | boolean |  | Show all params when using `--help` |
-| `--help_all` | boolean |  | An alias for --help --show_hidden_params |
-| `--version` | boolean |  | Display version text. |
+| `--list_wfs` | boolean | - | List the available workflows and Bactopia Tools to use with '--wf' |
+| `--show_hidden_params` | boolean | - | Show all params when using `--help` |
+| `--help_all` | boolean | - | An alias for --help --show_hidden_params |
+| `--version` | boolean | - | Display version text. |
 </details>
 
 ## Composition
 
 This workflow uses the following subworkflows:
 
+- [genomedl](/developers/subworkflows/genomedl) - Download genome assemblies from NCBI Datasets.
 - [gubbins](/developers/subworkflows/gubbins) - Detect and filter recombination regions in bacterial alignments.
 - [iqtree](/developers/subworkflows/iqtree) - Construct maximum likelihood phylogenetic trees from alignments.
-- [ncbigenomedownload](/developers/subworkflows/ncbigenomedownload) - Download bacterial genomes from NCBI's RefSeq database.
 - [snippy_core](/developers/subworkflows/snippy_core) - Generate core-genome SNP alignment from per-sample Snippy outputs.
 - [snippy_run](/developers/subworkflows/snippy_run) - Call variants against a reference genome using Snippy.
 
@@ -559,4 +557,4 @@ If you use this in your analysis, please cite the following.
 
 ## Source
 
-[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/snippy)
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/master/workflows/bactopia-tools/snippy)
