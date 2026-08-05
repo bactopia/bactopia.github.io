@@ -1,0 +1,89 @@
+---
+title: staphscan
+description: "Genome-based surveillance analysis of Staphylococcus aureus."
+tags:
+  - staphylococcus-aureus
+  - surveillance
+  - mlst
+  - spa-typing
+  - sccmec
+  - amr
+  - virulence
+  - sample-scope
+---
+
+# staphscan
+
+**Tags:** <a href="/developers/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/developers/tags/surveillance" class="badge badge--primary badge--tag">surveillance</a> <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/spa-typing" class="badge badge--primary badge--tag">spa-typing</a> <a href="/developers/tags/sccmec" class="badge badge--primary badge--tag">sccmec</a> <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Genome-based surveillance analysis of Staphylococcus aureus.
+
+This subworkflow uses [StaphSCAN](https://github.com/riccabolla/StaphSCAN) to perform
+genome-based surveillance of *Staphylococcus aureus*, integrating species identification,
+MLST, *spa* typing, SCCmec typing, capsular typing, and detection of virulence, biofilm,
+and antimicrobial resistance genes. It processes each sample individually and aggregates
+the results into a single consolidated report.
+
+## Take
+
+```
+fna: Channel<Record>
+```
+
+| Field | Description |
+|-------|-------------|
+| `meta` | Groovy Record containing sample information |
+| `fna` | Assembled contigs in FASTA format |
+
+```
+db: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path?` | Custom MLST database directory |
+
+## Emit
+
+### Published
+
+The `sample_outputs` and `run_outputs` emissions are aggregates of output files that will be published in the entry workflow.
+
+#### `sample_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `tsv` | Per-sample surveillance summary with MLST, spa type, SCCmec, capsule, AGR, resistance, biofilm, and virulence results |
+
+#### `run_outputs`
+
+| Output | Description |
+|--------|-------------|
+| `csv` | A merged TSV file with staphscan results from all samples |
+
+## Module Composition
+
+This subworkflow calls the following modules:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenate multiple CSV or TSV files into a single table.
+- [staphscan](/developers/modules/staphscan) - Genome-based surveillance analysis of Staphylococcus aureus.
+
+## Used By
+
+This subworkflow is used by the following workflows:
+
+- [staphscan](/bactopia-tools/staphscan) - Genome-based surveillance analysis of Staphylococcus aureus.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [StaphSCAN](https://github.com/riccabolla/StaphSCAN)  
+  Bollini R [StaphSCAN (v0.3.0).](https://github.com/riccabolla/StaphSCAN) Zenodo (2026)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/staphscan)

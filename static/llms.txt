@@ -80,12 +80,14 @@ Additional analysis workflows that run specific tools on existing Bactopia resul
 - [snippy](https://bactopia.io/bactopia-tools/snippy): Rapid haplotype variant calling and core genome alignment.
 - [spatyper](https://bactopia.io/bactopia-tools/spatyper): spa typing of Staphylococcus aureus assemblies.
 - [ssuissero](https://bactopia.io/bactopia-tools/ssuissero): Serotype prediction of Streptococcus suis assemblies.
+- [staphscan](https://bactopia.io/bactopia-tools/staphscan): Genome-based surveillance analysis of Staphylococcus aureus.
 - [staphtyper](https://bactopia.io/bactopia-tools/staphtyper): Comprehensive typing of Staphylococcus aureus genomes.
 - [stecfinder](https://bactopia.io/bactopia-tools/stecfinder): Serotype identification of Shiga toxin-producing E.
 - [sylph](https://bactopia.io/bactopia-tools/sylph): Taxonomic profiling by abundance-corrected MinHash.
 - [tblastn](https://bactopia.io/bactopia-tools/tblastn): Search against translated nucleotide databases using protein queries.
 - [tblastx](https://bactopia.io/bactopia-tools/tblastx): Search against translated nucleotide databases using translated nucleotide queries.
 - [tbprofiler](https://bactopia.io/bactopia-tools/tbprofiler): Detection of antimicrobial resistance and lineage typing of Mycobacterium tuberculosis.
+- [traitar](https://bactopia.io/bactopia-tools/traitar): Predict phenotypic traits from microbial genomes
 
 ## Bactopia Pipelines
 
@@ -185,6 +187,10 @@ Developer reference for CLI commands, subworkflows, modules, and AI skills.
 - [clonalframeml](https://bactopia.io/developers/subworkflows/clonalframeml): Detect and mask recombination events in bacterial phylogenies.
 - [csvtk_concat](https://bactopia.io/developers/modules/csvtk_concat): Concatenate multiple CSV or TSV files into a single table.
 - [csvtk_join](https://bactopia.io/developers/modules/csvtk_join): Join two CSV or TSV files based on common fields.
+- [deacon](https://bactopia.io/developers/subworkflows/deacon): Remove host reads from sequencing data using deacon.
+- [deacon_fetch](https://bactopia.io/developers/modules/deacon_fetch): Fetch a pre-built deacon index for host read filtering.
+- [deacon_filter](https://bactopia.io/developers/modules/deacon_filter): Filter host reads from sequencing data using minimizer-based comparison.
+- [deacon_index](https://bactopia.io/developers/modules/deacon_index): Build a deacon minimizer index from a FASTA reference genome.
 - [defensefinder](https://bactopia.io/developers/subworkflows/defensefinder): Systematically search for anti-phage defense systems.
 - [defensefinder_run](https://bactopia.io/developers/modules/defensefinder_run): Detect anti-phage defense systems using HMM profiles.
 - [defensefinder_update](https://bactopia.io/developers/modules/defensefinder_update): Download and package the DefenseFinder and CasFinder model databases.
@@ -309,7 +315,9 @@ Developer reference for CLI commands, subworkflows, modules, and AI skills.
 - [ssuissero](https://bactopia.io/developers/subworkflows/ssuissero): Predict serotypes of Streptococcus suis from genome assemblies.
 - [staphopiasccmec](https://bactopia.io/developers/modules/staphopiasccmec): Primer based SCCmec typing of S.
 - [staphopiasccmec](https://bactopia.io/developers/subworkflows/staphopiasccmec): Identify SCCmec elements in Staphylococcus aureus genomes using Staphopia method.
-- [staphtyper](https://bactopia.io/developers/subworkflows/staphtyper): Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.
+- [staphscan](https://bactopia.io/developers/modules/staphscan): Genome-based surveillance analysis of Staphylococcus aureus.
+- [staphscan](https://bactopia.io/developers/subworkflows/staphscan): Genome-based surveillance analysis of Staphylococcus aureus.
+- [staphtyper](https://bactopia.io/developers/subworkflows/staphtyper): Determine the agr, spa, SCCmec types and perform genome-based surveillance for _Staphylococcus aureus_ genomes.
 - [stecfinder](https://bactopia.io/developers/modules/stecfinder): Serotype of Shigatoxin producing E.
 - [stecfinder](https://bactopia.io/developers/subworkflows/stecfinder): Identify and serotype Shiga toxin-producing E.
 - [Subworkflows](https://bactopia.io/developers/subworkflows): All available Bactopia subworkflows
@@ -321,6 +329,9 @@ Developer reference for CLI commands, subworkflows, modules, and AI skills.
 - [tbprofiler_collate](https://bactopia.io/developers/modules/tbprofiler_collate): Collate TB-Profiler results from multiple samples.
 - [tbprofiler_profile](https://bactopia.io/developers/modules/tbprofiler_profile): Detect resistance and lineages of Mycobacterium tuberculosis genomes.
 - [teton](https://bactopia.io/developers/subworkflows/teton): Perform taxonomic classification and estimate bacterial genome sizes.
+- [traitar](https://bactopia.io/developers/subworkflows/traitar): Predict phenotypic traits from microbial genomes
+- [traitar_download](https://bactopia.io/developers/modules/traitar_download): Download the Pfam database required by Traitar.
+- [traitar_run](https://bactopia.io/developers/modules/traitar_run): Predict phenotypic traits from microbial genomes.
 
 ## Impact & Outreach
 
@@ -336,4 +347,5 @@ Citations, acknowledgements, presentations, and community contributions.
 
 News, tutorials, and updates from the Bactopia project.
 
+- [Bactopia v4 Updates and Improvements](https://bactopia.io/blog/bactopia-v4-updates): Learn about the new features and improvements in Bactopia version 4.
 - [Using Bactopia with AllTheBacteria Assemblies](https://bactopia.io/blog/allthebacteria-tutorial): Learn how to use Bactopia to analyze nearly 2,000,000 bacterial assemblies from the AllTheBacteria project.

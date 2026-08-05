@@ -1,0 +1,81 @@
+---
+title: deacon_index
+description: "Build a deacon minimizer index from a FASTA reference genome."
+tags:
+  - host
+  - decontamination
+  - depletion
+  - index
+  - minimizer
+  - reference
+  - deacon
+  - run-scope
+---
+
+# deacon_index
+
+**Tags:** <a href="/developers/tags/host" class="badge badge--primary badge--tag">host</a> <a href="/developers/tags/decontamination" class="badge badge--primary badge--tag">decontamination</a> <a href="/developers/tags/depletion" class="badge badge--primary badge--tag">depletion</a> <a href="/developers/tags/index" class="badge badge--primary badge--tag">index</a> <a href="/developers/tags/minimizer" class="badge badge--primary badge--tag">minimizer</a> <a href="/developers/tags/reference" class="badge badge--primary badge--tag">reference</a> <a href="/developers/tags/deacon" class="badge badge--primary badge--tag">deacon</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Build a deacon minimizer index from a FASTA reference genome.
+
+Uses [deacon](https://github.com/bede/deacon) to build a minimizer index from a reference
+genome in FASTA format. The resulting index is used by the deacon filter module to remove
+host contamination from sequencing reads via SIMD-accelerated minimizer comparison.
+
+:::note[Build Once]
+This process builds a minimizer index from a reference FASTA. The index is cached
+via storeDir and only needs to be built once per reference genome.
+:::
+
+## Inputs
+
+```
+reference: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `reference` | `Path` | Reference genome in FASTA format to build the minimizer index from |
+
+## Outputs
+
+```
+record (
+    db: Path,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path` | The built deacon minimizer index file |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+### Deacon Index Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--deacon_reference` | string |  | Path to a reference genome FASTA file to build the deacon index from |
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/deacon/index)
+
+## Version
+
+```yaml
+DEACON_INDEX:
+    - bactopia-teton: 1.1.4
+```

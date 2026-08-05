@@ -1,0 +1,78 @@
+---
+title: deacon_fetch
+description: "Fetch a pre-built deacon index for host read filtering."
+tags:
+  - host
+  - decontamination
+  - depletion
+  - download
+  - index
+  - minimizer
+  - deacon
+  - run-scope
+---
+
+# deacon_fetch
+
+**Tags:** <a href="/developers/tags/host" class="badge badge--primary badge--tag">host</a> <a href="/developers/tags/decontamination" class="badge badge--primary badge--tag">decontamination</a> <a href="/developers/tags/depletion" class="badge badge--primary badge--tag">depletion</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/index" class="badge badge--primary badge--tag">index</a> <a href="/developers/tags/minimizer" class="badge badge--primary badge--tag">minimizer</a> <a href="/developers/tags/deacon" class="badge badge--primary badge--tag">deacon</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Fetch a pre-built deacon index for host read filtering.
+
+Uses [deacon](https://github.com/bede/deacon) to download a pre-built minimizer index
+for filtering host reads from sequencing data. The default index is `panhuman-1`, which
+covers human reference genomes for human read depletion.
+
+:::note[Internet Required]
+This process requires an active internet connection to fetch the pre-built index.
+:::
+
+## Outputs
+
+```
+record (
+    db: Path,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path` | The pre-built deacon minimizer index file |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+### Deacon Fetch Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--deacon_index_name` | string | `panhuman-1` | Name of the pre-built deacon index to fetch |
+| `--download_deacon` | boolean | `false` | Download the deacon index to the datasets cache |
+| `--use_deacon` | boolean | `false` | Use deacon for host read filtering |
+
+## Used By
+
+### Subworkflows
+
+- [deacon](/developers/subworkflows/deacon) - Remove host reads from sequencing data using deacon.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/deacon/fetch)
+
+## Version
+
+```yaml
+DEACON_FETCH:
+    - bactopia-teton: 1.1.4
+```

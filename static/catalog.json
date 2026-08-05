@@ -4,8 +4,8 @@
     "url": "https://bactopia.io",
     "tagline": "An extensive workflow to process Nanopore and Illumina sequencing for bacterial genomes."
   },
-  "generated": "2026-04-29T18:58:56Z",
-  "total_pages": 306,
+  "generated": "2026-08-05T04:22:02Z",
+  "total_pages": 318,
   "sections": [
     {
       "key": "bactopia",
@@ -83,7 +83,7 @@
           "path": "/changelog",
           "tags": [],
           "source_file": "docs/changelog.md",
-          "sidebar_position": 50
+          "sidebar_position": 5000
         }
       ]
     },
@@ -92,7 +92,7 @@
       "title": "Bactopia Tools",
       "route_base": "/bactopia-tools",
       "description": "Additional analysis workflows that run specific tools on existing Bactopia results.",
-      "page_count": 68,
+      "page_count": 70,
       "pages": [
         {
           "title": "Bactopia Tools",
@@ -983,6 +983,23 @@
           "source_file": "bactopia-tools/ssuissero.mdx"
         },
         {
+          "title": "staphscan",
+          "description": "Genome-based surveillance analysis of Staphylococcus aureus.",
+          "url": "https://bactopia.io/bactopia-tools/staphscan",
+          "path": "/bactopia-tools/staphscan",
+          "tags": [
+            "staphylococcus-aureus",
+            "surveillance",
+            "mlst",
+            "spa-typing",
+            "sccmec",
+            "amr",
+            "virulence",
+            "bactopia-tool"
+          ],
+          "source_file": "bactopia-tools/staphscan.mdx"
+        },
+        {
           "title": "staphtyper",
           "description": "Comprehensive typing of Staphylococcus aureus genomes.",
           "url": "https://bactopia.io/bactopia-tools/staphtyper",
@@ -992,6 +1009,7 @@
             "agr",
             "spa",
             "sccmec",
+            "surveillance",
             "typing",
             "bactopia-tool"
           ],
@@ -1070,6 +1088,19 @@
             "bactopia-tool"
           ],
           "source_file": "bactopia-tools/tbprofiler.mdx"
+        },
+        {
+          "title": "traitar",
+          "description": "Predict phenotypic traits from microbial genomes",
+          "url": "https://bactopia.io/bactopia-tools/traitar",
+          "path": "/bactopia-tools/traitar",
+          "tags": [
+            "phenotype",
+            "traits",
+            "pfam",
+            "bactopia-tool"
+          ],
+          "source_file": "bactopia-tools/traitar.mdx"
         }
       ]
     },
@@ -1146,7 +1177,7 @@
       "title": "Developers",
       "route_base": "/developers",
       "description": "Developer reference for CLI commands, subworkflows, modules, and AI skills.",
-      "page_count": 221,
+      "page_count": 230,
       "pages": [
         {
           "title": "Developers",
@@ -2275,6 +2306,76 @@
             "run-scope"
           ],
           "source_file": "developers/modules/csvtk_join.mdx"
+        },
+        {
+          "title": "deacon",
+          "description": "Remove host reads from sequencing data using deacon.",
+          "url": "https://bactopia.io/developers/subworkflows/deacon",
+          "path": "/developers/subworkflows/deacon",
+          "tags": [
+            "host",
+            "contamination",
+            "decontamination",
+            "depletion",
+            "filtering",
+            "minimizer",
+            "reads",
+            "deacon",
+            "sample-scope"
+          ],
+          "source_file": "developers/subworkflows/deacon.mdx"
+        },
+        {
+          "title": "deacon_fetch",
+          "description": "Fetch a pre-built deacon index for host read filtering.",
+          "url": "https://bactopia.io/developers/modules/deacon_fetch",
+          "path": "/developers/modules/deacon_fetch",
+          "tags": [
+            "host",
+            "decontamination",
+            "depletion",
+            "download",
+            "index",
+            "minimizer",
+            "deacon",
+            "run-scope"
+          ],
+          "source_file": "developers/modules/deacon_fetch.mdx"
+        },
+        {
+          "title": "deacon_filter",
+          "description": "Filter host reads from sequencing data using minimizer-based comparison.",
+          "url": "https://bactopia.io/developers/modules/deacon_filter",
+          "path": "/developers/modules/deacon_filter",
+          "tags": [
+            "host",
+            "contamination",
+            "decontamination",
+            "depletion",
+            "filtering",
+            "minimizer",
+            "reads",
+            "deacon",
+            "sample-scope"
+          ],
+          "source_file": "developers/modules/deacon_filter.mdx"
+        },
+        {
+          "title": "deacon_index",
+          "description": "Build a deacon minimizer index from a FASTA reference genome.",
+          "url": "https://bactopia.io/developers/modules/deacon_index",
+          "path": "/developers/modules/deacon_index",
+          "tags": [
+            "host",
+            "decontamination",
+            "depletion",
+            "index",
+            "minimizer",
+            "reference",
+            "deacon",
+            "run-scope"
+          ],
+          "source_file": "developers/modules/deacon_index.mdx"
         },
         {
           "title": "defensefinder",
@@ -4186,8 +4287,42 @@
           "source_file": "developers/subworkflows/staphopiasccmec.mdx"
         },
         {
+          "title": "staphscan",
+          "description": "Genome-based surveillance analysis of Staphylococcus aureus.",
+          "url": "https://bactopia.io/developers/modules/staphscan",
+          "path": "/developers/modules/staphscan",
+          "tags": [
+            "staphylococcus-aureus",
+            "surveillance",
+            "mlst",
+            "spa-typing",
+            "sccmec",
+            "amr",
+            "virulence",
+            "sample-scope"
+          ],
+          "source_file": "developers/modules/staphscan.mdx"
+        },
+        {
+          "title": "staphscan",
+          "description": "Genome-based surveillance analysis of Staphylococcus aureus.",
+          "url": "https://bactopia.io/developers/subworkflows/staphscan",
+          "path": "/developers/subworkflows/staphscan",
+          "tags": [
+            "staphylococcus-aureus",
+            "surveillance",
+            "mlst",
+            "spa-typing",
+            "sccmec",
+            "amr",
+            "virulence",
+            "sample-scope"
+          ],
+          "source_file": "developers/subworkflows/staphscan.mdx"
+        },
+        {
           "title": "staphtyper",
-          "description": "Determine the agr, spa and SCCmec types for _Staphylococcus aureus_ genomes.",
+          "description": "Determine the agr, spa, SCCmec types and perform genome-based surveillance for _Staphylococcus aureus_ genomes.",
           "url": "https://bactopia.io/developers/subworkflows/staphtyper",
           "path": "/developers/subworkflows/staphtyper",
           "tags": [
@@ -4195,6 +4330,7 @@
             "agr-typing",
             "spa-typing",
             "sccmec",
+            "surveillance",
             "strain-characterization",
             "run-scope"
           ],
@@ -4361,6 +4497,47 @@
             "run-scope"
           ],
           "source_file": "developers/subworkflows/teton.mdx"
+        },
+        {
+          "title": "traitar",
+          "description": "Predict phenotypic traits from microbial genomes",
+          "url": "https://bactopia.io/developers/subworkflows/traitar",
+          "path": "/developers/subworkflows/traitar",
+          "tags": [
+            "phenotype",
+            "traits",
+            "pfam",
+            "sample-scope"
+          ],
+          "source_file": "developers/subworkflows/traitar.mdx"
+        },
+        {
+          "title": "traitar_download",
+          "description": "Download the Pfam database required by Traitar.",
+          "url": "https://bactopia.io/developers/modules/traitar_download",
+          "path": "/developers/modules/traitar_download",
+          "tags": [
+            "phenotype",
+            "traits",
+            "pfam",
+            "database",
+            "download",
+            "run-scope"
+          ],
+          "source_file": "developers/modules/traitar_download.mdx"
+        },
+        {
+          "title": "traitar_run",
+          "description": "Predict phenotypic traits from microbial genomes.",
+          "url": "https://bactopia.io/developers/modules/traitar_run",
+          "path": "/developers/modules/traitar_run",
+          "tags": [
+            "phenotype",
+            "traits",
+            "pfam",
+            "sample-scope"
+          ],
+          "source_file": "developers/modules/traitar_run.mdx"
         }
       ]
     },
@@ -4423,8 +4600,20 @@
       "title": "Blog",
       "route_base": "/blog",
       "description": "News, tutorials, and updates from the Bactopia project.",
-      "page_count": 1,
+      "page_count": 2,
       "pages": [
+        {
+          "title": "Bactopia v4 Updates and Improvements",
+          "description": "Learn about the new features and improvements in Bactopia version 4.",
+          "url": "https://bactopia.io/blog/bactopia-v4-updates",
+          "path": "/blog/bactopia-v4-updates",
+          "tags": [
+            "community",
+            "release"
+          ],
+          "source_file": "blog/2026/04/29-bactopia-v4/index.md",
+          "date": "2026-04-29"
+        },
         {
           "title": "Using Bactopia with AllTheBacteria Assemblies",
           "description": "Learn how to use Bactopia to analyze nearly 2,000,000 bacterial assemblies from the AllTheBacteria project.",

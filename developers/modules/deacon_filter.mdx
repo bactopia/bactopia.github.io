@@ -1,0 +1,131 @@
+---
+title: deacon_filter
+description: "Filter host reads from sequencing data using minimizer-based comparison."
+tags:
+  - host
+  - contamination
+  - decontamination
+  - depletion
+  - filtering
+  - minimizer
+  - reads
+  - deacon
+  - sample-scope
+---
+
+# deacon_filter
+
+**Tags:** <a href="/developers/tags/host" class="badge badge--primary badge--tag">host</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/decontamination" class="badge badge--primary badge--tag">decontamination</a> <a href="/developers/tags/depletion" class="badge badge--primary badge--tag">depletion</a> <a href="/developers/tags/filtering" class="badge badge--primary badge--tag">filtering</a> <a href="/developers/tags/minimizer" class="badge badge--primary badge--tag">minimizer</a> <a href="/developers/tags/reads" class="badge badge--primary badge--tag">reads</a> <a href="/developers/tags/deacon" class="badge badge--primary badge--tag">deacon</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Filter host reads from sequencing data using minimizer-based comparison.
+
+Uses [deacon](https://github.com/bede/deacon) to identify and remove host reads from
+FASTQ files using SIMD-accelerated minimizer comparison against a pre-built or custom
+reference index. Supports paired-end, single-end, and long reads.
+
+:::note[Database Required]
+Requires a deacon minimizer index. Use the deacon/fetch module to download a pre-built
+index (e.g., panhuman-1) or deacon/index to build one from a reference FASTA.
+:::
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `r1` | `Path?` | Illumina R1 reads (paired-end forward) |
+| `r2` | `Path?` | Illumina R2 reads (paired-end reverse) |
+| `se` | `Path?` | Single-end Illumina reads |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+```
+db: Path
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path` | Deacon minimizer index file (.idx) for host read filtering |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    special_meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    scrub_report: Path,
+    json_summary: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `special_meta` | `Record` | A simplified metadata record for downstream report joining |
+| `r1` | `Path?` | Filtered paired-end forward reads |
+| `r2` | `Path?` | Filtered paired-end reverse reads |
+| `se` | `Path?` | Filtered single-end reads |
+| `lr` | `Path?` | Filtered long reads |
+| `scrub_report` | `Path` | Summary report of reads removed during filtering |
+| `json_summary` | `Path` |  |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### Deacon Filter Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--deacon_abs_threshold` | integer | `2` | Minimum absolute number of minimizer hits for a match |
+| `--deacon_db` | string |  | Path to a pre-existing deacon index (.idx) for host read filtering |
+| `--deacon_deplete` | boolean | `true` | Discard matching sequences instead of keeping them |
+| `--deacon_opts` | string |  | Additional deacon filter options not covered by other parameters |
+| `--deacon_prefix_length` | integer | `0` | Search only the first N nucleotides per sequence (0 for all) |
+| `--deacon_rel_threshold` | number | `0.01` | Minimum relative proportion (0.0-1.0) of minimizer hits for a match |
+
+## Used By
+
+### Subworkflows
+
+- [deacon](/developers/subworkflows/deacon) - Remove host reads from sequencing data using deacon.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/deacon/filter)
+
+## Version
+
+```yaml
+DEACON_FILTER:
+    - bactopia-teton: 1.1.4
+```

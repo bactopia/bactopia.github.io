@@ -1,0 +1,80 @@
+---
+title: traitar_download
+description: "Download the Pfam database required by Traitar."
+tags:
+  - phenotype
+  - traits
+  - pfam
+  - database
+  - download
+  - run-scope
+---
+
+# traitar_download
+
+**Tags:** <a href="/developers/tags/phenotype" class="badge badge--primary badge--tag">phenotype</a> <a href="/developers/tags/traits" class="badge badge--primary badge--tag">traits</a> <a href="/developers/tags/pfam" class="badge badge--primary badge--tag">pfam</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Download the Pfam database required by Traitar.
+
+Fetches the pre-compiled Pfam database required by [Traitar](https://github.com/nick-youngblut/traitar3/)
+for microbial phenotype prediction. The database contains Pfam HMM models used for
+protein family annotation during trait prediction.
+
+:::note[Internet & Storage Required]
+This process requires an active internet connection and significant disk space
+to store the Pfam database files (~1.2GB).
+:::
+
+## Outputs
+
+```
+record (
+    db: Path,
+    logs: Set<Path?>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `db` | `Path` | The Pfam-A HMM file for Traitar |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+
+## Parameters
+
+### Traitar Download Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--traitar_db` | string |  | Path a Traitar database (should contain the Pfam-A.hmm file) |
+| `--download_traitar` | boolean | `false` | Download the Pfam database to the path given by --traitar_db |
+
+## Used By
+
+### Subworkflows
+
+- [traitar](/developers/subworkflows/traitar) - Predict phenotypic traits from microbial genomes
+
+### Workflows
+
+- [traitar](/bactopia-tools/traitar) - Predict phenotypic traits from microbial genomes
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Traitar](https://github.com/nick-youngblut/traitar3/)  
+  Weimann A, Mooren K, Frank J, Pope PB, Gronow S, So AP [From genomes to phenotypes: Traitar, the microbial trait analyzer.](https://doi.org/10.1128/mSystems.00101-16) _mSystems_ 1(6), e00101-16 (2016)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/traitar/download)
+
+## Version
+
+```yaml
+TRAITAR_DOWNLOAD:
+    - traitar: 3.0.1
+```

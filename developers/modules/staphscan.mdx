@@ -1,0 +1,108 @@
+---
+title: staphscan
+description: "Genome-based surveillance analysis of Staphylococcus aureus."
+tags:
+  - staphylococcus-aureus
+  - surveillance
+  - mlst
+  - spa-typing
+  - sccmec
+  - amr
+  - virulence
+  - sample-scope
+---
+
+# staphscan
+
+**Tags:** <a href="/developers/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/developers/tags/surveillance" class="badge badge--primary badge--tag">surveillance</a> <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/spa-typing" class="badge badge--primary badge--tag">spa-typing</a> <a href="/developers/tags/sccmec" class="badge badge--primary badge--tag">sccmec</a> <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Genome-based surveillance analysis of Staphylococcus aureus.
+
+Uses [StaphSCAN](https://github.com/riccabolla/StaphSCAN) to perform genome-based
+surveillance of *Staphylococcus aureus*, integrating species identification, MLST,
+*spa* typing, SCCmec typing, capsular typing, and detection of virulence, biofilm,
+and antimicrobial resistance genes.
+
+## Inputs
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Groovy Record containing sample information |
+| `fna` | `Path` | Assembled contigs in FASTA format |
+
+```
+db: Path?
+```
+
+| Name | Type | Description |
+|------|------|-------------|
+| `db` | `Path?` | Custom MLST database directory |
+
+## Outputs
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `meta` | `Record` | Sample information record |
+| `tsv` | `Path` | Per-sample surveillance summary with MLST, spa type, SCCmec, capsule, AGR, resistance, biofilm, and virulence results |
+| `results` | `Set<Path>` | All output files to be published |
+| `logs` | `Set<Path?>` | Optional program specific log files |
+| `nf_logs` | `Set<Path>` | Nextflow-specific log files (e.g. .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | A YAML formatted file with program versions |
+
+## Parameters
+
+### StaphSCAN Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `--staphscan_modules` | string |  | Comma-separated list of modules to run |
+| `--staphscan_db_mlst` | string |  | Path or tarball to custom MLST database |
+
+## Used By
+
+### Subworkflows
+
+- [staphscan](/developers/subworkflows/staphscan) - Genome-based surveillance analysis of Staphylococcus aureus.
+
+### Workflows
+
+- [staphscan](/bactopia-tools/staphscan) - Genome-based surveillance analysis of Staphylococcus aureus.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [StaphSCAN](https://github.com/riccabolla/StaphSCAN)  
+  Bollini R [StaphSCAN (v0.3.0).](https://github.com/riccabolla/StaphSCAN) Zenodo (2026)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/modules/staphscan)
+
+## Version
+
+```yaml
+STAPHSCAN:
+    - staphscan: 0.3.1
+```
