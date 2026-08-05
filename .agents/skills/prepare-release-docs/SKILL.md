@@ -181,9 +181,10 @@ git push -u origin <NEW_VERSION>-docs
 ```
 
 Stop here -- the skill never merges to master. Tell the user the branch is
-pushed and ready: they open the PR, review the preview build, and merge when
-satisfied. The deploy workflow runs on the merge to master, serving the new
-version at `/` and assembling the snapshot under `/<OUTGOING_VERSION>/`.
+pushed and ready: they open the PR, review the Netlify deploy preview that
+is automatically built and linked on the PR, and merge when satisfied. The
+deploy workflow runs on the merge to master, serving the new version at `/`
+and assembling the snapshot under `/<OUTGOING_VERSION>/`.
 
 ### 12. Post-deploy verification (after the user merges)
 

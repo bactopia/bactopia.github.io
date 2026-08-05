@@ -4,7 +4,7 @@ Docusaurus 3.10 site for [Bactopia](https://github.com/bactopia/bactopia), a bac
 This file follows the [agents.md](https://agents.md/) convention; `CLAUDE.md` is an import stub.
 
 - Site: https://bactopia.io
-- Repo: bactopia/bactopia.github.io (deployed to Cloudflare Pages)
+- Repo: bactopia/bactopia.github.io (deployed to Cloudflare Pages; PR deploy previews via Netlify)
 
 ## Architecture
 
