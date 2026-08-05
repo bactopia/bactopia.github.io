@@ -31,7 +31,7 @@ def normalize_tags(keywords):
 def format_default(value):
     """Format a parameter default value for display."""
     if value is None:
-        return ''
+        return '-'
     if isinstance(value, bool):
         return '`true`' if value else '`false`'
     if isinstance(value, str):
