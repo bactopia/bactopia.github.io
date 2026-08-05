@@ -13,9 +13,11 @@ CATEGORY_MAP = {
     "add-": "Scaffolding",
     "update-": "Maintenance",
     "merge-": "Maintenance",
+    "bump-": "Maintenance",
     "review-": "Review & Quality",
     "run-": "Testing",
     "project-": "Project",
+    "release-": "Project",
 }
 
 CATEGORY_ORDER = [
