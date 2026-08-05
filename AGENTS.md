@@ -1,6 +1,7 @@
 # Bactopia Documentation Site
 
 Docusaurus 3.10 site for [Bactopia](https://github.com/bactopia/bactopia), a bacterial genomics workflow.
+This file follows the [agents.md](https://agents.md/) convention; `CLAUDE.md` is an import stub.
 
 - Site: https://bactopia.io
 - Repo: bactopia/bactopia.github.io (deployed to Cloudflare Pages)
@@ -37,6 +38,7 @@ Scripts in `bin/`:
 | `parse-bactopia.py` | bactopia repo | `data/bactopia.json` |
 | `parse-cli.py` | bactopia-py (Click introspection) | `data/cli.json` |
 | `generate-workflows.py` | `data/bactopia.json` | `bactopia-tools/*.mdx`, `bactopia-pipelines/*.mdx` |
+| `generate-tools-index.py` | `data/tool-categories.yml` | `bactopia-tools/index.mdx` |
 | `generate-subworkflows.py` | `data/bactopia.json` | `developers/subworkflows/*.mdx` |
 | `generate-modules.py` | `data/bactopia.json` | `developers/modules/*.mdx` |
 | `generate-cli.py` | `data/cli.json` | `developers/cli/*.mdx` |
@@ -57,8 +59,8 @@ Data files in `data/`:
 ## Environment
 
 - Node.js >= 18 for Docusaurus
-- Python via bactopia-dev conda env for generation scripts
-- `BACTOPIA_DEV_PYTHON` defaults to `/home/rpetit3/.conda/envs/bactopia-dev/bin/python`
+- Python environment with the packages in `requirements.txt` for generation scripts
+- Set `BACTOPIA_DEV_PYTHON` to that environment's Python (the `Makefile` default is machine-specific)
 
 ## Commands
 
@@ -167,5 +169,6 @@ The branch is preserved and can be re-activated with `make snapshot-activate`.
 
 ## Skills
 
-Claude Code skills live in `.claude/skills/<skill-name>/SKILL.md` with YAML frontmatter
-(`name`, `description`) followed by markdown instructions.
+Agent skills live in `.agents/skills/<skill-name>/SKILL.md` with YAML frontmatter
+(`name`, `description`) followed by markdown instructions. `.claude/skills` is a symlink
+to `.agents/skills/` for Claude Code compatibility.
