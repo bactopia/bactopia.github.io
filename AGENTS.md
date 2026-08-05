@@ -123,12 +123,32 @@ orphan git branches (`snapshot/vX.Y.Z`) and assembled into the deploy output at 
 
 ### Creating a snapshot (new Bactopia release)
 
-1. Go to GitHub Actions and run the **Create Version Snapshot** workflow
-   - `version`: the version tag (e.g., `v4.0.0`)
-   - `bactopia_ref`: the bactopia repo ref to build from (e.g., `v4.0.0`)
-2. The workflow builds the site with the version banner, pushes an orphan branch
-   `snapshot/vX.Y.Z`, and updates `snapshots.json` on master
-3. The deploy workflow runs automatically, assembling the snapshot into the build output
+Snapshots are built locally and pushed as orphan branches (the `prepare-release-docs`
+skill walks through this as part of a release):
+
+```bash
+# Build the outgoing version from a clean worktree of master
+git worktree add /tmp/docs-snapshot master
+cd /tmp/docs-snapshot
+npm ci
+make generate BACTOPIA_REPO=<bactopia checkout at outgoing tag>
+DOCS_VERSION=vX.Y.Z npm run build
+
+# Push the build output to an orphan branch
+cd build
+git init
+git checkout --orphan snapshot/vX.Y.Z
+git add -A
+git commit -m "Snapshot vX.Y.Z ($(find . -type f | wc -l) files)"
+git remote add origin git@github.com:bactopia/bactopia.github.io.git
+git push origin snapshot/vX.Y.Z --force
+```
+
+Then register it on the docs branch: `make snapshot-add VERSION=vX.Y.Z FILES=<count>`.
+The deploy workflow assembles the snapshot into the build output on the next merge to master.
+
+Build the snapshot BEFORE the new version's docs land on master, or the snapshot will
+contain the new version's content.
 
 ### Updating the current version label
 
@@ -145,8 +165,9 @@ versions: {
 
 ### Rebuilding a snapshot
 
-Re-run the **Create Version Snapshot** workflow with the same version. The orphan branch
-is force-pushed with the new build output.
+Repeat the local snapshot build with the same version. The orphan branch
+is force-pushed with the new build output; update the file count in `snapshots.json`
+if it changed.
 
 ### Dropping old versions (approaching 20k file limit)
 
@@ -165,7 +186,6 @@ The branch is preserved and can be re-activated with `make snapshot-activate`.
 |------|---------|
 | `snapshots.json` | Version registry (all versions, active flag, file counts) |
 | `docusaurus.config.ts` | `DOCS_VERSION` env var controls banner and `baseUrl` |
-| `.github/workflows/create-snapshot.yml` | Builds snapshot and pushes orphan branch |
 | `.github/workflows/deploy.yml` | Assembles active snapshots at deploy time |
 
 ## Skills

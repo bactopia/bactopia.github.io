@@ -5,8 +5,9 @@ description: >-
   per-release workflow: regenerating auto-generated content from the new
   bactopia tag, registering new Bactopia Tools in the tools index, refreshing
   hand-written pages for changed behavior, updating the AI Skills page,
-  regenerating the LLM catalog, bumping the version label, and sequencing the
-  outgoing-version snapshot before merge. Use this skill whenever a new
+  regenerating the LLM catalog, bumping the version label, snapshotting the
+  outgoing version locally, and pushing a branch for PR review (never merging
+  to master). Use this skill whenever a new
   bactopia version is released or tagged, when the user asks to update the
   docs for a release, bump the docs version, prepare release docs, or publish
   docs for a new bactopia version.
@@ -17,7 +18,8 @@ description: >-
 Update the bactopia.github.io docs site for a new bactopia release. The site
 auto-generates most content from the bactopia source repo, so a release means:
 regenerate from the new tag, fix the few hand-written pages, bump the version
-label, and snapshot the outgoing version BEFORE merging.
+label, snapshot the outgoing version locally, then push a branch and hand off
+to a PR -- the skill never merges to master.
 
 Inputs to collect from the user (or infer from context):
 
@@ -124,25 +126,66 @@ Then verify the new behavior landed (adapt greps to the release):
 - `npm start` and eyeball the new tool pages, the tools index, and the
   version dropdown showing the new label
 
-### 10. Snapshot the outgoing version BEFORE merging to master
+### 10. Snapshot the outgoing version locally (while the PR is open)
 
-The Create Version Snapshot workflow builds whatever is on master, so it must
-run while master still holds the outgoing version:
+The outgoing version's docs must be captured as a snapshot so they stay
+available at `/<OUTGOING_VERSION>/` after the switch. A snapshot is just a
+production build pushed to an orphan branch plus an entry in
+`snapshots.json` -- do it locally, no GitHub Actions workflow needed.
 
-1. In GitHub Actions, run **Create Version Snapshot** from `master` with
-   `version: <OUTGOING_VERSION>` (the label being replaced in step 8) and
-   `bactopia_ref: <OUTGOING_VERSION>`. This pushes orphan branch
-   `snapshot/<OUTGOING_VERSION>` and commits `snapshots.json` to master.
-2. Merge master into the docs branch to pick up the `snapshots.json` commit.
-3. Merge the docs branch into master and push (a PR works too). The deploy
-   workflow assembles the snapshot under `/<OUTGOING_VERSION>/` and serves
-   the new version at `/`.
+Build the outgoing version from a clean worktree of master:
 
-Check the Cloudflare Pages file budget with `make snapshot-list`; only
-deactivate old snapshots (`make snapshot-deactivate VERSION=vX.Y.Z`) when
-approaching the 20,000-file limit.
+```bash
+git worktree add /tmp/docs-snapshot master
+cd /tmp/docs-snapshot
+npm ci
+export PATH="$HOME/.conda/envs/bactopia-dev/bin:$PATH"
+git clone --branch <OUTGOING_VERSION> --depth 1 https://github.com/bactopia/bactopia.git /tmp/bactopia-<OUTGOING_VERSION>
+make generate BACTOPIA_REPO=/tmp/bactopia-<OUTGOING_VERSION>
+DOCS_VERSION=<OUTGOING_VERSION> npm run build
+```
 
-### 11. Post-deploy verification
+Push the build output to an orphan branch:
+
+```bash
+cd build
+git init
+git checkout --orphan snapshot/<OUTGOING_VERSION>
+git add -A
+git commit -m "Snapshot <OUTGOING_VERSION> ($(find . -type f | wc -l) files)"
+git remote add origin git@github.com:bactopia/bactopia.github.io.git
+git push origin snapshot/<OUTGOING_VERSION> --force
+```
+
+Back on the release branch, register the snapshot with the file count from
+the build:
+
+```bash
+make snapshot-add VERSION=<OUTGOING_VERSION> FILES=<count>
+git worktree remove /tmp/docs-snapshot --force
+```
+
+Timing is load-bearing: the snapshot must be built from master BEFORE the
+release PR merges, or the "outgoing" snapshot would contain the new
+version's content. Building it while the PR is open for review is the right
+moment. Check the Cloudflare Pages file budget with `make snapshot-list`;
+only deactivate old snapshots (`make snapshot-deactivate VERSION=vX.Y.Z`)
+when approaching the 20,000-file limit.
+
+### 11. Commit, push the branch, and hand off to a PR
+
+```bash
+git add -A
+git commit -m "Update docs for bactopia <NEW_VERSION>"
+git push -u origin <NEW_VERSION>-docs
+```
+
+Stop here -- the skill never merges to master. Tell the user the branch is
+pushed and ready: they open the PR, review the preview build, and merge when
+satisfied. The deploy workflow runs on the merge to master, serving the new
+version at `/` and assembling the snapshot under `/<OUTGOING_VERSION>/`.
+
+### 12. Post-deploy verification (after the user merges)
 
 - `https://bactopia.io/` shows the new version label and changelog section
 - `https://bactopia.io/<OUTGOING_VERSION>/` serves the snapshot with its
