@@ -12,3 +12,7 @@ Thumbs.db
 data/bactopia.json
 data/cli.json
 TODO.md
+*.pyc
+__pycache__/
+.claude/handoffs/
+.claude/settings.local.json
