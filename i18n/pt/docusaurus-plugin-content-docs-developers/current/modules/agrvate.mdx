@@ -1,0 +1,98 @@
+---
+title: agrvate
+description: "Determine o tipo de locus agr e variantes do operon em Staphylococcus aureus."
+tags:
+  - bacteria
+  - assembly
+  - fasta
+  - typing
+  - virulence
+  - staphylococcus
+  - aureus
+  - agr
+  - sample-scope
+---
+
+# agrvate
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/staphylococcus" class="badge badge--primary badge--tag">staphylococcus</a> <a href="/developers/tags/aureus" class="badge badge--primary badge--tag">aureus</a> <a href="/developers/tags/agr" class="badge badge--primary badge--tag">agr</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Determine o tipo de locus agr e variantes do operon em Staphylococcus aureus.
+
+Utiliza o [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE) para tipar o locus do
+regulador do gene acessório (agr), um sistema de quorum sensing crítico para a virulência de *Staphylococcus aureus*.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados de Staphylococcus aureus no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resumo delimitado por tabulação do tipo de locus agr e variantes do operon |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do AgrVATE
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--agrvate_typing_only` | boolean | `false` | Realiza apenas a tipagem agr. Ignora a extração do operon agr e a detecção de frameshift |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [agrvate](/developers/subworkflows/agrvate) - Identifica o tipo de locus agr e variantes do operon de Staphylococcus aureus.
+
+### Workflows
+
+- [agrvate](/bactopia-tools/agrvate) - Identificação rápida do tipo de locus agr e variantes do operon agr de Staphylococcus aureus.
+
+## Citações
+
+Se você utilizar esta ferramenta em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AgrVATE](https://github.com/VishnuRaghuram94/AgrVATE)  
+  Raghuram V. [AgrVATE: Rapid identification of Staphylococcus aureus agr locus type and agr operon variants.](https://github.com/VishnuRaghuram94/AgrVATE) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/agrvate)
+
+## Versão
+
+```yaml
+AGRVATE:
+    - agrvate: 1.0.2
+```

@@ -1,0 +1,82 @@
+---
+title: quast
+description: "Avalie a qualidade da montagem usando QUAST."
+tags:
+  - assembly
+  - quality
+  - assessment
+  - metrics
+  - n50
+  - evaluation
+  - sample-scope
+---
+
+# quast
+
+**Tags:** <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/quality" class="badge badge--primary badge--tag">quality</a> <a href="/developers/tags/assessment" class="badge badge--primary badge--tag">assessment</a> <a href="/developers/tags/metrics" class="badge badge--primary badge--tag">metrics</a> <a href="/developers/tags/n50" class="badge badge--primary badge--tag">n50</a> <a href="/developers/tags/evaluation" class="badge badge--primary badge--tag">evaluation</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Avalie a qualidade da montagem usando QUAST.
+
+Este subworkflow avalia a qualidade da montagem de genomas usando [QUAST](https://quast.sourceforge.net/)
+(Quality Assessment Tool for Genome Assemblies). Ele fornece métricas abrangentes,
+incluindo N50, L50, conteúdo GC, comprimento total e outras estatísticas de qualidade. O fluxo de trabalho
+gera relatórios individuais por amostra e um resumo combinado para análise comparativa
+entre todas as montagens.
+
+## Entrada
+
+```
+fasta: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Contigs montados no formato FASTA (Path) |
+| `meta_file` | Arquivo meta contendo informações sobre o tamanho de referência (Path) |
+
+## Saída
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Relatório transposto em formato TSV |
+| `supplemental` | Arquivos suplementares incluindo gráficos e relatórios HTML |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [quast](/developers/modules/quast) - Ferramenta de avaliação de qualidade para montagens de genomas.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [quast](/bactopia-tools/quast) - Avaliação de qualidade de contigs montados usando QUAST.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [QUAST](http://quast.sourceforge.net/)  
+  Gurevich A, Saveliev V, Vyahhi N, Tesler G [QUAST: quality assessment tool for genome assemblies.](http://dx.doi.org/10.1093/bioinformatics/btt086) _Bioinformatics_ 29, 1072-1075 (2013)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/quast)

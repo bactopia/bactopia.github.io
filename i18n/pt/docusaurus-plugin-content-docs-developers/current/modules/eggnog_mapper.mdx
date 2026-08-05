@@ -1,0 +1,131 @@
+---
+title: eggnog_mapper
+description: "Anotação funcional de proteínas usando dados de ortologia eggNOG."
+tags:
+  - functional-annotation
+  - orthology
+  - cog
+  - kegg
+  - go
+  - proteins
+  - eggnog
+  - sample-scope
+---
+
+# eggnog_mapper
+
+**Tags:** <a href="/developers/tags/functional-annotation" class="badge badge--primary badge--tag">functional-annotation</a> <a href="/developers/tags/orthology" class="badge badge--primary badge--tag">orthology</a> <a href="/developers/tags/cog" class="badge badge--primary badge--tag">cog</a> <a href="/developers/tags/kegg" class="badge badge--primary badge--tag">kegg</a> <a href="/developers/tags/go" class="badge badge--primary badge--tag">go</a> <a href="/developers/tags/proteins" class="badge badge--primary badge--tag">proteins</a> <a href="/developers/tags/eggnog" class="badge badge--primary badge--tag">eggnog</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Anotação funcional de proteínas usando dados de ortologia eggNOG.
+
+Utiliza o [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper) para atribuir anotações funcionais
+a sequências de proteínas. Ele usa grupos ortólogos (OGs) pré-computados para inferir funções como
+categorias COG, vias KEGG, termos GO e CAZymes com alta precisão.
+
+:::note[Banco de Dados Necessário]
+Requer que o banco de dados eggNOG (incluindo o banco de dados diamond e dados taxonômicos) esteja disponível.
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    faa: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da amostra |
+| `faa` | `Path` | Sequências de proteínas no formato FASTA (aminoácidos) |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | Diretório ou arquivo tarball comprimido contendo o banco de dados eggNOG |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    hits: Path,
+    seed_orthologs: Path,
+    annotations: Path,
+    xlsx: Path?,
+    orthologs: Path?,
+    genepred: Path?,
+    gff: Path?,
+    no_anno: Path?,
+    pfam: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `hits` | `Path` | Resultados brutos de busca (Diamond/MMseqs2) contra o banco de dados eggNOG |
+| `seed_orthologs` | `Path` | Lista de ortólogos semente identificados usados para transferência de anotação |
+| `annotations` | `Path` | Arquivo de anotação principal delimitado por tabulação (COGs, KEGG, GO, etc.) |
+| `xlsx` | `Path?` | Formato Excel do arquivo de anotações |
+| `orthologs` | `Path?` | Lista de ortólogos detalhados |
+| `genepred` | `Path?` | Sequências de genes preditas |
+| `gff` | `Path?` | Anotações no formato GFF |
+| `no_anno` | `Path?` | Arquivo FASTA de sequências que não foram anotadas |
+| `pfam` | `Path?` | Resultados brutos de domínios PFAM |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do eggNOG Mapper
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--eggnog_genepred` | string | `search` | Método a usar para predição de genes (opções: `search`, `prodigal`) |
+| `--eggnog_mode` | string | `diamond` | Método para busca contra as sequências eggNOG (opções: `diamond`, `hmmer`, `mmseqs`, `cache`, `no_search`) |
+| `--eggnog_opts` | string |  | Opções extras do eggNOG Mapper entre aspas |
+
+## Usado Por
+
+### Subworkflows
+
+- [eggnog](/developers/subworkflows/eggnog) - Anotação funcional por atribuição de ortologia.
+
+### Workflows
+
+- [eggnog](/bactopia-tools/eggnog) - Anotação funcional de proteínas usando grupos ortólogos e filogenias.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [eggNOG-mapper](https://github.com/eggnogdb/eggnog-mapper)  
+  Huerta-Cepas J, Forslund K, Coelho LP, Szklarczyk D, Jensen LJ, von Mering C, Bork P [Fast Genome-Wide Functional Annotation through Orthology Assignment by eggNOG-Mapper.](http://dx.doi.org/10.1093/molbev/msx148) _Mol. Biol. Evol._ 34, 2115-2122 (2017)
+
+- [DIAMOND](https://github.com/bbuchfink/diamond)  
+  Buchfink B, Xie C, Huson DH [Fast and sensitive protein alignment using DIAMOND.](http://dx.doi.org/10.1038/nmeth.3176) _Nat. Methods._ 12, 59-60 (2015)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/eggnog/mapper)
+
+## Versão
+
+```yaml
+EGGNOG_MAPPER:
+    - eggnog-mapper: 2.1.13
+```

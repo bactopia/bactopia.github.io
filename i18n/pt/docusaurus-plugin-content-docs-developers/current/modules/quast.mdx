@@ -1,0 +1,98 @@
+---
+title: quast
+description: "Ferramenta de Avaliação de Qualidade para Montagens de Genomas."
+tags:
+  - quast
+  - assembly
+  - quality-control
+  - n50
+  - metrics
+  - sample-scope
+---
+
+# quast
+
+**Tags:** <a href="/developers/tags/quast" class="badge badge--primary badge--tag">quast</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/quality-control" class="badge badge--primary badge--tag">quality-control</a> <a href="/developers/tags/n50" class="badge badge--primary badge--tag">n50</a> <a href="/developers/tags/metrics" class="badge badge--primary badge--tag">metrics</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Ferramenta de Avaliação de Qualidade para Montagens de Genomas.
+
+Usa o [QUAST](https://github.com/ablab/quast) para avaliar montagens de genomas calculando diversas
+métricas como N50, contagem de genes e tamanho da montagem.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path,
+    tsv_meta: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Record Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+| `tsv_meta` | `Path` | Arquivo de metadados contendo informações sobre o tamanho de referência |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Record com informações da amostra |
+| `tsv` | `Path` | Relatório transposto no formato TSV |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Quast
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--quast_contig_thresholds` | string | `0,1000,10000,100000,250000,1000000` | Lista de limites de comprimento de contig separados por vírgula |
+| `--quast_plots_format` | string | `pdf` | Salvar gráficos no formato especificado (opções: `emf`, `eps`, `pdf`, `png`, `ps`, `raw`, `rgba`, `svg`, `svgz`) |
+
+## Usado Por
+
+### Subworkflows
+
+- [quast](/developers/subworkflows/quast) - Avaliar a qualidade da montagem usando QUAST.
+
+### Workflows
+
+- [quast](/bactopia-tools/quast) - Avaliação de qualidade de contigs montados usando QUAST.
+
+## Citações
+
+Se você usar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [QUAST](http://quast.sourceforge.net/)  
+  Gurevich A, Saveliev V, Vyahhi N, Tesler G [QUAST: quality assessment tool for genome assemblies.](http://dx.doi.org/10.1093/bioinformatics/btt086) _Bioinformatics_ 29, 1072-1075 (2013)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/quast)
+
+## Versão
+
+```yaml
+QUAST:
+    - quast: 5.3.0
+```

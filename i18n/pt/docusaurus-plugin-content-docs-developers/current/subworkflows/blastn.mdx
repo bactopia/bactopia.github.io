@@ -1,0 +1,87 @@
+---
+title: blastn
+description: "Pesquise um banco de dados de nucleotídeos usando sequências de consulta de nucleotídeos."
+tags:
+  - blast
+  - alignment
+  - nucleotide
+  - search
+  - fasta
+  - database
+  - sample-scope
+---
+
+# blastn
+
+**Tags:** <a href="/developers/tags/blast" class="badge badge--primary badge--tag">blast</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/nucleotide" class="badge badge--primary badge--tag">nucleotide</a> <a href="/developers/tags/search" class="badge badge--primary badge--tag">search</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Pesquise um banco de dados de nucleotídeos usando sequências de consulta de nucleotídeos.
+
+Este subworkflow usa o [BLASTN](https://blast.ncbi.nlm.nih.gov/Blast.cgi) para alinhar
+sequências de consulta de nucleotídeos contra um banco de dados BLAST de nucleotídeos. Ele processa cada
+amostra individualmente e agrega os resultados do alinhamento em um único relatório
+consolidado para todas as amostras.
+
+## Take
+
+```
+blastdb: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `blastdb` | Um tarball comprimido contendo o banco de dados BLAST |
+
+```
+query: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `query` | `Path` | Arquivo FASTA contendo sequências de consulta de nucleotídeos para pesquisar nas montagens |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Um resumo delimitado por tabulação dos alinhamentos (BLAST outfmt 6 padrão) |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [blast_blastn](/developers/modules/blast_blastn) - Pesquise um banco de dados de nucleotídeos usando uma consulta de nucleotídeos.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatene múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [blastn](/bactopia-tools/blastn) - Pesquise bancos de dados BLAST de nucleotídeos usando consultas de nucleotídeos.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+  Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/blastn)

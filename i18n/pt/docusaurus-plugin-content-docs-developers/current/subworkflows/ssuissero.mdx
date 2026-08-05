@@ -1,0 +1,78 @@
+---
+title: ssuissero
+description: "Prever sorotipos de Streptococcus suis a partir de montagens de genoma."
+tags:
+  - streptococcus-suis
+  - serotype
+  - typing
+  - prediction
+  - capsular-genes
+  - sample-scope
+---
+
+# ssuissero
+
+**Tags:** <a href="/developers/tags/streptococcus-suis" class="badge badge--primary badge--tag">streptococcus-suis</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/capsular-genes" class="badge badge--primary badge--tag">capsular-genes</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever sorotipos de Streptococcus suis a partir de montagens de genoma.
+
+Este subworkflow utiliza o [SsuisSero](https://github.com/jimmyliu1326/SsuisSero) para prever
+sorotipos de cepas de *Streptococcus suis* a partir de montagens de genoma com base na presença
+de genes capsulares específicos. Ele processa cada amostra individualmente e agrega os
+resultados em um único relatório consolidado.
+
+## Entrada
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Contigs montados em formato FASTA |
+
+## Saída
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho principal.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resultados do SsuisSero em formato TSV |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [ssuissero](/developers/modules/ssuissero) - Predição de sorotipo de montagens de Streptococcus suis.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenar múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [ssuissero](/bactopia-tools/ssuissero) - Predição de sorotipo de montagens de Streptococcus suis.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SsuisSero](https://github.com/jimmyliu1326/SsuisSero)  
+  Lui J [SsuisSero: Rapid _Streptococcus suis_ serotyping](https://github.com/jimmyliu1326/SsuisSero) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/ssuissero)

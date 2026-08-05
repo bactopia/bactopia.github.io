@@ -1,0 +1,94 @@
+---
+title: gtdb
+description: "Classificação taxonômica com o Genome Taxonomy Database."
+tags:
+  - taxonomy
+  - classification
+  - gtdb
+  - phylogeny
+  - marker-genes
+  - sample-scope
+---
+
+# gtdb
+
+**Tags:** <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/classification" class="badge badge--primary badge--tag">classification</a> <a href="/developers/tags/gtdb" class="badge badge--primary badge--tag">gtdb</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/marker-genes" class="badge badge--primary badge--tag">marker-genes</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Classificação taxonômica com o Genome Taxonomy Database.
+
+Este subworkflow atribui classificações taxonômicas objetivas a genomas bacterianos e
+arqueais usando [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk), que é baseado no
+Genome Taxonomy Database (GTDB). O fluxo de trabalho pode, opcionalmente, baixar o
+banco de dados GTDB e suporta formatos de banco de dados descompactados e em tarball.
+Ele fornece posicionamento taxonômico e identificação de genes marcadores filogenéticos.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem em formato FASTA para classificação taxonômica |
+
+```
+database: Path
+download_gtdb: Boolean
+save_as_tarball: Boolean
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database` | `Path` | Caminho para o banco de dados de referência GTDB, ou caminho para download caso `download_gtdb` seja verdadeiro |
+| `download_gtdb` | `Boolean` | Flag booleano para acionar o download do banco de dados GTDB caso não seja fornecido |
+| `save_as_tarball` | `Boolean` | Flag booleano para usar o formato de banco de dados em tarball ao baixar |
+
+## Emit
+
+### Published
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `bac_tsv` | O arquivo de resumo de classificação bacteriana contendo a atribuição taxonômica |
+| `ar_tsv` | O arquivo de resumo de classificação arqueal contendo a atribuição taxonômica |
+| `supplemental` | Diretório contendo a árvore de referência, alinhamentos e logs detalhados |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [gtdbtk_classifywf](/developers/modules/gtdbtk_classifywf) - Classificação taxonômica de genomas bacterianos e arqueais usando GTDB-Tk.
+- [gtdbtk_download](/developers/modules/gtdbtk_download) - Baixa e configura o banco de dados de referência do GTDB-Tk.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [gtdb](/bactopia-tools/gtdb) - Identifica genes marcadores e atribui classificações taxonômicas usando GTDB.
+
+## Citações
+
+Se você usar este subworkflow em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [GTDB-Tk](https://github.com/Ecogenomics/GTDBTk)  
+  Chaumeil PA, Mussig AJ, Hugenholtz P, Parks DH [GTDB-Tk: a toolkit to classify genomes with the Genome Taxonomy Database.](https://doi.org/10.1093/bioinformatics/btz848) _Bioinformatics_ (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/gtdb)

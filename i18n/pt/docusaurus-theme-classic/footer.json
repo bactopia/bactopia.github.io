@@ -1,0 +1,54 @@
+{
+  "link.title.Bactopia": {
+    "message": "Bactopia",
+    "description": "The title of the footer links column with title=Bactopia in the footer"
+  },
+  "link.title.More Resources": {
+    "message": "Mais Recursos",
+    "description": "The title of the footer links column with title=More Resources in the footer"
+  },
+  "link.title.Community": {
+    "message": "Comunidade",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.item.label.Quick Start": {
+    "message": "Inicio Rapido",
+    "description": "The label of footer link with label=Quick Start linking to /quick-start"
+  },
+  "link.item.label.Installation": {
+    "message": "Instalacao",
+    "description": "The label of footer link with label=Installation linking to /installation"
+  },
+  "link.item.label.CLI Reference": {
+    "message": "Referencia da CLI",
+    "description": "The label of footer link with label=CLI Reference linking to /developers/cli/"
+  },
+  "link.item.label.Bactopia Tools": {
+    "message": "Bactopia Tools",
+    "description": "The label of footer link with label=Bactopia Tools linking to /bactopia-tools/"
+  },
+  "link.item.label.Bactopia Pipelines": {
+    "message": "Bactopia Pipelines",
+    "description": "The label of footer link with label=Bactopia Pipelines linking to /bactopia-pipelines/"
+  },
+  "link.item.label.Developers": {
+    "message": "Desenvolvedores",
+    "description": "The label of footer link with label=Developers linking to /developers/"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/bactopia/bactopia"
+  },
+  "link.item.label.Bluesky": {
+    "message": "Bluesky",
+    "description": "The label of footer link with label=Bluesky linking to https://bsky.app/profile/bactopia.io"
+  },
+  "link.item.label.Slack": {
+    "message": "Slack",
+    "description": "The label of footer link with label=Slack linking to pathname:///slack/"
+  },
+  "copyright": {
+    "message": "Copyright © 2019-2026 Robert A. Petit III. Todos os direitos reservados.",
+    "description": "The footer copyright"
+  }
+}

@@ -1,0 +1,60 @@
+---
+title: bactopia-summary
+description: "Gera uma tabela de resumo a partir dos resultados do Bactopia."
+---
+
+# bactopia-summary
+
+Gera uma tabela de resumo a partir dos resultados do Bactopia.
+
+## Uso
+
+```bash
+bactopia-summary [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path, -b` | STRING |  | Diretório onde os resultados do Bactopia estão armazenados |
+
+## Limites para Ouro
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--gold-coverage, -gcov` | INT | `100` | Cobertura mínima necessária para o status Ouro |
+| `--gold-quality, -gqual` | INT | `30` | Pontuação média mínima de qualidade por read necessária para o status Ouro |
+| `--gold-read-length, -glen` | INT | `95` | Comprimento médio mínimo de read necessário para o status Ouro |
+| `--gold-contigs, -gcontigs` | INT | `100` | Contagem máxima de contigs necessária para o status Ouro |
+
+## Limites para Prata
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--silver-coverage, -scov` | INT | `50` | Cobertura mínima necessária para o status Prata |
+| `--silver-quality, -squal` | INT | `20` | Pontuação média mínima de qualidade por read necessária para o status Prata |
+| `--silver-read-length, -slen` | INT | `75` | Comprimento médio mínimo de read necessário para o status Prata |
+| `--silver-contigs, -scontigs` | INT | `200` | Contagem máxima de contigs necessária para o status Prata |
+
+## Limites de Falha
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--min-coverage, -mincov` | INT | `20` | Cobertura mínima necessária para aprovação |
+| `--min-quality, -minqual` | INT | `12` | Pontuação média mínima de qualidade por read necessária para aprovação |
+| `--min-read-length, -minlen` | INT | `49` | Comprimento médio mínimo de read necessário para aprovação |
+| `--max-contigs` | INT | `500` | Contagem máxima de contigs necessária para aprovação |
+| `--min-assembled-size` | INT |  | Tamanho mínimo do genoma montado |
+| `--max-assembled-size` | INT |  | Tamanho máximo do genoma montado |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--outdir, -o` | PATH | `./` | Diretório para gravar a saída |
+| `--prefix, -p` | STRING | `bactopia` | Prefixo a ser usado nos arquivos de saída |
+| `--force` | BOOL | `false` | Sobrescrever relatórios existentes |
+| `--verbose` | BOOL | `false` | Exibir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |

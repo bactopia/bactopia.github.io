@@ -1,0 +1,78 @@
+---
+title: hpsuissero
+description: "Sorotipagem rápida de Haemophilus parasuis."
+tags:
+  - haemophilus
+  - parasuis
+  - serotype
+  - epidemiology
+  - sample-scope
+---
+
+# hpsuissero
+
+**Tags:** <a href="/developers/tags/haemophilus" class="badge badge--primary badge--tag">haemophilus</a> <a href="/developers/tags/parasuis" class="badge badge--primary badge--tag">parasuis</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/epidemiology" class="badge badge--primary badge--tag">epidemiology</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Sorotipagem rápida de Haemophilus parasuis.
+
+Este subworkflow realiza a sorotipagem de Haemophilus parasuis utilizando
+[HpsuisSero](https://github.com/jimmyliu1326/HpsuisSero), que identifica
+marcadores específicos de sorotipo em montagens de genomas. A ferramenta fornece
+classificação rápida de isolados de H. parasuis em seus respectivos sorotipos,
+o que é importante para a vigilância epidemiológica e o desenvolvimento de vacinas.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem no formato FASTA para predição de sorotipo de H. parasuis |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Resultados de predição de sorotipo do HpsuisSero em formato delimitado por tabulação |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [hpsuissero](/developers/modules/hpsuissero) - Prediz o sorotipo de *Haemophilus parasuis*.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [hpsuissero](/bactopia-tools/hpsuissero) - Predição de sorotipo de montagens de Haemophilus parasuis.
+
+## Citações
+
+Se você utilizar este fluxo de trabalho em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [HpsuisSero](https://github.com/jimmyliu1326/HpsuisSero)  
+  Lui J [HpsuisSero: Rapid _Haemophilus parasuis_ serotyping](https://github.com/jimmyliu1326/HpsuisSero) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/hpsuissero)

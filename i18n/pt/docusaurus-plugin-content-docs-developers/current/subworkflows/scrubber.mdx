@@ -1,0 +1,149 @@
+---
+title: scrubber
+description: "Remova sequências contaminantes de dados metagenômicos."
+tags:
+  - metagenomics
+  - decontamination
+  - human-removal
+  - read-filtering
+  - sample-scope
+---
+
+# scrubber
+
+**Tags:** <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/decontamination" class="badge badge--primary badge--tag">decontamination</a> <a href="/developers/tags/human-removal" class="badge badge--primary badge--tag">human-removal</a> <a href="/developers/tags/read-filtering" class="badge badge--primary badge--tag">read-filtering</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Remova sequências contaminantes de dados metagenômicos.
+
+Este subworkflow remove sequências humanas e de outros contaminantes de reads metagenômicos utilizando
+[deacon](https://github.com/bede/deacon) (padrão), [nohuman](https://github.com/mbhall88/nohuman),
+ou o [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber). Ele oferece remoção flexível
+de contaminação com relatórios detalhados e agrega resultados entre múltiplas amostras.
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads Illumina R1 (paired-end) |
+| `r2` | Reads Illumina R2 (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Long reads (ONT/PacBio) |
+
+```
+use_srascrubber: Boolean
+use_nohuman: Boolean
+nohuman_db: Path?
+download_nohuman: Boolean
+nohuman_save_as_tarball: Boolean
+deacon_db: Path?
+download_deacon: Boolean
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `use_srascrubber` | `Boolean` | Flag booleana para usar o SRA Human Scrubber na descontaminação |
+| `use_nohuman` | `Boolean` | Flag booleana para usar nohuman na descontaminação |
+| `nohuman_db` | `Path?` | Caminho para o diretório ou tarball do banco de dados do nohuman (usado quando use_nohuman é verdadeiro) |
+| `download_nohuman` | `Boolean` | Flag booleana para baixar o banco de dados do nohuman em vez de usar o caminho fornecido |
+| `nohuman_save_as_tarball` | `Boolean` | Flag booleana para salvar o banco de dados do nohuman baixado como tarball |
+| `deacon_db` | `Path?` | Caminho para o arquivo de índice minimizador do deacon (.idx) (usado quando deacon é selecionado) |
+| `download_deacon` | `Boolean` | Flag booleana para baixar o índice do deacon em vez de usar o caminho fornecido |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no workflow de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `special_meta` | Registro de metadados simplificado para junção em relatórios downstream |
+| `r1` | Reads paired-end forward processados |
+| `r2` | Reads paired-end reverse processados |
+| `se` | Reads single-end processados |
+| `lr` | Long reads processados |
+| `scrub_report` | Relatório de estatísticas de remoção de contaminação |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Relatórios de contaminação agregados de todas as amostras |
+
+### Entradas Downstream
+
+As emissões a seguir devem ser usadas como entradas para subworkflows downstream.
+
+#### `scrubbed`
+
+| Saída | Descrição |
+|-------|-----------|
+| `r1` | Reads paired-end forward processados |
+| `r2` | Reads paired-end reverse processados |
+| `se` | Reads single-end processados |
+| `lr` | Long reads processados |
+
+#### `scrubbed_extra`
+
+| Saída | Descrição |
+|-------|-----------|
+| `r1` | Reads paired-end forward processados |
+| `r2` | Reads paired-end reverse processados |
+| `se` | Reads single-end processados |
+| `lr` | Long reads processados |
+| `fna` | Arquivo de montagem (repassado) |
+
+#### `special_tsv`
+
+| Saída | Descrição |
+|-------|-----------|
+| `special_meta` | Registro de metadados simplificado para junção em relatórios downstream |
+| `scrub_report` | Relatório de estatísticas de remoção de contaminação |
+
+## Composição de Subworkflows
+
+Este subworkflow chama os seguintes subworkflows:
+
+- [deacon](/developers/subworkflows/deacon) - Remove reads do hospedeiro de dados de sequenciamento usando deacon.
+- [srahumanscrubber](/developers/subworkflows/srahumanscrubber) - Remove contaminação humana de reads de sequenciamento para submissão ao SRA.
+- [nohuman](/developers/subworkflows/nohuman) - Remove reads humanos de dados de sequenciamento usando nohuman.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes workflows:
+
+- [cleanyerreads](/bactopia-pipelines/cleanyerreads) - Controle de qualidade e remoção opcional de reads do hospedeiro a partir de reads brutos de sequenciamento.
+- [scrubber](/bactopia-tools/scrubber) - Remoção de sequências humanas e contaminantes de reads metagenômicos.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+- [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber)  
+  Katz KS, Shutov O, Lapoint R, Kimelman M, Brister JR, and O'Sullivan C [STAT: a fast, scalable, MinHash-based k-mer tool to assess Sequence Read Archive next-generation sequence submissions.](https://doi.org/10.1186/s13059-021-02490-0) _Genome Biology_, 22(1), 270 (2021)
+
+## Source
+
+[Visualizar fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/scrubber)

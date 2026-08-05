@@ -1,0 +1,102 @@
+---
+title: pasty
+description: "Prever o sorogrupo O-antígeno de isolados de Pseudomonas aeruginosa."
+tags:
+  - bacteria
+  - pseudomonas-aeruginosa
+  - serogroup
+  - o-antigen
+  - typing
+  - blast
+  - sample-scope
+---
+
+# pasty
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/pseudomonas-aeruginosa" class="badge badge--primary badge--tag">pseudomonas-aeruginosa</a> <a href="/developers/tags/serogroup" class="badge badge--primary badge--tag">serogroup</a> <a href="/developers/tags/o-antigen" class="badge badge--primary badge--tag">o-antigen</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/blast" class="badge badge--primary badge--tag">blast</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever o sorogrupo O-antígeno de isolados de *Pseudomonas aeruginosa*.
+
+Utiliza o [Pasty](https://github.com/rpetit3/pasty) (sorogrupagem in silico de isolados de *Pseudomonas aeruginosa*)
+para prever o sorogrupo O-antígeno, pesquisando no genoma montado genes associados a sorogrupos específicos
+dentro do locus O-antígeno.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    blast: Path,
+    details: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Arquivo de resumo delimitado por tabulação com o sorogrupo O-antígeno previsto |
+| `blast` | `Path` | Arquivo delimitado por tabulação com todos os hits brutos do BLAST usados para a previsão |
+| `details` | `Path` | Arquivo delimitado por tabulação com hits detalhados de genes para cada sorogrupo testado |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do pasty
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--pasty_min_pident` | inteiro | `95` | Identidade percentual mínima para contabilizar um hit |
+| `--pasty_min_coverage` | inteiro | `95` | Cobertura percentual mínima para contabilizar um hit |
+
+## Usado Por
+
+### Subworkflows
+
+- [pasty](/developers/subworkflows/pasty) - Prever sorogrupos de *Pseudomonas aeruginosa* a partir de montagens.
+
+### Workflows
+
+- [pasty](/bactopia-tools/pasty) - Sorogrupagem in silico de isolados de *Pseudomonas aeruginosa*.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [pasty](https://github.com/rpetit3/pasty)  
+  Petit III RA [pasty: in silico serogrouping of _Pseudomonas aeruginosa_ isolates](https://github.com/rpetit3/pasty) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/pasty)
+
+## Versão
+
+```yaml
+PASTY:
+    - pasty: 2.2.1
+```

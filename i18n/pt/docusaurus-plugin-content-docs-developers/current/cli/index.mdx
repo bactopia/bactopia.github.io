@@ -1,0 +1,53 @@
+---
+title: CLI Reference
+description: Command-line reference for all bactopia-py CLI commands
+slug: /cli
+---
+
+# CLI Reference
+
+Referência de linha de comando para todos os comandos CLI do [bactopia-py](https://github.com/bactopia/bactopia-py) (v2.2.0).
+
+## Comandos para Usuários e Desenvolvedores
+
+Comandos para preparar entradas, consultar bancos de dados e desenvolver componentes do Bactopia.
+
+| Comando | Descrição |
+|---------|-------------|
+| [`bactopia-atb-downloader`](/developers/cli/bactopia-atb-downloader) | Baixa montagens do All-the-Bacteria com base em uma consulta de entrada |
+| [`bactopia-atb-formatter`](/developers/cli/bactopia-atb-formatter) | Reestrutura montagens do All-the-Bacteria para permitir o uso com Bactopia Tools |
+| [`bactopia-catalog`](/developers/cli/bactopia-catalog) | Gera um catálogo legível por máquina de todos os componentes do Bactopia. |
+| [`bactopia-citations`](/developers/cli/bactopia-citations) | Exibe ou valida as citações usadas ao longo do Bactopia. |
+| [`bactopia-datasets`](/developers/cli/bactopia-datasets) | Baixa conjuntos de dados opcionais para complementar suas análises com o Bactopia |
+| [`bactopia-docs`](/developers/cli/bactopia-docs) | Valida a desatualização de documentação de referência em um repositório Bactopia. |
+| [`bactopia-download`](/developers/cli/bactopia-download) | Constrói ambientes Bactopia para uso com Nextflow. |
+| [`bactopia-lint`](/developers/cli/bactopia-lint) | Verifica componentes do pipeline Bactopia em relação às diretrizes de estilo. |
+| [`bactopia-merge-schemas`](/developers/cli/bactopia-merge-schemas) | Constrói um Nextflow Schema e/ou uma configuração Nextflow para um fluxo de trabalho específico. |
+| [`bactopia-prepare`](/developers/cli/bactopia-prepare) | Cria um 'file of filenames' (FOFN) de amostras a serem processadas pelo Bactopia |
+| [`bactopia-prune`](/developers/cli/bactopia-prune) | Remove ambientes Bactopia desatualizados que não correspondem mais às versões atuais dos módulos. |
+| [`bactopia-pubmlst-build`](/developers/cli/bactopia-pubmlst-build) | Constrói bancos de dados PubMLST para uso com a Bactopia Tool 'mlst'. |
+| [`bactopia-pubmlst-setup`](/developers/cli/bactopia-pubmlst-setup) | Configuração única para interação com a API do PubMLST |
+| [`bactopia-review-tests`](/developers/cli/bactopia-review-tests) | Revisa resultados do nf-test com análise de erros agrupados e verificações de tempo. |
+| [`bactopia-scaffold`](/developers/cli/bactopia-scaffold) | Cria scaffolds de componentes Bactopia a partir de pacotes bioconda/conda-forge. |
+| [`bactopia-search`](/developers/cli/bactopia-search) | Consulta o ENA e o SRA em busca de acessos públicos para processar com o Bactopia |
+| [`bactopia-status`](/developers/cli/bactopia-status) | Exibe um instantâneo do estado do projeto Bactopia. |
+| [`bactopia-summary`](/developers/cli/bactopia-summary) | Gera uma tabela de resumo a partir dos resultados do Bactopia. |
+| [`bactopia-sysinfo`](/developers/cli/bactopia-sysinfo) | Detecta automaticamente a RAM e as CPUs do host, emitindo fragmentos CLI do Nextflow para perfis locais. |
+| [`bactopia-test`](/developers/cli/bactopia-test) | Executa suites nf-test para componentes do Bactopia. |
+| [`bactopia-update`](/developers/cli/bactopia-update) | Verifica se os módulos usados pelas Bactopia Tools possuem versões mais recentes disponíveis |
+| [`bactopia-workflows`](/developers/cli/bactopia-workflows) | Exibe o caminho para o arquivo main.nf de um fluxo de trabalho Bactopia. |
+
+## Scripts Utilitários do Pipeline
+
+Scripts internos chamados pelos módulos Nextflow durante a execução do pipeline.
+
+| Comando | Descrição |
+|---------|-------------|
+| [`bactopia-bracken-to-excel`](/developers/cli/bactopia-bracken-to-excel) | Escreve as abundâncias do Bracken em um arquivo Excel. |
+| [`bactopia-check-assembly-accession`](/developers/cli/bactopia-check-assembly-accession) | Verifica se o acesso de montagem do NCBI Assembly é o mais recente e ainda está disponível. |
+| [`bactopia-check-fastqs`](/developers/cli/bactopia-check-fastqs) | Verifica se os FASTQs de entrada atendem aos requisitos mínimos. |
+| [`bactopia-cleanup-coverage`](/developers/cli/bactopia-cleanup-coverage) | Reduz a redundância na cobertura por base a partir da saída do genomeCoverageBed. |
+| [`bactopia-kraken-bracken-summary`](/developers/cli/bactopia-kraken-bracken-summary) | Atualiza as abundâncias do Bracken com contagens não classificadas. |
+| [`bactopia-mask-consensus`](/developers/cli/bactopia-mask-consensus) | Consenso do Snippy (subs) com mascaramento de cobertura. |
+| [`bactopia-scrubber-summary`](/developers/cli/bactopia-scrubber-summary) | Cria um relatório antes-e-depois a partir da remoção de reads humanos. |
+| [`bactopia-teton-prepare`](/developers/cli/bactopia-teton-prepare) | Prepara planilhas de amostras para análise downstream no fluxo de trabalho Teton. |

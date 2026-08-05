@@ -1,0 +1,82 @@
+---
+title: nohuman_download
+description: "Baixe o banco de dados nohuman para remoção de reads humanos."
+tags:
+  - bacteria
+  - database
+  - download
+  - human
+  - decontamination
+  - kraken2
+  - nohuman
+  - run-scope
+---
+
+# nohuman_download
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/human" class="badge badge--primary badge--tag">human</a> <a href="/developers/tags/decontamination" class="badge badge--primary badge--tag">decontamination</a> <a href="/developers/tags/kraken2" class="badge badge--primary badge--tag">kraken2</a> <a href="/developers/tags/nohuman" class="badge badge--primary badge--tag">nohuman</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Baixe o banco de dados nohuman para remoção de reads humanos.
+
+Obtém o banco de dados baseado em Kraken2 utilizado pelo [nohuman](https://github.com/mbhall88/nohuman)
+para classificar e remover reads humanos de conjuntos de dados de sequenciamento. O banco de dados é construído a partir
+de genomas do Human Pangenome Reference Consortium (HPRC).
+
+:::note[Internet e Armazenamento Necessários]
+Este processo requer uma conexão ativa com a internet e espaço em disco suficiente
+para armazenar os arquivos do banco de dados Kraken2.
+:::
+
+## Saídas
+
+```
+record (
+    db: Path?,
+    db_tarball: Path?,
+    logs: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `db` | `Path?` | O diretório do banco de dados Kraken2 do nohuman |
+| `db_tarball` | `Path?` | Um tarball comprimido do banco de dados (se solicitado via parâmetros) |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+
+## Parâmetros
+
+### Parâmetros de Download do Nohuman
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nohuman_db` | string |  | Caminho para o banco de dados nohuman ou diretório para baixá-lo |
+| `--nohuman_db_version` | string |  | Versão do banco de dados a ser baixada (padrão: última versão HPRC) |
+| `--nohuman_save_as_tarball` | boolean | `false` | Salvar o banco de dados nohuman como um tarball |
+| `--download_nohuman` | boolean | `false` | Baixar o banco de dados nohuman para o caminho indicado por --nohuman_db |
+
+## Usado Por
+
+### Subworkflows
+
+- [nohuman](/developers/subworkflows/nohuman) - Remove reads humanos de dados de sequenciamento usando nohuman.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/nohuman/download)
+
+## Versão
+
+```yaml
+NOHUMAN_DOWNLOAD:
+    - bactopia-teton: 1.1.4
+```

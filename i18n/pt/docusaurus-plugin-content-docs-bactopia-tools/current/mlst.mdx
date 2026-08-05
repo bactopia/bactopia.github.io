@@ -1,0 +1,268 @@
+---
+title: mlst
+description: "Chamada automática de Multi-Locus tipo de sequencia (MLST) a partir de contigs montados."
+tags:
+  - typing
+  - mlst
+  - sequence-type
+  - alleles
+  - pubmlst
+  - bactopia-tool
+---
+
+# mlst
+
+**Tags:** <a href="/bactopia-tools/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/bactopia-tools/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/bactopia-tools/tags/sequence-type" class="badge badge--primary badge--tag">sequence-type</a> <a href="/bactopia-tools/tags/alleles" class="badge badge--primary badge--tag">alleles</a> <a href="/bactopia-tools/tags/pubmlst" class="badge badge--primary badge--tag">pubmlst</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Chamada automática de Multi-Locus tipo de sequencia (MLST) a partir de contigs montados.
+
+Esta Ferramenta Bactopia utiliza o [mlst](https://github.com/tseemann/mlst) para varrer montagens de genomas
+e determinar o tipo de sequencia com base nos esquemas do [PubMLST](https://pubmlst.org/). O fluxo de trabalho
+detecta automaticamente o esquema MLST adequado para cada organismo e fornece
+atribuições de tipo de sequencia padronizadas.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf mlst \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/mlst/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── mlst-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── mlst-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── mlst-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── mlst.tsv
+        └── nf-reports
+            ├── mlst-dag.dot
+            ├── mlst-report.html
+            └── mlst-timeline.html
+```
+
+### Resultados por Amostra
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.tsv` | Arquivo delimitado por tabulação com os resultados do MLST, incluindo esquema, ST e perfis de alelos |
+
+### Resultados Combinados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `mlst.tsv` | Arquivo TSV combinado contendo os resultados do MLST de todas as amostras |
+
+
+### Trilha de Auditoria
+
+A seguir estão os arquivos que podem ajudar você a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta estão arquivos úteis
+para consulta caso necessário.
+
+| Extensão     | Descrição |
+|--------------|-----------|
+| .begin       | Um arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/desmontar arquivos e enfileirar processos com base no perfil definido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Um arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um excelente resumo da sua execução. Podem ser usados para otimizar
+o uso de recursos e estimar custos esperados ao utilizar plataformas em nuvem.
+
+| Nome do Arquivo | Descrição |
+|-----------------|-----------|
+| mlst-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| mlst-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| mlst-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| mlst-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do bactopia a serem usados como entradas |
+
+### Parâmetros do MLST
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--mlst_scheme` | string |  | Não detectar automaticamente; forçar este esquema em todas as entradas |
+| `--mlst_minid` | integer | `95` | Percentual mínimo de identidade de DNA do alelo completo para ser considerado 'similar' |
+| `--mlst_mincov` | integer | `10` | Percentual mínimo de cobertura de DNA para reportar alelo parcial |
+| `--mlst_minscore` | integer | `50` | Pontuação mínima de 100 para corresponder a um esquema |
+| `--mlst_nopath` | boolean | `false` | Remover caminhos de nome de arquivo da coluna FILE |
+| `--mlst_db` | string |  | Um banco de dados MLST personalizado a ser utilizado, como um arquivo compactado ou diretório |
+
+### Parâmetros do csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use estes parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a serem incluídas na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a serem excluídas da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Estes parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Limite Máximo de Recursos</summary>
+
+Define o limite máximo de recursos solicitados para qualquer processo individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer processo individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer processo individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer processo individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras a serem baixadas simultaneamente |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do seu Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que substituirá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método utilizado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para armazenar logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow irá sobrescrever arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID de commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | Link de URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do seu Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para ambientes Conda |
+| `--registry` | string | `quay.io` | Registro do qual os contêineres Docker serão baixados. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity, força o fluxo de trabalho a baixar e converter contêineres Docker. |
+| `--force_rebuild` | boolean | `false` | Forçar a substituição de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) da(s) fila(s) separados por vírgula a serem usados por um agendador de tarefas (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais a serem passadas ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais a serem passadas ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente utilizados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibir o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Define se os parâmetros devem ser validados em relação ao esquema em tempo de execução |
+| `--help` | boolean |  | Exibir texto de ajuda. |
+| `--wf` | string | `bactopia` | Especificar qual fluxo de trabalho ou Ferramenta Bactopia executar |
+| `--list_wfs` | boolean |  | Listar os fluxos de trabalho e Ferramentas Bactopia disponíveis para uso com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostrar todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibir texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [mlst](/developers/subworkflows/mlst) - Determinar tipos de sequencia multilocus (MLST) a partir de montagens bacterianas.
+
+## Citações
+
+Se você usar este fluxo de trabalho em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [csvtk](https://bioinf.shenwei.me/csvtk/)  
+  Shen, W [csvtk: A cross-platform, efficient and practical CSV/TSV toolkit in Golang.](https://github.com/shenwei356/csvtk/) (GitHub)
+
+- [mlst](https://github.com/tseemann/mlst)  
+  Seemann T [mlst: scan contig files against PubMLST typing schemes](https://github.com/tseemann/mlst) (GitHub)
+
+- [PubMLST.org](https://pubmlst.org/)  
+  Jolley KA, Bray JE, Maiden MCJ [Open-access bacterial population genomics: BIGSdb software, the PubMLST.org website and their applications.](http://dx.doi.org/10.12688/wellcomeopenres.14826.1) _Wellcome Open Res_ 3, 124 (2018)
+
+## Fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/mlst)

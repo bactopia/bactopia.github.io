@@ -1,0 +1,99 @@
+---
+title: midas
+description: "Perfilamento em nível de espécie a partir de dados metagenômicos."
+tags:
+  - metagenomics
+  - species
+  - profiling
+  - abundance
+  - strain
+  - sample-scope
+---
+
+# midas
+
+**Tags:** <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/species" class="badge badge--primary badge--tag">species</a> <a href="/developers/tags/profiling" class="badge badge--primary badge--tag">profiling</a> <a href="/developers/tags/abundance" class="badge badge--primary badge--tag">abundance</a> <a href="/developers/tags/strain" class="badge badge--primary badge--tag">strain</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Perfilamento em nível de espécie a partir de dados metagenômicos.
+
+Este subworkflow estima variação genômica em nível de cepa a partir de dados metagenômicos
+usando o [MIDAS](https://github.com/snayfach/MIDAS). O pipeline identifica as abundâncias
+de espécies bacterianas e fornece perfilamento em nível de cepa, incluindo análise de SNPs.
+Ele utiliza um banco de dados de referência abrangente para identificação e quantificação
+precisa de espécies em comunidades microbianas complexas.
+
+Utiliza campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads R1 Illumina (paired-end) |
+| `r2` | Reads R2 Illumina (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Long reads (não suportado pelo MIDAS) |
+
+```
+database: Path?
+download_midas: Boolean
+save_as_tarball: Boolean
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database` | `Path?` | Banco de dados de referência do MIDAS para identificação e quantificação de espécies |
+| `download_midas` | `Boolean` | Flag booleana para baixar automaticamente o banco de dados do MIDAS caso não esteja disponível |
+| `save_as_tarball` | `Boolean` | Flag booleana para salvar o banco de dados baixado como tarball |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no workflow de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Um resumo delimitado por tabulação da abundância e cobertura de espécies |
+| `abundances` | Perfil detalhado de abundância de espécies |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados de abundância de espécies consolidados de todas as amostras |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [midas_species](/developers/modules/midas_species) - Estima a abundância de espécies bacterianas a partir de reads metagenômicos.
+- [midas_download](/developers/modules/midas_download) - Baixa o banco de dados de referência do MIDAS.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes workflows:
+
+- [midas](/bactopia-tools/midas) - Estima abundâncias de espécies a partir de amostras metagenômicas.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [MIDAS](https://github.com/snayfach/MIDAS)  
+  Nayfach S, Rodriguez-Mueller B, Garud N, and Pollard KS [An integrated metagenomics pipeline for strain profiling reveals novel patterns of bacterial transmission and biogeography.](https://doi.org/10.1101/gr.201863.115) _Genome Research_, 26(11), 1612-1625. (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/midas)

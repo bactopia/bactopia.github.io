@@ -1,0 +1,109 @@
+---
+title: ncbigenomedownload
+description: "Baixe genomas bacterianos do banco de dados RefSeq do NCBI."
+tags:
+  - download
+  - ncbi
+  - refseq
+  - genome
+  - assembly
+  - database
+  - sample-scope
+---
+
+# ncbigenomedownload
+
+**Tags:** <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/ncbi" class="badge badge--primary badge--tag">ncbi</a> <a href="/developers/tags/refseq" class="badge badge--primary badge--tag">refseq</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Baixe genomas bacterianos do banco de dados RefSeq do NCBI.
+
+Este subworkflow faz o download de genomas bacterianos completos e em rascunho utilizando a
+ferramenta [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download). Ele busca
+montagens de genomas em vários formatos, incluindo arquivos GenBank, GFF e FASTA,
+juntamente com arquivos de anotação e estatísticas associados.
+
+## Take
+
+```
+accessions: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `accessions` | `Path?` | Um arquivo contendo números de acesso do NCBI, um por linha. Se vazio, fará o download de todos os genomas que correspondam aos critérios especificados. |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `gbff` | Sequências de genoma no formato GenBank |
+| `fna` | Sequências nucleotídicas genômicas no formato FASTA |
+| `gff` | Anotações de genoma no formato GFF3 |
+| `faa` | Sequências de proteínas no formato FASTA |
+| `gpff` | Sequências de proteínas no formato GenPept |
+| `wgs_gbk` | Registros mestre WGS no formato GenBank |
+| `cds` | Sequências nucleotídicas de CDS no formato FASTA |
+| `rna` | Sequências de produtos de RNA no formato FASTA |
+| `rna_fna` | Sequências nucleotídicas de features de RNA no formato FASTA |
+| `features` | Tabela de features com localizações e atributos |
+| `rm` | Saída do RepeatMasker (opcional) |
+| `report` | Relatório de montagem com relações entre unidades e sequências |
+| `stats` | Estatísticas de montagem |
+| `accessions` | Arquivos de lista de acessos gerados |
+
+#### `run_outputs`
+
+Nenhuma saída de escopo de execução.
+
+### Entradas para Etapas Seguintes
+
+As emissões a seguir são destinadas a serem utilizadas como entradas para subworkflows seguintes.
+
+#### `bactopia_tools`
+
+Arquivos baixados formatados para fluxos de trabalho do Bactopia Tools
+
+#### `assemblies`
+
+| Saída | Descrição |
+|-------|-----------|
+| `fna` | Montagem individual baixada no formato FASTA |
+
+#### `reference`
+
+Primeiro arquivo de montagem baixado para uso como genoma de referência
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [ncbigenomedownload](/developers/modules/ncbigenomedownload) - Faz o download de montagens e arquivos de anotação do banco de dados Assembly do NCBI.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [fastani](/bactopia-tools/fastani) - Cálculo rápido sem alinhamento da Identidade Nucleotídica Média em escala genômica.
+- [mashtree](/bactopia-tools/mashtree) - Construção rápida de árvores filogenéticas usando distâncias Mash.
+- [pangenome](/bactopia-tools/pangenome) - Análise de pan-genoma com filogenia do genoma central opcional.
+- [snippy](/bactopia-tools/snippy) - Chamada rápida de variantes de haplótipos e alinhamento do genoma central.
+
+## Citações
+
+Se você utilizar este subworkflow em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/ncbigenomedownload)

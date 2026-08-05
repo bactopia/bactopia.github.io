@@ -1,0 +1,163 @@
+---
+title: bracken
+description: "Classificação taxonômica e estimativa de abundância."
+tags:
+  - metagenomics
+  - classification
+  - taxonomy
+  - abundance
+  - kraken2
+  - bracken
+  - krona
+  - sample-scope
+---
+
+# bracken
+
+**Tags:** <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/classification" class="badge badge--primary badge--tag">classification</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/abundance" class="badge badge--primary badge--tag">abundance</a> <a href="/developers/tags/kraken2" class="badge badge--primary badge--tag">kraken2</a> <a href="/developers/tags/bracken" class="badge badge--primary badge--tag">bracken</a> <a href="/developers/tags/krona" class="badge badge--primary badge--tag">krona</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Classificação taxonômica e estimativa de abundância.
+
+Utiliza o [Kraken2](https://github.com/DerrickWood/kraken2) para classificar reads em relação a
+um banco de dados taxonômico, seguido pelo [Bracken](https://github.com/jenniferlu717/Bracken)
+(Bayesian Reestimation of Abundance with KrakEN) para estimar abundâncias relativas em
+um nível taxonômico específico. Também gera um gráfico interativo do [Krona](https://github.com/marbl/Krona/wiki)
+para visualização.
+
+Utiliza campos de registro posicional explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+:::note[Banco de Dados Necessário]
+Requer um banco de dados Kraken2/Bracken compatível (tarball).
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da amostra |
+| `r1` | `Path?` | Reads R1 Illumina (paired-end) |
+| `r2` | `Path?` | Reads R2 Illumina (paired-end) |
+| `se` | `Path?` | Reads Illumina single-end |
+| `lr` | `Path?` | Long reads (ONT/PacBio) - geralmente não utilizados |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | Um tarball comprimido contendo o banco de dados Kraken2/Bracken |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    special_meta: Record,
+    classified: Set<Path?>,
+    unclassified: Set<Path?>,
+    kraken2_report: Path,
+    kraken2_output: Path?,
+    bracken_report: Path,
+    krona: Set<Path?>,
+    abundances: Path,
+    classification: Path,
+    adjusted_abundances: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `tsv` | `Path` | Resumo delimitado por tabulação das abundâncias de espécies primárias e secundárias do Bracken |
+| `special_meta` | `Record` | Um registro de metadados simplificado para uso interno |
+| `classified` | `Set<Path?>` | Reads classificados como pertencentes a algum dos táxons no banco de dados Kraken2 |
+| `unclassified` | `Set<Path?>` | Reads não classificados como pertencentes a nenhum dos táxons no banco de dados Kraken2 |
+| `kraken2_report` | `Path` | Relatório do Kraken2 contendo estatísticas sobre reads classificados e não classificados |
+| `kraken2_output` | `Path?` | Arquivo de saída do Kraken2 contendo a classificação taxonômica de cada read |
+| `bracken_report` | `Path` | Relatório do Bracken contendo estatísticas sobre reads classificados e não classificados |
+| `krona` | `Set<Path?>` | Visualização HTML interativa do Krona |
+| `abundances` | `Path` | Estimativas de abundância do Bracken para cada táxon |
+| `classification` | `Path` | Detalhes de classificação por read do Bracken |
+| `adjusted_abundances` | `Path` | Estimativas de abundância do Bracken ajustadas para reads não classificados |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Um arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Kraken2 e Bracken
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--kraken2_db` | string |  | Um único tarball ou caminho para um banco de dados no formato Kraken2 |
+| `--kraken2_quick_mode` | boolean | `false` | Operação rápida (usar o primeiro resultado ou resultados) |
+| `--kraken2_confidence` | number | `0.0` | Limiar de pontuação de confiança entre 0 e 1 |
+| `--kraken2_minimum_base_quality` | integer | `0` | Qualidade mínima de base utilizada na classificação |
+| `--kraken2_use_mpa_style` | boolean | `false` | Formatar a saída do relatório como o kraken-mpa-report do Kraken 1 |
+| `--kraken2_report_zero_counts` | boolean | `false` | Reportar contagens para TODOS os táxons, mesmo que as contagens sejam zero |
+| `--kraken2_report_minimizer_data` | boolean | `false` | Incluir informações de minimizador e contagem de minimizadores distintos no relatório |
+| `--kraken2_use_names` | boolean | `false` | Imprimir nomes científicos em vez de apenas taxids |
+| `--kraken2_memory_mapping` | boolean | `false` | Evitar carregar o banco de dados na RAM |
+| `--kraken2_minimum_hit_groups` | integer | `2` | Número mínimo de grupos de acertos necessários para realizar uma classificação |
+| `--kraken2_keep_filtered_reads` | boolean | `false` | Manter os FASTQs classificados e não classificados produzidos pelo Kraken2 |
+| `--kraken2_keep_raw_output` | boolean | `false` | Manter o arquivo STDOUT produzido pelo Kraken2 |
+| `--bracken_read_length` | integer | `0` | Comprimento de read para obter todas as classificações (0 = determinar em tempo de execução) |
+| `--bracken_level` | string | `S` | Nível para estimar a abundância |
+| `--bracken_threshold` | integer | `0` | Reads necessários ANTES da estimativa de abundância para realizar a reestimativa |
+| `--bracken_max_secondary_percent` | number | `0.01` | A porcentagem máxima de abundância para a espécie secundária; se excedida, a amostra permanecerá não classificada |
+| `--bracken_skip_krona` | boolean | `false` | Pular a criação de um relatório Krona |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [bracken](/developers/subworkflows/bracken) - Estimar a abundância de espécies a partir de reads metagenômicos.
+
+### Workflows
+
+- [bracken](/bactopia-tools/bracken) - Estimar a abundância taxonômica de amostras metagenômicas.
+
+## Citações
+
+Se você utilizar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Bracken](https://github.com/jenniferlu717/Bracken)  
+  Lu J, Breitwieser FP, Thielen P, and Salzberg SL [Bracken: estimating species abundance in metagenomics data.](https://doi.org/10.7717/peerj-cs.104) _PeerJ Computer Science_, 3, e104. (2017)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+- [Krona](https://github.com/marbl/Krona)  
+  Ondov BD, Bergman NH, and Phillippy AM [Interactive metagenomic visualization in a Web browser.](https://doi.org/10.1186/1471-2105-12-385) _BMC Bioinformatics_, 12, 385. (2011)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bracken)
+
+## Versão
+
+```yaml
+BRACKEN:
+    - bactopia-teton: 1.1.4
+```

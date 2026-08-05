@@ -1,0 +1,45 @@
+---
+title: bactopia-pubmlst-build
+description: "Construa bancos de dados PubMLST para uso com a Ferramenta Bactopia 'mlst'."
+---
+
+# bactopia-pubmlst-build
+
+Construa bancos de dados PubMLST para uso com a Ferramenta Bactopia 'mlst'.
+
+## Uso
+
+```bash
+bactopia-pubmlst-build [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--database, -d` | STRING |  | Um banco de dados de organismo conhecido para baixar. (Use 'all' para baixar todos os bancos de dados.) |
+
+## Opções de Construção
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--ignore` | STRING | `afumigatus,blastocystis,calbicans,cbotulinum,cglabrata,ckrusei,ctropicalis,csinensis,kseptempunctata,rmlst,sparasitica,test,tpallidum,tvaginalis` | Uma lista separada por vírgulas de bancos de dados a ignorar |
+| `--skip-download` | BOOL | `false` | Pular o download dos arquivos do banco de dados |
+| `--skip-blast` | BOOL | `false` | Pular a construção do banco de dados BLAST |
+| `--force` | BOOL | `false` | Forçar a sobrescrita de arquivos existentes |
+
+## Opções de API
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--site, -s` | CHOICE (pubmlst, pasteur) | `pubmlst` | Imprimir apenas a citação correspondente a um determinado nome |
+| `--token-dir, -t` | STRING | `/home/rpetit3/.bactopia` | O diretório onde o arquivo de token é salvo |
+| `--out-dir, -o` | STRING | `./bactopia-mlst` | O diretório onde os arquivos do banco de dados serão salvos |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Imprimir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão impressos |
+| `--version, -V` | BOOL | `false` | Mostrar a versão e sair. |

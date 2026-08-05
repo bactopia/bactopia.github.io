@@ -1,0 +1,148 @@
+---
+title: bactopia_gather
+description: "Pesquise, valide, colete ou simule amostras de entrada."
+tags:
+  - fastq
+  - validation
+  - sra
+  - ena
+  - download
+  - merging
+  - simulation
+  - art
+  - ncbi
+  - sample-scope
+---
+
+# bactopia_gather
+
+**Tags:** <a href="/developers/tags/fastq" class="badge badge--primary badge--tag">fastq</a> <a href="/developers/tags/validation" class="badge badge--primary badge--tag">validation</a> <a href="/developers/tags/sra" class="badge badge--primary badge--tag">sra</a> <a href="/developers/tags/ena" class="badge badge--primary badge--tag">ena</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/merging" class="badge badge--primary badge--tag">merging</a> <a href="/developers/tags/simulation" class="badge badge--primary badge--tag">simulation</a> <a href="/developers/tags/art" class="badge badge--primary badge--tag">art</a> <a href="/developers/tags/ncbi" class="badge badge--primary badge--tag">ncbi</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Pesquise, valide, colete ou simule amostras de entrada.
+
+Este processo é o ponto de entrada para a ingestão de dados. Ele realiza:
+- **Validação:** Verifica a formatação de FASTQ e a integridade do gzip.
+- **Mesclagem:** Combina múltiplas execuções (lanes) em uma única amostra.
+- **Download:** Busca reads (SRA/ENA) ou montagens (NCBI) a partir de accessions.
+- **Simulação:** Gera reads sintéticos a partir de montagens usando [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art) para permitir análises baseadas em reads.
+
+Usa slots nomeados explicitamente para reads de entrada e saída:
+- A entrada aceita Set&lt;Path&gt; para cada slot (pré-mesclagem, suporta múltiplos arquivos)
+- A saída emite Path? para cada slot (pós-mesclagem, arquivo único consolidado ou null)
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1_files: Set<Path?>,
+    r2_files: Set<Path?>,
+    se_files: Set<Path?>,
+    lr_files: Set<Path?>,
+    fna_files: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da amostra |
+| `r1_files` | `Set<Path?>` | Arquivos de reads Illumina R1 (Set, elementos podem ser null) |
+| `r2_files` | `Set<Path?>` | Arquivos de reads Illumina R2 (Set, elementos podem ser null) |
+| `se_files` | `Set<Path?>` | Arquivos de reads single-end (Set, elementos podem ser null) |
+| `lr_files` | `Set<Path?>` | Arquivos de reads longos (ONT) ou montagem para simulação (Set, elementos podem ser null) |
+| `fna_files` | `Set<Path?>` | Arquivo de montagem de entrada ou baixado (Set, elementos podem ser null) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    fna: Path?,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `r1` | `Path?` | Arquivo de reads Illumina R1 mesclado |
+| `r2` | `Path?` | Arquivo de reads Illumina R2 mesclado |
+| `se` | `Path?` | Arquivo de reads single-end mesclado |
+| `lr` | `Path?` | Arquivo de reads longos (ONT) mesclado |
+| `fna` | `Path?` | Arquivo de montagem |
+| `tsv` | `Path` | Arquivo de metadados delimitado por tabulação descrevendo as amostras válidas |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path?>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros de Coleta
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--skip_fastq_check` | boolean |  | Ignora as verificações de requisitos mínimos para FASTQs de entrada |
+| `--min_basepairs` | integer | `2241820` | A quantidade mínima de pares de bases necessária para continuar as análises downstream. |
+| `--min_reads` | integer | `7472` | A quantidade mínima de reads necessária para continuar as análises downstream. |
+| `--min_coverage` | integer | `10` | A cobertura mínima necessária para continuar as análises downstream. |
+| `--min_proportion` | number | `0.5` | A proporção mínima de pares de bases para reads paired-end para continuar as análises downstream. |
+| `--min_genome_size` | integer | `100000` | O tamanho mínimo estimado do genoma permitido para a sequência de entrada continuar as análises downstream. |
+| `--max_genome_size` | integer | `18040666` | O tamanho máximo estimado do genoma permitido para a sequência de entrada continuar as análises downstream. |
+| `--attempts` | integer | `3` | Número máximo de tentativas de download |
+| `--use_ena` | boolean |  | Baixa FASTQs do ENA |
+| `--no_cache` | boolean |  | Ignora o cache do arquivo de resumo de montagem do ncbi-genome-download |
+
+## Usado Por
+
+### Subworkflows
+
+- [bactopia_gather](/developers/subworkflows/bactopia_gather) - Pesquisa, valida, coleta e padroniza amostras de entrada.
+
+### Workflows
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [cleanyerreads](/bactopia-pipelines/cleanyerreads) - Controle de qualidade e remoção opcional de reads do hospedeiro a partir de reads de sequenciamento brutos.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline de análise abrangente para isolados de *Staphylococcus aureus*.
+- [teton](/bactopia-pipelines/teton) - Classificação taxonômica e perfil de abundância de reads metagenômicos.
+
+## Citações
+
+Se você usar este recurso em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ART](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/index.cfm)  
+  Huang W, Li L, Myers JR, Marth GT [ART: a next-generation sequencing read simulator.](http://dx.doi.org/10.1093/bioinformatics/btr708) _Bioinformatics_ 28, 593-594 (2012)
+
+- [fastq-dl](https://github.com/rpetit3/fastq-dl)  
+  Petit III RA [fastq-dl: Download FASTQ files from SRA or ENA repositories.](https://github.com/rpetit3/fastq-dl) (GitHub)
+
+- [fastq-scan](https://github.com/rpetit3/fastq-scan)  
+  Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
+
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+
+- [Pigz](https://zlib.net/pigz/)  
+  Adler M. [pigz: A parallel implementation of gzip for modern multi-processor, multi-core machines.](https://zlib.net/pigz/) _Jet Propulsion Laboratory_ (2015)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/gather)
+
+## Versão
+
+```yaml
+BACTOPIA_GATHER:
+    - bactopia-gather: 1.0.6
+```

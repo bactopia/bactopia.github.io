@@ -1,0 +1,38 @@
+---
+title: bactopia-pubmlst-setup
+description: "Configuração única para interagir com a API do PubMLST"
+---
+
+# bactopia-pubmlst-setup
+
+Configuração única para interagir com a API do PubMLST
+
+## Uso
+
+```bash
+bactopia-pubmlst-setup [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--client-id, -ci` | STRING |  | O ID do cliente para o site |
+| `--client-secret, -cs` | STRING |  | O segredo do cliente para o site |
+
+## Opções de API
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--site, -s` | CHOICE (pubmlst, pasteur) | `pubmlst` | Exibir apenas a citação correspondente a um determinado nome |
+| `--database, -d` | STRING | `pubmlst_yersinia_seqdef` | O banco de dados do organismo a ser utilizado na configuração. Nota: o padrão está disponível tanto no PubMLST quanto no Pasteur |
+| `--save-dir, -sd` | STRING | `/home/rpetit3/.bactopia` | O diretório onde o token será salvo |
+| `--force` | BOOL | `false` | Forçar a substituição de arquivos de token existentes |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |

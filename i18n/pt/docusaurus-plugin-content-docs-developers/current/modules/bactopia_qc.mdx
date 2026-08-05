@@ -1,0 +1,199 @@
+---
+title: bactopia_qc
+description: "Controle de qualidade automatizado, correção de erros e subamostragem de reads."
+tags:
+  - fastq
+  - qc
+  - adapter-removal
+  - error-correction
+  - subsampling
+  - fastp
+  - bbduk
+  - lighter
+  - porechop
+  - nanoq
+  - fastqc
+  - nanoplot
+  - sample-scope
+---
+
+# bactopia_qc
+
+**Tags:** <a href="/developers/tags/fastq" class="badge badge--primary badge--tag">fastq</a> <a href="/developers/tags/qc" class="badge badge--primary badge--tag">qc</a> <a href="/developers/tags/adapter-removal" class="badge badge--primary badge--tag">adapter-removal</a> <a href="/developers/tags/error-correction" class="badge badge--primary badge--tag">error-correction</a> <a href="/developers/tags/subsampling" class="badge badge--primary badge--tag">subsampling</a> <a href="/developers/tags/fastp" class="badge badge--primary badge--tag">fastp</a> <a href="/developers/tags/bbduk" class="badge badge--primary badge--tag">bbduk</a> <a href="/developers/tags/lighter" class="badge badge--primary badge--tag">lighter</a> <a href="/developers/tags/porechop" class="badge badge--primary badge--tag">porechop</a> <a href="/developers/tags/nanoq" class="badge badge--primary badge--tag">nanoq</a> <a href="/developers/tags/fastqc" class="badge badge--primary badge--tag">fastqc</a> <a href="/developers/tags/nanoplot" class="badge badge--primary badge--tag">nanoplot</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Controle de qualidade automatizado, correção de erros e subamostragem de reads.
+
+Um pipeline de controle de qualidade abrangente que se adapta ao tipo de read de entrada:
+- **Illumina:** Remoção de adaptadores/PhiX ([Fastp](https://github.com/OpenGene/fastp) ou
+  [BBDuk](https://jgi.doe.gov/data-and-tools/software-tools/bbtools/)), Correção de Erros
+  ([Lighter](https://github.com/mourisl/Lighter)) e Subamostragem ([Rasusa](https://github.com/mbhall88/rasusa))
+- **Nanopore:** Remoção de adaptadores ([Porechop](https://github.com/rrwick/Porechop)), Filtragem por qualidade
+  ([Nanoq](https://github.com/esteinig/nanoq)) e Subamostragem ([Rasusa](https://github.com/mbhall88/rasusa))
+- **Híbrido:** Processa tanto reads curtos quanto longos através de seus respectivos pipelines
+- **Montagem:** Passa adiante reads simulados a partir de montagens
+
+Gera métricas de qualidade usando [fastq-scan](https://github.com/rpetit3/fastq-scan) e relatórios de
+qualidade opcionais usando [FastQC](https://github.com/s-andrews/FastQC) (Illumina) e
+[NanoPlot](https://github.com/wdecoster/NanoPlot) (ONT).
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    fna: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da amostra (deve incluir `runtype`, `genome_size`, `species`) |
+| `r1` | `Path?` | Reads R1 Illumina (paired-end forward) |
+| `r2` | `Path?` | Reads R2 Illumina (paired-end reverse) |
+| `se` | `Path?` | Reads Illumina single-end |
+| `lr` | `Path?` | Reads longos (ONT) |
+| `fna` | `Path?` | Arquivo de montagem (FASTA) para simulações baseadas em montagem |
+
+```
+adapters: Path?
+phix: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `adapters` | `Path?` | Caminho para sequências de adaptadores personalizadas (FASTA) |
+| `phix` | `Path?` | Caminho para sequências PhiX personalizadas (FASTA) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?,
+    fna: Path?,
+    reads_grouped: Set<Path?>,
+    error: Set<Path?>,
+    skipped: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `r1` | `Path?` | Reads R1 Illumina após controle de qualidade (paired-end forward) |
+| `r2` | `Path?` | Reads R2 Illumina após controle de qualidade (paired-end reverse) |
+| `se` | `Path?` | Reads Illumina single-end após controle de qualidade |
+| `lr` | `Path?` | Reads longos após controle de qualidade (ONT) |
+| `fna` | `Path?` | Arquivo de montagem (FASTA) |
+| `reads_grouped` | `Set<Path?>` | Todos os FASTQs de saída para publicação |
+| `error` | `Set<Path?>` | Mensagens de erro capturadas caso o controle de qualidade falhe (ex.: reads vazios após trimagem) |
+| `skipped` | `Path?` | Arquivo marcador indicando que o controle de qualidade foi ignorado para esta amostra |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos de cada programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros de Controle de Qualidade
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--use_bbmap` | boolean |  | Reads Illumina serão submetidos ao controle de qualidade usando BBMap |
+| `--use_porechop` | boolean | `false` | Usar Porechop para remover adaptadores de reads ONT |
+| `--skip_qc` | boolean |  | A etapa de controle de qualidade será ignorada e assumirá que as sequências de entrada já passaram pelo controle de qualidade. |
+| `--skip_qc_plots` | boolean |  | A criação de gráficos de controle de qualidade pelo FastQC ou Nanoplot será ignorada |
+| `--skip_error_correction` | boolean |  | A correção de erros de reads pelo FLASH será ignorada. |
+| `--adapters` | string |  | Um arquivo FASTA contendo adaptadores a serem removidos |
+| `--adapter_k` | integer | `23` | Comprimento do kmer usado para identificar adaptadores. |
+| `--phix` | string |  | Genoma de referência do phiX174 a ser removido |
+| `--phix_k` | integer | `31` | Comprimento do kmer usado para identificar phiX174. |
+| `--ktrim` | string | `r` | Trim de reads para remover bases que correspondam a kmers de referência (opções: `f`, `r`, `l`) |
+| `--mink` | integer | `11` | Busca por kmers mais curtos nas extremidades dos reads até este comprimento, durante k-trimming ou mascaramento. |
+| `--hdist` | integer | `1` | Distância máxima de Hamming para kmers de referência (apenas substituições) |
+| `--tpe` | string | `t` | Ao realizar k-trimming pela direita, realiza trim em ambos os reads até o comprimento mínimo de qualquer um deles (opções: `f`, `t`) |
+| `--tbo` | string | `t` | Realiza trim de adaptadores com base na região de sobreposição dos reads pareados (opções: `f`, `t`) |
+| `--qtrim` | string | `rl` | Realiza trim nas extremidades dos reads para remover bases com qualidade abaixo de trimq. (opções: `rl`, `f`, `r`, `l`, `w`) |
+| `--trimq` | integer | `6` | Regiões com qualidade média ABAIXO deste valor serão removidas se qtrim estiver configurado com algo diferente de f |
+| `--maq` | integer | `10` | Reads com qualidade média (após trimagem) abaixo deste valor serão descartados |
+| `--minlength` | integer | `35` | Reads mais curtos que este valor após a trimagem serão descartados |
+| `--ftm` | integer | `5` | Se positivo, realiza trim à direita para que o comprimento seja igual a zero módulo este número |
+| `--tossjunk` | string | `t` | Descarta reads com caracteres inválidos como bases (opções: `f`, `t`) |
+| `--ain` | string | `f` | Ao detectar nomes de pares, permite nomes idênticos (opções: `f`, `t`) |
+| `--qout` | string | `33` | Offset PHRED a ser usado nos FASTQs de saída (opções: `33`, `64`) |
+| `--maxcor` | integer | `1` | Número máximo de correções em uma janela de 20bp |
+| `--sampleseed` | integer | `42` | Defina como um número positivo para usar como semente do gerador de números aleatórios na amostragem |
+| `--ont_minlength` | integer | `1000` | Reads ONT mais curtos que este valor serão descartados |
+| `--ont_minqual` | integer | `0` | Filtro de qualidade média mínima dos reads ONT |
+| `--porechop_opts` | string |  | Opções extras do Porechop entre aspas |
+| `--nanoplot_opts` | string |  | Opções extras do NanoPlot entre aspas |
+| `--bbduk_opts` | string |  | Opções extras do BBDuk entre aspas |
+| `--fastp_opts` | string |  | Opções extras do fastp entre aspas |
+
+## Usado Por
+
+### Subworkflows
+
+- [bactopia_qc](/developers/subworkflows/bactopia_qc) - Realiza controle de qualidade abrangente em reads de sequenciamento.
+
+### Workflows
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [cleanyerreads](/bactopia-pipelines/cleanyerreads) - Controle de qualidade e remoção opcional de reads do hospedeiro a partir de reads brutos de sequenciamento.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline de análise abrangente para isolados de *Staphylococcus aureus*.
+
+## Citações
+
+Se você usar este pipeline em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BBTools](https://jgi.doe.gov/data-and-tools/bbtools/)  
+  Bushnell B [BBMap short read aligner, and other bioinformatic tools.](http://sourceforge.net/projects/bbmap/) (Link)
+
+- [fastp](https://github.com/OpenGene/fastp)  
+  Chen S, Zhou Y, Chen Y, and Gu J [fastp: an ultra-fast all-in-one FASTQ preprocessor.](https://doi.org/10.1093/bioinformatics/bty560) _Bioinformatics_, 34(17), i884-i890. (2018)
+
+- [FastQC](https://github.com/s-andrews/FastQC)  
+  Andrews S [FastQC: a controle de qualidade tool for high throughput sequence data.](http://www.bioinformatics.babraham.ac.uk/projects/fastqc) (WebLink)
+
+- [fastq-scan](https://github.com/rpetit3/fastq-scan)  
+  Petit III RA [fastq-scan: generate summary statistics of input FASTQ sequences.](https://github.com/rpetit3/fastq-scan) (GitHub)
+
+- [Lighter](https://github.com/mourisl/Lighter)  
+  Song L, Florea L, Langmead B [Lighter: Fast and Memory-efficient Sequencing Error Correction without Counting](https://doi.org/10.1186/s13059-014-0509-9). _Genome Biol._ 15(11):509 (2014)
+
+- [NanoPlot](https://github.com/wdecoster/NanoPlot)  
+  De Coster W, D'Hert S, Schultz DT, Cruts M, Van Broeckhoven C [NanoPack: visualizing and processing long-read sequencing data](https://doi.org/10.1093/bioinformatics/bty149) _Bioinformatics_ Volume 34, Issue 15 (2018)
+
+- [Nanoq](https://github.com/esteinig/nanoq)  
+  Steinig E [Nanoq: Minimal but speedy controle de qualidade for nanopore reads in Rust](https://github.com/esteinig/nanoq) (GitHub)
+
+- [Porechop](https://github.com/rrwick/Porechop)  
+  Wick RR, Judd LM, Gorrie CL, Holt KE. [Completing bacterial genome assemblies with multiplex MinION sequencing.](https://doi.org/10.1099/mgen.0.000132) _Microb Genom._ 3(10):e000132 (2017)
+
+- [Rasusa](https://github.com/mbhall88/rasusa)  
+  Hall MB [Rasusa: Randomly subsample sequencing reads to a specified coverage.](https://doi.org/10.5281/zenodo.3731394) (2019).
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/qc)
+
+## Versão
+
+```yaml
+BACTOPIA_QC:
+    - bactopia-qc: 1.0.4
+```

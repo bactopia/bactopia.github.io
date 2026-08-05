@@ -1,0 +1,40 @@
+---
+title: bactopia-prune
+description: "Remove ambientes Bactopia desatualizados que não correspondem mais às versões atuais dos módulos."
+---
+
+# bactopia-prune
+
+Remove ambientes Bactopia desatualizados que não correspondem mais às versões atuais dos módulos.
+
+## Uso
+
+```bash
+bactopia-prune [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Opções de Limpeza
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--envtype` | CHOICE (conda, docker, singularity, all) | `all` | O tipo de ambiente a verificar quanto a itens desatualizados |
+| `--wf` | STRING |  | Verificar apenas os ambientes do fluxo de trabalho especificado (padrão: todos os fluxos de trabalho) |
+| `--condadir` | STRING | `/home/rpetit3/.bactopia/conda` | Diretório onde os ambientes Conda estão armazenados (a variável de ambiente NXF_CONDA_CACHEDIR tem precedência) |
+| `--registry` | STRING | `quay.io` | Registry para comparar os containers Docker |
+| `--singularity_cache` | STRING | `/home/rpetit3/.bactopia/singularity` | Diretório onde as imagens Singularity estão armazenadas (a variável de ambiente NXF_SINGULARITY_CACHEDIR tem precedência) |
+| `--singularity_pull_docker_container` | BOOL | `false` | Usar nomenclatura baseada em Docker para imagens Singularity |
+| `--execute` | BOOL | `false` | Remover efetivamente os ambientes desatualizados. O padrão é execução simulada (somente relatório) |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |

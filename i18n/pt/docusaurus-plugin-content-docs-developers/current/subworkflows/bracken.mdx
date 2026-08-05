@@ -1,0 +1,105 @@
+---
+title: bracken
+description: "Estimar a abundância de espécies a partir de reads metagenômicos."
+tags:
+  - metagenomics
+  - taxonomic-classification
+  - abundance-estimation
+  - kraken2
+  - bracken
+  - sample-scope
+---
+
+# bracken
+
+**Tags:** <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/taxonomic-classification" class="badge badge--primary badge--tag">taxonomic-classification</a> <a href="/developers/tags/abundance-estimation" class="badge badge--primary badge--tag">abundance-estimation</a> <a href="/developers/tags/kraken2" class="badge badge--primary badge--tag">kraken2</a> <a href="/developers/tags/bracken" class="badge badge--primary badge--tag">bracken</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Estimar a abundância de espécies a partir de reads metagenômicos.
+
+Este subworkflow realiza classificação taxonômica e estimativa de abundância utilizando [Kraken2](https://github.com/DerrickWood/kraken2)
+e [Bracken](https://github.com/jenniferlu717/Bracken). Ele processa reads metagenômicos, classifica-os em relação a um banco de dados de referência
+e gera estimativas de abundância em diferentes níveis taxonômicos com correção de abundância opcional.
+
+Utiliza campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de leitura é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads Illumina R1 (paired-end) |
+| `r2` | Reads Illumina R2 (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Long reads (ONT/PacBio) |
+
+```
+database: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database` | `Path` | Caminho para o banco de dados Kraken2 para classificação taxonômica. |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resumo delimitado por tabulação das abundâncias de espécies primárias e secundárias do Bracken |
+| `special_meta` | Um registro de metadados simplificado para uso interno |
+| `classified` | Reads classificados como pertencentes a algum dos táxons no banco de dados Kraken2 |
+| `unclassified` | Reads não classificados como pertencentes a algum dos táxons no banco de dados Kraken2 |
+| `kraken2_report` | Relatório do Kraken2 contendo estatísticas sobre reads classificados e não classificados |
+| `kraken2_output` | Arquivo de saída do Kraken2 contendo a classificação taxonômica de cada read |
+| `bracken_report` | Relatório do Bracken contendo estatísticas sobre reads classificados e não classificados |
+| `krona` | Visualização HTML interativa do Krona |
+| `abundances` | Estimativas de abundância do Bracken para cada táxon |
+| `classification` | Detalhes de classificação por read do Bracken |
+| `adjusted_abundances` | Estimativas de abundância do Bracken ajustadas para reads não classificados |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [bracken](/developers/modules/bracken) - Classificação taxonômica e estimativa de abundância.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenar múltiplos arquivos CSV ou TSV em uma única tabela.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenar múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [bracken](/bactopia-tools/bracken) - Estimar a abundância taxonômica de amostras metagenômicas.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+- [Bracken](https://github.com/jenniferlu717/Bracken)  
+  Lu J, Breitwieser FP, Thielen P, and Salzberg SL [Bracken: estimating species abundance in metagenomics data.](https://doi.org/10.7717/peerj-cs.104) _PeerJ Computer Science_, 3, e104. (2017)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/bracken)

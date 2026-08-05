@@ -1,0 +1,30 @@
+---
+title: bactopia-teton-prepare
+description: "Prepare sample sheets para análise downstream no fluxo de trabalho Teton."
+---
+
+# bactopia-teton-prepare
+
+Prepare sample sheets para análise downstream no fluxo de trabalho Teton.
+
+## Uso
+
+```bash
+bactopia-teton-prepare PREFIX SIZEMEUP RUN_TYPE FASTQS OUTDIR [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `PREFIX` | STRING | Sim | Prefixo a ser usado para os arquivos de saída. |
+| `SIZEMEUP` | STRING | Sim | A estimativa de tamanho de genoma do SizeMeUp. |
+| `RUN_TYPE` | STRING | Sim | O tipo de execução de entrada (ex: paired-end, single-end, ont). |
+| `FASTQS` | STRING | Sim | Lista separada por vírgulas de nomes de arquivos FASTQ. |
+| `OUTDIR` | STRING | Sim | O diretório de saída para os resultados. |
+
+## Opções
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

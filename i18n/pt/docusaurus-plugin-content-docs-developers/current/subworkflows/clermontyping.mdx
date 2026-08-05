@@ -1,0 +1,76 @@
+---
+title: clermontyping
+description: "Prever filogrupos de Escherichia coli a partir de montagens de genoma."
+tags:
+  - escherichia-coli
+  - phylogroup
+  - typing
+  - clermont
+  - sample-scope
+---
+
+# clermontyping
+
+**Tags:** <a href="/developers/tags/escherichia-coli" class="badge badge--primary badge--tag">escherichia-coli</a> <a href="/developers/tags/phylogroup" class="badge badge--primary badge--tag">phylogroup</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/clermont" class="badge badge--primary badge--tag">clermont</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever filogrupos de Escherichia coli a partir de montagens de genoma.
+
+Este subworkflow utiliza o [ClermontTyping](https://github.com/happykhan/ClermonTyping) para determinar
+os grupos filogenéticos de cepas de *Escherichia coli* a partir de genomas montados. Ele processa
+cada amostra individualmente e agrega os resultados em um único relatório consolidado.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `assembly` | Contigs montados no formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Resultados de atribuição de filogrupo do ClermonTyping em formato delimitado por tabulação |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenar múltiplos arquivos CSV ou TSV em uma única tabela.
+- [clermontyping](/developers/modules/clermontyping) - Determinar o filogrupo de isolados de Escherichia coli.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [clermontyping](/bactopia-tools/clermontyping) - Filotipagem in silico do gênero Escherichia.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClermontTyping](https://github.com/happykhan/ClermonTyping)  
+  Beghain J, Bridier-Nahmias A, Le Nagard H, Denamur E, Clermont O. [ClermonTyping: an easy-to-use and accurate in silico method for Escherichia genus strain phylotyping.](https://doi.org/10.1099/mgen.0.000192) Microbial Genomics, 4(7), e000192. (2018)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/clermontyping)

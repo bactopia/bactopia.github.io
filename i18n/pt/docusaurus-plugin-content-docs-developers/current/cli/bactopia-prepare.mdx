@@ -1,0 +1,54 @@
+---
+title: bactopia-prepare
+description: "Crie um 'arquivo de nomes de arquivos' (FOFN) de amostras a serem processadas pelo Bactopia"
+---
+
+# bactopia-prepare
+
+Crie um 'arquivo de nomes de arquivos' (FOFN) de amostras a serem processadas pelo Bactopia
+
+## Uso
+
+```bash
+bactopia-prepare [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--path, -p` | STRING |  | Diretório onde os arquivos FASTQ estão armazenados |
+
+## Opções de Correspondência
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--assembly-ext, -a` | STRING | `.fna.gz` | Extensão das montagens FASTA |
+| `--fastq-ext, -f` | STRING | `.fastq.gz` | Extensão dos arquivos FASTQ |
+| `--fastq-separator` | STRING | `_` | Divide o nome do FASTQ na última ocorrência do separador |
+| `--pe1-pattern` | STRING | `[Aa]|[Rr]1|1` | Designa a diferença do primeiro conjunto de reads paired-end |
+| `--pe2-pattern` | STRING | `[Bb]|[Rr]2|2` | Designa a diferença do segundo conjunto de reads paired-end |
+| `--merge` | BOOL | `false` | Sinaliza amostras com múltiplos conjuntos de reads para serem mescladas pelo Bactopia |
+| `--ont` | BOOL | `false` | Reads single-end devem ser tratados como reads Oxford Nanopore |
+| `--hybrid` | BOOL | `false` | Amostras com reads paired-end e single-end serão configuradas para montagem híbrida Illumina-first (requer --ont) |
+| `--short-polish` | BOOL | `false` | Amostras com reads paired-end e single-end serão configuradas para montagem híbrida Nanopore-first (requer --ont) |
+| `--recursive, -r` | BOOL | `false` | Os diretórios serão percorridos recursivamente |
+| `--prefix` | STRING |  | Prefixo a ser adicionado ao caminho |
+
+## Opções de Informação da Amostra
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--metadata` | STRING |  | Metadados por amostra com informações de tamanho do genoma e espécie |
+| `--genome-size, -gsize` | INT | `0` | Tamanho do genoma a ser usado para todas as amostras |
+| `--species, -s` | STRING | `UNKNOWN_SPECIES` | Espécie a ser usada para todas as amostras (se disponível, pode ser usada para determinar o tamanho do genoma) |
+| `--taxid` | STRING |  | Usa o tamanho do genoma do ID de Táxon para todas as amostras |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--examples` | BOOL | `false` | Imprime exemplos de uso |
+| `--verbose` | BOOL | `false` | Imprime texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão impressos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

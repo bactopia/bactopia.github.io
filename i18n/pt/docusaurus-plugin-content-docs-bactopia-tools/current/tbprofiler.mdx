@@ -1,0 +1,279 @@
+---
+title: tbprofiler
+description: "Detecção de resistência antimicrobiana e tipagem de linhagem de Mycobacterium tuberculosis."
+tags:
+  - mycobacterium-tuberculosis
+  - resistance
+  - lineage
+  - typing
+  - tb
+  - bactopia-tool
+---
+
+# tbprofiler
+
+**Tags:** <a href="/bactopia-tools/tags/mycobacterium-tuberculosis" class="badge badge--primary badge--tag">mycobacterium-tuberculosis</a> <a href="/bactopia-tools/tags/resistance" class="badge badge--primary badge--tag">resistance</a> <a href="/bactopia-tools/tags/lineage" class="badge badge--primary badge--tag">lineage</a> <a href="/bactopia-tools/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/bactopia-tools/tags/tb" class="badge badge--primary badge--tag">tb</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Detecção de resistência antimicrobiana e tipagem de linhagem de Mycobacterium tuberculosis.
+
+Esta Bactopia Tool utiliza o [TBProfiler](https://github.com/jodyphelan/TBProfiler) para
+analisar genomas de Mycobacterium tuberculosis em busca de mutações de resistência e tipagem
+de linhagem. O fluxo de trabalho processa reads de sequenciamento para identificar variantes
+associadas à resistência e determinar a linhagem de cada isolado de TB.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf tbprofiler \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/tbprofiler/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── tbprofiler-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.csv
+│           ├── <SAMPLE_NAME>.results.json.gz
+│           ├── <SAMPLE_NAME>.txt
+│           ├── logs
+│           │   ├── nf.command.{begin,err,log,out,run,sh,trace}
+│           │   └── versions.yml
+│           └── supplemental
+│               ├── <SAMPLE_NAME>.bam
+│               ├── <SAMPLE_NAME>.bam.bai
+│               └── <SAMPLE_NAME>.targets.vcf.gz
+└── bactopia-runs
+    └── tbprofiler-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── tbprofiler-collate
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   ├── tbprofiler.csv
+        │   ├── tbprofiler.variants.csv
+        │   └── tbprofiler.variants.txt
+        └── nf-reports
+            ├── tbprofiler-dag.dot
+            ├── tbprofiler-report.html
+            └── tbprofiler-timeline.html
+```
+
+### Resultados por Amostra
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.results.txt` | Arquivo de texto com os resultados de resistência e tipagem de linhagem do TBProfiler |
+| `*.results.json` | Arquivo JSON com os resultados detalhados da análise do TBProfiler |
+| `*.results.csv` | Arquivo CSV com os resultados do TBProfiler em formato tabular |
+| `bam/*.bam` | Arquivo BAM com os detalhes de alinhamento dos reads contra os genomas de referência |
+| `vcf/*.targets.csq.vcf.gz` | Arquivo VCF com anotações de variantes e consequências funcionais |
+
+### Resultados Consolidados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `tbprofiler.tsv` | Arquivo TSV consolidado com os resultados do TBProfiler de todas as amostras |
+
+
+### Trilha de Auditoria
+
+Abaixo estão os arquivos que podem ajudar a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta estão arquivos úteis
+para revisão caso necessário.
+
+| Extensão     | Descrição |
+|--------------|-----------|
+| .begin       | Arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/remover arquivos e enfileirar processos com base no perfil fornecido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um excelente resumo da sua execução. Podem ser usados para
+otimizar o uso de recursos e estimar custos esperados ao utilizar plataformas em nuvem.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| tbprofiler-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| tbprofiler-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| tbprofiler-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| tbprofiler-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do Bactopia a serem usados como entradas |
+
+### Parâmetros de Perfil do TB-Profiler
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--tbprofiler_call_whole_genome` | boolean | `false` | Chamar o genoma inteiro |
+| `--tbprofiler_mapper` | string | `bwa` | Ferramenta de mapeamento a usar. Se estiver usando dados Nanopore, o padrão será minimap2 (opções: `bwa`, `minimap2`, `bowtie2`, `bwa-mem2`) |
+| `--tbprofiler_caller` | string | `freebayes` | Ferramenta de chamada de variantes a usar (opções: `bcftools`, `gatk`, `freebayes`) |
+| `--tbprofiler_calling_params` | string |  | Opções extras para o chamador de variantes entre aspas |
+| `--tbprofiler_suspect` | boolean | `false` | Usar o conjunto de ferramentas suspect para adicionar predições de ML |
+| `--tbprofiler_no_flagstat` | boolean | `false` | Não coletar flagstats |
+| `--tbprofiler_no_delly` | boolean | `false` | Não executar delly |
+| `--tbprofiler_opts` | string |  | Opções extras entre aspas para o TBProfiler |
+
+### Parâmetros de Consolidação do TB-Profiler
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--tbprofiler_itol` | boolean | `false` | Gerar arquivos de configuração itol |
+| `--tbprofiler_full` | boolean | `false` | Incluir mutações no arquivo de resultado principal |
+| `--tbprofiler_all_variants` | boolean | `false` | Incluir todas as variantes na matriz de variantes |
+| `--tbprofiler_mark_missing` | boolean | `false` | Um asterisco será usado para marcar predições afetadas por dados ausentes em uma posição de resistência a drogas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use esses parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a incluir na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a excluir da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Esses parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar os datasets em cache |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Recursos</summary>
+
+Define o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras a serem baixadas por vez |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que sobrescreverá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para armazenar logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID do commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para os ambientes Conda |
+| `--registry` | string | `quay.io` | Registro a partir do qual os contêineres Docker serão baixados. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity, força o fluxo de trabalho a baixar e converter contêineres Docker. |
+| `--force_rebuild` | boolean | `false` | Força a sobrescrita de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) da(s) fila(s) separados por vírgula a serem usados por um agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais para passar ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais para passar ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Auxiliares</summary>
+
+Parâmetros raramente usados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibir o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Define se os parâmetros devem ser validados contra o esquema em tempo de execução |
+| `--help` | boolean |  | Exibir texto de ajuda. |
+| `--wf` | string | `bactopia` | Especifica qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Listar os fluxos de trabalho e Bactopia Tools disponíveis para usar com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostrar todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um atalho para --help --show_hidden_params |
+| `--version` | boolean |  | Exibir texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [tbprofiler](/developers/subworkflows/tbprofiler) - Ferramenta de análise de Mycobacterium tuberculosis para detectar resistência e tipagem de linhagem.
+
+## Citações
+
+Se você usar este fluxo de trabalho em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [TBProfiler](https://github.com/jodyphelan/TBProfiler)  
+  Phelan JE, O'Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O'Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+
+## Código-fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/tbprofiler)

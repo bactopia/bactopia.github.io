@@ -1,0 +1,96 @@
+---
+title: Bactopia
+description: Um pipeline Nextflow de fluxo de trabalho completo para análise de genomas bacterianos.
+slug: /
+sidebar_position: 0
+sidebar_label: Bactopia
+hide_title: true
+---
+
+import {CardGrid, Card} from '@site/src/components/CardGrid';
+
+<div style={{textAlign: 'center', padding: '4rem 2rem'}}>
+  <img src="/img/bactopia-logo.png" alt="Bactopia" style={{maxWidth: '500px', width: '100%', marginBottom: '1.5rem'}} />
+  <span style={{fontSize: '1.25rem', color: 'var(--ifm-color-emphasis-700)', maxWidth: '700px', margin: '0 auto', display: 'block'}}>
+    Um pipeline Nextflow de fluxo de trabalho completo para análise de genomas bacterianos.
+  </span>
+</div>
+
+<CardGrid columns={2}>
+  <Card
+    icon="material-clock-fast"
+    title="Configure em minutos"
+    description="Instale o Bactopia pelo Bioconda e comece a processar genomas em minutos"
+    link="/installation"
+    linkText="Instalação"
+  />
+  <Card
+    icon="material-bacteria"
+    title="Genômica bacteriana sem complicações"
+    description="Pipeline simplificado para análise eficiente e completa de genomas bacterianos"
+    link="/beginners-guide"
+    linkText="Guia para Iniciantes"
+  />
+  <Card
+    icon="material-lightbulb-on"
+    title="Expanda suas análises facilmente"
+    description="Amplie seus estudos rapidamente com uma variedade de fluxos de trabalho complementares e prontos para uso"
+    link="/bactopia-tools/"
+    linkText="Bactopia Tools"
+  />
+  <Card
+    icon="material-star"
+    title="Gerando impacto"
+    description="Uma ferramenta gratuita e de código aberto que contribui regularmente para a comunidade"
+    link="/impact-and-outreach/"
+    linkText="Impacto e Divulgação"
+  />
+</CardGrid>
+
+## Visão Geral
+
+Bactopia é um pipeline flexível para análise completa de genomas bacterianos. O objetivo do Bactopia
+é processar seus dados com um amplo conjunto de ferramentas, para que você possa chegar à parte mais
+interessante das análises mais rapidamente!
+
+Bactopia foi inspirado pelo [Staphopia](https://staphopia.github.io/), um fluxo de trabalho voltado para
+genomas de *Staphylococcus aureus*. Utilizando o que aprendemos com o Staphopia e o feedback dos usuários,
+o Bactopia foi desenvolvido do zero tendo como prioridade desde o início a usabilidade, portabilidade e velocidade.
+
+Bactopia usa [Nextflow](https://www.nextflow.io/) para gerenciar o fluxo de trabalho, permitindo suporte
+a muitos tipos de ambientes (por exemplo, cluster ou nuvem). O Bactopia permite o uso de muitos
+conjuntos de dados públicos, bem como seus próprios conjuntos de dados, para aprimorar ainda mais a análise
+do seu sequenciamento. O Bactopia utiliza apenas pacotes de software disponíveis no
+[Bioconda](https://bioconda.github.io/) e no [Conda-Forge](https://conda-forge.org/) para tornar a
+instalação o mais simples possível para *todos* os usuários.
+
+<a href="/img/bactopia-workflow.png" target="_blank" rel="noopener">
+  <img src="/img/bactopia-workflow.png" alt="Bactopia Workflow" style={{display: 'block', maxWidth: '100%', margin: '2rem auto', borderRadius: '0.5rem'}} />
+</a>
+
+## Financiamento
+
+O apoio a este projeto veio (em parte) de uma Bolsa de Bioinformática em Saúde Pública da Emory
+financiada pelo [CDC Emerging Infections Program](https://dph.georgia.gov/EIP), pela
+[Wyoming Public Health Division](https://health.wyo.gov/publichealth/), pelo
+[Center for Applied Pathogen Epidemiology and Outbreak Control (CAPE)](https://www.linkedin.com/company/center-for-applied-pathogen-epidemiology-and-outbreak-control/)
+e pelo [CZI Open Science Program (EOSS6)](https://chanzuckerberg.com/eoss/proposals/enhancing-the-bactopia-ecosystem-with-trainings-and-visual-reports/).
+
+<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', margin: '2rem 0'}}>
+    <a href="https://dph.georgia.gov/EIP">
+        <img src="/img/gaeip-banner.png" alt="Georgia Emerging Infections Program" style={{width: '140px', borderRadius: '0.25rem'}} />
+    </a>
+    <a href="https://health.wyo.gov/publichealth/">
+        <img src="/img/wyphd-banner.jpg" alt="Wyoming Public Health Division" style={{width: '280px', borderRadius: '0.25rem'}} />
+    </a>
+    <a href="https://www.linkedin.com/company/center-for-applied-pathogen-epidemiology-and-outbreak-control/">
+        <img src="/img/cape-banner.png" alt="Center for Applied Pathogen Epidemiology and Outbreak Control" style={{width: '185px', borderRadius: '0.25rem'}} />
+    </a>
+    <a href="https://chanzuckerberg.com/eoss/proposals/enhancing-the-bactopia-ecosystem-with-trainings-and-visual-reports/">
+        <img src="/img/czi-banner.png" alt="CZI EOSS6" style={{width: '185px', borderRadius: '0.25rem'}} />
+    </a>
+</div>
+
+## Citando o Bactopia
+
+Petit III RA, Read TD. [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) *mSystems* 5 (2020)

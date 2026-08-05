@@ -1,0 +1,41 @@
+---
+title: bactopia-workflows
+description: "Exibe o caminho para o arquivo main.nf de um fluxo de trabalho do Bactopia."
+---
+
+# bactopia-workflows
+
+Exibe o caminho para o arquivo main.nf de um fluxo de trabalho do Bactopia.
+
+## Uso
+
+```bash
+bactopia-workflows UNKNOWN [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `UNKNOWN` | UNPROCESSED | Não |  |
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Opções Relacionadas ao Fluxo de Trabalho
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--wf` | STRING | `bactopia` | Constrói um ambiente para o fluxo de trabalho especificado |
+| `--list_wfs` | BOOL | `false` | Lista os fluxos de trabalho disponíveis do Bactopia e encerra |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibe texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibe a versão e encerra. |

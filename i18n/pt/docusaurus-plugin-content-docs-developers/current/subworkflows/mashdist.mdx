@@ -1,0 +1,86 @@
+---
+title: mashdist
+description: "Calcule distâncias Mash entre sequências e uma referência."
+tags:
+  - mash
+  - distance
+  - minhash
+  - comparison
+  - reference
+  - sample-scope
+---
+
+# mashdist
+
+**Tags:** <a href="/developers/tags/mash" class="badge badge--primary badge--tag">mash</a> <a href="/developers/tags/distance" class="badge badge--primary badge--tag">distance</a> <a href="/developers/tags/minhash" class="badge badge--primary badge--tag">minhash</a> <a href="/developers/tags/comparison" class="badge badge--primary badge--tag">comparison</a> <a href="/developers/tags/reference" class="badge badge--primary badge--tag">reference</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Calcule distâncias Mash entre sequências e uma referência.
+
+Este subworkflow usa [Mash](https://github.com/marbl/Mash) para calcular distâncias
+baseadas em MinHash entre sequências de consulta e uma sequência de referência. Ele
+cria esboços Mash das sequências de entrada e computa valores de distância, depois
+agrega todos os cálculos de distância em um relatório consolidado único.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `fna` | Sequências em formato FASTA para comparar com a referência |
+
+```
+reference: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `reference` | `Path` | Sequência de referência em formato FASTA para cálculos de distância |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `dist` | Um resumo delimitado por tabulação das distâncias Mash e valores-p |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados de distância Mash mesclados de todas as amostras |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [mash_dist](/developers/modules/mash_dist) - Calcula distâncias genômicas usando esboços MinHash.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [mashdist](/bactopia-tools/mashdist) - Calcula distâncias Mash entre sequências e genomas de referência.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/mashdist)

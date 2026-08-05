@@ -1,0 +1,131 @@
+---
+title: ncbigenomedownload
+description: "Baixe arquivos de montagem e anotação do banco de dados Assembly do NCBI."
+tags:
+  - ncbi
+  - download
+  - genome
+  - assembly
+  - fasta
+  - genbank
+  - utility
+  - run-scope
+---
+
+# ncbigenomedownload
+
+**Tags:** <a href="/developers/tags/ncbi" class="badge badge--primary badge--tag">ncbi</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/genbank" class="badge badge--primary badge--tag">genbank</a> <a href="/developers/tags/utility" class="badge badge--primary badge--tag">utility</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Baixe arquivos de montagem e anotação do banco de dados Assembly do NCBI.
+
+Utiliza o [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) para buscar
+eficientemente uma ou mais montagens completas de genomas e seus arquivos associados de anotação
+e relatório no servidor FTP do NCBI, com base em números de acesso, nome de espécie ou ID de montagem.
+
+## Entradas
+
+```
+accessions: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `accessions` | `Path?` | Caminho para um arquivo de texto contendo uma lista de números de acesso do NCBI Assembly (um por linha) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    gbff: Set<Path?>,
+    fna: Set<Path?>,
+    rm: Set<Path?>,
+    features: Set<Path?>,
+    gff: Set<Path?>,
+    faa: Set<Path?>,
+    gpff: Set<Path?>,
+    wgs_gbk: Set<Path?>,
+    cds: Set<Path?>,
+    rna: Set<Path?>,
+    rna_fna: Set<Path?>,
+    report: Set<Path?>,
+    stats: Set<Path?>,
+    accessions: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `gbff` | `Set<Path?>` | Formato GenBank da(s) sequência(s) genômica(s) (*_genomic.gbff.gz) |
+| `fna` | `Set<Path?>` | Formato FASTA da(s) sequência(s) nucleotídica(s) genômica(s) (*_genomic.fna.gz) |
+| `rm` | `Set<Path?>` | Saída do RepeatMasker para eucariotos |
+| `features` | `Set<Path?>` | Arquivo de texto delimitado por tabulação com localizações e atributos de um subconjunto de features |
+| `gff` | `Set<Path?>` | Anotação da(s) sequência(s) genômica(s) no formato GFF3 (*_genomic.gff.gz) |
+| `faa` | `Set<Path?>` | Formato FASTA dos produtos proteicos acessados (*_protein.faa.gz) |
+| `gpff` | `Set<Path?>` | Formato GenPept dos produtos proteicos acessados |
+| `wgs_gbk` | `Set<Path?>` | Formato de arquivo flat GenBank do master WGS |
+| `cds` | `Set<Path?>` | Formato FASTA das sequências nucleotídicas correspondentes a todas as features CDS |
+| `rna` | `Set<Path?>` | Formato FASTA dos produtos de RNA acessados |
+| `rna_fna` | `Set<Path?>` | Formato FASTA das sequências nucleotídicas correspondentes a todas as features de RNA |
+| `report` | `Set<Path?>` | Arquivo de texto delimitado por tabulação com nomes, funções e relações das unidades de montagem |
+| `stats` | `Set<Path?>` | Arquivo de texto delimitado por tabulação com estatísticas de montagem |
+| `accessions` | `Set<Path?>` | Arquivos de lista de acesso gerados |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do NCBI Genome Download
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--species` | string |  | Nome da espécie para baixar as montagens |
+| `--accession` | string |  | Um número de acesso do NCBI Assembly a ser baixado |
+| `--accessions` | string |  | Um arquivo de números de acesso do NCBI Assembly (um por linha) a serem baixados |
+| `--format` | string | `fasta` | Lista de formatos a baixar, separados por vírgula |
+| `--section` | string | `refseq` | Seção do NCBI para download |
+| `--assembly_level` | string | `complete` | Lista de níveis de montagem a baixar, separados por vírgula |
+| `--kingdom` | string | `bacteria` | Lista de reinos para download, separados por vírgula |
+| `--limit` | string |  | Limitar o número de montagens a serem baixadas |
+| `--keep_downloads` | boolean | `false` | Salvar os arquivos baixados na pasta bactopia-runs |
+
+## Usado Por
+
+### Subworkflows
+
+- [ncbigenomedownload](/developers/subworkflows/ncbigenomedownload) - Baixar genomas bacterianos do banco de dados RefSeq do NCBI.
+
+### Workflows
+
+- [fastani](/bactopia-tools/fastani) - Cálculo rápido sem alinhamento da Identidade Nucleotídica Média (ANI) de genomas completos.
+- [mashtree](/bactopia-tools/mashtree) - Construção rápida de árvores filogenéticas usando distâncias Mash.
+- [pangenome](/bactopia-tools/pangenome) - Análise de pan-genoma com filogenia opcional do genoma core.
+- [snippy](/bactopia-tools/snippy) - Chamada rápida de variantes haplóides e alinhamento do genoma core.
+
+## Citações
+
+Se você utilizar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download)  
+  Blin K [ncbi-genome-download: Scripts to download genomes from the NCBI FTP servers](https://github.com/kblin/ncbi-genome-download) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ncbigenomedownload)
+
+## Versão
+
+```yaml
+NCBIGENOMEDOWNLOAD:
+    - ncbi-genome-download: 0.3.3
+```

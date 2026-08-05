@@ -1,0 +1,110 @@
+---
+title: blast_blastn
+description: "Pesquise um banco de dados de nucleotídeos usando uma consulta de nucleotídeos."
+tags:
+  - blast
+  - blastn
+  - alignment
+  - dna
+  - search
+  - fasta
+  - sample-scope
+---
+
+# blast_blastn
+
+**Tags:** <a href="/developers/tags/blast" class="badge badge--primary badge--tag">blast</a> <a href="/developers/tags/blastn" class="badge badge--primary badge--tag">blastn</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/dna" class="badge badge--primary badge--tag">dna</a> <a href="/developers/tags/search" class="badge badge--primary badge--tag">search</a> <a href="/developers/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Pesquise um banco de dados de nucleotídeos usando uma consulta de nucleotídeos.
+
+Usa o [BLASTN](https://blast.ncbi.nlm.nih.gov/Blast.cgi) para alinhar sequências de consulta de nucleotídeos
+(FASTA) contra um banco de dados BLAST de nucleotídeos. É otimizado para encontrar sequências altamente similares.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    blastdb: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Record Groovy contendo informações da amostra |
+| `blastdb` | `Path` | Um tarball comprimido contendo o banco de dados BLAST de nucleotídeos |
+
+```
+query: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `query` | `Path` | Arquivo FASTA contendo sequências de consulta de nucleotídeos |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `tsv` | `Path` | Resultados de alinhamento de nucleotídeos delimitados por tabulação (BLAST outfmt 6) |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Um arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do BLASTN
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--blastn_query` | string |  | Um arquivo fasta contendo as sequências de consulta para executar BLAST contra o banco de dados |
+| `--blastn_outfmt` | string | `sseqid qseqid pident qlen slen length nident positive mismatch gapopen gaps qstart qend sstart send evalue bitscore` | As colunas a incluir com -outfmt 6 |
+| `--blastn_opts` | string |  | Opções adicionais para passar ao BLASTN |
+| `--blastn_perc_identity` | integer | `50` | Percentual de identidade |
+| `--blastn_qcov_hsp_perc` | integer | `50` | Percentual de cobertura da consulta por hsp |
+| `--blastn_max_target_seqs` | integer | `2000` | Número máximo de sequências alinhadas a manter |
+| `--blastn_use_genes` | boolean | `false` | Executar BLAST contra sequências de genes em vez de contigs |
+
+## Usado Por
+
+### Subworkflows
+
+- [blastn](/developers/subworkflows/blastn) - Pesquise um banco de dados de nucleotídeos usando sequências de consulta de nucleotídeos.
+
+### Workflows
+
+- [blastn](/bactopia-tools/blastn) - Pesquise bancos de dados BLAST de nucleotídeos usando consultas de nucleotídeos.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+  Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/blast/blastn)
+
+## Versão
+
+```yaml
+BLAST_BLASTN:
+    - blast: 2.17.0
+```

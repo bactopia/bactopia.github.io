@@ -1,0 +1,265 @@
+---
+title: sylph
+description: "Perfil taxonômico por MinHash corrigido por abundância."
+tags:
+  - taxonomic-profiling
+  - metagenomics
+  - minhash
+  - abundance
+  - sylph
+  - bactopia-tool
+---
+
+# sylph
+
+**Tags:** <a href="/bactopia-tools/tags/taxonomic-profiling" class="badge badge--primary badge--tag">taxonomic-profiling</a> <a href="/bactopia-tools/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/bactopia-tools/tags/minhash" class="badge badge--primary badge--tag">minhash</a> <a href="/bactopia-tools/tags/abundance" class="badge badge--primary badge--tag">abundance</a> <a href="/bactopia-tools/tags/sylph" class="badge badge--primary badge--tag">sylph</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Perfil taxonômico por MinHash corrigido por abundância.
+
+Esta Bactopia Tool usa o [Sylph](https://github.com/bluenote-1577/Sylph) para realizar
+perfis taxonômicos de amostras metagenômicas utilizando sketches MinHash corrigidos por
+abundância para quantificação precisa em nível de espécie.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf sylph \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/sylph/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── sylph-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── sylph-<TIMESTAMP>
+        ├── merged-results
+        │   ├── logs
+        │   │   └── sylph-concat
+        │   │       ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │   │       └── versions.yml
+        │   └── sylph.tsv
+        └── nf-reports
+            ├── sylph-dag.dot
+            ├── sylph-report.html
+            └── sylph-timeline.html
+```
+
+### Resultados por Amostra
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.profile.txt` | Perfil de abundância de espécies |
+| `*.krona.html` | Visualização interativa em gráfico Krona |
+
+### Resultados Consolidados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `sylph.tsv` | Arquivo TSV consolidado contendo perfis Sylph de todas as amostras |
+
+
+### Trilha de Auditoria
+
+A seguir estão os arquivos que podem ajudar a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta há arquivos úteis
+para revisar caso necessário.
+
+| Extensão     | Descrição |
+|--------------|-----------|
+| .begin       | Arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/remover arquivos e enfileirar processos com base no perfil fornecido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Um arquivo formatado em YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um ótimo resumo da sua execução. Podem ser usados para otimizar
+o uso de recursos e estimar custos esperados ao utilizar plataformas em nuvem.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| sylph-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| sylph-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| sylph-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| sylph-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do Bactopia a serem usados como entradas |
+
+### Parâmetros de Perfil do Sylph
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--sylph_db` | string |  | O caminho para um banco de dados formatado para Sylph |
+| `--sylph_k` | integer | `31` | Tamanho do k-mer para sketching |
+| `--sylph_min_spacing` | integer | `30` | Espaçamento mínimo entre k-mers selecionados nos genomas do banco de dados |
+| `--sylph_subsample_rate` | integer | `200` | Taxa de subamostragem para sketching |
+| `--sylph_min_ani` | integer | `95` | ANI ajustada mínima a considerar. Valores menores que 95 para perfil produzirão resultados imprecisos. |
+| `--sylph_min_kmers` | integer | `50` | Excluir genomas com menos do que este número de k-mers amostrados |
+| `--sylph_min_correct` | integer | `3` | Multiplicidade mínima de k-mer necessária para correção de cobertura. Valores maiores oferecem mais precisão, mas menor sensibilidade |
+| `--sylph_estimate_unknown` | boolean | `false` | Estimar cobertura real e escalar a abundância de sequências no `profile` pelo percentual estimado de sequências desconhecidas |
+| `--sylph_opts` | string |  | Opções extras entre aspas para o Sylph |
+
+### Parâmetros do csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use esses parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a incluir na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a excluir da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Esses parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Requisição Máxima de Jobs</summary>
+
+Define o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras para baixar ao mesmo tempo |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar sua configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que sobrescreverá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID do commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome do perfil de configuração institucional. |
+| `--config_profile_description` | string |  | Descrição do perfil de configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato do perfil de configuração institucional. |
+| `--config_profile_url` | string |  | URL do perfil de configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar sua configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para ambientes Conda |
+| `--registry` | string | `quay.io` | Registro para baixar containers Docker. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar diretamente imagens Singularity, força o fluxo de trabalho a baixar e converter containers Docker. |
+| `--force_rebuild` | boolean | `false` | Força a sobrescrita de ambientes pré-construídos existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) separados por vírgula da(s) fila(s) a ser(em) usada(s) por um agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais para passar ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais para passar ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros raramente usados que podem ser úteis.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibir o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes da execução. |
+| `--validate_params` | boolean | `true` | Define se os parâmetros devem ser validados em relação ao esquema em tempo de execução |
+| `--help` | boolean |  | Exibir texto de ajuda. |
+| `--wf` | string | `bactopia` | Especificar qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Listar os fluxos de trabalho e Bactopia Tools disponíveis para uso com '--wf' |
+| `--show_hidden_params` | boolean |  | Mostrar todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibir texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho usa os seguintes subworkflows:
+
+- [sylph](/developers/subworkflows/sylph) - Perfil de composição microbiana usando Sylph.
+
+## Citações
+
+Se você usar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Sylph](https://github.com/bluenote-1/sylph)  
+  Shaw J, and Yu YW [Rapid species-level metagenome profiling and containment estimation with sylph.](https://doi.org/10.1038/s41587-024-02412-y) _Nature Biotechnology_ (2024)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/sylph)

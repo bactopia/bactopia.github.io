@@ -1,0 +1,269 @@
+---
+title: amrfinderplus
+description: "Bactopia Tool: Amrfinderplus."
+tags:
+  - bacteria
+  - fasta
+  - antimicrobial-resistance
+  - virulence
+  - genes
+  - proteins
+  - mutations
+  - bactopia-tool
+---
+
+# amrfinderplus
+
+**Tags:** <a href="/bactopia-tools/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/bactopia-tools/tags/fasta" class="badge badge--primary badge--tag">fasta</a> <a href="/bactopia-tools/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/bactopia-tools/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/bactopia-tools/tags/genes" class="badge badge--primary badge--tag">genes</a> <a href="/bactopia-tools/tags/proteins" class="badge badge--primary badge--tag">proteins</a> <a href="/bactopia-tools/tags/mutations" class="badge badge--primary badge--tag">mutations</a> <a href="/bactopia-tools/tags/bactopia-tool" class="badge badge--primary badge--tag">bactopia-tool</a> 
+
+Bactopia Tool: Amrfinderplus.
+
+Identifica genes de resistência antimicrobiana e mutações pontuais em genomas bacterianos.
+Esta Bactopia Tool utiliza o [AMRFinder+](https://github.com/ncbi/amr) para rastrear montagens e proteínas
+em busca de genes de resistência antimicrobiana, genes de virulência e mutações pontuais associadas à resistência.
+Ela identifica genes de AMR adquiridos e algumas mutações pontuais em sequências de proteínas ou nucleotídeos montados.
+
+## Uso
+
+Bactopia CLI:
+
+```bash
+bactopia --wf amrfinderplus \
+  --bactopia /path/to/your/bactopia/results
+```
+
+Nextflow:
+
+```bash
+nextflow run bactopia/bactopia/workflows/bactopia-tools/amrfinderplus/main.nf \
+  --bactopia /path/to/your/bactopia/results
+```
+
+## Saídas
+
+### Arquivos de Saída Esperados
+
+```
+<BACTOPIA_DIR>
+├── <SAMPLE_NAME>
+│   └── tools
+│       └── amrfinderplus-<TIMESTAMP>
+│           ├── <SAMPLE_NAME>.tsv
+│           └── logs
+│               ├── nf.command.{begin,err,log,out,run,sh,trace}
+│               └── versions.yml
+└── bactopia-runs
+    └── amrfinderplus-<TIMESTAMP>
+        ├── merged-results
+        │   ├── amrfinderplus.tsv
+        │   └── logs
+        │       └── amrfinderplus-concat
+        │           ├── nf.command.{begin,err,log,out,run,sh,trace}
+        │           └── versions.yml
+        └── nf-reports
+            ├── amrfinderplus-dag.dot
+            ├── amrfinderplus-report.html
+            └── amrfinderplus-timeline.html
+```
+
+### Resultados por Amostra
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `*.tsv` | Resultados de detecção de genes AMR no formato TSV |
+| `*-mutations.tsv` | Mutações pontuais associadas à resistência antimicrobiana |
+
+### Resultados Combinados
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `amrfinderplus.tsv` | Resultados combinados de detecção de AMR de todas as amostras |
+
+
+### Trilha de Auditoria
+
+A seguir estão os arquivos que podem ajudar a entender quais parâmetros e versões de programas foram utilizados.
+
+#### Logs
+
+Cada processo executado terá uma pasta chamada `logs`. Nessa pasta estão arquivos úteis
+para consulta caso necessário.
+
+| Extensão     | Descrição |
+|--------------|-----------|
+| .begin       | Arquivo vazio usado para indicar que o processo foi iniciado |
+| .err         | Contém as saídas STDERR do processo |
+| .log         | Contém as saídas STDERR e STDOUT do processo |
+| .out         | Contém as saídas STDOUT do processo |
+| .run         | O script que o Nextflow usa para preparar/desfazer arquivos e enfileirar processos com base no perfil definido |
+| .sh          | O script executado pelo bash para o processo |
+| .trace       | O relatório de rastreamento do Nextflow para o processo |
+| versions.yml | Arquivo no formato YAML com as versões dos programas |
+
+#### Relatórios do Nextflow
+
+Esses relatórios do Nextflow fornecem um ótimo resumo da sua execução. Eles podem ser usados para otimizar
+o uso de recursos e estimar custos esperados ao utilizar plataformas em nuvem.
+
+| Arquivo | Descrição |
+|---------|-----------|
+| amrfinderplus-dag.dot | A [visualização DAG](https://docs.seqera.io/nextflow/reports#workflow-diagram) do Nextflow |
+| amrfinderplus-report.html | O [Relatório de Execução](https://docs.seqera.io/nextflow/reports#execution-report) do Nextflow |
+| amrfinderplus-timeline.html | O [Relatório de Linha do Tempo](https://docs.seqera.io/nextflow/reports#execution-timeline) do Nextflow |
+| amrfinderplus-trace.txt | O relatório de [Rastreamento](https://docs.seqera.io/nextflow/reports#trace-file) do Nextflow |
+
+## Parâmetros
+
+### Parâmetros Obrigatórios
+
+Define onde o pipeline deve encontrar os dados de entrada e salvar os dados de saída.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bactopia` | string |  | O caminho para os resultados do Bactopia a serem usados como entradas |
+
+### Parâmetros do AMRFinder+
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--amrfinderplus_ident_min` | number | `-1` | Proporção mínima de aminoácidos idênticos no alinhamento para um hit (0..1) |
+| `--amrfinderplus_coverage_min` | number | `0.5` | Cobertura mínima da proteína de referência (0..1) |
+| `--amrfinderplus_organism` | string |  | Grupo taxonômico para executar rastreamentos adicionais |
+| `--amrfinderplus_translation_table` | integer | `11` | Código genético NCBI para BLAST traduzido |
+| `--amrfinderplus_noplus` | boolean | `false` | Desativa a execução do AMRFinder+ com a opção --plus |
+| `--amrfinderplus_report_common` | boolean | `false` | Reporta proteínas comuns a um grupo taxonômico |
+| `--amrfinderplus_report_all_equal` | boolean | `false` | Reporta todos os hits de BLAST e HMM com pontuação igual |
+| `--amrfinderplus_opts` | string |  | Opções extras do AMRFinder+ entre aspas. |
+| `--amrfinderplus_db` | string |  | Um banco de dados AMRFinder+ personalizado a ser usado, como um tarball ou uma pasta |
+
+### Parâmetros do csvtk concat
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--csvtk_concat_opts` | string |  | Opções extras do csvtk concat entre aspas |
+
+<details>
+<summary>Parâmetros de Filtragem</summary>
+
+Use estes parâmetros para especificar quais amostras incluir ou excluir.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--include` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a serem incluídas na análise |
+| `--exclude` | string |  | Um arquivo de texto contendo nomes de amostras (um por linha) a serem excluídas da análise |
+</details>
+
+<details>
+<summary>Parâmetros Opcionais</summary>
+
+Estes parâmetros opcionais podem ser úteis em determinadas situações.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--outdir` | string | `bactopia` | Diretório base para salvar os resultados |
+| `--skip_compression` | boolean | `false` | Os arquivos de saída não serão comprimidos |
+| `--datasets` | string |  | O caminho para armazenar em cache os datasets |
+| `--keep_all_files` | boolean | `false` | Mantém todos os arquivos de análise criados |
+</details>
+
+<details>
+<summary>Parâmetros de Limite Máximo de Recursos</summary>
+
+Define o limite máximo de recursos solicitados para qualquer job individual.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--max_retry` | integer | `3` | Número máximo de tentativas de um processo antes de permitir que ele falhe. |
+| `--max_cpus` | integer | `4` | Número máximo de CPUs que podem ser solicitadas para qualquer job individual. |
+| `--max_memory` | string | `128.GB` | Quantidade máxima de memória que pode ser solicitada para qualquer job individual. |
+| `--max_time` | string | `240.h` | Tempo máximo que pode ser solicitado para qualquer job individual. |
+| `--max_downloads` | integer | `3` | Número máximo de amostras a serem baixadas simultaneamente |
+</details>
+
+<details>
+<summary>Parâmetros de Configuração do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--nfconfig` | string |  | Um arquivo de configuração compatível com Nextflow para perfis personalizados, carregado por último e que sobrescreverá variáveis existentes se definido. |
+| `--publish_dir_mode` | string | `copy` | Método usado para salvar os resultados do pipeline no diretório de saída. (opções: `symlink`, `rellink`, `link`, `copy`, `copyNoFollow`, `move`) |
+| `--infodir` | string | `${params.outdir}/pipeline_info` | Diretório para manter os logs e relatórios do Nextflow do pipeline. |
+| `--force` | boolean | `false` | O Nextflow sobrescreverá arquivos de saída existentes. |
+| `--cleanup_workdir` | boolean | `false` | Após a execução bem-sucedida do Bactopia, o diretório `work` será excluído. |
+</details>
+
+<details>
+<summary>Opções de configuração institucional</summary>
+
+Parâmetros usados para descrever perfis de configuração centralizados. Estes não devem ser editados.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--custom_config_version` | string | `master` | ID do commit Git para configurações institucionais. |
+| `--custom_config_base` | string | `https://raw.githubusercontent.com/nf-core/configs/master` | Diretório base para configurações institucionais. |
+| `--config_profile_name` | string |  | Nome da configuração institucional. |
+| `--config_profile_description` | string |  | Descrição da configuração institucional. |
+| `--config_profile_contact` | string |  | Informações de contato da configuração institucional. |
+| `--config_profile_url` | string |  | Link de URL da configuração institucional. |
+</details>
+
+<details>
+<summary>Parâmetros de Perfil do Nextflow</summary>
+
+Parâmetros para ajustar a configuração do Nextflow.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--condadir` | string |  | Diretório que o Nextflow deve usar para os ambientes Conda |
+| `--registry` | string | `quay.io` | Registro de onde os containers Docker serão baixados. |
+| `--datasets_cache` | string | `<HOME>/.bactopia/datasets` | Diretório onde os datasets baixados devem ser armazenados. |
+| `--singularity_cache` | string |  | Diretório onde as imagens Singularity remotas são armazenadas. |
+| `--singularity_pull_docker_container` | boolean |  | Em vez de baixar imagens Singularity diretamente, força o fluxo de trabalho a baixar e converter containers Docker. |
+| `--force_rebuild` | boolean | `false` | Força a sobrescrita de ambientes pré-compilados existentes. |
+| `--queue` | string | `general,high-memory` | Nome(s) da(s) fila(s) separados por vírgula a serem usados pelo agendador de jobs (ex.: AWS Batch ou SLURM) |
+| `--cluster_opts` | string |  | Opções adicionais a serem passadas ao executor. (ex.: SLURM: '--account=my_acct_name' |
+| `--container_opts` | string |  | Opções adicionais a serem passadas ao Apptainer, Docker ou Singularity. (ex.: Singularity: '-D `pwd`' |
+| `--disable_scratch` | boolean | `false` | Todos os arquivos intermediários criados nos nós de trabalho serão transferidos para o nó principal. |
+</details>
+
+<details>
+<summary>Parâmetros Úteis</summary>
+
+Parâmetros pouco usados que podem ser úteis em alguns casos.
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--monochrome_logs` | boolean |  | Não usar saídas de log coloridas. |
+| `--nfdir` | boolean |  | Exibe o diretório para o qual o Nextflow baixou o Bactopia |
+| `--sleep_time` | integer | `5` | O tempo (em segundos) que o Nextflow aguardará após configurar os datasets antes de iniciar a execução. |
+| `--validate_params` | boolean | `true` | Indica se os parâmetros devem ser validados em relação ao esquema em tempo de execução |
+| `--help` | boolean |  | Exibe o texto de ajuda. |
+| `--wf` | string | `bactopia` | Especifica qual fluxo de trabalho ou Bactopia Tool executar |
+| `--list_wfs` | boolean |  | Lista os fluxos de trabalho e Bactopia Tools disponíveis para usar com '--wf' |
+| `--show_hidden_params` | boolean |  | Exibe todos os parâmetros ao usar `--help` |
+| `--help_all` | boolean |  | Um alias para --help --show_hidden_params |
+| `--version` | boolean |  | Exibe o texto da versão. |
+</details>
+
+## Composição
+
+Este fluxo de trabalho utiliza os seguintes subworkflows:
+
+- [amrfinderplus](/developers/subworkflows/amrfinderplus) - Encontra genes de resistência antimicrobiana e mutações pontuais.
+- [bactopia_datasets](/developers/subworkflows/bactopia_datasets) - Baixa e fornece datasets pré-compilados necessários pelo Bactopia.
+
+## Citações
+
+Se você usar este fluxo de trabalho em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [AMRFinderPlus](https://github.com/ncbi/amr)  
+  Feldgarden M, Brover V, Haft DH, Prasad AB, Slotta DJ, Tolstoy I, Tyson GH, Zhao S, Hsu C-H, McDermott PF, Tadesse DA, Morales C, Simmons M, Tillman G, Wasilenko J, Folster JP, Klimke W [Validating the NCBI AMRFinder Tool and Resistance Gene Database Using resistencia antimicrobiana Genotype-Phenotype Correlations in a Collection of NARMS Isolates](https://doi.org/10.1128/AAC.00483-19). _Antimicrob. Agents Chemother._ (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/workflows/bactopia-tools/amrfinderplus)

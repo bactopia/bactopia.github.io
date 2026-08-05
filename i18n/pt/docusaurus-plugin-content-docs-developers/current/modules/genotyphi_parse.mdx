@@ -1,0 +1,104 @@
+---
+title: genotyphi_parse
+description: "Analisa resultados do Mykrobe para genotipar *Salmonella* Typhi."
+tags:
+  - bacteria
+  - salmonella
+  - typhi
+  - genotyping
+  - mykrobe
+  - parser
+  - sample-scope
+---
+
+# genotyphi_parse
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/salmonella" class="badge badge--primary badge--tag">salmonella</a> <a href="/developers/tags/typhi" class="badge badge--primary badge--tag">typhi</a> <a href="/developers/tags/genotyping" class="badge badge--primary badge--tag">genotyping</a> <a href="/developers/tags/mykrobe" class="badge badge--primary badge--tag">mykrobe</a> <a href="/developers/tags/parser" class="badge badge--primary badge--tag">parser</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Analisa resultados do Mykrobe para genotipar *Salmonella* Typhi.
+
+Utiliza scripts do [GenoTyphi](https://github.com/katholt/genotyphi) para analisar a saída JSON
+do Mykrobe. Ele atribui isolados a genótipos específicos de *S.* Typhi (por exemplo, 4.3.1) com base
+na presença de SNPs específicos definidos no esquema GenoTyphi.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    json: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `json` | `Path` | O arquivo de saída JSON gerado pelo Mykrobe |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Relatório delimitado por tabulação contendo o genótipo GenoTyphi atribuído |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (por exemplo, .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do GenoTyphi
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--genotyphi_kmer` | inteiro | `21` | Comprimento do k-mer |
+| `--genotyphi_min_depth` | inteiro | `1` | Profundidade mínima |
+| `--genotyphi_model` | string | `kmer_count` | Modelo de genotipagem utilizado. (opções: `kmer_count`, `median_depth`) |
+| `--genotyphi_report_all_calls` | booleano | `false` | Reportar todas as chamadas |
+| `--genotyphi_mykrobe_opts` | string |  | Opções extras do Mykrobe entre aspas |
+
+## Usado Por
+
+### Subworkflows
+
+- [genotyphi](/developers/subworkflows/genotyphi) - Atribui genótipos a genomas de Salmonella Typhi.
+
+### Workflows
+
+- [genotyphi](/bactopia-tools/genotyphi) - Genotipagem de Salmonella Typhi com atribuição de linhagem.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [GenoTyphi](https://github.com/katholt/genotyphi)  
+  Wong VK, Baker S, Connor TR, Pickard D, Page AJ, Dave J, Murphy N, Holliman R, Sefton A, Millar M, Dyson ZA, Dougan G, Holt KE, & International Typhoid Consortium. [An extended genotyping framework for Salmonella enterica serovar Typhi, the cause of human typhoid](https://doi.org/10.1038/ncomms12827) _Nature Communications_ 7, 12827. (2016)
+
+- [McCortex](https://github.com/mcveanlab/mccortex)  
+  Turner I, Garimella KV, Iqbal Z, McVean G [Integrating long-range connectivity information into de Bruijn graphs.](http://dx.doi.org/10.1093/bioinformatics/bty157) _Bioinformatics_ 34, 2556-2565 (2018)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/genotyphi/parse)
+
+## Versão
+
+```yaml
+GENOTYPHI_PARSE:
+    - mykrobe: 0.13.0
+```

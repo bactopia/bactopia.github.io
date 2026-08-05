@@ -1,0 +1,87 @@
+---
+title: spatyper
+description: "Prever tipos spa de Staphylococcus aureus a partir de montagens de genomas."
+tags:
+  - staphylococcus-aureus
+  - spa-typing
+  - protein-a
+  - mrsa
+  - sample-scope
+---
+
+# spatyper
+
+**Tags:** <a href="/developers/tags/staphylococcus-aureus" class="badge badge--primary badge--tag">staphylococcus-aureus</a> <a href="/developers/tags/spa-typing" class="badge badge--primary badge--tag">spa-typing</a> <a href="/developers/tags/protein-a" class="badge badge--primary badge--tag">protein-a</a> <a href="/developers/tags/mrsa" class="badge badge--primary badge--tag">mrsa</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever tipos spa de *Staphylococcus aureus* a partir de montagens de genomas.
+
+Este subworkflow utiliza [spaTyper](https://github.com/HCGB-IGTP/spaTyper) para prever
+os tipos spa de cepas de *Staphylococcus aureus* a partir de genomas montados, com base
+na região X polimórfica do gene da proteína A (spa). Ele processa cada amostra
+individualmente e agrega os resultados em um único relatório consolidado.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Contigs montados no formato FASTA |
+
+```
+repeats: Path?
+repeat_order: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `repeats` | `Path?` | Banco de dados de repetições personalizado opcional para tipagem spa |
+| `repeat_order` | `Path?` | Arquivo de ordem de repetições personalizado opcional para tipagem spa |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resultados da tipagem spa em formato TSV |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenar múltiplos arquivos CSV ou TSV em uma única tabela.
+- [spatyper](/developers/modules/spatyper) - Identificar tipos spa em *Staphylococcus aureus*.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [spatyper](/bactopia-tools/spatyper) - Tipagem spa de montagens de *Staphylococcus aureus*.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [spaTyper](https://github.com/HCGB-IGTP/spaTyper)  
+  Sanchez-Herrero JF, and Sullivan M [spaTyper: Staphylococcal protein A (spa) characterization pipeline](http://doi.org/10.5281/zenodo.4063625). Zenodo. (2020)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/spatyper)

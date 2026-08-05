@@ -1,0 +1,111 @@
+---
+title: panaroo_run
+description: "Análise rápida e escalável de pangenoma bacteriano usando uma abordagem baseada em grafos."
+tags:
+  - pan-genoma
+  - orthologs
+  - core-genome
+  - gene-presence-absence
+  - graph-based
+  - annotation
+  - run-scope
+---
+
+# panaroo_run
+
+**Tags:** <a href="/developers/tags/pan-genoma" class="badge badge--primary badge--tag">pan-genoma</a> <a href="/developers/tags/orthologs" class="badge badge--primary badge--tag">orthologs</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/gene-presence-absence" class="badge badge--primary badge--tag">gene-presence-absence</a> <a href="/developers/tags/graph-based" class="badge badge--primary badge--tag">graph-based</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Análise rápida e escalável de pangenoma bacteriano usando uma abordagem baseada em grafos.
+
+Utiliza o [Panaroo](https://gtonkinhill.github.io/panaroo/) para agrupar genes de múltiplos
+genomas bacterianos anotados em grupos ortólogos, corrigindo divisões e fusões de genes.
+As saídas principais são a matriz de presença/ausência de genes (o pan-genoma) e
+um alinhamento do genoma central (para filogenética).
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    gff: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `gff` | `Set<Path>` | Lista de arquivos de genoma anotado no formato GFF3 (entrada obrigatória) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    aln: Path?,
+    filtered_aln: Path?,
+    csv: Path?,
+    panaroo_csv: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `aln` | `Path?` | O alinhamento do genoma central (*core-genome.aln.gz), adequado para construção de árvore filogenética |
+| `filtered_aln` | `Path?` | O alinhamento do genoma central com regiões altamente recombinantes filtradas |
+| `csv` | `Path?` | Matriz de presença/ausência de genes no formato CSV compatível com Roary |
+| `panaroo_csv` | `Path?` | Matriz de presença/ausência de genes no formato CSV nativo do Panaroo |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Panaroo Run
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--panaroo_mode` | string | `strict` | O modo de rigor para executar o panaroo (opções: `strict`, `moderate`, `sensitive`) |
+| `--panaroo_alignment` | string | `core` | Gera alinhamentos de genes centrais ou de todos os genes (opções: `core`, `pan`) |
+| `--panaroo_aligner` | string | `mafft` | Alinhador a ser usado para o alinhamento do genoma central/pan (opções: `mafft`, `prank`, `clustal`) |
+| `--panaroo_core_threshold` | number | `0.95` | Limiar de amostras do genoma central |
+| `--panaroo_threshold` | number | `0.98` | Limiar de identidade de sequência |
+| `--panaroo_family_threshold` | number | `0.7` | Limiar de identidade de sequência da família proteica |
+| `--panaroo_len_dif_percent` | number | `0.98` | Corte de diferença de comprimento |
+| `--panaroo_merge_paralogs` | boolean | `false` | Não dividir parálogos |
+| `--panaroo_opts` | string |  | Opções adicionais para passar ao panaroo |
+
+## Usado Por
+
+### Subworkflows
+
+- [panaroo](/developers/subworkflows/panaroo) - Constrói um pan-genoma a partir de anotações GFF3 usando Panaroo.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Panaroo](https://github.com/gtonkinhill/panaroo)  
+  Tonkin-Hill G, MacAlasdair N, Ruis C, Weimann A, Horesh G, Lees JA, Gladstone RA, Lo S, Beaudoin C, Floto RA, Frost SDW, Corander J, Bentley SD, Parkhill J [Producing polished prokaryotic pangenomes with the Panaroo pipeline.](https://doi.org/10.1186/s13059-020-02090-4) _Genome Biology_ 21(1), 180. (2020)
+
+- [MAFFT](https://mafft.cbrc.jp/alignment/software/)  
+  Katoh K, Standley DM [MAFFT multiple sequence alignment software version 7: improvements in performance and usability.](https://doi.org/10.1093/molbev/mst010) _Mol. Biol. Evol._ 30, 772-780 (2013)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/panaroo/run)
+
+## Versão
+
+```yaml
+PANAROO_RUN:
+    - panaroo: 1.6.0
+```

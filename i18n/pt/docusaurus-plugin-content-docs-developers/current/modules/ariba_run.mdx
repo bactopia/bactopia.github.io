@@ -1,0 +1,120 @@
+---
+title: ariba_run
+description: "Identificar genes por montagem local de reads."
+tags:
+  - fastq
+  - local-assembly
+  - antimicrobial-resistance
+  - virulence
+  - ariba
+  - sample-scope
+---
+
+# ariba_run
+
+**Tags:** <a href="/developers/tags/fastq" class="badge badge--primary badge--tag">fastq</a> <a href="/developers/tags/local-assembly" class="badge badge--primary badge--tag">local-assembly</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/ariba" class="badge badge--primary badge--tag">ariba</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identificar genes por montagem local de reads.
+
+Utiliza o [ARIBA](https://github.com/sanger-pathogens/ariba) (resistencia antimicrobiana Identification
+By Assembly) para detectar genes de resistência antimicrobiana e virulência criando montagens locais a partir de reads paired-end.
+
+Utiliza campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2) onde cada slot de read é um Path
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path,
+    r2: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da amostra |
+| `r1` | `Path` | Reads Illumina R1 (paired-end) |
+| `r2` | `Path` | Reads Illumina R2 (paired-end) |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | Um banco de dados preparado pelo [ARIBA](https://github.com/sanger-pathogens/ariba) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    report: Path,
+    summary: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `report` | `Path` | Relatório detalhado delimitado por tabulação dos resultados de detecção de genes |
+| `summary` | `Path` | Resumo condensado separado por vírgulas dos genes detectados |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Ariba Run
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--ariba_db` | string |  | Banco de dados a ser consultado; se não estiver disponível, será baixado para o caminho informado em --datasets_cache (opções: `argannot`, `card`, `ncbi`, `megares`, `plasmidfinder`, `resfinder`, `srst2_argannot`, `vfdb_core`, `vfdb_full`, `virulencefinder`) |
+| `--ariba_nucmer_min_id` | integer | `90` | Identidade mínima de alinhamento (delta-filter -i) |
+| `--ariba_nucmer_min_len` | integer | `20` | Identidade mínima de alinhamento (delta-filter -i) |
+| `--ariba_nucmer_breaklen` | integer | `200` | Valor a ser usado para -breaklen ao executar nucmer |
+| `--ariba_assembly_cov` | integer | `50` | Cobertura de reads alvo ao amostrar reads para montagem |
+| `--ariba_min_scaff_depth` | integer | `10` | Número mínimo de pares de reads necessários como evidência para ligação de scaffold entre dois contigs |
+| `--ariba_spades_options` | string |  | Opções extras a serem passadas ao montador Spades |
+| `--ariba_assembled_threshold` | number | `0.95` | Se a proporção do gene montado (independentemente de quantos contigs) for pelo menos este valor, a flag gene_assembled é definida |
+| `--ariba_gene_nt_extend` | integer | `30` | Número máximo de nucleotídeos para estender as extremidades das correspondências de genes em busca de códons de início/parada |
+| `--ariba_unique_threshold` | number | `0.03` | Se a proporção de bases no gene montado mais de uma vez for &lt;= este valor, a flag unique_contig é definida |
+| `--ariba_no_clean` | boolean |  | Não remover os arquivos intermediários criados pelo Ariba. |
+
+## Usado Por
+
+### Subworkflows
+
+- [ariba](/developers/subworkflows/ariba) - Identificar genes rapidamente criando montagens locais a partir de reads paired-end.
+
+### Workflows
+
+- [ariba](/bactopia-tools/ariba) - Identificação de genes por meio de montagens locais.
+
+## Citações
+
+Se você usar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Ariba](https://github.com/sanger-pathogens/ariba)  
+  Hunt M, Mather AE, Sánchez-Busó L, Page AJ, Parkhill J, Keane JA, Harris SR [ARIBA: rapid resistencia antimicrobiana genotyping directly from sequencing reads](http://dx.doi.org/10.1099/mgen.0.000131). _Microb Genom_ 3, e000131 (2017)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ariba/run)
+
+## Versão
+
+```yaml
+ARIBA_RUN:
+    - ariba: 2.14.7
+```

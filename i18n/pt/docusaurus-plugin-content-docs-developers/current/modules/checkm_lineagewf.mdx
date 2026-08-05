@@ -1,0 +1,119 @@
+---
+title: checkm_lineagewf
+description: "Avalie a qualidade do genoma usando conjuntos de marcadores específicos de linhagem."
+tags:
+  - quality-control
+  - completeness
+  - contamination
+  - marker-genes
+  - lineage
+  - bacteria
+  - archaea
+  - sample-scope
+---
+
+# checkm_lineagewf
+
+**Tags:** <a href="/developers/tags/quality-control" class="badge badge--primary badge--tag">quality-control</a> <a href="/developers/tags/completeness" class="badge badge--primary badge--tag">completeness</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/marker-genes" class="badge badge--primary badge--tag">marker-genes</a> <a href="/developers/tags/lineage" class="badge badge--primary badge--tag">lineage</a> <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/archaea" class="badge badge--primary badge--tag">archaea</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Avalie a qualidade do genoma usando conjuntos de marcadores específicos de linhagem.
+
+Usa o [CheckM](https://github.com/Ecogenomics/CheckM) para estimar a completude e a
+contaminação de montagens de genomas. O programa posiciona o genoma em uma árvore de
+referência para selecionar um conjunto apropriado de genes marcadores de cópia única e,
+em seguida, calcula métricas de qualidade com base na recuperação desses marcadores.
+
+:::note[Banco de Dados Necessário]
+Requer o banco de dados de referência do CheckM (~275 GB descomprimido) configurado por
+meio da variável de ambiente `CHECKM_DATA_PATH` ou pré-instalado no contêiner.
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Relatório de qualidade do genoma delimitado por tabulação com estimativas de completude e contaminação |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do CheckM
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--checkm_unique` | inteiro | `10` | Número mínimo de marcadores filogenéticos únicos necessários para usar o conjunto de marcadores específico de linhagem. |
+| `--checkm_multi` | inteiro | `10` | Número máximo de marcadores filogenéticos de múltiplas cópias antes de recorrer ao conjunto de marcadores em nível de domínio. |
+| `--checkm_aai_strain` | número | `0.9` | Limiar de AAI usado para identificar heterogeneidade de linhagem |
+| `--checkm_length` | número | `0.7` | Percentual de sobreposição entre alvo e consulta |
+| `--checkm_full_tree` | booleano |  | Usar a árvore completa (requer ~40 GB de memória) para determinar a linhagem de cada bin. |
+| `--checkm_ignore_thresholds` | booleano |  | Ignorar limiares de pontuação específicos do modelo |
+| `--checkm_ali` | booleano |  | Gerar arquivo de alinhamento HMMER para cada bin |
+| `--checkm_nt` | booleano |  | Gerar sequências de genes nucleotídicos para cada bin |
+| `--checkm_force_domain` | booleano |  | Usar conjuntos em nível de domínio para todos os bins |
+| `--checkm_no_refinement` | booleano |  | Não realizar refinamento do conjunto de marcadores específico de linhagem |
+| `--checkm_individual_markers` | booleano |  | Tratar marcadores de forma independente |
+| `--checkm_skip_adj_correction` | booleano |  | Não excluir genes marcadores adjacentes ao estimar a contaminação |
+| `--checkm_skip_pseudogene_correction` | booleano |  | Ignorar a identificação e filtragem de pseudogenes |
+
+## Usado Por
+
+### Subworkflows
+
+- [checkm](/developers/subworkflows/checkm) - Avalie a completude de bins de metagenoma usando CheckM.
+
+### Workflows
+
+- [checkm](/bactopia-tools/checkm) - Avaliação da qualidade da montagem de genomas microbianos.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [CheckM](https://github.com/Ecogenomics/CheckM)  
+  Parks DH, Imelfort M, Skennerton CT, Hugenholtz P, Tyson GW [CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes.](http://dx.doi.org/10.1101/gr.186072.114) _Genome Res_ 25, 1043-1055 (2015)
+
+- [pplacer](https://github.com/matsen/pplacer)  
+  Matsen FA, Kodner RB, Armbrust EV [pplacer: linear time maximum-likelihood and Bayesian phylogenetic placement of sequences onto a fixed reference tree.](https://doi.org/10.1186/1471-2105-11-538) _BMC Bioinformatics_ 11, 538 (2010)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/checkm/lineagewf)
+
+## Versão
+
+```yaml
+CHECKM_LINEAGEWF:
+    - checkm-genome: 1.2.5
+```

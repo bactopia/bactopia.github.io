@@ -1,0 +1,120 @@
+---
+title: tbprofiler_profile
+description: "Detectar resistência e linhagens de genomas de Mycobacterium tuberculosis."
+tags:
+  - tuberculosis
+  - mycobacterium
+  - drug-resistance
+  - amr
+  - typing
+  - variant-calling
+  - sample-scope
+---
+
+# tbprofiler_profile
+
+**Tags:** <a href="/developers/tags/tuberculosis" class="badge badge--primary badge--tag">tuberculosis</a> <a href="/developers/tags/mycobacterium" class="badge badge--primary badge--tag">mycobacterium</a> <a href="/developers/tags/drug-resistance" class="badge badge--primary badge--tag">drug-resistance</a> <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/variant-calling" class="badge badge--primary badge--tag">variant-calling</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Detectar resistência e linhagens de genomas de Mycobacterium tuberculosis.
+
+Usa o [TBProfiler](https://github.com/jodyphelan/TBProfiler) para perfilar dados de *Mycobacterium tuberculosis*
+quanto à resistência a drogas e informações de linhagem, alinhando reads a um genoma de referência e identificando
+variantes específicas.
+
+Usa campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `r1` | `Path?` | Reads R1 Illumina (paired-end) |
+| `r2` | `Path?` | Reads R2 Illumina (paired-end) |
+| `se` | `Path?` | Reads Illumina single-end |
+| `lr` | `Path?` | Reads longas (ONT/PacBio) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    csv: Path?,
+    json: Path,
+    txt: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `csv` | `Path?` | Resultados em formato CSV |
+| `json` | `Path` | Arquivo de resultados JSON comprimido |
+| `txt` | `Path?` | Resultados em formato de texto |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do TB-Profiler Profile
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--tbprofiler_call_whole_genome` | boolean | `false` | Chamar o genoma inteiro |
+| `--tbprofiler_mapper` | string | `bwa` | Ferramenta de mapeamento a usar. Se estiver usando dados nanopore, o padrão será minimap2 (opções: `bwa`, `minimap2`, `bowtie2`, `bwa-mem2`) |
+| `--tbprofiler_caller` | string | `freebayes` | Ferramenta de chamada de variantes a usar (opções: `bcftools`, `gatk`, `freebayes`) |
+| `--tbprofiler_calling_params` | string |  | Opções extras do chamador de variantes entre aspas |
+| `--tbprofiler_suspect` | boolean | `false` | Usar o conjunto de ferramentas suspect para adicionar predições de ML |
+| `--tbprofiler_no_flagstat` | boolean | `false` | Não coletar flagstats |
+| `--tbprofiler_no_delly` | boolean | `false` | Não executar delly |
+| `--tbprofiler_opts` | string |  | Opções extras entre aspas para o TBProfiler |
+
+## Usado Por
+
+### Subworkflows
+
+- [tbprofiler](/developers/subworkflows/tbprofiler) - Ferramenta de perfilamento para Mycobacterium tuberculosis para detectar resistência e tipo de linhagem.
+
+### Workflows
+
+- [tbprofiler](/bactopia-tools/tbprofiler) - Detecção de resistência antimicrobiana e tipagem de linhagem de Mycobacterium tuberculosis.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [TBProfiler](https://github.com/jodyphelan/TBProfiler)  
+  Phelan JE, O'Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O'Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+
+- [freebayes](https://github.com/ekg/freebayes)  
+  Garrison E, Marth G [Haplotype-based variant detection from short-read sequencing.](https://arxiv.org/abs/1207.3907) arXiv preprint arXiv:1207.3907 [q-bio.GN] (2012)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/tbprofiler/profile)
+
+## Versão
+
+```yaml
+TBPROFILER_PROFILE:
+    - tb-profiler: 6.7.0
+```

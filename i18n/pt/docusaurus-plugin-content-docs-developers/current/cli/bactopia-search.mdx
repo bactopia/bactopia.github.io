@@ -1,0 +1,53 @@
+---
+title: bactopia-search
+description: "Consulte ENA e SRA para acessões públicas a serem processadas com Bactopia"
+---
+
+# bactopia-search
+
+Consulte ENA e SRA para acessões públicas a serem processadas com Bactopia
+
+## Uso
+
+```bash
+bactopia-search [OPTIONS]
+```
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--query, -q` | STRING |  | ID de Táxon ou acessão de Estudo, BioSample ou Run (também pode ser separado por vírgulas ou um arquivo de acessões) |
+
+## Opções de Consulta
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--exact-taxon` | BOOL | `false` | Excluir descendentes do ID de Táxon |
+| `--provider` | CHOICE (ena, sra) | `ena` | Provedor a ser consultado primeiro, com fallback para o outro |
+| `--only-provider` | BOOL | `false` | Consultar apenas o --provider informado, sem fallback |
+| `--limit, -l` | INT | `1000000` | Número máximo de resultados (por consulta) a retornar |
+| `--accession-limit, -al` | INT | `5000` | Número máximo de acessões a consultar de uma vez |
+| `--biosample-subset` | INT | `0` | Se um BioSample tiver múltiplos Experimentos, número máximo a selecionar aleatoriamente (0 = desativado) |
+| `--include-empty` | BOOL | `false` | Incluir colunas de metadados que estão vazias em todas as linhas |
+
+## Opções de Filtragem
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--min-base-count, -mbc` | INT | `0` | Filtra amostras com base na contagem mínima de pares de bases (0 = desativado) |
+| `--min-read-length, -mrl` | INT | `0` | Filtra amostras com base no comprimento médio mínimo dos reads (0 = desativado) |
+| `--min-coverage, -mc` | INT | `0` | Filtra amostras com base na cobertura mínima (requer --genome_size, 0 = desativado) |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--genome-size, -gsize` | INT | `0` | Tamanho do genoma a ser usado para todas as amostras e para calcular a cobertura mínima |
+| `--use-ncbi-genome-size` | BOOL | `false` | Se disponível, usar o tamanho do genoma do NCBI para a espécie |
+| `--outdir, -o` | STRING | `./` | Diretório para gravar a saída |
+| `--prefix, -p` | STRING | `bactopia` | Prefixo a ser usado para os nomes dos arquivos de saída |
+| `--force` | BOOL | `false` | Sobrescrever relatórios existentes |
+| `--verbose` | BOOL | `false` | Exibir texto relacionado a debug |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |

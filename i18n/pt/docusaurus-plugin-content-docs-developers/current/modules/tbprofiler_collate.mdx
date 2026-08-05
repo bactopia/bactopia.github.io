@@ -1,0 +1,103 @@
+---
+title: tbprofiler_collate
+description: "Consolida resultados do TB-Profiler de múltiplas amostras."
+tags:
+  - tuberculosis
+  - mycobacterium
+  - drug-resistance
+  - collate
+  - summary
+  - run-scope
+---
+
+# tbprofiler_collate
+
+**Tags:** <a href="/developers/tags/tuberculosis" class="badge badge--primary badge--tag">tuberculosis</a> <a href="/developers/tags/mycobacterium" class="badge badge--primary badge--tag">mycobacterium</a> <a href="/developers/tags/drug-resistance" class="badge badge--primary badge--tag">drug-resistance</a> <a href="/developers/tags/collate" class="badge badge--primary badge--tag">collate</a> <a href="/developers/tags/summary" class="badge badge--primary badge--tag">summary</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Consolida resultados do TB-Profiler de múltiplas amostras.
+
+Utiliza o [TBProfiler](https://github.com/jodyphelan/TBProfiler) para agregar resultados de perfilamento de múltiplas amostras em tabelas e arquivos de resumo adequados para visualização filogenética.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    json: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `json` | `Set<Path>` | Lista de arquivos de saída JSON do TB-Profiler |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    csv: Path,
+    variants_csv: Path,
+    variants_txt: Path,
+    itol: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `csv` | `Path` | Resultados consolidados principais em formato CSV |
+| `variants_csv` | `Path` | Variantes consolidadas em formato CSV |
+| `variants_txt` | `Path` | Variantes consolidadas em formato de texto |
+| `itol` | `Set<Path?>` | Arquivos formatados para iTOL para visualização |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do TB-Profiler Collate
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--tbprofiler_itol` | boolean | `false` | Gerar arquivos de configuração para iTOL |
+| `--tbprofiler_full` | boolean | `false` | Incluir mutações no arquivo de resultados principal |
+| `--tbprofiler_all_variants` | boolean | `false` | Incluir todas as variantes na matriz de variantes |
+| `--tbprofiler_mark_missing` | boolean | `false` | Um asterisco será usado para marcar predições afetadas por dados ausentes em uma posição de resistência a drogas |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [tbprofiler](/developers/subworkflows/tbprofiler) - Ferramenta de perfilamento para Mycobacterium tuberculosis para detectar resistência e tipo de linhagem.
+
+### Workflows
+
+- [tbprofiler](/bactopia-tools/tbprofiler) - Detecção de resistência antimicrobiana e tipagem de linhagem de Mycobacterium tuberculosis.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [TBProfiler](https://github.com/jodyphelan/TBProfiler)  
+  Phelan JE, O'Sullivan DM, Machado D, Ramos J, Oppong YEA, Campino S, O'Grady J, McNerney R, Hibberd ML, Viveiros M, Huggett JF, Clark TG [Integrating informatics tools and portable sequencing technology for rapid detection of resistance to anti-tuberculous drugs.](https://doi.org/10.1186/s13073-019-0650-x) _Genome Med_ 11, 41 (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/tbprofiler/collate)
+
+## Versão
+
+```yaml
+TBPROFILER_COLLATE:
+    - tb-profiler: 6.7.0
+```

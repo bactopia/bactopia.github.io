@@ -1,0 +1,79 @@
+---
+title: legsta
+description: "Tipagem baseada em sequência de Legionella pneumophila in silico."
+tags:
+  - legionella
+  - pneumophila
+  - sequence-typing
+  - st
+  - epidemiology
+  - sample-scope
+---
+
+# legsta
+
+**Tags:** <a href="/developers/tags/legionella" class="badge badge--primary badge--tag">legionella</a> <a href="/developers/tags/pneumophila" class="badge badge--primary badge--tag">pneumophila</a> <a href="/developers/tags/sequence-typing" class="badge badge--primary badge--tag">sequence-typing</a> <a href="/developers/tags/st" class="badge badge--primary badge--tag">st</a> <a href="/developers/tags/epidemiology" class="badge badge--primary badge--tag">epidemiology</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Tipagem baseada em sequência de Legionella pneumophila in silico.
+
+Este subworkflow realiza a tipagem baseada em sequência de Legionella pneumophila
+usando [legsta](https://github.com/tseemann/legsta), que identifica o
+Tipo de Sequência (ST) com base no esquema de sete loci. A ferramenta analisa
+perfis de alelos e fornece dados de tipagem epidemiológica para investigação
+de surtos e estudos populacionais.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem em formato FASTA para tipagem de sequência de L. pneumophila |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resultados de SBT de Legionella pneumophila delimitados por tabulação com números de alelos e tipo de sequência |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [legsta](/developers/modules/legsta) - Tipagem Baseada em Sequência (SBT) in silico de *Legionella pneumophila*.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [legsta](/bactopia-tools/legsta) - Tipagem Baseada em Sequência (SBT) de Legionella pneumophila.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [legsta](https://github.com/tseemann/legsta)  
+  Seemann T [legsta: In silico Legionella pneumophila Sequence Based Typing](https://github.com/tseemann/legsta) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/legsta)

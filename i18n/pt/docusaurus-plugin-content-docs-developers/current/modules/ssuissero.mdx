@@ -1,0 +1,87 @@
+---
+title: ssuissero
+description: "Predição de sorotipo de montagens de Streptococcus suis."
+tags:
+  - streptococcus-suis
+  - serotype
+  - typing
+  - prediction
+  - sample-scope
+---
+
+# ssuissero
+
+**Tags:** <a href="/developers/tags/streptococcus-suis" class="badge badge--primary badge--tag">streptococcus-suis</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predição de sorotipo de montagens de *Streptococcus suis*.
+
+Utiliza o [SsuisSero](https://github.com/idmc-cnr/SsuisSero) para prever o sorotipo de
+cepas de *Streptococcus suis* a partir de montagens genômicas com base na presença de
+genes capsulares específicos.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados em formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados do SsuisSero em formato TSV |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Usado Por
+
+### Subworkflows
+
+- [ssuissero](/developers/subworkflows/ssuissero) - Prevê sorotipos de *Streptococcus suis* a partir de montagens genômicas.
+
+### Workflows
+
+- [ssuissero](/bactopia-tools/ssuissero) - Predição de sorotipo de montagens de *Streptococcus suis*.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SsuisSero](https://github.com/jimmyliu1326/SsuisSero)  
+  Lui J [SsuisSero: Rapid _Streptococcus suis_ serotyping](https://github.com/jimmyliu1326/SsuisSero) (GitHub)
+
+## Fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/ssuissero)
+
+## Versão
+
+```yaml
+SSUISSERO:
+    - ssuissero: 1.0.1
+```

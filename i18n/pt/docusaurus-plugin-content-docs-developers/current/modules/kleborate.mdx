@@ -1,0 +1,109 @@
+---
+title: kleborate
+description: "Genotipagem e triagem de montagens de genoma de *Klebsiella*."
+tags:
+  - bacteria
+  - klebsiella
+  - amr
+  - virulence
+  - typing
+  - mlst
+  - serotype
+  - k-locus
+  - o-locus
+  - sample-scope
+---
+
+# kleborate
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/klebsiella" class="badge badge--primary badge--tag">klebsiella</a> <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/k-locus" class="badge badge--primary badge--tag">k-locus</a> <a href="/developers/tags/o-locus" class="badge badge--primary badge--tag">o-locus</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Genotipagem e triagem de montagens de genoma de *Klebsiella*.
+
+Utiliza o [Kleborate](https://github.com/katholt/Kleborate) para triagem de montagens de *Klebsiella*
+em busca de Tipo de Sequência Multi-Locus (MLST), identidade de espécie, determinantes de resistência antimicrobiana,
+plasmídeos de virulência (ex.: *ybt*, *iuc*, *iro*) e predição de sorotipo capsular (loci K e O).
+
+:::note[Banco de Dados Incluído]
+O Kleborate inclui os bancos de dados necessários para identificação de espécies, MLST
+e detecção de genes de virulência/resistência.
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados em formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados do Kleborate delimitados por tabulação com predições de espécie, MLST, virulência e resistência |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Kleborate
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--kleborate_preset` | string | `kpsc` | Módulo predefinido a ser usado no Kleborate (opções: `kpsc`, `kosc`, `escherichia`) |
+| `--kleborate_opts` | string |  | Opções extras entre aspas para o Kleborate |
+
+## Usado Por
+
+### Subworkflows
+
+- [kleborate](/developers/subworkflows/kleborate) - Ferramenta de genotipagem para *Klebsiella pneumoniae* e seu complexo de espécies relacionadas.
+
+### Workflows
+
+- [kleborate](/bactopia-tools/kleborate) - Triagem abrangente de genomas de *Klebsiella* para determinantes de virulência e resistência.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Kleborate](https://github.com/katholt/Kleborate)  
+  Lam MMC, Wick RR, Watts, SC, Cerdeira LT, Wyres KL, Holt KE [A genomic surveillance framework and genotyping tool for Klebsiella pneumoniae and its related species complex.](https://doi.org/10.1038/s41467-021-24448-3) _Nat Commun_ 12, 4188 (2021)
+
+- [Kaptive](https://github.com/katholt/Kaptive)  
+  Wyres KL, Wick RR, Gorrie C, Jenney A, Follador R, Thomson NR, Holt KE [Identification of Klebsiella capsule synthesis loci from whole genome data.](https://doi.org/10.1099/mgen.0.000102) _Microbial genomics_ 2(12) (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/kleborate)
+
+## Versão
+
+```yaml
+KLEBORATE:
+    - kleborate: 3.2.4
+```

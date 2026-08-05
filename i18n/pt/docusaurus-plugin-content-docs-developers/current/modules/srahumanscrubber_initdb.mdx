@@ -1,0 +1,66 @@
+---
+title: srahumanscrubber_initdb
+description: "Inicializa o banco de dados de remoção de reads humanas para o SRA Human Scrubber."
+tags:
+  - human
+  - database
+  - scrubber
+  - ncbi
+  - download
+  - sample-scope
+---
+
+# srahumanscrubber_initdb
+
+**Tags:** <a href="/developers/tags/human" class="badge badge--primary badge--tag">human</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/scrubber" class="badge badge--primary badge--tag">scrubber</a> <a href="/developers/tags/ncbi" class="badge badge--primary badge--tag">ncbi</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Inicializa o banco de dados de remoção de reads humanas para o SRA Human Scrubber.
+
+Utiliza o [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber) para baixar e
+inicializar o banco de dados de k-mers necessário para remover reads humanas dos
+dados de sequenciamento.
+
+:::note[Conexão com a Internet Necessária]
+Este processo requer uma conexão ativa com a internet para buscar o banco de dados no FTP do NCBI.
+:::
+
+## Saídas
+
+```
+record (
+    db: Path,
+    logs: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `db` | `Path` | Os arquivos do banco de dados do SRA Human Scrubber inicializados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+
+## Usado Por
+
+### Subworkflows
+
+- [srahumanscrubber](/developers/subworkflows/srahumanscrubber) - Remove contaminação humana de reads de sequenciamento para submissão ao SRA.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SRA Human Scrubber](https://github.com/ncbi/sra-human-scrubber)  
+  Katz KS, Shutov O, Lapoint R, Kimelman M, Brister JR, and O'Sullivan C [STAT: a fast, scalable, MinHash-based k-mer tool to assess Sequence Read Archive next-generation sequence submissions.](https://doi.org/10.1186/s13059-021-02490-0) _Genome Biology_, 22(1), 270 (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/srahumanscrubber/initdb)
+
+## Versão
+
+```yaml
+SRAHUMANSCRUBBER_INITDB:
+    - sra-human-scrubber: 2.2.1
+```

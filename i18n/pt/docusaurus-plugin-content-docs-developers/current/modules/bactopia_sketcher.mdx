@@ -1,0 +1,135 @@
+---
+title: bactopia_sketcher
+description: "Crie esboços genômicos e realize classificação taxonômica rápida."
+tags:
+  - bacteria
+  - taxonomy
+  - classification
+  - minhash
+  - sketch
+  - mash
+  - sourmash
+  - refseq
+  - gtdb
+  - sample-scope
+---
+
+# bactopia_sketcher
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/classification" class="badge badge--primary badge--tag">classification</a> <a href="/developers/tags/minhash" class="badge badge--primary badge--tag">minhash</a> <a href="/developers/tags/sketch" class="badge badge--primary badge--tag">sketch</a> <a href="/developers/tags/mash" class="badge badge--primary badge--tag">mash</a> <a href="/developers/tags/sourmash" class="badge badge--primary badge--tag">sourmash</a> <a href="/developers/tags/refseq" class="badge badge--primary badge--tag">refseq</a> <a href="/developers/tags/gtdb" class="badge badge--primary badge--tag">gtdb</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Crie esboços genômicos e realize classificação taxonômica rápida.
+
+Utiliza [Mash](https://mash.readthedocs.io/) e [Sourmash](https://sourmash.readthedocs.io/) para
+criar esboços MinHash das sequências de entrada. Esses esboços são então consultados em
+bancos de dados pré-construídos ([RefSeq](https://www.ncbi.nlm.nih.gov/refseq/) e
+[GTDB](https://gtdb.ecogenomic.org/)) para identificar os genomas de referência mais próximos.
+
+:::note[Bancos de Dados Necessários]
+Requer os bancos de dados pré-compilados RefSeq (Mash) e GTDB (Sourmash), geralmente baixados
+pelo módulo `datasets`.
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+```
+mash_db: Path
+sourmash_db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `mash_db` | `Path` | Caminho para o banco de dados Mash RefSeq |
+| `sourmash_db` | `Path` | Caminho para o banco de dados Sourmash GTDB LCA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    sig: Path,
+    msh: Set<Path>,
+    mash: Path,
+    sourmash: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `sig` | `Path` | O arquivo de assinatura do Sourmash (*.sig) |
+| `msh` | `Set<Path>` | Os arquivos de esboço Mash para k=21 e k=31 (*.msh) |
+| `mash` | `Path` | Um relatório de classificação dos resultados do Mash Screen contra o banco de dados RefSeq |
+| `sourmash` | `Path` | Um relatório de classificação do Sourmash LCA contra o banco de dados GTDB |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos de programas (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Um arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Sketcher
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--sketch_size` | inteiro | `10000` | Tamanho do esboço. Cada esboço terá no máximo esse número de min-hashes não redundantes. |
+| `--sourmash_scale` | inteiro | `10000` | Escolhe o número de hashes como 1 em FRAÇÃO dos k-mers de entrada |
+| `--no_winner_take_all` | booleano |  | Desativa a estratégia winner-takes-all para estimativas de identidade |
+| `--screen_i` | número | `0.8` | Identidade mínima a ser reportada. |
+
+## Usado Por
+
+### Subworkflows
+
+- [bactopia_sketcher](/developers/subworkflows/bactopia_sketcher) - Crie esboços genômicos e realize classificação taxonômica rápida.
+
+### Workflows
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline de análise abrangente para isolados de *Staphylococcus aureus*.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+- [Sourmash](https://github.com/dib-lab/sourmash)  
+  Brown CT, Irber L [sourmash: a library for MinHash sketching of DNA](http://dx.doi.org/10.21105/joss.00027). _JOSS_ 1, 27 (2016)
+
+- [Mash Screen](https://github.com/marbl/Mash)  
+  Ondov BD, Starrett GJ, Sappington A, Kostic A, Koren S, Buck CB, Phillippy AM [Mash Screen: high-throughput sequence containment estimation for genome discovery](https://doi.org/10.1186/s13059-019-1841-x) _Genome Biol_ 20, 232 (2019)
+
+- [NCBI RefSeq Database](https://www.ncbi.nlm.nih.gov/refseq/)  
+  O'Leary NA, Wright MW, Brister JR, Ciufo S, Haddad D, McVeigh R, Rajput B, Robbertse B, Smith-White B, Ako-Adjei D, Astashyn A, Badretdin A, Bao Y, Blinkova O0, Brover V, Chetvernin V, Choi J, Cox E, Ermolaeva O, Farrell CM, Goldfarb T, Gupta T, Haft D, Hatcher E, Hlavina W, Joardar VS, Kodali VK, Li W, Maglott D, Masterson P, McGarvey KM, Murphy MR, O'Neill K, Pujar S, Rangwala SH, Rausch D, Riddick LD, Schoch C, Shkeda A, Storz SS, Sun H, Thibaud-Nissen F, Tolstoy I, Tully RE, Vatsan AR, Wallin C, Webb D, Wu W, Landrum MJ, Kimchi A, Tatusova T, DiCuccio M, Kitts P, Murphy TD, Pruitt KD [Reference sequence (RefSeq) database at NCBI: current status, taxonomic expansion, and functional annotation.](https://doi.org/10.1093/nar/gkv1189) _Nucleic Acids Res._ 44, D733-45 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bactopia/sketcher)
+
+## Versão
+
+```yaml
+BACTOPIA_SKETCHER:
+    - bactopia-sketcher: 1.0.3
+```

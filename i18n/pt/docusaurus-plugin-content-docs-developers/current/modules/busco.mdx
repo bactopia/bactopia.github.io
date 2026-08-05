@@ -1,0 +1,105 @@
+---
+title: busco
+description: "Avalie a completude da montagem do genoma usando ortólogos de cópia única."
+tags:
+  - quality-control
+  - completeness
+  - genome
+  - assembly
+  - orthologs
+  - busco
+  - sample-scope
+---
+
+# busco
+
+**Tags:** <a href="/developers/tags/quality-control" class="badge badge--primary badge--tag">quality-control</a> <a href="/developers/tags/completeness" class="badge badge--primary badge--tag">completeness</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/orthologs" class="badge badge--primary badge--tag">orthologs</a> <a href="/developers/tags/busco" class="badge badge--primary badge--tag">busco</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Avalie a completude da montagem do genoma usando ortólogos de cópia única.
+
+Utiliza o [BUSCO](https://gitlab.com/ezlab/busco) (Benchmarking Universal Single-Copy Orthologs)
+para medir a completude de montagens de genomas, conjuntos de genes ou transcriptomas,
+comparando-os com um conjunto de ortólogos conservados específico para uma linhagem.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Relatório resumido de texto com o escore de completude (C/S/D/F/M%) |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do BUSCO
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--busco_lineage` | string | `bacteria_odb10` | Especifica o nome da linhagem BUSCO a ser utilizada |
+| `--busco_evalue` | string | `1e-03` | Valor de corte E-value para buscas BLAST. Formatos aceitos: 0.001 ou 1e-03 |
+| `--busco_limit` | integer | `3` | Total de regiões candidatas a considerar por BUSCO |
+| `--busco_metaeuk_parameters` | string |  | Argumentos adicionais de primeira passagem do Metaeuk contidos dentro de um único par de aspas, separados por vírgulas |
+| `--busco_metaeuk_rerun_parameters` | string |  | Argumentos adicionais de segunda passagem do Metaeuk contidos dentro de um único par de aspas, separados por vírgulas |
+| `--busco_use_augustus` | boolean | `false` | Usa o preditor de genes Augustus para execuções em eucariotos |
+| `--busco_augustus_parameters` | string |  | Argumentos adicionais do Augustus contidos dentro de um único par de aspas, separados por vírgulas |
+| `--busco_augustus_species` | string |  | Especifica uma espécie para o treinamento do Augustus |
+| `--busco_augustus_long` | boolean | `false` | Modo de auto-treinamento de otimização do Augustus |
+
+## Usado Por
+
+### Subworkflows
+
+- [busco](/developers/subworkflows/busco) - Avalia a completude da montagem do genoma usando BUSCO.
+
+### Workflows
+
+- [busco](/bactopia-tools/busco) - Avaliação da completude da montagem do genoma usando expectativas evolutivamente informadas.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BUSCO](https://gitlab.com/ezlab/busco)  
+  Manni M, Berkeley MR, Seppey M, Simão FA, Zdobnov EM [BUSCO Update: Novel and Streamlined Workflows along with Broader and Deeper Phylogenetic Coverage for Scoring of Eukaryotic, Prokaryotic, and Viral Genomes.](https://doi.org/10.1093/molbev/msab199) _Molecular Biology and Evolution_ 38(10), 4647-4654. (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/busco)
+
+## Versão
+
+```yaml
+BUSCO:
+    - busco: 6.0.0
+```

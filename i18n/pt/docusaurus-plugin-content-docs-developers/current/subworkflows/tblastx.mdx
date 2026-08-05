@@ -1,0 +1,86 @@
+---
+title: tblastx
+description: "Traduz sequências de nucleotídeos e pesquisa em banco de dados de nucleotídeos."
+tags:
+  - blast
+  - nucleotide
+  - translation
+  - alignment
+  - database
+  - sample-scope
+---
+
+# tblastx
+
+**Tags:** <a href="/developers/tags/blast" class="badge badge--primary badge--tag">blast</a> <a href="/developers/tags/nucleotide" class="badge badge--primary badge--tag">nucleotide</a> <a href="/developers/tags/translation" class="badge badge--primary badge--tag">translation</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Traduz sequências de nucleotídeos e pesquisa em banco de dados de nucleotídeos.
+
+Este subworkflow utiliza o [TBLASTX](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PAGE_TYPE=BlastSearch&PROGRAM=tblastx)
+do pacote NCBI BLAST+ para traduzir sequências de nucleotídeos em todos os seis quadros de leitura
+e pesquisá-las em um banco de dados de nucleotídeos também traduzido em todos os seis quadros de leitura.
+Ele processa cada montagem individualmente e agrega os resultados em um único relatório consolidado.
+
+## Take
+
+```
+blastdb: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `blastdb` | Um tarball comprimido contendo o banco de dados BLAST |
+
+```
+query: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-------------|
+| `query` | `Path` | Caminho para as sequências de nucleotídeos que serão traduzidas e pesquisadas no banco de dados traduzido |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Resultados de alinhamento de nucleotídeos traduzidos para nucleotídeos traduzidos em formato separado por tabulação (BLAST outfmt 6) |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados em formato CSV |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [blast_tblastx](/developers/modules/blast_tblastx) - Pesquisa um banco de dados de nucleotídeos traduzidos usando uma consulta de nucleotídeos traduzidos.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [tblastx](/bactopia-tools/tblastx) - Pesquisa em bancos de dados de nucleotídeos traduzidos usando consultas de nucleotídeos traduzidos.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [BLAST](https://blast.ncbi.nlm.nih.gov/Blast.cgi)  
+  Camacho C, Coulouris G, Avagyan V, Ma N, Papadopoulos J, Bealer K, Madden TL [BLAST+: architecture and applications](http://dx.doi.org/10.1186/1471-2105-10-421). _BMC Bioinformatics_ 10, 421 (2009)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/tblastx)

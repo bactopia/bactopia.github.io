@@ -1,0 +1,117 @@
+---
+title: gamma
+description: "Identificação, classificação e anotação de correspondências de genes traduzidos."
+tags:
+  - gene-finding
+  - annotation
+  - homology
+  - alignment
+  - gamma
+  - psl
+  - sample-scope
+---
+
+# gamma
+
+**Tags:** <a href="/developers/tags/gene-finding" class="badge badge--primary badge--tag">gene-finding</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/homology" class="badge badge--primary badge--tag">homology</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/gamma" class="badge badge--primary badge--tag">gamma</a> <a href="/developers/tags/psl" class="badge badge--primary badge--tag">psl</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identificação, classificação e anotação de correspondências de genes traduzidos.
+
+Utiliza o [GAMMA](https://github.com/rastanton/GAMMA) (Gene Allele Mutation Microbial Assessment)
+para identificar e anotar sequências codificantes em uma montagem que correspondam a um banco de dados
+de genes específico. É particularmente útil para detectar alvos específicos como genes de resistência
+antimicrobiana ou fatores de virulência, levando em conta possíveis mutações.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | O banco de dados de genes de referência no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    gamma: Path,
+    psl: Path,
+    gff: Path?,
+    fasta: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `gamma` | `Path` | Arquivo de saída principal do GAMMA contendo correspondências de genes anotadas |
+| `psl` | `Path` | Detalhes brutos do alinhamento no formato PSL |
+| `gff` | `Path?` | Correspondências de genes no formato GFF3 |
+| `fasta` | `Path?` | Sequências nucleotídicas extraídas dos genes correspondentes |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do GAMMA
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--gamma_db` | string |  | Um banco de dados de genes (FASTA) para o GAMMA |
+| `--gamma_percent_identity` | integer | `90` | O percentual mínimo de identidade de sequência nucleotídica usado pela busca Blat |
+| `--gamma_all_matches` | boolean | `false` | Inclui todas as correspondências de genes, mesmo sobreposições |
+| `--gamma_extended` | boolean | `false` | Exibe todas as mutações de proteínas |
+| `--gamma_write_fasta` | boolean | `false` | Escreve FASTA das correspondências de genes |
+| `--gamma_write_gff` | boolean | `false` | Escreve as correspondências de genes como arquivo GFF |
+
+## Usado Por
+
+### Subworkflows
+
+- [gamma](/developers/subworkflows/gamma) - Gene Allele Mutation Microbial Assessment.
+
+### Workflows
+
+- [gamma](/bactopia-tools/gamma) - Identificação, classificação e anotação de correspondências de genes traduzidos.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [GAMMA](https://github.com/rastanton/GAMMA)  
+  Stanton RA, Vlachos N, Halpin AL [GAMMA: a tool for the rapid identification, classification, and annotation of translated gene matches from sequencing data.](https://doi.org/10.1093/bioinformatics/btab607) _Bioinformatics_ (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/gamma)
+
+## Versão
+
+```yaml
+GAMMA:
+    - gamma: 2.2
+```

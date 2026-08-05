@@ -1,0 +1,78 @@
+---
+title: phispy
+description: "Predição de profagos a partir de genomas bacterianos."
+tags:
+  - prophage
+  - phage
+  - bacterial
+  - genome
+  - mobile-genetic-elements
+  - sample-scope
+---
+
+# phispy
+
+**Tags:** <a href="/developers/tags/prophage" class="badge badge--primary badge--tag">prophage</a> <a href="/developers/tags/phage" class="badge badge--primary badge--tag">phage</a> <a href="/developers/tags/bacterial" class="badge badge--primary badge--tag">bacterial</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/mobile-genetic-elements" class="badge badge--primary badge--tag">mobile-genetic-elements</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Predição de profagos a partir de genomas bacterianos.
+
+Este subworkflow identifica profagos em genomas bacterianos utilizando o [PhiSpy](https://github.com/linsalrob/PhiSpy),
+que combina estratégias baseadas em similaridade e composição para uma detecção precisa.
+A ferramenta identifica sequências de fagos integrados, extrai regiões bacterianas e de fagos,
+e fornece anotação abrangente incluindo formato GFF para análise downstream.
+
+## Take
+
+```
+gbff: Channel<Record>
+```
+
+| Nome | Descrição |
+|------|-------------|
+| `gbff` | Genomas bacterianos anotados em formato GenBank para predição de profagos |
+
+## Emit
+
+### Published
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `tsv` | Coordenadas (início/fim) de cada região de profago predita no genoma |
+| `supplemental` | Diretório contendo informações detalhadas sobre profagos, sequências e anotações |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados mesclados de predição de profagos de todas as amostras |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [phispy](/developers/modules/phispy) - Prediz regiões de profagos integradas em genomas bacterianos.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [phispy](/bactopia-tools/phispy) - Predição de profagos em genomas bacterianos e arqueais.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PhiSpy](https://github.com/linsalrob/PhiSpy)  
+  Akhter S, Aziz RK, and Edwards RA [PhiSpy: a novel algorithm for finding prophages in bacterial genomes that combines similarity- and composition-based strategies.](https://doi.org/10.1093/nar/gks406) _Nucleic Acids Research_, 40(16), e126. (2012)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/phispy)

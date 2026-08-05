@@ -1,0 +1,30 @@
+{
+  "logo.alt": {
+    "message": "Logo do Bactopia",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Bactopia": {
+    "message": "Bactopia",
+    "description": "Navbar item with label Bactopia"
+  },
+  "item.label.Bactopia Tools": {
+    "message": "Bactopia Tools",
+    "description": "Navbar item with label Bactopia Tools"
+  },
+  "item.label.Bactopia Pipelines": {
+    "message": "Bactopia Pipelines",
+    "description": "Navbar item with label Bactopia Pipelines"
+  },
+  "item.label.Developers": {
+    "message": "Desenvolvedores",
+    "description": "Navbar item with label Developers"
+  },
+  "item.label.Impact & Outreach": {
+    "message": "Impacto e Divulgacao",
+    "description": "Navbar item with label Impact & Outreach"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  }
+}

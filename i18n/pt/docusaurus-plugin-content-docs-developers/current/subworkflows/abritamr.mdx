@@ -1,0 +1,82 @@
+---
+title: abritamr
+description: "Identifique genes de resistência antimicrobiana usando AMRFinderPlus."
+tags:
+  - bacteria
+  - antimicrobial-resistance
+  - amr
+  - amrfinderplus
+  - classification
+  - sample-scope
+---
+
+# abritamr
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/antimicrobial-resistance" class="badge badge--primary badge--tag">antimicrobial-resistance</a> <a href="/developers/tags/amr" class="badge badge--primary badge--tag">amr</a> <a href="/developers/tags/amrfinderplus" class="badge badge--primary badge--tag">amrfinderplus</a> <a href="/developers/tags/classification" class="badge badge--primary badge--tag">classification</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identifique genes de resistência antimicrobiana usando AMRFinderPlus.
+
+Este subworkflow usa o [abriTAMR](https://github.com/MDU-PHL/abritamr) para identificar
+genes de resistência antimicrobiana em genomas bacterianos. Ele executa o AMRFinderPlus em
+cada amostra e consolida os resultados em classes funcionais, produzindo relatórios detalhados
+sobre genes de resistência, correspondências parciais e fatores de virulência.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `assembly` | Contigs montados no formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `summary` | Resumo do relatório de AMR acreditado pelo NATA, delimitado por tabulação |
+| `matches` | Lista de genes AMR correspondidos, delimitada por tabulação |
+| `partials` | Lista de genes AMR parcialmente correspondidos, delimitada por tabulação |
+| `virulence` | Lista de genes de virulência detectados, delimitada por tabulação |
+| `amrfinder` | Saída bruta do AMRFinderPlus |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [abritamr_run](/developers/modules/abritamr_run) - Detecta genes de resistência antimicrobiana e virulência.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [abritamr](/bactopia-tools/abritamr) - Uma ferramenta acreditada pelo NATA para reportar a presença de genes de resistência antimicrobiana.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [abriTAMR](https://github.com/MDU-PHL/abritamr)  
+  Sherry NL, Horan KA, Ballard SA, Gonҫalves da Silva A, Gorrie CL, Schultz MB, Stevens K, Valcanis M, Sait ML, Stinear TP, Howden BP, and Seemann T [An ISO-certified genomics workflow for identification and surveillance of resistencia antimicrobiana.](https://doi.org/10.1038/s41467-022-35713-4) _Nature Communications_, 14(1), 60. (2023)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/abritamr)

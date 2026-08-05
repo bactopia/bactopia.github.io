@@ -1,0 +1,116 @@
+---
+title: mlst
+description: "Tipagem Automática de Sequência Multi-Locus (MLST) de montagens genômicas."
+tags:
+  - bacteria
+  - typing
+  - mlst
+  - sequence-type
+  - pubmlst
+  - alleles
+  - sample-scope
+---
+
+# mlst
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/sequence-type" class="badge badge--primary badge--tag">sequence-type</a> <a href="/developers/tags/pubmlst" class="badge badge--primary badge--tag">pubmlst</a> <a href="/developers/tags/alleles" class="badge badge--primary badge--tag">alleles</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Tipagem Automática de Sequência Multi-Locus (MLST) de montagens genômicas.
+
+Utiliza o [mlst](https://github.com/tseemann/mlst) para escanear montagens genômicas contra
+esquemas tradicionais do PubMLST. Ele detecta automaticamente o esquema de espécie mais
+provável, identifica os alelos dos 7 genes de manutenção e atribui um Tipo de Sequência (ST).
+
+:::note[Banco de Dados Necessário]
+Requer que o banco de dados MLST (derivado do PubMLST) esteja disponível.
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | Diretório ou tarball comprimido contendo os esquemas do banco de dados MLST |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resumo delimitado por tabulação contendo a Amostra, Esquema, ST e IDs dos Alelos |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do MLST
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--mlst_scheme` | string |  | Não detectar automaticamente, forçar este esquema em todas as entradas |
+| `--mlst_minid` | integer | `95` | Percentual mínimo de identidade de DNA do alelo completo para considerar 'similar' |
+| `--mlst_mincov` | integer | `10` | Percentual mínimo de cobertura de DNA para reportar alelo parcial |
+| `--mlst_minscore` | integer | `50` | Pontuação mínima de 100 para corresponder a um esquema |
+| `--mlst_nopath` | boolean | `false` | Remover os caminhos de arquivo da coluna FILE |
+| `--mlst_db` | string |  | Um banco de dados MLST personalizado a ser usado, como tarball ou diretório |
+
+## Usado Por
+
+### Subworkflows
+
+- [mlst](/developers/subworkflows/mlst) - Determina tipos de sequência multilocus (MLST) a partir de montagens bacterianas.
+
+### Workflows
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [mlst](/bactopia-tools/mlst) - Chamada automática de Tipo de Sequência Multi-Locus (MLST) a partir de contigs montados.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline de análise abrangente para isolados de *Staphylococcus aureus*.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [mlst](https://github.com/tseemann/mlst)  
+  Seemann T [mlst: scan contig files against PubMLST typing schemes](https://github.com/tseemann/mlst) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/mlst)
+
+## Versão
+
+```yaml
+MLST:
+    - mlst: 2.33.1
+```

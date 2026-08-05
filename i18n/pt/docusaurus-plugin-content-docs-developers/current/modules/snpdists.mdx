@@ -1,0 +1,94 @@
+---
+title: snpdists
+description: "Cria uma matriz de distância de SNP a partir de um alinhamento múltiplo de sequências."
+tags:
+  - snp
+  - distance
+  - matrix
+  - alignment
+  - phylogeny
+  - run-scope
+---
+
+# snpdists
+
+**Tags:** <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/distance" class="badge badge--primary badge--tag">distance</a> <a href="/developers/tags/matrix" class="badge badge--primary badge--tag">matrix</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Cria uma matriz de distância de SNP a partir de um alinhamento múltiplo de sequências.
+
+Utiliza o [snp-dists](https://github.com/tseemann/snp-dists) para ler um alinhamento FASTA e
+calcular uma matriz de distância de SNP par a par entre todas as sequências.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    aln: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `aln` | `Path` | Alinhamento múltiplo de sequências no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Matriz de distância de SNP par a par no formato TSV |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do SNP-Dists
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--snpdists_a` | boolean | `false` | Conta todas as diferenças, não apenas [AGTC] |
+| `--snpdists_b` | boolean | `false` | Mantém a célula do canto superior esquerdo |
+| `--snpdists_csv` | boolean | `false` | Gera saída em CSV em vez de TSV |
+| `--snpdists_k` | boolean | `false` | Preserva maiúsculas/minúsculas, sem converter todas as letras para maiúsculas |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [snpdists](/developers/subworkflows/snpdists) - Calcula distâncias de SNP par a par a partir de alinhamentos de sequências.
+
+## Citações
+
+Se você utilizar esta ferramenta em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Código-fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/snpdists)
+
+## Versão
+
+```yaml
+SNPDISTS:
+    - snp-dists: 1.2.0
+```

@@ -1,0 +1,119 @@
+---
+title: bakta
+description: "Anotação rápida de genomas bacterianos."
+tags:
+  - bacteria
+  - annotation
+  - genome
+  - functional-annotation
+  - taxonomy
+  - sample-scope
+---
+
+# bakta
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/functional-annotation" class="badge badge--primary badge--tag">functional-annotation</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Anotação rápida de genomas bacterianos.
+
+Este subworkflow usa o [Bakta](https://github.com/oschwengers/bakta) para fornecer
+anotação rápida e abrangente de genomas bacterianos. Ele pode baixar e preparar
+o banco de dados do Bakta sob demanda ou usar um banco de dados já existente. O fluxo de trabalho processa
+cada amostra individualmente, produzindo múltiplos formatos de saída, incluindo GFF3, GenBank,
+sequências de proteínas, sequências de nucleotídeos e um banco de dados BLAST.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Contigs montados no formato FASTA |
+
+```
+database: Path?
+download_bakta: Boolean
+save_as_tarball: Boolean
+proteins: Path?
+prodigal_tf: Path?
+replicons: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `database` | `Path?` | Caminho opcional para um banco de dados Bakta já existente |
+| `download_bakta` | `Boolean` | Flag booleano para acionar o download automático do banco de dados |
+| `save_as_tarball` | `Boolean` | Flag booleano para salvar o banco de dados baixado como tarball |
+| `proteins` | `Path?` | Sequências de proteínas confiáveis opcionais para busca por homologia |
+| `prodigal_tf` | `Path?` | Arquivo de treinamento do Prodigal opcional para melhorar a predição de genes |
+| `replicons` | `Path?` | Sequências de réplicons opcionais para identificação de plasmídeos |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `embl` | Anotações e sequências no formato EMBL |
+| `faa` | Sequências de aminoácidos de CDS/sORF no formato FASTA |
+| `ffn` | Sequências de nucleotídeos de features no formato FASTA |
+| `fna` | Sequências de DNA de réplicons/contigs no formato FASTA |
+| `gbff` | Anotações e sequências no formato GenBank |
+| `gff` | Anotações e sequências no formato GFF3 |
+| `hypotheticals_tsv` | Informações adicionais sobre CDS de proteínas hipotéticas em valores separados por tabulação |
+| `hypotheticals_faa` | Sequências de aminoácidos de CDS de proteínas hipotéticas no formato FASTA |
+| `tsv` | Anotações em valores separados por tabulação simples e legíveis por humanos |
+| `txt` | Resumo geral das anotações do Bakta |
+| `blastdb` | Arquivo compactado tar.gz com bancos de dados BLAST+ dos contigs, genes e proteínas |
+
+#### `run_outputs`
+
+Sem saídas no escopo de execução.
+
+### Entradas para Etapas Subsequentes
+
+As emissões a seguir são destinadas a serem usadas como entradas para subworkflows subsequentes.
+
+#### `annotations`
+
+| Saída | Descrição |
+|-------|-----------|
+| `fna` | Sequências de nucleotídeos anotadas no formato FASTA |
+| `faa` | Sequências de proteínas no formato FASTA |
+| `gff` | Anotações no formato GFF3 |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [bakta_download](/developers/modules/bakta_download) - Faz o download do banco de dados de anotação do Bakta.
+- [bakta_run](/developers/modules/bakta_run) - Anotação rápida e padronizada de genomas bacterianos e plasmídeos.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [bakta](/bactopia-tools/bakta) - Anotação rápida de genomas bacterianos e plasmídeos.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline abrangente de análise para isolados de *Staphylococcus aureus*.
+
+## Citações
+
+Se você usar este subworkflow em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Bakta](https://github.com/oschwengers/bakta)  
+  Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A [Bakta - rapid and standardized annotation of bacterial genomes via alignment-free sequence identification.](https://doi.org/10.1099/mgen.0.000685) _Microbial Genomics_ 7(11) (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/bakta)

@@ -1,0 +1,183 @@
+---
+title: snippy_run
+description: "Chamada rápida de variantes haploides e alinhamento do genoma central."
+tags:
+  - snippy
+  - variant-calling
+  - snp
+  - indel
+  - alignment
+  - bacteria
+  - sample-scope
+---
+
+# snippy_run
+
+**Tags:** <a href="/developers/tags/snippy" class="badge badge--primary badge--tag">snippy</a> <a href="/developers/tags/variant-calling" class="badge badge--primary badge--tag">variant-calling</a> <a href="/developers/tags/snp" class="badge badge--primary badge--tag">snp</a> <a href="/developers/tags/indel" class="badge badge--primary badge--tag">indel</a> <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Chamada rápida de variantes haploides e alinhamento do genoma central.
+
+Utiliza o [Snippy](https://github.com/tseemann/snippy) para encontrar SNPs e indels entre um
+genoma de referência haploide e as suas reads de sequenciamento de Nova Geração (NGS). Ele mapeia
+as reads para a referência, realiza a chamada de variantes e gera uma sequência consenso.
+
+Usa campos de registro posicional explícitos para as reads:
+- Entrada: record(meta, r1, r2, se) onde cada slot de leitura é Path?
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da amostra |
+| `r1` | `Path?` | Reads R1 Illumina (paired-end) |
+| `r2` | `Path?` | Reads R2 Illumina (paired-end) |
+| `se` | `Path?` | Reads Illumina single-end |
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da referência |
+| `reference` | `Path` | Genoma de referência (formato FASTA ou GenBank) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    aligned_fa: Path?,
+    vcf: Path?,
+    aligned_fa_error: Path?,
+    vcf_error: Path?,
+    error: Path?,
+    annotated_vcf: Path,
+    bam: Path?,
+    bai: Path?,
+    bed: Path,
+    consensus_fa: Path,
+    consensus_subs_fa: Path,
+    consensus_subs_masked_fa: Path,
+    coverage: Path,
+    csv: Path,
+    filt_vcf: Path,
+    gff: Path,
+    html: Path,
+    raw_vcf: Path,
+    subs_vcf: Path,
+    tab: Path,
+    txt: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `aligned_fa` | `Path?` | Uma versão da referência com - nas posições com cobertura zero |
+| `vcf` | `Path?` | As variantes anotadas finais em formato VCF |
+| `aligned_fa_error` | `Path?` | Arquivo FASTA alinhado gerado durante estado de erro |
+| `vcf_error` | `Path?` | Arquivo VCF gerado durante estado de erro |
+| `error` | `Path?` | Arquivo de texto com log de erros |
+| `annotated_vcf` | `Path` | Arquivo VCF anotado |
+| `bam` | `Path?` | Os alinhamentos em formato BAM (inclui reads não mapeadas/multimapeadas) |
+| `bai` | `Path?` | Índice do arquivo BAM |
+| `bed` | `Path` | As variantes em formato BED |
+| `consensus_fa` | `Path` | Genoma de referência com todas as variantes instanciadas |
+| `consensus_subs_fa` | `Path` | Genoma de referência com apenas as variantes de substituição instanciadas |
+| `consensus_subs_masked_fa` | `Path` | Genoma de referência com substituições instanciadas e baixa cobertura mascarada |
+| `coverage` | `Path` | Informações de profundidade de cobertura por base |
+| `csv` | `Path` | Um resumo das variantes separado por vírgulas |
+| `filt_vcf` | `Path` | As chamadas de variantes filtradas do Freebayes |
+| `gff` | `Path` | As variantes em formato GFF3 |
+| `html` | `Path` | Um resumo HTML das variantes |
+| `raw_vcf` | `Path` | As chamadas de variantes não filtradas do Freebayes |
+| `subs_vcf` | `Path` | VCF contendo apenas variantes de substituição |
+| `tab` | `Path` | Um resumo simples separado por tabulações de todas as variantes |
+| `txt` | `Path` | Lista colunar separada por tabulações com estatísticas de alinhamento |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos de cada programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Snippy Run
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--reference` | string |  | Genoma de referência no formato GenBank |
+| `--snippy_mapqual` | integer | `60` | Qualidade mínima de mapeamento de leitura a considerar |
+| `--snippy_basequal` | integer | `13` | Qualidade mínima de base a considerar |
+| `--snippy_mincov` | integer | `10` | Profundidade mínima do sítio para chamada de alelos |
+| `--snippy_minfrac` | integer | `0` | Proporção mínima para evidência de variante (0=AUTO) |
+| `--snippy_minqual` | integer | `100` | QUALIDADE mínima na coluna 6 do VCF |
+| `--snippy_maxsoft` | integer | `10` | Máximo de soft clipping permitido |
+| `--snippy_bwaopt` | string |  | Opções extras do BWA MEM, ex.: -x pacbio |
+| `--snippy_fbopt` | string |  | Opções extras do Freebayes, ex.: --theta 1E-6 --read-snp-limit 2 |
+| `--snippy_remove_bam` | boolean | `false` | Excluir arquivos BAM após a chamada de variantes |
+| `--snippy_opts` | string |  | Opções extras entre aspas para o Snippy |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [snippy_run](/developers/subworkflows/snippy_run) - Chamar variantes contra um genoma de referência usando o Snippy.
+
+### Workflows
+
+- [snippy](/bactopia-tools/snippy) - Chamada rápida de variantes haplotípicas e alinhamento do genoma central.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Snippy](https://github.com/tseemann/snippy)  
+  Seemann T [Snippy: fast bacterial chamada de variantes from NGS reads](https://github.com/tseemann/snippy) (GitHub)
+
+- [BCFtools](https://github.com/samtools/bcftools)  
+  Danecek P, Bonfield JK, Liddle J, Marshall J, Ohan V, Pollard MO, Whitwham A, Keane T, McCarthy SA, Davies RM, Li H [Twelve years of SAMtools and BCFtools](https://doi.org/10.1093/gigascience/giab008) _GigaScience_ Volume 10, Issue 2 (2021)
+
+- [Bedtools](https://github.com/arq5x/bedtools2)  
+  Quinlan AR, Hall IM [BEDTools: a flexible suite of utilities for comparing genomic features](http://dx.doi.org/10.1093/bioinformatics/btq033). _Bioinformatics_ 26, 841-842 (2010)
+
+- [freebayes](https://github.com/ekg/freebayes)  
+  Garrison E, Marth G [Haplotype-based variant detection from short-read sequencing.](https://arxiv.org/abs/1207.3907) arXiv preprint arXiv:1207.3907 [q-bio.GN] (2012)
+
+- [Seqtk](https://github.com/lh3/seqtk)  
+  Li H [Toolkit for processing sequences in FASTA/Q formats](https://github.com/lh3/seqtk) (GitHub)
+
+- [SnpEff](http://snpeff.sourceforge.net/)  
+  Cingolani P, Platts A, Wang LL, Coon M, Nguyen T, Wang L, Land SJ, Lu X, Douglas M [A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff: SNPs in the genome of Drosophila melanogaster strain w1118; iso-2; iso-3.](https://doi.org/10.4161/fly.19695) _Fly_ 6(2), 80-92 (2012)
+
+- [VCF-Annotator](https://github.com/rpetit3/vcf-annotator)  
+  Petit III RA [VCF-Annotator: Add biological annotations to variants in a VCF file.](https://github.com/rpetit3/vcf-annotator) (GitHub)
+
+- [Vcflib](https://github.com/vcflib/vcflib)  
+  Garrison E [Vcflib: A C++ library for parsing and manipulating VCF files](https://github.com/vcflib/vcflib) (GitHub)
+
+- [vt](https://github.com/atks/vt)  
+  Tan A, Abecasis GR, Kang HM [Unified representation of genetic variants.](https://doi.org/10.1093/bioinformatics/btv112) _Bioinformatics_ 31(13), 2202-2204 (2015)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/snippy/run)
+
+## Versão
+
+```yaml
+SNIPPY_RUN:
+    - bactopia-variants: 1.0.4
+```

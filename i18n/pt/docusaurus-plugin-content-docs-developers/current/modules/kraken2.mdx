@@ -1,0 +1,135 @@
+---
+title: kraken2
+description: "Classificação taxonômica e filtragem de hospedeiro de reads de sequência."
+tags:
+  - metagenomics
+  - taxonomy
+  - classification
+  - contamination
+  - scrubbing
+  - k-mer
+  - lca
+  - sample-scope
+---
+
+# kraken2
+
+**Tags:** <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/classification" class="badge badge--primary badge--tag">classification</a> <a href="/developers/tags/contamination" class="badge badge--primary badge--tag">contamination</a> <a href="/developers/tags/scrubbing" class="badge badge--primary badge--tag">scrubbing</a> <a href="/developers/tags/k-mer" class="badge badge--primary badge--tag">k-mer</a> <a href="/developers/tags/lca" class="badge badge--primary badge--tag">lca</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Classificação taxonômica e filtragem de hospedeiro de reads de sequência.
+
+Utiliza o [Kraken2](https://github.com/DerrickWood/kraken2) para atribuir rótulos taxonômicos a reads de DNA curtas, examinando correspondências exatas de k-mers contra um grande banco de dados de referência. O algoritmo de Menor Ancestral Comum (LCA) é usado para fornecer classificação de alta precisão, tornando-o ideal para metagenômica ou remoção de contaminação do hospedeiro (scrubbing).
+
+Utiliza campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+:::note[Banco de Dados Necessário]
+Requer um banco de dados Kraken2 padrão (diretório ou tarball). O uso de memória depende do tamanho do banco de dados (Padrão ~50GB).
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Groovy Record contendo informações da amostra |
+| `r1` | `Path?` | Reads R1 Illumina (paired-end) |
+| `r2` | `Path?` | Reads R2 Illumina (paired-end) |
+| `se` | `Path?` | Reads Illumina single-end |
+| `lr` | `Path?` | Long reads (ONT/PacBio) - normalmente não utilizados pelo Kraken2 |
+
+```
+db: Path
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | Banco de dados Kraken2 (Diretório ou tarball comprimido) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    special_meta: Record,
+    kraken2_report: Path,
+    scrub_report: Path?,
+    classified: Set<Path?>,
+    unclassified: Set<Path?>,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro de informações da amostra |
+| `special_meta` | `Record` | Um registro de metadados simplificado para uso interno |
+| `kraken2_report` | `Path` | Relatório padrão do Kraken2 contendo contagens de abundância taxonômica |
+| `scrub_report` | `Path?` | Relatório resumido dos reads removidos durante o scrubbing do hospedeiro |
+| `classified` | `Set<Path?>` | Reads atribuídas a um táxon no banco de dados (FASTQ) |
+| `unclassified` | `Set<Path?>` | Reads NÃO atribuídas a nenhum táxon (FASTQ) |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Kraken2
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--kraken2_db` | string |  | Um único tarball ou caminho para um banco de dados formatado para Kraken2 |
+| `--kraken2_quick_mode` | boolean | `false` | Operação rápida (usa o primeiro hit ou hits) |
+| `--kraken2_confidence` | number | `0.0` | Limiar de pontuação de confiança entre 0 e 1 |
+| `--kraken2_minimum_base_quality` | integer | `0` | Qualidade mínima de base usada na classificação |
+| `--kraken2_use_mpa_style` | boolean | `false` | Formata a saída do relatório como o kraken-mpa-report do Kraken 1 |
+| `--kraken2_report_zero_counts` | boolean | `false` | Reporta contagens para TODOS os táxons, mesmo que sejam zero |
+| `--kraken2_report_minimizer_data` | boolean | `false` | Inclui informações de minimizador e contagem de minimizadores distintos no relatório |
+| `--kraken2_use_names` | boolean | `false` | Imprime nomes científicos em vez de apenas taxids |
+| `--kraken2_memory_mapping` | boolean | `false` | Evita carregar o banco de dados na RAM |
+| `--kraken2_minimum_hit_groups` | integer | `2` | Número mínimo de grupos de hits necessários para realizar uma classificação |
+| `--kraken2_keep_filtered_reads` | boolean | `false` | Mantém os FASTQs classificados e não classificados produzidos pelo Kraken2 |
+
+## Usado Por
+
+### Subworkflows
+
+- [kraken2](/developers/subworkflows/kraken2) - Classifica reads metagenômicas usando Kraken2.
+
+### Workflows
+
+- [kraken2](/bactopia-tools/kraken2) - Classificação taxonômica de reads de sequência metagenômica.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/kraken2)
+
+## Versão
+
+```yaml
+KRAKEN2:
+    - bactopia-teton: 1.1.4
+```

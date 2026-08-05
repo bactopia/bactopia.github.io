@@ -1,0 +1,90 @@
+---
+title: shigapass
+description: "Prever sorotipos de Shigella e diferenciar Shigella/EIEC."
+tags:
+  - shigella
+  - eiec
+  - serotype
+  - virulence
+  - prediction
+  - sample-scope
+---
+
+# shigapass
+
+**Tags:** <a href="/developers/tags/shigella" class="badge badge--primary badge--tag">shigella</a> <a href="/developers/tags/eiec" class="badge badge--primary badge--tag">eiec</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever sorotipos de Shigella e diferenciar Shigella/EIEC.
+
+Utiliza o [ShigaPass](https://github.com/Munch-Lab/ShigaPass) para identificar sorotipos de *Shigella* e
+distinguir espécies de *Shigella* de *Escherichia coli* Enteroinvasiva (EIEC) usando marcadores
+genômicos específicos a partir de contigs montados.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    flex_tsv: Path?,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados resumidos do ShigaPass no formato TSV |
+| `flex_tsv` | `Path?` | Resultados resumidos do ShigaPass Flex no formato TSV |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [shigapass](/developers/subworkflows/shigapass) - Prever sorotipos de Shigella a partir de montagens.
+
+### Workflows
+
+- [shigapass](/bactopia-tools/shigapass) - Previsão de sorotipos de Shigella e diferenciação de EIEC.
+
+## Citações
+
+Se você utilizar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [shigapass](https://github.com/imanyass/ShigaPass)  
+  Yassine I, Hansen EE, Lefèvre S, Ruckly C, Carle I, Lejay-Collin M, Fabre L, Rafei R, Pardos de la Gandara M, Daboussi F, Shahin A, Weill FX [ShigaPass: an in silico tool predicting Shigella serotypes from whole-genome sequencing assemblies.](https://doi.org/10.1099%2Fmgen.0.000961) _Microb Genomics_ 9(3) (2023)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/shigapass)
+
+## Versão
+
+```yaml
+SHIGAPASS:
+    - shigapass: 1.5.0
+```

@@ -1,0 +1,22 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.developers.category.Developers": {
+    "message": "Desenvolvedores",
+    "description": "The label for category 'Developers' in sidebar 'developers'"
+  },
+  "sidebar.developers.category.CLI Reference": {
+    "message": "Referência CLI",
+    "description": "The label for category 'CLI Reference' in sidebar 'developers'"
+  },
+  "sidebar.developers.category.Subworkflows": {
+    "message": "Subworkflows",
+    "description": "The label for category 'Subworkflows' in sidebar 'developers'"
+  },
+  "sidebar.developers.category.Modules": {
+    "message": "Módulos",
+    "description": "The label for category 'Modules' in sidebar 'developers'"
+  }
+}

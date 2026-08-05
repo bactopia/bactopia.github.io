@@ -1,0 +1,176 @@
+---
+title: bakta_run
+description: "Anotação rápida e padronizada de genomas bacterianos e plasmídeos."
+tags:
+  - bacteria
+  - annotation
+  - genome
+  - assembly
+  - prodigal
+  - compliant
+  - genbank
+  - ena
+  - sample-scope
+---
+
+# bakta_run
+
+**Tags:** <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/genome" class="badge badge--primary badge--tag">genome</a> <a href="/developers/tags/assembly" class="badge badge--primary badge--tag">assembly</a> <a href="/developers/tags/prodigal" class="badge badge--primary badge--tag">prodigal</a> <a href="/developers/tags/compliant" class="badge badge--primary badge--tag">compliant</a> <a href="/developers/tags/genbank" class="badge badge--primary badge--tag">genbank</a> <a href="/developers/tags/ena" class="badge badge--primary badge--tag">ena</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Anotação rápida e padronizada de genomas bacterianos e plasmídeos.
+
+Utiliza o [Bakta](https://github.com/oschwengers/bakta) para anotar genomas por meio de
+identificação de sequências sem alinhamento. Detecta CDS, sORFs, tRNAs, tmRNAs, rRNAs,
+ncRNAs e arranjos CRISPR, atribuindo funções a partir de um banco de dados abrangente.
+
+:::note[Banco de Dados Necessário]
+Requer um banco de dados do Bakta (diretório ou tarball) disponível.
+:::
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+```
+db: Path
+proteins: Path?
+prodigal_tf: Path?
+replicons: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path` | Caminho para o banco de dados do Bakta (diretório ou tarball comprimido) |
+| `proteins` | `Path?` | Arquivo FASTA de proteínas confiáveis para usar na anotação de primeira passagem |
+| `prodigal_tf` | `Path?` | Arquivo de treinamento do Prodigal para predição de CDS |
+| `replicons` | `Path?` | Tabela (TSV/CSV) com informações de replicons para detecção de origem |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    blastdb: Path,
+    faa: Path,
+    ffn: Path,
+    fna: Path,
+    gbff: Path,
+    gff: Path,
+    hypotheticals_tsv: Path,
+    hypotheticals_faa: Path,
+    inference_tsv: Path,
+    json: Path,
+    png: Path,
+    svg: Path,
+    tsv: Path,
+    txt: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `blastdb` | `Path` | Arquivo comprimido tar.gz com bancos de dados BLAST+ dos contigs, genes e proteínas |
+| `faa` | `Path` | Sequências de aminoácidos de CDS/sORF no formato FASTA |
+| `ffn` | `Path` | Sequências nucleotídicas de features no formato FASTA |
+| `fna` | `Path` | Sequências de DNA de replicons/contigs no formato FASTA |
+| `gbff` | `Path` | Anotações e sequências no formato GenBank |
+| `gff` | `Path` | Anotações e sequências no formato GFF3 |
+| `hypotheticals_tsv` | `Path` | Informações adicionais sobre CDS de proteínas hipotéticas em valores separados por tabulação |
+| `hypotheticals_faa` | `Path` | Sequências de aminoácidos de CDS de proteínas hipotéticas no formato FASTA |
+| `inference_tsv` | `Path` | Evidências detalhadas de anotação e informações de hits no banco de dados |
+| `json` | `Path` | Anotações e metadados legíveis por máquina no formato JSON |
+| `png` | `Path` | Gráfico circular do genoma como imagem PNG |
+| `svg` | `Path` | Gráfico circular do genoma como imagem SVG |
+| `tsv` | `Path` | Anotações em formato simples de valores separados por tabulação, legível por humanos |
+| `txt` | `Path` | Resumo geral das anotações do Bakta |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Bakta
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--bakta_proteins` | string |  | Arquivo FASTA de proteínas confiáveis para anotar primeiro |
+| `--bakta_prodigal_tf` | string |  | Arquivo de treinamento a ser usado pelo Prodigal |
+| `--bakta_replicons` | string |  | Tabela de informações de replicons (tsv/csv) |
+| `--bakta_min_contig_length` | integer | `1` | Tamanho mínimo de contig para anotar |
+| `--bakta_keep_contig_headers` | boolean | `false` | Manter os cabeçalhos originais dos contigs |
+| `--bakta_compliant` | boolean | `false` | Forçar conformidade com Genbank/ENA/DDJB |
+| `--bakta_skip_trna` | boolean | `false` | Ignorar detecção e anotação de tRNA |
+| `--bakta_skip_tmrna` | boolean | `false` | Ignorar detecção e anotação de tmRNA |
+| `--bakta_skip_rrna` | boolean | `false` | Ignorar detecção e anotação de rRNA |
+| `--bakta_skip_ncrna` | boolean | `false` | Ignorar detecção e anotação de ncRNA |
+| `--bakta_skip_ncrna_region` | boolean | `false` | Ignorar detecção e anotação de regiões ncRNA |
+| `--bakta_skip_crispr` | boolean | `false` | Ignorar detecção e anotação de arranjos CRISPR |
+| `--bakta_skip_cds` | boolean | `false` | Ignorar detecção e anotação de CDS |
+| `--bakta_skip_sorf` | boolean | `false` | Ignorar detecção e anotação de sORF |
+| `--bakta_skip_gap` | boolean | `false` | Ignorar detecção e anotação de gaps |
+| `--bakta_skip_ori` | boolean | `false` | Ignorar detecção e anotação de oriC/oriT |
+| `--bakta_opts` | string |  | Opções extras do Bakta entre aspas. Exemplo: '--gram +' |
+
+## Usado Por
+
+### Subworkflows
+
+- [bakta](/developers/subworkflows/bakta) - Anotação rápida de genomas bacterianos.
+
+### Workflows
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [bakta](/bactopia-tools/bakta) - Anotação rápida de genomas bacterianos e plasmídeos.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline de análise abrangente para isolados de *Staphylococcus aureus*.
+
+## Citações
+
+Se você usar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Bakta](https://github.com/oschwengers/bakta)  
+  Schwengers O, Jelonek L, Dieckmann MA, Beyvers S, Blom J, Goesmann A [Bakta - rapid and standardized annotation of bacterial genomes via alignment-free sequence identification.](https://doi.org/10.1099/mgen.0.000685) _Microbial Genomics_ 7(11) (2021)
+
+- [Aragorn](http://130.235.244.92/ARAGORN/Downloads/)  
+  Laslett D, Canback B [ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences.](https://doi.org/10.1093/nar/gkh152) _Nucleic Acids Res_. 32(1):11-6 (2004)
+
+- [DIAMOND](https://github.com/bbuchfink/diamond)  
+  Buchfink B, Xie C, Huson DH [Fast and sensitive protein alignment using DIAMOND.](http://dx.doi.org/10.1038/nmeth.3176) _Nat. Methods._ 12, 59-60 (2015)
+
+- [HMMER](http://hmmer.org/)  
+  Eddy SR [Accelerated Profile HMM Searches.](https://doi.org/10.1371/journal.pcbi.1002195) _PLoS Comput. Biol._ 7, e1002195 (2011)
+
+- [Infernal](http://eddylab.org/infernal/)  
+  Nawrocki EP, Eddy SR [Infernal 1.1: 100-fold faster RNA homology searches.](https://doi.org/10.1093/bioinformatics/btt509) _Bioinformatics_ 29(22), 2933-2935 (2013)
+
+- [Prodigal](https://github.com/hyattpd/Prodigal)  
+  Hyatt D, Chen G-L, LoCascio PF, Land ML, Larimer FW, Hauser LJ [Prodigal: prokaryotic gene recognition and translation initiation site identification.](https://doi.org/10.1186/1471-2105-11-119) _BMC Bioinformatics_ 11.1 119 (2010)
+
+## Fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/bakta/run)
+
+## Versão
+
+```yaml
+BAKTA_RUN:
+    - bakta: 1.12.0
+```

@@ -1,0 +1,89 @@
+---
+title: shigeifinder
+description: "Sorotipagem de Shigella e EIEC a partir de montagens."
+tags:
+  - shigella
+  - eiec
+  - serotype
+  - identification
+  - cluster
+  - virulence
+  - sample-scope
+---
+
+# shigeifinder
+
+**Tags:** <a href="/developers/tags/shigella" class="badge badge--primary badge--tag">shigella</a> <a href="/developers/tags/eiec" class="badge badge--primary badge--tag">eiec</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/identification" class="badge badge--primary badge--tag">identification</a> <a href="/developers/tags/cluster" class="badge badge--primary badge--tag">cluster</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Sorotipagem de Shigella e EIEC a partir de montagens.
+
+Usa o [ShigEiFinder](https://github.com/LanLab/ShigEiFinder) para diferenciar *Shigella* e
+*E. coli* enteroinvasiva (EIEC) e prever seus sorotipos a partir de montagens de genomas. Utiliza
+genes marcadores específicos de cluster para distinguir esses patovares intimamente relacionados.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados em formato FASTA |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Resultados do ShigEiFinder em formato TSV |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com as versões dos programas |
+
+## Usado Por
+
+### Subworkflows
+
+- [shigeifinder](/developers/subworkflows/shigeifinder) - Prever sorotipos de Shigella e EIEC a partir de montagens.
+
+### Workflows
+
+- [shigeifinder](/bactopia-tools/shigeifinder) - Predição de sorotipo in silico para Shigella e E. coli enteroinvasiva (EIEC).
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ShigEiFinder](https://github.com/LanLab/ShigEiFinder)  
+  Zhang X, Payne M, Nguyen T, Kaur S, Lan R [Cluster-specific gene markers enhance Shigella and enteroinvasive Escherichia coli in silico serotyping.](https://doi.org/10.1099/mgen.0.000704) Microbial Genomics, 7(12). (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/shigeifinder)
+
+## Versão
+
+```yaml
+SHIGEIFINDER:
+    - shigeifinder: 1.3.5
+```

@@ -1,0 +1,125 @@
+---
+title: pangenome
+description: "Realize análise de pan-genoma com filogenia de core-genome opcional."
+tags:
+  - alignment
+  - core-genome
+  - pan-genoma
+  - phylogeny
+  - comparative-genomics
+  - run-scope
+---
+
+# pangenome
+
+**Tags:** <a href="/developers/tags/alignment" class="badge badge--primary badge--tag">alignment</a> <a href="/developers/tags/core-genome" class="badge badge--primary badge--tag">core-genome</a> <a href="/developers/tags/pan-genoma" class="badge badge--primary badge--tag">pan-genoma</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/comparative-genomics" class="badge badge--primary badge--tag">comparative-genomics</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Realize análise de pan-genoma com filogenia de core-genome opcional.
+
+Este subworkflow cria um pan-genoma a partir de arquivos de anotação GFF3 usando uma de três
+ferramentas: [Panaroo](https://github.com/gtonkinhill/panaroo) (padrão),
+[PIRATE](https://github.com/SionBayliss/PIRATE) ou
+[Roary](https://github.com/sanger-pathogens/roary). Ele gera alinhamentos de core-genome
+e matrizes de presença/ausência de genes, seguidos de cálculos de distância SNP usando
+[snp-dists](https://github.com/tseemann/snp-dists). O fluxo de trabalho executa
+condicionalmente a ferramenta de pan-genoma selecionada com base em parâmetros booleanos.
+
+## Take
+
+```
+gff: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Groovy Record contendo informações da amostra |
+| `gff` | Conjunto de arquivos de anotação GFF3 provenientes de genomas montados |
+
+```
+use_pirate: Boolean
+use_roary: Boolean
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-------------|
+| `use_pirate` | `Boolean` | Flag booleana para usar PIRATE na análise de pan-genoma |
+| `use_roary` | `Boolean` | Flag booleana para usar Roary na análise de pan-genoma |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+Nenhuma saída no escopo de amostra.
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `aln` | Alinhamento de core-genome no formato FASTA |
+| `csv` | Matriz de presença/ausência de genes |
+| `supplemental` | Arquivos intermediários e saídas detalhadas |
+| `tsv` | Matriz de distância SNP pareada a partir do alinhamento de core-genome |
+
+### Entradas para Subworkflows Downstream
+
+As emissões a seguir são destinadas ao uso como entradas para subworkflows downstream.
+
+#### `alignment`
+
+| Saída | Descrição |
+|--------|-------------|
+| `aln` | Alinhamento de core-genome para análise downstream (ex.: detecção de recombinação) |
+
+#### `phylogeny_input`
+
+| Saída | Descrição |
+|--------|-------------|
+| `aln` | Alinhamento de core-genome com metadados prontos para iqtree para construção filogenética |
+
+#### `csv`
+
+| Saída | Descrição |
+|--------|-------------|
+| `csv` | Matriz de presença/ausência de genes para análise downstream (ex.: pan-GWAS) |
+
+## Composição do Subworkflow
+
+Este subworkflow chama os seguintes subworkflows:
+
+- [pirate](/developers/subworkflows/pirate) - Constrói um pan-genoma a partir de anotações GFF3 usando PIRATE.
+- [roary](/developers/subworkflows/roary) - Constrói um pan-genoma a partir de anotações GFF3 usando Roary.
+- [panaroo](/developers/subworkflows/panaroo) - Constrói um pan-genoma a partir de anotações GFF3 usando Panaroo.
+- [snpdists](/developers/subworkflows/snpdists) - Calcula distâncias SNP pareadas a partir de alinhamentos de sequências.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes fluxos de trabalho:
+
+- [pangenome](/bactopia-tools/pangenome) - Análise de pan-genoma com filogenia de core-genome opcional.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PIRATE](http://github.com/SionBayliss/PIRATE)  
+  Bayliss SC, Thorpe HA, Coyle NM, Sheppard SK, Feil EJ [PIRATE: A fast and scalable pangenomics toolbox for clustering diverged orthologues in bacteria.](https://doi.org/10.1093/gigascience/giz119) _Gigascience_ 8 (2019)
+
+- [Panaroo](https://github.com/gtonkinhill/panaroo)  
+  Tonkin-Hill G, MacAlasdair N, Ruis C, Weimann A, Horesh G, Lees JA, Gladstone RA, Lo S, Beaudoin C, Floto RA, Frost SDW, Corander J, Bentley SD, Parkhill J [Producing polished prokaryotic pangenomes with the Panaroo pipeline.](https://doi.org/10.1186/s13059-020-02090-4) _Genome Biology_ 21(1), 180. (2020)
+
+- [Roary](https://github.com/sanger-pathogens/Roary)  
+  Page AJ, Cummins CA, Hunt M, Wong VK, Reuter S, Holden MTG, Fookes M, Falush D, Keane JA, Parkhill J [Roary: rapid large-scale prokaryote pan genome analysis.](https://doi.org/10.1093/bioinformatics/btv421) _Bioinformatics_ 31, 3691-3693 (2015)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Source
+
+[View source on GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/pangenome)

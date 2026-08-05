@@ -1,0 +1,118 @@
+---
+title: teton
+description: "Realize classificação taxonômica e estime tamanhos de genomas bacterianos."
+tags:
+  - metagenomics
+  - taxonomy
+  - classification
+  - kraken
+  - bracken
+  - genome-size
+  - run-scope
+---
+
+# teton
+
+**Tags:** <a href="/developers/tags/metagenomics" class="badge badge--primary badge--tag">metagenomics</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/classification" class="badge badge--primary badge--tag">classification</a> <a href="/developers/tags/kraken" class="badge badge--primary badge--tag">kraken</a> <a href="/developers/tags/bracken" class="badge badge--primary badge--tag">bracken</a> <a href="/developers/tags/genome-size" class="badge badge--primary badge--tag">genome-size</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Realize classificação taxonômica e estime tamanhos de genomas bacterianos.
+
+Este subworkflow processa reads de sequenciamento brutos por meio de um pipeline de
+classificação taxonômica usando [Kraken2](https://github.com/DerrickWood/kraken2) e [Bracken](https://github.com/jenniferlu717/Bracken)
+para estimar tamanhos de genomas bacterianos e separar organismos bacterianos dos não bacterianos.
+Primeiro, ele remove reads do hospedeiro usando o subworkflow scrubber, em seguida classifica os reads
+e, por fim, cria planilhas de amostras com estimativas de tamanho de genoma para análises downstream no Bactopia.
+
+Utiliza campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads Illumina R1 (paired-end) |
+| `r2` | Reads Illumina R2 (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Reads longas (ONT/PacBio) |
+
+```
+db: Path?
+use_srascrubber: Boolean
+use_nohuman: Boolean
+nohuman_db: Path?
+download_nohuman: Boolean
+nohuman_save_as_tarball: Boolean
+deacon_db: Path?
+download_deacon: Boolean
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-----------|
+| `db` | `Path?` | Caminho opcional para o banco de dados Kraken2 para classificação taxonômica |
+| `use_srascrubber` | `Boolean` | Flag booleano para usar o SRA scrubber na remoção de reads do hospedeiro |
+| `use_nohuman` | `Boolean` | Flag booleano para usar o nohuman na remoção de reads do hospedeiro |
+| `nohuman_db` | `Path?` | Caminho para o diretório ou tarball do banco de dados nohuman |
+| `download_nohuman` | `Boolean` | Flag booleano para baixar o banco de dados nohuman |
+| `nohuman_save_as_tarball` | `Boolean` | Flag booleano para salvar o banco de dados nohuman baixado como tarball |
+| `deacon_db` | `Path?` | Caminho para o arquivo de índice minimizer do deacon (.idx) |
+| `download_deacon` | `Boolean` | Flag booleano para baixar o índice do deacon |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no workflow de entrada.
+
+#### `sample_outputs`
+
+Nenhuma saída com escopo de amostra.
+
+#### `run_outputs`
+
+Nenhuma saída com escopo de execução.
+
+## Composição de Subworkflows
+
+Este subworkflow chama os seguintes subworkflows:
+
+- [scrubber](/developers/subworkflows/scrubber) - Remove sequências contaminantes de dados metagenômicos.
+- [bracken](/developers/subworkflows/bracken) - Estima a abundância de espécies a partir de reads metagenômicos.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [bactopia_teton](/developers/modules/bactopia_teton) - Prediz o tamanho do genoma e direciona amostras com base na classificação taxonômica.
+- [csvtk_join](/developers/modules/csvtk_join) - Une dois arquivos CSV ou TSV com base em campos comuns.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é usado pelos seguintes workflows:
+
+- [teton](/bactopia-pipelines/teton) - Classificação taxonômica e perfil de abundância de reads metagenômicos.
+
+## Citações
+
+Se você usar este subworkflow em sua análise, cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [deacon](https://github.com/bede/deacon)  
+  Bede N. [deacon: SIMD-accelerated filtering of DNA sequences using minimizer-based comparison.](https://github.com/bede/deacon) (GitHub)
+
+- [Kraken2](https://github.com/DerrickWood/kraken2)  
+  Wood DE, Lu J, Langmead B [Improved metagenomic analysis with Kraken 2.](https://doi.org/10.1186/s13059-019-1891-0) *Genome Biology*, 20(1), 257. (2019)
+
+- [Bracken](https://github.com/jenniferlu717/Bracken)  
+  Lu J, Breitwieser FP, Thielen P, and Salzberg SL [Bracken: estimating species abundance in metagenomics data.](https://doi.org/10.7717/peerj-cs.104) _PeerJ Computer Science_, 3, e104. (2017)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/teton)

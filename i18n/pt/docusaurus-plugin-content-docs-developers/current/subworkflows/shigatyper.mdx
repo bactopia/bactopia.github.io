@@ -1,0 +1,84 @@
+---
+title: shigatyper
+description: "Prever sorotipos de Shigella a partir de reads ou montagens."
+tags:
+  - shigella
+  - serotype
+  - typing
+  - prediction
+  - antigen-genes
+  - sample-scope
+---
+
+# shigatyper
+
+**Tags:** <a href="/developers/tags/shigella" class="badge badge--primary badge--tag">shigella</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/prediction" class="badge badge--primary badge--tag">prediction</a> <a href="/developers/tags/antigen-genes" class="badge badge--primary badge--tag">antigen-genes</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever sorotipos de Shigella a partir de reads ou montagens.
+
+Este subworkflow utiliza o [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper) para prever
+sorotipos de cepas de *Shigella* a partir de reads Illumina/Nanopore ou genomas montados.
+Ele analisa genes codificadores de antígenos para determinar a classificação do sorotipo de cada isolado.
+
+Utiliza campos de registro posicionais explícitos para reads:
+- Entrada: record(meta, r1, r2, se, lr) onde cada slot de read é Path?
+
+## Take
+
+```
+reads: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `r1` | Reads Illumina R1 (paired-end) |
+| `r2` | Reads Illumina R2 (paired-end) |
+| `se` | Reads Illumina single-end |
+| `lr` | Reads longos (ONT/PacBio) |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resultados do ShigaTyper em formato TSV |
+| `hits` | Hits detalhados do ShigaTyper |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Previsões de sorotipos mescladas de todas as amostras |
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [shigatyper](/developers/modules/shigatyper) - Sorotipo de Shigella a partir de reads Illumina ou Oxford Nanopore.
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatenar múltiplos arquivos CSV ou TSV em uma única tabela.
+
+## Usado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [shigatyper](/bactopia-tools/shigatyper) - Determinação rápida de sorotipos de Shigella a partir de reads de sequenciamento.
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ShigaTyper](https://github.com/CFSAN-Biostatistics/shigatyper)  
+  Wu Y, Lau HK, Lee T, Lau DK, Payne J [In Silico Serotyping Based on Whole-Genome Sequencing Improves the Accuracy of Shigella Identification.](https://doi.org/10.1128/AEM.00165-19) *Applied and Environmental Microbiology*, 85(7). (2019)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/shigatyper)

@@ -1,0 +1,114 @@
+---
+title: stecfinder
+description: "Sorotipo de E. coli produtora de Shiga toxina usando reads/montagens."
+tags:
+  - stec
+  - e.-coli
+  - virulence
+  - serotype
+  - typing
+  - sample-scope
+---
+
+# stecfinder
+
+**Tags:** <a href="/developers/tags/stec" class="badge badge--primary badge--tag">stec</a> <a href="/developers/tags/e.-coli" class="badge badge--primary badge--tag">e.-coli</a> <a href="/developers/tags/virulence" class="badge badge--primary badge--tag">virulence</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Sorotipo de E. coli produtora de Shiga toxina usando reads/montagens.
+
+Utiliza o [STECFinder](https://github.com/LanLab/STECFinder) para identificar sorotipos e fatores de
+virulência de *Escherichia coli* produtora de toxina Shiga (STEC) a partir de montagens de genomas ou reads de sequenciamento.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path,
+    r1: Path?,
+    r2: Path?,
+    se: Path?,
+    lr: Path?
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+| `r1` | `Path?` | Reads Illumina R1 (paired-end) |
+| `r2` | `Path?` | Reads Illumina R2 (paired-end) |
+| `se` | `Path?` | Reads Illumina single-end |
+| `lr` | `Path?` | Long reads (ONT/PacBio) |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Arquivo TSV com os resultados dos marcadores gênicos STEC |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do STECFinder
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--stecfinder_use_reads` | boolean | `false` | Reads Illumina paired-end serão usados em vez de montagens |
+| `--stecfinder_hits` | boolean | `false` | Exibe resultados detalhados da busca de genes |
+| `--stecfinder_cutoff` | number | `10.0` | Cobertura mínima de reads para que o gene seja chamado |
+| `--stecfinder_length` | number | `50.0` | Porcentagem do comprimento do gene necessária para uma chamada positiva |
+| `--stecfinder_ipah_length` | number | `10.0` | Porcentagem do comprimento do gene ipaH necessária para uma chamada positiva |
+| `--stecfinder_ipah_depth` | number | `1.0` | Profundidade mínima para chamada positiva do gene ipaH (requer --stecfinder_use_reads) |
+| `--stecfinder_stx_length` | number | `10.0` | Porcentagem do comprimento do gene stx necessária para uma chamada positiva |
+| `--stecfinder_stx_depth` | number | `1.0` | Profundidade mínima para chamada positiva do gene stx (requer --stecfinder_use_reads) |
+| `--stecfinder_o_length` | number | `60.0` | Porcentagem do comprimento do gene wz_ necessária para uma chamada positiva |
+| `--stecfinder_o_depth` | number | `1.0` | Profundidade mínima para chamada positiva do gene qz_ (requer --stecfinder_use_reads) |
+| `--stecfinder_h_length` | number | `60.0` | Porcentagem do comprimento do gene fliC necessária para uma chamada positiva |
+| `--stecfinder_h_depth` | number | `1.0` | Profundidade mínima para chamada positiva do gene fliC (requer --stecfinder_use_reads) |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [stecfinder](/developers/subworkflows/stecfinder) - Identificar e sorotipificar E. coli produtora de toxina Shiga (STEC) a partir de montagens.
+
+### Workflows
+
+- [stecfinder](/bactopia-tools/stecfinder) - Identificação de sorotipo de E. coli produtora de toxina Shiga.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [STECFinder](https://github.com/LanLab/STECFinder)  
+  Zhang X, Payne M, Kaur S, and Lan R [Improved Genomic Identification, Clustering, and Serotyping of Shiga Toxin-Producing Escherichia coli Using Cluster/Serotype-Specific Gene Markers.](https://doi.org/10.3389/fcimb.2021.772574) _Frontiers in Cellular and Infection Microbiology_, 11, 772574. (2021)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/stecfinder)
+
+## Versão
+
+```yaml
+STECFINDER:
+    - stecfinder: 1.1.2
+```

@@ -1,0 +1,80 @@
+---
+title: checkm2_download
+description: "Baixe o banco de dados pré-treinado do CheckM2."
+tags:
+  - checkm2
+  - download
+  - database
+  - diamond
+  - machine-learning
+  - sample-scope
+---
+
+# checkm2_download
+
+**Tags:** <a href="/developers/tags/checkm2" class="badge badge--primary badge--tag">checkm2</a> <a href="/developers/tags/download" class="badge badge--primary badge--tag">download</a> <a href="/developers/tags/database" class="badge badge--primary badge--tag">database</a> <a href="/developers/tags/diamond" class="badge badge--primary badge--tag">diamond</a> <a href="/developers/tags/machine-learning" class="badge badge--primary badge--tag">machine-learning</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Baixe o banco de dados pré-treinado do CheckM2.
+
+Obtém o banco de dados Diamond necessário pelo [CheckM2](https://github.com/chklovski/CheckM2)
+para predição de qualidade de genomas. Este banco de dados contém os dados de treinamento do modelo de aprendizado de máquina.
+
+:::note[Conexão com a Internet Necessária]
+Este processo requer uma conexão ativa com a internet para obter o banco de dados.
+:::
+
+## Saídas
+
+```
+record (
+    db: Path,
+    json: Path,
+    logs: Set<Path?>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `db` | `Path` | O arquivo do banco de dados Diamond do CheckM2 (*.dmnd) |
+| `json` | `Path` | Arquivo de metadados descrevendo o conteúdo do banco de dados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+
+## Parâmetros
+
+### Parâmetros de Download do Banco de Dados CheckM2
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--checkm2_db` | string |  | Caminho para uma pasta contendo o banco de dados do CheckM2 (ou onde ele deve ser baixado). |
+| `--download_checkm2` | boolean | `false` | Baixa o banco de dados do CheckM2 para o caminho especificado por --checkm2_db |
+
+## Utilizado Por
+
+### Subworkflows
+
+- [checkm2](/developers/subworkflows/checkm2) - Avalia a completude de bins metagenômicos usando CheckM2.
+
+### Workflows
+
+- [checkm2](/bactopia-tools/checkm2) - Avaliação baseada em aprendizado de máquina da qualidade de montagem de genomas microbianos.
+
+## Citações
+
+Se você usar este módulo em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [CheckM2](https://github.com/chklovski/CheckM2)  
+  Chklovksi A [Rapid assessment of genome bin quality using machine learning](https://github.com/chklovski/CheckM2) (GitHub)
+
+## Código-fonte
+
+[Ver código-fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/checkm2/download)
+
+## Versão
+
+```yaml
+CHECKM2_DOWNLOAD:
+    - aria2: 1.36.0
+```

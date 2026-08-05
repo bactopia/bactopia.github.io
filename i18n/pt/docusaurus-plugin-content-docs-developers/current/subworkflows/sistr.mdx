@@ -1,0 +1,82 @@
+---
+title: sistr
+description: "Ferramenta de linha de comando do Salmonella In Silico Typing Resource."
+tags:
+  - salmonella
+  - serotype
+  - mlst
+  - cgmlst
+  - typing
+  - sample-scope
+---
+
+# sistr
+
+**Tags:** <a href="/developers/tags/salmonella" class="badge badge--primary badge--tag">salmonella</a> <a href="/developers/tags/serotype" class="badge badge--primary badge--tag">serotype</a> <a href="/developers/tags/mlst" class="badge badge--primary badge--tag">mlst</a> <a href="/developers/tags/cgmlst" class="badge badge--primary badge--tag">cgmlst</a> <a href="/developers/tags/typing" class="badge badge--primary badge--tag">typing</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Ferramenta de linha de comando do Salmonella In Silico Typing Resource.
+
+Este subworkflow realiza a tipagem abrangente de genomas de Salmonella utilizando
+[SISTR](https://github.com/phac-nml/sistr_cmd), que prediz o sorotipo,
+determina a subespécie, realiza a tipagem por MLST e calcula as distâncias
+de core genome MLST. A ferramenta oferece uma solução completa para classificação
+e tipagem epidemiológica de Salmonella.
+
+## Take
+
+```
+assembly: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-----------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `assembly` | Arquivos de montagem no formato FASTA para tipagem de Salmonella |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `tsv` | Resultados de predição do SISTR no formato TSV |
+| `allele_fasta` | Alelos novos no formato FASTA |
+| `allele_json` | Alelos no formato JSON |
+| `cgmlst_csv` | Perfil de cgMLST no formato CSV |
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|-------|-----------|
+| `csv` | Resultados agregados no formato CSV |
+
+## Composição do Módulo
+
+Este subworkflow chama os seguintes módulos:
+
+- [csvtk_concat](/developers/modules/csvtk_concat) - Concatena múltiplos arquivos CSV ou TSV em uma única tabela.
+- [sistr](/developers/modules/sistr) - Predição de sorovares a partir de montagens de Salmonella.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes fluxos de trabalho:
+
+- [sistr](/bactopia-tools/sistr) - Predição de sorovares de Salmonella enterica a partir de montagens.
+
+## Citações
+
+Se você utilizar este recurso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [SISTR](https://github.com/phac-nml/sistr_cmd)  
+  Yoshida CE, Kruczkiewicz P, Laing CR, Lingohr EJ, Gannon VPJ, Nash JHE, Taboada EN [The Salmonella In Silico Typing Resource (SISTR): An Open Web-Accessible Tool for Rapidly Typing and Subtyping Draft Salmonella Genome Assemblies.](https://doi.org/10.1371/journal.pone.0147101) _PloS One_, 11(1), e0147101. (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/sistr)

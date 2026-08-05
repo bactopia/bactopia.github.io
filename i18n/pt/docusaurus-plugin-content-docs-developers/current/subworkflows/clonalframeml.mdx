@@ -1,0 +1,108 @@
+---
+title: clonalframeml
+description: "Detectar e mascarar eventos de recombinação em filogenias bacterianas."
+tags:
+  - recombination
+  - phylogeny
+  - masking
+  - clonalframe
+  - bacterial-evolution
+  - run-scope
+---
+
+# clonalframeml
+
+**Tags:** <a href="/developers/tags/recombination" class="badge badge--primary badge--tag">recombination</a> <a href="/developers/tags/phylogeny" class="badge badge--primary badge--tag">phylogeny</a> <a href="/developers/tags/masking" class="badge badge--primary badge--tag">masking</a> <a href="/developers/tags/clonalframe" class="badge badge--primary badge--tag">clonalframe</a> <a href="/developers/tags/bacterial-evolution" class="badge badge--primary badge--tag">bacterial-evolution</a> <a href="/developers/tags/run-scope" class="badge badge--primary badge--tag">run-scope</a> 
+
+Detectar e mascarar eventos de recombinação em filogenias bacterianas.
+
+Este subworkflow utiliza o [ClonalFrameML](https://github.com/xavierdidelot/ClonalFrameML) para
+detectar e mascarar eventos de recombinação em filogenias bacterianas. Primeiro, ele constrói uma
+árvore filogenética rápida usando o [IQ-TREE](https://github.com/iqtree/iqtree2), em seguida
+identifica regiões de recombinação e cria um alinhamento com a recombinação mascarada. Por fim,
+calcula distâncias de SNP a partir do alinhamento mascarado usando o [snp-dists](https://github.com/tseemann/snp-dists).
+
+## Take
+
+```
+alignment: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `aln` | Alinhamento do core-genoma no formato FASTA |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no workflow de entrada.
+
+#### `sample_outputs`
+
+Sem saídas no escopo de amostra.
+
+#### `run_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `masked_aln` | Alinhamento com recombinação mascarada, com as regiões de recombinação detectadas removidas |
+| `emsim` | Resultados de estimativa de incerteza |
+| `em` | Estimativas finais de parâmetros do algoritmo EM |
+| `status` | Eventos de recombinação previstos (importações) |
+| `nwk` | Árvore de entrada com nós internos rotulados |
+| `fasta` | Sequências ancestrais reconstruídas |
+| `pos_ref` | Tabela de referência cruzada de posições |
+| `aln` | Alinhamento múltiplo de sequências de entrada (repassado do IQ-TREE) |
+| `nwk` | Árvore filogenética de máxima verossimilhança de início rápido do IQ-TREE |
+| `tsv` | Distâncias de SNP par a par do alinhamento mascarado em formato TSV |
+
+### Entradas para Subworkflows Downstream
+
+As emissões a seguir são destinadas ao uso como entradas em subworkflows downstream.
+
+#### `alignment`
+
+| Saída | Descrição |
+|--------|-------------|
+| `aln` | Alinhamento com recombinação mascarada para análise filogenética downstream |
+
+## Composição de Subworkflows
+
+Este subworkflow chama os seguintes subworkflows:
+
+- [iqtree](/developers/subworkflows/iqtree) - Construir árvores filogenéticas de máxima verossimilhança a partir de alinhamentos.
+- [snpdists](/developers/subworkflows/snpdists) - Calcular distâncias de SNP par a par a partir de alinhamentos de sequências.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [clonalframeml](/developers/modules/clonalframeml) - Inferência de recombinação em genomas bacterianos.
+
+## Utilizado Por
+
+Este subworkflow é utilizado pelos seguintes workflows:
+
+- [pangenome](/bactopia-tools/pangenome) - Análise de pan-genoma com filogenia opcional do core-genoma.
+
+## Citações
+
+Se você usar isto em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [ClonalFramML](https://github.com/xavierdidelot/ClonalFrameML)  
+  Didelot X, Wilson DJ [ClonalFrameML: Efficient Inference of Recombination in Whole Bacterial Genomes.](https://doi.org/10.1371/journal.pcbi.1004041) _PLoS Comput Biol_ 11(2) e1004041 (2015)
+
+- [IQ-TREE](https://github.com/Cibiv/IQ-TREE)  
+  Nguyen L-T, Schmidt HA, von Haeseler A, Minh BQ [IQ-TREE: A fast and effective stochastic algorithm for estimating maximum likelihood phylogenies.](https://doi.org/10.1093/molbev/msu300) _Mol. Biol. Evol._ 32:268-274 (2015)
+
+- [snp-dists](https://github.com/tseemann/snp-dists)  
+  Seemann T [snp-dists - Pairwise SNP distance matrix from a FASTA sequence alignment.](https://github.com/tseemann/snp-dists) (GitHub)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/clonalframeml)

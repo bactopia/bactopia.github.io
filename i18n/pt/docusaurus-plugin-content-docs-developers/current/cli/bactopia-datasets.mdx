@@ -1,0 +1,42 @@
+---
+title: bactopia-datasets
+description: "Baixe conjuntos de dados opcionais para complementar suas análises com Bactopia"
+---
+
+# bactopia-datasets
+
+Baixe conjuntos de dados opcionais para complementar suas análises com Bactopia
+
+## Uso
+
+```bash
+bactopia-datasets UNKNOWN [OPTIONS]
+```
+
+## Argumentos
+
+| Argumento | Tipo | Obrigatório | Descrição |
+|-----------|------|-------------|-----------|
+| `UNKNOWN` | UNPROCESSED | Não |  |
+
+## Opções Obrigatórias
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--bactopia-path` | STRING |  | Diretório onde o repositório do Bactopia está armazenado |
+
+## Opções Relacionadas ao Download
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--datasets_cache` | STRING | `/home/rpetit3/.bactopia` | Diretório base para baixar os conjuntos de dados (padrão para a variável de ambiente BACTOPIA_CACHEDIR; uma subpasta chamada datasets será criada) |
+| `--force` | BOOL | `false` | Forçar a substituição de ambientes pré-construídos existentes |
+| `--max_retry` | INT | `3` | Número máximo de tentativas para criar o ambiente Conda. (Padrão: 3) |
+
+## Opções Adicionais
+
+| Opção | Tipo | Padrão | Descrição |
+|-------|------|--------|-----------|
+| `--verbose` | BOOL | `false` | Exibir texto relacionado a depuração |
+| `--silent` | BOOL | `false` | Apenas erros críticos serão exibidos |
+| `--version, -V` | BOOL | `false` | Exibir a versão e sair. |

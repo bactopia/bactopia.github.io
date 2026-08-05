@@ -1,0 +1,100 @@
+---
+title: merlindist
+description: "Identifique espécies a partir de dados de montagem e reads usando distâncias Mash."
+tags:
+  - species
+  - identification
+  - mash
+  - distance
+  - classification
+  - taxonomy
+  - sample-scope
+---
+
+# merlindist
+
+**Tags:** <a href="/developers/tags/species" class="badge badge--primary badge--tag">species</a> <a href="/developers/tags/identification" class="badge badge--primary badge--tag">identification</a> <a href="/developers/tags/mash" class="badge badge--primary badge--tag">mash</a> <a href="/developers/tags/distance" class="badge badge--primary badge--tag">distance</a> <a href="/developers/tags/classification" class="badge badge--primary badge--tag">classification</a> <a href="/developers/tags/taxonomy" class="badge badge--primary badge--tag">taxonomy</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Identifique espécies a partir de dados de montagem e reads usando distâncias Mash.
+
+Este subworkflow realiza identificação rápida de espécies usando cálculos de distância do [Mash](https://github.com/marbl/Mash)
+em relação a um banco de dados de referência. É um componente central do pipeline MERLIN
+(MinER assisted species-specific bactopia tool seLectIoN), responsável por determinar
+quais ferramentas de tipagem espécie-específicas devem ser executadas com base no organismo detectado. O fluxo de trabalho
+emite canais filtrados por gêneros detectados para análises espécie-específicas posteriores.
+
+## Take
+
+```
+ch_seqs: Channel<Record>
+```
+
+| Campo | Descrição |
+|-------|-------------|
+| `meta` | Registro Groovy contendo informações da amostra |
+| `fna` | Contigs montados no formato FASTA para identificação de espécies |
+| `r1` | Reads R1 Illumina (paired-end) ou null |
+| `r2` | Reads R2 Illumina (paired-end) ou null |
+| `se` | Reads Illumina single-end ou null |
+| `lr` | Reads longas (ONT/PacBio) ou null |
+
+```
+ch_mash_db: Path
+```
+
+| Nome | Descrição |
+|------|-------------|
+| `mash_db` | Banco de dados de sketches Mash para identificação rápida de espécies |
+
+## Emit
+
+### Publicados
+
+As emissões `sample_outputs` e `run_outputs` são agregados de arquivos de saída que serão publicados no fluxo de trabalho de entrada.
+
+#### `sample_outputs`
+
+| Saída | Descrição |
+|--------|-------------|
+| `dist` | Os resultados brutos de distância Mash |
+| `fna` | Passagem dos contigs montados |
+| `r1` | Passagem dos reads R1 Illumina |
+| `r2` | Passagem dos reads R2 Illumina |
+| `se` | Passagem dos reads single-end |
+| `lr` | Passagem dos reads longas |
+| `escherichia` | Arquivo marcador condicional que aciona ferramentas de análise de Escherichia |
+| `haemophilus` | Arquivo marcador condicional que aciona ferramentas de análise de Haemophilus |
+| `klebsiella` | Arquivo marcador condicional que aciona ferramentas de análise de Klebsiella |
+| `legionella` | Arquivo marcador condicional que aciona ferramentas de análise de Legionella |
+| `listeria` | Arquivo marcador condicional que aciona ferramentas de análise de Listeria |
+| `mycobacterium` | Arquivo marcador condicional que aciona ferramentas de análise de Mycobacterium |
+| `neisseria` | Arquivo marcador condicional que aciona ferramentas de análise de Neisseria |
+| `pseudomonas` | Arquivo marcador condicional que aciona ferramentas de análise de Pseudomonas |
+| `salmonella` | Arquivo marcador condicional que aciona ferramentas de análise de Salmonella |
+| `staphylococcus` | Arquivo marcador condicional que aciona ferramentas de análise de Staphylococcus |
+| `streptococcus` | Arquivo marcador condicional que aciona ferramentas de análise de Streptococcus |
+| `genus` | Arquivo marcador indicando o gênero detectado (para depuração) |
+
+#### `run_outputs`
+
+Sem saídas de escopo de execução.
+
+## Composição de Módulos
+
+Este subworkflow chama os seguintes módulos:
+
+- [merlin_dist](/developers/modules/merlin_dist) - Identifica espécies para acionar análises posteriores específicas de gênero (Merlin).
+
+## Citations
+
+If you use this in your analysis, please cite the following.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Mash](https://github.com/marbl/Mash)  
+  Ondov BD, Treangen TJ, Melsted P, Mallonee AB, Bergman NH, Koren S, Phillippy AM [Mash: fast genome and metagenome distance estimation using MinHash](http://dx.doi.org/10.1186/s13059-016-0997-x). _Genome Biol_ 17, 132 (2016)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/subworkflows/merlindist)

@@ -1,0 +1,166 @@
+---
+title: prokka
+description: "Anotar genomas procarióticos."
+tags:
+  - prokka
+  - annotation
+  - prokaryotic
+  - bacteria
+  - genbank
+  - gff
+  - sample-scope
+---
+
+# prokka
+
+**Tags:** <a href="/developers/tags/prokka" class="badge badge--primary badge--tag">prokka</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/prokaryotic" class="badge badge--primary badge--tag">prokaryotic</a> <a href="/developers/tags/bacteria" class="badge badge--primary badge--tag">bacteria</a> <a href="/developers/tags/genbank" class="badge badge--primary badge--tag">genbank</a> <a href="/developers/tags/gff" class="badge badge--primary badge--tag">gff</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Anotar genomas procarióticos.
+
+Utiliza o [Prokka](https://github.com/tseemann/prokka) para anotar rapidamente genomas bacterianos, archaeais
+e virais, produzindo arquivos de saída compatíveis com padrões, incluindo GFF3, GenBank e Sequin.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    fna: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-------------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `fna` | `Path` | Contigs montados no formato FASTA |
+
+```
+proteins: Path?
+prodigal_tf: Path?
+```
+
+| Nome | Tipo | Descrição |
+|------|------|-------------|
+| `proteins` | `Path?` | Arquivo FASTA de proteínas confiáveis para anotar primeiramente |
+| `prodigal_tf` | `Path?` | Arquivo de treinamento a ser usado para predição de genes |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    gff: Path,
+    gbff: Path,
+    fna: Path,
+    faa: Path,
+    ffn: Path,
+    sqn: Path,
+    fsa: Path,
+    tbl: Path,
+    txt: Path,
+    tsv: Path,
+    blastdb: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-------------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `gff` | `Path` | Anotação no formato GFF3, contendo tanto sequências quanto anotações |
+| `gbff` | `Path` | Anotação no formato GenBank, contendo tanto sequências quanto anotações |
+| `fna` | `Path` | Arquivo FASTA de nucleotídeos das sequências de contigs de entrada |
+| `faa` | `Path` | Arquivo FASTA de proteínas das sequências CDS traduzidas |
+| `ffn` | `Path` | Arquivo FASTA de nucleotídeos de todos os transcritos preditos (CDS, rRNA, tRNA, tmRNA, misc_RNA) |
+| `sqn` | `Path` | Arquivo no formato ASN1 "Sequin" para submissão ao GenBank |
+| `fsa` | `Path` | Arquivo FASTA de nucleotídeos das sequências de contigs de entrada, utilizado pelo tbl2asn |
+| `tbl` | `Path` | Arquivo de Tabela de Features para submissão ao NCBI |
+| `txt` | `Path` | Estatísticas resumidas relacionadas às features anotadas encontradas |
+| `tsv` | `Path` | Arquivo separado por tabulação de todas as features (locus_tag, ftype, len_bp, gene, EC_number, COG, product) |
+| `blastdb` | `Path` | Um arquivo tar.gz comprimido de bancos de dados BLAST+ dos contigs, genes e proteínas |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log específicos do programa (opcionais) |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo formatado em YAML com versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do Prokka
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|---------|-------------|
+| `--prokka_proteins` | string | `${projectDir}/data/proteins.faa` | Arquivo FASTA de proteínas confiáveis para anotar primeiramente |
+| `--prokka_prodigal_tf` | string |  | Arquivo de treinamento a ser usado pelo Prodigal |
+| `--prokka_compliant` | boolean | `false` | Forçar conformidade com Genbank/ENA/DDJB |
+| `--prokka_centre` | string | `Bactopia` | ID do centro de sequenciamento |
+| `--prokka_coverage` | integer | `80` | Cobertura mínima na proteína de consulta |
+| `--prokka_evalue` | string | `1e-09` | Limite de e-value para similaridade |
+| `--prokka_opts` | string |  | Opções extras do Prokka entre aspas. |
+| `--prokka_debug` | boolean | `false` | Ativar modo de depuração para o Prokka |
+
+## Usado Por
+
+### Subworkflows
+
+- [prokka](/developers/subworkflows/prokka) - Anotar genomas bacterianos com informações funcionais.
+
+### Workflows
+
+- [bactopia](/full-guide) - Pipeline abrangente de análise bacteriana para caracterização genômica completa.
+- [pangenome](/bactopia-tools/pangenome) - Análise de pan-genoma com filogenia opcional do genoma central.
+- [prokka](/bactopia-tools/prokka) - Anotação rápida de genoma completo de genomas bacterianos, archaeais e virais.
+- [staphopia](/bactopia-pipelines/staphopia) - Pipeline de análise abrangente para isolados de *Staphylococcus aureus*.
+
+## Citações
+
+Se você usar isso em sua análise, por favor cite o seguinte.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [Prokka](https://github.com/tseemann/prokka)  
+  Seemann T [Prokka: rapid prokaryotic genome annotation](http://dx.doi.org/10.1093/bioinformatics/btu153) _Bioinformatics_ 30, 2068-2069 (2014)
+
+- [Aragorn](http://130.235.244.92/ARAGORN/Downloads/)  
+  Laslett D, Canback B [ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences.](https://doi.org/10.1093/nar/gkh152) _Nucleic Acids Res_. 32(1):11-6 (2004)
+
+- [Barrnap](https://github.com/tseemann/barrnap)  
+  Seemann T [Barrnap: Bacterial ribosomal RNA predictor](https://github.com/tseemann/barrnap) (GitHub)
+
+- [CD-HIT](https://github.com/weizhongli/cdhit)  
+  Li W, Godzik A [Cd-hit: a fast program for clustering and comparing large sets of protein or nucleotide sequences](http://dx.doi.org/10.1093/bioinformatics/btl158). _Bioinformatics_ 22, 1658-1659 (2006)
+
+- [HMMER](http://hmmer.org/)  
+  Eddy SR [Accelerated Profile HMM Searches.](https://doi.org/10.1371/journal.pcbi.1002195) _PLoS Comput. Biol._ 7, e1002195 (2011)
+
+- [Infernal](http://eddylab.org/infernal/)  
+  Nawrocki EP, Eddy SR [Infernal 1.1: 100-fold faster RNA homology searches.](https://doi.org/10.1093/bioinformatics/btt509) _Bioinformatics_ 29(22), 2933-2935 (2013)
+
+- [MinCED](https://github.com/ctSkennerton/minced)  
+  Skennerton C [MinCED: Mining CRISPRs in Environmental Datasets](https://github.com/ctSkennerton/minced) (GitHub)
+
+- [nhmmer](http://hmmer.org/)  
+  Wheeler TJ, Eddy SR [nhmmer: DNA homology search with profile HMMs.](https://doi.org/10.1093/bioinformatics/btt403) _Bioinformatics_ 29, 2487-2489 (2013)
+
+- [Prodigal](https://github.com/hyattpd/Prodigal)  
+  Hyatt D, Chen G-L, LoCascio PF, Land ML, Larimer FW, Hauser LJ [Prodigal: prokaryotic gene recognition and translation initiation site identification.](https://doi.org/10.1186/1471-2105-11-119) _BMC Bioinformatics_ 11.1 119 (2010)
+
+- [RNAmmer](http://www.cbs.dtu.dk/services/RNAmmer/)  
+  Lagesen K, Hallin P, Rødland EA, Stærfeldt H-H, Rognes T, Ussery DW [RNAmmer: consistent annotation of rRNA genes in genomic sequences.](https://dx.doi.org/10.1093%2Fnar%2Fgkm160) _Nucleic Acids Res_ 35.9: 3100-3108 (2007)
+
+- [SignalP](http://www.cbs.dtu.dk/services/SignalP-4.0/)  
+  Petersen TN, Brunak S, von Heijne G, Nielsen H [SignalP 4.0: discriminating signal peptides from transmembrane regions.](https://doi.org/10.1038/nmeth.1701) _Nature methods_ 8.10: 785 (2011)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/prokka)
+
+## Versão
+
+```yaml
+PROKKA:
+    - prokka: 1.15.6
+```

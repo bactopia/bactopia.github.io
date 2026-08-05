@@ -1,0 +1,102 @@
+---
+title: phispy
+description: "Prever regiões de profagos integradas em genomas bacterianos."
+tags:
+  - genomics
+  - virus
+  - phage
+  - prophage
+  - bacteriophage
+  - identification
+  - annotation
+  - sample-scope
+---
+
+# phispy
+
+**Tags:** <a href="/developers/tags/genomics" class="badge badge--primary badge--tag">genomics</a> <a href="/developers/tags/virus" class="badge badge--primary badge--tag">virus</a> <a href="/developers/tags/phage" class="badge badge--primary badge--tag">phage</a> <a href="/developers/tags/prophage" class="badge badge--primary badge--tag">prophage</a> <a href="/developers/tags/bacteriophage" class="badge badge--primary badge--tag">bacteriophage</a> <a href="/developers/tags/identification" class="badge badge--primary badge--tag">identification</a> <a href="/developers/tags/annotation" class="badge badge--primary badge--tag">annotation</a> <a href="/developers/tags/sample-scope" class="badge badge--primary badge--tag">sample-scope</a> 
+
+Prever regiões de profagos integradas em genomas bacterianos.
+
+Utiliza o [PhiSpy](https://github.com/linsalrob/PhiSpy) para identificar regiões de bacteriófagos integrados (profagos) em um genoma bacteriano completamente anotado. A predição se baseia na pontuação de características como troca de fita, desvio AT, proteínas únicas semelhantes a fagos e regiões codificantes curtas.
+
+## Entradas
+
+```
+record (
+    meta: Record,
+    gbff: Path
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro Groovy contendo informações da amostra |
+| `gbff` | `Path` | Arquivo de genoma anotado no formato GenBank |
+
+## Saídas
+
+```
+record (
+    meta: Record,
+    tsv: Path,
+    results: Set<Path>,
+    logs: Set<Path?>,
+    nf_logs: Set<Path>,
+    versions: Set<Path>
+)
+```
+
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| `meta` | `Record` | Registro com informações da amostra |
+| `tsv` | `Path` | Coordenadas (início/fim) de cada região de profago prevista no genoma |
+| `results` | `Set<Path>` | Todos os arquivos de saída a serem publicados |
+| `logs` | `Set<Path?>` | Arquivos de log opcionais específicos do programa |
+| `nf_logs` | `Set<Path>` | Arquivos de log específicos do Nextflow (ex.: .command.&#123;begin|err|log|out|run|sh|trace&#125;) |
+| `versions` | `Set<Path>` | Arquivo no formato YAML com as versões dos programas |
+
+## Parâmetros
+
+### Parâmetros do PhiSpy
+
+| Parâmetro | Tipo | Padrão | Descrição |
+|-----------|------|--------|-----------|
+| `--phispy_number` | inteiro | `5` | Número de genes consecutivos em uma região de tamanho de janela que devem ser genes de profago para serem identificados como tal |
+| `--phispy_mincontigsize` | inteiro | `5000` | Tamanho mínimo do contig (em pb) para ser incluído na análise. Contigs menores serão descartados. |
+| `--phispy_windowsize` | inteiro | `30` | Tamanho da janela de genes consecutivos a ser examinada para encontrar fagos |
+| `--phispy_nonprophage_genegaps` | inteiro | `10` | O número de genes não relacionados a fagos entre profagos |
+| `--phispy_phage_genes` | inteiro | `1` | O número mínimo de genes que devem ser identificados como pertencentes a um fago para que a região seja incluída |
+| `--phispy_randomforest_trees` | inteiro | `500` | Número de árvores geradas pelo classificador Random Forest |
+| `--phispy_opts` | string |  | Opções extras entre aspas para o PhiSpy |
+
+## Usado Por
+
+### Subworkflows
+
+- [phispy](/developers/subworkflows/phispy) - Predição de profagos a partir de genomas bacterianos.
+
+### Workflows
+
+- [phispy](/bactopia-tools/phispy) - Predição de profagos em genomas bacterianos e arqueais.
+
+## Citações
+
+Se você usar esta ferramenta em sua análise, por favor cite os seguintes trabalhos.
+
+- [Bactopia](https://bactopia.io/)  
+  Petit III RA, Read TD [Bactopia - a flexible pipeline for complete analysis of bacterial genomes.](https://doi.org/10.1128/mSystems.00190-20) _mSystems_ 5 (2020)
+
+- [PhiSpy](https://github.com/linsalrob/PhiSpy)  
+  Akhter S, Aziz RK, and Edwards RA [PhiSpy: a novel algorithm for finding prophages in bacterial genomes that combines similarity- and composition-based strategies.](https://doi.org/10.1093/nar/gks406) _Nucleic Acids Research_, 40(16), e126. (2012)
+
+## Fonte
+
+[Ver fonte no GitHub](https://github.com/bactopia/bactopia/tree/main/modules/phispy)
+
+## Versão
+
+```yaml
+PHISPY:
+    - phispy: 5.0.6
+```
