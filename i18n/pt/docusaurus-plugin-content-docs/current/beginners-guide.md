@@ -17,8 +17,8 @@ seguir fornecerá alguns exemplos de cada uma dessas entradas aceitas, incluindo
 
 - Reads Illumina e/ou Nanopore locais
 - Montagens locais
-- Accessions de Experimentos ENA/SRA
-- Accessions do NCBI Assembly
+- Identificadores de Experimentos ENA/SRA
+- Identificadores do NCBI Assembly
 
 Ao final deste guia, também vamos dar uma olhada em alguns parâmetros úteis. Se você
 estiver interessado em aprender mais sobre o conjunto completo de parâmetros disponíveis
@@ -207,7 +207,7 @@ bactopia \
 ```
 :::
 
-### Accession ENA/SRA
+### Identificadores ENA/SRA
 
 O predecessor do Bactopia, [Staphopia](https://staphopia.github.io/), dependia muito da
 capacidade de acessar FASTQs disponíveis publicamente no
@@ -216,7 +216,7 @@ capacidade de acessar FASTQs disponíveis publicamente no
 capacidade de acessar rapidamente milhões de amostras fosse mantida no Bactopia.
 
 Então, se você quiser incluir amostras disponíveis publicamente em sua análise, o Bactopia
-tem isso integrado! Você pode fornecer um accession de *Experimento* (`--accession`), e o
+tem isso integrado! Você pode fornecer um Identificadore de *Experimento* (`--accession`), e o
 Bactopia usará [fastq-dl](https://github.com/rpetit3/fastq-dl) para baixar
 automaticamente os arquivos FASTQ associados do ENA ou SRA. Em seguida, o arquivo FASTQ
 baixado será processado pelo Bactopia exatamente como seus FASTQs locais normais.
@@ -248,11 +248,11 @@ Nos casos em que um único Experimento pode ter múltiplos accessions de Run ass
 a ele, os arquivos FASTQ de cada Run são mesclados em um único conjunto de sequências.
 :::
 
-### Accession do NCBI Assembly
+### Identificadores do NCBI Assembly
 
 Se você pode processar montagens e baixar FASTQs do ENA/SRA de forma transparente, faz
 sentido que você também possa processar montagens do NCBI Assembly! Similar ao download
-de FASTQs do ENA/SRA, você pode fornecer um accession do *NCBI Assembly* usando
+de FASTQs do ENA/SRA, você pode fornecer um Identificadoresaccession do *NCBI Assembly* usando
 `--accession`. Esses accessions são os que começam com `GCF` ou `GCA`. Quando fornecido
 um accession do NCBI Assembly, o Bactopia usará
 [ncbi-genome-download](https://github.com/kblin/ncbi-genome-download) para buscar a
